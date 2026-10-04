@@ -5,7 +5,7 @@
 import { SceneMiniMap } from '@/scenes/common/SceneMiniMap';
 import { BIKE_GEARS, bikeGear } from '@/systems/ride';
 import { onBreederGain } from '@/systems/breeder';
-import { HEART_SCALE, rollWildHeartScale } from '@/systems/tms';
+import { HEART_SCALE, rollWildHeartScale, wildPrizeMoney } from '@/systems/tms';
 import { IslandMap } from '@/scenes/common/IslandMap';
 import { SceneFollower } from '@/scenes/common/SceneFollower';
 import { TrainerBattles } from '@/scenes/common/TrainerBattles';
@@ -25,7 +25,7 @@ import type { Dex } from '@/systems/data/Dex';
 import type { Rng } from '@/systems/rng';
 import { createWild, grassEncounterCheck, rollEncounter, type FieldWeather, type TimeOfDay } from '@/systems/encounters';
 import { healFully, createPokemon, displayName } from '@/systems/pokemon';
-import { EXPLORE_CELL, addItem, ZONE_VISITED_PREFIX, markExplored, markExploredPolygon, serializeSave, summarize, type ExploreGrid, type GameState } from '@/systems/state';
+import { EXPLORE_CELL, addItem, addMoney, ZONE_VISITED_PREFIX, markExplored, markExploredPolygon, serializeSave, summarize, type ExploreGrid, type GameState } from '@/systems/state';
 import type { BlockerConfig, IslandConfig, PropsFile } from '@/config/islands';
 import { ENCOUNTER_TABLES } from '@/config/encounters';
 import {
@@ -1193,6 +1193,7 @@ export class OverworldScene implements Scene, BattleHost {
 
   private async afterBattle(r: BattleResult): Promise<void> {
     const { game } = this.d;
+    const foe = r.entityId >= 0 ? this.spawns.wild.get(r.entityId)?.mon : undefined;
     if (r.entityId >= 0 && r.result !== 'run') this.spawns.remove(r.entityId);
     if (r.entityId >= 0 && r.result === 'run') {
       // 逃跑后野生个体受惊跑开，短时间内不会再撞上来；巢穴头目回巢（警告重置，玩家需退出警告圈）
@@ -1210,6 +1211,12 @@ export class OverworldScene implements Scene, BattleHost {
       addItem(this.d.state, HEART_SCALE, 1);
       alphaLines.push('咦？野生宝可梦离开的地方，留下了一片闪闪发光的鳞片……', `获得了 心之鳞片！`);
     }
+    // 打倒野生宝可梦：捡到少量货币
+    if (!this.scriptedBattle && !r.trainerId && foe && r.result === 'win') {
+      const coins = wildPrizeMoney(foe.level, this.d.rng, !!foe.alpha);
+      addMoney(this.d.state, coins);
+      this.d.toaster.show(`捡到了 ${coins} 円`);
+    }
     this.spawns.setFrozen(false);
     this.follower.giveBack();
     const trainerDef = this.trainers.active ? this.trainers.active.def : null;
@@ -1223,7 +1230,11 @@ export class OverworldScene implements Scene, BattleHost {
     this.d.hud.setVisible(true);
     this.rig.clearOverride();
     this.rig.resetBehind(this.player.facing);
-    if (alphaLines.length) await say(this.d.ui, alphaLines);
+    if (alphaLines.length) {
+      // 自动战斗中不弹对话框（不会卡住）：改为右上角提示，自动继续
+      if (this.auto.active) for (const l of alphaLines) this.d.toaster.show(l);
+      else await say(this.d.ui, alphaLines);
+    }
     game.events.emit('battle:end', {
       result: r.result,
       entityId: r.entityId,

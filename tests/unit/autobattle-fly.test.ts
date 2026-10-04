@@ -171,3 +171,14 @@ describe('区域图鉴', () => {
     expect(zd.zones.filter((z) => z.alpha).length).toBeGreaterThan(0);
   });
 });
+
+describe('打倒野生宝可梦的零钱', () => {
+  it('等级 × 2 到 等级 × 3，头目 ×3', async () => {
+    const { wildPrizeMoney } = await import('@/systems/tms');
+    const lo = { next: () => 0 } as unknown as Parameters<typeof wildPrizeMoney>[1];
+    const hi = { next: () => 0.999 } as unknown as Parameters<typeof wildPrizeMoney>[1];
+    expect(wildPrizeMoney(10, lo)).toBe(20);
+    expect(wildPrizeMoney(10, hi)).toBe(30);
+    expect(wildPrizeMoney(10, lo, true)).toBe(60);
+  });
+});

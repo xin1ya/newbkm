@@ -101,3 +101,10 @@ export function recallPayments(bag: Readonly<Record<string, number>>, money: num
 export function rollWildHeartScale(rng: Rng): boolean {
   return rng.next() < HEART_SCALE_WILD_CHANCE;
 }
+
+/** 打倒野生宝可梦获得的少量货币：等级 × 2 + 0…等级 的随机零头（Lv10 ≈ 20–30 円，头目 ×3） */
+export function wildPrizeMoney(level: number, rng: Rng, alpha = false): number {
+  const lv = Math.max(1, Math.round(level));
+  const base = lv * 2 + Math.floor(rng.next() * (lv + 1));
+  return alpha ? base * 3 : base;
+}
