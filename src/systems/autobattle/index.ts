@@ -95,7 +95,32 @@ export function isDamagingMove(b: Battle, id: string): boolean {
 }
 
 function usableAttack(b: Battle, req: ActionRequest, i: number): boolean {
-  return usable(req, i) && isDamagingMove(b, req.moves[i]!.id);
+  return usable(req, i) && isDamagingMove(b, req.moves[i]!.id) && estimateDamage(b, i, 1) > 0;
+}
+
+/** 回合上限：超过仍未分出胜负（免疫 / 特性等估算不到的情况）就撤退，防止卡死 */
+export const AUTO_MAX_TURNS = 25;
+
+/** 队伍里还能战斗、且有能打到对手的攻击招式（属性不免疫）的宝可梦 */
+export function effectiveSwitchIndex(b: Battle): number | null {
+  const s = b.sides[0];
+  const foeTypes = b.types(b.active(1));
+  const i = s.party.findIndex(
+    (m, idx) =>
+      idx !== s.active &&
+      m.pokemon.hp > 0 &&
+      m.pokemon.moves.some((mv) => mv.pp > 0 && isDamagingMove(b, mv.id) && b.dex.effectiveness(b.dex.move(mv.id).type, foeTypes) > 0),
+  );
+  return i >= 0 ? i : null;
+}
+
+/** 没有能造成伤害的招式（例如一般 / 格斗系招式打鬼斯）：捕捉目标直接扔球 → 换上打得到的同伴 → 逃跑 → 停止 */
+function noEffectiveMove(b: Battle, req: ActionRequest, goal: AutoGoal | null, cfg: AutoBattleConfig, bag: Readonly<Record<string, number>>): AutoDecision {
+  if (goal === 'capture' && req.canCatch && (bag[cfg.ball] ?? 0) > 0) return { kind: 'act', action: { type: 'ball', itemId: cfg.ball }, note: 'ball' };
+  const sw = req.canSwitch ? effectiveSwitchIndex(b) : null;
+  if (sw !== null) return { kind: 'act', action: { type: 'switch', partyIndex: sw }, note: 'switch' };
+  if (req.canRun) return { kind: 'act', action: { type: 'run' }, note: 'retreat' };
+  return { kind: 'stop', reason: '我方招式都打不到对手' };
 }
 
 /** 估算伤害最高的可用攻击招式（按命中率折算）；没有可用的攻击招式返回 -1 */
@@ -123,10 +148,11 @@ function firstOwned(items: readonly string[], bag: Readonly<Record<string, numbe
  */
 export function decideAutoAction(b: Battle, req: ActionRequest, goal: AutoGoal | null, cfg: AutoBattleConfig, bag: Readonly<Record<string, number>>): AutoDecision {
   if (req.forced) return { kind: 'act', action: { type: 'move', moveIndex: 0 } };
+  if (b.turn > AUTO_MAX_TURNS && req.canRun) return { kind: 'act', action: { type: 'run' }, note: 'retreat' };
   if (goal === null) {
     if (req.canRun) return { kind: 'act', action: { type: 'run' }, note: 'flee' };
     const m = bestMove(b, req);
-    if (m < 0) return { kind: 'stop', reason: '没有可用的攻击招式' };
+    if (m < 0) return noEffectiveMove(b, req, goal, cfg, bag);
     return { kind: 'act', action: { type: 'move', moveIndex: m } };
   }
   const me = b.active(0);
@@ -157,10 +183,7 @@ export function decideAutoAction(b: Battle, req: ActionRequest, goal: AutoGoal |
     }
   }
   if (!req.moves.some((m) => usable(req, m.index))) return { kind: 'act', action: { type: 'move', moveIndex: 0 } }; // 全部 PP 耗尽 → 引擎改用「挣扎」
-  if (!req.moves.some((m) => usableAttack(b, req, m.index))) {
-    if (req.canRun) return { kind: 'act', action: { type: 'run' }, note: 'retreat' };
-    return { kind: 'stop', reason: '没有可用的攻击招式' };
-  }
+  if (!req.moves.some((m) => usableAttack(b, req, m.index))) return noEffectiveMove(b, req, goal, cfg, bag);
   if (goal === 'defeat') {
     if (slot < 0) slot = bestMove(b, req);
     return { kind: 'act', action: { type: 'move', moveIndex: slot } };

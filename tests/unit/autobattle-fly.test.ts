@@ -23,8 +23,9 @@ describe('自动战斗决策', () => {
   it('打倒：使用指定招式；自动时选估算伤害最高的', () => {
     const b = battle([mon(722, 15)], [mon(16, 5)]);
     const r = req(b);
-    const d1 = decideAutoAction(b, r, 'defeat', cfg({ moveSlot: 0 }), {});
-    expect(d1).toMatchObject({ kind: 'act', action: { type: 'move', moveIndex: 0 } });
+    const slot = r.moves.find((m) => estimateDamage(b, m.index, 1) > 0)!.index;
+    const d1 = decideAutoAction(b, r, 'defeat', cfg({ moveSlot: slot }), {});
+    expect(d1).toMatchObject({ kind: 'act', action: { type: 'move', moveIndex: slot } });
     const d2 = decideAutoAction(b, r, 'defeat', cfg({ moveSlot: -1 }), {});
     expect(d2.kind).toBe('act');
     if (d2.kind === 'act' && d2.action.type === 'move') {
@@ -94,6 +95,28 @@ describe('自动战斗决策', () => {
     const b = battle([a, c], [mon(16, 5)]);
     a.hp = 0;
     expect(autoSwitchIndex(b)).toBe(1);
+  });
+
+  it('招式全被免疫（一般系打鬼斯）：捕捉扔球 / 换上打得到的同伴 / 逃跑，不会卡死', () => {
+    const normal = () => {
+      const m = mon(722, 15);
+      m.moves = [{ id: 'tackle', pp: 35, maxPp: 35 }];
+      return m;
+    };
+    const b = battle([normal()], [mon(92, 12)]);
+    expect(estimateDamage(b, 0, 1)).toBe(0);
+    expect(decideAutoAction(b, req(b), 'defeat', cfg(), {})).toMatchObject({ action: { type: 'run' } });
+    expect(decideAutoAction(b, req(b), 'capture', cfg({ ball: 'poke-ball' }), { 'poke-ball': 2 })).toMatchObject({ action: { type: 'ball' } });
+    const ally = mon(155, 15);
+    ally.moves = [{ id: 'ember', pp: 25, maxPp: 25 }];
+    const b2 = battle([normal(), ally], [mon(92, 12)]);
+    expect(decideAutoAction(b2, req(b2), 'defeat', cfg(), {})).toMatchObject({ action: { type: 'switch', partyIndex: 1 } });
+  });
+
+  it('超过回合上限 → 撤退', () => {
+    const b = battle([mon(722, 15)], [mon(16, 5)]);
+    b.turn = 99;
+    expect(decideAutoAction(b, req(b), 'defeat', cfg(), {})).toMatchObject({ action: { type: 'run' } });
   });
 
   it('配置清洗', () => {
