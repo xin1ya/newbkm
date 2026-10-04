@@ -11,7 +11,8 @@
  * - 阻挡：岛屿 blockers 里未满足 flag 的圆形区域（派发 blocker:hit）
  * - 离开边缘（码头）时受重力下落
  * - 飞行骑乘（mode = 'fly'）：自由 3D 飞行，空格上升、Shift / Ctrl 下降，X 加速；可越过海面与山地，
- *   离下方地面 / 水面最高 FLY_CEILING 米，世界绝对高度不超过 FLY_ABS_MAX；不受岛屿封锁圈限制
+ *   离下方地面 / 水面最高 FLY_CEILING 米，世界绝对高度不超过 FLY_ABS_MAX；
+ *   剧情 / 能力封锁圈（异变结界、藤蔓、裂岩等）在飞行时同样阻挡（视为直通天顶的屏障），只有「开阔海面需要冲浪」的 surf 封锁对飞行无效
  */
 import * as THREE from 'three';
 import type { Input } from '@/core/input';
@@ -139,6 +140,7 @@ export class PlayerController {
   private blockedByBlocker(x: number, z: number): BlockerConfig | null {
     for (const b of this.blockers) {
       if (this.flags(b.requiresFlag)) continue;
+      if (this.mode === 'fly' && b.type === 'surf') continue;
       const r = (b.radius ?? 2) + PLAYER_RADIUS;
       if (Math.hypot(x - b.position[0], z - b.position[2]) < r) return b;
     }
@@ -351,6 +353,20 @@ export class PlayerController {
       }
       this.velocity.x *= 0.5;
       this.velocity.z *= 0.5;
+    }
+    // 封锁圈（异变结界等）：飞行同样阻挡，沿圆周滑开并提示
+    const blk = this.blockedByBlocker(nx, nz);
+    if (blk) {
+      if ((this.lastBlockerHint.get(blk.id) ?? -99) + 4 < this.time) {
+        this.lastBlockerHint.set(blk.id, this.time);
+        this.events.emit('blocker:hit', { id: blk.id, hint: blk.hint });
+      }
+      const dx = nx - blk.position[0];
+      const dz = nz - blk.position[2];
+      const d = Math.hypot(dx, dz) || 1;
+      const r = (blk.radius ?? 2) + PLAYER_RADIUS + 0.01;
+      nx = blk.position[0] + (dx / d) * r;
+      nz = blk.position[2] + (dz / d) * r;
     }
     // 建筑 / 树木：只在该高度范围内阻挡（飞得够高就越过去）
     const res = this.collision.resolve(nx, nz, PLAYER_RADIUS + 0.4, p.y - 0.6, p.y + PLAYER_HEIGHT);
