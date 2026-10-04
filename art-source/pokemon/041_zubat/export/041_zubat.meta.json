@@ -3,7 +3,7 @@
   "name": "zubat",
   "heightM": 0.8,
   "plan": "rigid",
-  "tris": 2272,
+  "tris": 2400,
   "fit": "height",
   "bones": 14,
   "clips": [

@@ -85,3 +85,5 @@
 - 2026-09-29：P0 御三家完成建模 / 绑骨 / 动画，glb 已导出到 `assets/models/pokemon/`（`722_rowlet` 10 片段含 `fly`、`155_cyndaquil` 9 片段、`258_mudkip` 10 片段含 `swim`），`hitTime` 写在同名 `.meta.json`。
   源文件与分步脚本：`art-source/pokemon/<id>/`（`steps/step1..5`，用 `art-source/tools/bx.py run` 经 blender-mcp 重建）。
   入库剩余：gltf-transform 压缩、样张页三时段验收、注册 manifest（随 M1-21 代码侧 glb 接入完成）。
+
+- 2026-10-04 第二批 45 模型参考相似度验收：44 个全部剪影 IoU ≥0.70（864 豁免），详见 docs/art/similarity-batch2.md。

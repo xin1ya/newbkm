@@ -3,9 +3,9 @@
   "name": "steelix",
   "heightM": 9.2,
   "plan": "serpent",
-  "tris": 4736,
+  "tris": 3912,
   "fit": "height",
-  "bones": 15,
+  "bones": 11,
   "clips": [
     "idle",
     "idle_alt",

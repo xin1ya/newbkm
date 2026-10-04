@@ -3,7 +3,7 @@
   "name": "breloom",
   "heightM": 1.2,
   "plan": "biped",
-  "tris": 6584,
+  "tris": 7160,
   "fit": "height",
   "bones": 17,
   "clips": [

@@ -3,7 +3,7 @@
   "name": "rapidash",
   "heightM": 1.7,
   "plan": "quadruped",
-  "tris": 5924,
+  "tris": 7972,
   "fit": "height",
   "bones": 18,
   "clips": [

@@ -1,25 +1,33 @@
 # Steelix (208) · steel/ground · 9.2 m. Giant serpent of steel-grey cylinder segments, each ringed by blocky protrusions; long jaw head with a square mouth of teeth, horn-like crest plates, red eyes; spiked tail.
 reset('208_steelix')
 M = pal([('grey', '#8a96a8'), ('grey_dk', '#5a6474'), ('eye', '#d83a3a'), ('tooth', '#f0f0f0'), ('white', '#ffffff')])
-N = 12
-# body arcs: rises from the ground into an S-curve, head high at front
-pts = []
-for i in range(N):
-    t = i / (N - 1)
-    pts.append(Vector((0.6 * math.sin(t * 5.5), 0.3 + 3.5 * t - 1.2 * t * t, 0.4 + 3.6 * (1 - t) ** 1.6 * (0.6 + 0.4 * math.cos(t * 3)))))
-pts = pts[::-1]  # pts[0] = tail end ... reversed so head last
-pts = [p for p in reversed(pts)]
+N = 8
+SP = [0.344, 1.089, -0.601, 0.444, -0.061, -0.694, -0.271, -0.295]
+CP = [-0.026, -2.076, 0.435, -0.040, -1.358, 0.462, -0.043, -0.337, 0.356, -0.135, 0.655, 0.280, 0.167, 1.821, 0.301, 0.030, 2.481, 0.302, 0.023, 3.311, 0.320]
+RP = [0.6, 0.2, 1.0]
+_C = [Vector(CP[i:i + 3]) for i in range(0, len(CP), 3)]
+def _cr(t):
+    n = len(_C) - 1; u = min(t * n, n - 1e-6); k = int(u); f = u - k
+    p0, p1, p2, p3 = _C[max(k - 1, 0)], _C[k], _C[k + 1], _C[min(k + 2, n)]
+    return 0.5 * (2 * p1 + (-p0 + p2) * f + (2 * p0 - 5 * p1 + 4 * p2 - p3) * f * f + (-p0 + 3 * p1 - 3 * p2 + p3) * f ** 3)
+pts = [_cr(i / (N - 1)) for i in range(N)]
 bones = [('root', (0, 0, 0), None)]
 for i, p in enumerate(pts):
-    r = 0.62 - 0.4 * (i / (N - 1))
+    r = RP[0] - (RP[0] - RP[1]) * (i / (N - 1)) ** RP[2]
     bn = 'head' if i == 0 else f'body{i}'
     fn = (lambda v: Vector((v.x + 0.08 * math.sin(v.y * 7) * v.x, v.y, v.z + 0.06 * math.cos(v.x * 6))))
-    blob(f'stx_seg{i}', p, (r, r * 0.95, r * 0.9) if i else (0.55, 0.7, 0.42), lambda c, n, p_: 'grey_dk' if n.z < -0.5 else 'grey', bn, seg=14, rings=9, fn=fn)
+    blob(f'stx_seg{i}', p, (r, r * 0.95, r * 0.9) if i else (0.85, 0.85, 0.5), lambda c, n, p_: 'grey_dk' if n.z < -0.5 else 'grey', bn, seg=14, rings=9, fn=fn)
     if i:
-        for k in range(6):
-            a = 2 * math.pi * k / 6 + i * 0.5
-            blob(f'stx_knob{i}_{k}', p + Vector((math.cos(a) * r * 0.95, math.sin(a) * r * 0.2, math.sin(a) * r * 0.9)), (r * 0.28, r * 0.28, r * 0.28), 'grey_dk', bn, seg=4, rings=3)
+        L = SP[i]
+        for sd in ((1, -1) if L > 0.08 else ()):
+            o = cone(f'stx_spk{i}_{sd + 1}', r * 0.35, 0.02, L, verts=6, loc=p + Vector((sd * (r + L * 0.45), 0, 0))); o.rotation_euler = (0, math.radians(sd * 90), 0); colorize(o, 'grey_dk'); reg(o, bn)
+        for k in range(4):
+            a_ = math.pi / 4 + k * math.pi / 2
+            blob(f'stx_knob{i}_{k}', p + Vector((math.cos(a_) * r * 0.9, 0, math.sin(a_) * r * 0.85)), (r * 0.22, r * 0.22, r * 0.22), 'grey_dk', bn, seg=4, rings=3)
     bones.append((bn, tuple(p), 'root' if i == 0 else ('head' if i == 1 else f'body{i - 1}')))
+for i in range(1, N - 1):
+    ra = RP[0] - (RP[0] - RP[1]) * ((i + 0.5) / (N - 1)) ** RP[2]
+    blob(f'stx_link{i}', (pts[i] + pts[i + 1]) / 2, (ra * 0.7, ra * 0.8, ra * 0.65), 'grey_dk', lambda c, i=i: lerp_w(f'body{i}', f'body{i + 1}', 0.5), seg=10, rings=6)
 H = pts[0]
 for s_ in (1, -1):
     o = cone(f'stx_crest{s_ + 1}', 0.2, 0.02, 0.7, verts=4, loc=H + Vector((s_ * 0.3, 0.3, 0.45))); o.scale = (0.35, 1, 1); o.rotation_euler = (math.radians(40), math.radians(s_ * 25), 0); colorize(o, 'grey_dk'); reg(o, 'head')

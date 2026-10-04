@@ -2,6 +2,8 @@
 reset('169_crobat')
 M = pal([('purple', '#7a4aa8'), ('purple_dk', '#55307a'), ('inner', '#6a7aa8'), ('mouth', '#3a1a2a'), ('fang', '#ffffff'), ('eye', '#f2d23a'), ('iris', '#c82a2a'), ('pupil', '#1a1418'), ('white', '#ffffff')])
 exec(open(D('art-source', 'tools', 'batwing.py'), encoding='utf-8').read())
+WT = [1.090, -0.000, 0.672, 0.785, 0.002, 0.408, 0.649, 0.029, 0.263, 0.219, 0.040, 0.071, 0.265]
+WT2 = [0.659, 0.005, -0.454, 0.470, -0.006, -0.200, 0.411, 0.026, -0.128]
 Z = 1.0; BC = Vector((0, 0, Z))
 body = blob('cb_body', BC, (0.2, 0.18, 0.22), lambda c, n, p: 'purple_dk' if n.z < -0.7 else 'purple', lambda c: lerp_w('spine', 'head', (c.z - Z + 0.1) / 0.2), seg=32, rings=18)
 blob('cb_mouth', BC + Vector((0, -0.17, -0.07)), (0.06, 0.025, 0.03), 'mouth', 'head', seg=14, rings=8)
@@ -12,8 +14,8 @@ for s, nm in ((1, 'l'), (-1, 'r')):
     decal(f'cb_pupil_{nm}', ir, l2, n2, (0.01, 0.004, 0.02), 'pupil', 'head', sink=0.05, seg=10, rings=6)
     e0 = BC + Vector((s * 0.1, 0.02, 0.17))
     tube(f'cb_ear_{nm}', [e0, e0 + Vector((s * 0.05, 0.0, 0.1)), e0 + Vector((s * 0.08, 0.01, 0.18))], [0.05, 0.035, 0.003], lambda c, n_, p_: 'inner' if n_.y < -0.4 else 'purple', f'ear_{nm}', seg=10, flat=0.45)
-    bat_wing('cb', s, nm, BC + Vector((s * 0.17, 0.03, 0.06)), 0.85, 1.0, 'purple', 'inner', fingers=3)
-    bat_wing('cb2', s, nm, BC + Vector((s * 0.15, 0.05, -0.1)), 0.55, 0.7, 'purple', 'inner', fingers=2, bone=f'wing2_{nm}', zoff=-0.15)
+    bat_wing('cb', s, nm, BC + Vector((s * 0.17, 0.03, 0.06)), 0.85, 1.0, 'purple', 'inner', fingers=3, TIPS=[(WT[i], WT[i + 1], Z + WT[i + 2]) for i in (0, 3, 6, 9)], EL=(0, 0, WT[12]))
+    bat_wing('cb2', s, nm, BC + Vector((s * 0.15, 0.05, -0.1)), 0.55, 0.7, 'purple', 'inner', fingers=2, bone=f'wing2_{nm}', TIPS=[(WT2[i], WT2[i + 1], Z + WT2[i + 2]) for i in (0, 3, 6)])
     h = BC + Vector((s * 0.06, 0.06, -0.2))
     tube(f'cb_leg_{nm}', [h, h + Vector((0, 0.04, -0.08))], [0.025, 0.018], 'purple', f'foot_{nm}', seg=8)
 bones = [('root', (0, 0, 0), None), ('hips', (0, 0, Z - 0.12), 'root'), ('spine', tuple(BC), 'hips'), ('head', tuple(BC + Vector((0, 0, 0.1))), 'spine')]

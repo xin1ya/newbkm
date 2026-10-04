@@ -13,13 +13,13 @@ for s, nm in ((1, 'l'), (-1, 'r')):
     decal(f'bs_shine_{nm}', e, loc + Vector((0, 0, 0.004)), n, (0.004, 0.002, 0.004), 'white', 'head', sink=0.05, seg=8, rings=6)
 # stem: from head bottom-back curving down to hips
 tube('bs_neck', [HC + Vector((0, 0.06, 0.0)), Vector((0, 0.03, 0.5)), Vector((0, 0.0, 0.4)), Vector((0, 0.0, 0.3)), Vector((0, 0, 0.17))], [0.016, 0.014, 0.013, 0.013, 0.012], 'stem',
-     lambda c: lerp_w('spine', 'head', (c.z - 0.3) / 0.25), seg=10)
+     lambda c: lerp_w('hips', 'spine', (c.z - 0.17) / 0.13) if c.z < 0.3 else lerp_w('spine', 'head', (c.z - 0.3) / 0.25), seg=10)
 blob('bs_knot', (0, 0, 0.17), (0.02, 0.02, 0.02), 'stem', 'hips', seg=12, rings=8)
 # leaf arms
 for s, nm in ((1, 'l'), (-1, 'r')):
     a = Vector((s * 0.012, 0, 0.36))
     pts = [a, a + Vector((s * 0.05, -0.01, 0.0)), a + Vector((s * 0.1, -0.015, -0.01)), a + Vector((s * 0.15, -0.01, -0.025)), a + Vector((s * 0.18, 0, -0.04))]
-    tube(f'bs_leaf_{nm}', pts, [0.004, 0.028, 0.034, 0.022, 0.003], lambda c, n_, p: 'leaf' if n_.z > -0.2 else 'leaf_dk', lambda c, nm=nm: lerp_w(f'arm_{nm}', f'hand_{nm}', abs(c.x) / 0.18), seg=10, flat=0.15)
+    blob(f'bs_leaf_{nm}', a + Vector((s * 0.105, -0.01, -0.015)), (0.1, 0.055, 0.008), lambda c, n_, p: 'leaf' if n_.z > -0.2 else 'leaf_dk', lambda c, nm=nm: lerp_w(f'arm_{nm}', f'hand_{nm}', abs(c.x) / 0.2), seg=20, rings=10, fn=lambda v: Vector((v.x, v.y * (1 - 0.85 * abs(v.x) ** 1.5), v.z - 0.15 * v.x * v.x)))
     # root legs: thin, splayed, with 3 root toes
     hip = Vector((0, 0, 0.17)); knee = Vector((s * 0.05, 0, 0.09)); ft = Vector((s * 0.08, -0.01, 0.01))
     tube(f'bs_leg_{nm}', [hip, knee, ft], [0.009, 0.008, 0.007], 'stem', lambda c, nm=nm: lerp_w(f'thigh_{nm}', f'foot_{nm}', (0.17 - c.z) / 0.16), seg=8)

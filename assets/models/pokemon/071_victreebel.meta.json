@@ -3,7 +3,7 @@
   "name": "victreebel",
   "heightM": 1.7,
   "plan": "rigid",
-  "tris": 4640,
+  "tris": 5120,
   "fit": "height",
   "bones": 12,
   "clips": [

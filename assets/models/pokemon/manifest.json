@@ -310,8 +310,8 @@
       },
       "shiny": "027_sandshrew_shiny.png",
       "file": "027_sandshrew.glb",
-      "bytes": 109456,
-      "rawBytes": 286600
+      "bytes": 109024,
+      "rawBytes": 334192
     },
     {
       "id": 28,
@@ -338,15 +338,15 @@
       },
       "shiny": "028_sandslash_shiny.png",
       "file": "028_sandslash.glb",
-      "bytes": 103312,
-      "rawBytes": 293400
+      "bytes": 104544,
+      "rawBytes": 335124
     },
     {
       "id": 41,
       "name": "zubat",
       "heightM": 0.8,
       "plan": "rigid",
-      "tris": 2272,
+      "tris": 2400,
       "fit": "height",
       "bones": 14,
       "clips": [
@@ -367,8 +367,8 @@
       },
       "shiny": "041_zubat_shiny.png",
       "file": "041_zubat.glb",
-      "bytes": 78096,
-      "rawBytes": 164004
+      "bytes": 79660,
+      "rawBytes": 223972
     },
     {
       "id": 42,
@@ -396,8 +396,8 @@
       },
       "shiny": "042_golbat_shiny.png",
       "file": "042_golbat.glb",
-      "bytes": 84884,
-      "rawBytes": 229160
+      "bytes": 84476,
+      "rawBytes": 280120
     },
     {
       "id": 43,
@@ -620,8 +620,8 @@
       },
       "shiny": "058_growlithe_shiny.png",
       "file": "058_growlithe.glb",
-      "bytes": 139296,
-      "rawBytes": 490796
+      "bytes": 141064,
+      "rawBytes": 549980
     },
     {
       "id": 59,
@@ -648,8 +648,8 @@
       },
       "shiny": "059_arcanine_shiny.png",
       "file": "059_arcanine.glb",
-      "bytes": 153152,
-      "rawBytes": 575284
+      "bytes": 152440,
+      "rawBytes": 631904
     },
     {
       "id": 60,
@@ -825,7 +825,7 @@
       "name": "bellsprout",
       "heightM": 0.7,
       "plan": "biped",
-      "tris": 2732,
+      "tris": 3252,
       "fit": "height",
       "bones": 15,
       "clips": [
@@ -845,8 +845,8 @@
       },
       "shiny": "069_bellsprout_shiny.png",
       "file": "069_bellsprout.glb",
-      "bytes": 85116,
-      "rawBytes": 191532
+      "bytes": 87948,
+      "rawBytes": 246800
     },
     {
       "id": 70,
@@ -873,15 +873,15 @@
       },
       "shiny": "070_weepinbell_shiny.png",
       "file": "070_weepinbell.glb",
-      "bytes": 70640,
-      "rawBytes": 195008
+      "bytes": 70604,
+      "rawBytes": 228568
     },
     {
       "id": 71,
       "name": "victreebel",
       "heightM": 1.7,
       "plan": "rigid",
-      "tris": 4640,
+      "tris": 5120,
       "fit": "height",
       "bones": 12,
       "clips": [
@@ -901,8 +901,8 @@
       },
       "shiny": "071_victreebel_shiny.png",
       "file": "071_victreebel.glb",
-      "bytes": 79688,
-      "rawBytes": 231028
+      "bytes": 79812,
+      "rawBytes": 280240
     },
     {
       "id": 72,
@@ -1071,15 +1071,15 @@
       },
       "shiny": "077_ponyta_shiny.png",
       "file": "077_ponyta.glb",
-      "bytes": 109928,
-      "rawBytes": 310652
+      "bytes": 111476,
+      "rawBytes": 365744
     },
     {
       "id": 78,
       "name": "rapidash",
       "heightM": 1.7,
       "plan": "quadruped",
-      "tris": 5924,
+      "tris": 7972,
       "fit": "height",
       "bones": 18,
       "clips": [
@@ -1099,8 +1099,8 @@
       },
       "shiny": "078_rapidash_shiny.png",
       "file": "078_rapidash.glb",
-      "bytes": 117332,
-      "rawBytes": 352328
+      "bytes": 127812,
+      "rawBytes": 476276
     },
     {
       "id": 79,
@@ -1127,8 +1127,8 @@
       },
       "shiny": "079_slowpoke_shiny.png",
       "file": "079_slowpoke.glb",
-      "bytes": 119120,
-      "rawBytes": 324188
+      "bytes": 119644,
+      "rawBytes": 385968
     },
     {
       "id": 80,
@@ -1155,8 +1155,8 @@
       },
       "shiny": "080_slowbro_shiny.png",
       "file": "080_slowbro.glb",
-      "bytes": 108084,
-      "rawBytes": 309116
+      "bytes": 108456,
+      "rawBytes": 353568
     },
     {
       "id": 90,
@@ -1303,9 +1303,9 @@
       "name": "onix",
       "heightM": 8.8,
       "plan": "serpent",
-      "tris": 3440,
+      "tris": 6384,
       "fit": "height",
-      "bones": 15,
+      "bones": 21,
       "clips": [
         "idle",
         "idle_alt",
@@ -1324,8 +1324,8 @@
       },
       "shiny": "095_onix_shiny.png",
       "file": "095_onix.glb",
-      "bytes": 109856,
-      "rawBytes": 285948
+      "bytes": 159112,
+      "rawBytes": 493392
     },
     {
       "id": 98,
@@ -1408,8 +1408,8 @@
       },
       "shiny": "104_cubone_shiny.png",
       "file": "104_cubone.glb",
-      "bytes": 106884,
-      "rawBytes": 323212
+      "bytes": 107664,
+      "rawBytes": 366040
     },
     {
       "id": 105,
@@ -1436,8 +1436,8 @@
       },
       "shiny": "105_marowak_shiny.png",
       "file": "105_marowak.glb",
-      "bytes": 107172,
-      "rawBytes": 323692
+      "bytes": 107604,
+      "rawBytes": 366532
     },
     {
       "id": 111,
@@ -1464,8 +1464,8 @@
       },
       "shiny": "111_rhyhorn_shiny.png",
       "file": "111_rhyhorn.glb",
-      "bytes": 115816,
-      "rawBytes": 339556
+      "bytes": 116696,
+      "rawBytes": 397428
     },
     {
       "id": 112,
@@ -1492,8 +1492,8 @@
       },
       "shiny": "112_rhydon_shiny.png",
       "file": "112_rhydon.glb",
-      "bytes": 105692,
-      "rawBytes": 292580
+      "bytes": 106272,
+      "rawBytes": 337412
     },
     {
       "id": 118,
@@ -1884,15 +1884,15 @@
       },
       "shiny": "165_ledyba_shiny.png",
       "file": "165_ledyba.glb",
-      "bytes": 104048,
-      "rawBytes": 268632
+      "bytes": 105392,
+      "rawBytes": 314704
     },
     {
       "id": 166,
       "name": "ledian",
       "heightM": 1.4,
       "plan": "biped",
-      "tris": 4524,
+      "tris": 4572,
       "fit": "height",
       "bones": 17,
       "clips": [
@@ -1912,8 +1912,8 @@
       },
       "shiny": "166_ledian_shiny.png",
       "file": "166_ledian.glb",
-      "bytes": 102644,
-      "rawBytes": 263616
+      "bytes": 103736,
+      "rawBytes": 311884
     },
     {
       "id": 169,
@@ -1941,8 +1941,8 @@
       },
       "shiny": "169_crobat_shiny.png",
       "file": "169_crobat.glb",
-      "bytes": 83832,
-      "rawBytes": 201652
+      "bytes": 81828,
+      "rawBytes": 248748
     },
     {
       "id": 172,
@@ -2109,17 +2109,17 @@
       },
       "shiny": "199_slowking_shiny.png",
       "file": "199_slowking.glb",
-      "bytes": 113320,
-      "rawBytes": 351016
+      "bytes": 114692,
+      "rawBytes": 395716
     },
     {
       "id": 208,
       "name": "steelix",
       "heightM": 9.2,
       "plan": "serpent",
-      "tris": 4736,
+      "tris": 3912,
       "fit": "height",
-      "bones": 15,
+      "bones": 11,
       "clips": [
         "idle",
         "idle_alt",
@@ -2138,15 +2138,15 @@
       },
       "shiny": "208_steelix_shiny.png",
       "file": "208_steelix.glb",
-      "bytes": 116660,
-      "rawBytes": 336852
+      "bytes": 88200,
+      "rawBytes": 284764
     },
     {
       "id": 214,
       "name": "heracross",
       "heightM": 1.5,
       "plan": "biped",
-      "tris": 5172,
+      "tris": 5732,
       "fit": "height",
       "bones": 16,
       "clips": [
@@ -2166,8 +2166,8 @@
       },
       "shiny": "214_heracross_shiny.png",
       "file": "214_heracross.glb",
-      "bytes": 98932,
-      "rawBytes": 275032
+      "bytes": 103348,
+      "rawBytes": 337384
     },
     {
       "id": 218,
@@ -2194,8 +2194,8 @@
       },
       "shiny": "218_slugma_shiny.png",
       "file": "218_slugma.glb",
-      "bytes": 52652,
-      "rawBytes": 155368
+      "bytes": 52780,
+      "rawBytes": 174708
     },
     {
       "id": 219,
@@ -2222,8 +2222,8 @@
       },
       "shiny": "219_magcargo_shiny.png",
       "file": "219_magcargo.glb",
-      "bytes": 56888,
-      "rawBytes": 178800
+      "bytes": 56964,
+      "rawBytes": 198156
     },
     {
       "id": 222,
@@ -2278,8 +2278,8 @@
       },
       "shiny": "228_houndour_shiny.png",
       "file": "228_houndour.glb",
-      "bytes": 117568,
-      "rawBytes": 333784
+      "bytes": 118816,
+      "rawBytes": 393744
     },
     {
       "id": 229,
@@ -2306,8 +2306,8 @@
       },
       "shiny": "229_houndoom_shiny.png",
       "file": "229_houndoom.glb",
-      "bytes": 120276,
-      "rawBytes": 347344
+      "bytes": 120432,
+      "rawBytes": 406928
     },
     {
       "id": 258,
@@ -2586,15 +2586,15 @@
       },
       "shiny": "285_shroomish_shiny.png",
       "file": "285_shroomish.glb",
-      "bytes": 75736,
-      "rawBytes": 247176
+      "bytes": 76856,
+      "rawBytes": 273484
     },
     {
       "id": 286,
       "name": "breloom",
       "heightM": 1.2,
       "plan": "biped",
-      "tris": 6584,
+      "tris": 7160,
       "fit": "height",
       "bones": 17,
       "clips": [
@@ -2614,8 +2614,8 @@
       },
       "shiny": "286_breloom_shiny.png",
       "file": "286_breloom.glb",
-      "bytes": 111472,
-      "rawBytes": 327336
+      "bytes": 112464,
+      "rawBytes": 388952
     },
     {
       "id": 315,
@@ -2642,8 +2642,8 @@
       },
       "shiny": "315_roselia_shiny.png",
       "file": "315_roselia.glb",
-      "bytes": 100364,
-      "rawBytes": 288992
+      "bytes": 99464,
+      "rawBytes": 327696
     },
     {
       "id": 322,
@@ -2670,8 +2670,8 @@
       },
       "shiny": "322_numel_shiny.png",
       "file": "322_numel.glb",
-      "bytes": 111160,
-      "rawBytes": 304808
+      "bytes": 112736,
+      "rawBytes": 362472
     },
     {
       "id": 323,
@@ -2698,8 +2698,8 @@
       },
       "shiny": "323_camerupt_shiny.png",
       "file": "323_camerupt.glb",
-      "bytes": 113160,
-      "rawBytes": 307016
+      "bytes": 111884,
+      "rawBytes": 361812
     },
     {
       "id": 324,
@@ -2726,8 +2726,8 @@
       },
       "shiny": "324_torkoal_shiny.png",
       "file": "324_torkoal.glb",
-      "bytes": 107904,
-      "rawBytes": 328340
+      "bytes": 109236,
+      "rawBytes": 379988
     },
     {
       "id": 341,
@@ -2810,8 +2810,8 @@
       },
       "shiny": "343_baltoy_shiny.png",
       "file": "343_baltoy.glb",
-      "bytes": 53768,
-      "rawBytes": 132092
+      "bytes": 53300,
+      "rawBytes": 159696
     },
     {
       "id": 344,
@@ -2838,8 +2838,8 @@
       },
       "shiny": "344_claydol_shiny.png",
       "file": "344_claydol.glb",
-      "bytes": 63496,
-      "rawBytes": 199136
+      "bytes": 63952,
+      "rawBytes": 226100
     },
     {
       "id": 377,
@@ -2866,8 +2866,8 @@
       },
       "shiny": "377_regirock_shiny.png",
       "file": "377_regirock.glb",
-      "bytes": 94412,
-      "rawBytes": 262984
+      "bytes": 94472,
+      "rawBytes": 302996
     },
     {
       "id": 396,
@@ -2981,15 +2981,15 @@
       },
       "shiny": "406_budew_shiny.png",
       "file": "406_budew.glb",
-      "bytes": 71424,
-      "rawBytes": 161744
+      "bytes": 71512,
+      "rawBytes": 192836
     },
     {
       "id": 407,
       "name": "roserade",
       "heightM": 0.9,
       "plan": "biped",
-      "tris": 7184,
+      "tris": 8504,
       "fit": "height",
       "bones": 15,
       "clips": [
@@ -3009,8 +3009,8 @@
       },
       "shiny": "407_roserade_shiny.png",
       "file": "407_roserade.glb",
-      "bytes": 103212,
-      "rawBytes": 330696
+      "bytes": 112176,
+      "rawBytes": 414084
     },
     {
       "id": 464,
@@ -3037,8 +3037,8 @@
       },
       "shiny": "464_rhyperior_shiny.png",
       "file": "464_rhyperior.glb",
-      "bytes": 110708,
-      "rawBytes": 322164
+      "bytes": 110260,
+      "rawBytes": 367336
     },
     {
       "id": 570,
@@ -3121,15 +3121,15 @@
       },
       "shiny": "636_larvesta_shiny.png",
       "file": "636_larvesta.glb",
-      "bytes": 61616,
-      "rawBytes": 207700
+      "bytes": 61992,
+      "rawBytes": 223376
     },
     {
       "id": 637,
       "name": "volcarona",
       "heightM": 1.6,
       "plan": "rigid",
-      "tris": 4696,
+      "tris": 5136,
       "fit": "height",
       "bones": 12,
       "clips": [
@@ -3150,8 +3150,8 @@
       },
       "shiny": "637_volcarona_shiny.png",
       "file": "637_volcarona.glb",
-      "bytes": 87060,
-      "rawBytes": 268780
+      "bytes": 89732,
+      "rawBytes": 325716
     },
     {
       "id": 722,
@@ -3317,8 +3317,8 @@
       },
       "shiny": "862_obstagoon_shiny.png",
       "file": "862_obstagoon.glb",
-      "bytes": 108416,
-      "rawBytes": 306816
+      "bytes": 108712,
+      "rawBytes": 350908
     },
     {
       "id": 864,
@@ -3373,8 +3373,8 @@
       },
       "shiny": "980_clodsire_shiny.png",
       "file": "980_clodsire.glb",
-      "bytes": 98580,
-      "rawBytes": 255068
+      "bytes": 98484,
+      "rawBytes": 306540
     }
   ]
 }

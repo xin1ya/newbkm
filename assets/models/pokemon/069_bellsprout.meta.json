@@ -3,7 +3,7 @@
   "name": "bellsprout",
   "heightM": 0.7,
   "plan": "biped",
-  "tris": 2732,
+  "tris": 3252,
   "fit": "height",
   "bones": 15,
   "clips": [

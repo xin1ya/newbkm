@@ -3,7 +3,7 @@
   "name": "ledian",
   "heightM": 1.4,
   "plan": "biped",
-  "tris": 4524,
+  "tris": 4572,
   "fit": "height",
   "bones": 17,
   "clips": [

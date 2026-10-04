@@ -3,7 +3,7 @@
   "name": "heracross",
   "heightM": 1.5,
   "plan": "biped",
-  "tris": 5172,
+  "tris": 5732,
   "fit": "height",
   "bones": 16,
   "clips": [

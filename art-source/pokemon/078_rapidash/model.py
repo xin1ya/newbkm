@@ -18,6 +18,18 @@ for k in range(9):
 for k in range(5):
     a = math.radians(-24 + 12 * k)
     flame(f'rd_tail{k}', BC + Vector((0, 0.42, 0.12)), Vector((math.sin(a) * 0.4, 1, 0.25)).normalized(), 0.1, 0.6, 'hips')
+FL = [1.022, 0.311, 59.845, 1.371, 0.354, 39.840]
+def plume(name, base, d, r, L, bone):
+    ang = math.degrees(math.atan2(d.z, d.y))
+    tf = lambda v: Vector((v.x * min(1.0, 1.5 * ((1 - v.z) / 2) ** 0.8), v.y * min(1.0, 1.5 * ((1 - v.z) / 2) ** 0.8), v.z))
+    fc = lambda c, n, p: 'flame_lt' if (c - base).length < L * 0.3 else 'flame'
+    blob(name, base + d * L * 0.45, (r * 0.7, r, L * 0.5), fc, bone, seg=20, rings=14, rot=(-(90 - ang), 0, 0), fn=tf)
+    for k, (sx, da, f) in enumerate(((1, 12, 0.6), (-1, -14, 0.55))):
+        a2 = math.radians(ang + da); d2 = Vector((0, math.cos(a2), math.sin(a2)))
+        blob(f'{name}_{k}', base + d2 * L * f * 0.45 + Vector((sx * r * 0.25, 0, 0)), (r * 0.45, r * 0.6, L * f * 0.5), fc, bone, seg=14, rings=10, rot=(-(90 - ang - da), 0, 0), fn=tf)
+_mb = HC.lerp(BC, 0.45) + Vector((0, 0.06, 0.12))
+plume('rd_plume', _mb, Vector((0, math.cos(math.radians(FL[2])), math.sin(math.radians(FL[2])))), FL[1], FL[0], 'neck')
+plume('rd_tplume', BC + Vector((0, 0.42, 0.12)), Vector((0, math.cos(math.radians(FL[5])), math.sin(math.radians(FL[5])))), FL[4], FL[3], 'hips')
 for nm, (sh, pw) in Q['LEGS'].items():
     for k in range(3):
         a = math.radians(-35 + 35 * k)

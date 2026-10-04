@@ -3,9 +3,9 @@
   "name": "onix",
   "heightM": 8.8,
   "plan": "serpent",
-  "tris": 3440,
+  "tris": 6384,
   "fit": "height",
-  "bones": 15,
+  "bones": 21,
   "clips": [
     "idle",
     "idle_alt",

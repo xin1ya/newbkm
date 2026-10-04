@@ -192,8 +192,56 @@ def make_rig(bones, sockets=()):
     bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
     mesh.parent = rig; m = mesh.modifiers.new('Armature', 'ARMATURE'); m.object = rig
     # clean: merge coincident verts per part island is unnecessary; drop loose verts
+    fit_apply(rig, mesh)
     print('rig', KEY, 'tris', tri_count([mesh]), 'bones', len(arm_d.bones), 'mats', [x.name for x in mesh.data.materials])
     return rig, mesh
+
+def fit_mats(names, parents, heads, fit):
+    """Per-bone world 4x4: M_b = M_parent @ T(head + t) @ R @ S @ T(-head)  (proportion fit vs. reference silhouette, fit.json)."""
+    M = {}
+    def get(n):
+        if n in M: return M[n]
+        h = Vector(heads[n]); f = fit.get(n, {})
+        R = Euler([math.radians(x) for x in f.get('r', (0, 0, 0))], 'XYZ').to_matrix().to_4x4()
+        sc = f.get('s', (1, 1, 1)); S = Matrix.Diagonal((sc[0], sc[1], sc[2], 1))
+        L = Matrix.Translation(h + Vector(f.get('t', (0, 0, 0)))) @ R @ S @ Matrix.Translation(-h)
+        M[n] = (get(parents[n]) if parents.get(n) else Matrix.Identity(4)) @ L
+        return M[n]
+    for n in names: get(n)
+    return M
+
+def fit_apply(rig, mesh):
+    """Optional art-source/pokemon/<KEY>/fit.json: re-proportion parts per bone (linear-blend), move bones to match. FITDUMP env: dump npz for optimiser."""
+    names = [b.name for b in rig.data.bones]; parents = {b.name: (b.parent.name if b.parent else None) for b in rig.data.bones}
+    heads = {b.name: tuple(b.head_local) for b in rig.data.bones}
+    gi = {g.index: g.name for g in mesh.vertex_groups}
+    if os.environ.get('FITDUMP'):
+        import numpy as np
+        V = np.array([v.co[:] for v in mesh.data.vertices]); W = np.zeros((len(V), len(names)))
+        for v in mesh.data.vertices:
+            for g in v.groups:
+                if gi[g.group] in names: W[v.index, names.index(gi[g.group])] = g.weight
+        mesh.data.calc_loop_triangles(); T = np.array([t.vertices[:] for t in mesh.data.loop_triangles])
+        np.savez_compressed(os.environ['FITDUMP'], V=V, W=W, T=T, names=np.array(names), parents=np.array([parents[n] or '' for n in names]), heads=np.array([heads[n] for n in names]))
+    fp = D('art-source', ASSET_DIR, KEY, 'fit.json')
+    if not os.path.exists(fp) or os.environ.get('FITDUMP'): return
+    fit = json.load(open(fp, encoding='utf-8'))
+    M = fit_mats(names, parents, heads, fit)
+    for v in mesh.data.vertices:
+        ws = [(gi[g.group], g.weight) for g in v.groups if gi[g.group] in M and g.weight > 0]
+        tot = sum(w for _, w in ws)
+        if tot <= 0: continue
+        co = v.co.copy(); acc = Vector((0, 0, 0))
+        for n, w in ws: acc += (M[n] @ co) * (w / tot)
+        v.co = acc
+    bpy.ops.object.select_all(action='DESELECT'); bpy.context.view_layer.objects.active = rig; rig.select_set(True)
+    bpy.ops.object.mode_set(mode='EDIT')
+    for n in names:
+        b = rig.data.edit_bones[n]; P = M[parents[n]] if parents[n] else Matrix.Identity(4)
+        h = Vector(heads[n]); nh = P @ (h + Vector(fit.get(n, {}).get('t', (0, 0, 0))))
+        b.head = nh; b.tail = nh + Vector((0, 0, 0.03)); BONES[n] = nh.copy()
+    bpy.ops.object.mode_set(mode='OBJECT')
+    mesh.data.update(); print('fit applied', len(fit))
 
 # ---------------- bird builders ----------------
 def wing(side, base, length, width, col, n=6, droop=0.35, thick=0.012, back_dir=(0, 1, 0), tip_col=None):

@@ -2,35 +2,36 @@
 reset('071_victreebel')
 M = pal([('yellow', '#cfd256'), ('yellow_dk', '#9aa034'), ('green', '#7cb048'), ('spot', '#7a7a24'), ('lip', '#e6a0a6'), ('mouth', '#4a2228'), ('teeth', '#f4f0e0'),
          ('leaf', '#4f9a40'), ('leaf_dk', '#33702a'), ('vine', '#8a6a3c'), ('eye', '#1a1418'), ('white', '#ffffff')])
-BC = Vector((0, 0, 0.62))
+V = [0.296, 0.488, 1.996, 0.653, 0.221, -0.256, 0.023]
+BC = Vector((0, 0, V[1] + 0.12))
 spots = [Vector(v).normalized() for v in ((0.6, 0.4, -0.3), (-0.6, 0.4, -0.3), (0.2, 0.9, -0.1), (-0.3, 0.8, -0.5), (0.85, 0.0, -0.4), (-0.85, 0.1, -0.4))]
 def col(c, n, p):
     if any(n.dot(d) > 0.96 for d in spots): return 'spot'
     return 'yellow_dk' if n.z < -0.7 else ('green' if c.z > BC.z + 0.25 else 'yellow')
 # pitcher tilted back so the mouth faces up-forward
-body = blob('vb_body', BC, (0.44, 0.42, 0.6), col, lambda c: lerp_w('spine', 'head', (c.z - 0.4) / 0.6), seg=40, rings=24, rot=(40, 0, 0),
+body = blob('vb_body', BC, (V[0], V[0] * 0.95, V[1]), col, lambda c: lerp_w('spine', 'head', (c.z - 0.4) / 0.6), seg=40, rings=24, rot=(0, 0, 0),
             fn=lambda v: Vector((v.x * (1.0 - 0.3 * max(0, v.z)), v.y * (1.0 - 0.3 * max(0, v.z)), v.z)))
-RT = Matrix.Rotation(math.radians(40), 3, 'X')
-MC = BC + RT @ Vector((0, 0, 0.5))
-tube('vb_lip', [MC + RT @ Vector((math.cos(a) * 0.36, math.sin(a) * 0.33, 0)) for a in [2 * math.pi * k / 32 for k in range(33)]], 0.05, 'lip', 'head', seg=10)
-blob('vb_mouth', MC + RT @ Vector((0, 0, -0.02)), (0.34, 0.31, 0.07), 'mouth', 'head', seg=24, rings=10, rot=(40, 0, 0))
+RT = Matrix.Rotation(math.radians(0), 3, 'X')
+MC = BC + RT @ Vector((0, 0, V[1] * 0.83))
+tube('vb_lip', [MC + RT @ Vector((math.cos(a) * V[0] * 0.8, math.sin(a) * V[0] * 0.75, 0)) for a in [2 * math.pi * k / 32 for k in range(33)]], 0.05, 'lip', 'head', seg=10)
+blob('vb_mouth', MC + RT @ Vector((0, 0, -0.02)), (V[0] * 0.75, V[0] * 0.7, 0.07), 'mouth', 'head', seg=24, rings=10)
 for s in (1, -1):
     blob(f'vb_tooth{s}', MC + RT @ Vector((s * 0.12, -0.24, -0.02)), (0.03, 0.02, 0.05), 'teeth', 'head', seg=8, rings=6, rot=(40, 0, 0))
 for s, nm in ((1, 'l'), (-1, 'r')):
     e, loc, n = decal(f'vb_eye_{nm}', body, BC + Vector((0, 0, -0.02)), (s * 0.45, -1, -0.1), (0.06, 0.02, 0.05), 'white', 'head', sink=0.2)
     decal(f'vb_pupil_{nm}', e, loc + Vector((s * -0.015, 0, -0.01)), n, (0.024, 0.008, 0.026), 'eye', 'head', sink=0.05, seg=10, rings=6)
     # two big leaves fanning from top rim, sideways
-    a = MC + RT @ Vector((s * 0.22, 0.12, -0.02))
-    pts = [a, a + Vector((s * 0.12, 0.05, 0.08)), a + Vector((s * 0.3, 0.08, 0.1)), a + Vector((s * 0.48, 0.08, 0.04)), a + Vector((s * 0.58, 0.06, -0.04))]
-    tube(f'vb_leaf_{nm}', pts, [0.02, 0.13, 0.15, 0.1, 0.01], lambda c, n_, p_: 'leaf' if n_.z > -0.2 else 'leaf_dk', lambda c, nm=nm: lerp_w(f'arm_{nm}', f'hand_{nm}', (abs(c.x) - 0.2) / 0.5), seg=12, flat=0.13)
+    a = BC + Vector((s * V[0] * 0.85, V[6], V[5] * V[1] / 0.45))
+    L_ = V[3]; pts = [a, a + Vector((s * 0.23 * L_, -0.04, 0.03)), a + Vector((s * 0.5 * L_, -0.06, 0.03)), a + Vector((s * 0.8 * L_, -0.05, -0.02)), a + Vector((s * L_, -0.03, -0.08))]
+    blob(f'vb_leaf_{nm}', a + Vector((s * L_ * 0.55, -0.04, -0.02)), (L_ * 0.55, V[4], 0.03), lambda c, n_, p_: 'leaf' if n_.z > -0.2 else 'leaf_dk', lambda c, nm=nm: lerp_w(f'arm_{nm}', f'hand_{nm}', (abs(c.x) - abs(a.x)) / L_), seg=20, rings=10, fn=lambda v: Vector((v.x, v.y * (1 - 0.5 * v.x * s if v.x * s > 0 else 1) , v.z - 0.3 * v.x * v.x)))
 # vine: from back top, arcs up and back, ends in a curled leaf bud
-v0 = MC + RT @ Vector((0, 0.3, -0.05))
-VP = [v0, v0 + Vector((0, 0.15, 0.25)), v0 + Vector((0, 0.4, 0.38)), v0 + Vector((0, 0.65, 0.35)), v0 + Vector((0, 0.8, 0.22))]
-tube('vb_vine', VP, [0.025, 0.022, 0.02, 0.018, 0.016], 'vine', lambda c: lerp_w('tail1', 'tail2', (c.y - v0.y) / 0.8), seg=10)
+v0 = MC + Vector((0, V[0] * 0.8, -0.03))
+VP = [v0 + Vector((0, V[2] * f, 0.03 * math.sin(math.pi * f))) for f in (0, 0.25, 0.5, 0.75, 1.0)]
+tube('vb_vine', VP, [0.025, 0.022, 0.02, 0.018, 0.016], 'vine', lambda c: lerp_w('tail1', 'tail2', (c.y - v0.y) / V[2]), seg=10)
 blob('vb_bud', VP[-1] + Vector((0, 0.03, -0.06)), (0.05, 0.05, 0.1), 'leaf', 'tail2', seg=16, rings=10, rot=(20, 0, 0))
 bones = [('root', (0, 0, 0), None), ('hips', (0, 0, 0.3), 'root'), ('spine', (0, 0, 0.6), 'hips'), ('head', tuple(BC + RT @ Vector((0, 0, 0.35))), 'spine'),
          ('tail1', tuple(v0), 'head'), ('tail2', tuple(VP[2]), 'tail1')]
-for s, nm in ((1, 'l'), (-1, 'r')): bones += [(f'arm_{nm}', tuple(MC + RT @ Vector((s * 0.22, 0.12, 0))), 'head'), (f'hand_{nm}', tuple(MC + RT @ Vector((s * 0.5, 0.2, 0.1))), f'arm_{nm}')]
+for s, nm in ((1, 'l'), (-1, 'r')): bones += [(f'arm_{nm}', tuple(BC + Vector((s * V[0] * 0.85, V[6], V[5]))), 'spine'), (f'hand_{nm}', tuple(BC + Vector((s * 0.8, -0.08, -0.2))), f'arm_{nm}')]
 rig, mesh = make_rig(bones, sockets=[('socket_mouth', tuple(MC + Vector((0, -0.05, 0.05))), 'head'), ('socket_fx', (0, 0, 1.8), 'head')])
 plan_clips(rig, 'rigid', size=1.7, over={'idle': {'arm_l': swing(6, 60, 0, 4, 1), 'arm_r': swing(-6, 60, 0, 4, 1), 'tail1': swing(8, 60, 0.2, 4, 0), 'tail2': swing(14, 60, 0.4, 4, 0)},
     'attack_physical': {'tail1': [(0, {}), (9, {'r': (-30, 0, 0)}), (15, {'r': (50, 0, 0)}), (28, {})], 'tail2': [(0, {}), (9, {'r': (-20, 0, 0)}), (15, {'r': (60, 0, 0)}), (28, {})]}})

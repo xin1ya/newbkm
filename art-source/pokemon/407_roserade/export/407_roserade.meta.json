@@ -3,7 +3,7 @@
   "name": "roserade",
   "heightM": 0.9,
   "plan": "biped",
-  "tris": 7184,
+  "tris": 8504,
   "fit": "height",
   "bones": 15,
   "clips": [
