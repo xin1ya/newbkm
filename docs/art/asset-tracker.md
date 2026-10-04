@@ -87,3 +87,5 @@
   入库剩余：gltf-transform 压缩、样张页三时段验收、注册 manifest（随 M1-21 代码侧 glb 接入完成）。
 
 - 2026-10-04 第二批 45 模型参考相似度验收：44 个全部剪影 IoU ≥0.70（864 豁免），详见 docs/art/similarity-batch2.md。
+
+- 2026-10-04 第二批 45 模型参考相似度验收：44 个全部剪影 IoU ≥0.70（864 豁免），详见 docs/art/similarity-batch2.md。
