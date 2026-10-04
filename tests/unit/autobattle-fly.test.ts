@@ -39,7 +39,24 @@ describe('自动战斗决策', () => {
     me.hp = 3;
     const r = req(b);
     expect(decideAutoAction(b, r, 'defeat', cfg({ hpPct: 0.5 }), { potion: 2 })).toMatchObject({ action: { type: 'item', itemId: 'potion', partyIndex: 0 } });
-    expect(decideAutoAction(b, r, 'defeat', cfg({ hpPct: 0.5 }), {}).kind).toBe('stop');
+    expect(decideAutoAction(b, r, 'defeat', cfg({ hpPct: 0.5, centerHeal: false }), {}).kind).toBe('stop');
+    // 勾选「回宝可梦中心」：先撤退，战斗结束后由场景飞回去治疗
+    expect(decideAutoAction(b, r, 'defeat', cfg({ hpPct: 0.5, centerHeal: true }), {})).toMatchObject({ kind: 'act', action: { type: 'run' }, note: 'retreat' });
+  });
+
+  it('从不使用无伤害招式：指定了变化招式也改用攻击招式；只剩变化招式时撤退', () => {
+    const me = mon(722, 15);
+    me.moves = [
+      { id: 'growl', pp: 40, maxPp: 40 },
+      { id: 'tackle', pp: 35, maxPp: 35 },
+    ];
+    const b = battle([me], [mon(16, 5)]);
+    expect(decideAutoAction(b, req(b), 'defeat', cfg({ moveSlot: 0 }), {})).toMatchObject({ action: { type: 'move', moveIndex: 1 } });
+    expect(decideAutoAction(b, req(b), 'defeat', cfg({ moveSlot: -1 }), {})).toMatchObject({ action: { type: 'move', moveIndex: 1 } });
+    const me2 = mon(722, 15);
+    me2.moves = [{ id: 'growl', pp: 40, maxPp: 40 }];
+    const b2 = battle([me2], [mon(16, 5)]);
+    expect(decideAutoAction(b2, req(b2), 'defeat', cfg(), {})).toMatchObject({ action: { type: 'run' } });
   });
 
   it('所选招式 PP 低 → 用苹野果（战斗中可用，回复 10 PP）', () => {
@@ -86,6 +103,7 @@ describe('自动战斗决策', () => {
     expect(c.moveSlot).toBe(3);
     expect(c.hpPct).toBe(0.9);
     expect(c.healItems).toEqual(['potion']);
+    expect(c.centerHeal).toBe(true);
   });
 });
 

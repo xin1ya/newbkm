@@ -43,7 +43,7 @@ export interface AutoSettingsData {
   pp: AutoOption[];
   /** 首发宝可梦的招式 */
   leadName: string;
-  moves: { index: number; name: string; pp: number; maxPp: number }[];
+  moves: { index: number; name: string; pp: number; maxPp: number; damaging?: boolean }[];
 }
 
 export type AutoSettingsResult = { action: 'start' | 'stop' | 'close'; config: AutoBattleConfig };
@@ -213,7 +213,8 @@ export class AutoBattleSettings implements UiWidget {
     const auto = el('button', `chip${cfg.moveSlot < 0 ? ' on' : ''}`, mv, '自动（效果最好）');
     auto.addEventListener('click', () => this.set(() => (cfg.moveSlot = -1)));
     for (const m of data.moves) {
-      const b = el('button', `chip${cfg.moveSlot === m.index ? ' on' : ''}`, mv, `${m.name} ${m.pp}/${m.maxPp}`);
+      const b = el('button', `chip${cfg.moveSlot === m.index ? ' on' : ''}`, mv, `${m.name} ${m.pp}/${m.maxPp}${m.damaging === false ? '（变化招式·不使用）' : ''}`);
+      b.disabled = m.damaging === false;
       b.addEventListener('click', () => this.set(() => (cfg.moveSlot = m.index)));
     }
     el('div', 'meta', g1, '捕捉时会自动换用不会打倒对方的招式，对方进入红血后扔球。').style.cssText = 'font-size:11px;color:#6a7190;margin-top:4px';
@@ -240,6 +241,11 @@ export class AutoBattleSettings implements UiWidget {
     const pc = el('div', 'chips', g4);
     pc.style.marginTop = '6px';
     for (const it of data.pp) this.itemChip(pc, it, cfg.ppItems);
+
+    const g5 = el('div', 'grp', right);
+    const ch = el('button', `chip${cfg.centerHeal ? ' on' : ''}`, g5, `${cfg.centerHeal ? '☑' : '☐'} 道具 / PP 用完时飞回宝可梦中心治疗，再回来继续`);
+    ch.addEventListener('click', () => this.set(() => (cfg.centerHeal = !cfg.centerHeal)));
+    el('div', 'meta', g5, '需要能骑宝可梦飞行（翠澜徽章）；不勾选则直接停止。').style.cssText = 'font-size:11px;color:#6a7190;margin-top:4px';
 
     // 底部
     const ft = el('div', 'ft', win);

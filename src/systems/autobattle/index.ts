@@ -31,6 +31,8 @@ export interface AutoBattleConfig {
   healItems: string[];
   /** 勾选的 PP 道具 */
   ppItems: string[];
+  /** 回复道具用完 / PP 用完 / 首发倒下时，飞回最近的宝可梦中心治疗后回来继续（需要能飞行） */
+  centerHeal: boolean;
 }
 
 /** 战斗中可用的回复道具（与 Battle.useItem 支持的一致） */
@@ -41,7 +43,7 @@ export const AUTO_BALLS = ['poke-ball', 'great-ball', 'ultra-ball', 'quick-ball'
 export const RED_HP = 0.2;
 
 export function defaultAutoConfig(): AutoBattleConfig {
-  return { targets: {}, ball: 'poke-ball', moveSlot: -1, hpPct: 0.35, ppMin: 2, healItems: ['potion', 'super-potion'], ppItems: ['leppa-berry'] };
+  return { targets: {}, ball: 'poke-ball', moveSlot: -1, hpPct: 0.35, ppMin: 2, healItems: ['potion', 'super-potion'], ppItems: ['leppa-berry'], centerHeal: true };
 }
 
 /** 读档 / 本地存储恢复：字段缺失或非法时用默认值 */
@@ -62,6 +64,7 @@ export function sanitizeAutoConfig(raw: unknown): AutoBattleConfig {
     ppMin: Math.round(num(r.ppMin, 0, 10, d.ppMin)),
     healItems: strs(r.healItems, AUTO_HEAL_ITEMS, d.healItems),
     ppItems: strs(r.ppItems, AUTO_PP_ITEMS, d.ppItems),
+    centerHeal: typeof r.centerHeal === 'boolean' ? r.centerHeal : d.centerHeal,
   };
 }
 
@@ -85,12 +88,22 @@ function usable(req: ActionRequest, i: number): boolean {
   return !!m && !m.disabled && m.pp > 0;
 }
 
-/** 估算伤害最高的可用招式（按命中率折算） */
+/** 有伤害的招式（自动战斗从不使用变化招式 / 无威力招式） */
+export function isDamagingMove(b: Battle, id: string): boolean {
+  const mv = b.dex.move(id);
+  return mv.category !== 'status' && !!mv.power;
+}
+
+function usableAttack(b: Battle, req: ActionRequest, i: number): boolean {
+  return usable(req, i) && isDamagingMove(b, req.moves[i]!.id);
+}
+
+/** 估算伤害最高的可用攻击招式（按命中率折算）；没有可用的攻击招式返回 -1 */
 export function bestMove(b: Battle, req: ActionRequest): number {
   let best = -1;
   let score = -1;
   for (const m of req.moves) {
-    if (!usable(req, m.index)) continue;
+    if (!usableAttack(b, req, m.index)) continue;
     const acc = (b.dex.move(m.id).accuracy ?? 100) / 100;
     const s = estimateDamage(b, m.index, 0.925) * acc;
     if (s > score) {
@@ -98,7 +111,7 @@ export function bestMove(b: Battle, req: ActionRequest): number {
       best = m.index;
     }
   }
-  return best < 0 ? (req.moves.find((m) => usable(req, m.index))?.index ?? 0) : best;
+  return best;
 }
 
 function firstOwned(items: readonly string[], bag: Readonly<Record<string, number>>): string | null {
@@ -112,7 +125,9 @@ export function decideAutoAction(b: Battle, req: ActionRequest, goal: AutoGoal |
   if (req.forced) return { kind: 'act', action: { type: 'move', moveIndex: 0 } };
   if (goal === null) {
     if (req.canRun) return { kind: 'act', action: { type: 'run' }, note: 'flee' };
-    return { kind: 'act', action: { type: 'move', moveIndex: bestMove(b, req) } };
+    const m = bestMove(b, req);
+    if (m < 0) return { kind: 'stop', reason: '没有可用的攻击招式' };
+    return { kind: 'act', action: { type: 'move', moveIndex: m } };
   }
   const me = b.active(0);
   const meIdx = b.sides[0].active;
@@ -125,13 +140,15 @@ export function decideAutoAction(b: Battle, req: ActionRequest, goal: AutoGoal |
       bag,
     );
     if (heal) return { kind: 'act', action: { type: 'item', itemId: heal, partyIndex: meIdx }, note: 'heal' };
-    return { kind: 'stop', reason: 'HP 低于设定值，且没有勾选的回复道具了' };
+    // 设定了回宝可梦中心：先撤退，战斗结束后飞回去治疗
+    if (cfg.centerHeal && req.canRun) return { kind: 'act', action: { type: 'run' }, note: 'retreat' };
+    if (!cfg.centerHeal) return { kind: 'stop', reason: 'HP 低于设定值，且没有勾选的回复道具了' };
   }
   // 异常状态（勾选了万灵药时）
   if (me.pokemon.status && cfg.healItems.includes('full-heal') && (bag['full-heal'] ?? 0) > 0)
     return { kind: 'act', action: { type: 'item', itemId: 'full-heal', partyIndex: meIdx }, note: 'cure' };
   // 招式选择
-  let slot = cfg.moveSlot >= 0 && usable(req, cfg.moveSlot) ? cfg.moveSlot : -1;
+  let slot = cfg.moveSlot >= 0 && usableAttack(b, req, cfg.moveSlot) ? cfg.moveSlot : -1;
   if (cfg.moveSlot >= 0) {
     const chosen = req.moves[cfg.moveSlot];
     if (chosen && chosen.pp <= cfg.ppMin) {
@@ -139,7 +156,11 @@ export function decideAutoAction(b: Battle, req: ActionRequest, goal: AutoGoal |
       if (pp && chosen.pp < chosen.maxPp) return { kind: 'act', action: { type: 'item', itemId: pp, partyIndex: meIdx }, note: 'pp' };
     }
   }
-  if (!req.moves.some((m) => usable(req, m.index))) return { kind: 'act', action: { type: 'move', moveIndex: 0 } };
+  if (!req.moves.some((m) => usable(req, m.index))) return { kind: 'act', action: { type: 'move', moveIndex: 0 } }; // 全部 PP 耗尽 → 引擎改用「挣扎」
+  if (!req.moves.some((m) => usableAttack(b, req, m.index))) {
+    if (req.canRun) return { kind: 'act', action: { type: 'run' }, note: 'retreat' };
+    return { kind: 'stop', reason: '没有可用的攻击招式' };
+  }
   if (goal === 'defeat') {
     if (slot < 0) slot = bestMove(b, req);
     return { kind: 'act', action: { type: 'move', moveIndex: slot } };
@@ -164,7 +185,7 @@ export function decideAutoAction(b: Battle, req: ActionRequest, goal: AutoGoal |
   let pick = -1;
   let dmg = 0;
   for (const m of req.moves) {
-    if (!usable(req, m.index)) continue;
+    if (!usableAttack(b, req, m.index)) continue;
     const max = estimateDamage(b, m.index, 1);
     if (max <= 0) continue;
     if (max < foe.pokemon.hp && max > dmg) {

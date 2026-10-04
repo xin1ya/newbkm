@@ -393,6 +393,8 @@ export class OverworldScene implements Scene, BattleHost {
       toast: (t) => this.d.toaster.show(t),
       idle: () => !busyNow() && !this.fishing.active && !this.enteringDoor && !this.inBattle,
       blocked: () => (this.fly.flying ? '飞行中不能自动战斗' : this.ride.surfing ? '冲浪中不能自动战斗' : this.fishing.active ? '钓鱼中' : null),
+      mountBike: () => this.bike.owned && this.bike.mount(),
+      healTrip: () => this.autoHealTrip(),
     });
     this.ride = new SceneRide({
       game,
@@ -1363,6 +1365,54 @@ export class OverworldScene implements Scene, BattleHost {
     this.npcs.sync(this.player.position);
     this.d.game.events.emit('interior:leave', { interior: interiorId });
     await this.d.transition.fadeIn(300);
+  }
+
+  /** 自动战斗：骑宝可梦飞回最近的宝可梦中心，治疗全队，再飞回原地 */
+  private async autoHealTrip(): Promise<string | null> {
+    const why = this.fly.takeoffBlock();
+    if (why) return why;
+    const p = this.player.position;
+    let best: { name: string; pos: THREE.Vector3; yaw: number } | null = null;
+    let bd = Infinity;
+    for (const poi of this.d.island.pois) {
+      if (poi.kind !== 'pokecenter') continue;
+      const door = this.doorOf(poi);
+      if (!door) continue;
+      const dd = Math.hypot(door.position.x - p.x, door.position.z - p.z);
+      if (dd < bd) {
+        bd = dd;
+        best = { name: poi.name, pos: door.position, yaw: door.yaw };
+      }
+    }
+    if (!best) return '这座岛上没有可以飞回的宝可梦中心';
+    const back = { x: p.x, z: p.z, yaw: this.player.facing };
+    const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+    this.bike.dismount(true);
+    if (!this.fly.takeoff()) return '没法起飞';
+    this.enteringDoor = true;
+    try {
+      // 骑上飞行宝可梦，再黑屏「飞」过去
+      await wait(900);
+      await this.d.transition.fadeOut(500);
+      await this.fly.land(true);
+      const out = best.pos;
+      this.player.teleport(out.x + Math.sin(best.yaw) * 2.5, out.z + Math.cos(best.yaw) * 2.5, best.yaw + Math.PI);
+      this.npcs.sync(this.player.position);
+      await this.d.transition.fadeIn(400);
+      this.d.toaster.show(`飞回了${best.name}，把宝可梦交给了乔伊小姐……`);
+      await wait(700);
+      await this.d.transition.fadeOut(450);
+      for (const m of this.d.state.party) healFully(this.d.dex, m);
+      this.d.game.events.emit('party:healed', { source: 'auto-battle' });
+      await wait(600);
+      this.player.teleport(back.x, back.z, back.yaw);
+      this.npcs.sync(this.player.position);
+      await this.d.transition.fadeIn(450);
+      this.d.toaster.show('宝可梦都恢复了精神！已飞回原地，继续自动战斗。');
+    } finally {
+      this.enteringDoor = false;
+    }
+    return null;
   }
 
   private doorFor(interiorId: string): { position: THREE.Vector3; yaw: number } | null {

@@ -7,7 +7,7 @@ import type { CameraRig } from '@/core/camera/CameraRig';
 import type { Dex } from '@/systems/data/Dex';
 import type { GameState, Settings } from '@/systems/state/GameState';
 import { KEY_ITEM_BY_ID } from '@/config/items';
-import { SPROUT_DEX } from '@/config/pokedex';
+import { CUILAN_DEX } from '@/config/pokedex';
 import { Dialog } from '@/ui/core/Dialog';
 import type { UiRoot } from '@/ui/core/UiRoot';
 import { PauseMenu, type MenuHost, type MenuTab, type QuestLogHost } from '@/ui/menu';
@@ -84,7 +84,7 @@ export async function openPauseMenu(o: PauseMenuOptions): Promise<void> {
     dex: o.dex,
     state,
     keyItems: KEY_ITEM_BY_ID,
-    regionalDex: SPROUT_DEX,
+    regionalDex: CUILAN_DEX,
     zoneDex: (() => {
       const isl = ISLANDS[state.position.island];
       return isl ? buildZoneDex(isl, ENCOUNTER_TABLES, state.flags) : undefined;

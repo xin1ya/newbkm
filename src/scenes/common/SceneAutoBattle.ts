@@ -8,6 +8,8 @@
  * - 战斗中由 BattleScene 通过 BattleAutoPilot 接管指令（decideAutoAction）
  * - 停止条件：玩家按移动键 / K 停止；离开区域；首发倒下且没有能战斗的宝可梦；HP 低且回复道具用完；
  *   捕捉目标的球用完；战斗中按 Esc 接管；进入室内 / 骑乘飞行 / 冲浪
+ * - 自动骑车：目标 / 巡游点较远时自动骑上自行车（有车时）
+ * - 回宝可梦中心：回复道具用完 / PP 用完 / 首发倒下时，飞回最近的宝可梦中心治疗，再飞回原地继续（需要能飞行）
  * - 配置保存在 Platform.storage 偏好（cuilan.autobattle）
  */
 import type { Game } from '@/core/Game';
@@ -56,6 +58,10 @@ export interface SceneAutoBattleDeps {
   idle(): boolean;
   /** 不能自动的状态（飞行 / 冲浪 / 室内）返回原因 */
   blocked(): string | null;
+  /** 静默骑上自行车（没有车 / 不能骑返回 false） */
+  mountBike(): boolean;
+  /** 飞回最近的宝可梦中心治疗再飞回原地；失败返回原因 */
+  healTrip(): Promise<string | null>;
 }
 
 export class SceneAutoBattle implements BattleAutoPilot {
@@ -72,6 +78,8 @@ export class SceneAutoBattle implements BattleAutoPilot {
   private status = '待机';
   private why: string | null = null;
   private cardTimer = 0;
+  /** 正在飞回宝可梦中心 */
+  private tripping = false;
   /** 本次自动的战绩 */
   readonly tally = { battles: 0, defeated: 0, captured: 0, fled: 0 };
 
@@ -185,7 +193,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
         heal: opt(AUTO_HEAL_ITEMS),
         pp: opt(AUTO_PP_ITEMS),
         leadName: lead ? displayName(dex, lead) : '—',
-        moves: (lead?.moves ?? []).map((m, index) => ({ index, name: dex.move(m.id).name.zh, pp: m.pp, maxPp: m.maxPp })),
+        moves: (lead?.moves ?? []).map((m, index) => ({ index, name: dex.move(m.id).name.zh, pp: m.pp, maxPp: m.maxPp, damaging: this.isAttack(m.id) })),
       }),
     );
     const r = await w.done;
@@ -264,6 +272,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
       this.refreshCard();
     }
     if (!this.running) return false;
+    if (this.tripping) return true;
     if (moving) {
       this.stop('手动移动');
       return false;
@@ -312,6 +321,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
     const dx = tx - p.x;
     const dz = tz - p.z;
     const l = Math.hypot(dx, dz);
+    if (pl.mode === 'walk' && l > 14 && pl.grounded && this.d.mountBike()) this.status += '（骑车）';
     const speed = pl.mode === 'bike' ? 9 : RUN_SPEED;
     const k = l > 0.01 ? Math.min(1, l / 1.5) : 0;
     pl.moveWithVelocity(dt, (dx / (l || 1)) * speed * k, (dz / (l || 1)) * speed * k, true);
@@ -403,13 +413,44 @@ export class SceneAutoBattle implements BattleAutoPilot {
     if (!party.some((p) => p.hp > 0)) return this.stop('没有能战斗的宝可梦了');
     const lead = party.find((p) => p.hp > 0)!;
     const cfg = this.config;
-    // 首发低血且没有回复道具 → 停止（进入下一场之前就判断，避免硬打）
+    // 首发低血且没有回复道具 / 招式 PP 用完 / 首发倒下 → 回宝可梦中心（或停止）
     const hpRatio = lead.hp / Math.max(1, maxHp(this.d.dex, lead));
-    if (hpRatio < cfg.hpPct && !cfg.healItems.some((id) => id !== 'full-heal' && (this.d.state.bag[id] ?? 0) > 0)) return this.stop('HP 低于设定值，回复道具用完了');
+    const noHeal = hpRatio < cfg.hpPct && !cfg.healItems.some((id) => id !== 'full-heal' && (this.d.state.bag[id] ?? 0) > 0);
+    const noPp = !lead.moves.some((m) => m.pp > 0 && this.isAttack(m.id)) && !cfg.ppItems.some((id) => (this.d.state.bag[id] ?? 0) > 0);
+    const leadDown = (party[0]?.hp ?? 1) <= 0;
+    if (cfg.centerHeal && (noHeal || noPp || leadDown)) {
+      void this.goHeal(noHeal ? 'HP 低且回复道具用完' : noPp ? '攻击招式 PP 用完' : '首发倒下');
+      return;
+    }
+    if (noHeal) return this.stop('HP 低于设定值，回复道具用完了');
     const capturing = Object.entries(cfg.targets).filter(([, g]) => g === 'capture');
     const defeating = Object.values(cfg.targets).some((g) => g === 'defeat');
     if (capturing.length && !defeating && (this.d.state.bag[cfg.ball] ?? 0) <= 0) return this.stop('设定的精灵球用完了');
-    if (!lead.moves.some((m) => m.pp > 0) && !cfg.ppItems.some((id) => (this.d.state.bag[id] ?? 0) > 0)) return this.stop('招式 PP 用完了');
+    if (noPp) return this.stop('攻击招式 PP 用完了');
+    this.refreshCard();
+  }
+
+  private isAttack(id: string): boolean {
+    const mv = this.d.dex.move(id);
+    return mv.category !== 'status' && !!mv.power;
+  }
+
+  /** 飞回宝可梦中心治疗，回来继续 */
+  private async goHeal(why: string): Promise<void> {
+    this.tripping = true;
+    this.status = `${why}，飞回宝可梦中心`;
+    this.d.player.velocity.set(0, 0, 0);
+    this.refreshCard();
+    // 等战斗结束的过场 / 对话收尾
+    for (let i = 0; i < 100 && !this.d.idle(); i++) await new Promise((r) => setTimeout(r, 100));
+    const fail = await this.d.healTrip();
+    this.tripping = false;
+    if (fail) return this.stop(`${why}，但${fail}`);
+    this.targetId = null;
+    this.wander = null;
+    this.blacklist.clear();
+    this.stuck = { t: 0, x: this.d.player.position.x, z: this.d.player.position.z };
+    this.status = '寻找目标中';
     this.refreshCard();
   }
 

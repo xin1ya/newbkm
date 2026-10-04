@@ -81,7 +81,7 @@ export interface InteriorEnterData {
  * 室内地面：平地 y = 0，无水、无坡度、边界无限（墙由碰撞体负责）。
  * PlayerController 用到的地形接口：heightAt 与 hf.inBounds / waterAt / slopeAt。
  */
-const FLAT_HF = { inBounds: () => true, waterAt: () => null, slopeAt: () => 0 };
+const FLAT_HF = { inBounds: () => true, waterAt: () => null, slopeAt: () => 0, isLava: () => false };
 /** 室内跟随镜头：比室外近、俯角稍大，小房间也能看清家具布局 */
 const INDOOR_DISTANCE = 5.2;
 const INDOOR_PITCH = 0.48;

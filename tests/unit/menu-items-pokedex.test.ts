@@ -1,7 +1,8 @@
 /** M1-18：背包道具逻辑、地区图鉴、设置项定义 */
 import { describe, expect, it } from 'vitest';
 import { KEY_ITEMS, KEY_ITEM_BY_ID } from '@/config/items';
-import { SPROUT_DEX } from '@/config/pokedex';
+import { CUILAN_DEX, SPROUT_DEX } from '@/config/pokedex';
+import speciesJson from '@/config/data/species.json';
 import { applyToPokemon, canUseOn, giveHeldItem, itemInfo, pocketItems, pocketOf, swapParty, takeHeldItem, tossItem, useFromBag, POCKETS } from '@/systems/items';
 import { dexCounts, dexEntries, dexStatus, dexNo } from '@/systems/pokedex';
 import { createNewGame, markCaught, markSeen, type GameState } from '@/systems/state/GameState';
@@ -107,6 +108,11 @@ describe('地区图鉴', () => {
     expect(SPROUT_DEX.species).toHaveLength(40);
     expect(new Set(SPROUT_DEX.species).size).toBe(40);
     for (const id of SPROUT_DEX.species) expect(dex.species(id).name.zh).toBeTruthy();
+  });
+  it('翠澜图鉴覆盖全部已实装物种（含碧潮群岛新宝可梦）、无重复', () => {
+    const all = (speciesJson as { id: number }[]).map((x) => x.id).sort((a, b) => a - b);
+    expect([...CUILAN_DEX.species].sort((a, b) => a - b)).toEqual(all);
+    expect(CUILAN_DEX.species.slice(0, 40)).toEqual(SPROUT_DEX.species);
   });
   it('见过 / 捕获状态与计数', () => {
     const s = newGame();
