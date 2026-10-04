@@ -63,6 +63,8 @@ export interface BattleAutoPilot {
   goalFor(speciesId: number, alpha: boolean): AutoGoal | null;
   /** 停止自动（原因显示给玩家） */
   stop(reason: string): void;
+  /** 自动战斗中招式已满、放弃学习的新招式（停止时汇总提示） */
+  missedMove?(monName: string, moveName: string): void;
 }
 
 export interface BattleHost {
@@ -817,7 +819,8 @@ export class BattleScene implements Scene {
       if (this.pilot) {
         // 自动战斗：不打断，放弃学习（之后可在回忆招式处补学）
         this.battle.resolveLearn(pl.uid, pl.move, null);
-        await this.say(`${name}想学习「${mv}」，但招式已满（自动战斗中暂不学习）。`);
+        this.pilot.missedMove?.(name, mv);
+        await this.say(`${name}想学习「${mv}」，但招式已满——自动战斗中不学习，之后可以找宝可梦中心的回想老人补学。`);
         continue;
       }
       await this.say([`${name}想要学习新招式「${mv}」。`, `但是${name}已经学会了 4 个招式……`], true);

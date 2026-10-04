@@ -82,6 +82,8 @@ export class SceneAutoBattle implements BattleAutoPilot {
   private tripping = false;
   /** 本次自动的战绩 */
   readonly tally = { battles: 0, defeated: 0, captured: 0, fled: 0 };
+  /** 本次自动中错过（未学）的招式 */
+  private missed: string[] = [];
 
   constructor(private readonly d: SceneAutoBattleDeps) {
     this.config = this.load();
@@ -229,6 +231,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
     this.status = '寻找目标中';
     this.stuck = { t: 0, x: this.d.player.position.x, z: this.d.player.position.z };
     Object.assign(this.tally, { battles: 0, defeated: 0, captured: 0, fled: 0 });
+    this.missed = [];
     sfx('confirm', 0.7);
     this.d.toast(`自动战斗开始：${this.describeTargets()}`);
     this.refreshCard();
@@ -250,6 +253,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
     this.d.player.velocity.set(0, 0, 0);
     const t = this.tally;
     this.d.toast(`自动战斗停止：${reason}（战斗 ${t.battles} 场 · 打倒 ${t.defeated} · 捕捉 ${t.captured} · 逃跑 ${t.fled}）`);
+    if (this.missed.length) this.d.toast(`自动战斗中没有学习的招式：${this.missed.join('、')}。可以到宝可梦中心找回想老人补学。`);
     this.refreshCard();
   }
 
@@ -452,6 +456,11 @@ export class SceneAutoBattle implements BattleAutoPilot {
     this.stuck = { t: 0, x: this.d.player.position.x, z: this.d.player.position.z };
     this.status = '寻找目标中';
     this.refreshCard();
+  }
+
+  missedMove(monName: string, moveName: string): void {
+    const s = `${monName}「${moveName}」`;
+    if (!this.missed.includes(s)) this.missed.push(s);
   }
 
   dispose(): void {
