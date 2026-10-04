@@ -498,5 +498,3 @@ render ◄── world ◄── actors ◄── scenes ◄── ui
 | 2026-10-04 | **工作空间清理 + git + M2 拆分**：清理本地截图 377 张、远端 `.sync` 临时文件、`x.mjs`、`dist`、`test-results`；`.gitignore` 增加 `*.blend1`、`.sync/`、`.yfcode/`；`git init`，首个提交推送到 github.com/xin1ya/newbkm（R-05 解决）。M2 拆分为 24 项（§3.3），M2 状态改为进行中。飞行规则调整：封锁圈对飞行同样有效（surf 封锁除外），后续限制在已到访岛屿内；岛 2「翠澜森林」改名为「碧潮古森」 |
 
 - 2026-10-04 第二批 45 模型参考相似度验收：44 个全部剪影 IoU ≥0.70（864 豁免），详见 docs/art/similarity-batch2.md。
-
-- 2026-10-04 第二批 45 模型参考相似度验收：44 个全部剪影 IoU ≥0.70（864 豁免），详见 docs/art/similarity-batch2.md。
