@@ -576,7 +576,17 @@
    "zh": "联系绳"
   },
   "category": "evolution",
-  "flingPower": 30,
-  "shortEffect": "让宝可梦携带后升级，原本需要通信交换才能进化的宝可梦就会进化。进化后绳子会消失。"
+  "flingPower": null,
+  "shortEffect": ""
+ },
+ {
+  "id": "protector",
+  "name": {
+   "en": "Protector",
+   "zh": "护具"
+  },
+  "category": "evolution",
+  "flingPower": 80,
+  "shortEffect": "某种护具。 非常坚硬而且沉重。 某种宝可梦很喜欢它。"
  }
 ]

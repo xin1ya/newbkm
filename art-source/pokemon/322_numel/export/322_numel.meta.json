@@ -1,0 +1,25 @@
+{
+  "id": 322,
+  "name": "numel",
+  "heightM": 0.7,
+  "plan": "quadruped",
+  "tris": 5580,
+  "fit": "height",
+  "bones": 19,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "322_numel_shiny.png"
+}

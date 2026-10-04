@@ -1,0 +1,25 @@
+{
+  "id": 77,
+  "name": "ponyta",
+  "heightM": 1.0,
+  "plan": "quadruped",
+  "tris": 5484,
+  "fit": "height",
+  "bones": 18,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "077_ponyta_shiny.png"
+}

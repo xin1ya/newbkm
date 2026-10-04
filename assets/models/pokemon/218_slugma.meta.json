@@ -1,0 +1,25 @@
+{
+  "id": 218,
+  "name": "slugma",
+  "heightM": 0.7,
+  "plan": "larva",
+  "tris": 3136,
+  "fit": "height",
+  "bones": 7,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5333333333333333,
+    "attack_special": 0.8
+  },
+  "shiny": "218_slugma_shiny.png"
+}

@@ -298,6 +298,13 @@ function fang(): Svg {
   );
 }
 
+function protector(): Svg {
+  return wrap(
+    `<path d="M24 6l15 6v12c0 9-7 15-15 18C16 39 9 33 9 24V12z" fill="#8a6a4a" stroke="${O}" stroke-width="${SW}"/>` +
+      `<path d="M24 12l9 4v8c0 5-4 9-9 11-5-2-9-6-9-11v-8z" fill="#c9a36a" stroke="${O}" stroke-width="1.4"/><circle cx="24" cy="22" r="3.4" fill="#e8484a" stroke="${O}" stroke-width="1.2"/>`,
+  );
+}
+
 function coat(): Svg {
   return wrap(
     `<path d="M12 8h24l6 10-6 4v20H12V22l-6-4z" fill="#b8c0cc" stroke="${O}" stroke-width="${SW}"/>` +
@@ -577,6 +584,7 @@ const ICONS: Record<string, () => Svg> = {
   'dragon-fang': fang,
   'black-glasses': shades,
   'metal-coat': coat,
+  protector,
   'fairy-feather': () => feather('#f6b4d8'),
   'old-rod': () => rod('#9aa2bd'),
   'good-rod': () => rod('#3a7bd5'),

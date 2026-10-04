@@ -10,7 +10,7 @@ export const FACE = { south: 0, north: PI, east: PI / 2, west: -PI / 2 } as cons
 
 /** 门口到建筑中心的距离（研究所有突出的玻璃门厅） */
 export function doorBack(type: PropType, depth: number): number {
-  return depth / 2 + (type === 'lab' ? 3.6 : 0.6);
+  return depth / 2 + (type === 'lab' ? 3.6 : type === 'treehouse' ? 1.2 : 0.6);
 }
 
 /** 由门口位置反推建筑中心 */

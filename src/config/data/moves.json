@@ -676,6 +676,41 @@
   "shortEffect": "如惊涛骇浪般挥动 大尾巴攻击对手。"
  },
  {
+  "id": "arm-thrust",
+  "num": 292,
+  "name": {
+   "en": "Arm Thrust",
+   "zh": "猛推"
+  },
+  "type": "fighting",
+  "category": "physical",
+  "power": 15,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": 2,
+   "maxHits": 5,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "用张开着的双手 猛推对手进行攻击。 连续攻击２～５次。"
+ },
+ {
   "id": "aromatherapy",
   "num": 312,
   "name": {
@@ -891,6 +926,46 @@
   "shortEffect": "向对手发射 虹色光束进行攻击。 有时会降低对手的攻击。"
  },
  {
+  "id": "autotomize",
+  "num": 475,
+  "name": {
+   "en": "Autotomize",
+   "zh": "身体轻量化"
+  },
+  "type": "steel",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 15,
+  "priority": 0,
+  "target": "user",
+  "effectChance": null,
+  "meta": {
+   "category": "net-good-stats",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [
+   {
+    "stat": "spe",
+    "change": 2
+   }
+  ],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "削掉身体上没用的部分。 大幅提高自己的速度， 同时体重也会变轻。"
+ },
+ {
   "id": "avalanche",
   "num": 419,
   "name": {
@@ -1001,6 +1076,76 @@
   "shortEffect": "和后备宝可梦进行替换。 换上的宝可梦能直接继承 其能力的变化。"
  },
  {
+  "id": "beat-up",
+  "num": 251,
+  "name": {
+   "en": "Beat Up",
+   "zh": "围攻"
+  },
+  "type": "dark",
+  "category": "physical",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": 6,
+   "maxHits": 6,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "我方全员进行攻击。 同行的宝可梦越多， 招式的攻击次数越多。"
+ },
+ {
+  "id": "belch",
+  "num": 562,
+  "name": {
+   "en": "Belch",
+   "zh": "打嗝"
+  },
+  "type": "poison",
+  "category": "special",
+  "power": 120,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "朝着对手打嗝， 并给予伤害。 如果不吃树果则无法使出。"
+ },
+ {
   "id": "belly-drum",
   "num": 187,
   "name": {
@@ -1034,6 +1179,76 @@
    "contact": false
   },
   "shortEffect": "将自己的ＨＰ减少到 最大ＨＰ的一半， 从而最大限度提高自己的攻击。"
+ },
+ {
+  "id": "bide",
+  "num": 117,
+  "name": {
+   "en": "Bide",
+   "zh": "忍耐"
+  },
+  "type": "normal",
+  "category": "physical",
+  "power": 0,
+  "accuracy": null,
+  "pp": 10,
+  "priority": 1,
+  "target": "user",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "在２回合内忍受攻击， 受到的伤害会 ２倍返还给对手。"
+ },
+ {
+  "id": "bind",
+  "num": 20,
+  "name": {
+   "en": "Bind",
+   "zh": "绑紧"
+  },
+  "type": "normal",
+  "category": "physical",
+  "power": 15,
+  "accuracy": 85,
+  "pp": 20,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 100,
+  "meta": {
+   "category": "damage-ailment",
+   "ailment": "trap",
+   "ailmentChance": 100,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": 5,
+   "maxTurns": 6,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "使用长长的身体或藤蔓等， 在４～５回合内 绑紧对手进行攻击。"
  },
  {
   "id": "bite",
@@ -1246,6 +1461,76 @@
   "shortEffect": "用整个身体 压住对手进行攻击。 有时会让对手陷入麻痹状态。"
  },
  {
+  "id": "bone-rush",
+  "num": 198,
+  "name": {
+   "en": "Bone Rush",
+   "zh": "骨棒乱打"
+  },
+  "type": "ground",
+  "category": "physical",
+  "power": 25,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": 2,
+   "maxHits": 5,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "用坚硬的骨头 殴打对手进行攻击。 连续攻击２～５次。"
+ },
+ {
+  "id": "bonemerang",
+  "num": 155,
+  "name": {
+   "en": "Bonemerang",
+   "zh": "骨头回力镖"
+  },
+  "type": "ground",
+  "category": "physical",
+  "power": 50,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": 2,
+   "maxHits": 2,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "用手中的骨头投掷对手， 来回连续２次给予伤害。"
+ },
+ {
   "id": "bounce",
   "num": 340,
   "name": {
@@ -1314,6 +1599,46 @@
    "contact": true
   },
   "shortEffect": "收拢翅膀， 通过低空飞行突击对手。 自己也会受到不小的伤害。"
+ },
+ {
+  "id": "breaking-swipe",
+  "num": 784,
+  "name": {
+   "en": "Breaking Swipe",
+   "zh": "广域破坏"
+  },
+  "type": "dragon",
+  "category": "physical",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "target": "all-opponents",
+  "effectChance": 100,
+  "meta": {
+   "category": "damage-lower",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 100
+  },
+  "statChanges": [
+   {
+    "stat": "atk",
+    "change": -1
+   }
+  ],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "用坚韧的尾巴 猛扫对手进行攻击， 从而降低对手的攻击。"
  },
  {
   "id": "brick-break",
@@ -1929,6 +2254,41 @@
   "shortEffect": "The user attacks the target by showering it with water that's so cold it saps the target's power. This also lowers the target's Attack stat."
  },
  {
+  "id": "chilly-reception",
+  "num": 881,
+  "name": {
+   "en": "Chilly Reception",
+   "zh": "冷笑话"
+  },
+  "type": "ice",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 10,
+  "priority": 0,
+  "target": "entire-field",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "The user tells a chillingly bad joke before switching places with a party Pokémon in waiting. This summons a snowstorm lasting five turns."
+ },
+ {
   "id": "circle-throw",
   "num": 509,
   "name": {
@@ -2135,6 +2495,76 @@
   "shortEffect": "盘蜷着集中精神。 提高自己的攻击、防御和命中率。"
  },
  {
+  "id": "comet-punch",
+  "num": 4,
+  "name": {
+   "en": "Comet Punch",
+   "zh": "连续拳"
+  },
+  "type": "normal",
+  "category": "physical",
+  "power": 18,
+  "accuracy": 85,
+  "pp": 15,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": 2,
+   "maxHits": 5,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "用拳头怒涛般的 殴打对手进行攻击。 连续攻击２～５次。"
+ },
+ {
+  "id": "comeuppance",
+  "num": 894,
+  "name": {
+   "en": "Comeuppance",
+   "zh": "复仇"
+  },
+  "type": "dark",
+  "category": "physical",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "specific-move",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "The user retaliates with much greater force against the opponent that last inflicted damage on it."
+ },
+ {
   "id": "confide",
   "num": 590,
   "name": {
@@ -2322,6 +2752,46 @@
    "contact": false
   },
   "shortEffect": "汲取宇宙中神秘的力量， 从而提高自己的防御和特防。"
+ },
+ {
+  "id": "cotton-spore",
+  "num": 178,
+  "name": {
+   "en": "Cotton Spore",
+   "zh": "棉孢子"
+  },
+  "type": "grass",
+  "category": "status",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 40,
+  "priority": 0,
+  "target": "all-opponents",
+  "effectChance": null,
+  "meta": {
+   "category": "net-good-stats",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [
+   {
+    "stat": "spe",
+    "change": -2
+   }
+  ],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "将棉花般柔软的孢子 紧贴对手， 从而大幅降低对手的速度。"
  },
  {
   "id": "counter",
@@ -2537,6 +3007,46 @@
    "contact": true
   },
   "shortEffect": "用利牙咬碎对手进行攻击。 有时会降低对手的防御。"
+ },
+ {
+  "id": "crush-claw",
+  "num": 306,
+  "name": {
+   "en": "Crush Claw",
+   "zh": "撕裂爪"
+  },
+  "type": "normal",
+  "category": "physical",
+  "power": 75,
+  "accuracy": 95,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 50,
+  "meta": {
+   "category": "damage-lower",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 50
+  },
+  "statChanges": [
+   {
+    "stat": "def",
+    "change": -1
+   }
+  ],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "用坚硬的锐爪 劈开对手进行攻击。 有时会降低对手的防御。"
  },
  {
   "id": "curse",
@@ -3004,6 +3514,41 @@
   "shortEffect": "第１回合潜入， 第２回合浮上来进行攻击。"
  },
  {
+  "id": "dizzy-punch",
+  "num": 146,
+  "name": {
+   "en": "Dizzy Punch",
+   "zh": "迷昏拳"
+  },
+  "type": "normal",
+  "category": "physical",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 20,
+  "meta": {
+   "category": "damage-ailment",
+   "ailment": "confusion",
+   "ailmentChance": 20,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": 2,
+   "maxTurns": 5,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "有节奏地出拳攻击对手。 有时会使对手混乱。"
+ },
+ {
   "id": "double-edge",
   "num": 38,
   "name": {
@@ -3147,6 +3692,41 @@
    "contact": false
   },
   "shortEffect": "通过快速移动来制造分身， 扰乱对手，从而提高闪避率。"
+ },
+ {
+  "id": "dragon-breath",
+  "num": 225,
+  "name": {
+   "en": "Dragon Breath",
+   "zh": "龙息"
+  },
+  "type": "dragon",
+  "category": "special",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 30,
+  "meta": {
+   "category": "damage-ailment",
+   "ailment": "paralysis",
+   "ailmentChance": 30,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "将强烈的气息 吹向对手进行攻击。 有时会让对手陷入麻痹状态。"
  },
  {
   "id": "dragon-cheer",
@@ -4483,6 +5063,46 @@
   "shortEffect": "如果使用此招式打倒对手， 攻击会巨幅提高。"
  },
  {
+  "id": "fiery-dance",
+  "num": 552,
+  "name": {
+   "en": "Fiery Dance",
+   "zh": "火之舞"
+  },
+  "type": "fire",
+  "category": "special",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 50,
+  "meta": {
+   "category": "damage-raise",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 50
+  },
+  "statChanges": [
+   {
+    "stat": "spa",
+    "change": 1
+   }
+  ],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "让火焰覆盖全身， 振翅攻击对手。 有时会提高自己的特攻。"
+ },
+ {
   "id": "final-gambit",
   "num": 515,
   "name": {
@@ -4691,6 +5311,41 @@
    "contact": false
   },
   "shortEffect": "将对手困在 激烈的火焰旋涡中， 在４～５回合内进行攻击。"
+ },
+ {
+  "id": "fissure",
+  "num": 90,
+  "name": {
+   "en": "Fissure",
+   "zh": "地裂"
+  },
+  "type": "ground",
+  "category": "physical",
+  "power": 0,
+  "accuracy": 30,
+  "pp": 5,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "ohko",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "让对手掉落于地裂的 裂缝中进行攻击。 只要命中就会一击濒死。"
  },
  {
   "id": "flail",
@@ -5163,6 +5818,41 @@
   "shortEffect": "引起对手的注意， 将对手的攻击 全部转移到自己身上。"
  },
  {
+  "id": "force-palm",
+  "num": 395,
+  "name": {
+   "en": "Force Palm",
+   "zh": "发劲"
+  },
+  "type": "fighting",
+  "category": "physical",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 30,
+  "meta": {
+   "category": "damage-ailment",
+   "ailment": "paralysis",
+   "ailmentChance": 30,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "向对手的身体 发出冲击波进行攻击。 有时会让对手陷入麻痹状态。"
+ },
+ {
   "id": "foresight",
   "num": 193,
   "name": {
@@ -5441,6 +6131,41 @@
    "contact": false
   },
   "shortEffect": "在使用招式２回合后， 向对手发送一团念力进行攻击。"
+ },
+ {
+  "id": "gastro-acid",
+  "num": 380,
+  "name": {
+   "en": "Gastro Acid",
+   "zh": "胃液"
+  },
+  "type": "poison",
+  "category": "status",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "将胃液吐向对手的身体。 沾上的胃液会消除 对手的特性效果。"
  },
  {
   "id": "giga-drain",
@@ -5805,6 +6530,76 @@
    "contact": false
   },
   "shortEffect": "因对手的招式而陷入濒死时 给对手施加怨念， 让该招式的ＰＰ变成０。"
+ },
+ {
+  "id": "guard-split",
+  "num": 470,
+  "name": {
+   "en": "Guard Split",
+   "zh": "防守平分"
+  },
+  "type": "psychic",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "利用超能力将自己和对手的 防御和特防相加， 再进行平分。"
+ },
+ {
+  "id": "guard-swap",
+  "num": 385,
+  "name": {
+   "en": "Guard Swap",
+   "zh": "防守互换"
+  },
+  "type": "psychic",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "利用超能力互换 自己和对手的防御 以及特防的能力变化。"
  },
  {
   "id": "guillotine",
@@ -6200,6 +6995,76 @@
    "contact": true
   },
   "shortEffect": "将头伸出， 笔直地扑向对手进行攻击。 有时会使对手畏缩。"
+ },
+ {
+  "id": "heal-pulse",
+  "num": 505,
+  "name": {
+   "en": "Heal Pulse",
+   "zh": "治愈波动"
+  },
+  "type": "psychic",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "heal",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 50,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "放出治愈波动， 从而回复对手 最大ＨＰ的一半。"
+ },
+ {
+  "id": "heat-crash",
+  "num": 535,
+  "name": {
+   "en": "Heat Crash",
+   "zh": "高温重压"
+  },
+  "type": "fire",
+  "category": "physical",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "用燃烧的身体撞向对手进行攻击。 自己比对手越重，威力越大。"
  },
  {
   "id": "heat-wave",
@@ -7131,6 +7996,41 @@
   "shortEffect": "如果对手有和自己相同的招式， 那么只有对手无法使用该招式。"
  },
  {
+  "id": "incinerate",
+  "num": 510,
+  "name": {
+   "en": "Incinerate",
+   "zh": "烧尽"
+  },
+  "type": "fire",
+  "category": "special",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "target": "all-opponents",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "用火焰攻击对手。 对手携带树果等时， 会烧掉，使其不能使用。"
+ },
+ {
   "id": "inferno",
   "num": 517,
   "name": {
@@ -7164,6 +8064,41 @@
    "contact": false
   },
   "shortEffect": "用烈焰包裹住对手进行攻击。 让对手陷入灼伤状态。"
+ },
+ {
+  "id": "infestation",
+  "num": 611,
+  "name": {
+   "en": "Infestation",
+   "zh": "死缠烂打"
+  },
+  "type": "bug",
+  "category": "special",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 100,
+  "meta": {
+   "category": "damage-ailment",
+   "ailment": "trap",
+   "ailmentChance": 100,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": 4,
+   "maxTurns": 5,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "在４～５回合内 死缠烂打地进行攻击。 在此期间对手将无法逃走。"
  },
  {
   "id": "ingrain",
@@ -7856,6 +8791,41 @@
   "shortEffect": "用水之力量撞向对手进行攻击。 有时会降低对手的防御。"
  },
  {
+  "id": "lock-on",
+  "num": 199,
+  "name": {
+   "en": "Lock-On",
+   "zh": "锁定"
+  },
+  "type": "normal",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 5,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "紧紧瞄准对手， 下次攻击必定会打中。"
+ },
+ {
   "id": "low-kick",
   "num": 67,
   "name": {
@@ -7971,6 +8941,41 @@
   "shortEffect": "全力猛扑对手进行攻击。 从而降低对手的攻击。"
  },
  {
+  "id": "mach-punch",
+  "num": 183,
+  "name": {
+   "en": "Mach Punch",
+   "zh": "音速拳"
+  },
+  "type": "fighting",
+  "category": "physical",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 1,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "以迅雷不及掩耳之势出拳。 必定能够先制攻击。"
+ },
+ {
   "id": "magical-leaf",
   "num": 345,
   "name": {
@@ -8004,6 +9009,41 @@
    "contact": false
   },
   "shortEffect": "散落可以追踪 对手的神奇叶片。 攻击必定会命中。"
+ },
+ {
+  "id": "magnet-rise",
+  "num": 393,
+  "name": {
+   "en": "Magnet Rise",
+   "zh": "电磁飘浮"
+  },
+  "type": "electric",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 10,
+  "priority": 0,
+  "target": "user",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "利用电气产生的磁力浮在空中。 在５回合内可以飘浮。"
  },
  {
   "id": "me-first",
@@ -8258,6 +9298,41 @@
    "contact": false
   },
   "shortEffect": "虽然会使自己陷入濒死， 但是能够大幅降低 对手的攻击和特攻。"
+ },
+ {
+  "id": "metal-burst",
+  "num": 368,
+  "name": {
+   "en": "Metal Burst",
+   "zh": "金属爆炸"
+  },
+  "type": "steel",
+  "category": "physical",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "specific-move",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "使出招式前， 将最后受到的招式的伤害 大力返还给对手。"
  },
  {
   "id": "metal-claw",
@@ -8590,6 +9665,41 @@
   "shortEffect": "回复自己的ＨＰ。 根据天气的不同， 回复量也会有所变化。"
  },
  {
+  "id": "morning-sun",
+  "num": 234,
+  "name": {
+   "en": "Morning Sun",
+   "zh": "晨光"
+  },
+  "type": "normal",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 5,
+  "priority": 0,
+  "target": "user",
+  "effectChance": null,
+  "meta": {
+   "category": "heal",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 50,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "回复自己的ＨＰ。 根据天气的不同， 回复量也会有所变化。"
+ },
+ {
   "id": "mud-shot",
   "num": 341,
   "name": {
@@ -8708,6 +9818,46 @@
    "contact": false
   },
   "shortEffect": "向对手喷射 浑浊的水进行攻击。 有时会降低对手的命中率。"
+ },
+ {
+  "id": "mystical-fire",
+  "num": 595,
+  "name": {
+   "en": "Mystical Fire",
+   "zh": "魔法火焰"
+  },
+  "type": "fire",
+  "category": "special",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 100,
+  "meta": {
+   "category": "damage-lower",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 100
+  },
+  "statChanges": [
+   {
+    "stat": "spa",
+    "change": -1
+   }
+  ],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "从口中喷出特别灼热的 火焰进行攻击。 降低对手的特攻。"
  },
  {
   "id": "nasty-plot",
@@ -9110,6 +10260,41 @@
   "shortEffect": "将自己的ＨＰ和 对手的ＨＰ相加， 然后自己和对手友好地平分。"
  },
  {
+  "id": "pay-day",
+  "num": 6,
+  "name": {
+   "en": "Pay Day",
+   "zh": "聚宝功"
+  },
+  "type": "normal",
+  "category": "physical",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "向对手的身体 投掷小金币进行攻击。 战斗后可以拿到钱。"
+ },
+ {
   "id": "payback",
   "num": 371,
   "name": {
@@ -9470,6 +10655,41 @@
   "shortEffect": "用喙进行攻击。 当对手携带树果时， 可以食用并获得其效果。"
  },
  {
+  "id": "poison-fang",
+  "num": 305,
+  "name": {
+   "en": "Poison Fang",
+   "zh": "剧毒牙"
+  },
+  "type": "poison",
+  "category": "physical",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 50,
+  "meta": {
+   "category": "damage-ailment",
+   "ailment": "poison",
+   "ailmentChance": 50,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "用有毒的牙齿 咬住对手进行攻击。 有时会使对手中剧毒。"
+ },
+ {
   "id": "poison-jab",
   "num": 398,
   "name": {
@@ -9825,6 +11045,111 @@
   "shortEffect": "利用超能力将自己和对手的 攻击和特攻相加， 再进行平分。"
  },
  {
+  "id": "power-swap",
+  "num": 384,
+  "name": {
+   "en": "Power Swap",
+   "zh": "力量互换"
+  },
+  "type": "psychic",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "利用超能力互换 自己和对手的攻击 以及特攻的能力变化。"
+ },
+ {
+  "id": "power-trick",
+  "num": 379,
+  "name": {
+   "en": "Power Trick",
+   "zh": "力量戏法"
+  },
+  "type": "psychic",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 10,
+  "priority": 0,
+  "target": "user",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "利用超能力交换 自己的攻击和 防御的力量。"
+ },
+ {
+  "id": "power-whip",
+  "num": 438,
+  "name": {
+   "en": "Power Whip",
+   "zh": "强力鞭打"
+  },
+  "type": "grass",
+  "category": "physical",
+  "power": 120,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "激烈地挥舞青藤或触手 摔打对手进行攻击。"
+ },
+ {
   "id": "present",
   "num": 217,
   "name": {
@@ -10005,6 +11330,41 @@
   "shortEffect": "向对手发送 强大的念力进行攻击。 有时会降低对手的特防。"
  },
  {
+  "id": "psychic-fangs",
+  "num": 706,
+  "name": {
+   "en": "Psychic Fangs",
+   "zh": "精神之牙"
+  },
+  "type": "psychic",
+  "category": "physical",
+  "power": 85,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "利用精神力量咬住对手进行攻击。 还可以破坏光墙和反射壁等。"
+ },
+ {
   "id": "psychic-noise",
   "num": 917,
   "name": {
@@ -10038,6 +11398,41 @@
    "contact": false
   },
   "shortEffect": "The user attacks the target with unpleasant sound waves. For two turns, the target is prevented from recovering HP through moves, Abilities, or held items."
+ },
+ {
+  "id": "psychic-terrain",
+  "num": 678,
+  "name": {
+   "en": "Psychic Terrain",
+   "zh": "精神场地"
+  },
+  "type": "psychic",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 10,
+  "priority": 0,
+  "target": "entire-field",
+  "effectChance": null,
+  "meta": {
+   "category": "whole-field-effect",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "在５回合内，地面上的宝可梦 不会受到先制招式的攻击。 超能力属性的招式威力会提高。"
  },
  {
   "id": "psycho-cut",
@@ -10296,6 +11691,41 @@
    "contact": false
   },
   "shortEffect": "将令人烦躁的粉末撒在自己身上， 用以吸引对手的注意。 使对手的攻击全部指向自己。"
+ },
+ {
+  "id": "raging-fury",
+  "num": 833,
+  "name": {
+   "en": "Raging Fury",
+   "zh": "大愤慨"
+  },
+  "type": "fire",
+  "category": "physical",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "random-opponent",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "The user rampages and spews vicious flames to inflict damage on the target, then becomes fixated on using this move."
  },
  {
   "id": "rain-dance",
@@ -10986,6 +12416,41 @@
    "contact": false
   },
   "shortEffect": "投掷岩石进行攻击。 封住对手的行动， 从而降低速度。"
+ },
+ {
+  "id": "rock-wrecker",
+  "num": 439,
+  "name": {
+   "en": "Rock Wrecker",
+   "zh": "岩石炮"
+  },
+  "type": "rock",
+  "category": "physical",
+  "power": 150,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "向对手发射 巨大的岩石进行攻击。 下一回合自己将无法动弹。"
  },
  {
   "id": "rollout",
@@ -11878,6 +13343,62 @@
   "shortEffect": "回复自己最大ＨＰ的一半。 在沙暴中回复得更多。"
  },
  {
+  "id": "silver-wind",
+  "num": 318,
+  "name": {
+   "en": "Silver Wind",
+   "zh": "银色旋风"
+  },
+  "type": "bug",
+  "category": "special",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 10,
+  "meta": {
+   "category": "damage-raise",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 10
+  },
+  "statChanges": [
+   {
+    "stat": "atk",
+    "change": 1
+   },
+   {
+    "stat": "def",
+    "change": 1
+   },
+   {
+    "stat": "spa",
+    "change": 1
+   },
+   {
+    "stat": "spd",
+    "change": 1
+   },
+   {
+    "stat": "spe",
+    "change": 1
+   }
+  ],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "在风中掺入鳞粉攻击对手。 有时会提高自己的全部能力。"
+ },
+ {
   "id": "simple-beam",
   "num": 493,
   "name": {
@@ -11988,6 +13509,41 @@
   "shortEffect": "从对手背后爬近后进行攻击。 会降低对手的特攻。"
  },
  {
+  "id": "skull-bash",
+  "num": 130,
+  "name": {
+   "en": "Skull Bash",
+   "zh": "火箭头锤"
+  },
+  "type": "normal",
+  "category": "physical",
+  "power": 130,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 100,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 100,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "第１回合把头缩进去， 从而提高防御。 第２回合攻击对手。"
+ },
+ {
   "id": "sky-attack",
   "num": 143,
   "name": {
@@ -12021,6 +13577,41 @@
    "contact": false
   },
   "shortEffect": "第２回合攻击对手。 偶尔使对手畏缩。 也容易击中要害。"
+ },
+ {
+  "id": "slack-off",
+  "num": 303,
+  "name": {
+   "en": "Slack Off",
+   "zh": "偷懒"
+  },
+  "type": "normal",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 5,
+  "priority": 0,
+  "target": "user",
+  "effectChance": null,
+  "meta": {
+   "category": "heal",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 50,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "偷懒休息。 回复自己最大ＨＰ的一半。"
  },
  {
   "id": "slam",
@@ -12908,6 +14499,76 @@
   "shortEffect": "将无数岩石悬浮在对手的周围， 从而对替换出场的对手的 宝可梦给予伤害。"
  },
  {
+  "id": "steel-beam",
+  "num": 796,
+  "name": {
+   "en": "Steel Beam",
+   "zh": "铁蹄光线"
+  },
+  "type": "steel",
+  "category": "special",
+  "power": 140,
+  "accuracy": 95,
+  "pp": 5,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 100,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "将从全身聚集的钢铁 化为光束，激烈地发射出去。 自己也会受到伤害。"
+ },
+ {
+  "id": "steel-roller",
+  "num": 798,
+  "name": {
+   "en": "Steel Roller",
+   "zh": "铁滚轮"
+  },
+  "type": "steel",
+  "category": "physical",
+  "power": 130,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 100,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "在破坏场地的同时攻击对手。 如果脚下没有任何场地状态存在， 使出此招式时便会失败。"
+ },
+ {
   "id": "steel-wing",
   "num": 211,
   "name": {
@@ -13565,6 +15226,41 @@
    "contact": true
   },
   "shortEffect": "用锋利的门牙 猛烈地咬住对手进行攻击。 对手的ＨＰ减半。"
+ },
+ {
+  "id": "supercell-slam",
+  "num": 916,
+  "name": {
+   "en": "Supercell Slam",
+   "zh": "闪电强袭"
+  },
+  "type": "electric",
+  "category": "physical",
+  "power": 100,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "The user electrifies its body and drops onto the target to inflict damage. If this move misses, the user takes damage instead."
  },
  {
   "id": "superpower",
@@ -14226,6 +15922,41 @@
   "shortEffect": "摇摇晃晃地跳起舞蹈， 让自己周围的宝可梦 陷入混乱状态。"
  },
  {
+  "id": "teleport",
+  "num": 100,
+  "name": {
+   "en": "Teleport",
+   "zh": "瞬间移动"
+  },
+  "type": "psychic",
+  "category": "status",
+  "power": 0,
+  "accuracy": null,
+  "pp": 20,
+  "priority": -6,
+  "target": "user",
+  "effectChance": null,
+  "meta": {
+   "category": "unique",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "停止和野生宝可梦战斗并逃走。"
+ },
+ {
   "id": "temper-flare",
   "num": 915,
   "name": {
@@ -14443,6 +16174,41 @@
    "contact": false
   },
   "shortEffect": "向对手劈下暴雷进行攻击。 有时会让对手陷入麻痹状态。"
+ },
+ {
+  "id": "thunder-fang",
+  "num": 422,
+  "name": {
+   "en": "Thunder Fang",
+   "zh": "雷电牙"
+  },
+  "type": "electric",
+  "category": "physical",
+  "power": 65,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 10,
+  "meta": {
+   "category": "damage-ailment",
+   "ailment": "paralysis",
+   "ailmentChance": 10,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 10,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "用蓄满电流的牙齿咬住对手。 有时会使对手畏缩 或陷入麻痹状态。"
  },
  {
   "id": "thunder-punch",
@@ -15133,6 +16899,54 @@
   "shortEffect": "挥动拳头， 掀起真空波。 必定能够先制攻击。"
  },
  {
+  "id": "venom-drench",
+  "num": 599,
+  "name": {
+   "en": "Venom Drench",
+   "zh": "毒液陷阱"
+  },
+  "type": "poison",
+  "category": "status",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "target": "all-opponents",
+  "effectChance": 100,
+  "meta": {
+   "category": "net-good-stats",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 100
+  },
+  "statChanges": [
+   {
+    "stat": "atk",
+    "change": -1
+   },
+   {
+    "stat": "spa",
+    "change": -1
+   },
+   {
+    "stat": "spe",
+    "change": -1
+   }
+  ],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "将特殊的毒液泼向对手。 对处于中毒状态的对手， 其攻击、特攻和速度都会降低。"
+ },
+ {
   "id": "venoshock",
   "num": 474,
   "name": {
@@ -15166,6 +16980,41 @@
    "contact": false
   },
   "shortEffect": "将特殊的毒液泼向对手。 对处于中毒状态的对手， 威力会变成２倍。"
+ },
+ {
+  "id": "vine-whip",
+  "num": 22,
+  "name": {
+   "en": "Vine Whip",
+   "zh": "藤鞭"
+  },
+  "type": "grass",
+  "category": "physical",
+  "power": 45,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": null,
+  "meta": {
+   "category": "damage",
+   "ailment": "none",
+   "ailmentChance": 0,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": true
+  },
+  "shortEffect": "用如同鞭子般弯曲而细长的藤蔓 摔打对手进行攻击。"
  },
  {
   "id": "vital-throw",
@@ -15915,6 +17764,41 @@
    "contact": false
   },
   "shortEffect": "打个大哈欠引起睡意。 在下一回合让对手陷入睡眠状态。"
+ },
+ {
+  "id": "zap-cannon",
+  "num": 192,
+  "name": {
+   "en": "Zap Cannon",
+   "zh": "电磁炮"
+  },
+  "type": "electric",
+  "category": "special",
+  "power": 120,
+  "accuracy": 50,
+  "pp": 5,
+  "priority": 0,
+  "target": "selected-pokemon",
+  "effectChance": 100,
+  "meta": {
+   "category": "damage-ailment",
+   "ailment": "paralysis",
+   "ailmentChance": 100,
+   "critRate": 0,
+   "drain": 0,
+   "flinchChance": 0,
+   "healing": 0,
+   "minHits": null,
+   "maxHits": null,
+   "minTurns": null,
+   "maxTurns": null,
+   "statChance": 0
+  },
+  "statChanges": [],
+  "flags": {
+   "contact": false
+  },
+  "shortEffect": "发射大炮一样的 电流进行攻击。 让对手陷入麻痹状态。"
  },
  {
   "id": "zen-headbutt",

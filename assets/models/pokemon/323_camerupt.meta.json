@@ -1,0 +1,25 @@
+{
+  "id": 323,
+  "name": "camerupt",
+  "heightM": 1.9,
+  "plan": "quadruped",
+  "tris": 5748,
+  "fit": "height",
+  "bones": 19,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "323_camerupt_shiny.png"
+}

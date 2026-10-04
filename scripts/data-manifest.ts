@@ -16,6 +16,9 @@ export const SEED_SPECIES: readonly number[] = [
   90, 222, 769, 74, 66,
   // 生态新物种第 3 批：姆克儿、可达鸭、乌波、溜溜糖球、龙虾小兵、角金鱼
   396, 54, 194, 283, 341, 118,
+  // M2 碧潮群岛（2026-10-04）：古森 喇叭芽/蘑蘑菇/芭瓢虫/赫拉克罗斯/含羞苞；峡谷 大岩蛇/超音蝠/卡拉卡拉/穿山鼠；
+  // 冲撞骑乘 独角犀牛；火山 卡蒂狗/小火马/熔岩虫/呆火驼/煤炭龟/戴鲁比；温泉 呆呆兽；遗迹 天秤偶/雷吉洛克；火山口的蛋 燃烧虫
+  69, 285, 165, 214, 406, 95, 41, 104, 27, 111, 58, 77, 218, 322, 324, 228, 79, 343, 377, 636,
 ];
 
 /** 核心道具：携带物（SYS-010）+ 精灵球（SYS-005）+ 回复药 */
@@ -32,7 +35,7 @@ export const CORE_ITEMS: readonly string[] = [
   // 营养剂（努力值 +10）
   'hp-up', 'protein', 'iron', 'calcium', 'zinc', 'carbos',
   // 进化石（进化判定用）
-  'fire-stone', 'water-stone', 'thunder-stone', 'leaf-stone', 'sun-stone', 'kings-rock', 'linking-cord',
+  'fire-stone', 'water-stone', 'thunder-stone', 'leaf-stone', 'sun-stone', 'kings-rock', 'linking-cord', 'protector',
 ];
 
 /** 明确的接触类招式补充（特殊攻击中也有少数接触招式） */

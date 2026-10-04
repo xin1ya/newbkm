@@ -1,0 +1,25 @@
+{
+  "id": 344,
+  "name": "claydol",
+  "heightM": 1.5,
+  "plan": "rigid",
+  "tris": 4384,
+  "fit": "height",
+  "bones": 9,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "344_claydol_shiny.png"
+}

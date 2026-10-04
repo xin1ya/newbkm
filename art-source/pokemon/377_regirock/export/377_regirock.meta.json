@@ -1,0 +1,25 @@
+{
+  "id": 377,
+  "name": "regirock",
+  "heightM": 1.7,
+  "plan": "biped",
+  "tris": 4984,
+  "fit": "height",
+  "bones": 15,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "377_regirock_shiny.png"
+}

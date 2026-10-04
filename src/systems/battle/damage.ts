@@ -93,7 +93,8 @@ export function calcDamage(b: BattleApi, input: DamageInput): DamageResult {
   }
   dmg = Math.floor(dmg * effectiveness);
   if (physical && user.pokemon.status?.kind === 'brn' && user.pokemon.ability !== 'guts') dmg = Math.floor(dmg * 0.5);
-  if (!crit) {
+  if (!crit && user.pokemon.ability !== 'infiltrator') {
+    // 穿透：无视对手的反射壁 / 光墙
     if (physical && input.targetSide.conditions.reflect > 0) dmg = Math.floor(dmg * 0.5);
     if (!physical && input.targetSide.conditions.lightScreen > 0) dmg = Math.floor(dmg * 0.5);
   }

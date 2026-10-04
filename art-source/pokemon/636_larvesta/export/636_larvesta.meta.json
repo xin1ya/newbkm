@@ -1,0 +1,25 @@
+{
+  "id": 636,
+  "name": "larvesta",
+  "heightM": 1.1,
+  "plan": "larva",
+  "tris": 3672,
+  "fit": "height",
+  "bones": 7,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5333333333333333,
+    "attack_special": 0.8
+  },
+  "shiny": "636_larvesta_shiny.png"
+}

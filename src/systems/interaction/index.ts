@@ -161,6 +161,17 @@ export function keyLabel(code: string): string {
 export const PAD_LABEL: Record<number, string> = { 0: 'A', 1: 'B', 2: 'X', 3: 'Y', 4: 'LB', 5: 'RB', 6: 'LT', 7: 'RT', 8: 'View', 9: 'Menu', 10: 'LS', 11: 'RS' };
 
 /** 封锁点类型 → 需要的能力（中文名，HM 改为骑乘能力，flag 名不变：决策 0008） */
+/** 需要玩家主动使用场地能力才能清除的阻挡（清除后记 `cleared:<id>`） */
+export const CLEARABLE_BLOCKERS = new Set(['rock-smash', 'strength', 'vines', 'dark']);
+/** 场地能力的动作名（交互提示） */
+export const BLOCKER_ACTION: Record<string, string> = { 'rock-smash': '撞碎岩石', strength: '推开巨石', vines: '劈开藤蔓', dark: '照亮' };
+
+/** 阻挡是否已经打开：剧情 / 水上阻挡看 requiresFlag；能力阻挡要拥有能力且已清除 */
+export function blockerOpen(b: { id: string; type: string; requiresFlag: string }, flag: (f: string) => boolean): boolean {
+  if (CLEARABLE_BLOCKERS.has(b.type)) return flag(`cleared:${b.id}`);
+  return flag(b.requiresFlag);
+}
+
 export const BLOCKER_ABILITY: Record<string, string> = {
   surf: '水上骑乘',
   'rock-smash': '碎岩',

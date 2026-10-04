@@ -1,0 +1,25 @@
+{
+  "id": 79,
+  "name": "slowpoke",
+  "heightM": 1.2,
+  "plan": "quadruped",
+  "tris": 5836,
+  "fit": "height",
+  "bones": 21,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "079_slowpoke_shiny.png"
+}

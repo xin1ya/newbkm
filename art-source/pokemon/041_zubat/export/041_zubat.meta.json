@@ -1,0 +1,26 @@
+{
+  "id": 41,
+  "name": "zubat",
+  "heightM": 0.8,
+  "plan": "rigid",
+  "tris": 2272,
+  "fit": "height",
+  "bones": 14,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "041_zubat_shiny.png"
+}

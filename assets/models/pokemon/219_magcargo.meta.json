@@ -1,0 +1,25 @@
+{
+  "id": 219,
+  "name": "magcargo",
+  "heightM": 0.8,
+  "plan": "larva",
+  "tris": 3684,
+  "fit": "height",
+  "bones": 7,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5333333333333333,
+    "attack_special": 0.8
+  },
+  "shiny": "219_magcargo_shiny.png"
+}

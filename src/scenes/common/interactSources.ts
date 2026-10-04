@@ -1,7 +1,7 @@
 /**
  * M1-07 · 互动候选来源（大地图 / 室内共用的部分）。
  */
-import { closestOnRect, probeWaterAhead, KIND_LABEL, BLOCKER_ABILITY, type InteractionDef } from '@/systems/interaction';
+import { closestOnRect, probeWaterAhead, KIND_LABEL, BLOCKER_ABILITY, BLOCKER_ACTION, CLEARABLE_BLOCKERS, blockerOpen, type InteractionDef } from '@/systems/interaction';
 import { INTERACTION_BY_ID } from '@/config/interactions';
 import type { BlockerConfig, IslandConfig } from '@/config/islands';
 import type { SceneNpcs } from './SceneNpcs';
@@ -72,6 +72,8 @@ export interface OverworldSourceDeps {
   surf(hit: { x: number; z: number; level: number }): Promise<void>;
   /** 正在水上骑乘（此时只提供钓鱼） */
   surfing(): boolean;
+  /** M2-10/11/13 使用场地能力清除阻挡（藤蔓 / 碎岩 / 巨石） */
+  clearBlocker?(b: BlockerConfig): Promise<void>;
 }
 
 /** 大地图：门、地标（告示 / 渡船）、封锁点、水边（钓鱼 / 水上骑乘） */
@@ -115,8 +117,23 @@ export function overworldSources(host: SceneInteractions, d: OverworldSourceDeps
   const blockers: InteractSource = (player, out) => {
     const p = player.position;
     for (const b of d.island.blockers) {
-      if (d.flag(b.requiresFlag)) continue;
+      if (blockerOpen(b, (f) => d.flag(f))) continue;
       const edge = blockerEdge(b, p.x, p.z);
+      // 已经掌握能力：变成可交互的“使用能力”
+      if (CLEARABLE_BLOCKERS.has(b.type) && d.flag(b.requiresFlag) && d.clearBlocker) {
+        out.push({
+          id: `blocker:${b.id}`,
+          kind: 'blocked',
+          x: edge.x,
+          z: edge.z,
+          y: d.ground.heightAt(edge.x, edge.z) + 1.8,
+          label: `${BLOCKER_ACTION[b.type] ?? '使用能力'}（${BLOCKER_ABILITY[b.type]}）`,
+          action: 'interact',
+          range: 2.6,
+          run: () => d.clearBlocker!(b),
+        });
+        continue;
+      }
       out.push({
         id: `blocker:${b.id}`,
         kind: 'blocked',

@@ -1,0 +1,4302 @@
+{
+ "version": 1,
+ "island": "tide",
+ "generatedBy": "gen-tide seed=20261004",
+ "props": [
+  {
+   "type": "pokecenter",
+   "position": [
+    -500,
+    15.4
+   ],
+   "yaw": 0,
+   "size": [
+    15,
+    7.5,
+    12
+   ],
+   "ref": "pokecenter-tide",
+   "color": "#fbf5ee",
+   "roof": "#e25a4f"
+  },
+  {
+   "type": "mart",
+   "position": [
+    -440,
+    16.4
+   ],
+   "yaw": 0,
+   "size": [
+    12,
+    6.5,
+    10
+   ],
+   "ref": "mart-tide",
+   "color": "#f4f6f8",
+   "roof": "#3f7fd6"
+  },
+  {
+   "type": "gym",
+   "ref": "gym-azure",
+   "position": [
+    -470,
+    -66
+   ],
+   "yaw": 0,
+   "size": [
+    26,
+    12,
+    26
+   ],
+   "variant": "grass",
+   "color": "#e4f0d4",
+   "roof": "#3f8a4a"
+  },
+  {
+   "type": "giant-tree",
+   "position": [
+    -455,
+    96
+   ],
+   "yaw": 0.3,
+   "size": [
+    1,
+    46,
+    1
+   ],
+   "seed": 2101
+  },
+  {
+   "type": "treehouse",
+   "position": [
+    -540,
+    82.7
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    8,
+    4.2,
+    7
+   ],
+   "ref": "tide-elder-house",
+   "y": 5.2,
+   "roof": "#7d9a52",
+   "seed": 2102
+  },
+  {
+   "type": "treehouse",
+   "position": [
+    -405.8,
+    64
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    7,
+    3.8,
+    6
+   ],
+   "y": 4.4,
+   "roof": "#b8a05a",
+   "seed": 2103
+  },
+  {
+   "type": "treehouse",
+   "position": [
+    -504.2,
+    132
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    7,
+    3.8,
+    6
+   ],
+   "y": 4.8,
+   "roof": "#a7695a",
+   "seed": 2104
+  },
+  {
+   "type": "treehouse",
+   "position": [
+    -407.8,
+    128
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    6.5,
+    3.6,
+    6
+   ],
+   "y": 4,
+   "roof": "#6aa56b",
+   "seed": 2105
+  },
+  {
+   "type": "treehouse",
+   "position": [
+    -560,
+    124.2
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    6.5,
+    3.6,
+    6
+   ],
+   "y": 4.6,
+   "roof": "#b8a05a",
+   "seed": 2106
+  },
+  {
+   "type": "rope-bridge",
+   "position": [
+    -520,
+    104
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.2,
+    1
+   ],
+   "y": 0,
+   "points": [
+    [
+     -536,
+     86
+    ],
+    [
+     -520,
+     104
+    ],
+    [
+     -505,
+     126
+    ]
+   ]
+  },
+  {
+   "type": "rope-bridge",
+   "position": [
+    -414,
+    96
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1,
+    1
+   ],
+   "points": [
+    [
+     -412,
+     70
+    ],
+    [
+     -413,
+     96
+    ],
+    [
+     -413,
+     122
+    ]
+   ]
+  },
+  {
+   "type": "house",
+   "position": [
+    -540,
+    42.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "variant": "timber",
+   "color": "#efe3c6",
+   "roof": "#5b7a3a",
+   "seed": 2111
+  },
+  {
+   "type": "house",
+   "position": [
+    -524,
+    42.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    5.6,
+    8
+   ],
+   "variant": "cottage",
+   "color": "#f4ead7",
+   "roof": "#7d9a52",
+   "seed": 2112
+  },
+  {
+   "type": "house",
+   "position": [
+    -408,
+    42.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "variant": "gable",
+   "color": "#f2e6d0",
+   "roof": "#a7695a",
+   "seed": 2113,
+   "accent": "#5b8a5a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -392,
+    42.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "variant": "two-storey",
+   "color": "#e8dcc6",
+   "roof": "#46708a",
+   "seed": 2114,
+   "accent": "#3f8a4a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -556,
+    17.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "variant": "timber",
+   "color": "#f7f1e6",
+   "roof": "#6b4a33",
+   "seed": 2115
+  },
+  {
+   "type": "house",
+   "position": [
+    -412,
+    17.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    5.6,
+    8
+   ],
+   "variant": "cottage",
+   "color": "#efe2c8",
+   "roof": "#5b8a5a",
+   "seed": 2116
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -479,
+    -36
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    0.4,
+    1.2
+   ],
+   "seed": 2121
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -461,
+    -36
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    0.4,
+    1.2
+   ],
+   "seed": 2122
+  },
+  {
+   "type": "sign",
+   "ref": "gym-azure-sign",
+   "position": [
+    -462,
+    -44
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "noticeboard",
+   "position": [
+    -470,
+    18
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    -478,
+    44
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    -462,
+    44
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "well",
+   "position": [
+    -470,
+    56
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "type": "garden",
+   "position": [
+    -575,
+    60
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    0.4,
+    5
+   ],
+   "variant": "herb",
+   "seed": 2123
+  },
+  {
+   "type": "garden",
+   "position": [
+    -388,
+    58
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    0.4,
+    6
+   ],
+   "variant": "veg",
+   "seed": 2124
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     -579,
+     56
+    ],
+    [
+     -579,
+     64
+    ],
+    [
+     -571,
+     64
+    ]
+   ]
+  },
+  {
+   "type": "laundry",
+   "position": [
+    -532,
+    50
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.1,
+    0.2
+   ],
+   "seed": 2125
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -548,
+    25
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -520,
+    35
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -490,
+    25
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -450,
+    35
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -420,
+    25
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -385,
+    35
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    -476,
+    -24
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    -464,
+    -24
+   ],
+   "yaw": 0.4,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    -476,
+    -6
+   ],
+   "yaw": 0.8,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    -464,
+    -6
+   ],
+   "yaw": 1.2000000000000002,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ]
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -430,
+    -20
+   ],
+   "yaw": 0,
+   "size": [
+    3.4,
+    1.2,
+    3.4
+   ],
+   "seed": 2131
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -575,
+    -40
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    1.4,
+    4
+   ],
+   "seed": 2132
+  },
+  {
+   "type": "tree",
+   "position": [
+    -590,
+    -20
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    12,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2140
+  },
+  {
+   "type": "tree",
+   "position": [
+    -585,
+    10
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    11,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2171
+  },
+  {
+   "type": "tree",
+   "position": [
+    -560,
+    -60
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    13,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2202
+  },
+  {
+   "type": "tree",
+   "position": [
+    -530,
+    -80
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    12,
+    1
+   ],
+   "variant": "round",
+   "seed": 2233
+  },
+  {
+   "type": "tree",
+   "position": [
+    -420,
+    -70
+   ],
+   "yaw": 0.5168146928204136,
+   "size": [
+    1,
+    12,
+    1
+   ],
+   "variant": "round",
+   "seed": 2264
+  },
+  {
+   "type": "tree",
+   "position": [
+    -395,
+    -40
+   ],
+   "yaw": 2.2168146928204138,
+   "size": [
+    1,
+    11,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2295
+  },
+  {
+   "type": "tree",
+   "position": [
+    -380,
+    0
+   ],
+   "yaw": 3.916814692820413,
+   "size": [
+    1,
+    9,
+    1
+   ],
+   "variant": "round",
+   "seed": 2326
+  },
+  {
+   "type": "tree",
+   "position": [
+    -560,
+    160
+   ],
+   "yaw": 5.616814692820414,
+   "size": [
+    1,
+    11,
+    1
+   ],
+   "variant": "round",
+   "seed": 2357
+  },
+  {
+   "type": "tree",
+   "position": [
+    -520,
+    165
+   ],
+   "yaw": 1.0336293856408272,
+   "size": [
+    1,
+    12,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2388
+  },
+  {
+   "type": "tree",
+   "position": [
+    -470,
+    165
+   ],
+   "yaw": 2.7336293856408265,
+   "size": [
+    1,
+    10,
+    1
+   ],
+   "variant": "round",
+   "seed": 2419
+  },
+  {
+   "type": "tree",
+   "position": [
+    -420,
+    160
+   ],
+   "yaw": 4.4336293856408275,
+   "size": [
+    1,
+    12,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2450
+  },
+  {
+   "type": "tree",
+   "position": [
+    -385,
+    120
+   ],
+   "yaw": 6.133629385640827,
+   "size": [
+    1,
+    9,
+    1
+   ],
+   "variant": "round",
+   "seed": 2481
+  },
+  {
+   "type": "tree",
+   "position": [
+    -595,
+    100
+   ],
+   "yaw": 1.5504440784612399,
+   "size": [
+    1,
+    10,
+    1
+   ],
+   "variant": "round",
+   "seed": 2512
+  },
+  {
+   "type": "tree",
+   "position": [
+    -545,
+    0
+   ],
+   "yaw": 3.250444078461239,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 2543
+  },
+  {
+   "type": "tree",
+   "position": [
+    -395,
+    10
+   ],
+   "yaw": 4.950444078461242,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 2574
+  },
+  {
+   "type": "tree",
+   "position": [
+    -486,
+    64
+   ],
+   "yaw": 0.36725877128165507,
+   "size": [
+    1,
+    4.5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 2605
+  },
+  {
+   "type": "tree",
+   "position": [
+    -452,
+    64
+   ],
+   "yaw": 2.0672587712816544,
+   "size": [
+    1,
+    4.5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 2636
+  },
+  {
+   "type": "deck",
+   "position": [
+    -616,
+    30
+   ],
+   "yaw": 0,
+   "size": [
+    28,
+    0.4,
+    6
+   ],
+   "y": 2.4,
+   "rails": "nsw",
+   "gaps": [
+    [
+     "e",
+     0,
+     6
+    ]
+   ]
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    -622,
+    38
+   ],
+   "yaw": 0.2,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 0.2
+  },
+  {
+   "type": "bollard",
+   "position": [
+    -626,
+    27
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.7,
+    0.4
+   ],
+   "y": 2.4
+  },
+  {
+   "type": "bollard",
+   "position": [
+    -626,
+    33
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.7,
+    0.4
+   ],
+   "y": 2.4
+  },
+  {
+   "type": "net-rack",
+   "position": [
+    -596,
+    44
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    3,
+    2,
+    0.3
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "tide-dock-sign",
+   "position": [
+    -598,
+    22
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "pokecenter",
+   "position": [
+    40,
+    236.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    15,
+    7.5,
+    12
+   ],
+   "ref": "pokecenter-ore",
+   "color": "#fbf5ee",
+   "roof": "#e25a4f"
+  },
+  {
+   "type": "mart",
+   "position": [
+    90,
+    237.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    12,
+    6.5,
+    10
+   ],
+   "ref": "mart-ore",
+   "color": "#f4f6f8",
+   "roof": "#3f7fd6"
+  },
+  {
+   "type": "gym",
+   "ref": "gym-ore",
+   "position": [
+    120,
+    187
+   ],
+   "yaw": 0,
+   "size": [
+    24,
+    12,
+    24
+   ],
+   "variant": "rock",
+   "color": "#c9a27a",
+   "roof": "#8a5a3c"
+  },
+  {
+   "type": "house",
+   "position": [
+    150,
+    245.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    6,
+    9
+   ],
+   "variant": "adobe",
+   "color": "#c98d5e",
+   "roof": "#8a5a3c",
+   "seed": 2201,
+   "ref": "ore-foreman-house",
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    30,
+    195.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    5.2,
+    8
+   ],
+   "variant": "adobe",
+   "color": "#d4a273",
+   "roof": "#8a5a3c",
+   "seed": 2202,
+   "accent": "#b8503c"
+  },
+  {
+   "type": "house",
+   "position": [
+    48,
+    195.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    5.6,
+    8
+   ],
+   "variant": "adobe",
+   "color": "#c99466",
+   "roof": "#8a5a3c",
+   "seed": 2203,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    66,
+    197.9
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    5,
+    7
+   ],
+   "variant": "adobe",
+   "color": "#d9ac80",
+   "roof": "#8a5a3c",
+   "seed": 2204,
+   "accent": "#e0a13a"
+  },
+  {
+   "type": "house",
+   "position": [
+    150,
+    201.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    5.4,
+    8
+   ],
+   "variant": "adobe",
+   "color": "#cf9a6b",
+   "roof": "#8a5a3c",
+   "seed": 2205,
+   "accent": "#5b8a5a"
+  },
+  {
+   "type": "house",
+   "position": [
+    166,
+    205.9
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    5,
+    7
+   ],
+   "variant": "adobe",
+   "color": "#c48a5a",
+   "roof": "#8a5a3c",
+   "seed": 2206,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    118,
+    240.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    5.2,
+    8
+   ],
+   "variant": "adobe",
+   "color": "#d4a273",
+   "roof": "#8a5a3c",
+   "seed": 2207,
+   "accent": "#b8503c"
+  },
+  {
+   "type": "house",
+   "position": [
+    20,
+    232.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    8,
+    5,
+    7
+   ],
+   "variant": "adobe",
+   "color": "#cf9a6b",
+   "roof": "#8a5a3c",
+   "seed": 2208,
+   "accent": "#e0a13a"
+  },
+  {
+   "type": "headframe",
+   "position": [
+    84,
+    158
+   ],
+   "yaw": 0.1,
+   "size": [
+    5,
+    13,
+    5
+   ]
+  },
+  {
+   "type": "rail",
+   "position": [
+    98,
+    150
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    0.2,
+    1
+   ],
+   "points": [
+    [
+     98,
+     150
+    ],
+    [
+     102,
+     60
+    ],
+    [
+     108,
+     -20
+    ],
+    [
+     110,
+     -96
+    ]
+   ]
+  },
+  {
+   "type": "mine-cart",
+   "position": [
+    98.2,
+    140
+   ],
+   "yaw": 0,
+   "size": [
+    1.4,
+    1.4,
+    2
+   ],
+   "seed": 2211
+  },
+  {
+   "type": "mine-cart",
+   "position": [
+    101.5,
+    72
+   ],
+   "yaw": 0.05,
+   "size": [
+    1.4,
+    1.4,
+    2
+   ],
+   "seed": 2212
+  },
+  {
+   "type": "mine-cart",
+   "position": [
+    109.6,
+    -80
+   ],
+   "yaw": 0.03,
+   "size": [
+    1.4,
+    1.4,
+    2
+   ],
+   "seed": 2213,
+   "variant": "anomaly"
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    74,
+    148
+   ],
+   "yaw": 0,
+   "size": [
+    3.2,
+    1.92,
+    3.2
+   ],
+   "seed": 2220
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    70,
+    156
+   ],
+   "yaw": 1.3,
+   "size": [
+    2.4,
+    1.44,
+    2.4
+   ],
+   "seed": 2221
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    112,
+    150
+   ],
+   "yaw": 2.6,
+   "size": [
+    2.6,
+    1.56,
+    2.6
+   ],
+   "seed": 2222
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    176,
+    228
+   ],
+   "yaw": 3.9000000000000004,
+   "size": [
+    2.2,
+    1.32,
+    2.2
+   ],
+   "seed": 2223
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    8,
+    214
+   ],
+   "yaw": 5.2,
+   "size": [
+    2.8,
+    1.68,
+    2.8
+   ],
+   "seed": 2224
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    118,
+    -92
+   ],
+   "yaw": 6.5,
+   "size": [
+    3,
+    1.7999999999999998,
+    3
+   ],
+   "seed": 2225
+  },
+  {
+   "type": "crate",
+   "position": [
+    78,
+    166
+   ],
+   "yaw": 0,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    79.3,
+    167.2
+   ],
+   "yaw": 0.6,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    128,
+    214
+   ],
+   "yaw": 1.2,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    129,
+    215.4
+   ],
+   "yaw": 1.7999999999999998,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    58,
+    214
+   ],
+   "yaw": 2.4,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    12,
+    220
+   ],
+   "yaw": 3,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    86,
+    168
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#7a5a32"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    87,
+    169.2
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#7a5a32"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    140,
+    216
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#7a5a32"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    26,
+    216
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#7a5a32"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    62,
+    230
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#7a5a32"
+  },
+  {
+   "type": "noticeboard",
+   "position": [
+    104,
+    207
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "gym-ore-sign",
+   "position": [
+    112,
+    204
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    70,
+    222
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "well",
+   "position": [
+    66,
+    238
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "type": "bunting",
+   "position": [
+    92,
+    218
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "points": [
+    [
+     20,
+     212
+    ],
+    [
+     92,
+     214
+    ],
+    [
+     166,
+     220
+    ]
+   ],
+   "seed": 2230
+  },
+  {
+   "type": "lamp",
+   "position": [
+    24,
+    214
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    56,
+    224
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    88,
+    216
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    132,
+    226
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    160,
+    218
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "rocks",
+   "position": [
+    0,
+    190
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    2,
+    5
+   ],
+   "seed": 2231
+  },
+  {
+   "type": "rocks",
+   "position": [
+    186,
+    244
+   ],
+   "yaw": 0,
+   "size": [
+    4.4,
+    1.6,
+    4.4
+   ],
+   "seed": 2232
+  },
+  {
+   "type": "rocks",
+   "position": [
+    60,
+    120
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    2.4,
+    6
+   ],
+   "seed": 2233
+  },
+  {
+   "type": "tree",
+   "position": [
+    10,
+    246
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 2240
+  },
+  {
+   "type": "tree",
+   "position": [
+    176,
+    196
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 2271
+  },
+  {
+   "type": "tree",
+   "position": [
+    140,
+    254
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 2302
+  },
+  {
+   "type": "tree",
+   "position": [
+    60,
+    250
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 2333
+  },
+  {
+   "type": "tree",
+   "position": [
+    190,
+    210
+   ],
+   "yaw": 0.5168146928204136,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2364
+  },
+  {
+   "type": "pokecenter",
+   "position": [
+    490,
+    82.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    15,
+    7.5,
+    12
+   ],
+   "ref": "pokecenter-flame",
+   "color": "#fbf5ee",
+   "roof": "#e25a4f"
+  },
+  {
+   "type": "mart",
+   "position": [
+    540,
+    81.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    12,
+    6.5,
+    10
+   ],
+   "ref": "mart-flame",
+   "color": "#f4f6f8",
+   "roof": "#3f7fd6"
+  },
+  {
+   "type": "gym",
+   "ref": "gym-flame",
+   "position": [
+    600,
+    21
+   ],
+   "yaw": 0,
+   "size": [
+    24,
+    13,
+    24
+   ],
+   "variant": "fire",
+   "color": "#3a3030",
+   "roof": "#d9542a"
+  },
+  {
+   "type": "house",
+   "position": [
+    626,
+    103.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    12,
+    7.5,
+    10
+   ],
+   "variant": "obsidian",
+   "color": "#3b3640",
+   "roof": "#c8502a",
+   "seed": 2301,
+   "ref": "flame-observatory"
+  },
+  {
+   "type": "house",
+   "position": [
+    470,
+    41.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    5.8,
+    8
+   ],
+   "variant": "obsidian",
+   "color": "#4a4248",
+   "roof": "#a8452a",
+   "seed": 2302
+  },
+  {
+   "type": "house",
+   "position": [
+    520,
+    39.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "variant": "obsidian",
+   "color": "#3f3a3e",
+   "roof": "#d0662e",
+   "seed": 2303
+  },
+  {
+   "type": "house",
+   "position": [
+    560,
+    37.9
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    5.4,
+    7
+   ],
+   "variant": "obsidian",
+   "color": "#4a4248",
+   "roof": "#b85a30",
+   "seed": 2304
+  },
+  {
+   "type": "house",
+   "position": [
+    640,
+    25.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    5.8,
+    8
+   ],
+   "variant": "obsidian",
+   "color": "#3b3640",
+   "roof": "#a8452a",
+   "seed": 2305
+  },
+  {
+   "type": "house",
+   "position": [
+    580,
+    74.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "variant": "obsidian",
+   "color": "#453f44",
+   "roof": "#c8502a",
+   "seed": 2306
+  },
+  {
+   "type": "house",
+   "position": [
+    460,
+    84.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    8,
+    5.4,
+    7
+   ],
+   "variant": "obsidian",
+   "color": "#3f3a3e",
+   "roof": "#d0662e",
+   "seed": 2307
+  },
+  {
+   "type": "basalt",
+   "position": [
+    668,
+    70
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    7,
+    6
+   ],
+   "seed": 2311
+  },
+  {
+   "type": "basalt",
+   "position": [
+    676,
+    30
+   ],
+   "yaw": 1,
+   "size": [
+    5,
+    9,
+    5
+   ],
+   "seed": 2312
+  },
+  {
+   "type": "basalt",
+   "position": [
+    440,
+    30
+   ],
+   "yaw": 2,
+   "size": [
+    4,
+    5,
+    4
+   ],
+   "seed": 2313
+  },
+  {
+   "type": "lava-vent",
+   "position": [
+    660,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    1,
+    4
+   ],
+   "seed": 2314
+  },
+  {
+   "type": "lava-vent",
+   "position": [
+    690,
+    50
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    1,
+    3
+   ],
+   "seed": 2315
+  },
+  {
+   "type": "lava-vent",
+   "position": [
+    600,
+    -40
+   ],
+   "yaw": 0,
+   "size": [
+    3.4,
+    1,
+    3.4
+   ],
+   "seed": 2316
+  },
+  {
+   "type": "statue",
+   "position": [
+    520,
+    60
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    4.6,
+    1.8
+   ],
+   "color": "#3b3640"
+  },
+  {
+   "type": "sign",
+   "ref": "gym-flame-sign",
+   "position": [
+    592,
+    40
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "noticeboard",
+   "position": [
+    552,
+    60
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    480,
+    66
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    2,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    510,
+    64
+   ],
+   "yaw": 0.4,
+   "size": [
+    0.8,
+    2,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    560,
+    60
+   ],
+   "yaw": 0.8,
+   "size": [
+    0.8,
+    2,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    590,
+    58
+   ],
+   "yaw": 1.2000000000000002,
+   "size": [
+    0.8,
+    2,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    620,
+    56
+   ],
+   "yaw": 1.6,
+   "size": [
+    0.8,
+    2,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    640,
+    54
+   ],
+   "yaw": 2,
+   "size": [
+    0.8,
+    2,
+    0.8
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    455,
+    56
+   ],
+   "yaw": 0,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    456.2,
+    57.2
+   ],
+   "yaw": 0.6,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    612,
+    76
+   ],
+   "yaw": 1.2,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    630,
+    76
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#5a3a2a"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    631,
+    77.2
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#5a3a2a"
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    674,
+    90
+   ],
+   "yaw": 0,
+   "size": [
+    2.6,
+    1.56,
+    2.6
+   ],
+   "seed": 2320
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    450,
+    96
+   ],
+   "yaw": 1.3,
+   "size": [
+    2,
+    1.2,
+    2
+   ],
+   "seed": 2321
+  },
+  {
+   "type": "tree",
+   "position": [
+    470,
+    20
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 2330
+  },
+  {
+   "type": "tree",
+   "position": [
+    640,
+    110
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2361
+  },
+  {
+   "type": "tree",
+   "position": [
+    500,
+    104
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 2392
+  },
+  {
+   "type": "pokecenter",
+   "position": [
+    372,
+    491.4
+   ],
+   "yaw": 0,
+   "size": [
+    15,
+    7.5,
+    12
+   ],
+   "ref": "pokecenter-spring",
+   "color": "#fbf5ee",
+   "roof": "#e25a4f"
+  },
+  {
+   "type": "house",
+   "position": [
+    340,
+    553.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    14,
+    7,
+    10
+   ],
+   "variant": "onsen",
+   "color": "#efe3c6",
+   "roof": "#4a5a6a",
+   "seed": 2401,
+   "ref": "spring-breeder",
+   "accent": "#e07a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    410,
+    606.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    18,
+    8,
+    12
+   ],
+   "variant": "onsen",
+   "color": "#f2e6d0",
+   "roof": "#3f4a5a",
+   "seed": 2402,
+   "ref": "spring-inn",
+   "accent": "#3f6db5"
+  },
+  {
+   "type": "house",
+   "position": [
+    330,
+    489.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "variant": "onsen",
+   "color": "#efe2c8",
+   "roof": "#5a4a3a",
+   "seed": 2403,
+   "accent": "#c8503c"
+  },
+  {
+   "type": "house",
+   "position": [
+    400,
+    497.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "variant": "onsen",
+   "color": "#f4ead7",
+   "roof": "#4a5a6a",
+   "seed": 2404,
+   "accent": "#5b8a5a"
+  },
+  {
+   "type": "house",
+   "position": [
+    470,
+    519.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.4,
+    8
+   ],
+   "variant": "onsen",
+   "color": "#efe3c6",
+   "roof": "#5a4a3a",
+   "seed": 2405,
+   "accent": "#e0a13a"
+  },
+  {
+   "type": "house",
+   "position": [
+    500,
+    576.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "variant": "onsen",
+   "color": "#f2e6d0",
+   "roof": "#3f4a5a",
+   "seed": 2406,
+   "accent": "#c85d7c"
+  },
+  {
+   "type": "spring-rim",
+   "position": [
+    452,
+    566
+   ],
+   "yaw": 0,
+   "size": [
+    30,
+    0.6,
+    22
+   ],
+   "y": 7.6,
+   "seed": 2411
+  },
+  {
+   "type": "spring-rim",
+   "position": [
+    494,
+    598
+   ],
+   "yaw": 0,
+   "size": [
+    16,
+    0.6,
+    12
+   ],
+   "y": 8.4,
+   "seed": 2412
+  },
+  {
+   "type": "bamboo-fence",
+   "position": [
+    452,
+    580
+   ],
+   "yaw": 0,
+   "size": [
+    32,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "bamboo-fence",
+   "position": [
+    436,
+    566
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    24,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "hot-spring-sign",
+   "position": [
+    452,
+    548
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "pailou",
+   "position": [
+    306,
+    500
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    7,
+    1
+   ],
+   "color": "#c8402e"
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    322,
+    506
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.9,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    350,
+    512
+   ],
+   "yaw": 0.4,
+   "size": [
+    0.8,
+    1.9,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    384,
+    518
+   ],
+   "yaw": 0.8,
+   "size": [
+    0.8,
+    1.9,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    420,
+    526
+   ],
+   "yaw": 1.2000000000000002,
+   "size": [
+    0.8,
+    1.9,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    454,
+    536
+   ],
+   "yaw": 1.6,
+   "size": [
+    0.8,
+    1.9,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    486,
+    546
+   ],
+   "yaw": 2,
+   "size": [
+    0.8,
+    1.9,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    526,
+    566
+   ],
+   "yaw": 2.4000000000000004,
+   "size": [
+    0.8,
+    1.9,
+    0.8
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    440,
+    548
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    466,
+    548
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "garden",
+   "position": [
+    320,
+    560
+   ],
+   "yaw": 0,
+   "size": [
+    7,
+    0.4,
+    6
+   ],
+   "variant": "flower",
+   "seed": 2421
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     314,
+     556
+    ],
+    [
+     314,
+     566
+    ],
+    [
+     326,
+     566
+    ]
+   ]
+  },
+  {
+   "type": "laundry",
+   "position": [
+    384,
+    580
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.1,
+    0.2
+   ],
+   "seed": 2422
+  },
+  {
+   "type": "noticeboard",
+   "position": [
+    360,
+    504
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "tree",
+   "position": [
+    300,
+    470
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 2430
+  },
+  {
+   "type": "tree",
+   "position": [
+    314,
+    530
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 2461
+  },
+  {
+   "type": "tree",
+   "position": [
+    390,
+    470
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    9,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2492
+  },
+  {
+   "type": "tree",
+   "position": [
+    440,
+    500
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 2523
+  },
+  {
+   "type": "tree",
+   "position": [
+    520,
+    520
+   ],
+   "yaw": 0.5168146928204136,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2554
+  },
+  {
+   "type": "tree",
+   "position": [
+    480,
+    620
+   ],
+   "yaw": 2.2168146928204138,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 2585
+  },
+  {
+   "type": "tree",
+   "position": [
+    430,
+    640
+   ],
+   "yaw": 3.916814692820413,
+   "size": [
+    1,
+    9,
+    1
+   ],
+   "variant": "pine",
+   "seed": 2616
+  },
+  {
+   "type": "tree",
+   "position": [
+    360,
+    620
+   ],
+   "yaw": 5.616814692820414,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "round",
+   "seed": 2647
+  },
+  {
+   "type": "tree",
+   "position": [
+    540,
+    600
+   ],
+   "yaw": 1.0336293856408272,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 2678
+  },
+  {
+   "type": "tree",
+   "position": [
+    470,
+    590
+   ],
+   "yaw": 2.7336293856408265,
+   "size": [
+    1,
+    4.5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 2709
+  },
+  {
+   "type": "deck",
+   "position": [
+    566,
+    672
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    0.4,
+    40
+   ],
+   "y": 1.6,
+   "rails": "ew",
+   "gaps": [
+    [
+     "n",
+     0,
+     6
+    ]
+   ]
+  },
+  {
+   "type": "boat",
+   "ref": "spring-ferry",
+   "position": [
+    576,
+    690
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    4.5,
+    16
+   ],
+   "y": 0,
+   "color": "#f5f5f0",
+   "roof": "#c8402e",
+   "collide": true
+  },
+  {
+   "type": "bollard",
+   "position": [
+    563,
+    688
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.7,
+    0.4
+   ],
+   "y": 1.6
+  },
+  {
+   "type": "bollard",
+   "position": [
+    569,
+    688
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.7,
+    0.4
+   ],
+   "y": 1.6
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    560,
+    646
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    572,
+    646
+   ],
+   "yaw": 0.4,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ]
+  },
+  {
+   "type": "cave-mouth",
+   "ref": "tide-mine",
+   "position": [
+    104,
+    -107
+   ],
+   "yaw": 0,
+   "size": [
+    4.2,
+    4.6,
+    4
+   ]
+  },
+  {
+   "type": "cave-mouth",
+   "ref": "volcano-cave",
+   "position": [
+    721.9219937100634,
+    -143.99147715250677
+   ],
+   "yaw": 0.48,
+   "size": [
+    4.2,
+    4.6,
+    4
+   ]
+  },
+  {
+   "type": "cave-mouth",
+   "ref": "ruins-gate",
+   "position": [
+    44,
+    -431
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    6.5,
+    5
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "forest-shrine",
+   "position": [
+    -410,
+    -470
+   ],
+   "yaw": 0.6202494859828215,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "boardwalk",
+   "id": "bridge-root-brook",
+   "position": [
+    0,
+    0
+   ],
+   "y": 6.447065830230713,
+   "yaw": 0,
+   "size": [
+    5,
+    0.35,
+    0
+   ],
+   "points": [
+    [
+     -509,
+     -100
+    ],
+    [
+     -494,
+     -136
+    ]
+   ]
+  },
+  {
+   "type": "boardwalk",
+   "id": "bridge-spring-creek",
+   "position": [
+    0,
+    0
+   ],
+   "y": 8.714960098266602,
+   "yaw": 0,
+   "size": [
+    5,
+    0.35,
+    0
+   ],
+   "points": [
+    [
+     516,
+     548
+    ],
+    [
+     554,
+     562
+    ]
+   ]
+  },
+  {
+   "type": "vine-wall",
+   "ref": "forest-vines",
+   "position": [
+    -372,
+    -414
+   ],
+   "yaw": 2.8632929945846817,
+   "size": [
+    9,
+    4.2,
+    1.2
+   ],
+   "seed": 42
+  },
+  {
+   "type": "vine-wall",
+   "ref": "forest-vines-shrine",
+   "position": [
+    -396,
+    -452
+   ],
+   "yaw": 2.8632929945846817,
+   "size": [
+    8,
+    4.2,
+    1.2
+   ],
+   "seed": 56
+  },
+  {
+   "type": "breakable-rock",
+   "ref": "spring-source-rock",
+   "position": [
+    588,
+    312
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    2.4,
+    6
+   ]
+  },
+  {
+   "type": "boulder",
+   "ref": "ochre-boulder",
+   "position": [
+    54,
+    486
+   ],
+   "yaw": 0,
+   "size": [
+    5.2,
+    5.2,
+    5.2
+   ],
+   "seed": 540
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    20.833830371102433,
+    -386.1962470067718
+   ],
+   "yaw": 0,
+   "size": [
+    1.4,
+    5,
+    1.4
+   ],
+   "seed": 3100,
+   "variant": "anomaly"
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    22.113422173539607,
+    -378.9742881592753
+   ],
+   "yaw": 0.7,
+   "size": [
+    1.4,
+    6.6,
+    1.4
+   ],
+   "seed": 3101
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    29.087012654872794,
+    -376.70204684848625
+   ],
+   "yaw": 1.4,
+   "size": [
+    1.4,
+    8.2,
+    1.4
+   ],
+   "seed": 3102
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    33.607329463186275,
+    -370.92616763158117
+   ],
+   "yaw": 2.0999999999999996,
+   "size": [
+    1.4,
+    5,
+    1.4
+   ],
+   "seed": 3103,
+   "variant": "anomaly"
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    40.83139707146615,
+    -372.19380005732563
+   ],
+   "yaw": 2.8,
+   "size": [
+    1.4,
+    6.6,
+    1.4
+   ],
+   "seed": 3104
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    47.534210958749256,
+    -369.21616160240166
+   ],
+   "yaw": 3.5,
+   "size": [
+    1.4,
+    8.2,
+    1.4
+   ],
+   "seed": 3105
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    53.317566688177806,
+    -373.72690891107277
+   ],
+   "yaw": 4.199999999999999,
+   "size": [
+    1.4,
+    5,
+    1.4
+   ],
+   "seed": 3106,
+   "variant": "anomaly"
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    60.63371665418032,
+    -374.2445907156192
+   ],
+   "yaw": 4.8999999999999995,
+   "size": [
+    1.4,
+    6.6,
+    1.4
+   ],
+   "seed": 3107
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    63.62244908579207,
+    -380.9424652462468
+   ],
+   "yaw": 5.6,
+   "size": [
+    1.4,
+    8.2,
+    1.4
+   ],
+   "seed": 3108
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    69.83918920146266,
+    -384.8342755075531
+   ],
+   "yaw": 6.3,
+   "size": [
+    1.4,
+    5,
+    1.4
+   ],
+   "seed": 3109,
+   "variant": "anomaly"
+  },
+  {
+   "type": "ruin-arch",
+   "position": [
+    44,
+    -406
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    7,
+    1.6
+   ]
+  },
+  {
+   "type": "stele",
+   "ref": "ruins-stele",
+   "position": [
+    56,
+    -414
+   ],
+   "yaw": -0.4,
+   "size": [
+    1.6,
+    3.2,
+    0.8
+   ]
+  },
+  {
+   "type": "stele",
+   "position": [
+    31,
+    -412
+   ],
+   "yaw": 0.5,
+   "size": [
+    1.6,
+    2.6,
+    0.8
+   ]
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    -60,
+    -540
+   ],
+   "yaw": 1,
+   "size": [
+    1.4,
+    4,
+    1.4
+   ],
+   "seed": 3201
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    -80,
+    -590
+   ],
+   "yaw": 2,
+   "size": [
+    1.4,
+    6,
+    1.4
+   ],
+   "seed": 3202
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    -20,
+    -600
+   ],
+   "yaw": 3,
+   "size": [
+    1.4,
+    3,
+    1.4
+   ],
+   "seed": 3203
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    120,
+    -480
+   ],
+   "yaw": 4,
+   "size": [
+    1.4,
+    5,
+    1.4
+   ],
+   "seed": 3204
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    160,
+    -420
+   ],
+   "yaw": 5,
+   "size": [
+    1.4,
+    3.5,
+    1.4
+   ],
+   "seed": 3205
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    -110,
+    -330
+   ],
+   "yaw": 6,
+   "size": [
+    1.4,
+    4.5,
+    1.4
+   ],
+   "seed": 3206
+  },
+  {
+   "type": "stele",
+   "ref": "plateau-stele",
+   "position": [
+    -40,
+    -560
+   ],
+   "yaw": 0.3,
+   "size": [
+    1.6,
+    3,
+    0.8
+   ]
+  },
+  {
+   "type": "stele",
+   "ref": "forest-shrine-stele",
+   "position": [
+    -410,
+    -470
+   ],
+   "yaw": 0.6202494859828215,
+   "size": [
+    1.8,
+    3.4,
+    0.9
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    -413,
+    -468
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.7,
+    0.8
+   ]
+  },
+  {
+   "type": "stone-lantern",
+   "position": [
+    -407,
+    -468
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.7,
+    0.8
+   ]
+  },
+  {
+   "type": "giant-tree",
+   "position": [
+    -300,
+    -520
+   ],
+   "yaw": 1,
+   "size": [
+    1,
+    34,
+    1
+   ],
+   "seed": 3301
+  },
+  {
+   "type": "giant-tree",
+   "position": [
+    -460,
+    -330
+   ],
+   "yaw": 2,
+   "size": [
+    1,
+    30,
+    1
+   ],
+   "seed": 3302
+  },
+  {
+   "type": "giant-tree",
+   "position": [
+    -250,
+    -240
+   ],
+   "yaw": 3,
+   "size": [
+    1,
+    28,
+    1
+   ],
+   "seed": 3303
+  },
+  {
+   "type": "giant-tree",
+   "position": [
+    -220,
+    -470
+   ],
+   "yaw": 4,
+   "size": [
+    1,
+    32,
+    1
+   ],
+   "seed": 3304
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    60,
+    -40
+   ],
+   "yaw": 1,
+   "size": [
+    2.6,
+    1.6,
+    2.6
+   ],
+   "seed": 3401
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    140,
+    40
+   ],
+   "yaw": 2,
+   "size": [
+    2.6,
+    1.6,
+    2.6
+   ],
+   "seed": 3402
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    40,
+    60
+   ],
+   "yaw": 3,
+   "size": [
+    2.6,
+    1.6,
+    2.6
+   ],
+   "seed": 3403
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    160,
+    -110
+   ],
+   "yaw": 4,
+   "size": [
+    2.6,
+    1.6,
+    2.6
+   ],
+   "seed": 3404
+  },
+  {
+   "type": "ore-pile",
+   "position": [
+    70,
+    100
+   ],
+   "yaw": 5,
+   "size": [
+    2.6,
+    1.6,
+    2.6
+   ],
+   "seed": 3405
+  },
+  {
+   "type": "basalt",
+   "position": [
+    520,
+    -200
+   ],
+   "yaw": 1,
+   "size": [
+    5,
+    8,
+    5
+   ],
+   "seed": 3501
+  },
+  {
+   "type": "basalt",
+   "position": [
+    760,
+    -180
+   ],
+   "yaw": 2,
+   "size": [
+    5,
+    10,
+    5
+   ],
+   "seed": 3502
+  },
+  {
+   "type": "basalt",
+   "position": [
+    820,
+    -40
+   ],
+   "yaw": 3,
+   "size": [
+    5,
+    7,
+    5
+   ],
+   "seed": 3503
+  },
+  {
+   "type": "basalt",
+   "position": [
+    450,
+    -340
+   ],
+   "yaw": 4,
+   "size": [
+    5,
+    9,
+    5
+   ],
+   "seed": 3504
+  },
+  {
+   "type": "basalt",
+   "position": [
+    700,
+    -470
+   ],
+   "yaw": 5,
+   "size": [
+    5,
+    8,
+    5
+   ],
+   "seed": 3505
+  },
+  {
+   "type": "basalt",
+   "position": [
+    560,
+    -500
+   ],
+   "yaw": 6,
+   "size": [
+    5,
+    6,
+    5
+   ],
+   "seed": 3506
+  },
+  {
+   "type": "lava-vent",
+   "position": [
+    540,
+    -150
+   ],
+   "yaw": 0,
+   "size": [
+    3.4,
+    1,
+    3.4
+   ],
+   "seed": 3601
+  },
+  {
+   "type": "lava-vent",
+   "position": [
+    740,
+    -240
+   ],
+   "yaw": 0,
+   "size": [
+    3.4,
+    1,
+    3.4
+   ],
+   "seed": 3602
+  },
+  {
+   "type": "lava-vent",
+   "position": [
+    700,
+    -60
+   ],
+   "yaw": 0,
+   "size": [
+    3.4,
+    1,
+    3.4
+   ],
+   "seed": 3603
+  },
+  {
+   "type": "lava-vent",
+   "position": [
+    610,
+    -420
+   ],
+   "yaw": 0,
+   "size": [
+    3.4,
+    1,
+    3.4
+   ],
+   "seed": 3604
+  },
+  {
+   "type": "coral",
+   "position": [
+    -739.7353812554406,
+    -124.49134978986199
+   ],
+   "y": -1.4349740275894445,
+   "yaw": 0,
+   "size": [
+    2,
+    1.5,
+    2
+   ],
+   "seed": 2940
+  },
+  {
+   "type": "coral",
+   "position": [
+    -749.6892085187825,
+    -106.13187106137448
+   ],
+   "y": -1.8001245955230485,
+   "yaw": 1,
+   "size": [
+    3,
+    1.5,
+    2
+   ],
+   "seed": 2941
+  },
+  {
+   "type": "coral",
+   "position": [
+    -774.5845238507703,
+    -102.64507971047416
+   ],
+   "y": -2.054031988026991,
+   "yaw": 2,
+   "size": [
+    4,
+    1.5,
+    2
+   ],
+   "seed": 2942
+  },
+  {
+   "type": "coral",
+   "position": [
+    -780.6479043594252,
+    -126.17063379081745
+   ],
+   "y": -1.4244469210648762,
+   "yaw": 3,
+   "size": [
+    2,
+    1.5,
+    2
+   ],
+   "seed": 2943
+  },
+  {
+   "type": "coral",
+   "position": [
+    -779.6456951576412,
+    -147.03075634765042
+   ],
+   "y": -1.5282464003538145,
+   "yaw": 4,
+   "size": [
+    3,
+    1.5,
+    2
+   ],
+   "seed": 2944
+  },
+  {
+   "type": "coral",
+   "position": [
+    -758.7286531557577,
+    -160.97391930643641
+   ],
+   "y": -1.9667017211391074,
+   "yaw": 5,
+   "size": [
+    4,
+    1.5,
+    2
+   ],
+   "seed": 2945
+  },
+  {
+   "type": "coral",
+   "position": [
+    -743.0583807140217,
+    -142.40892968668
+   ],
+   "y": -1.4393973346848867,
+   "yaw": 6,
+   "size": [
+    2,
+    1.5,
+    2
+   ],
+   "seed": 2946
+  },
+  {
+   "type": "coral",
+   "position": [
+    -863.1164706753865,
+    133.75929190356445
+   ],
+   "y": -1.160641362729546,
+   "yaw": 0,
+   "size": [
+    2,
+    1.5,
+    2
+   ],
+   "seed": 2820
+  },
+  {
+   "type": "coral",
+   "position": [
+    -860.3146955795988,
+    151.8949060473857
+   ],
+   "y": -1.5449248372389992,
+   "yaw": 1,
+   "size": [
+    3,
+    1.5,
+    2
+   ],
+   "seed": 2821
+  },
+  {
+   "type": "coral",
+   "position": [
+    -876.3797527536865,
+    167.76497451602575
+   ],
+   "y": -1.8687653119125565,
+   "yaw": 2,
+   "size": [
+    4,
+    1.5,
+    2
+   ],
+   "seed": 2822
+  },
+  {
+   "type": "coral",
+   "position": [
+    -892.5037925381718,
+    152.94817254141915
+   ],
+   "y": -1.3534748046536118,
+   "yaw": 3,
+   "size": [
+    2,
+    1.5,
+    2
+   ],
+   "seed": 2823
+  },
+  {
+   "type": "coral",
+   "position": [
+    -902.8968527502551,
+    137.82419345227217
+   ],
+   "y": -1.616229344184215,
+   "yaw": 4,
+   "size": [
+    3,
+    1.5,
+    2
+   ],
+   "seed": 2824
+  },
+  {
+   "type": "coral",
+   "position": [
+    -895.3085010225548,
+    116.5553887547172
+   ],
+   "y": -2.0222164192251015,
+   "yaw": 5,
+   "size": [
+    4,
+    1.5,
+    2
+   ],
+   "seed": 2825
+  },
+  {
+   "type": "coral",
+   "position": [
+    -874.3524737094068,
+    122.90890738434027
+   ],
+   "y": -1.3424073181943659,
+   "yaw": 6,
+   "size": [
+    2,
+    1.5,
+    2
+   ],
+   "seed": 2826
+  },
+  {
+   "type": "coral",
+   "position": [
+    -713.4256692140918,
+    167.296471626186
+   ],
+   "y": -1.4307729950457466,
+   "yaw": 0,
+   "size": [
+    2,
+    1.5,
+    2
+   ],
+   "seed": 3000
+  },
+  {
+   "type": "coral",
+   "position": [
+    -702.0554738928247,
+    155.10083668957256
+   ],
+   "y": -1.7569505753719483,
+   "yaw": 1,
+   "size": [
+    3,
+    1.5,
+    2
+   ],
+   "seed": 3001
+  },
+  {
+   "type": "coral",
+   "position": [
+    -681.3566915522645,
+    157.87744360961753
+   ],
+   "y": -2.000849865073578,
+   "yaw": 2,
+   "size": [
+    4,
+    1.5,
+    2
+   ],
+   "seed": 3002
+  },
+  {
+   "type": "coral",
+   "position": [
+    -684.1275705730011,
+    178.01642854694623
+   ],
+   "y": -1.5627138118755208,
+   "yaw": 3,
+   "size": [
+    2,
+    1.5,
+    2
+   ],
+   "seed": 3003
+  },
+  {
+   "type": "coral",
+   "position": [
+    -689.0802748922222,
+    193.93765880962636
+   ],
+   "y": -1.6700395074934349,
+   "yaw": 4,
+   "size": [
+    3,
+    1.5,
+    2
+   ],
+   "seed": 3004
+  },
+  {
+   "type": "coral",
+   "position": [
+    -708.9339579770841,
+    200.41688749336603
+   ],
+   "y": -2.065836833780975,
+   "yaw": 5,
+   "size": [
+    4,
+    1.5,
+    2
+   ],
+   "seed": 3005
+  },
+  {
+   "type": "coral",
+   "position": [
+    -715.1754603293167,
+    181.07004968351748
+   ],
+   "y": -1.5475895102232788,
+   "yaw": 6,
+   "size": [
+    2,
+    1.5,
+    2
+   ],
+   "seed": 3006
+  },
+  {
+   "type": "shipwreck",
+   "ref": "coral-wreck",
+   "position": [
+    -820,
+    60
+   ],
+   "y": -6.239999771118164,
+   "yaw": 0.6,
+   "size": [
+    7,
+    3,
+    22
+   ]
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -980,
+    -150
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#d9453b"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -980,
+    150
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#3f9f4a"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -936,
+    -140
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#d9453b"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -936,
+    140
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#3f9f4a"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -892,
+    -150
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#d9453b"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -892,
+    150
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#3f9f4a"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -848,
+    -140
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#d9453b"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -848,
+    140
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#3f9f4a"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -804,
+    -150
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#d9453b"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -804,
+    150
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#3f9f4a"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -760,
+    -140
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#d9453b"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -760,
+    140
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#3f9f4a"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -716,
+    -150
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#d9453b"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -716,
+    150
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#3f9f4a"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -672,
+    -140
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#d9453b"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -672,
+    140
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#3f9f4a"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -628,
+    -150
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#d9453b"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -628,
+    150
+   ],
+   "y": 0,
+   "yaw": 0,
+   "size": [
+    0.8,
+    1.6,
+    0.8
+   ],
+   "color": "#3f9f4a"
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -500,
+    300
+   ],
+   "yaw": 1,
+   "size": [
+    4,
+    1.6,
+    4
+   ],
+   "seed": 3801
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -420,
+    400
+   ],
+   "yaw": 2,
+   "size": [
+    4,
+    1.6,
+    4
+   ],
+   "seed": 3802
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -300,
+    500
+   ],
+   "yaw": 3,
+   "size": [
+    4,
+    1.6,
+    4
+   ],
+   "seed": 3803
+  }
+ ]
+}

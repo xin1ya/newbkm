@@ -1,0 +1,25 @@
+{
+  "id": 464,
+  "name": "rhyperior",
+  "heightM": 2.4,
+  "plan": "biped",
+  "tris": 6184,
+  "fit": "height",
+  "bones": 17,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "464_rhyperior_shiny.png"
+}

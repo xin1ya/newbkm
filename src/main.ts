@@ -20,7 +20,8 @@ import { initMonModels, preloadMonModels, wildBodyFactory } from '@/actors/pokem
 import { initHumanModels } from '@/actors/player';
 import { setWildBodyFactory } from '@/world/spawns';
 import { dex } from '@/config/data';
-import { getIsland } from '@/config/islands';
+import { getIsland, ISLANDS } from '@/config/islands';
+import { TRAVEL_SLOT_KEY } from '@/systems/travel';
 import { createRng } from '@/systems/rng';
 import { createPokemon } from '@/systems/pokemon';
 import {
@@ -176,13 +177,16 @@ async function boot(): Promise<void> {
   const platform = await createWebPlatform();
   const seedParam = params.get('seed');
   const rng = createRng(seedParam ? Number(seedParam) >>> 0 : undefined);
-  const island = getIsland('sprout');
+  const home = getIsland('sprout');
+  // M2-01 岛间旅行后重新加载：直接进入同一存档位
+  const travelSlot = sessionStorage.getItem(TRAVEL_SLOT_KEY);
+  if (travelSlot) sessionStorage.removeItem(TRAVEL_SLOT_KEY);
 
   // 标题画面：继续 / 新游戏 / 读档（3 个存档位）。
   // 开发与自动化测试跳过：?quick / ?new / ?notitle / ?slot=… 或 webdriver（e2e）
-  let slot: string = params.get('slot') ?? SAVE_SLOT;
-  let forceNew = params.has('new');
-  const skipTitle = params.has('quick') || params.has('new') || params.has('notitle') || params.has('slot') || navigator.webdriver;
+  let slot: string = travelSlot ?? params.get('slot') ?? SAVE_SLOT;
+  let forceNew = !travelSlot && params.has('new');
+  const skipTitle = !!travelSlot || params.has('quick') || params.has('new') || params.has('notitle') || params.has('slot') || navigator.webdriver;
   if (!skipTitle) {
     const metas = await platform.storage.list().catch(() => []);
     const slots: TitleSlot[] = SAVE_SLOTS.map((id, i) => {
@@ -219,7 +223,7 @@ async function boot(): Promise<void> {
       name: '小澜',
       gender: 'boy',
       trainerId: Math.floor(rng.next() * 65536),
-      spawn: { island: 'sprout', xyz: [...island.spawnPoint], yaw: island.spawnYaw ?? 0 },
+      spawn: { island: 'sprout', xyz: [...home.spawnPoint], yaw: home.spawnYaw ?? 0 },
     });
     if (params.has('quick')) grantPrototypeStarter(state, rng);
     else {
@@ -262,6 +266,9 @@ async function boot(): Promise<void> {
   setMonIconProvider(new MonIconRenderer(dex));
   await preloadMonModels(state.party.map((p) => p.speciesId));
 
+  // M2-01 当前所在岛屿（未配置的岛回退到萌芽群岛出生点）
+  if (!ISLANDS[state.position.island]) state.position = { island: 'sprout', xyz: [...home.spawnPoint], yaw: home.spawnYaw ?? 0, interior: null };
+  const island = getIsland(state.position.island);
   const overworld = new OverworldScene({ game, ui, hud, toaster, transition, dex, rng, state, island, quality, slot });
   await overworld.load((r, msg) => loading.set(0.1 + r * 0.85, msg));
   await game.scenes.push(overworld);

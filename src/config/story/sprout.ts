@@ -90,11 +90,9 @@ const lighthouseRelight: StoryStep[] = [
 const crossSeaEnd: StoryStep[] = [
   { kind: 'say', lines: ['海风变得温暖起来……', '远处的海平线上，浮现出一片翡翠色的岛影。', '那就是——碧潮群岛。'] },
   { kind: 'flag', set: 'cross-sea-1-done' },
-  { kind: 'card', title: '第一章 · 完', subtitle: '碧潮群岛将在 M2 开放\n感谢游玩翠澜群岛 M1 版本', ms: 6000 },
-  { kind: 'fx', name: 'fade-out', ms: 600 },
-  { kind: 'teleport', x: 431, z: 26, yaw: PI / 2 },
-  { kind: 'fx', name: 'fade-in', ms: 600 },
-  { kind: 'say', lines: ['（航线尚未开通——先回到港湾市，继续探索萌芽群岛吧。）'] },
+  { kind: 'card', title: '第二章 · 碧潮群岛', subtitle: '异变痕迹', ms: 3600 },
+  // M2-01：驶入萌芽—碧潮海域（碧潮地图西端），继续冲浪向东抵达碧潮镇
+  { kind: 'travel', island: 'tide', x: -990, z: 0, yaw: PI / 2 },
 ];
 
 // ———————————————————————— 支线 · 幻影之森的索罗亚 ————————————————————————

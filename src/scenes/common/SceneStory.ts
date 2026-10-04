@@ -7,6 +7,7 @@
  */
 import type * as THREE from 'three';
 import type { Flags } from '@/systems/quests';
+import type { IslandId } from '@/systems/state/GameState';
 import type { StoryFx, StoryPickup } from '@/systems/story';
 import { pickupVisible, triggerDue } from '@/systems/story';
 import { STORY_PICKUPS, STORY_TRIGGERS } from '@/config/story';
@@ -30,6 +31,7 @@ export interface SceneStoryDeps {
   night(): boolean;
   battle(o: Parameters<NonNullable<StoryHost['battle']>>[0]): Promise<StoryBattleResult>;
   teleport(x: number, z: number, yaw: number): Promise<void>;
+  travel(island: IslandId, x: number, z: number, yaw: number): Promise<void>;
   /** 雾散（天气转晴） */
   clearFog?(): void;
 }
@@ -158,6 +160,10 @@ export class SceneStory implements StoryHost {
 
   battle(o: Parameters<NonNullable<StoryHost['battle']>>[0]): Promise<StoryBattleResult> {
     return this.d.battle(o);
+  }
+
+  travel(island: IslandId, x: number, z: number, yaw: number): Promise<void> {
+    return this.d.travel(island, x, z, yaw);
   }
 
   teleport(x: number, z: number, yaw: number): Promise<void> {

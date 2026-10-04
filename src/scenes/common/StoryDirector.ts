@@ -11,6 +11,7 @@ import { createRng, type Rng } from '@/systems/rng';
 import { GIFT_SHINY_CHANCE, createPokemon } from '@/systems/pokemon';
 import { addItem, markCaught, markSeen, receivePokemon, type GameState } from '@/systems/state';
 import type { StoryFx, StoryScript, StoryStep } from '@/systems/story';
+import type { IslandId } from '@/systems/state/GameState';
 import { flagsAll } from '@/systems/story';
 import { createMonModel } from '@/actors/pokemon/monModel';
 import { activeStarterTable } from './StarterTable';
@@ -24,6 +25,8 @@ export interface StoryHost {
   readonly kind: 'overworld' | 'interior';
   battle?(o: { species: number; level: number; moves?: string[] | undefined; noCapture?: boolean | undefined; noRun?: boolean | undefined }): Promise<StoryBattleResult>;
   teleport?(x: number, z: number, yaw: number): Promise<void>;
+  /** M2-01 前往另一座岛 */
+  travel?(island: IslandId, x: number, z: number, yaw: number): Promise<void>;
   /** 场景内特效（灯塔点亮、雾散、烟雾……）；没有实现时忽略 */
   fx?(name: StoryFx, ms: number): Promise<void>;
   /** 送回最后的安全位置 */
@@ -171,6 +174,9 @@ export class StoryDirector {
         return;
       case 'teleport':
         if (host?.teleport) await host.teleport(s.x, s.z, s.yaw ?? 0);
+        return;
+      case 'travel':
+        if (host?.travel) await host.travel(s.island, s.x, s.z, s.yaw ?? 0);
         return;
       case 'pushBack':
         if (host?.pushBack) await host.pushBack();

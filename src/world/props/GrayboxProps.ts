@@ -10,9 +10,14 @@ import type { Heightfield } from '../terrain/Heightfield';
 import type { CollisionWorld } from '../collision/CollisionWorld';
 import * as B from './builders';
 import * as T from './townBuilders';
+import * as TB from './tideBuilders';
 
 export class GrayboxProps {
   readonly group = new THREE.Group();
+  /** 可清除的阻挡物（藤蔓 / 碎岩 / 巨石）：ref → 网格（独立于分块合并，清除时隐藏） */
+  private readonly blockerMeshes = new Map<string, THREE.Mesh[]>();
+  /** 正在摆放的阻挡物 ref（place 时放进独立桶） */
+  private blockerRef: string | null = null;
   readonly solidMaterial = createToonMaterial({ kind: 'scene', vertexColors: true, cacheKey: 'props', rim: false, specular: false });
   readonly glowMaterial = new THREE.MeshBasicMaterial({ vertexColors: true, color: new THREE.Color(0.9, 0.9, 0.9), fog: true });
   /** 灯的位置（夜间点光源池使用） */
@@ -31,7 +36,9 @@ export class GrayboxProps {
     this.solidMaterial.userData.outline = false;
     for (const p of file.props) {
       try {
+        this.blockerRef = (p.type === 'breakable-rock' || p.type === 'vine-wall' || p.type === 'boulder') && p.ref ? p.ref : null;
         this.addProp(p);
+        this.blockerRef = null;
       } catch (e) {
         console.warn('[props] 生成失败', p, e);
       }
@@ -45,20 +52,41 @@ export class GrayboxProps {
         m.receiveShadow = true;
         m.layers.set(LAYER.DEFAULT);
         this.group.add(m);
+        this.trackBlocker(key, m);
       }
       const glow = B.mergeParts(parts.glow);
       if (glow) {
         const m = new THREE.Mesh(glow, this.glowMaterial);
         m.name = `props-glow-${key}`;
         this.group.add(m);
+        this.trackBlocker(key, m);
       }
     }
     this.buckets.clear();
   }
 
+  private trackBlocker(key: string, m: THREE.Mesh): void {
+    if (!key.startsWith('blocker:')) return;
+    const ref = key.slice(8);
+    const list = this.blockerMeshes.get(ref) ?? [];
+    list.push(m);
+    this.blockerMeshes.set(ref, list);
+  }
+
+  /** 清除阻挡物（割开藤蔓 / 撞碎岩石 / 推开巨石后）：隐藏网格并移除碰撞 */
+  clearBlocker(ref: string): void {
+    for (const m of this.blockerMeshes.get(ref) ?? []) m.visible = false;
+    this.collision.removeGroup(`blocker:${ref}`);
+  }
+
+  /** 阻挡物网格（清除动画用；没有则为空） */
+  blockerObjects(ref: string): THREE.Mesh[] {
+    return this.blockerMeshes.get(ref) ?? [];
+  }
+
   private bucket(x: number, z: number): B.PropParts {
     const cs = this.hf.config.chunkSize;
-    const key = `${Math.floor((x + this.hf.half) / cs)},${Math.floor((z + this.hf.half) / cs)}`;
+    const key = this.blockerRef ? `blocker:${this.blockerRef}` : `${Math.floor((x + this.hf.half) / cs)},${Math.floor((z + this.hf.half) / cs)}`;
     let b = this.buckets.get(key);
     if (!b) this.buckets.set(key, (b = { solid: [], glow: [] }));
     return b;
@@ -106,7 +134,13 @@ export class GrayboxProps {
         const seed = p.seed ?? Math.round(x * 13 + z * 7);
         const parts =
           p.type === 'house'
-            ? T.house(w, h, d, wall, roof, p.variant, seed, p.accent)
+            ? p.variant === 'adobe'
+              ? TB.adobeHouse(w, h, d, wall, p.accent ?? '#3f7a8a', seed)
+              : p.variant === 'obsidian'
+                ? TB.obsidianHouse(w, h, d, roof, seed)
+                : p.variant === 'onsen'
+                  ? TB.onsenHouse(w, h, d, wall, roof, seed, p.accent)
+                  : T.house(w, h, d, wall, roof, p.variant, seed, p.accent)
             : p.type === 'lab'
               ? T.lab(w, h, d, wall, roof)
               : p.type === 'pokecenter'
@@ -150,7 +184,7 @@ export class GrayboxProps {
       }
       case 'gym': {
         const y = p.y ?? this.hf.heightAt(x, z);
-        this.place(T.gym(w, h, wall, roof), x, y, z, yaw);
+        this.place(p.variant === 'grass' ? TB.gymGrass(w, h) : p.variant === 'rock' ? TB.gymRock(w, h) : p.variant === 'fire' ? TB.gymFire(w, h) : T.gym(w, h, wall, roof), x, y, z, yaw);
         this.collision.add('props', { kind: 'circle', x, z, r: w / 2, y0: y, y1: y + h, tag: `building:${p.ref}` });
         // 平台可站立
         this.collision.add('props', { kind: 'box', x, z, hx: w / 2 + 1.5, hz: w / 2 + 1.5, yaw: 0, y0: y - 3, y1: y + 0.6, walkableTop: true, tag: 'gym-platform' });
@@ -473,6 +507,137 @@ export class GrayboxProps {
       case 'rocks':
         this.place(T.rocks(w, seed, p.color), x, ground, z, yaw);
         circle(w * 0.4, w * 0.5, 'rocks');
+        return true;
+      default:
+        return this.addTideProp(p, ground, circle, at);
+    }
+  }
+
+  /** M2 碧潮群岛构件；返回是否处理 */
+  private addTideProp(p: PropInstance, ground: number, circle: (r: number, top: number, tag: string, cx?: number, cz?: number) => void, at: (lx: number, lz: number) => [number, number]): boolean {
+    const [x, z] = p.position;
+    const [w, h, d] = p.size;
+    const yaw = p.yaw;
+    const seed = p.seed ?? Math.round(x * 17 + z * 5);
+    const collide = p.collide !== false;
+    switch (p.type) {
+      case 'giant-tree': {
+        this.place(TB.giantTree(h, seed), x, ground, z, yaw);
+        const trunkR = h * 0.13;
+        circle(trunkR * 1.5, h * 0.6, 'giant-tree');
+        // 根拱：外圈 6 个矮圆柱挡住穿模
+        for (let k = 0; k < 6; k++) {
+          const a = (k / 6) * Math.PI * 2 + yaw;
+          circle(trunkR * 0.45, 2.5, 'giant-root', x + Math.sin(a) * trunkR * 2.2, z + Math.cos(a) * trunkR * 2.2);
+        }
+        return true;
+      }
+      case 'treehouse': {
+        const deckY = p.y ?? 4.5;
+        this.place(TB.treehouse(w, h, d, deckY, p.roof ?? '#b8a05a', seed), x, ground, z, yaw);
+        for (const [sx, sz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]] as const) {
+          const [px, pz] = at(sx * (w / 2 - 0.4), sz * (d / 2 - 0.4));
+          circle(0.45, deckY + h, 'treehouse-post', px, pz);
+        }
+        if (p.ref) {
+          const [dx, dz] = at(0, d / 2 + 1.2);
+          this.doors.set(p.ref, { position: new THREE.Vector3(dx, this.hf.heightAt(dx, dz), dz), yaw });
+        }
+        return true;
+      }
+      case 'rope-bridge': {
+        const pts = (p.points ?? []).map(([px, pz], i) => [px - x, (p.y ?? this.hf.heightAt(px, pz)) + (i === 0 || i === (p.points?.length ?? 1) - 1 ? 0 : h) - ground, pz - z] as const);
+        this.place(TB.ropeBridge(pts), x, ground, z, 0);
+        return true;
+      }
+      case 'vine-wall': {
+        this.place(TB.vineWall(w, h, seed), x, ground, z, yaw);
+        if (p.ref) this.collision.add(`blocker:${p.ref}`, { kind: 'box', x, z, hx: w / 2, hz: 0.8, yaw, y0: ground, y1: ground + h, tag: `blocker:${p.ref}` });
+        return true;
+      }
+      case 'boulder':
+        this.place(TB.boulder(w / 2, seed), x, ground, z, yaw);
+        if (p.ref) this.collision.add(`blocker:${p.ref}`, { kind: 'circle', x, z, r: w / 2, y0: ground, y1: ground + h, tag: `blocker:${p.ref}` });
+        return true;
+      case 'headframe':
+        this.place(TB.headframe(w, h), x, ground, z, yaw);
+        for (const [sx, sz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]] as const) {
+          const [px, pz] = at((sx * w) / 2, (sz * w) / 2);
+          circle(0.35, h, 'headframe-leg', px, pz);
+        }
+        return true;
+      case 'rail': {
+        const pts = p.points ?? [];
+        for (let s = 0; s + 1 < pts.length; s++) {
+          const [ax, az] = pts[s]!;
+          const [bx, bz] = pts[s + 1]!;
+          const len = Math.hypot(bx - ax, bz - az);
+          const steps = Math.max(1, Math.ceil(len / 6));
+          for (let i = 0; i < steps; i++) {
+            const t = (i + 0.5) / steps;
+            const cx = ax + (bx - ax) * t;
+            const cz = az + (bz - az) * t;
+            this.place(TB.railTrack(len / steps + 0.05), cx, this.hf.heightAt(cx, cz) - 0.02, cz, Math.atan2(bx - ax, bz - az));
+          }
+        }
+        return true;
+      }
+      case 'mine-cart':
+        this.place(TB.mineCart(seed, p.variant === 'anomaly'), x, ground, z, yaw);
+        if (collide) this.addBox(x, z, 1.4, 2.0, yaw, ground, ground + 1.4, 'mine-cart');
+        return true;
+      case 'ore-pile':
+        this.place(TB.orePile(w, seed), x, ground, z, yaw);
+        circle(w * 0.4, w * 0.4, 'ore-pile');
+        return true;
+      case 'lava-vent':
+        this.place(TB.lavaVent(w, seed), x, ground, z, yaw);
+        circle(w * 0.5, 1.2, 'lava-vent');
+        return true;
+      case 'basalt':
+        this.place(TB.basaltColumns(w, h, seed), x, ground, z, yaw);
+        circle(w * 0.5, h, 'basalt');
+        return true;
+      case 'spring-rim':
+        this.place(TB.springRim(w, d, seed), x, p.y ?? ground, z, yaw);
+        return true;
+      case 'pailou':
+        this.place(TB.pailou(w, h, p.color), x, ground, z, yaw);
+        for (const s of [-1, 1]) {
+          const [px, pz] = at((s * w) / 2, 0);
+          circle(0.6, h, 'pailou', px, pz);
+        }
+        return true;
+      case 'stone-lantern':
+        this.place(TB.stoneLantern(h), x, ground, z, yaw);
+        circle(0.45, h, 'stone-lantern');
+        this.lampPositions.push(new THREE.Vector3(x, ground + h * 0.55, z));
+        return true;
+      case 'bamboo-fence':
+        this.place(TB.bambooFence(w, h), x, ground, z, yaw);
+        if (collide) this.addBox(x, z, w, 0.3, yaw, ground, ground + h, 'bamboo-fence');
+        return true;
+      case 'ruin-pillar':
+        this.place(TB.ruinPillar(h, seed, p.variant === 'anomaly'), x, ground, z, yaw);
+        circle(0.75, h, 'ruin-pillar');
+        return true;
+      case 'ruin-arch':
+        this.place(TB.ruinArch(w, h), x, ground, z, yaw);
+        for (const s of [-1, 1]) {
+          const [px, pz] = at((s * w) / 2, 0);
+          if (collide) this.addBox(px, pz, 1.4, 1.4, yaw, ground, ground + h, 'ruin-arch');
+        }
+        return true;
+      case 'stele':
+        this.place(TB.stele(h), x, ground, z, yaw);
+        if (collide) this.addBox(x, z, 1.6, 0.8, yaw, ground, ground + h, 'stele');
+        return true;
+      case 'coral':
+        this.place(TB.coral(w, seed), x, p.y ?? this.hf.heightAt(x, z), z, yaw);
+        return true;
+      case 'shipwreck':
+        this.place(TB.shipwreck(w, d), x, p.y ?? this.hf.heightAt(x, z), z, yaw);
+        if (collide) this.addBox(x, z, w, d, yaw, -3, 2.2, 'shipwreck', true);
         return true;
       default:
         return false;

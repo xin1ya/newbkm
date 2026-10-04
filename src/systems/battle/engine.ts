@@ -397,6 +397,7 @@ export class Battle implements BattleApi {
 
   boost(mon: BattleMon, stat: StatId, delta: number, byFoe: boolean): number {
     if (mon.pokemon.hp <= 0 || delta === 0) return 0;
+    if (mon.pokemon.ability === 'simple') delta *= 2; // 单纯：能力变化翻倍
     const name = this.name(mon);
     const cur = mon.stages[stat];
     if (delta < 0 && byFoe) {
@@ -708,7 +709,7 @@ export class Battle implements BattleApi {
     const name = this.name(user);
     const st = user.pokemon.status;
     if (st?.kind === 'slp') {
-      st.sleepTurns = (st.sleepTurns ?? 1) - 1;
+      st.sleepTurns = (st.sleepTurns ?? 1) - (user.pokemon.ability === 'early-bird' ? 2 : 1); // 早起：睡眠回合减半
       if (st.sleepTurns > 0) {
         this.emit({ type: 'cant-move', side: user.side, name, reason: 'slp' });
         if (SLEEP_USABLE.has(move.id)) return true;
@@ -1526,7 +1527,13 @@ export class Battle implements BattleApi {
       const st = mon.pokemon.status?.kind;
       const max = this.maxHp(mon);
       if (st === 'brn') this.damage(mon, Math.max(1, Math.floor(max * BURN_DAMAGE_FRACTION)), 'brn');
-      else if (st === 'psn') this.damage(mon, Math.max(1, Math.floor(max * POISON_DAMAGE_FRACTION)), 'psn');
+      else if ((st === 'psn' || st === 'tox') && mon.pokemon.ability === 'poison-heal') {
+        // 毒疗：中毒时每回合回复 1/8 HP，代替扣血
+        if (mon.pokemon.hp < max) {
+          this.showAbility(mon);
+          this.heal(mon, Math.max(1, Math.floor(max / 8)), 'poison-heal');
+        }
+      } else if (st === 'psn') this.damage(mon, Math.max(1, Math.floor(max * POISON_DAMAGE_FRACTION)), 'psn');
       else if (st === 'tox') {
         mon.toxicCounter++;
         this.damage(mon, toxicDamage(max, mon.toxicCounter), 'tox');

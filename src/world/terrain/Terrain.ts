@@ -97,6 +97,12 @@ export class Terrain {
     return null;
   }
 
+  /** 熔岩流动动画（只有带第三张 splat 的岛屿可见） */
+  tick(time: number): void {
+    const u = this.material.userData.terrainUniforms as { uTime: { value: number } } | undefined;
+    if (u) u.uTime.value = time;
+  }
+
   dispose(): void {
     for (const m of this.farPieces.values()) m.geometry.dispose();
     (this.material.userData.dispose as (() => void) | undefined)?.();

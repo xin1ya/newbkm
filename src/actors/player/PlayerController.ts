@@ -21,6 +21,7 @@ import type { BlockerConfig } from '@/config/islands/types';
 import type { Terrain, CollisionWorld } from '@/world';
 import { HumanModel } from './HumanModel';
 import { sfx } from '@/core/audio';
+import { blockerOpen } from '@/systems/interaction';
 import { BIKE_DEFAULT_GEAR, BIKE_GEARS, bikeGear, bikeTargetSpeed, FLY_ABS_MAX, FLY_CEILING, FLY_CLEARANCE, FLY_CLIMB, SURF_MIN_DEPTH, SURF_SINK, type RideMode } from '@/systems/ride';
 
 export const PLAYER_RADIUS = 0.32;
@@ -130,6 +131,14 @@ export class PlayerController {
     this.syncVisual();
   }
 
+  /** 平移（不改高度 / 速度），用于把玩家推回边界内 */
+  nudge(dx: number, dz: number): void {
+    this.position.x += dx;
+    this.position.z += dz;
+    this.prevPosition.copy(this.position);
+    this.syncVisual();
+  }
+
   /** 可站立高度（考虑码头 / 栈桥，maxY 为当前可跨上的最高顶面） */
   groundAt(x: number, z: number, maxY: number): number {
     const g = this.terrain.heightAt(x, z);
@@ -137,9 +146,22 @@ export class PlayerController {
     return Math.max(g, top);
   }
 
+  /** M2-22 冲浪 / 飞行可达范围（岛屿 travelBounds 之外是暗礁与巨浪） */
+  outOfTravelBounds(x: number, z: number): boolean {
+    const poly = this.terrain.hf.config.travelBounds;
+    if (!poly || poly.length < 3) return false;
+    let inside = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const [xi, zi] = poly[i]!;
+      const [xj, zj] = poly[j]!;
+      if (zi > z !== zj > z && x < ((xj - xi) * (z - zi)) / (zj - zi) + xi) inside = !inside;
+    }
+    return !inside;
+  }
+
   private blockedByBlocker(x: number, z: number): BlockerConfig | null {
     for (const b of this.blockers) {
-      if (this.flags(b.requiresFlag)) continue;
+      if (blockerOpen(b, this.flags)) continue;
       if (this.mode === 'fly' && b.type === 'surf') continue;
       const r = (b.radius ?? 2) + PLAYER_RADIUS;
       if (Math.hypot(x - b.position[0], z - b.position[2]) < r) return b;
@@ -152,6 +174,7 @@ export class PlayerController {
     const hf = this.terrain.hf;
     if (!hf.inBounds(x, z)) return { ok: false, y: fromY, depth: 0, reason: 'bounds' };
     if (this.mode === 'surf') {
+      if (this.outOfTravelBounds(x, z)) return { ok: false, y: fromY, depth: 0, reason: 'bounds' };
       const w = hf.waterAt(x, z);
       const depth = w ? w.level - this.terrain.heightAt(x, z) : 0;
       // 码头 / 栈桥下方不能穿过（顶面高出水面）
@@ -164,6 +187,8 @@ export class PlayerController {
     const onProp = y > this.terrain.heightAt(x, z) + 0.01;
     const water = onProp ? null : hf.waterAt(x, z);
     const depth = water ? water.level - y : 0;
+    // 熔岩：看得见、走不进
+    if (!onProp && hf.isLava(x, z)) return { ok: false, y, depth, reason: 'lava' };
     // 自行车不能骑进没过车轴的水（0.3 m）
     if (depth > (this.mode === 'bike' ? 0.3 : WADE_DEPTH)) {
       if (this.mode === 'bike' || !water || !this.swimAllowed(water.body)) return { ok: false, y, depth, reason: 'water' };
@@ -353,6 +378,17 @@ export class PlayerController {
       }
       this.velocity.x *= 0.5;
       this.velocity.z *= 0.5;
+    }
+    // 飞行范围：航线走廊与近海之外（暗礁、巨浪、海雾）飞不过去
+    if (this.outOfTravelBounds(nx, nz)) {
+      if ((this.lastBlockerHint.get('travel-bounds') ?? -99) + 4 < this.time) {
+        this.lastBlockerHint.set('travel-bounds', this.time);
+        this.events.emit('blocker:hit', { id: 'travel-bounds', hint: '前方是终年不散的海雾与暗礁，再往外飞就迷失方向了。' });
+      }
+      nx = sx;
+      nz = sz;
+      this.velocity.x *= 0.3;
+      this.velocity.z *= 0.3;
     }
     // 封锁圈（异变结界等）：飞行同样阻挡，沿圆周滑开并提示
     const blk = this.blockedByBlocker(nx, nz);

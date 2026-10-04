@@ -1,0 +1,57 @@
+{
+  "seed": 20261004,
+  "generatedAt": "2026-10-04T06:41:22.395Z",
+  "heightmap": {
+    "size": 1025,
+    "cell": 2,
+    "range": [
+      -30,
+      200
+    ],
+    "min": -20.319963455200195,
+    "max": 126.83988189697266,
+    "clipped": 0
+  },
+  "splat": {
+    "size": 2048,
+    "channels": [
+      "grass",
+      "forest",
+      "tallgrass",
+      "dirt",
+      "sand",
+      "rock",
+      "stone",
+      "flowers"
+    ],
+    "coverage": {
+      "grass": 0.2298,
+      "forest": 0.0212,
+      "tallgrass": 0.0595,
+      "dirt": 0.0237,
+      "sand": 0.5458,
+      "rock": 0.1118,
+      "stone": 0.0026,
+      "flowers": 0.0055
+    },
+    "ext": {
+      "ochre": 0.0266,
+      "ash": 0.0353,
+      "lava": 0.0019,
+      "moss": 0.0072
+    }
+  },
+  "props": 286,
+  "landRatio": 0.437,
+  "landKm2": 1.84,
+  "walkableRatio": 0.959,
+  "roadIssues": [
+    "road-tide-ore 最大纵坡 24.4° @(7,203)",
+    "road-ore-flame 最大纵坡 25.2° @(442,69)",
+    "road-crater 最大纵坡 24.7° @(608,-141)",
+    "road-ore-spring 最大纵坡 33.6° @(302,495)"
+  ],
+  "poiIssues": [
+    "coral-wreck 在水里（-6.2 m）"
+  ]
+}

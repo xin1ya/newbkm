@@ -1,0 +1,25 @@
+{
+  "id": 59,
+  "name": "arcanine",
+  "heightM": 1.9,
+  "plan": "quadruped",
+  "tris": 13412,
+  "fit": "height",
+  "bones": 20,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "059_arcanine_shiny.png"
+}

@@ -1,0 +1,25 @@
+{
+  "id": 112,
+  "name": "rhydon",
+  "heightM": 1.9,
+  "plan": "biped",
+  "tris": 5264,
+  "fit": "height",
+  "bones": 17,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "112_rhydon_shiny.png"
+}

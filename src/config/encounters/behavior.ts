@@ -96,6 +96,52 @@ export const BEHAVIOR: Record<number, SpeciesBehavior> = {
   182: { temperament: 'curious', sight: 8, speed: 1.5 },
   186: { temperament: 'aggressive', sight: 10, speed: 1.8, habitat: 'shore' },
   259: { temperament: 'calm', sight: 10, speed: 2, habitat: 'shore' },
+  // M2 碧潮群岛新物种（45 只）
+  27: { temperament: 'timid', sight: 10, speed: 2.4 }, // 穿山鼠：受惊就蜷成球
+  28: { temperament: 'aggressive', sight: 12, speed: 3 }, // 穿山王
+  41: { temperament: 'aggressive', sleepsAtNight: false, sight: 12, speed: 3.5, habitat: 'air' }, // 超音蝠：洞穴/夜间成群
+  42: { temperament: 'aggressive', sight: 14, speed: 4, habitat: 'air' }, // 大嘴蝠
+  169: { temperament: 'aggressive', sight: 18, speed: 6, habitat: 'air' }, // 叉字蝠
+  58: { temperament: 'curious', sight: 12, speed: 3.5 }, // 卡蒂狗：忠诚好奇
+  59: { temperament: 'aggressive', sight: 18, speed: 6 }, // 风速狗
+  69: { temperament: 'calm', sight: 6, speed: 1.4 }, // 喇叭芽
+  70: { temperament: 'calm', sight: 7, speed: 1.2 }, // 口呆花
+  71: { temperament: 'aggressive', sight: 10, speed: 1.2 }, // 大食花：守株待兔
+  77: { temperament: 'timid', sight: 16, speed: 5 }, // 小火马：远远看见就跑
+  78: { temperament: 'timid', sight: 18, speed: 7 }, // 烈焰马
+  79: { temperament: 'sleepy', sight: 4, speed: 0.6, habitat: 'shore' }, // 呆呆兽：岸边发呆
+  80: { temperament: 'sleepy', sight: 5, speed: 0.8, habitat: 'shore' }, // 呆壳兽
+  199: { temperament: 'calm', sight: 8, speed: 1, habitat: 'shore' }, // 呆呆王
+  95: { temperament: 'aggressive', sight: 16, speed: 3 }, // 大岩蛇
+  208: { temperament: 'aggressive', sight: 16, speed: 3 }, // 大钢蛇
+  104: { temperament: 'timid', sight: 10, speed: 2.4 }, // 卡拉卡拉：孤僻怕生
+  105: { temperament: 'aggressive', sight: 12, speed: 2.8 }, // 嘎啦嘎啦
+  111: { temperament: 'aggressive', sight: 10, speed: 3.8 }, // 独角犀牛：直线冲撞
+  112: { temperament: 'aggressive', sight: 12, speed: 3 }, // 钻角犀兽
+  464: { temperament: 'aggressive', sight: 14, speed: 2.6 }, // 超甲狂犀
+  165: { temperament: 'timid', sleepsAtNight: true, sight: 10, speed: 2, habitat: 'air' }, // 芭瓢虫：成群，夜里抱团睡
+  166: { temperament: 'calm', sight: 12, speed: 3, habitat: 'air' }, // 安瓢虫
+  214: { temperament: 'aggressive', sight: 10, speed: 2.5 }, // 赫拉克罗斯：守着树汁
+  218: { temperament: 'calm', sight: 6, speed: 0.6 }, // 熔岩虫
+  219: { temperament: 'calm', sight: 7, speed: 0.5 }, // 熔岩蜗牛
+  228: { temperament: 'aggressive', sight: 14, speed: 4, sleepsAtNight: false }, // 戴鲁比：成群狩猎
+  229: { temperament: 'aggressive', sight: 18, speed: 5 }, // 黑鲁加
+  285: { temperament: 'sleepy', sleepsAtNight: true, sight: 5, speed: 1 }, // 蘑蘑菇：林下打盹
+  286: { temperament: 'aggressive', sight: 12, speed: 4 }, // 斗笠菇
+  315: { temperament: 'calm', sight: 8, speed: 1.5 }, // 毒蔷薇
+  406: { temperament: 'timid', sleepsAtNight: true, sight: 8, speed: 1.2 }, // 含羞苞
+  407: { temperament: 'calm', sight: 12, speed: 2.4 }, // 罗丝雷朵
+  322: { temperament: 'sleepy', sight: 6, speed: 1.2 }, // 呆火驼
+  323: { temperament: 'aggressive', sight: 10, speed: 1.6 }, // 喷火驼
+  324: { temperament: 'calm', sight: 8, speed: 0.8 }, // 煤炭龟
+  343: { temperament: 'curious', sight: 10, speed: 2 }, // 天秤偶：转着凑过来
+  344: { temperament: 'calm', sight: 14, speed: 1.6, habitat: 'air' }, // 念力土偶
+  377: { temperament: 'aggressive', sight: 14, speed: 1.6 }, // 雷吉洛克（遗迹）
+  636: { temperament: 'timid', sight: 8, speed: 1 }, // 燃烧虫
+  637: { temperament: 'calm', sight: 16, speed: 3, habitat: 'air' }, // 火神蛾
+  862: { temperament: 'aggressive', sight: 14, speed: 3.6 }, // 堵拦熊
+  864: { temperament: 'calm', sight: 10, speed: 0.6, habitat: 'shore' }, // 魔灵珊瑚：珊瑚礁岸边
+  980: { temperament: 'sleepy', sight: 6, speed: 0.8, habitat: 'shore' }, // 土王
 };
 
 export function behaviorOf(speciesId: number): Required<SpeciesBehavior> {

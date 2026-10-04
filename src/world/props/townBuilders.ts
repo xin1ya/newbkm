@@ -1409,3 +1409,6 @@ export function well(): PropParts {
   gable(p, 2.6, 0.9, 1.8, 3.1, '#c95e45', '#c95e45', 0.2, '#7a5238');
   return p;
 }
+
+// M2 碧潮群岛构件（tideBuilders.ts）复用的内部工具
+export { beam, chimney, cornerTrim, doorAt, evenly, gable, hip, shade, sphere, V, windowAt, windowCount, type Face };

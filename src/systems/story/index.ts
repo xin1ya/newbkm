@@ -11,6 +11,7 @@
  * 所有状态都写进 flags / vars，存档无需新增字段（设计 §7.2）。
  */
 import type { Flags } from '../quests/types';
+import type { IslandId } from '../state/GameState';
 
 export type StoryFx = 'dream-in' | 'dream-out' | 'flash' | 'poof' | 'fade-out' | 'fade-in' | 'shake' | 'lighthouse' | 'fog-clear';
 
@@ -30,6 +31,8 @@ export type StoryStep =
   /** 章节卡 / 结尾卡 */
   | { kind: 'card'; title: string; subtitle?: string; ms?: number }
   | { kind: 'teleport'; x: number; z: number; yaw?: number }
+  /** M2-01 前往另一座岛（存档后重新加载场景） */
+  | { kind: 'travel'; island: IslandId; x: number; z: number; yaw?: number }
   /** 把玩家送回触发前最后所在的安全位置（离开限制区域时的「拉回」） */
   | { kind: 'pushBack' }
   | { kind: 'if'; flags: string[]; then: StoryStep[]; else?: StoryStep[] }

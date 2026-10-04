@@ -1,0 +1,26 @@
+{
+  "id": 169,
+  "name": "crobat",
+  "heightM": 1.8,
+  "plan": "rigid",
+  "tris": 3300,
+  "fit": "height",
+  "bones": 14,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "169_crobat_shiny.png"
+}

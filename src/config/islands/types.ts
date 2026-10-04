@@ -114,6 +114,10 @@ export interface IslandConfig {
   roads: RoadConfig[];
   /** 头目巢穴（计划文档 §3.3）：固定点位的巢穴头目 */
   alphaDens?: AlphaDenDef[];
+  /** M2-22 冲浪 / 飞行的可达范围（多边形；缺省 = 整张地图） */
+  travelBounds?: Vec2[];
+  /** M2-02 熔岩流（地形生成器刻出熔岩河道；运行时不可踏入） */
+  lavaFlows?: Array<{ id: string; points: Vec2[]; width: number }>;
   /** 本岛主色板（设计 §8.4） */
   palette: { primary: string; secondary: string; accent: string };
   /** 分块尺寸（米），默认 128 */
@@ -178,6 +182,30 @@ export type PropType =
   | 'laundry'
   | 'garden'
   | 'rocks'
+  // ——— M2 碧潮群岛 ———
+  | 'giant-tree'
+  | 'treehouse'
+  | 'rope-bridge'
+  /** 藤蔓封锁（ref = 阻挡 id，割开后移除） */
+  | 'vine-wall'
+  | 'headframe'
+  /** 矿车轨道（points 折线） */
+  | 'rail'
+  | 'mine-cart'
+  | 'ore-pile'
+  | 'lava-vent'
+  | 'basalt'
+  | 'spring-rim'
+  | 'pailou'
+  | 'stone-lantern'
+  | 'bamboo-fence'
+  | 'ruin-pillar'
+  | 'ruin-arch'
+  | 'stele'
+  | 'coral'
+  | 'shipwreck'
+  /** 怪力巨石（ref = 阻挡 id，推开后移除） */
+  | 'boulder'
   | 'glb';
 
 export interface PropInstance {

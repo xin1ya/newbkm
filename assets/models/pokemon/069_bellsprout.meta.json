@@ -1,0 +1,25 @@
+{
+  "id": 69,
+  "name": "bellsprout",
+  "heightM": 0.7,
+  "plan": "biped",
+  "tris": 2732,
+  "fit": "height",
+  "bones": 15,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "069_bellsprout_shiny.png"
+}

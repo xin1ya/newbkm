@@ -9,7 +9,7 @@ import { addPin, pinsOn, removePin, setPinKind, toggleNav, toggleNavTarget, type
 import { currentObjective, trackedMarker, type Quest } from '@/systems/quests';
 import { polygonCentroid, resolveMarker, resolveTracked } from '@/systems/quests/runtime';
 import { exploredMask, type GameState } from '@/systems/state';
-import { keyLabel } from '@/systems/interaction';
+import { blockerOpen, keyLabel } from '@/systems/interaction';
 import { denCooldownLeft } from '@/systems/alpha';
 import type { UiRoot } from '@/ui/core/UiRoot';
 import { MapScreen, type MapMarker, type MapQuestTarget, type MapView } from '@/ui/map/MapScreen';
@@ -85,7 +85,7 @@ export class IslandMap {
       markers.push({ id: poi.id, kind: POI_KIND[poi.kind], name: poi.name, x: poi.position[0], z: poi.position[2] });
     }
     for (const b of cfg.blockers) {
-      markers.push({ id: b.id, kind: 'blocker', name: '无法通行', sub: BLOCKER_NEEDS[b.type], x: b.position[0], z: b.position[2], cleared: !!s.flags[b.requiresFlag] });
+      markers.push({ id: b.id, kind: 'blocker', name: '无法通行', sub: BLOCKER_NEEDS[b.type], x: b.position[0], z: b.position[2], cleared: blockerOpen(b, (f) => !!s.flags[f]) });
     }
     // 头目巢穴（计划文档 §3.2）：未发现显示「？」；冷却中灰显
     const day = this.o.game.clock.day;

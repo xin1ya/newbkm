@@ -56,6 +56,9 @@ export interface GameEvents {
   /** M1-10 训练家发现玩家 / 对话挑战 */
   'trainer:spotted': { trainer: string; how: 'spotted' | 'talk' };
   'blocker:hit': { id: string; hint: string };
+  'blocker:cleared': { id: string; type: string };
+  /** M2-01 岛间旅行开始（随后存档并重新加载） */
+  'island:travel': { from: string; to: string };
   'time:period': { period: TimeOfDay; hour: number };
   'weather:change': { weather: FieldWeather; zoneId: string | null };
   'quality:change': { tier: string };

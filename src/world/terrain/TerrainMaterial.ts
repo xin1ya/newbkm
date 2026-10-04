@@ -9,6 +9,8 @@ import type { Heightfield } from './Heightfield';
 
 /** 通道颜色（顺序 = SURFACE_CHANNELS），与样张定稿一致 */
 export const SURFACE_COLORS = ['#86c95c', '#5c9a45', '#6cb24a', '#caa56c', '#f0e2ad', '#9a958d', '#c5c0b5', '#8fd068'];
+/** M2 扩展覆盖层（第三张 splat，可选）：赭石 / 火山灰 / 熔岩（自发光）/ 苔藓 */
+export const EXT_COLORS = ['#c8874a', '#4a4440', '#ff6a1a', '#3f7a3a'];
 
 function splatTexture(data: Uint8Array, size: number): THREE.DataTexture {
   const t = new THREE.DataTexture(data as unknown as ConstructorParameters<typeof THREE.DataTexture>[0], size, size, THREE.RGBAFormat);
@@ -24,9 +26,13 @@ export function createTerrainMaterial(hf: Heightfield): THREE.MeshToonMaterial {
   const empty = new Uint8Array([255, 0, 0, 0]);
   const s0 = hf.splat[0] ? splatTexture(hf.splat[0], hf.splatSize) : splatTexture(empty, 1);
   const s1 = hf.splat[1] ? splatTexture(hf.splat[1], hf.splatSize) : splatTexture(new Uint8Array(4), 1);
+  const s2 = hf.splat[2] ? splatTexture(hf.splat[2], hf.splatSize) : splatTexture(new Uint8Array(4), 1);
   const uniforms = {
     uSplat0: { value: s0 },
     uSplat1: { value: s1 },
+    uSplat2: { value: s2 },
+    uExt: { value: EXT_COLORS.map((c) => new THREE.Color(c)) },
+    uTime: { value: 0 },
     uWorldSize: { value: new THREE.Vector2(hf.config.size[0], hf.config.size[1]) },
     uSurf: { value: SURFACE_COLORS.map((c) => new THREE.Color(c)) },
     uSeaLevel: { value: hf.config.seaLevel },
@@ -51,6 +57,10 @@ export function createTerrainMaterial(hf: Heightfield): THREE.MeshToonMaterial {
           varying vec3 vTerrNormal;
           uniform sampler2D uSplat0;
           uniform sampler2D uSplat1;
+          uniform sampler2D uSplat2;
+          uniform vec3 uExt[4];
+          uniform float uTime;
+          float vLavaGlow = 0.0;
           uniform vec2 uWorldSize;
           uniform vec3 uSurf[8];
           uniform float uSeaLevel;
@@ -83,16 +93,33 @@ export function createTerrainMaterial(hf: Heightfield): THREE.MeshToonMaterial {
             // 湿沙 / 水下
             float wet = smoothstep(uSeaLevel + 0.9, uSeaLevel - 0.2, vTerrWorld.y);
             col = mix(col, col * vec3(0.78, 0.8, 0.82), wet);
+            // M2 覆盖层：赭石 / 火山灰 / 熔岩 / 苔藓（按权重直接覆盖底色）
+            vec4 e = texture2D(uSplat2, suv);
+            float es = dot(e, vec4(1.0));
+            if (es > 0.003) {
+              vec3 ec = (e.r*uExt[0] + e.g*uExt[1] + e.b*uExt[2] + e.a*uExt[3]) / es;
+              ec *= 0.92 + blotch * 0.14;
+              col = mix(col, ec, clamp(es, 0.0, 1.0));
+              // 熔岩：流动的亮纹（自发光在 emissive 里叠加）
+              float flow = tNoise(vTerrWorld.xz * 0.12 + vec2(uTime * 0.25, uTime * 0.1));
+              vLavaGlow = e.b * (0.65 + 0.5 * flow);
+            }
             diffuseColor.rgb *= col;
           }`,
+        )
+        .replace(
+          '#include <emissivemap_fragment>',
+          '#include <emissivemap_fragment>\n          totalEmissiveRadiance += uExt[2] * vLavaGlow * 0.9;',
         );
     },
   });
   m.name = 'terrain';
+  m.userData.terrainUniforms = uniforms;
   m.userData.outline = false;
   m.userData.dispose = () => {
     s0.dispose();
     s1.dispose();
+    s2.dispose();
   };
   return m;
 }

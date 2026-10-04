@@ -137,6 +137,26 @@ export const ABILITIES: Record<string, AbilityHooks> = {
     },
   },
   'rock-head': {}, // 在反伤结算中特判（engine）
+  justified: {
+    onDamagingHit(b, target, _u, hit) {
+      if (hit.type !== 'dark' || target.pokemon.hp <= 0) return;
+      b.showAbility(target);
+      b.boost(target, 'atk', 1, false);
+    },
+  },
+  'anger-point': {
+    onDamagingHit(b, target, _u, hit) {
+      if (!hit.crit || target.pokemon.hp <= 0) return;
+      b.showAbility(target);
+      b.boost(target, 'atk', 12, false); // 愤怒穴位：被会心一击后攻击升到最高
+    },
+  },
+  'solid-rock': {
+    modifyDamageTaken: (_b, _t, _u, hit) => (hit.effectiveness > 1 ? 0.75 : 1),
+  },
+  'early-bird': {}, // 早起：engine 睡眠计数特判
+  'poison-heal': {}, // 毒疗：engine 回合末异常结算特判
+  simple: {}, // 单纯：engine.boost 特判
   'weak-armor': {
     onDamagingHit(b, target, _u, hit) {
       if (hit.move.category !== 'physical' || target.pokemon.hp <= 0) return;
@@ -311,6 +331,7 @@ export const ABILITIES: Record<string, AbilityHooks> = {
   'own-tempo': { blocksConfusion: true },
   oblivious: { blocksAttract: true },
   'inner-focus': { blocksFlinch: true },
+  infiltrator: {}, // 穿透：在 damage.ts 中特判，无视反射壁 / 光墙
 
   // —— 其他 ——
   'run-away': { runAway: true },

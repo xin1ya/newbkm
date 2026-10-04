@@ -22,6 +22,7 @@
     "test:perf": "playwright test --project=perf",
     "fetch-data": "tsx scripts/fetch-data.ts",
     "gen:sprout": "tsx scripts/gen-sprout.ts",
+    "gen:tide": "tsx scripts/gen-tide.ts",
     "gen:tms": "tsx scripts/gen-tms.ts",
     "data:moves": "tsx scripts/augment-moves.ts",
     "validate": "tsx scripts/validate.ts",

@@ -1,0 +1,25 @@
+{
+  "id": 228,
+  "name": "houndour",
+  "heightM": 0.6,
+  "plan": "quadruped",
+  "tris": 6348,
+  "fit": "height",
+  "bones": 20,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "228_houndour_shiny.png"
+}

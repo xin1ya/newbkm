@@ -24,9 +24,9 @@ import type { EncounterStartEvent } from '@/core/events/events';
 import type { Dex } from '@/systems/data/Dex';
 import type { Rng } from '@/systems/rng';
 import { createWild, grassEncounterCheck, rollEncounter, type FieldWeather, type TimeOfDay } from '@/systems/encounters';
-import { healFully, createPokemon } from '@/systems/pokemon';
+import { healFully, createPokemon, displayName } from '@/systems/pokemon';
 import { EXPLORE_CELL, addItem, ZONE_VISITED_PREFIX, markExplored, markExploredPolygon, serializeSave, summarize, type ExploreGrid, type GameState } from '@/systems/state';
-import type { IslandConfig, PropsFile } from '@/config/islands';
+import type { BlockerConfig, IslandConfig, PropsFile } from '@/config/islands';
 import { ENCOUNTER_TABLES } from '@/config/encounters';
 import {
   AmbientLife,
@@ -71,6 +71,9 @@ import { SceneFarm } from '@/scenes/common/SceneFarm';
 import { SceneBlocks } from '@/scenes/common/SceneBlocks';
 import { SceneAlpha } from '@/scenes/common/SceneAlpha';
 import { makeRoaming } from '@/systems/alpha';
+import { applyTravel, canUseLink, linkAt, TRAVEL_SLOT_KEY } from '@/systems/travel';
+import { BLOCKER_ABILITY, CLEARABLE_BLOCKERS, blockerOpen } from '@/systems/interaction';
+import type { IslandId } from '@/systems/state/GameState';
 import { BattleScene, type BattleHost, type BattleResult, type BattleResultKind, type BattleStartData } from '@/scenes/battle';
 
 export const SAVE_SLOT = 'slot1';
@@ -130,6 +133,9 @@ export class OverworldScene implements Scene, BattleHost {
   private encounterCooldown = 0;
   private inBattle = false;
   private paused = false;
+  /** M2-01 岛间旅行进行中（等待存档 / 重新加载） */
+  private traveling = false;
+  private linkHintAt = -99;
   private windDir = new THREE.Vector2(0.8, 0.6).normalize();
   private pushers: Array<{ x: number; y: number; z: number; r: number }> = [];
   private spawnCtx: SpawnContext = { time: 'day', weather: 'clear', playerX: 0, playerY: 0, playerZ: 0, playerRunning: false, playerInGrass: false, active: true };
@@ -214,6 +220,8 @@ export class OverworldScene implements Scene, BattleHost {
     progress(0.35, '放置建筑与道具……');
     const propsFile = await game.platform.assets.fetchJson<PropsFile>(island.props);
     this.props = new GrayboxProps(this.terrain.hf, this.collision, propsFile);
+    // 已清除的能力阻挡（读档）
+    for (const b of island.blockers) if (CLEARABLE_BLOCKERS.has(b.type) && blockerOpen(b, (f) => this.d.state.flags[f] === true)) this.props.clearBlocker(b.id);
     this.lamps = new LampLights(this.props.lampPositions, {
       pool: quality.tier === 'high' ? 12 : quality.tier === 'medium' ? 8 : 4,
       groundAt: (x, z, maxY) => {
@@ -333,6 +341,7 @@ export class OverworldScene implements Scene, BattleHost {
         await this.ride.start(hit);
       },
       surfing: () => this.ride.surfing,
+      clearBlocker: (b) => this.clearBlocker(b),
     }))
       this.interactions.addSource(src);
 
@@ -421,6 +430,7 @@ export class OverworldScene implements Scene, BattleHost {
       night: () => this.timeOfDay() === 'night',
       battle: (o) => this.storyBattle(o),
       teleport: (x, z, yaw) => this.storyTeleport(x, z, yaw),
+      travel: (to, x, z, yaw) => this.travelTo(to, x, z, yaw),
       clearFog: () => {
         this.weather.current = 'clear';
         this.weather.until = this.d.game.clock.totalMinutes + 180;
@@ -640,6 +650,7 @@ export class OverworldScene implements Scene, BattleHost {
       if (input.pressed('debug')) hud.toggleDebug();
       if (input.pressed('quicksave')) void this.save();
     }
+    this.terrain.tick(this.time);
     this.bike.update(dt);
     this.player.update(dt);
     this.ride.update(dt);
@@ -660,7 +671,74 @@ export class OverworldScene implements Scene, BattleHost {
     this.animateWorld(dt);
     this.updateZone(false);
     this.syncState();
+    this.checkIslandLink();
     this.updateHud(dt);
+  }
+
+  /** M2-01 海域走廊尽头：冲浪 / 已到访岛屿的飞行可以前往下一座岛，否则挡回 */
+  /** M2-10/11/13 场地能力清除阻挡：宝可梦登场 → 阻挡物缩小消失 → 记 cleared 标记 */
+  private async clearBlocker(b: BlockerConfig): Promise<void> {
+    const lead = this.d.state.party.find((m) => m.hp > 0);
+    const ability = BLOCKER_ABILITY[b.type] ?? '能力';
+    const who = lead ? displayName(this.d.dex, lead) : '宝可梦';
+    await say(this.d.ui, [`${who} 使用了「${ability}」！`]);
+    sfx(b.type === 'vines' ? 'hit' : b.type === 'strength' ? 'bump' : 'hit-strong');
+    const meshes = this.props.blockerObjects(b.id);
+    const t0 = performance.now();
+    const fx = Math.sin(this.player.facing);
+    const fz = Math.cos(this.player.facing);
+    // 0.6 s：藤蔓下沉枯萎 / 岩石碎裂下沉 / 巨石沿玩家朝向滚开
+    await new Promise<void>((resolve) => {
+      const step = () => {
+        const k = Math.min(1, (performance.now() - t0) / 600);
+        for (const m of meshes) {
+          if (b.type === 'strength') m.position.set(fx * k * 3, 0, fz * k * 3);
+          else m.position.y = -k * (b.type === 'vines' ? 4 : 2.5);
+        }
+        if (k >= 1) resolve();
+        else requestAnimationFrame(step);
+      };
+      step();
+    });
+    this.d.state.flags[`cleared:${b.id}`] = true;
+    this.props.clearBlocker(b.id);
+    this.d.game.events.emit('blocker:cleared', { id: b.id, type: b.type });
+  }
+
+  private checkIslandLink(): void {
+    if (this.traveling || this.inBattle || this.d.ui.busy) return;
+    const p = this.player.position;
+    const link = linkAt(this.d.island.id, p.x, p.z);
+    if (!link) return;
+    const v = canUseLink(this.d.state, link, this.player.mode);
+    if (v.ok) {
+      const a = link.arrive(p.x, p.z);
+      void this.travelTo(link.to, a.x, a.z, a.yaw);
+      return;
+    }
+    // 首次跨海由剧情触发器（同一矩形）放行，这里不挡
+    if (v.reason === 'locked' || v.reason === 'on-foot') return;
+    this.player.nudge(link.pushBack[0] * 2.5, link.pushBack[1] * 2.5);
+    if (v.hint && this.time - this.linkHintAt > 4) {
+      this.linkHintAt = this.time;
+      this.d.toaster.show(v.hint);
+    }
+  }
+
+  /** M2-01 前往另一座岛：写入目的地 → 存档 → 重新加载（场景按 state.position.island 重建） */
+  async travelTo(to: IslandId, x: number, z: number, yaw: number): Promise<void> {
+    if (this.traveling) return;
+    this.traveling = true;
+    this.d.game.events.emit('island:travel', { from: this.d.island.id, to });
+    await this.d.transition.fadeOut(700);
+    applyTravel(this.d.state, to, x, z, yaw);
+    await this.save({ silent: true });
+    try {
+      sessionStorage.setItem(TRAVEL_SLOT_KEY, this.saveSlot);
+    } catch {
+      // 隐私模式下 sessionStorage 不可用：退回标题画面，玩家手动「继续」
+    }
+    location.reload();
   }
 
   /** 战斗中推进 NPC（对方训练家走到站位、登场动作） */
@@ -879,7 +957,7 @@ export class OverworldScene implements Scene, BattleHost {
     const w = hf.waterAt(x, z);
     if (w && w.depth > 0.45) return this.d.state.flags['hm03-surf'] ? 2.2 : Infinity;
     if (hf.slopeAt(x, z) > 36) return Infinity;
-    for (const b of this.d.island.blockers) if (!this.d.state.flags[b.requiresFlag] && Math.hypot(x - b.position[0], z - b.position[2]) < (b.radius ?? 2) + 0.6) return Infinity;
+    for (const b of this.d.island.blockers) if (!blockerOpen(b, (f) => this.d.state.flags[f] === true) && Math.hypot(x - b.position[0], z - b.position[2]) < (b.radius ?? 2) + 0.6) return Infinity;
     for (const c of this.collision.query(x, z, 0.6)) {
       if (c.tag === 'foliage-tree') continue;
       if (c.kind === 'circle') {

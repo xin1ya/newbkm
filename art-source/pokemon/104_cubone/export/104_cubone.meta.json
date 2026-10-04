@@ -1,0 +1,25 @@
+{
+  "id": 104,
+  "name": "cubone",
+  "heightM": 0.4,
+  "plan": "biped",
+  "tris": 6580,
+  "fit": "height",
+  "bones": 16,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "104_cubone_shiny.png"
+}

@@ -131,6 +131,29 @@ export class Heightfield {
     return out;
   }
 
+  /** M2 扩展覆盖层权重（0–1）：[赭石, 火山灰, 熔岩, 苔藓]；没有第三张 splat 时全为 0 */
+  extAt(x: number, z: number, out = new Float32Array(4)): Float32Array {
+    out.fill(0);
+    const ext = this.splat[2];
+    if (!ext) return out;
+    const s = this.splatSize;
+    const i = Math.min(s - 1, Math.max(0, Math.floor(((x + this.half) / this.config.size[0]) * s)));
+    const j = Math.min(s - 1, Math.max(0, Math.floor(((z + this.half) / this.config.size[1]) * s)));
+    const k = (j * s + i) * 4;
+    for (let c = 0; c < 4; c++) out[c] = ext[k + c]! / 255;
+    return out;
+  }
+
+  /** 是否是熔岩（不可踏入） */
+  isLava(x: number, z: number): boolean {
+    const ext = this.splat[2];
+    if (!ext) return false;
+    const s = this.splatSize;
+    const i = Math.min(s - 1, Math.max(0, Math.floor(((x + this.half) / this.config.size[0]) * s)));
+    const j = Math.min(s - 1, Math.max(0, Math.floor(((z + this.half) / this.config.size[1]) * s)));
+    return ext[(j * s + i) * 4 + 2]! > 140;
+  }
+
   surfaceWeight(x: number, z: number, channel: SurfaceChannel): number {
     const c = SURFACE_CHANNELS.indexOf(channel);
     return this.surfaceAt(x, z)[c]!;
