@@ -1,0 +1,26 @@
+{
+  "id": 10,
+  "variant": "hand_data",
+  "method": "hand-authored; reference 3D used only for measurements",
+  "heightM": 0.3,
+  "tris": 7444,
+  "textureSize": [
+    512,
+    512
+  ],
+  "bones": 19,
+  "clips": [
+    "idle",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5666666666666667,
+    "attack_special": 0.7666666666666667
+  }
+}

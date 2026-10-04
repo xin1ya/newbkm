@@ -1,0 +1,26 @@
+{
+  "id": 118,
+  "name": "goldeen",
+  "heightM": 0.6,
+  "plan": "fish",
+  "tris": 7436,
+  "fit": "length",
+  "bones": 12,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "swim"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5333333333333333,
+    "attack_special": 0.8
+  },
+  "shiny": "118_goldeen_shiny.png"
+}

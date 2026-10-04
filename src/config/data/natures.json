@@ -1,0 +1,227 @@
+[
+ {
+  "id": "adamant",
+  "name": {
+   "en": "Adamant",
+   "zh": "固执"
+  },
+  "plus": "atk",
+  "minus": "spa"
+ },
+ {
+  "id": "bashful",
+  "name": {
+   "en": "Bashful",
+   "zh": "害羞"
+  },
+  "plus": null,
+  "minus": null
+ },
+ {
+  "id": "bold",
+  "name": {
+   "en": "Bold",
+   "zh": "大胆"
+  },
+  "plus": "def",
+  "minus": "atk"
+ },
+ {
+  "id": "brave",
+  "name": {
+   "en": "Brave",
+   "zh": "勇敢"
+  },
+  "plus": "atk",
+  "minus": "spe"
+ },
+ {
+  "id": "calm",
+  "name": {
+   "en": "Calm",
+   "zh": "温和"
+  },
+  "plus": "spd",
+  "minus": "atk"
+ },
+ {
+  "id": "careful",
+  "name": {
+   "en": "Careful",
+   "zh": "慎重"
+  },
+  "plus": "spd",
+  "minus": "spa"
+ },
+ {
+  "id": "docile",
+  "name": {
+   "en": "Docile",
+   "zh": "坦率"
+  },
+  "plus": null,
+  "minus": null
+ },
+ {
+  "id": "gentle",
+  "name": {
+   "en": "Gentle",
+   "zh": "温顺"
+  },
+  "plus": "spd",
+  "minus": "def"
+ },
+ {
+  "id": "hardy",
+  "name": {
+   "en": "Hardy",
+   "zh": "勤奋"
+  },
+  "plus": null,
+  "minus": null
+ },
+ {
+  "id": "hasty",
+  "name": {
+   "en": "Hasty",
+   "zh": "急躁"
+  },
+  "plus": "spe",
+  "minus": "def"
+ },
+ {
+  "id": "impish",
+  "name": {
+   "en": "Impish",
+   "zh": "淘气"
+  },
+  "plus": "def",
+  "minus": "spa"
+ },
+ {
+  "id": "jolly",
+  "name": {
+   "en": "Jolly",
+   "zh": "爽朗"
+  },
+  "plus": "spe",
+  "minus": "spa"
+ },
+ {
+  "id": "lax",
+  "name": {
+   "en": "Lax",
+   "zh": "乐天"
+  },
+  "plus": "def",
+  "minus": "spd"
+ },
+ {
+  "id": "lonely",
+  "name": {
+   "en": "Lonely",
+   "zh": "怕寂寞"
+  },
+  "plus": "atk",
+  "minus": "def"
+ },
+ {
+  "id": "mild",
+  "name": {
+   "en": "Mild",
+   "zh": "慢吞吞"
+  },
+  "plus": "spa",
+  "minus": "def"
+ },
+ {
+  "id": "modest",
+  "name": {
+   "en": "Modest",
+   "zh": "内敛"
+  },
+  "plus": "spa",
+  "minus": "atk"
+ },
+ {
+  "id": "naive",
+  "name": {
+   "en": "Naive",
+   "zh": "天真"
+  },
+  "plus": "spe",
+  "minus": "spd"
+ },
+ {
+  "id": "naughty",
+  "name": {
+   "en": "Naughty",
+   "zh": "顽皮"
+  },
+  "plus": "atk",
+  "minus": "spd"
+ },
+ {
+  "id": "quiet",
+  "name": {
+   "en": "Quiet",
+   "zh": "冷静"
+  },
+  "plus": "spa",
+  "minus": "spe"
+ },
+ {
+  "id": "quirky",
+  "name": {
+   "en": "Quirky",
+   "zh": "浮躁"
+  },
+  "plus": null,
+  "minus": null
+ },
+ {
+  "id": "rash",
+  "name": {
+   "en": "Rash",
+   "zh": "马虎"
+  },
+  "plus": "spa",
+  "minus": "spd"
+ },
+ {
+  "id": "relaxed",
+  "name": {
+   "en": "Relaxed",
+   "zh": "悠闲"
+  },
+  "plus": "def",
+  "minus": "spe"
+ },
+ {
+  "id": "sassy",
+  "name": {
+   "en": "Sassy",
+   "zh": "自大"
+  },
+  "plus": "spd",
+  "minus": "spe"
+ },
+ {
+  "id": "serious",
+  "name": {
+   "en": "Serious",
+   "zh": "认真"
+  },
+  "plus": null,
+  "minus": null
+ },
+ {
+  "id": "timid",
+  "name": {
+   "en": "Timid",
+   "zh": "胆小"
+  },
+  "plus": "spe",
+  "minus": "atk"
+ }
+]

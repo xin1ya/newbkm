@@ -1,0 +1,26 @@
+{
+  "id": 73,
+  "name": "tentacruel",
+  "heightM": 1.6,
+  "plan": "rigid",
+  "tris": 5204,
+  "fit": "height",
+  "bones": 35,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "swim"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "073_tentacruel_shiny.png"
+}

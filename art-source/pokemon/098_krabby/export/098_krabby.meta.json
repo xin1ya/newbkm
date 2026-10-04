@@ -1,0 +1,25 @@
+{
+  "id": 98,
+  "name": "krabby",
+  "heightM": 0.4,
+  "plan": "crab",
+  "tris": 6112,
+  "fit": "height",
+  "bones": 21,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5333333333333333,
+    "attack_special": 0.6666666666666666
+  },
+  "shiny": "098_krabby_shiny.png"
+}

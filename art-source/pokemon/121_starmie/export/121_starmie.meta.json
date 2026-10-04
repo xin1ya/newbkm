@@ -1,0 +1,24 @@
+{
+  "id": 121,
+  "name": "starmie",
+  "heightM": 1.1,
+  "plan": "biped",
+  "tris": 6340,
+  "bones": 18,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.4666666666666667,
+    "attack_special": 0.8
+  },
+  "shiny": "121_starmie_shiny.png"
+}

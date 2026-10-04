@@ -1,0 +1,582 @@
+[
+ {
+  "id": "leftovers",
+  "name": {
+   "en": "Leftovers",
+   "zh": "吃剩的东西"
+  },
+  "category": "held-items",
+  "flingPower": 10,
+  "shortEffect": "携带后，宝可梦的ＨＰ 会在战斗期间缓缓回复。"
+ },
+ {
+  "id": "choice-band",
+  "name": {
+   "en": "Choice Band",
+   "zh": "讲究头带"
+  },
+  "category": "choice",
+  "flingPower": 10,
+  "shortEffect": "有点讲究的头带。 虽然携带后攻击会提高， 但只能使出相同的招式。"
+ },
+ {
+  "id": "choice-specs",
+  "name": {
+   "en": "Choice Specs",
+   "zh": "讲究眼镜"
+  },
+  "category": "choice",
+  "flingPower": 10,
+  "shortEffect": "有点讲究的眼镜。 虽然携带后特攻会提高， 但只能使出相同的招式。"
+ },
+ {
+  "id": "choice-scarf",
+  "name": {
+   "en": "Choice Scarf",
+   "zh": "讲究围巾"
+  },
+  "category": "choice",
+  "flingPower": 10,
+  "shortEffect": "有点讲究的围巾。 虽然携带后速度会提高， 但只能使出相同的招式。"
+ },
+ {
+  "id": "life-orb",
+  "name": {
+   "en": "Life Orb",
+   "zh": "生命宝珠"
+  },
+  "category": "held-items",
+  "flingPower": 30,
+  "shortEffect": "携带后，虽然每次攻击时 ＨＰ少量减少， 但招式的威力会提高。"
+ },
+ {
+  "id": "focus-sash",
+  "name": {
+   "en": "Focus Sash",
+   "zh": "气势披带"
+  },
+  "category": "held-items",
+  "flingPower": 10,
+  "shortEffect": "携带后，在ＨＰ全满时， 即便受到可能会导致濒死的招式， 也能仅以１ＨＰ撑过去１次。"
+ },
+ {
+  "id": "expert-belt",
+  "name": {
+   "en": "Expert Belt",
+   "zh": "达人带"
+  },
+  "category": "held-items",
+  "flingPower": 10,
+  "shortEffect": "用惯了的黑色带子。 携带后，效果绝佳时的 招式威力就会少量提高。"
+ },
+ {
+  "id": "sitrus-berry",
+  "name": {
+   "en": "Sitrus Berry",
+   "zh": "文柚果"
+  },
+  "category": "medicine",
+  "flingPower": 10,
+  "shortEffect": "让宝可梦携带后， 可以回复少量ＨＰ。"
+ },
+ {
+  "id": "oran-berry",
+  "name": {
+   "en": "Oran Berry",
+   "zh": "橙橙果"
+  },
+  "category": "medicine",
+  "flingPower": 10,
+  "shortEffect": "让宝可梦携带后， 可以回复１０ＨＰ。"
+ },
+ {
+  "id": "lum-berry",
+  "name": {
+   "en": "Lum Berry",
+   "zh": "木子果"
+  },
+  "category": "medicine",
+  "flingPower": 10,
+  "shortEffect": "让宝可梦携带后， 可以治愈所有异常状态。"
+ },
+ {
+  "id": "charcoal",
+  "name": {
+   "en": "Charcoal",
+   "zh": "木炭"
+  },
+  "category": "type-enhancement",
+  "flingPower": 30,
+  "shortEffect": "焚烧用的燃料。 携带后，火属性的 招式威力就会提高。"
+ },
+ {
+  "id": "mystic-water",
+  "name": {
+   "en": "Mystic Water",
+   "zh": "神秘水滴"
+  },
+  "category": "type-enhancement",
+  "flingPower": 30,
+  "shortEffect": "水滴形状的宝石。 携带后，水属性的 招式威力就会提高。"
+ },
+ {
+  "id": "miracle-seed",
+  "name": {
+   "en": "Miracle Seed",
+   "zh": "奇迹种子"
+  },
+  "category": "type-enhancement",
+  "flingPower": 30,
+  "shortEffect": "孕育生命的种子。 携带后，草属性的 招式威力就会提高。"
+ },
+ {
+  "id": "magnet",
+  "name": {
+   "en": "Magnet",
+   "zh": "磁铁"
+  },
+  "category": "type-enhancement",
+  "flingPower": 30,
+  "shortEffect": "强力的磁铁。 携带后，电属性的 招式威力就会提高。"
+ },
+ {
+  "id": "sharp-beak",
+  "name": {
+   "en": "Sharp Beak",
+   "zh": "锐利鸟嘴"
+  },
+  "category": "type-enhancement",
+  "flingPower": 50,
+  "shortEffect": "又长又尖的鸟嘴。 携带后，飞行属性的 招式威力就会提高。"
+ },
+ {
+  "id": "silver-powder",
+  "name": {
+   "en": "Silver Powder",
+   "zh": "银粉"
+  },
+  "category": "type-enhancement",
+  "flingPower": 10,
+  "shortEffect": "散发着银色光辉的粉末。 携带后，虫属性的 招式威力就会提高。"
+ },
+ {
+  "id": "poison-barb",
+  "name": {
+   "en": "Poison Barb",
+   "zh": "毒针"
+  },
+  "category": "type-enhancement",
+  "flingPower": 70,
+  "shortEffect": "有毒的小针。 携带后，毒属性的 招式威力就会提高。"
+ },
+ {
+  "id": "silk-scarf",
+  "name": {
+   "en": "Silk Scarf",
+   "zh": "丝绸围巾"
+  },
+  "category": "type-enhancement",
+  "flingPower": 10,
+  "shortEffect": "手感不错的围巾。 携带后，一般属性的 招式威力就会提高。"
+ },
+ {
+  "id": "black-belt",
+  "name": {
+   "en": "Black Belt",
+   "zh": "黑带"
+  },
+  "category": "type-enhancement",
+  "flingPower": 30,
+  "shortEffect": "能振作精神的带子。 携带后，格斗属性的 招式威力就会提高。"
+ },
+ {
+  "id": "soft-sand",
+  "name": {
+   "en": "Soft Sand",
+   "zh": "柔软沙子"
+  },
+  "category": "type-enhancement",
+  "flingPower": 10,
+  "shortEffect": "手感细腻的沙子。 携带后，地面属性的 招式威力就会提高。"
+ },
+ {
+  "id": "hard-stone",
+  "name": {
+   "en": "Hard Stone",
+   "zh": "硬石头"
+  },
+  "category": "type-enhancement",
+  "flingPower": 100,
+  "shortEffect": "绝对不会裂开的石头。 携带后，岩石属性的 招式威力就会提高。"
+ },
+ {
+  "id": "never-melt-ice",
+  "name": {
+   "en": "Never-Melt Ice",
+   "zh": "不融冰"
+  },
+  "category": "type-enhancement",
+  "flingPower": 30,
+  "shortEffect": "能隔绝热量的冰。 携带后，冰属性的 招式威力就会提高。"
+ },
+ {
+  "id": "spell-tag",
+  "name": {
+   "en": "Spell Tag",
+   "zh": "诅咒之符"
+  },
+  "category": "type-enhancement",
+  "flingPower": 30,
+  "shortEffect": "古怪可怕的咒符。 携带后，幽灵属性的 招式威力就会提高。"
+ },
+ {
+  "id": "twisted-spoon",
+  "name": {
+   "en": "Twisted Spoon",
+   "zh": "弯曲的汤匙"
+  },
+  "category": "type-enhancement",
+  "flingPower": 30,
+  "shortEffect": "注入了念力的汤匙。 携带后，超能力属性的 招式威力就会提高。"
+ },
+ {
+  "id": "dragon-fang",
+  "name": {
+   "en": "Dragon Fang",
+   "zh": "龙之牙"
+  },
+  "category": "type-enhancement",
+  "flingPower": 70,
+  "shortEffect": "坚硬锐利的牙齿。 携带后，龙属性的 招式威力就会提高。"
+ },
+ {
+  "id": "black-glasses",
+  "name": {
+   "en": "Black Glasses",
+   "zh": "黑色眼镜"
+  },
+  "category": "type-enhancement",
+  "flingPower": 30,
+  "shortEffect": "看上去很奇怪的眼镜。 携带后，恶属性的 招式威力就会提高。"
+ },
+ {
+  "id": "metal-coat",
+  "name": {
+   "en": "Metal Coat",
+   "zh": "金属膜"
+  },
+  "category": "type-enhancement",
+  "flingPower": 30,
+  "shortEffect": "特殊的金属膜。 携带后，钢属性的 招式威力就会提高。"
+ },
+ {
+  "id": "fairy-feather",
+  "name": {
+   "en": "Fairy Feather",
+   "zh": "妖精之羽"
+  },
+  "category": "held-items",
+  "flingPower": null,
+  "shortEffect": ""
+ },
+ {
+  "id": "poke-ball",
+  "name": {
+   "en": "Poké Ball",
+   "zh": "精灵球"
+  },
+  "category": "standard-balls",
+  "flingPower": null,
+  "shortEffect": "用于投向野生宝可梦 并将其捕捉的球。 它是胶囊样式的。"
+ },
+ {
+  "id": "great-ball",
+  "name": {
+   "en": "Great Ball",
+   "zh": "超级球"
+  },
+  "category": "standard-balls",
+  "flingPower": null,
+  "shortEffect": "比起精灵球来 更容易捉到宝可梦的， 性能还算不错的球。"
+ },
+ {
+  "id": "ultra-ball",
+  "name": {
+   "en": "Ultra Ball",
+   "zh": "高级球"
+  },
+  "category": "standard-balls",
+  "flingPower": null,
+  "shortEffect": "比起超级球来 更容易捉到宝可梦的， 性能非常不错的球。"
+ },
+ {
+  "id": "master-ball",
+  "name": {
+   "en": "Master Ball",
+   "zh": "大师球"
+  },
+  "category": "standard-balls",
+  "flingPower": null,
+  "shortEffect": "必定能捉到野生宝可梦的， 性能最好的球。"
+ },
+ {
+  "id": "quick-ball",
+  "name": {
+   "en": "Quick Ball",
+   "zh": "先机球"
+  },
+  "category": "special-balls",
+  "flingPower": null,
+  "shortEffect": "有点与众不同的球。 如果战斗开始后立刻使用， 就能很容易地捉到宝可梦。"
+ },
+ {
+  "id": "net-ball",
+  "name": {
+   "en": "Net Ball",
+   "zh": "捕网球"
+  },
+  "category": "special-balls",
+  "flingPower": null,
+  "shortEffect": "有点与众不同的球。 能很容易地捕捉 水属性和虫属性的宝可梦。"
+ },
+ {
+  "id": "dusk-ball",
+  "name": {
+   "en": "Dusk Ball",
+   "zh": "黑暗球"
+  },
+  "category": "special-balls",
+  "flingPower": null,
+  "shortEffect": "有点与众不同的球。 能很容易地在夜晚或洞窟等 阴暗的地方捕捉宝可梦。"
+ },
+ {
+  "id": "potion",
+  "name": {
+   "en": "Potion",
+   "zh": "伤药"
+  },
+  "category": "healing",
+  "flingPower": 30,
+  "shortEffect": "喷雾式伤药。 能让１只宝可梦 回复２０ＨＰ。"
+ },
+ {
+  "id": "super-potion",
+  "name": {
+   "en": "Super Potion",
+   "zh": "好伤药"
+  },
+  "category": "healing",
+  "flingPower": 30,
+  "shortEffect": "喷雾式伤药。 能让１只宝可梦 回复６０ＨＰ。"
+ },
+ {
+  "id": "hyper-potion",
+  "name": {
+   "en": "Hyper Potion",
+   "zh": "厉害伤药"
+  },
+  "category": "healing",
+  "flingPower": 30,
+  "shortEffect": "喷雾式伤药。 能让１只宝可梦 回复１２０ＨＰ。"
+ },
+ {
+  "id": "antidote",
+  "name": {
+   "en": "Antidote",
+   "zh": "解毒药"
+  },
+  "category": "status-cures",
+  "flingPower": 30,
+  "shortEffect": "喷雾式药水。 能治愈１只宝可梦的 中毒状态。"
+ },
+ {
+  "id": "paralyze-heal",
+  "name": {
+   "en": "Paralyze Heal",
+   "zh": "解麻药"
+  },
+  "category": "status-cures",
+  "flingPower": 30,
+  "shortEffect": "喷雾式药水。 能治愈１只宝可梦的 麻痹状态。"
+ },
+ {
+  "id": "awakening",
+  "name": {
+   "en": "Awakening",
+   "zh": "解眠药"
+  },
+  "category": "status-cures",
+  "flingPower": 30,
+  "shortEffect": "喷雾式药水。 能治愈１只宝可梦的 睡眠状态。"
+ },
+ {
+  "id": "burn-heal",
+  "name": {
+   "en": "Burn Heal",
+   "zh": "灼伤药"
+  },
+  "category": "status-cures",
+  "flingPower": 30,
+  "shortEffect": "喷雾式药水。 能治愈１只宝可梦的 灼伤状态。"
+ },
+ {
+  "id": "ice-heal",
+  "name": {
+   "en": "Ice Heal",
+   "zh": "解冻药"
+  },
+  "category": "status-cures",
+  "flingPower": 30,
+  "shortEffect": "喷雾式药水。 能治愈１只宝可梦的 冰冻状态。"
+ },
+ {
+  "id": "full-heal",
+  "name": {
+   "en": "Full Heal",
+   "zh": "万灵药"
+  },
+  "category": "status-cures",
+  "flingPower": 30,
+  "shortEffect": "喷雾式药水。 能治愈１只宝可梦的 所有异常状态。"
+ },
+ {
+  "id": "revive",
+  "name": {
+   "en": "Revive",
+   "zh": "活力碎片"
+  },
+  "category": "revival",
+  "flingPower": 30,
+  "shortEffect": "能让１只陷入濒死的 宝可梦重获生机， 并回复一半ＨＰ。"
+ },
+ {
+  "id": "hp-up",
+  "name": {
+   "en": "HP Up",
+   "zh": "ＨＰ增强剂"
+  },
+  "category": "vitamins",
+  "flingPower": 30,
+  "shortEffect": "宝可梦的营养饮料。 能提高１只宝可梦的 ＨＰ的基础点数。"
+ },
+ {
+  "id": "protein",
+  "name": {
+   "en": "Protein",
+   "zh": "攻击增强剂"
+  },
+  "category": "vitamins",
+  "flingPower": 30,
+  "shortEffect": "宝可梦的营养饮料。 能提高１只宝可梦的 攻击的基础点数。"
+ },
+ {
+  "id": "iron",
+  "name": {
+   "en": "Iron",
+   "zh": "防御增强剂"
+  },
+  "category": "vitamins",
+  "flingPower": 30,
+  "shortEffect": "宝可梦的营养饮料。 能提高１只宝可梦的 防御的基础点数。"
+ },
+ {
+  "id": "calcium",
+  "name": {
+   "en": "Calcium",
+   "zh": "特攻增强剂"
+  },
+  "category": "vitamins",
+  "flingPower": 30,
+  "shortEffect": "宝可梦的营养饮料。 能提高１只宝可梦的 特攻的基础点数。"
+ },
+ {
+  "id": "zinc",
+  "name": {
+   "en": "Zinc",
+   "zh": "特防增强剂"
+  },
+  "category": "vitamins",
+  "flingPower": 30,
+  "shortEffect": "宝可梦的营养饮料。 能提高１只宝可梦的 特防的基础点数。"
+ },
+ {
+  "id": "carbos",
+  "name": {
+   "en": "Carbos",
+   "zh": "速度增强剂"
+  },
+  "category": "vitamins",
+  "flingPower": 30,
+  "shortEffect": "宝可梦的营养饮料。 能提高１只宝可梦的 速度的基础点数。"
+ },
+ {
+  "id": "fire-stone",
+  "name": {
+   "en": "Fire Stone",
+   "zh": "火之石"
+  },
+  "category": "evolution",
+  "flingPower": 30,
+  "shortEffect": "能让某些特定宝可梦 进化的神奇石头。 看上去是橙黄色的。"
+ },
+ {
+  "id": "water-stone",
+  "name": {
+   "en": "Water Stone",
+   "zh": "水之石"
+  },
+  "category": "evolution",
+  "flingPower": 30,
+  "shortEffect": "能让某些特定宝可梦 进化的神奇石头。 看上去是澄蓝色的。"
+ },
+ {
+  "id": "thunder-stone",
+  "name": {
+   "en": "Thunder Stone",
+   "zh": "雷之石"
+  },
+  "category": "evolution",
+  "flingPower": 30,
+  "shortEffect": "能让某些特定宝可梦 进化的神奇石头。 有着闪电般的花纹。"
+ },
+ {
+  "id": "leaf-stone",
+  "name": {
+   "en": "Leaf Stone",
+   "zh": "叶之石"
+  },
+  "category": "evolution",
+  "flingPower": 30,
+  "shortEffect": "能让某些特定宝可梦 进化的神奇石头。 有着叶子般的花纹。"
+ },
+ {
+  "id": "sun-stone",
+  "name": {
+   "en": "Sun Stone",
+   "zh": "日之石"
+  },
+  "category": "evolution",
+  "flingPower": 30,
+  "shortEffect": "能让某些特定宝可梦 进化的神奇石头。 像太阳一样赤红。"
+ },
+ {
+  "id": "kings-rock",
+  "name": {
+   "en": "King’s Rock",
+   "zh": "王者之证"
+  },
+  "category": "held-items",
+  "flingPower": 30,
+  "shortEffect": "携带后进行攻击， 在造成伤害时， 有时会让对手畏缩。"
+ },
+ {
+  "id": "linking-cord",
+  "name": {
+   "en": "Linking Cord",
+   "zh": "联系绳"
+  },
+  "category": "evolution",
+  "flingPower": 30,
+  "shortEffect": "让宝可梦携带后升级，原本需要通信交换才能进化的宝可梦就会进化。进化后绳子会消失。"
+ }
+]

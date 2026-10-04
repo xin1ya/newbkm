@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "id": "hero_m",
+      "name": "男主角",
+      "heightM": 1.6,
+      "plan": "human",
+      "tris": 4425,
+      "fit": "height",
+      "bones": 20,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "jog",
+        "run",
+        "talk",
+        "wave",
+        "throw",
+        "ride",
+        "surf",
+        "sit",
+        "nod"
+      ],
+      "hitTime": {
+        "throw": 0.4666666666666667
+      },
+      "kind": "human",
+      "gaitSpeed": {
+        "walk": 1.023,
+        "jog": 3.392,
+        "run": 6.724
+      },
+      "eyeHeight": 1.464,
+      "handBone": "hand_r",
+      "palette": [],
+      "colors": {},
+      "recolor": [],
+      "file": "hero_m.glb",
+      "bytes": 584288,
+      "rawBytes": 1179852
+    }
+  ]
+}

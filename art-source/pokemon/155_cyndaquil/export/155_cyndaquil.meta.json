@@ -1,0 +1,21 @@
+{
+  "id": 155,
+  "name": "cyndaquil",
+  "heightM": 0.5,
+  "tris": 12928,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5333333333333333,
+    "attack_special": 0.8
+  }
+}

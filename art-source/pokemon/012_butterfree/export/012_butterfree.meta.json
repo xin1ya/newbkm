@@ -1,0 +1,26 @@
+{
+  "id": 12,
+  "name": "butterfree",
+  "heightM": 1.1,
+  "plan": "rigid",
+  "tris": 6264,
+  "fit": "height",
+  "bones": 13,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "012_butterfree_shiny.png"
+}

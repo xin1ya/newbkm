@@ -1,0 +1,26 @@
+{
+  "id": 164,
+  "name": "noctowl",
+  "heightM": 1.6,
+  "plan": "bird",
+  "tris": 9788,
+  "fit": "height",
+  "bones": 18,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.8666666666666667
+  },
+  "shiny": "164_noctowl_shiny.png"
+}

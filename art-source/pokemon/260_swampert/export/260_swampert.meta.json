@@ -1,0 +1,25 @@
+{
+  "id": 260,
+  "name": "swampert",
+  "heightM": 1.5,
+  "plan": "biped",
+  "tris": 8516,
+  "fit": "height",
+  "bones": 19,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "260_swampert_shiny.png"
+}

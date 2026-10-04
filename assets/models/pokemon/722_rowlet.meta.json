@@ -1,0 +1,22 @@
+{
+  "id": 722,
+  "name": "rowlet",
+  "heightM": 0.3,
+  "tris": 10492,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5333333333333333,
+    "attack_special": 0.6666666666666666
+  }
+}

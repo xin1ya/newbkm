@@ -1,0 +1,2270 @@
+[
+{
+"id": "v1f02486d7",
+"speaker": "？？？",
+"text": "……听得见吗？",
+"src": "story:dream-prelude",
+"voice": "voice-19",
+"speak": "……听得见吗？",
+"batch": "voice-19"
+},
+{
+"id": "v95687cc5c",
+"speaker": "？？？",
+"text": "翠澜的海，正在低声哭泣。",
+"src": "story:dream-prelude",
+"voice": "voice-19",
+"speak": "翠澜的海，正在低声哭泣。",
+"batch": "voice-19"
+},
+{
+"id": "vac866479n",
+"speaker": "？？？",
+"text": "五座岛屿被托起的那一天，我们立下了守护的约定。",
+"src": "story:dream-prelude",
+"voice": "voice-19",
+"speak": "五座岛屿被托起的那一天，我们立下了守护的约定。",
+"batch": "voice-19"
+},
+{
+"id": "v62f5140fh",
+"speaker": "？？？",
+"text": "可如今，约定的光正在一点点熄灭……",
+"src": "story:dream-prelude",
+"voice": "voice-19",
+"speak": "可如今，约定的光正在一点点熄灭……",
+"batch": "voice-19"
+},
+{
+"id": "v8a79c3b89",
+"speaker": "？？？",
+"text": "年轻的训练家啊——",
+"src": "story:dream-prelude",
+"voice": "voice-19",
+"speak": "年轻的训练家啊——",
+"batch": "voice-19"
+},
+{
+"id": "v58dd8790h",
+"speaker": "？？？",
+"text": "和你的伙伴一起，去看看这片群岛吧。",
+"src": "story:dream-prelude",
+"voice": "voice-19",
+"speak": "和你的伙伴一起，去看看这片群岛吧。",
+"batch": "voice-19"
+},
+{
+"id": "vbff8641dl",
+"speaker": "？？？",
+"text": "当五座岛的光再次连成一线，你就会明白一切。",
+"src": "story:dream-prelude",
+"voice": "voice-19",
+"speak": "当五座岛的光再次连成一线，你就会明白一切。",
+"batch": "voice-19"
+},
+{
+"id": "v23933209b",
+"speaker": "旁白",
+"text": "光芒像潮水一样退去……",
+"src": "story:dream-prelude",
+"voice": "voice-9",
+"speak": "光芒像潮水一样退去……",
+"batch": "voice-9a"
+},
+{
+"id": "v4a977b5e6",
+"speaker": "旁白",
+"text": "……是梦吗？",
+"src": "story:dream-prelude",
+"voice": "voice-9",
+"speak": "……是梦吗？",
+"batch": "voice-9a"
+},
+{
+"id": "v0a7919b2e",
+"speaker": "旁白",
+"text": "那个声音……好像在哪里听过。",
+"src": "story:dream-prelude",
+"voice": "voice-9",
+"speak": "那个声音……好像在哪里听过。",
+"batch": "voice-9a"
+},
+{
+"id": "v43b30b028",
+"speaker": "妈妈",
+"text": "小澜——起床啦！",
+"src": "story:dream-prelude",
+"voice": "voice-21",
+"speak": "小澜——起床啦！",
+"batch": "voice-21"
+},
+{
+"id": "va1728e8al",
+"speaker": "妈妈",
+"text": "木兰博士一早就打来电话，让你去研究所一趟！",
+"src": "story:dream-prelude",
+"voice": "voice-21",
+"speak": "木兰博士一早就打来电话，让你去研究所一趟！",
+"batch": "voice-21"
+},
+{
+"id": "vd8aa3fe8h",
+"speaker": "木兰博士",
+"text": "好选择！你们一定会成为最好的搭档。",
+"src": "story:starter-choice",
+"voice": "voice-20",
+"speak": "好选择！你们一定会成为最好的搭档。",
+"batch": "voice-20"
+},
+{
+"id": "va2721a34j",
+"speaker": "木兰博士",
+"text": "这些精灵球和伤药也拿去吧，路上用得着。",
+"src": "story:starter-choice",
+"voice": "voice-20",
+"speak": "这些精灵球和伤药也拿去吧，路上用得着。",
+"batch": "voice-20"
+},
+{
+"id": "v64df62a7w",
+"speaker": "木兰博士",
+"text": "萌芽草原往南就是翠澜镇，镇上湖心道馆的馆主沧澜是位出色的训练家。",
+"src": "story:starter-choice",
+"voice": "voice-20",
+"speak": "萌芽草原往南就是翠澜镇，镇上湖心道馆的馆主沧澜是位出色的训练家。",
+"batch": "voice-20"
+},
+{
+"id": "v7f63f0afm",
+"speaker": "木兰博士",
+"text": "去挑战她吧——顺便帮我留意群岛上的「异变」。",
+"src": "story:starter-choice",
+"voice": "voice-20",
+"speak": "去挑战她吧——顺便帮我留意群岛上的「异变」。",
+"batch": "voice-20"
+},
+{
+"id": "v4d55b4ac4",
+"speaker": "妈妈的声音",
+"text": "等一下！",
+"src": "story:no-starter-turnback",
+"voice": "voice-21",
+"speak": "等一下！",
+"batch": "voice-21"
+},
+{
+"id": "v8f880ce6h",
+"speaker": "妈妈的声音",
+"text": "没有宝可梦就走进草丛可是很危险的！",
+"src": "story:no-starter-turnback",
+"voice": "voice-21",
+"speak": "没有宝可梦就走进草丛可是很危险的！",
+"batch": "voice-21"
+},
+{
+"id": "v381c331cc",
+"speaker": "妈妈的声音",
+"text": "先去木兰博士的研究所吧。",
+"src": "story:no-starter-turnback",
+"voice": "voice-21",
+"speak": "先去木兰博士的研究所吧。",
+"batch": "voice-21"
+},
+{
+"id": "vde3ba60ai",
+"speaker": "旁白",
+"text": "灯塔底部的控制箱上结满了白色的盐霜。",
+"src": "story:lighthouse-relight",
+"voice": "voice-9",
+"speak": "灯塔底部的控制箱上结满了白色的盐霜。",
+"batch": "voice-9a"
+},
+{
+"id": "v0edf4307h",
+"speaker": "旁白",
+"text": "连接灯室的透镜驱动器也被卡住了……",
+"src": "story:lighthouse-relight",
+"voice": "voice-9",
+"speak": "连接灯室的透镜驱动器也被卡住了……",
+"batch": "voice-9a"
+},
+{
+"id": "v15b47f4fg",
+"speaker": "旁白",
+"text": "用力擦掉盐霜，把电闸推了上去——",
+"src": "story:lighthouse-relight",
+"voice": "voice-9",
+"speak": "用力擦掉盐霜，把电闸推了上去——",
+"batch": "voice-9a"
+},
+{
+"id": "v99f3f5a63",
+"speaker": "旁白",
+"text": "咔嗒！",
+"src": "story:lighthouse-relight",
+"voice": "voice-9",
+"speak": "咔嗒！",
+"batch": "voice-9a"
+},
+{
+"id": "v014ebe2bd",
+"speaker": "旁白",
+"text": "灯塔顶端亮起了明亮的光束！",
+"src": "story:lighthouse-relight",
+"voice": "voice-9",
+"speak": "灯塔顶端亮起了明亮的光束！",
+"batch": "voice-9a"
+},
+{
+"id": "v4679f785m",
+"speaker": "旁白",
+"text": "光芒划破海面上的雾气，远处的漩涡渐渐平息了。",
+"src": "story:lighthouse-relight",
+"voice": "voice-9",
+"speak": "光芒划破海面上的雾气，远处的漩涡渐渐平息了。",
+"batch": "voice-9a"
+},
+{
+"id": "vca4d1d628",
+"speaker": "灯塔守 老周",
+"text": "亮了！真的亮了！",
+"src": "story:lighthouse-relight",
+"voice": "voice-13",
+"speak": "亮了！真的亮了！",
+"batch": "voice-13a"
+},
+{
+"id": "va6995a1bq",
+"speaker": "灯塔守 老周",
+"text": "有这道光，渡船就能安全出港了。快去告诉渡船管理员吧！",
+"src": "story:lighthouse-relight",
+"voice": "voice-13",
+"speak": "有这道光，渡船就能安全出港了。快去告诉渡船管理员吧！",
+"batch": "voice-13a"
+},
+{
+"id": "v4a8d7c95c",
+"speaker": "旁白",
+"text": "还是先想想别的办法吧……",
+"src": "story:lighthouse-relight",
+"voice": "voice-9",
+"speak": "还是先想想别的办法吧……",
+"batch": "voice-9a"
+},
+{
+"id": "v87074b9ea",
+"speaker": "旁白",
+"text": "海风变得温暖起来……",
+"src": "story:cross-sea-end",
+"voice": "voice-9",
+"speak": "海风变得温暖起来……",
+"batch": "voice-9a"
+},
+{
+"id": "v48fbc1f8k",
+"speaker": "旁白",
+"text": "远处的海平线上，浮现出一片翡翠色的岛影。",
+"src": "story:cross-sea-end",
+"voice": "voice-9",
+"speak": "远处的海平线上，浮现出一片翡翠色的岛影。",
+"batch": "voice-9a"
+},
+{
+"id": "va55a1888a",
+"speaker": "旁白",
+"text": "那就是——碧潮群岛。",
+"src": "story:cross-sea-end",
+"voice": "voice-9",
+"speak": "那就是——碧潮群岛。",
+"batch": "voice-9a"
+},
+{
+"id": "v7acd65bbr",
+"speaker": "旁白",
+"text": "（航线尚未开通——先回到港湾市，继续探索萌芽群岛吧。）",
+"src": "story:cross-sea-end",
+"voice": "voice-9",
+"speak": "航线尚未开通——先回到港湾市，继续探索萌芽群岛吧。",
+"batch": "voice-9a"
+},
+{
+"id": "v5edceef9h",
+"speaker": "旁白",
+"text": "（这个孩子……怎么看都有点奇怪。）",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "这个孩子……怎么看都有点奇怪。",
+"batch": "voice-9a"
+},
+{
+"id": "v3dd361047",
+"speaker": "？？？",
+"text": "被、被发现了？",
+"src": "story:zorua-reveal",
+"voice": "voice-17",
+"speak": "被、被发现了？",
+"batch": "voice-17"
+},
+{
+"id": "v23b0b166n",
+"speaker": "旁白",
+"text": "一阵黑雾散开——小女孩变成了一只黑色的小狐狸！",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "一阵黑雾散开——小女孩变成了一只黑色的小狐狸！",
+"batch": "voice-9a"
+},
+{
+"id": "v906acdfb7",
+"speaker": "？？？",
+"text": "嘻嘻，猜错啦！",
+"src": "story:zorua-reveal",
+"voice": "voice-17",
+"speak": "嘻嘻，猜错啦！",
+"batch": "voice-17"
+},
+{
+"id": "v8bc53150n",
+"speaker": "旁白",
+"text": "小女孩转了个圈，身后露出一条毛茸茸的黑尾巴——",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "小女孩转了个圈，身后露出一条毛茸茸的黑尾巴——",
+"batch": "voice-9a"
+},
+{
+"id": "v102909e85",
+"speaker": "旁白",
+"text": "是索罗亚！",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "是索罗亚！",
+"batch": "voice-9b"
+},
+{
+"id": "vc13259f1f",
+"speaker": "旁白",
+"text": "索罗亚压低身子，眼睛亮晶晶的。",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "索罗亚压低身子，眼睛亮晶晶的。",
+"batch": "voice-9b"
+},
+{
+"id": "v3c7743999",
+"speaker": "旁白",
+"text": "它想试试你的实力！",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "它想试试你的实力！",
+"batch": "voice-9b"
+},
+{
+"id": "vc23a78eal",
+"speaker": "旁白",
+"text": "索罗亚气喘吁吁地坐下，却开心地摇起了尾巴。",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "索罗亚气喘吁吁地坐下，却开心地摇起了尾巴。",
+"batch": "voice-9b"
+},
+{
+"id": "v738f23aea",
+"speaker": "旁白",
+"text": "它蹭了蹭你的手心——",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "它蹭了蹭你的手心——",
+"batch": "voice-9b"
+},
+{
+"id": "va4e7c3808",
+"speaker": "旁白",
+"text": "看来它认可你了！",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "看来它认可你了！",
+"batch": "voice-9b"
+},
+{
+"id": "vca7aaadci",
+"speaker": "旁白",
+"text": "索罗亚咯咯笑着，一溜烟钻进了雾里……",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "索罗亚咯咯笑着，一溜烟钻进了雾里……",
+"batch": "voice-9b"
+},
+{
+"id": "v5adea139m",
+"speaker": "旁白",
+"text": "（它好像还在附近。再和它说话可以重新挑战。）",
+"src": "story:zorua-reveal",
+"voice": "voice-9",
+"speak": "它好像还在附近。再和它说话可以重新挑战。",
+"batch": "voice-9b"
+},
+{
+"id": "v62723c4bi",
+"speaker": "旁白",
+"text": "索罗亚从雾里探出头来，又想比一场了！",
+"src": "story:zorua-retry",
+"voice": "voice-9",
+"speak": "索罗亚从雾里探出头来，又想比一场了！",
+"batch": "voice-9b"
+},
+{
+"id": "vee11d8ccf",
+"speaker": "旁白",
+"text": "湿软的泥土上有一串小小的脚印。",
+"src": "story:zorua-footprints",
+"voice": "voice-9",
+"speak": "湿软的泥土上有一串小小的脚印。",
+"batch": "voice-9b"
+},
+{
+"id": "v6927843fd",
+"speaker": "旁白",
+"text": "脚印朝着雾的更深处延伸……",
+"src": "story:zorua-footprints",
+"voice": "voice-9",
+"speak": "脚印朝着雾的更深处延伸……",
+"batch": "voice-9b"
+},
+{
+"id": "v0d84fd7ac",
+"speaker": "旁白",
+"text": "浪花里漂着一只旧木箱……",
+"src": "story:fisher-tackle",
+"voice": "voice-9",
+"speak": "浪花里漂着一只旧木箱……",
+"batch": "voice-9b"
+},
+{
+"id": "v0cd06739l",
+"speaker": "旁白",
+"text": "箱盖上刻着一个「陈」字——是老陈的钓具箱！",
+"src": "story:fisher-tackle",
+"voice": "voice-9",
+"speak": "箱盖上刻着一个「陈」字——是老陈的钓具箱！",
+"batch": "voice-9b"
+},
+{
+"id": "v601cb04ca",
+"speaker": "旁白",
+"text": "把钓具箱绑在了身后。",
+"src": "story:fisher-tackle",
+"voice": "voice-9",
+"speak": "把钓具箱绑在了身后。",
+"batch": "voice-9b"
+},
+{
+"id": "v291b29e1a",
+"speaker": "旁白",
+"text": "回港湾市还给老陈吧。",
+"src": "story:fisher-tackle",
+"voice": "voice-9",
+"speak": "回港湾市还给老陈吧。",
+"batch": "voice-9b"
+},
+{
+"id": "v53668a64i",
+"speaker": "旁白",
+"text": "湖边的湿地里长着一株叶背泛蓝的药草。",
+"src": "story:herb-1",
+"voice": "voice-9",
+"speak": "湖边的湿地里长着一株叶背泛蓝的药草。",
+"batch": "voice-9b"
+},
+{
+"id": "v4be13aabg",
+"speaker": "旁白",
+"text": "是翠澜药草！小心地把它采了下来。",
+"src": "story:herb-1",
+"voice": "voice-9",
+"speak": "是翠澜药草！小心地把它采了下来。",
+"batch": "voice-9b"
+},
+{
+"id": "v7c4e7d9dh",
+"speaker": "妈妈",
+"text": "早上好！木兰博士一早就来过电话了。",
+"src": "npc:mom",
+"voice": "voice-21",
+"speak": "早上好！木兰博士一早就来过电话了。",
+"batch": "voice-21"
+},
+{
+"id": "v8a2d8ec6j",
+"speaker": "妈妈",
+"text": "她说研究所那边准备好了，让你过去一趟。",
+"src": "npc:mom",
+"voice": "voice-21",
+"speak": "她说研究所那边准备好了，让你过去一趟。",
+"batch": "voice-21"
+},
+{
+"id": "v8e66eb309",
+"speaker": "妈妈",
+"text": "别让博士等太久哦。",
+"src": "npc:mom",
+"voice": "voice-21",
+"speak": "别让博士等太久哦。",
+"batch": "voice-21"
+},
+{
+"id": "v6f6c7628e",
+"speaker": "妈妈",
+"text": "你的宝可梦看起来很有精神呢！",
+"src": "npc:mom",
+"voice": "voice-21",
+"speak": "你的宝可梦看起来很有精神呢！",
+"batch": "voice-21"
+},
+{
+"id": "v0ef6989ak",
+"speaker": "妈妈",
+"text": "翠澜镇就在萌芽草原的南边，道馆在湖中央。",
+"src": "npc:mom",
+"voice": "voice-21",
+"speak": "翠澜镇就在萌芽草原的南边，道馆在湖中央。",
+"batch": "voice-21"
+},
+{
+"id": "v10d8de1bi",
+"speaker": "妈妈",
+"text": "累了就回家休息，妈妈给你们留了点心。",
+"src": "npc:mom",
+"voice": "voice-21",
+"speak": "累了就回家休息，妈妈给你们留了点心。",
+"batch": "voice-21"
+},
+{
+"id": "vd3ef730e9",
+"speaker": "妈妈",
+"text": "这么晚了还要出门？",
+"src": "npc:mom",
+"voice": "voice-21",
+"speak": "这么晚了还要出门？",
+"batch": "voice-21"
+},
+{
+"id": "v7c693b06n",
+"speaker": "妈妈",
+"text": "夜里草原上会出现白天见不到的宝可梦，要小心哦。",
+"src": "npc:mom",
+"voice": "voice-21",
+"speak": "夜里草原上会出现白天见不到的宝可梦，要小心哦。",
+"batch": "voice-21"
+},
+{
+"id": "vc6c8e26d5",
+"speaker": "妈妈",
+"text": "路上小心！",
+"src": "npc:mom",
+"voice": "voice-21",
+"speak": "路上小心！",
+"batch": "voice-21"
+},
+{
+"id": "v39d3c4908",
+"speaker": "妈妈",
+"text": "记得常回家看看。",
+"src": "npc:mom",
+"voice": "voice-21",
+"speak": "记得常回家看看。",
+"batch": "voice-21"
+},
+{
+"id": "v15497fd7o",
+"speaker": "木兰博士",
+"text": "你来啦！我是木兰，研究翠澜群岛宝可梦生态的博士。",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "你来啦！我是木兰，研究翠澜群岛宝可梦生态的博士。",
+"batch": "voice-20"
+},
+{
+"id": "v8a37615cr",
+"speaker": "木兰博士",
+"text": "最近群岛各处都出现了奇怪的「异变」，我需要可靠的帮手。",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "最近群岛各处都出现了奇怪的「异变」，我需要可靠的帮手。",
+"batch": "voice-20"
+},
+{
+"id": "v5ccbb065r",
+"speaker": "木兰博士",
+"text": "桌上的精灵球里有三只宝可梦——木木枭、火球鼠、水跃鱼。",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "桌上的精灵球里有三只宝可梦——木木枭、火球鼠、水跃鱼。",
+"batch": "voice-20"
+},
+{
+"id": "vaee086d9b",
+"speaker": "木兰博士",
+"text": "选一只作为你的伙伴吧！",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "选一只作为你的伙伴吧！",
+"batch": "voice-20"
+},
+{
+"id": "v8239cb19b",
+"speaker": "木兰博士",
+"text": "你和伙伴相处得怎么样？",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "你和伙伴相处得怎么样？",
+"batch": "voice-20"
+},
+{
+"id": "ve40523d1e",
+"speaker": "木兰博士",
+"text": "翠澜镇的馆主沧澜擅长水属性。",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "翠澜镇的馆主沧澜擅长水属性。",
+"batch": "voice-20"
+},
+{
+"id": "v9a5ebbb6k",
+"speaker": "木兰博士",
+"text": "湖心道馆里的水位会变化，仔细观察再行动。",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "湖心道馆里的水位会变化，仔细观察再行动。",
+"batch": "voice-20"
+},
+{
+"id": "vd26d7c94d",
+"speaker": "木兰博士",
+"text": "听说港湾市的渡船停航了……",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "听说港湾市的渡船停航了……",
+"batch": "voice-20"
+},
+{
+"id": "v0695b82fl",
+"speaker": "木兰博士",
+"text": "异变是不是已经影响到海上了？去看看情况吧。",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "异变是不是已经影响到海上了？去看看情况吧。",
+"batch": "voice-20"
+},
+{
+"id": "v4832a8fdc",
+"speaker": "木兰博士",
+"text": "群岛的异变还有很多谜团。",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "群岛的异变还有很多谜团。",
+"batch": "voice-20"
+},
+{
+"id": "vf1ffe45ch",
+"speaker": "木兰博士",
+"text": "图鉴记录得越多，我们离真相就越近。",
+"src": "npc:magnolia",
+"voice": "voice-20",
+"speak": "图鉴记录得越多，我们离真相就越近。",
+"batch": "voice-20"
+},
+{
+"id": "v05d01584h",
+"speaker": "研究员小周",
+"text": "这台机器在记录群岛各地的能量波动。",
+"src": "npc:lab-aide-1",
+"voice": "voice-15",
+"speak": "这台机器在记录群岛各地的能量波动。",
+"batch": "voice-15"
+},
+{
+"id": "v20c8a05be",
+"speaker": "研究员小周",
+"text": "最近的读数……有点不太对劲。",
+"src": "npc:lab-aide-1",
+"voice": "voice-15",
+"speak": "最近的读数……有点不太对劲。",
+"batch": "voice-15"
+},
+{
+"id": "v2e77f63d7",
+"speaker": "研究员小周",
+"text": "又要加班了……",
+"src": "npc:lab-aide-1",
+"voice": "voice-15",
+"speak": "又要加班了……",
+"batch": "voice-15"
+},
+{
+"id": "vca76d2aaf",
+"speaker": "研究员小周",
+"text": "博士总是比我们来得早、走得晚。",
+"src": "npc:lab-aide-1",
+"voice": "voice-15",
+"speak": "博士总是比我们来得早、走得晚。",
+"batch": "voice-15"
+},
+{
+"id": "v0446f636d",
+"speaker": "研究员阿芳",
+"text": "三只宝可梦都很期待见到你。",
+"src": "npc:lab-aide-2",
+"voice": "voice-22",
+"speak": "三只宝可梦都很期待见到你。",
+"batch": "voice-22"
+},
+{
+"id": "v9173a872n",
+"speaker": "研究员阿芳",
+"text": "木木枭沉稳、火球鼠胆小但勇敢、水跃鱼特别黏人。",
+"src": "npc:lab-aide-2",
+"voice": "voice-22",
+"speak": "木木枭沉稳、火球鼠胆小但勇敢、水跃鱼特别黏人。",
+"batch": "voice-22"
+},
+{
+"id": "vaf4ccea8f",
+"speaker": "研究员阿芳",
+"text": "草丛里的宝可梦会被脚步声吓到。",
+"src": "npc:lab-aide-2",
+"voice": "voice-22",
+"speak": "草丛里的宝可梦会被脚步声吓到。",
+"batch": "voice-22"
+},
+{
+"id": "v5f6f02e1g",
+"speaker": "研究员阿芳",
+"text": "慢慢走、蹲低一点，就能靠近它们。",
+"src": "npc:lab-aide-2",
+"voice": "voice-22",
+"speak": "慢慢走、蹲低一点，就能靠近它们。",
+"batch": "voice-22"
+},
+{
+"id": "vfbadbfbfg",
+"speaker": "蒲婆婆",
+"text": "哎呀，好孩子，能帮婆婆一个忙吗？",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "哎呀，好孩子，能帮婆婆一个忙吗？",
+"batch": "voice-14"
+},
+{
+"id": "va5081994o",
+"speaker": "蒲婆婆",
+"text": "翠澜湖畔长着一种叶子泛蓝的药草，婆婆腿脚不便……",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "翠澜湖畔长着一种叶子泛蓝的药草，婆婆腿脚不便……",
+"batch": "voice-14"
+},
+{
+"id": "v022eb850k",
+"speaker": "蒲婆婆",
+"text": "帮我采 3 株回来吧，婆婆会好好谢你的。",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "帮我采 3 株回来吧，婆婆会好好谢你的。",
+"batch": "voice-14"
+},
+{
+"id": "vbc0b17c3g",
+"speaker": "蒲婆婆",
+"text": "哎呀，3 株翠澜药草，一株不少！",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "哎呀，3 株翠澜药草，一株不少！",
+"batch": "voice-14"
+},
+{
+"id": "vcec5c504b",
+"speaker": "蒲婆婆",
+"text": "叶子新鲜，采得真仔细。",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "叶子新鲜，采得真仔细。",
+"batch": "voice-14"
+},
+{
+"id": "v188640b1h",
+"speaker": "蒲婆婆",
+"text": "这些解毒药你拿着，出门在外用得上。",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "这些解毒药你拿着，出门在外用得上。",
+"batch": "voice-14"
+},
+{
+"id": "v1e0e2dafe",
+"speaker": "蒲婆婆",
+"text": "翠澜药草长在湖边潮湿的地方。",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "翠澜药草长在湖边潮湿的地方。",
+"batch": "voice-14"
+},
+{
+"id": "ve934b958f",
+"speaker": "蒲婆婆",
+"text": "叶子背面是蓝色的，别采错了哦。",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "叶子背面是蓝色的，别采错了哦。",
+"batch": "voice-14"
+},
+{
+"id": "vb53dade3b",
+"speaker": "蒲婆婆",
+"text": "多亏了你，药膏做好了。",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "多亏了你，药膏做好了。",
+"batch": "voice-14"
+},
+{
+"id": "v7d3e9894g",
+"speaker": "蒲婆婆",
+"text": "宝可梦中了毒，就给它用解毒药吧。",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "宝可梦中了毒，就给它用解毒药吧。",
+"batch": "voice-14"
+},
+{
+"id": "v360ce851b",
+"speaker": "蒲婆婆",
+"text": "早上的露水最养药草了。",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "早上的露水最养药草了。",
+"batch": "voice-14"
+},
+{
+"id": "vb830a4bej",
+"speaker": "蒲婆婆",
+"text": "年轻人，出门在外要照顾好自己和宝可梦。",
+"src": "npc:elder-pu",
+"voice": "voice-14",
+"speak": "年轻人，出门在外要照顾好自己和宝可梦。",
+"batch": "voice-14"
+},
+{
+"id": "v97af6a24f",
+"speaker": "小翼",
+"text": "你今天要去领宝可梦吗？好羡慕！",
+"src": "npc:sprout-kid",
+"voice": "voice-17",
+"speak": "你今天要去领宝可梦吗？好羡慕！",
+"batch": "voice-17"
+},
+{
+"id": "v2a5da223e",
+"speaker": "小翼",
+"text": "等我长大了，也要去博士那里！",
+"src": "npc:sprout-kid",
+"voice": "voice-17",
+"speak": "等我长大了，也要去博士那里！",
+"batch": "voice-17"
+},
+{
+"id": "v997f51fbe",
+"speaker": "小翼",
+"text": "我昨天在草原上看到一只波波！",
+"src": "npc:sprout-kid",
+"voice": "voice-17",
+"speak": "我昨天在草原上看到一只波波！",
+"batch": "voice-17"
+},
+{
+"id": "va2afd59be",
+"speaker": "小翼",
+"text": "它飞得好快，一下子就不见了。",
+"src": "npc:sprout-kid",
+"voice": "voice-17",
+"speak": "它飞得好快，一下子就不见了。",
+"batch": "voice-17"
+},
+{
+"id": "vcafa64eah",
+"speaker": "小铃",
+"text": "研究所的木兰博士很温柔，也很厉害。",
+"src": "npc:sprout-girl",
+"voice": "voice-17",
+"speak": "研究所的木兰博士很温柔，也很厉害。",
+"batch": "voice-17"
+},
+{
+"id": "v991f3d0cd",
+"speaker": "小铃",
+"text": "听说她年轻时走遍了五座岛。",
+"src": "npc:sprout-girl",
+"voice": "voice-17",
+"speak": "听说她年轻时走遍了五座岛。",
+"batch": "voice-17"
+},
+{
+"id": "v70222330f",
+"speaker": "小铃",
+"text": "哇，这是你的宝可梦吗？好可爱！",
+"src": "npc:sprout-girl",
+"voice": "voice-17",
+"speak": "哇，这是你的宝可梦吗？好可爱！",
+"batch": "voice-17"
+},
+{
+"id": "va77d50518",
+"speaker": "小铃",
+"text": "要好好对待它哦。",
+"src": "npc:sprout-girl",
+"voice": "voice-17",
+"speak": "要好好对待它哦。",
+"batch": "voice-17"
+},
+{
+"id": "va771583dd",
+"speaker": "老林",
+"text": "花坛里有时会躲着小宝可梦。",
+"src": "npc:sprout-gardener",
+"voice": "voice-13",
+"speak": "花坛里有时会躲着小宝可梦。",
+"batch": "voice-13a"
+},
+{
+"id": "vab093f63h",
+"speaker": "老林",
+"text": "别担心，它们不会弄坏花的——大概。",
+"src": "npc:sprout-gardener",
+"voice": "voice-13",
+"speak": "别担心，它们不会弄坏花的——大概。",
+"batch": "voice-13a"
+},
+{
+"id": "v500da611d",
+"speaker": "老林",
+"text": "忙了一天，坐下来看看星星。",
+"src": "npc:sprout-gardener",
+"voice": "voice-13",
+"speak": "忙了一天，坐下来看看星星。",
+"batch": "voice-13a"
+},
+{
+"id": "v0197ea93f",
+"speaker": "老林",
+"text": "萌芽镇的夜空是全群岛最干净的。",
+"src": "npc:sprout-gardener",
+"voice": "voice-13",
+"speak": "萌芽镇的夜空是全群岛最干净的。",
+"batch": "voice-13a"
+},
+{
+"id": "v8e41723f7",
+"speaker": "老林",
+"text": "今天天气不错。",
+"src": "npc:sprout-gardener",
+"voice": "voice-13",
+"speak": "今天天气不错。",
+"batch": "voice-13a"
+},
+{
+"id": "vbe0c7e29a",
+"speaker": "老船工 阿海",
+"text": "渡船恢复了？太好了！",
+"src": "npc:sprout-dock-keeper",
+"voice": "voice-13",
+"speak": "渡船恢复了？太好了！",
+"batch": "voice-13a"
+},
+{
+"id": "v32286d9cc",
+"speaker": "老船工 阿海",
+"text": "以后坐船就能去别的岛啦。",
+"src": "npc:sprout-dock-keeper",
+"voice": "voice-13",
+"speak": "以后坐船就能去别的岛啦。",
+"batch": "voice-13a"
+},
+{
+"id": "v5a7a064bd",
+"speaker": "老船工 阿海",
+"text": "这里的小船只能在近海转转。",
+"src": "npc:sprout-dock-keeper",
+"voice": "voice-13",
+"speak": "这里的小船只能在近海转转。",
+"batch": "voice-13a"
+},
+{
+"id": "vb2253a7ef",
+"speaker": "老船工 阿海",
+"text": "想去别的岛，得去港湾市坐渡船。",
+"src": "npc:sprout-dock-keeper",
+"voice": "voice-13",
+"speak": "想去别的岛，得去港湾市坐渡船。",
+"batch": "voice-13a"
+},
+{
+"id": "v909474adg",
+"speaker": "短裤小子 阿健",
+"text": "草丛里的宝可梦有时会突然冲出来！",
+"src": "npc:route1-youngster",
+"voice": "voice-17",
+"speak": "草丛里的宝可梦有时会突然冲出来！",
+"batch": "voice-17"
+},
+{
+"id": "vee4bdb48n",
+"speaker": "短裤小子 阿健",
+"text": "跑步会吓跑胆小的宝可梦，慢慢走更容易遇到它们。",
+"src": "npc:route1-youngster",
+"voice": "voice-17",
+"speak": "跑步会吓跑胆小的宝可梦，慢慢走更容易遇到它们。",
+"batch": "voice-17"
+},
+{
+"id": "v20712cd3k",
+"speaker": "短裤小子 阿健",
+"text": "没有宝可梦的话，最好别走进高高的草丛哦。",
+"src": "npc:route1-youngster",
+"voice": "voice-17",
+"speak": "没有宝可梦的话，最好别走进高高的草丛哦。",
+"batch": "voice-17"
+},
+{
+"id": "vccfc10c5d",
+"speaker": "短裤小子 阿健",
+"text": "野生宝可梦可是会扑上来的！",
+"src": "npc:route1-youngster",
+"voice": "voice-17",
+"speak": "野生宝可梦可是会扑上来的！",
+"batch": "voice-17"
+},
+{
+"id": "vefb9f1fed",
+"speaker": "捕虫少年 小树",
+"text": "早上的树林里绿毛虫最多了！",
+"src": "npc:route1-bugcatcher",
+"voice": "voice-17",
+"speak": "早上的树林里绿毛虫最多了！",
+"batch": "voice-17"
+},
+{
+"id": "v973988f2d",
+"speaker": "捕虫少年 小树",
+"text": "它们会吐丝，小心别被缠住。",
+"src": "npc:route1-bugcatcher",
+"voice": "voice-17",
+"speak": "它们会吐丝，小心别被缠住。",
+"batch": "voice-17"
+},
+{
+"id": "vf55b6fcah",
+"speaker": "捕虫少年 小树",
+"text": "虫系宝可梦进化得很快，很值得培养！",
+"src": "npc:route1-bugcatcher",
+"voice": "voice-17",
+"speak": "虫系宝可梦进化得很快，很值得培养！",
+"batch": "voice-17"
+},
+{
+"id": "v7d5a157fg",
+"speaker": "登山客 大石",
+"text": "夜里的草原会冒出走路草和小拉达。",
+"src": "npc:route1-hiker",
+"voice": "voice-15",
+"speak": "夜里的草原会冒出走路草和小拉达。",
+"batch": "voice-15"
+},
+{
+"id": "v53eb2971e",
+"speaker": "登山客 大石",
+"text": "要找它们的话，现在正是时候。",
+"src": "npc:route1-hiker",
+"voice": "voice-15",
+"speak": "要找它们的话，现在正是时候。",
+"batch": "voice-15"
+},
+{
+"id": "vd8c96f8f8",
+"speaker": "登山客 大石",
+"text": "我在这里歇歇脚。",
+"src": "npc:route1-hiker",
+"voice": "voice-15",
+"speak": "我在这里歇歇脚。",
+"batch": "voice-15"
+},
+{
+"id": "v42880249r",
+"speaker": "登山客 大石",
+"text": "往南走就是翠澜镇，往西能看到幻影之森——那边经常起雾。",
+"src": "npc:route1-hiker",
+"voice": "voice-15",
+"speak": "往南走就是翠澜镇，往西能看到幻影之森——那边经常起雾。",
+"batch": "voice-15"
+},
+{
+"id": "v205c46dda",
+"speaker": "乔伊",
+"text": "欢迎来到宝可梦中心！",
+"src": "npc:nurse",
+"voice": "voice-21",
+"speak": "欢迎来到宝可梦中心！",
+"batch": "voice-21"
+},
+{
+"id": "vbef419b9e",
+"speaker": "乔伊",
+"text": "晚上好，欢迎来到宝可梦中心。",
+"src": "npc:nurse",
+"voice": "voice-21",
+"speak": "晚上好，欢迎来到宝可梦中心。",
+"batch": "voice-21"
+},
+{
+"id": "vbd9773b8b",
+"speaker": "乔伊",
+"text": "宝可梦中心全天开放哦。",
+"src": "npc:nurse",
+"voice": "voice-21",
+"speak": "宝可梦中心全天开放哦。",
+"batch": "voice-21"
+},
+{
+"id": "v50b557d7i",
+"speaker": "旅行者 美穗",
+"text": "宝可梦中心随时都可以免费治疗宝可梦。",
+"src": "npc:center-visitor",
+"voice": "voice-22",
+"speak": "宝可梦中心随时都可以免费治疗宝可梦。",
+"batch": "voice-22"
+},
+{
+"id": "v5ddca3e7g",
+"speaker": "旅行者 美穗",
+"text": "出发去冒险之前，一定要先来这里。",
+"src": "npc:center-visitor",
+"voice": "voice-22",
+"speak": "出发去冒险之前，一定要先来这里。",
+"batch": "voice-22"
+},
+{
+"id": "v7ee28a2a9",
+"speaker": "店员",
+"text": "欢迎光临友好商店！",
+"src": "npc:clerk",
+"voice": "voice-22",
+"speak": "欢迎光临友好商店！",
+"batch": "voice-22"
+},
+{
+"id": "v410c8be5a",
+"speaker": "主妇 秋子",
+"text": "伤药买多少都不嫌多。",
+"src": "npc:mart-shopper",
+"voice": "voice-21",
+"speak": "伤药买多少都不嫌多。",
+"batch": "voice-21"
+},
+{
+"id": "v55b1ee6cp",
+"speaker": "主妇 秋子",
+"text": "精灵球也要多备几个——遇到喜欢的宝可梦可不能错过。",
+"src": "npc:mart-shopper",
+"voice": "voice-21",
+"speak": "精灵球也要多备几个——遇到喜欢的宝可梦可不能错过。",
+"batch": "voice-21"
+},
+{
+"id": "v697d8b90m",
+"speaker": "少女 雾音",
+"text": "你相信吗？我在幻影之森里看到了一个「人」……",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "你相信吗？我在幻影之森里看到了一个「人」……",
+"batch": "voice-22"
+},
+{
+"id": "v9844540ak",
+"speaker": "少女 雾音",
+"text": "可是一眨眼，它就变成了一只黑色的小狐狸！",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "可是一眨眼，它就变成了一只黑色的小狐狸！",
+"batch": "voice-22"
+},
+{
+"id": "v64e404a5p",
+"speaker": "少女 雾音",
+"text": "雾气会改变森林里的路，只有跟着它的脚印才不会迷路。",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "雾气会改变森林里的路，只有跟着它的脚印才不会迷路。",
+"batch": "voice-22"
+},
+{
+"id": "v334426ea9",
+"speaker": "少女 雾音",
+"text": "你能去帮我看看吗？",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "你能去帮我看看吗？",
+"batch": "voice-22"
+},
+{
+"id": "v2ef4e4d5d",
+"speaker": "少女 雾音",
+"text": "幻影之森在萌芽草原的西边。",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "幻影之森在萌芽草原的西边。",
+"batch": "voice-22"
+},
+{
+"id": "v42e626a9g",
+"speaker": "少女 雾音",
+"text": "起雾的时候，那只小狐狸最常出现。",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "起雾的时候，那只小狐狸最常出现。",
+"batch": "voice-22"
+},
+{
+"id": "v54fbf443h",
+"speaker": "少女 雾音",
+"text": "原来是索罗亚！它会变成别人的样子。",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "原来是索罗亚！它会变成别人的样子。",
+"batch": "voice-22"
+},
+{
+"id": "v09a5513eg",
+"speaker": "少女 雾音",
+"text": "它愿意跟着你，说明它很信任你呢。",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "它愿意跟着你，说明它很信任你呢。",
+"batch": "voice-22"
+},
+{
+"id": "v81096d32b",
+"speaker": "少女 雾音",
+"text": "晚上的森林更可怕了……",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "晚上的森林更可怕了……",
+"batch": "voice-22"
+},
+{
+"id": "vc080b817f",
+"speaker": "少女 雾音",
+"text": "可我总觉得，那只小狐狸在等人。",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "可我总觉得，那只小狐狸在等人。",
+"batch": "voice-22"
+},
+{
+"id": "v42dacf60d",
+"speaker": "少女 雾音",
+"text": "幻影之森里总有奇怪的传闻。",
+"src": "npc:cuilan-rumor-girl",
+"voice": "voice-22",
+"speak": "幻影之森里总有奇怪的传闻。",
+"batch": "voice-22"
+},
+{
+"id": "vb20c03c69",
+"speaker": "钓鱼老伯",
+"text": "翠澜湖的水特别清。",
+"src": "npc:cuilan-old-man",
+"voice": "voice-13",
+"speak": "翠澜湖的水特别清。",
+"batch": "voice-13a"
+},
+{
+"id": "v09c0aadel",
+"speaker": "钓鱼老伯",
+"text": "湖心的道馆，是我年轻时和大家一起盖起来的。",
+"src": "npc:cuilan-old-man",
+"voice": "voice-13",
+"speak": "湖心的道馆，是我年轻时和大家一起盖起来的。",
+"batch": "voice-13a"
+},
+{
+"id": "v254b4028a",
+"speaker": "钓鱼老伯",
+"text": "你赢了沧澜？了不起！",
+"src": "npc:cuilan-old-man",
+"voice": "voice-13",
+"speak": "你赢了沧澜？了不起！",
+"batch": "voice-13a"
+},
+{
+"id": "v8ed686bci",
+"speaker": "钓鱼老伯",
+"text": "有了冲浪的本领，就能去湖对岸看看了。",
+"src": "npc:cuilan-old-man",
+"voice": "voice-13",
+"speak": "有了冲浪的本领，就能去湖对岸看看了。",
+"batch": "voice-13a"
+},
+{
+"id": "v135f938b8",
+"speaker": "道馆职员",
+"text": "道馆正在准备中。",
+"src": "npc:gym-bridge-guard",
+"voice": "voice-15",
+"speak": "道馆正在准备中。",
+"batch": "voice-15"
+},
+{
+"id": "v88f41324h",
+"speaker": "道馆职员",
+"text": "先去萌芽镇找木兰博士领取宝可梦吧。",
+"src": "npc:gym-bridge-guard",
+"voice": "voice-15",
+"speak": "先去萌芽镇找木兰博士领取宝可梦吧。",
+"batch": "voice-15"
+},
+{
+"id": "vb026a7549",
+"speaker": "道馆职员",
+"text": "挑战者吗？请过桥。",
+"src": "npc:gym-bridge-guard",
+"voice": "voice-15",
+"speak": "挑战者吗？请过桥。",
+"batch": "voice-15"
+},
+{
+"id": "v0a1e996bb",
+"speaker": "道馆职员",
+"text": "馆主沧澜在湖心等着你。",
+"src": "npc:gym-bridge-guard",
+"voice": "voice-15",
+"speak": "馆主沧澜在湖心等着你。",
+"batch": "voice-15"
+},
+{
+"id": "ve2888509a",
+"speaker": "道馆职员",
+"text": "恭喜你拿到翠澜徽章！",
+"src": "npc:gym-bridge-guard",
+"voice": "voice-15",
+"speak": "恭喜你拿到翠澜徽章！",
+"batch": "voice-15"
+},
+{
+"id": "v8b194467a",
+"speaker": "道馆职员",
+"text": "这座桥通往翠澜道馆。",
+"src": "npc:gym-bridge-guard",
+"voice": "voice-15",
+"speak": "这座桥通往翠澜道馆。",
+"batch": "voice-15"
+},
+{
+"id": "v2bd2ecc78",
+"speaker": "道馆向导",
+"text": "嘿，未来的冠军！",
+"src": "npc:gym-guide",
+"voice": "voice-15",
+"speak": "嘿，未来的冠军！",
+"batch": "voice-15"
+},
+{
+"id": "v67afdf26r",
+"speaker": "道馆向导",
+"text": "沧澜用的是水属性宝可梦。草属性和电属性的招式会很有效！",
+"src": "npc:gym-guide",
+"voice": "voice-15",
+"speak": "沧澜用的是水属性宝可梦。草属性和电属性的招式会很有效！",
+"batch": "voice-15"
+},
+{
+"id": "vdcb1b349n",
+"speaker": "道馆向导",
+"text": "池子里的水位由阀门控制，墙上的告示牌写着规则。",
+"src": "npc:gym-guide",
+"voice": "voice-15",
+"speak": "池子里的水位由阀门控制，墙上的告示牌写着规则。",
+"batch": "voice-15"
+},
+{
+"id": "v97811c63k",
+"speaker": "道馆向导",
+"text": "想清楚先转哪一个阀门，别把自己困在岛上！",
+"src": "npc:gym-guide",
+"voice": "voice-15",
+"speak": "想清楚先转哪一个阀门，别把自己困在岛上！",
+"batch": "voice-15"
+},
+{
+"id": "v7757585a6",
+"speaker": "道馆向导",
+"text": "漂亮的一战！",
+"src": "npc:gym-guide",
+"voice": "voice-15",
+"speak": "漂亮的一战！",
+"batch": "voice-15"
+},
+{
+"id": "v19fc0d01e",
+"speaker": "道馆向导",
+"text": "群岛上还有更多道馆在等着你。",
+"src": "npc:gym-guide",
+"voice": "voice-15",
+"speak": "群岛上还有更多道馆在等着你。",
+"batch": "voice-15"
+},
+{
+"id": "v67871ce49",
+"speaker": "道馆向导",
+"text": "欢迎来到翠澜道馆！",
+"src": "npc:gym-guide",
+"voice": "voice-15",
+"speak": "欢迎来到翠澜道馆！",
+"batch": "voice-15"
+},
+{
+"id": "ved06d4bc9",
+"speaker": "沧澜",
+"text": "你已经证明了自己。",
+"src": "npc:canglan",
+"voice": "voice-22",
+"speak": "你已经证明了自己。",
+"batch": "voice-22"
+},
+{
+"id": "v9be987f7h",
+"speaker": "沧澜",
+"text": "带着翠澜徽章，去更远的海上看看吧。",
+"src": "npc:canglan",
+"voice": "voice-22",
+"speak": "带着翠澜徽章，去更远的海上看看吧。",
+"batch": "voice-22"
+},
+{
+"id": "v18cf586cf",
+"speaker": "沧澜",
+"text": "等你有了宝可梦，再来挑战我吧。",
+"src": "npc:canglan",
+"voice": "voice-22",
+"speak": "等你有了宝可梦，再来挑战我吧。",
+"batch": "voice-22"
+},
+{
+"id": "v99c791f4o",
+"speaker": "阿浪",
+"text": "池子里的水位是连动的：放掉水，石栈道就露出来了。",
+"src": "npc:gym-trainer-1",
+"voice": "voice-15",
+"speak": "池子里的水位是连动的：放掉水，石栈道就露出来了。",
+"batch": "voice-15"
+},
+{
+"id": "vf2711ddcm",
+"speaker": "阿浪",
+"text": "不过木筏也会跟着沉下去，别把自己困在岛上哦。",
+"src": "npc:gym-trainer-1",
+"voice": "voice-15",
+"speak": "不过木筏也会跟着沉下去，别把自己困在岛上哦。",
+"batch": "voice-15"
+},
+{
+"id": "v2a424020d",
+"speaker": "阿浪",
+"text": "你连馆主都赢了……我服了！",
+"src": "npc:gym-trainer-1",
+"voice": "voice-15",
+"speak": "你连馆主都赢了……我服了！",
+"batch": "voice-15"
+},
+{
+"id": "v557c75f7j",
+"speaker": "小汐",
+"text": "再把水位升回去，木筏就会浮到馆主台前。",
+"src": "npc:gym-trainer-2",
+"voice": "voice-22",
+"speak": "再把水位升回去，木筏就会浮到馆主台前。",
+"batch": "voice-22"
+},
+{
+"id": "v436beaeck",
+"speaker": "小汐",
+"text": "沧澜大人的暴鲤龙非常凶猛，小心它的威吓。",
+"src": "npc:gym-trainer-2",
+"voice": "voice-22",
+"speak": "沧澜大人的暴鲤龙非常凶猛，小心它的威吓。",
+"batch": "voice-22"
+},
+{
+"id": "v0231de74c",
+"speaker": "渔夫 老陈",
+"text": "哦？是个年轻的训练家啊。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "哦？是个年轻的训练家啊。",
+"batch": "voice-13a"
+},
+{
+"id": "v968c871as",
+"speaker": "渔夫 老陈",
+"text": "钓鱼可是港湾市的传统！这根旧钓竿送给你，拿去试试手气吧。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "钓鱼可是港湾市的传统！这根旧钓竿送给你，拿去试试手气吧。",
+"batch": "voice-13a"
+},
+{
+"id": "vdc58b0edd",
+"speaker": "渔夫 老陈",
+"text": "面朝水面按 F 就能抛竿。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "面朝水面按 F 就能抛竿。",
+"batch": "voice-13a"
+},
+{
+"id": "veacdc8afo",
+"speaker": "渔夫 老陈",
+"text": "按住蓄力、松开抛出；浮漂猛地一沉的瞬间赶紧拉竿！",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "按住蓄力、松开抛出；浮漂猛地一沉的瞬间赶紧拉竿！",
+"batch": "voice-13a"
+},
+{
+"id": "v0a275c25k",
+"speaker": "渔夫 老陈",
+"text": "收线的时候别太用力，线绷太紧可是会断的。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "收线的时候别太用力，线绷太紧可是会断的。",
+"batch": "voice-13a"
+},
+{
+"id": "v20bc21d1e",
+"speaker": "渔夫 老陈",
+"text": "码头边冒泡的地方，鱼特别多。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "码头边冒泡的地方，鱼特别多。",
+"batch": "voice-13a"
+},
+{
+"id": "v589ffb8ck",
+"speaker": "渔夫 老陈",
+"text": "唉，昨天出海遇上怪浪，钓具箱被卷走了……",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "唉，昨天出海遇上怪浪，钓具箱被卷走了……",
+"batch": "voice-13a"
+},
+{
+"id": "vaa5f24b0b",
+"speaker": "渔夫 老陈",
+"text": "那可是我爷爷传下来的！",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "那可是我爷爷传下来的！",
+"batch": "voice-13a"
+},
+{
+"id": "v47b7c880m",
+"speaker": "渔夫 老陈",
+"text": "如果你能去外海找找，我就把我的好钓竿送给你。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "如果你能去外海找找，我就把我的好钓竿送给你。",
+"batch": "voice-13a"
+},
+{
+"id": "v15b96dcac",
+"speaker": "渔夫 老陈",
+"text": "这、这是……我的钓具箱！",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "这、这是……我的钓具箱！",
+"batch": "voice-13a"
+},
+{
+"id": "v5a6f9b0ai",
+"speaker": "渔夫 老陈",
+"text": "箱子上的「陈」字还是我爷爷亲手刻的。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "箱子上的「陈」字还是我爷爷亲手刻的。",
+"batch": "voice-13a"
+},
+{
+"id": "v0cc97150d",
+"speaker": "渔夫 老陈",
+"text": "说好的，这根好钓竿送给你！",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "说好的，这根好钓竿送给你！",
+"batch": "voice-13a"
+},
+{
+"id": "v07e0233cn",
+"speaker": "渔夫 老陈",
+"text": "钓具箱应该漂到港湾外海去了，大概在码头东南边。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "钓具箱应该漂到港湾外海去了，大概在码头东南边。",
+"batch": "voice-13b"
+},
+{
+"id": "vb541c8b5c",
+"speaker": "渔夫 老陈",
+"text": "学会冲浪之后才能到那里。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "学会冲浪之后才能到那里。",
+"batch": "voice-13b"
+},
+{
+"id": "v34d75d85d",
+"speaker": "渔夫 老陈",
+"text": "真的是我的钓具箱！谢谢你！",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "真的是我的钓具箱！谢谢你！",
+"batch": "voice-13b"
+},
+{
+"id": "v39f3690ei",
+"speaker": "渔夫 老陈",
+"text": "好钓竿能钓到更大的宝可梦，好好用它。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "好钓竿能钓到更大的宝可梦，好好用它。",
+"batch": "voice-13b"
+},
+{
+"id": "v839b959da",
+"speaker": "渔夫 老陈",
+"text": "收工啦，明天再出海。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "收工啦，明天再出海。",
+"batch": "voice-13b"
+},
+{
+"id": "vd8bbaad97",
+"speaker": "渔夫 老陈",
+"text": "钓鱼要有耐心。",
+"src": "npc:harbor-fisherman",
+"voice": "voice-13",
+"speak": "钓鱼要有耐心。",
+"batch": "voice-13b"
+},
+{
+"id": "vdb9fca83g",
+"speaker": "主持人 阿潮",
+"text": "港湾市钓鱼挑战赛，现在开始报名！",
+"src": "npc:contest-host",
+"voice": "voice-15",
+"speak": "港湾市钓鱼挑战赛，现在开始报名！",
+"batch": "voice-15"
+},
+{
+"id": "v5af348a0t",
+"speaker": "主持人 阿潮",
+"text": "规则很简单：钓到鲤鱼王、玛瑙水母，还有夜里才出现的海星星。",
+"src": "npc:contest-host",
+"voice": "voice-15",
+"speak": "规则很简单：钓到鲤鱼王、玛瑙水母，还有夜里才出现的海星星。",
+"batch": "voice-15"
+},
+{
+"id": "v60a6dc81b",
+"speaker": "主持人 阿潮",
+"text": "全部完成就来找我领奖！",
+"src": "npc:contest-host",
+"voice": "voice-15",
+"speak": "全部完成就来找我领奖！",
+"batch": "voice-15"
+},
+{
+"id": "vd5a3007bj",
+"speaker": "主持人 阿潮",
+"text": "鲤鱼王、玛瑙水母、海星星——全部到齐！",
+"src": "npc:contest-host",
+"voice": "voice-15",
+"speak": "鲤鱼王、玛瑙水母、海星星——全部到齐！",
+"batch": "voice-15"
+},
+{
+"id": "vacd3483fh",
+"speaker": "主持人 阿潮",
+"text": "恭喜你，本届钓鱼大赛的冠军就是你！",
+"src": "npc:contest-host",
+"voice": "voice-15",
+"speak": "恭喜你，本届钓鱼大赛的冠军就是你！",
+"batch": "voice-15"
+},
+{
+"id": "v07755aceq",
+"speaker": "主持人 阿潮",
+"text": "加油！要按顺序钓哦：鲤鱼王、玛瑙水母，最后是海星星。",
+"src": "npc:contest-host",
+"voice": "voice-15",
+"speak": "加油！要按顺序钓哦：鲤鱼王、玛瑙水母，最后是海星星。",
+"batch": "voice-15"
+},
+{
+"id": "vfbf85c3ci",
+"speaker": "主持人 阿潮",
+"text": "海星星只在夜里出现，而且要用好钓竿。",
+"src": "npc:contest-host",
+"voice": "voice-15",
+"speak": "海星星只在夜里出现，而且要用好钓竿。",
+"batch": "voice-15"
+},
+{
+"id": "v18b56ee9h",
+"speaker": "主持人 阿潮",
+"text": "冠军就是你！厉害钓竿用得还顺手吗？",
+"src": "npc:contest-host",
+"voice": "voice-15",
+"speak": "冠军就是你！厉害钓竿用得还顺手吗？",
+"batch": "voice-15"
+},
+{
+"id": "v15c1eb2ac",
+"speaker": "主持人 阿潮",
+"text": "下一届大赛也要来参加哦！",
+"src": "npc:contest-host",
+"voice": "voice-15",
+"speak": "下一届大赛也要来参加哦！",
+"batch": "voice-15"
+},
+{
+"id": "v29a1d4f8f",
+"speaker": "主持人 阿潮",
+"text": "钓鱼大赛需要有钓竿才能参加哦。",
+"src": "npc:contest-host",
+"voice": "voice-15",
+"speak": "钓鱼大赛需要有钓竿才能参加哦。",
+"batch": "voice-15"
+},
+{
+"id": "v08c073a9f",
+"speaker": "渡船管理员",
+"text": "灯塔亮了！我在码头上都看见了！",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "灯塔亮了！我在码头上都看见了！",
+"batch": "voice-15"
+},
+{
+"id": "vc51dbbf4h",
+"speaker": "渡船管理员",
+"text": "有灯塔指引，船长也同意恢复航行了。",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "有灯塔指引，船长也同意恢复航行了。",
+"batch": "voice-15"
+},
+{
+"id": "vff2a3b13k",
+"speaker": "渡船管理员",
+"text": "这是渡船船票——以后拿着它就能随时坐船。",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "这是渡船船票——以后拿着它就能随时坐船。",
+"batch": "voice-15"
+},
+{
+"id": "v15f61fe4f",
+"speaker": "渡船管理员",
+"text": "灯塔守老周就在北边的灯塔那里。",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "灯塔守老周就在北边的灯塔那里。",
+"batch": "voice-15"
+},
+{
+"id": "vace957f2h",
+"speaker": "渡船管理员",
+"text": "只要灯塔重新亮起来，船就能出港了。",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "只要灯塔重新亮起来，船就能出港了。",
+"batch": "voice-15"
+},
+{
+"id": "vc38b9fadb",
+"speaker": "渡船管理员",
+"text": "抱歉，渡船暂时停航了。",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "抱歉，渡船暂时停航了。",
+"batch": "voice-15"
+},
+{
+"id": "va4f35ffbj",
+"speaker": "渡船管理员",
+"text": "外海最近总有奇怪的漩涡，还起了怪雾……",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "外海最近总有奇怪的漩涡，还起了怪雾……",
+"batch": "voice-15"
+},
+{
+"id": "vdb0c6285t",
+"speaker": "渡船管理员",
+"text": "更糟的是，灯塔前几天突然熄灭了，船长说没有灯塔指引太危险。",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "更糟的是，灯塔前几天突然熄灭了，船长说没有灯塔指引太危险。",
+"batch": "voice-15"
+},
+{
+"id": "v0d91a18dg",
+"speaker": "渡船管理员",
+"text": "你能去灯塔问问老周是怎么回事吗？",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "你能去灯塔问问老周是怎么回事吗？",
+"batch": "voice-15"
+},
+{
+"id": "v203eddd78",
+"speaker": "渡船管理员",
+"text": "渡船恢复运行了！",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "渡船恢复运行了！",
+"batch": "voice-15"
+},
+{
+"id": "vc58985dai",
+"speaker": "渡船管理员",
+"text": "不过去碧潮群岛的正式航班还在排期……",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "不过去碧潮群岛的正式航班还在排期……",
+"batch": "voice-15"
+},
+{
+"id": "v6c3fc5c1r",
+"speaker": "渡船管理员",
+"text": "会冲浪的话，从码头往东横渡水路 1 也能看到碧潮群岛。",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "会冲浪的话，从码头往东横渡水路 1 也能看到碧潮群岛。",
+"batch": "voice-15"
+},
+{
+"id": "v28b82739b",
+"speaker": "渡船管理员",
+"text": "这里是港湾市渡船码头。",
+"src": "npc:ferry-clerk",
+"voice": "voice-15",
+"speak": "这里是港湾市渡船码头。",
+"batch": "voice-15"
+},
+{
+"id": "v5ff6eeb1a",
+"speaker": "水手 大海",
+"text": "我跑过五座岛的航线。",
+"src": "npc:harbor-sailor",
+"voice": "voice-15",
+"speak": "我跑过五座岛的航线。",
+"batch": "voice-15"
+},
+{
+"id": "ve7f8ae7dl",
+"speaker": "水手 大海",
+"text": "碧潮群岛的海水是翡翠色的，你一定要去看看！",
+"src": "npc:harbor-sailor",
+"voice": "voice-15",
+"speak": "碧潮群岛的海水是翡翠色的，你一定要去看看！",
+"batch": "voice-15"
+},
+{
+"id": "vaa371994b",
+"speaker": "水手 大海",
+"text": "喝完这杯就回船上睡觉。",
+"src": "npc:harbor-sailor",
+"voice": "voice-15",
+"speak": "喝完这杯就回船上睡觉。",
+"batch": "voice-15"
+},
+{
+"id": "vc68f5a858",
+"speaker": "小男孩 阿帆",
+"text": "我长大要当船长！",
+"src": "npc:harbor-kid",
+"voice": "voice-17",
+"speak": "我长大要当船长！",
+"batch": "voice-17"
+},
+{
+"id": "ved4250efg",
+"speaker": "小男孩 阿帆",
+"text": "灯塔那边晚上会亮起来，超漂亮的。",
+"src": "npc:harbor-kid",
+"voice": "voice-17",
+"speak": "灯塔那边晚上会亮起来，超漂亮的。",
+"batch": "voice-17"
+},
+{
+"id": "v34d097b9f",
+"speaker": "灯塔守 老周",
+"text": "灯塔又亮起来了，真是多亏了你。",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "灯塔又亮起来了，真是多亏了你。",
+"batch": "voice-13b"
+},
+{
+"id": "v6c9650d1b",
+"speaker": "灯塔守 老周",
+"text": "快去告诉渡船管理员吧！",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "快去告诉渡船管理员吧！",
+"batch": "voice-13b"
+},
+{
+"id": "vd0799524a",
+"speaker": "灯塔守 老周",
+"text": "控制箱就在灯塔脚下。",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "控制箱就在灯塔脚下。",
+"batch": "voice-13b"
+},
+{
+"id": "vab2a681dg",
+"speaker": "灯塔守 老周",
+"text": "把盐霜擦干净、重新合上电闸就行。",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "把盐霜擦干净、重新合上电闸就行。",
+"batch": "voice-13b"
+},
+{
+"id": "v1bce20bcd",
+"speaker": "灯塔守 老周",
+"text": "渡船管理员让你来的？唉……",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "渡船管理员让你来的？唉……",
+"batch": "voice-13b"
+},
+{
+"id": "vc58a657bp",
+"speaker": "灯塔守 老周",
+"text": "前几天夜里，海上漫过来一阵怪雾，第二天灯塔就熄了。",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "前几天夜里，海上漫过来一阵怪雾，第二天灯塔就熄了。",
+"batch": "voice-13b"
+},
+{
+"id": "vbdffe7a9x",
+"speaker": "灯塔守 老周",
+"text": "控制箱上结满了白花花的盐霜，电闸被卡死，我这把老骨头怎么也推不动。",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "控制箱上结满了白花花的盐霜，电闸被卡死，我这把老骨头怎么也推不动。",
+"batch": "voice-13b"
+},
+{
+"id": "v762c579dh",
+"speaker": "灯塔守 老周",
+"text": "年轻人，你能帮我把灯塔重新点亮吗？",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "年轻人，你能帮我把灯塔重新点亮吗？",
+"batch": "voice-13b"
+},
+{
+"id": "v4a8c46a2c",
+"speaker": "灯塔守 老周",
+"text": "有灯塔在，船就不会迷路。",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "有灯塔在，船就不会迷路。",
+"batch": "voice-13b"
+},
+{
+"id": "vfd4b5a39h",
+"speaker": "灯塔守 老周",
+"text": "可那阵怪雾……到底是从哪儿来的呢？",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "可那阵怪雾……到底是从哪儿来的呢？",
+"batch": "voice-13b"
+},
+{
+"id": "vb840aa58a",
+"speaker": "灯塔守 老周",
+"text": "夜里的灯塔最漂亮了。",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "夜里的灯塔最漂亮了。",
+"batch": "voice-13b"
+},
+{
+"id": "v27f87082o",
+"speaker": "灯塔守 老周",
+"text": "光束扫过海面的时候，偶尔能看到跃出水面的宝可梦。",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "光束扫过海面的时候，偶尔能看到跃出水面的宝可梦。",
+"batch": "voice-13b"
+},
+{
+"id": "v96b21b9ad",
+"speaker": "灯塔守 老周",
+"text": "灯塔的光能照到很远的海面。",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "灯塔的光能照到很远的海面。",
+"batch": "voice-13b"
+},
+{
+"id": "v961c0348h",
+"speaker": "灯塔守 老周",
+"text": "可最近，海上起了灯也照不透的雾……",
+"src": "npc:lighthouse-keeper",
+"voice": "voice-13",
+"speak": "可最近，海上起了灯也照不透的雾……",
+"batch": "voice-13b"
+},
+{
+"id": "v49c4d3f4d",
+"speaker": "鱼贩 阿美",
+"text": "新鲜的海货！今早刚上岸的！",
+"src": "npc:vendor-fish",
+"voice": "voice-22",
+"speak": "新鲜的海货！今早刚上岸的！",
+"batch": "voice-22"
+},
+{
+"id": "v3e87b890o",
+"speaker": "鱼贩 阿美",
+"text": "渔船偶尔会从海底捞上来闪闪发亮的石头，要看看吗？",
+"src": "npc:vendor-fish",
+"voice": "voice-22",
+"speak": "渔船偶尔会从海底捞上来闪闪发亮的石头，要看看吗？",
+"batch": "voice-22"
+},
+{
+"id": "vb3d79136c",
+"speaker": "果贩 老吴",
+"text": "树果能帮宝可梦恢复体力。",
+"src": "npc:vendor-fruit",
+"voice": "voice-13",
+"speak": "树果能帮宝可梦恢复体力。",
+"batch": "voice-13b"
+},
+{
+"id": "vfa27a7d2e",
+"speaker": "果贩 老吴",
+"text": "橙橙果最受欢迎，要来几个吗？",
+"src": "npc:vendor-fruit",
+"voice": "voice-13",
+"speak": "橙橙果最受欢迎，要来几个吗？",
+"batch": "voice-13b"
+},
+{
+"id": "vada16927l",
+"speaker": "杂货商 阿强",
+"text": "绳子、灯笼、钓线，出海要用的东西这里都有。",
+"src": "npc:vendor-tools",
+"voice": "voice-15",
+"speak": "绳子、灯笼、钓线，出海要用的东西这里都有。",
+"batch": "voice-15"
+},
+{
+"id": "v822c1eeee",
+"speaker": "杂货商 阿强",
+"text": "训练家的话，精灵球也备着呢。",
+"src": "npc:vendor-tools",
+"voice": "voice-15",
+"speak": "训练家的话，精灵球也备着呢。",
+"batch": "voice-15"
+},
+{
+"id": "veb8b1832c",
+"speaker": "迷路的小女孩",
+"text": "……你是跟着脚印来的吗？",
+"src": "npc:zorua-disguise",
+"voice": "voice-17",
+"speak": "……你是跟着脚印来的吗？",
+"batch": "voice-17"
+},
+{
+"id": "vba95ff02g",
+"speaker": "迷路的小女孩",
+"text": "嘻嘻，这片森林里只有我一个人哦。",
+"src": "npc:zorua-disguise",
+"voice": "voice-17",
+"speak": "嘻嘻，这片森林里只有我一个人哦。",
+"batch": "voice-17"
+},
+{
+"id": "v90d73937b",
+"speaker": "迷路的小女孩",
+"text": "那你猜猜看——我是谁？",
+"src": "npc:zorua-disguise",
+"voice": "voice-17",
+"speak": "那你猜猜看——我是谁？",
+"batch": "voice-17"
+},
+{
+"id": "vbf15ba48d",
+"speaker": "粗心水手 阿福",
+"text": "奇怪，我明明放在这里的……",
+"src": "npc:lost-item-sailor",
+"voice": "voice-15",
+"speak": "奇怪，我明明放在这里的……",
+"batch": "voice-15"
+},
+{
+"id": "v97058b40h",
+"speaker": "粗心水手 阿福",
+"text": "算了，也许是被哪只宝可梦叼走了吧。",
+"src": "npc:lost-item-sailor",
+"voice": "voice-15",
+"speak": "算了，也许是被哪只宝可梦叼走了吧。",
+"batch": "voice-15"
+},
+{
+"id": "v91fb35c2g",
+"speaker": "阿健",
+"text": "短裤是最好的装备！又凉快又好跑！",
+"src": "npc:trainer-youngster-jian",
+"voice": "voice-17",
+"speak": "短裤是最好的装备！又凉快又好跑！",
+"batch": "voice-17"
+},
+{
+"id": "v280b47489",
+"speaker": "阿健",
+"text": "下次我一定会赢的。",
+"src": "npc:trainer-youngster-jian",
+"voice": "voice-17",
+"speak": "下次我一定会赢的。",
+"batch": "voice-17"
+},
+{
+"id": "vb7b4072dh",
+"speaker": "小森",
+"text": "绿毛虫会变成铁甲蛹，然后是巴大蝶！",
+"src": "npc:trainer-bugcatcher-sen",
+"voice": "voice-17",
+"speak": "绿毛虫会变成铁甲蛹，然后是巴大蝶！",
+"batch": "voice-17"
+},
+{
+"id": "v23b1ae57c",
+"speaker": "小森",
+"text": "蜕变的那一刻超级感人的。",
+"src": "npc:trainer-bugcatcher-sen",
+"voice": "voice-17",
+"speak": "蜕变的那一刻超级感人的。",
+"batch": "voice-17"
+},
+{
+"id": "v0e0daeb09",
+"speaker": "花音",
+"text": "湖边的花开得真好。",
+"src": "npc:trainer-lass-huayin",
+"voice": "voice-22",
+"speak": "湖边的花开得真好。",
+"batch": "voice-22"
+},
+{
+"id": "v72978af5e",
+"speaker": "花音",
+"text": "走路草晚上会到处走来走去哦。",
+"src": "npc:trainer-lass-huayin",
+"voice": "voice-22",
+"speak": "走路草晚上会到处走来走去哦。",
+"batch": "voice-22"
+},
+{
+"id": "vb03846d4n",
+"speaker": "老孙",
+"text": "鲤鱼王别看它现在这样，将来可是会变成大家伙的。",
+"src": "npc:trainer-fisher-sun",
+"voice": "voice-13",
+"speak": "鲤鱼王别看它现在这样，将来可是会变成大家伙的。",
+"batch": "voice-13b"
+},
+{
+"id": "v19610bd0g",
+"speaker": "老孙",
+"text": "耐心，钓鱼和训练宝可梦都要耐心。",
+"src": "npc:trainer-fisher-sun",
+"voice": "voice-13",
+"speak": "耐心，钓鱼和训练宝可梦都要耐心。",
+"batch": "voice-13b"
+},
+{
+"id": "vddf29bd1l",
+"speaker": "小叶",
+"text": "听说雾里有会变身的宝可梦，把人骗得团团转。",
+"src": "npc:trainer-camper-ye",
+"voice": "voice-17",
+"speak": "听说雾里有会变身的宝可梦，把人骗得团团转。",
+"batch": "voice-17"
+},
+{
+"id": "vad2615c8e",
+"speaker": "小叶",
+"text": "你要进森林的话，小心别迷路。",
+"src": "npc:trainer-camper-ye",
+"voice": "voice-17",
+"speak": "你要进森林的话，小心别迷路。",
+"batch": "voice-17"
+},
+{
+"id": "v3ce8d88ff",
+"speaker": "大石",
+"text": "崖下面有个洞穴，被石头堵住了。",
+"src": "npc:trainer-hiker-dashi",
+"voice": "voice-15",
+"speak": "崖下面有个洞穴，被石头堵住了。",
+"batch": "voice-15"
+},
+{
+"id": "v9af98c08i",
+"speaker": "大石",
+"text": "要是有能撞碎岩石的骑乘宝可梦就好了。",
+"src": "npc:trainer-hiker-dashi",
+"voice": "voice-15",
+"speak": "要是有能撞碎岩石的骑乘宝可梦就好了。",
+"batch": "voice-15"
+},
+{
+"id": "v431d5f8ae",
+"speaker": "阿海",
+"text": "渡船停航是因为海上起了怪雾。",
+"src": "npc:trainer-sailor-hai",
+"voice": "voice-13",
+"speak": "渡船停航是因为海上起了怪雾。",
+"batch": "voice-13b"
+},
+{
+"id": "v16633f70e",
+"speaker": "阿海",
+"text": "馆主沧澜好像也在调查这件事。",
+"src": "npc:trainer-sailor-hai",
+"voice": "voice-13",
+"speak": "馆主沧澜好像也在调查这件事。",
+"batch": "voice-13b"
+}
+]

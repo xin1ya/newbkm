@@ -1,0 +1,26 @@
+{
+  "id": 284,
+  "name": "masquerain",
+  "heightM": 0.8,
+  "plan": "rigid",
+  "tris": 5964,
+  "fit": "height",
+  "bones": 11,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.4666666666666667
+  },
+  "shiny": "284_masquerain_shiny.png"
+}

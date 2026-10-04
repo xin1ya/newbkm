@@ -1,0 +1,9 @@
+dist
+node_modules
+coverage
+pnpm-lock.yaml
+src/config/data/*.json
+assets/islands
+test-results
+playwright-report
+docs

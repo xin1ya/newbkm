@@ -1,0 +1,25 @@
+{
+  "id": 342,
+  "name": "crawdaunt",
+  "heightM": 1.1,
+  "plan": "quadruped",
+  "tris": 7900,
+  "fit": "height",
+  "bones": 18,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.4666666666666667,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "342_crawdaunt_shiny.png"
+}

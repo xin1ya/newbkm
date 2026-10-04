@@ -1,0 +1,26 @@
+{
+  "id": 724,
+  "name": "decidueye",
+  "heightM": 1.6,
+  "plan": "bird",
+  "tris": 11416,
+  "fit": "height",
+  "bones": 19,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "724_decidueye_shiny.png"
+}

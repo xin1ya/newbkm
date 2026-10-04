@@ -1,0 +1,41 @@
+{
+  "seed": 20260721,
+  "generatedAt": "2026-10-03T11:00:34.248Z",
+  "heightmap": {
+    "size": 513,
+    "cell": 2,
+    "range": [
+      -24,
+      72
+    ],
+    "min": -20.27791404724121,
+    "max": 70.50041961669922,
+    "clipped": 0
+  },
+  "splat": {
+    "size": 1024,
+    "channels": [
+      "grass",
+      "forest",
+      "tallgrass",
+      "dirt",
+      "sand",
+      "rock",
+      "stone",
+      "flowers"
+    ],
+    "coverage": {
+      "grass": 0.3271,
+      "forest": 0.0433,
+      "tallgrass": 0.0677,
+      "dirt": 0.01,
+      "sand": 0.4165,
+      "rock": 0.1099,
+      "stone": 0.0109,
+      "flowers": 0.0145
+    }
+  },
+  "props": 384,
+  "landRatio": 0.627,
+  "walkableRatio": 0.931
+}

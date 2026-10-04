@@ -1,0 +1,2114 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "id": 10,
+      "name": "caterpie",
+      "heightM": 0.3,
+      "plan": "larva",
+      "tris": 7028,
+      "fit": "height",
+      "bones": 11,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "010_caterpie_shiny.png",
+      "file": "010_caterpie.glb",
+      "bytes": 89348,
+      "rawBytes": 314528
+    },
+    {
+      "id": 11,
+      "name": "metapod",
+      "heightM": 0.7,
+      "plan": "rigid",
+      "tris": 2644,
+      "fit": "height",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "011_metapod_shiny.png",
+      "file": "011_metapod.glb",
+      "bytes": 53684,
+      "rawBytes": 167708
+    },
+    {
+      "id": 12,
+      "name": "butterfree",
+      "heightM": 1.1,
+      "plan": "rigid",
+      "tris": 6264,
+      "fit": "height",
+      "bones": 13,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "012_butterfree_shiny.png",
+      "file": "012_butterfree.glb",
+      "bytes": 93636,
+      "rawBytes": 303700
+    },
+    {
+      "id": 16,
+      "name": "pidgey",
+      "heightM": 0.3,
+      "plan": "bird",
+      "tris": 6888,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8666666666666667
+      },
+      "shiny": "016_pidgey_shiny.png",
+      "file": "016_pidgey.glb",
+      "bytes": 126876,
+      "rawBytes": 346212
+    },
+    {
+      "id": 17,
+      "name": "pidgeotto",
+      "heightM": 1.1,
+      "plan": "bird",
+      "tris": 9528,
+      "fit": "height",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8666666666666667
+      },
+      "shiny": "017_pidgeotto_shiny.png",
+      "file": "017_pidgeotto.glb",
+      "bytes": 143976,
+      "rawBytes": 435872
+    },
+    {
+      "id": 18,
+      "name": "pidgeot",
+      "heightM": 1.5,
+      "plan": "bird",
+      "tris": 10176,
+      "fit": "height",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8666666666666667
+      },
+      "shiny": "018_pidgeot_shiny.png",
+      "file": "018_pidgeot.glb",
+      "bytes": 148072,
+      "rawBytes": 457396
+    },
+    {
+      "id": 19,
+      "name": "rattata",
+      "heightM": 0.3,
+      "plan": "quadruped",
+      "tris": 6408,
+      "fit": "height",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "019_rattata_shiny.png",
+      "file": "019_rattata.glb",
+      "bytes": 123672,
+      "rawBytes": 347504
+    },
+    {
+      "id": 20,
+      "name": "raticate",
+      "heightM": 0.7,
+      "plan": "quadruped",
+      "tris": 8180,
+      "fit": "length",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "020_raticate_shiny.png",
+      "file": "020_raticate.glb",
+      "bytes": 132048,
+      "rawBytes": 408572
+    },
+    {
+      "id": 25,
+      "name": "pikachu",
+      "heightM": 0.4,
+      "plan": "biped",
+      "tris": 6684,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "025_pikachu_shiny.png",
+      "file": "025_pikachu.glb",
+      "bytes": 114628,
+      "rawBytes": 338716
+    },
+    {
+      "id": 26,
+      "name": "raichu",
+      "heightM": 0.8,
+      "plan": "biped",
+      "tris": 6908,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "026_raichu_shiny.png",
+      "file": "026_raichu.glb",
+      "bytes": 116764,
+      "rawBytes": 351152
+    },
+    {
+      "id": 43,
+      "name": "oddish",
+      "heightM": 0.5,
+      "plan": "biped",
+      "tris": 4280,
+      "fit": "height",
+      "bones": 15,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "043_oddish_shiny.png",
+      "file": "043_oddish.glb",
+      "bytes": 94500,
+      "rawBytes": 257716
+    },
+    {
+      "id": 44,
+      "name": "gloom",
+      "heightM": 0.8,
+      "plan": "biped",
+      "tris": 6240,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "044_gloom_shiny.png",
+      "file": "044_gloom.glb",
+      "bytes": 117908,
+      "rawBytes": 339064
+    },
+    {
+      "id": 45,
+      "name": "vileplume",
+      "heightM": 1.2,
+      "plan": "biped",
+      "tris": 12392,
+      "fit": "height",
+      "bones": 13,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "045_vileplume_shiny.png",
+      "file": "045_vileplume.glb",
+      "bytes": 119788,
+      "rawBytes": 499188
+    },
+    {
+      "id": 46,
+      "name": "paras",
+      "heightM": 0.3,
+      "plan": "quadruped",
+      "tris": 8896,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "046_paras_shiny.png",
+      "file": "046_paras.glb",
+      "bytes": 123288,
+      "rawBytes": 404912
+    },
+    {
+      "id": 47,
+      "name": "parasect",
+      "heightM": 1,
+      "plan": "quadruped",
+      "tris": 7814,
+      "fit": "height",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "047_parasect_shiny.png",
+      "file": "047_parasect.glb",
+      "bytes": 113856,
+      "rawBytes": 364728
+    },
+    {
+      "id": 54,
+      "name": "psyduck",
+      "heightM": 0.8,
+      "plan": "biped",
+      "tris": 6464,
+      "fit": "height",
+      "bones": 15,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "054_psyduck_shiny.png",
+      "file": "054_psyduck.glb",
+      "bytes": 101072,
+      "rawBytes": 309644
+    },
+    {
+      "id": 55,
+      "name": "golduck",
+      "heightM": 1.7,
+      "plan": "biped",
+      "tris": 7672,
+      "fit": "height",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "055_golduck_shiny.png",
+      "file": "055_golduck.glb",
+      "bytes": 129100,
+      "rawBytes": 388216
+    },
+    {
+      "id": 60,
+      "name": "poliwag",
+      "heightM": 0.6,
+      "plan": "biped",
+      "tris": 5476,
+      "fit": "height",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "060_poliwag_shiny.png",
+      "file": "060_poliwag.glb",
+      "bytes": 99328,
+      "rawBytes": 277140
+    },
+    {
+      "id": 61,
+      "name": "poliwhirl",
+      "heightM": 1,
+      "plan": "biped",
+      "tris": 6000,
+      "fit": "height",
+      "bones": 13,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "061_poliwhirl_shiny.png",
+      "file": "061_poliwhirl.glb",
+      "bytes": 91520,
+      "rawBytes": 284300
+    },
+    {
+      "id": 62,
+      "name": "poliwrath",
+      "heightM": 1.3,
+      "plan": "biped",
+      "tris": 6720,
+      "fit": "height",
+      "bones": 13,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "062_poliwrath_shiny.png",
+      "file": "062_poliwrath.glb",
+      "bytes": 95452,
+      "rawBytes": 307828
+    },
+    {
+      "id": 66,
+      "name": "machop",
+      "heightM": 0.8,
+      "plan": "biped",
+      "tris": 11436,
+      "fit": "height",
+      "bones": 16,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.4666666666666667,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "066_machop_shiny.png",
+      "file": "066_machop.glb",
+      "bytes": 124868,
+      "rawBytes": 466884
+    },
+    {
+      "id": 67,
+      "name": "machoke",
+      "heightM": 1.5,
+      "plan": "biped",
+      "tris": 14948,
+      "fit": "height",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "067_machoke_shiny.png",
+      "file": "067_machoke.glb",
+      "bytes": 141420,
+      "rawBytes": 585684
+    },
+    {
+      "id": 68,
+      "name": "machamp",
+      "heightM": 1.6,
+      "plan": "biped",
+      "tris": 14648,
+      "fit": "height",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "068_machamp_shiny.png",
+      "file": "068_machamp.glb",
+      "bytes": 153348,
+      "rawBytes": 591684
+    },
+    {
+      "id": 72,
+      "name": "tentacool",
+      "heightM": 0.9,
+      "plan": "rigid",
+      "tris": 3956,
+      "fit": "height",
+      "bones": 11,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "072_tentacool_shiny.png",
+      "file": "072_tentacool.glb",
+      "bytes": 87808,
+      "rawBytes": 245792
+    },
+    {
+      "id": 73,
+      "name": "tentacruel",
+      "heightM": 1.6,
+      "plan": "rigid",
+      "tris": 5204,
+      "fit": "height",
+      "bones": 35,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "073_tentacruel_shiny.png",
+      "file": "073_tentacruel.glb",
+      "bytes": 225256,
+      "rawBytes": 558064
+    },
+    {
+      "id": 74,
+      "name": "geodude",
+      "heightM": 0.4,
+      "plan": "rigid",
+      "tris": 8656,
+      "fit": "height",
+      "bones": 10,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "074_geodude_shiny.png",
+      "file": "074_geodude.glb",
+      "bytes": 87184,
+      "rawBytes": 345368
+    },
+    {
+      "id": 75,
+      "name": "graveler",
+      "heightM": 1,
+      "plan": "biped",
+      "tris": 13380,
+      "fit": "height",
+      "bones": 16,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "075_graveler_shiny.png",
+      "file": "075_graveler.glb",
+      "bytes": 134920,
+      "rawBytes": 533608
+    },
+    {
+      "id": 76,
+      "name": "golem",
+      "heightM": 1.4,
+      "plan": "biped",
+      "tris": 9008,
+      "fit": "height",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "076_golem_shiny.png",
+      "file": "076_golem.glb",
+      "bytes": 107236,
+      "rawBytes": 406844
+    },
+    {
+      "id": 90,
+      "name": "shellder",
+      "heightM": 0.3,
+      "plan": "rigid",
+      "tris": 6936,
+      "fit": "height",
+      "bones": 9,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "090_shellder_shiny.png",
+      "file": "090_shellder.glb",
+      "bytes": 79980,
+      "rawBytes": 305560
+    },
+    {
+      "id": 91,
+      "name": "cloyster",
+      "heightM": 1.5,
+      "plan": "rigid",
+      "tris": 11600,
+      "fit": "height",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "091_cloyster_shiny.png",
+      "file": "091_cloyster.glb",
+      "bytes": 97308,
+      "rawBytes": 477216
+    },
+    {
+      "id": 92,
+      "name": "gastly",
+      "heightM": 1.3,
+      "plan": "rigid",
+      "tris": 6476,
+      "fit": "height",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "092_gastly_shiny.png",
+      "file": "092_gastly.glb",
+      "bytes": 78156,
+      "rawBytes": 301572
+    },
+    {
+      "id": 93,
+      "name": "haunter",
+      "heightM": 1.6,
+      "plan": "rigid",
+      "tris": 7854,
+      "fit": "height",
+      "bones": 11,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "093_haunter_shiny.png",
+      "file": "093_haunter.glb",
+      "bytes": 92616,
+      "rawBytes": 372144
+    },
+    {
+      "id": 94,
+      "name": "gengar",
+      "heightM": 1.5,
+      "plan": "biped",
+      "tris": 7416,
+      "fit": "height",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "094_gengar_shiny.png",
+      "file": "094_gengar.glb",
+      "bytes": 123260,
+      "rawBytes": 403000
+    },
+    {
+      "id": 98,
+      "name": "krabby",
+      "heightM": 0.4,
+      "plan": "crab",
+      "tris": 6112,
+      "fit": "height",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.6666666666666666
+      },
+      "shiny": "098_krabby_shiny.png",
+      "file": "098_krabby.glb",
+      "bytes": 112132,
+      "rawBytes": 321964
+    },
+    {
+      "id": 99,
+      "name": "kingler",
+      "heightM": 1.3,
+      "plan": "crab",
+      "tris": 6184,
+      "fit": "height",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.6666666666666666
+      },
+      "shiny": "099_kingler_shiny.png",
+      "file": "099_kingler.glb",
+      "bytes": 112656,
+      "rawBytes": 330376
+    },
+    {
+      "id": 118,
+      "name": "goldeen",
+      "heightM": 0.6,
+      "plan": "fish",
+      "tris": 7436,
+      "fit": "length",
+      "bones": 12,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "shiny": "118_goldeen_shiny.png",
+      "file": "118_goldeen.glb",
+      "bytes": 103076,
+      "rawBytes": 341300
+    },
+    {
+      "id": 119,
+      "name": "seaking",
+      "heightM": 1.3,
+      "plan": "fish",
+      "tris": 7176,
+      "fit": "length",
+      "bones": 12,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "shiny": "119_seaking_shiny.png",
+      "file": "119_seaking.glb",
+      "bytes": 106340,
+      "rawBytes": 352068
+    },
+    {
+      "id": 120,
+      "name": "staryu",
+      "heightM": 0.8,
+      "plan": "biped",
+      "tris": 5460,
+      "bones": 12,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.4666666666666667,
+        "attack_special": 0.8
+      },
+      "shiny": "120_staryu_shiny.png",
+      "file": "120_staryu.glb",
+      "bytes": 89720,
+      "rawBytes": 262012
+    },
+    {
+      "id": 121,
+      "name": "starmie",
+      "heightM": 1.1,
+      "plan": "biped",
+      "tris": 6340,
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.4666666666666667,
+        "attack_special": 0.8
+      },
+      "shiny": "121_starmie_shiny.png",
+      "file": "121_starmie.glb",
+      "bytes": 127276,
+      "rawBytes": 345800
+    },
+    {
+      "id": 129,
+      "name": "magikarp",
+      "heightM": 0.9,
+      "plan": "fish",
+      "tris": 6636,
+      "fit": "length",
+      "bones": 13,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "shiny": "129_magikarp_shiny.png",
+      "file": "129_magikarp.glb",
+      "bytes": 100720,
+      "rawBytes": 314148
+    },
+    {
+      "id": 130,
+      "name": "gyarados",
+      "heightM": 6.5,
+      "plan": "serpent",
+      "tris": 10824,
+      "fit": "height",
+      "bones": 15,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5666666666666667,
+        "attack_special": 0.8
+      },
+      "shiny": "130_gyarados_shiny.png",
+      "file": "130_gyarados.glb",
+      "bytes": 142988,
+      "rawBytes": 537812
+    },
+    {
+      "id": 155,
+      "name": "cyndaquil",
+      "heightM": 0.5,
+      "tris": 12928,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "file": "155_cyndaquil.glb",
+      "bytes": 149556,
+      "rawBytes": 534952
+    },
+    {
+      "id": 156,
+      "name": "quilava",
+      "heightM": 0.9,
+      "plan": "quadruped",
+      "tris": 7628,
+      "fit": "length",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "156_quilava_shiny.png",
+      "file": "156_quilava.glb",
+      "bytes": 130920,
+      "rawBytes": 389496
+    },
+    {
+      "id": 157,
+      "name": "typhlosion",
+      "heightM": 1.7,
+      "plan": "biped",
+      "tris": 8608,
+      "fit": "height",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "157_typhlosion_shiny.png",
+      "file": "157_typhlosion.glb",
+      "bytes": 132124,
+      "rawBytes": 424944
+    },
+    {
+      "id": 161,
+      "name": "sentret",
+      "heightM": 0.8,
+      "plan": "biped",
+      "tris": 5180,
+      "fit": "height",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "161_sentret_shiny.png",
+      "file": "161_sentret.glb",
+      "bytes": 113108,
+      "rawBytes": 294836
+    },
+    {
+      "id": 162,
+      "name": "furret",
+      "heightM": 1.8,
+      "plan": "quadruped",
+      "tris": 8132,
+      "fit": "length",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "162_furret_shiny.png",
+      "file": "162_furret.glb",
+      "bytes": 132112,
+      "rawBytes": 408996
+    },
+    {
+      "id": 163,
+      "name": "hoothoot",
+      "heightM": 0.7,
+      "plan": "bird",
+      "tris": 8172,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8666666666666667
+      },
+      "shiny": "163_hoothoot_shiny.png",
+      "file": "163_hoothoot.glb",
+      "bytes": 128932,
+      "rawBytes": 379320
+    },
+    {
+      "id": 164,
+      "name": "noctowl",
+      "heightM": 1.6,
+      "plan": "bird",
+      "tris": 9788,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8666666666666667
+      },
+      "shiny": "164_noctowl_shiny.png",
+      "file": "164_noctowl.glb",
+      "bytes": 136612,
+      "rawBytes": 435252
+    },
+    {
+      "id": 172,
+      "name": "pichu",
+      "heightM": 0.3,
+      "plan": "biped",
+      "tris": 6248,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "172_pichu_shiny.png",
+      "file": "172_pichu.glb",
+      "bytes": 111804,
+      "rawBytes": 325680
+    },
+    {
+      "id": 182,
+      "name": "bellossom",
+      "heightM": 0.4,
+      "plan": "biped",
+      "tris": 7696,
+      "fit": "height",
+      "bones": 15,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "182_bellossom_shiny.png",
+      "file": "182_bellossom.glb",
+      "bytes": 109460,
+      "rawBytes": 364768
+    },
+    {
+      "id": 186,
+      "name": "politoed",
+      "heightM": 1.1,
+      "plan": "biped",
+      "tris": 6100,
+      "fit": "height",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "186_politoed_shiny.png",
+      "file": "186_politoed.glb",
+      "bytes": 96200,
+      "rawBytes": 291472
+    },
+    {
+      "id": 194,
+      "name": "wooper",
+      "heightM": 0.4,
+      "plan": "biped",
+      "tris": 4088,
+      "fit": "height",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "194_wooper_shiny.png",
+      "file": "194_wooper.glb",
+      "bytes": 85808,
+      "rawBytes": 223436
+    },
+    {
+      "id": 195,
+      "name": "quagsire",
+      "heightM": 1.4,
+      "plan": "biped",
+      "tris": 5452,
+      "fit": "height",
+      "bones": 16,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "195_quagsire_shiny.png",
+      "file": "195_quagsire.glb",
+      "bytes": 101664,
+      "rawBytes": 286308
+    },
+    {
+      "id": 222,
+      "name": "corsola",
+      "heightM": 0.6,
+      "plan": "quadruped",
+      "tris": 7352,
+      "fit": "height",
+      "bones": 25,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "222_corsola_shiny.png",
+      "file": "222_corsola.glb",
+      "bytes": 143288,
+      "rawBytes": 402340
+    },
+    {
+      "id": 258,
+      "name": "mudkip",
+      "heightM": 0.4,
+      "tris": 12024,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.7333333333333333
+      },
+      "file": "258_mudkip.glb",
+      "bytes": 165612,
+      "rawBytes": 552056
+    },
+    {
+      "id": 259,
+      "name": "marshtomp",
+      "heightM": 0.7,
+      "plan": "biped",
+      "tris": 6768,
+      "fit": "height",
+      "bones": 15,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "259_marshtomp_shiny.png",
+      "file": "259_marshtomp.glb",
+      "bytes": 104376,
+      "rawBytes": 327072
+    },
+    {
+      "id": 260,
+      "name": "swampert",
+      "heightM": 1.5,
+      "plan": "biped",
+      "tris": 8516,
+      "fit": "height",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "260_swampert_shiny.png",
+      "file": "260_swampert.glb",
+      "bytes": 129056,
+      "rawBytes": 415720
+    },
+    {
+      "id": 263,
+      "name": "zigzagoon",
+      "heightM": 0.4,
+      "plan": "quadruped",
+      "tris": 8012,
+      "fit": "height",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "263_zigzagoon_shiny.png",
+      "file": "263_zigzagoon.glb",
+      "bytes": 144360,
+      "rawBytes": 490672
+    },
+    {
+      "id": 264,
+      "name": "linoone",
+      "heightM": 0.5,
+      "plan": "quadruped",
+      "tris": 14944,
+      "fit": "height",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "264_linoone_shiny.png",
+      "file": "264_linoone.glb",
+      "bytes": 166600,
+      "rawBytes": 657604
+    },
+    {
+      "id": 278,
+      "name": "wingull",
+      "heightM": 0.6,
+      "plan": "bird",
+      "tris": 3920,
+      "fit": "length",
+      "bones": 12,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8
+      },
+      "shiny": "278_wingull_shiny.png",
+      "file": "278_wingull.glb",
+      "bytes": 83812,
+      "rawBytes": 227112
+    },
+    {
+      "id": 279,
+      "name": "pelipper",
+      "heightM": 1.2,
+      "plan": "bird",
+      "tris": 5160,
+      "fit": "length",
+      "bones": 13,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8
+      },
+      "shiny": "279_pelipper_shiny.png",
+      "file": "279_pelipper.glb",
+      "bytes": 93456,
+      "rawBytes": 273688
+    },
+    {
+      "id": 283,
+      "name": "surskit",
+      "heightM": 0.5,
+      "plan": "quadruped",
+      "tris": 3752,
+      "fit": "height",
+      "bones": 15,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "283_surskit_shiny.png",
+      "file": "283_surskit.glb",
+      "bytes": 81512,
+      "rawBytes": 199404
+    },
+    {
+      "id": 284,
+      "name": "masquerain",
+      "heightM": 0.8,
+      "plan": "rigid",
+      "tris": 5964,
+      "fit": "height",
+      "bones": 11,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.4666666666666667
+      },
+      "shiny": "284_masquerain_shiny.png",
+      "file": "284_masquerain.glb",
+      "bytes": 85292,
+      "rawBytes": 272500
+    },
+    {
+      "id": 341,
+      "name": "corphish",
+      "heightM": 0.6,
+      "plan": "quadruped",
+      "tris": 6996,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.4666666666666667,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "341_corphish_shiny.png",
+      "file": "341_corphish.glb",
+      "bytes": 108748,
+      "rawBytes": 339860
+    },
+    {
+      "id": 342,
+      "name": "crawdaunt",
+      "heightM": 1.1,
+      "plan": "quadruped",
+      "tris": 7900,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.4666666666666667,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "342_crawdaunt_shiny.png",
+      "file": "342_crawdaunt.glb",
+      "bytes": 111732,
+      "rawBytes": 369340
+    },
+    {
+      "id": 396,
+      "name": "starly",
+      "heightM": 0.3,
+      "plan": "bird",
+      "tris": 7800,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8666666666666667
+      },
+      "shiny": "396_starly_shiny.png",
+      "file": "396_starly.glb",
+      "bytes": 131764,
+      "rawBytes": 376316
+    },
+    {
+      "id": 397,
+      "name": "staravia",
+      "heightM": 0.6,
+      "plan": "bird",
+      "tris": 8220,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8666666666666667
+      },
+      "shiny": "397_staravia_shiny.png",
+      "file": "397_staravia.glb",
+      "bytes": 131616,
+      "rawBytes": 384812
+    },
+    {
+      "id": 398,
+      "name": "staraptor",
+      "heightM": 1.2,
+      "plan": "bird",
+      "tris": 8776,
+      "fit": "height",
+      "bones": 18,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8666666666666667
+      },
+      "shiny": "398_staraptor_shiny.png",
+      "file": "398_staraptor.glb",
+      "bytes": 136196,
+      "rawBytes": 405816
+    },
+    {
+      "id": 570,
+      "name": "zorua",
+      "heightM": 0.7,
+      "plan": "fox",
+      "tris": 8496,
+      "fit": "height",
+      "bones": 22,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "570_zorua_shiny.png",
+      "file": "570_zorua.glb",
+      "bytes": 137436,
+      "rawBytes": 422200
+    },
+    {
+      "id": 571,
+      "name": "zoroark",
+      "heightM": 1.6,
+      "plan": "biped",
+      "tris": 8704,
+      "fit": "height",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "571_zoroark_shiny.png",
+      "file": "571_zoroark.glb",
+      "bytes": 131500,
+      "rawBytes": 424980
+    },
+    {
+      "id": 722,
+      "name": "rowlet",
+      "heightM": 0.3,
+      "tris": 10492,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.6666666666666666
+      },
+      "file": "722_rowlet.glb",
+      "bytes": 129020,
+      "rawBytes": 464056
+    },
+    {
+      "id": 723,
+      "name": "dartrix",
+      "heightM": 0.7,
+      "plan": "bird",
+      "tris": 9900,
+      "fit": "height",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "723_dartrix_shiny.png",
+      "file": "723_dartrix.glb",
+      "bytes": 141908,
+      "rawBytes": 441396
+    },
+    {
+      "id": 724,
+      "name": "decidueye",
+      "heightM": 1.6,
+      "plan": "bird",
+      "tris": 11416,
+      "fit": "height",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "724_decidueye_shiny.png",
+      "file": "724_decidueye.glb",
+      "bytes": 148576,
+      "rawBytes": 492436
+    },
+    {
+      "id": 769,
+      "name": "sandygast",
+      "heightM": 0.5,
+      "plan": "rigid",
+      "tris": 5708,
+      "fit": "height",
+      "bones": 8,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "769_sandygast_shiny.png",
+      "file": "769_sandygast.glb",
+      "bytes": 66652,
+      "rawBytes": 243092
+    },
+    {
+      "id": 770,
+      "name": "palossand",
+      "heightM": 1.3,
+      "plan": "rigid",
+      "tris": 10300,
+      "fit": "height",
+      "bones": 10,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "shiny": "770_palossand_shiny.png",
+      "file": "770_palossand.glb",
+      "bytes": 94256,
+      "rawBytes": 410548
+    }
+  ]
+}

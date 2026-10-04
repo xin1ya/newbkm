@@ -1,0 +1,25 @@
+{
+  "id": 161,
+  "name": "sentret",
+  "heightM": 0.8,
+  "plan": "biped",
+  "tris": 5180,
+  "fit": "height",
+  "bones": 19,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "161_sentret_shiny.png"
+}

@@ -1,0 +1,26 @@
+{
+  "id": 18,
+  "name": "pidgeot",
+  "heightM": 1.5,
+  "plan": "bird",
+  "tris": 10176,
+  "fit": "height",
+  "bones": 19,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.8666666666666667
+  },
+  "shiny": "018_pidgeot_shiny.png"
+}

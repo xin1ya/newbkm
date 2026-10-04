@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>翠澜群岛 · Toon 样张（ART-001）</title>
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #0b1020; font-family: system-ui, "Microsoft YaHei", sans-serif; }
+      #app { position: fixed; inset: 0; }
+      #cap { position: fixed; left: 16px; top: 12px; color: #fff; text-shadow: 0 1px 3px #000; pointer-events: none; }
+      #cap b { font-size: 20px; letter-spacing: .1em; } #cap div { font-size: 12px; opacity: .85; margin-top: 4px; }
+      #out { position: fixed; left: 16px; bottom: 16px; width: 360px; height: 150px; display: none; font: 11px/1.4 monospace; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="cap"><b>Toon 样张 · ART-001</b><div>1 个角色 + 1 只宝可梦 + 一小块场景 · 右侧面板调整色带 / 描边 / 光照 · 拖拽旋转</div></div>
+    <textarea id="out" readonly></textarea>
+    <script type="module" src="/src/devtools/styleGuide.ts"></script>
+  </body>
+</html>

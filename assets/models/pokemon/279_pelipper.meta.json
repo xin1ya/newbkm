@@ -1,0 +1,26 @@
+{
+  "id": 279,
+  "name": "pelipper",
+  "heightM": 1.2,
+  "plan": "bird",
+  "tris": 5160,
+  "fit": "length",
+  "bones": 13,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.8
+  },
+  "shiny": "279_pelipper_shiny.png"
+}

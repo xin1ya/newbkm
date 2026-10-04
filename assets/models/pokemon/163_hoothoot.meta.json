@@ -1,0 +1,26 @@
+{
+  "id": 163,
+  "name": "hoothoot",
+  "heightM": 0.7,
+  "plan": "bird",
+  "tris": 8172,
+  "fit": "height",
+  "bones": 18,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.8666666666666667
+  },
+  "shiny": "163_hoothoot_shiny.png"
+}

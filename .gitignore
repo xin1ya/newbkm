@@ -1,0 +1,22 @@
+node_modules/
+dist/
+coverage/
+*.local
+.vite/
+.DS_Store
+Thumbs.db
+# Tauri（以后）
+src-tauri/target/
+# 测试产物
+test-results/
+playwright-report/
+
+# 构建前自动复制的解码器（scripts/copy-decoders.mjs）
+assets/_decoders/
+# 抓取缓存
+scripts/.cache/
+
+# Blender �Զ����� / ��ʱͬ��Ŀ¼
+*.blend1
+.sync/
+.yfcode/

@@ -1,0 +1,6021 @@
+{
+ "version": 1,
+ "island": "sprout",
+ "generatedBy": "gen-sprout seed=20260721",
+ "props": [
+  {
+   "type": "gym",
+   "ref": "gym-cuilan",
+   "position": [
+    135,
+    -55
+   ],
+   "y": 6.4,
+   "yaw": -1.5707963267948966,
+   "size": [
+    24,
+    11,
+    24
+   ],
+   "color": "#dff1f7",
+   "roof": "#3aa0c8"
+  },
+  {
+   "type": "sign",
+   "ref": "phantom-forest-entrance",
+   "position": [
+    -150,
+    -120
+   ],
+   "yaw": -1.1525719972156676,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "house",
+   "position": [
+    -120,
+    354.9
+   ],
+   "yaw": 0,
+   "size": [
+    11,
+    7.2,
+    9
+   ],
+   "ref": "player-house",
+   "color": "#f6ecda",
+   "roof": "#d9674e",
+   "variant": "two-storey",
+   "accent": "#5b8fb0",
+   "seed": 7
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -124.5,
+    361.2
+   ],
+   "yaw": 0,
+   "size": [
+    2.6,
+    0.4,
+    1.2
+   ],
+   "seed": 3
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -115.5,
+    361.2
+   ],
+   "yaw": 0,
+   "size": [
+    2.6,
+    0.4,
+    1.2
+   ],
+   "seed": 4
+  },
+  {
+   "type": "mailbox",
+   "position": [
+    -113.2,
+    360.6
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    1.5,
+    0.5
+   ],
+   "color": "#d9453b"
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     -127.5,
+     358.6
+    ],
+    [
+     -127.5,
+     337.5
+    ],
+    [
+     -111.5,
+     337.5
+    ],
+    [
+     -111.5,
+     358.6
+    ]
+   ]
+  },
+  {
+   "type": "garden",
+   "position": [
+    -121,
+    341.5
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    0.4,
+    5
+   ],
+   "variant": "veg",
+   "seed": 11
+  },
+  {
+   "type": "laundry",
+   "position": [
+    -113.8,
+    345
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.1,
+    0.2
+   ],
+   "seed": 5
+  },
+  {
+   "type": "bench",
+   "position": [
+    -125.8,
+    348
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.6,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "tree",
+   "position": [
+    -125.5,
+    340.5
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 100
+  },
+  {
+   "type": "tree",
+   "position": [
+    -114,
+    339.8
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    4,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 131
+  },
+  {
+   "type": "lab",
+   "position": [
+    -20,
+    334.9
+   ],
+   "yaw": 0,
+   "size": [
+    20,
+    8.5,
+    13
+   ],
+   "ref": "magnolia-lab",
+   "color": "#f3f5f7",
+   "roof": "#5c8fcf"
+  },
+  {
+   "type": "greenhouse",
+   "position": [
+    1.5,
+    334
+   ],
+   "yaw": 0,
+   "size": [
+    7,
+    4.4,
+    10
+   ],
+   "seed": 21
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -26,
+    345.8
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    0.4,
+    1.4
+   ],
+   "seed": 12
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -14,
+    345.8
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    0.4,
+    1.4
+   ],
+   "seed": 13
+  },
+  {
+   "type": "sign",
+   "position": [
+    -28.5,
+    350.5
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    -33,
+    342
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.6,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     -36,
+     324
+    ],
+    [
+     -36,
+     304
+    ],
+    [
+     8,
+     304
+    ],
+    [
+     8,
+     324
+    ]
+   ]
+  },
+  {
+   "type": "windmill",
+   "position": [
+    -2,
+    312
+   ],
+   "yaw": 0,
+   "size": [
+    4.5,
+    11,
+    4.5
+   ],
+   "color": "#e9e2d4",
+   "roof": "#5c8fcf"
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -28,
+    310
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    1,
+    2.4
+   ],
+   "seed": 4
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -14,
+    318
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1,
+    1.6
+   ],
+   "seed": 9
+  },
+  {
+   "type": "noticeboard",
+   "position": [
+    -24,
+    322.5
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "tree",
+   "position": [
+    -32,
+    308
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 140
+  },
+  {
+   "type": "tree",
+   "position": [
+    -20,
+    306.5
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "pine",
+   "seed": 171
+  },
+  {
+   "type": "tree",
+   "position": [
+    5,
+    321
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    5.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 202
+  },
+  {
+   "type": "tree",
+   "position": [
+    -10,
+    307
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "pine",
+   "seed": 233
+  },
+  {
+   "type": "house",
+   "position": [
+    -60,
+    347.9
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "color": "#f4ead7",
+   "roof": "#4f7fc9",
+   "variant": "gable",
+   "seed": 31
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -64,
+    353.6
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    0.4,
+    1
+   ],
+   "seed": 31
+  },
+  {
+   "type": "house",
+   "position": [
+    -145,
+    352.9
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    5.6,
+    8
+   ],
+   "color": "#efe2c8",
+   "roof": "#6aa56b",
+   "variant": "cottage",
+   "seed": 32
+  },
+  {
+   "type": "mailbox",
+   "position": [
+    -140,
+    358.6
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    1.5,
+    0.5
+   ],
+   "color": "#2f6db5"
+  },
+  {
+   "type": "house",
+   "position": [
+    -88,
+    346.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.4,
+    8
+   ],
+   "color": "#f7f1e6",
+   "roof": "#e0a13a",
+   "variant": "gable",
+   "seed": 33
+  },
+  {
+   "type": "hedge",
+   "position": [
+    -95,
+    348
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    6,
+    1.2,
+    0.9
+   ],
+   "seed": 2
+  },
+  {
+   "type": "house",
+   "position": [
+    -45,
+    377.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "color": "#f2e6d0",
+   "roof": "#c85d7c",
+   "variant": "gable",
+   "seed": 41
+  },
+  {
+   "type": "house",
+   "position": [
+    -10,
+    375.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    7.2,
+    8
+   ],
+   "color": "#e8dcc6",
+   "roof": "#5b93a8",
+   "variant": "two-storey",
+   "seed": 42
+  },
+  {
+   "type": "house",
+   "position": [
+    -130,
+    383.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "color": "#f4ead7",
+   "roof": "#a7695a",
+   "variant": "gable",
+   "seed": 43
+  },
+  {
+   "type": "house",
+   "position": [
+    -105,
+    410.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    8,
+    5.4,
+    7
+   ],
+   "color": "#f7f1e6",
+   "roof": "#4f7fc9",
+   "variant": "cottage",
+   "seed": 44
+  },
+  {
+   "type": "house",
+   "position": [
+    -35.4,
+    402
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "color": "#efe2c8",
+   "roof": "#6aa56b",
+   "variant": "gable",
+   "seed": 45
+  },
+  {
+   "type": "house",
+   "position": [
+    24.6,
+    386
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "color": "#f2e6d0",
+   "roof": "#d9674e",
+   "variant": "cottage",
+   "seed": 46
+  },
+  {
+   "type": "hedge",
+   "position": [
+    -45,
+    368.2
+   ],
+   "yaw": 0,
+   "size": [
+    0.9,
+    1.1,
+    0.9
+   ],
+   "seed": 3
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     -52,
+     386
+    ],
+    [
+     -52,
+     396
+    ],
+    [
+     -38,
+     396
+    ]
+   ]
+  },
+  {
+   "type": "garden",
+   "position": [
+    -18,
+    392
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    0.4,
+    4
+   ],
+   "variant": "veg",
+   "seed": 17
+  },
+  {
+   "type": "laundry",
+   "position": [
+    -136,
+    391
+   ],
+   "yaw": 0,
+   "size": [
+    3.4,
+    2.1,
+    0.2
+   ],
+   "seed": 8
+  },
+  {
+   "type": "tree",
+   "position": [
+    -138,
+    392
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 180
+  },
+  {
+   "type": "tree",
+   "position": [
+    -5,
+    381
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 211
+  },
+  {
+   "type": "tree",
+   "position": [
+    -52,
+    381
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 242
+  },
+  {
+   "type": "tree",
+   "position": [
+    12,
+    398
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 273
+  },
+  {
+   "type": "fountain",
+   "position": [
+    -95,
+    380
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    3.8,
+    5
+   ],
+   "variant": "ball",
+   "color": "#e2dbcf"
+  },
+  {
+   "type": "bench",
+   "position": [
+    -95,
+    386.8
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    -95,
+    373.2
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    -101.8,
+    380
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    -88.2,
+    380
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -100.5,
+    374.5
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    0.5,
+    1.8
+   ],
+   "variant": "round",
+   "seed": 51
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -89.5,
+    374.5
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    0.5,
+    1.8
+   ],
+   "variant": "round",
+   "seed": 52
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -100.5,
+    385.5
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    0.5,
+    1.8
+   ],
+   "variant": "round",
+   "seed": 53
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -89.5,
+    385.5
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    0.5,
+    1.8
+   ],
+   "variant": "round",
+   "seed": 54
+  },
+  {
+   "type": "noticeboard",
+   "position": [
+    -108.5,
+    380
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -107,
+    372.5
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -83,
+    372.5
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -107,
+    387.5
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -83,
+    387.5
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "tree",
+   "position": [
+    -111,
+    391
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 200
+  },
+  {
+   "type": "tree",
+   "position": [
+    -80,
+    392.5
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 231
+  },
+  {
+   "type": "tree",
+   "position": [
+    -112,
+    369
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 262
+  },
+  {
+   "type": "sign",
+   "position": [
+    -64.5,
+    306
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -66,
+    312
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    0.5,
+    1.6
+   ],
+   "variant": "round",
+   "seed": 55
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -75,
+    310
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    0.5,
+    1.6
+   ],
+   "variant": "round",
+   "seed": 56
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -142.4367885034469,
+    358.18180142131314
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -116.49437439917507,
+    356.452307147695
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -90.55196029490324,
+    354.7228128740769
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -64.6095461906314,
+    352.9933186004588
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -38.667132086359594,
+    351.2638243268407
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -12.724717982087759,
+    349.53433005322256
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "house",
+   "position": [
+    -165,
+    399.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    6.6,
+    8
+   ],
+   "ref": "elder-pu-house",
+   "color": "#efe3c6",
+   "roof": "#8a5a3c",
+   "variant": "timber",
+   "accent": "#6b4a33",
+   "seed": 61
+  },
+  {
+   "type": "garden",
+   "position": [
+    -178,
+    398
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    0.4,
+    7
+   ],
+   "variant": "herb",
+   "seed": 62
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     -181.5,
+     393.5
+    ],
+    [
+     -181.5,
+     402.5
+    ],
+    [
+     -174.5,
+     402.5
+    ]
+   ]
+  },
+  {
+   "type": "net-rack",
+   "position": [
+    -156.5,
+    400
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    2.6,
+    1.9,
+    0.2
+   ]
+  },
+  {
+   "type": "well",
+   "position": [
+    -154,
+    388
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.8,
+    2.4
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -159.5,
+    394.8
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -170.8,
+    394.6
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#7a5a32"
+  },
+  {
+   "type": "tree",
+   "position": [
+    -178,
+    388
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 220
+  },
+  {
+   "type": "tree",
+   "position": [
+    -186,
+    408
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "pine",
+   "seed": 251
+  },
+  {
+   "type": "tree",
+   "position": [
+    -150,
+    408
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 282
+  },
+  {
+   "type": "tree",
+   "position": [
+    -185,
+    380
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 313
+  },
+  {
+   "type": "deck",
+   "position": [
+    -70,
+    451
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    0.4,
+    26
+   ],
+   "y": 1.7,
+   "rails": "ew",
+   "gaps": []
+  },
+  {
+   "type": "deck",
+   "position": [
+    -70,
+    465.5
+   ],
+   "yaw": 0,
+   "size": [
+    14,
+    0.4,
+    4
+   ],
+   "y": 1.7,
+   "rails": "nse",
+   "gaps": [
+    [
+     "n",
+     0,
+     5
+    ]
+   ]
+  },
+  {
+   "type": "bollard",
+   "position": [
+    -72,
+    463
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.6,
+    0.4
+   ],
+   "y": 1.7
+  },
+  {
+   "type": "bollard",
+   "position": [
+    -68,
+    463
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.6,
+    0.4
+   ],
+   "y": 1.7
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -66.8,
+    466.8
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.4,
+    0.3
+   ],
+   "y": 1.7,
+   "color": "#f2b134"
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    -75.5,
+    457
+   ],
+   "yaw": 0.1,
+   "size": [
+    1.7,
+    0.6,
+    4.2
+   ],
+   "y": 0.05,
+   "color": "#5b93a8"
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    -64.5,
+    459
+   ],
+   "yaw": -0.15,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 0.05,
+   "color": "#d9674e"
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    -79,
+    469
+   ],
+   "yaw": 0.8,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 0.05,
+   "color": "#f2f0e6"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -56,
+    474
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    2,
+    1
+   ],
+   "y": 0
+  },
+  {
+   "type": "buoy",
+   "position": [
+    -86,
+    476
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    2,
+    1
+   ],
+   "y": 0,
+   "color": "#f2f0e6"
+  },
+  {
+   "type": "net-rack",
+   "position": [
+    -90,
+    431
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    2,
+    0.2
+   ]
+  },
+  {
+   "type": "net-rack",
+   "position": [
+    -95,
+    433
+   ],
+   "yaw": 0.3,
+   "size": [
+    2.6,
+    1.9,
+    0.2
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -74.5,
+    435.5
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -75.4,
+    434.4
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#7a5a32"
+  },
+  {
+   "type": "crate",
+   "position": [
+    -65.5,
+    435.2
+   ],
+   "yaw": 0.3,
+   "size": [
+    1.1,
+    1.1,
+    1.1
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    -64.4,
+    436.4
+   ],
+   "yaw": 0.8,
+   "size": [
+    0.9,
+    0.9,
+    0.9
+   ]
+  },
+  {
+   "type": "shed",
+   "position": [
+    -44,
+    428
+   ],
+   "yaw": 0,
+   "size": [
+    5.2,
+    3.8,
+    4
+   ],
+   "roof": "#4f7fc9",
+   "variant": "pavilion"
+  },
+  {
+   "type": "sign",
+   "position": [
+    -77,
+    431
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     -200,
+     432
+    ],
+    [
+     -110,
+     438
+    ],
+    [
+     -80,
+     440
+    ]
+   ]
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     -60,
+     440
+    ],
+    [
+     40,
+     428
+    ]
+   ]
+  },
+  {
+   "type": "tree",
+   "position": [
+    -140,
+    428
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "palm",
+   "seed": 240
+  },
+  {
+   "type": "tree",
+   "position": [
+    -120,
+    431
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "palm",
+   "seed": 271
+  },
+  {
+   "type": "tree",
+   "position": [
+    -30,
+    432
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "palm",
+   "seed": 302
+  },
+  {
+   "type": "tree",
+   "position": [
+    0,
+    428
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "palm",
+   "seed": 333
+  },
+  {
+   "type": "tree",
+   "position": [
+    -170,
+    426
+   ],
+   "yaw": 0.5168146928204136,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "palm",
+   "seed": 364
+  },
+  {
+   "type": "tree",
+   "position": [
+    22,
+    424
+   ],
+   "yaw": 2.2168146928204138,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "palm",
+   "seed": 395
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -160,
+    437
+   ],
+   "yaw": 0,
+   "size": [
+    2.2,
+    1,
+    2.2
+   ],
+   "seed": 7
+  },
+  {
+   "type": "rocks",
+   "position": [
+    30,
+    432
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    1,
+    1.8
+   ],
+   "seed": 8
+  },
+  {
+   "type": "tree",
+   "position": [
+    -180,
+    320
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "pine",
+   "seed": 300
+  },
+  {
+   "type": "tree",
+   "position": [
+    -172,
+    308
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 331
+  },
+  {
+   "type": "tree",
+   "position": [
+    -150,
+    312
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 362
+  },
+  {
+   "type": "tree",
+   "position": [
+    -125,
+    318
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "pine",
+   "seed": 393
+  },
+  {
+   "type": "tree",
+   "position": [
+    -100,
+    312
+   ],
+   "yaw": 0.5168146928204136,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 424
+  },
+  {
+   "type": "tree",
+   "position": [
+    -90,
+    326
+   ],
+   "yaw": 2.2168146928204138,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 455
+  },
+  {
+   "type": "tree",
+   "position": [
+    -58,
+    318
+   ],
+   "yaw": 3.916814692820413,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 486
+  },
+  {
+   "type": "tree",
+   "position": [
+    -45,
+    330
+   ],
+   "yaw": 5.616814692820414,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 517
+  },
+  {
+   "type": "tree",
+   "position": [
+    20,
+    342
+   ],
+   "yaw": 1.0336293856408272,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 548
+  },
+  {
+   "type": "tree",
+   "position": [
+    30,
+    360
+   ],
+   "yaw": 2.7336293856408265,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "pine",
+   "seed": 579
+  },
+  {
+   "type": "tree",
+   "position": [
+    34,
+    375
+   ],
+   "yaw": 4.4336293856408275,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 610
+  },
+  {
+   "type": "tree",
+   "position": [
+    36,
+    405
+   ],
+   "yaw": 6.133629385640827,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 641
+  },
+  {
+   "type": "tree",
+   "position": [
+    -190,
+    350
+   ],
+   "yaw": 1.5504440784612399,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 672
+  },
+  {
+   "type": "tree",
+   "position": [
+    -192,
+    372
+   ],
+   "yaw": 3.250444078461239,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "pine",
+   "seed": 703
+  },
+  {
+   "type": "tree",
+   "position": [
+    -196,
+    415
+   ],
+   "yaw": 4.950444078461242,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 734
+  },
+  {
+   "type": "tree",
+   "position": [
+    -60,
+    410
+   ],
+   "yaw": 0.36725877128165507,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 765
+  },
+  {
+   "type": "tree",
+   "position": [
+    -20,
+    412
+   ],
+   "yaw": 2.0672587712816544,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 796
+  },
+  {
+   "type": "tree",
+   "position": [
+    -150,
+    342
+   ],
+   "yaw": 3.7672587712816537,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 827
+  },
+  {
+   "type": "pokecenter",
+   "position": [
+    -46.6,
+    -10
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    15,
+    7.5,
+    12
+   ],
+   "ref": "pokecenter-cuilan",
+   "color": "#fbf5ee",
+   "roof": "#e25a4f"
+  },
+  {
+   "type": "mart",
+   "position": [
+    -60.6,
+    -70
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    12,
+    6.5,
+    10
+   ],
+   "ref": "mart-cuilan",
+   "color": "#f4f6f8",
+   "roof": "#3f7fd6"
+  },
+  {
+   "type": "house",
+   "position": [
+    -46.6,
+    -38
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "color": "#f1e6cf",
+   "roof": "#3f6f8f",
+   "variant": "timber",
+   "seed": 71
+  },
+  {
+   "type": "house",
+   "position": [
+    -46.6,
+    -95
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    10,
+    7.4,
+    8
+   ],
+   "color": "#efe2c8",
+   "roof": "#5b8a5a",
+   "variant": "two-storey",
+   "seed": 72
+  },
+  {
+   "type": "house",
+   "position": [
+    -46.6,
+    -120
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    5.6,
+    8
+   ],
+   "color": "#f4ead7",
+   "roof": "#8a5a3c",
+   "variant": "cottage",
+   "seed": 73
+  },
+  {
+   "type": "house",
+   "position": [
+    -74.6,
+    -110
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "color": "#f2e6d0",
+   "roof": "#46708a",
+   "variant": "gable",
+   "seed": 74
+  },
+  {
+   "type": "house",
+   "position": [
+    -76.6,
+    -20
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "color": "#efe3c6",
+   "roof": "#9a5a48",
+   "variant": "timber",
+   "seed": 75
+  },
+  {
+   "type": "house",
+   "position": [
+    -17.4,
+    -30
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "color": "#f4ead7",
+   "roof": "#6b6b8a",
+   "variant": "gable",
+   "seed": 76
+  },
+  {
+   "type": "house",
+   "position": [
+    -17.4,
+    -85
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "color": "#f1e6cf",
+   "roof": "#3f6f8f",
+   "variant": "timber",
+   "seed": 77
+  },
+  {
+   "type": "house",
+   "position": [
+    -17.4,
+    -112
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    10,
+    7.4,
+    8
+   ],
+   "color": "#efe2c8",
+   "roof": "#5b8a5a",
+   "variant": "two-storey",
+   "seed": 78
+  },
+  {
+   "type": "house",
+   "position": [
+    -17.4,
+    -140
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    9,
+    5.6,
+    8
+   ],
+   "color": "#f2e6d0",
+   "roof": "#8a5a3c",
+   "variant": "cottage",
+   "seed": 79
+  },
+  {
+   "type": "statue",
+   "position": [
+    -4,
+    -44.5
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    4.2,
+    1.8
+   ],
+   "variant": "star",
+   "color": "#d9a441"
+  },
+  {
+   "type": "well",
+   "position": [
+    -4,
+    -66
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.8,
+    2.4
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    10.5,
+    -46
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    10.5,
+    -64
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    2,
+    -46
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    0.5,
+    1.8
+   ],
+   "variant": "round",
+   "seed": 81
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    2,
+    -64
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    0.5,
+    1.8
+   ],
+   "variant": "round",
+   "seed": 82
+  },
+  {
+   "type": "noticeboard",
+   "position": [
+    -12,
+    -48.5
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "sign",
+   "position": [
+    8.5,
+    -58.8
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -19,
+    -48.5
+   ],
+   "yaw": 0,
+   "size": [
+    3.6,
+    2.8,
+    2.6
+   ],
+   "roof": "#c8503c",
+   "variant": "fish",
+   "seed": 83
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -19,
+    -61.5
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    3.6,
+    2.8,
+    2.6
+   ],
+   "roof": "#5b8a5a",
+   "variant": "fruit",
+   "seed": 84
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -11,
+    -61.5
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    3.6,
+    2.8,
+    2.6
+   ],
+   "roof": "#d9a441",
+   "variant": "berry",
+   "seed": 85
+  },
+  {
+   "type": "bunting",
+   "position": [
+    -30,
+    -55
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    4.6,
+    1
+   ],
+   "points": [
+    [
+     -26.5,
+     -51
+    ],
+    [
+     -12,
+     -51
+    ],
+    [
+     4,
+     -51
+    ]
+   ],
+   "seed": 86
+  },
+  {
+   "type": "bunting",
+   "position": [
+    -30,
+    -55
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    4.6,
+    1
+   ],
+   "points": [
+    [
+     -26.5,
+     -59
+    ],
+    [
+     -12,
+     -59
+    ],
+    [
+     4,
+     -59
+    ]
+   ],
+   "seed": 87
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -35,
+    -15
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.6,
+    0.3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -35,
+    -45
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.6,
+    0.3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -35,
+    -75
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.6,
+    0.3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -35,
+    -105
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.6,
+    0.3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -35,
+    -130
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.6,
+    0.3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -25,
+    -30
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    0.3,
+    3.6,
+    0.3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -25,
+    -60
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    0.3,
+    3.6,
+    0.3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -25,
+    -90
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    0.3,
+    3.6,
+    0.3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -25,
+    -120
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    0.3,
+    3.6,
+    0.3
+   ]
+  },
+  {
+   "type": "bunting",
+   "position": [
+    -30,
+    -100
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    4.8,
+    1
+   ],
+   "points": [
+    [
+     -34.5,
+     -80
+    ],
+    [
+     -25.5,
+     -80
+    ]
+   ],
+   "seed": 88
+  },
+  {
+   "type": "bunting",
+   "position": [
+    -30,
+    -100
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    4.8,
+    1
+   ],
+   "points": [
+    [
+     -34.5,
+     -100
+    ],
+    [
+     -25.5,
+     -100
+    ]
+   ],
+   "seed": 89
+  },
+  {
+   "type": "bunting",
+   "position": [
+    -30,
+    -100
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    4.8,
+    1
+   ],
+   "points": [
+    [
+     -34.5,
+     -24
+    ],
+    [
+     -25.5,
+     -24
+    ]
+   ],
+   "seed": 90
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -31.5,
+    20
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    0.3,
+    4,
+    0.3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -20.5,
+    22
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4,
+    0.3
+   ]
+  },
+  {
+   "type": "sign",
+   "position": [
+    -17,
+    26
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "laundry",
+   "position": [
+    -54,
+    -38
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.1,
+    0.2
+   ],
+   "seed": 91
+  },
+  {
+   "type": "laundry",
+   "position": [
+    -9,
+    -86
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.1,
+    0.2
+   ],
+   "seed": 92
+  },
+  {
+   "type": "garden",
+   "position": [
+    -60,
+    -128
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    0.4,
+    5
+   ],
+   "variant": "veg",
+   "seed": 93
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -47.5,
+    -63.5
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -48.4,
+    -62.4
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#7a5a32"
+  },
+  {
+   "type": "crate",
+   "position": [
+    -48,
+    -76.5
+   ],
+   "yaw": 0.4,
+   "size": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -38,
+    -26
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    2.4,
+    0.4,
+    1.2
+   ],
+   "seed": 94
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -24,
+    -44
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    2.4,
+    0.4,
+    1.2
+   ],
+   "seed": 95
+  },
+  {
+   "type": "hedge",
+   "position": [
+    -38,
+    -133
+   ],
+   "yaw": 0,
+   "size": [
+    7,
+    1.1,
+    0.9
+   ],
+   "seed": 4
+  },
+  {
+   "type": "tree",
+   "position": [
+    12,
+    -30
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 600
+  },
+  {
+   "type": "tree",
+   "position": [
+    13,
+    -80
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 631
+  },
+  {
+   "type": "tree",
+   "position": [
+    12,
+    -118
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 662
+  },
+  {
+   "type": "tree",
+   "position": [
+    12,
+    12
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 693
+  },
+  {
+   "type": "tree",
+   "position": [
+    8,
+    -138
+   ],
+   "yaw": 0.5168146928204136,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "blossom",
+   "seed": 724
+  },
+  {
+   "type": "tree",
+   "position": [
+    -85,
+    -60
+   ],
+   "yaw": 2.2168146928204138,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "pine",
+   "seed": 755
+  },
+  {
+   "type": "tree",
+   "position": [
+    -85,
+    -85
+   ],
+   "yaw": 3.916814692820413,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 786
+  },
+  {
+   "type": "tree",
+   "position": [
+    -80,
+    -135
+   ],
+   "yaw": 5.616814692820414,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "pine",
+   "seed": 817
+  },
+  {
+   "type": "tree",
+   "position": [
+    -88,
+    0
+   ],
+   "yaw": 1.0336293856408272,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 848
+  },
+  {
+   "type": "tree",
+   "position": [
+    -60,
+    30
+   ],
+   "yaw": 2.7336293856408265,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 879
+  },
+  {
+   "type": "tree",
+   "position": [
+    -10,
+    30
+   ],
+   "yaw": 4.4336293856408275,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 910
+  },
+  {
+   "type": "tree",
+   "position": [
+    0,
+    -10
+   ],
+   "yaw": 6.133629385640827,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 941
+  },
+  {
+   "type": "tree",
+   "position": [
+    -8,
+    -100
+   ],
+   "yaw": 1.5504440784612399,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 972
+  },
+  {
+   "type": "tree",
+   "position": [
+    -62,
+    -50
+   ],
+   "yaw": 3.250444078461239,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 1003
+  },
+  {
+   "type": "tree",
+   "position": [
+    -50,
+    -150
+   ],
+   "yaw": 4.950444078461242,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "pine",
+   "seed": 1034
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -9,
+    -44
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -9,
+    -66
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "deck",
+   "position": [
+    26,
+    -60
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    0.4,
+    130
+   ],
+   "y": 6.1,
+   "rails": "nsew",
+   "gaps": [
+    [
+     "e",
+     -58,
+     1.8
+    ],
+    [
+     "e",
+     30,
+     1.8
+    ],
+    [
+     "e",
+     45,
+     1.8
+    ],
+    [
+     "e",
+     59,
+     1.8
+    ],
+    [
+     "e",
+     5,
+     3.2
+    ],
+    [
+     "e",
+     -30,
+     4
+    ],
+    [
+     "w",
+     -40,
+     3.4
+    ],
+    [
+     "w",
+     5,
+     6
+    ],
+    [
+     "w",
+     45,
+     3.4
+    ]
+   ]
+  },
+  {
+   "type": "deck",
+   "position": [
+    18,
+    -100
+   ],
+   "yaw": 0,
+   "size": [
+    12,
+    0.4,
+    3.4
+   ],
+   "y": 6.1,
+   "rails": "ns",
+   "gaps": []
+  },
+  {
+   "type": "deck",
+   "position": [
+    18,
+    -55
+   ],
+   "yaw": 0,
+   "size": [
+    12,
+    0.4,
+    6
+   ],
+   "y": 6.1,
+   "rails": "ns",
+   "gaps": []
+  },
+  {
+   "type": "deck",
+   "position": [
+    18,
+    -15
+   ],
+   "yaw": 0,
+   "size": [
+    12,
+    0.4,
+    3.4
+   ],
+   "y": 6.1,
+   "rails": "ns",
+   "gaps": []
+  },
+  {
+   "type": "stilt-house",
+   "position": [
+    31.5,
+    -118
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    8,
+    5.6,
+    7
+   ],
+   "y": 6.1,
+   "color": "#f1e6cf",
+   "roof": "#3f6f8f",
+   "accent": "#c8503c",
+   "seed": 400
+  },
+  {
+   "type": "stilt-house",
+   "position": [
+    31.5,
+    -30
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    8,
+    5.6,
+    7
+   ],
+   "y": 6.1,
+   "color": "#f1e6cf",
+   "roof": "#5b8a5a",
+   "accent": "#c8503c",
+   "seed": 401
+  },
+  {
+   "type": "stilt-house",
+   "position": [
+    31.5,
+    -15
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    8,
+    5.6,
+    7
+   ],
+   "y": 6.1,
+   "color": "#f1e6cf",
+   "roof": "#8a5a3c",
+   "accent": "#c8503c",
+   "seed": 402
+  },
+  {
+   "type": "stilt-house",
+   "position": [
+    31.5,
+    -1
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    8,
+    5.6,
+    7
+   ],
+   "y": 6.1,
+   "color": "#f1e6cf",
+   "roof": "#46708a",
+   "accent": "#c8503c",
+   "seed": 403
+  },
+  {
+   "type": "deck",
+   "position": [
+    36,
+    -90
+   ],
+   "yaw": 0,
+   "size": [
+    16,
+    0.4,
+    4
+   ],
+   "y": 6.1,
+   "rails": "ns",
+   "gaps": []
+  },
+  {
+   "type": "deck",
+   "position": [
+    46,
+    -90
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    0.4,
+    40
+   ],
+   "y": 6.1,
+   "rails": "nsew",
+   "gaps": [
+    [
+     "w",
+     0,
+     4
+    ],
+    [
+     "s",
+     0,
+     4
+    ],
+    [
+     "w",
+     -13,
+     1.8
+    ],
+    [
+     "w",
+     13,
+     1.8
+    ],
+    [
+     "e",
+     -12,
+     1.8
+    ],
+    [
+     "e",
+     12,
+     1.8
+    ]
+   ]
+  },
+  {
+   "type": "stilt-house",
+   "position": [
+    40.5,
+    -103
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    8,
+    5.6,
+    7
+   ],
+   "y": 6.1,
+   "color": "#efe2c8",
+   "roof": "#8a5a3c",
+   "accent": "#c8503c",
+   "seed": 420
+  },
+  {
+   "type": "stilt-house",
+   "position": [
+    40.5,
+    -77
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    8,
+    5.6,
+    7
+   ],
+   "y": 6.1,
+   "color": "#efe2c8",
+   "roof": "#46708a",
+   "accent": "#c8503c",
+   "seed": 421
+  },
+  {
+   "type": "stilt-house",
+   "position": [
+    51.5,
+    -102
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    8,
+    5.6,
+    7
+   ],
+   "y": 6.1,
+   "color": "#f4ead7",
+   "roof": "#6b6b8a",
+   "accent": "#d9a441",
+   "seed": 430
+  },
+  {
+   "type": "stilt-house",
+   "position": [
+    51.5,
+    -78
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    8,
+    5.6,
+    7
+   ],
+   "y": 6.1,
+   "color": "#f4ead7",
+   "roof": "#9a5a48",
+   "accent": "#d9a441",
+   "seed": 431
+  },
+  {
+   "type": "deck",
+   "position": [
+    46,
+    -66.5
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    0.4,
+    7
+   ],
+   "y": 6.1,
+   "rails": "sew",
+   "gaps": []
+  },
+  {
+   "type": "bench",
+   "position": [
+    43,
+    -64
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    0.9,
+    0.6
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "bench",
+   "position": [
+    49,
+    -64
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    0.9,
+    0.6
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "barrel",
+   "position": [
+    49.8,
+    -69.5
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "lantern",
+   "position": [
+    24.4,
+    -120
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "lantern",
+   "position": [
+    24.4,
+    -107
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "lantern",
+   "position": [
+    24.4,
+    -94
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "lantern",
+   "position": [
+    24.4,
+    -80
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "lantern",
+   "position": [
+    24.4,
+    -68
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "lantern",
+   "position": [
+    24.4,
+    -42
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "lantern",
+   "position": [
+    24.4,
+    -28
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "lantern",
+   "position": [
+    24.4,
+    -8
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "lantern",
+   "position": [
+    24.4,
+    3
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1
+  },
+  {
+   "type": "lantern",
+   "position": [
+    44.4,
+    -106
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1,
+   "color": "#f2b134"
+  },
+  {
+   "type": "lantern",
+   "position": [
+    44.4,
+    -94
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1,
+   "color": "#f2b134"
+  },
+  {
+   "type": "lantern",
+   "position": [
+    44.4,
+    -84
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1,
+   "color": "#f2b134"
+  },
+  {
+   "type": "lantern",
+   "position": [
+    44.4,
+    -72
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.2,
+    0.3
+   ],
+   "y": 6.1,
+   "color": "#f2b134"
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    33,
+    -46
+   ],
+   "yaw": 0.3,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 5.05,
+   "color": "#5b93a8"
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    31,
+    -128
+   ],
+   "yaw": -0.4,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 5.05,
+   "color": "#d9674e"
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    55,
+    -62
+   ],
+   "yaw": 1.2,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 5.05,
+   "color": "#f2f0e6"
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    34,
+    8
+   ],
+   "yaw": 0.9,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 5.05,
+   "color": "#6aa56b"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    60,
+    -40
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    2,
+    1
+   ],
+   "y": 5
+  },
+  {
+   "type": "buoy",
+   "position": [
+    62,
+    -115
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    2,
+    1
+   ],
+   "y": 5,
+   "color": "#f2f0e6"
+  },
+  {
+   "type": "reeds",
+   "position": [
+    21,
+    -132
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "seed": 500
+  },
+  {
+   "type": "reeds",
+   "position": [
+    20,
+    -142
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "seed": 501
+  },
+  {
+   "type": "reeds",
+   "position": [
+    22,
+    12
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "seed": 502
+  },
+  {
+   "type": "reeds",
+   "position": [
+    21,
+    20
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "seed": 503
+  },
+  {
+   "type": "reeds",
+   "position": [
+    23,
+    -74
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "seed": 504
+  },
+  {
+   "type": "reeds",
+   "position": [
+    23,
+    -36
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "seed": 505
+  },
+  {
+   "type": "lilypads",
+   "position": [
+    38,
+    -40
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    0.1,
+    5
+   ],
+   "y": 5.02,
+   "seed": 520
+  },
+  {
+   "type": "lilypads",
+   "position": [
+    40,
+    -126
+   ],
+   "yaw": 1,
+   "size": [
+    5,
+    0.1,
+    5
+   ],
+   "y": 5.02,
+   "seed": 521
+  },
+  {
+   "type": "lilypads",
+   "position": [
+    60,
+    -95
+   ],
+   "yaw": 2,
+   "size": [
+    5,
+    0.1,
+    5
+   ],
+   "y": 5.02,
+   "seed": 522
+  },
+  {
+   "type": "lilypads",
+   "position": [
+    36,
+    12
+   ],
+   "yaw": 3,
+   "size": [
+    5,
+    0.1,
+    5
+   ],
+   "y": 5.02,
+   "seed": 523
+  },
+  {
+   "type": "lilypads",
+   "position": [
+    58,
+    -72
+   ],
+   "yaw": 4,
+   "size": [
+    5,
+    0.1,
+    5
+   ],
+   "y": 5.02,
+   "seed": 524
+  },
+  {
+   "type": "lilypads",
+   "position": [
+    34,
+    -74
+   ],
+   "yaw": 5,
+   "size": [
+    5,
+    0.1,
+    5
+   ],
+   "y": 5.02,
+   "seed": 525
+  },
+  {
+   "type": "pokecenter",
+   "position": [
+    350,
+    3.4000000000000004
+   ],
+   "yaw": 0,
+   "size": [
+    15,
+    7.5,
+    12
+   ],
+   "ref": "pokecenter-harbor",
+   "color": "#fbf5ee",
+   "roof": "#e25a4f"
+  },
+  {
+   "type": "house",
+   "position": [
+    368,
+    24.9
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    9.5,
+    9
+   ],
+   "variant": "townhouse",
+   "color": "#f2e6d0",
+   "roof": "#8a5a3c",
+   "accent": "#c8503c",
+   "seed": 801
+  },
+  {
+   "type": "house",
+   "position": [
+    381,
+    24.9
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    12,
+    9
+   ],
+   "variant": "townhouse",
+   "color": "#e8dcc6",
+   "roof": "#46708a",
+   "accent": "#2f6db5",
+   "seed": 802
+  },
+  {
+   "type": "house",
+   "position": [
+    394,
+    24.9
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    9.5,
+    9
+   ],
+   "variant": "townhouse",
+   "color": "#f4ead7",
+   "roof": "#5b8a5a",
+   "accent": "#5b8a5a",
+   "seed": 803
+  },
+  {
+   "type": "house",
+   "position": [
+    322,
+    24.9
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    9.5,
+    9
+   ],
+   "variant": "townhouse",
+   "color": "#efe2c8",
+   "roof": "#9a5a48",
+   "accent": "#e0a13a",
+   "seed": 804
+  },
+  {
+   "type": "house",
+   "position": [
+    335,
+    24.9
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    12,
+    9
+   ],
+   "variant": "townhouse",
+   "color": "#f7f1e6",
+   "roof": "#3f6f8f",
+   "accent": "#8a6fb0",
+   "seed": 805
+  },
+  {
+   "type": "house",
+   "position": [
+    322,
+    51.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    9.5,
+    9
+   ],
+   "variant": "townhouse",
+   "color": "#f2e6d0",
+   "roof": "#6b6b8a",
+   "accent": "#46708a",
+   "seed": 806
+  },
+  {
+   "type": "house",
+   "position": [
+    335,
+    51.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    12,
+    9
+   ],
+   "variant": "townhouse",
+   "color": "#e8dcc6",
+   "roof": "#8a5a3c",
+   "accent": "#c85d7c",
+   "seed": 807
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    356,
+    57.5
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#e25a4f",
+   "variant": "fruit",
+   "seed": 820
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    365,
+    57.5
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#f2b134",
+   "variant": "fish",
+   "seed": 821
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    374,
+    57.5
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#3f9fd6",
+   "variant": "goods",
+   "seed": 822
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    383,
+    57.5
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#6aa56b",
+   "variant": "berry",
+   "seed": 823
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    392,
+    57.5
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#c85d7c",
+   "variant": "fruit",
+   "seed": 824
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    401,
+    57.5
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#8a6fb0",
+   "variant": "goods",
+   "seed": 825
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    356,
+    76.5
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#3f9fd6",
+   "variant": "fish",
+   "seed": 830
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    365,
+    76.5
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#e25a4f",
+   "variant": "berry",
+   "seed": 831
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    383,
+    76.5
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#6aa56b",
+   "variant": "fruit",
+   "seed": 832
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    392,
+    76.5
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#f2b134",
+   "variant": "goods",
+   "seed": 833
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    401,
+    76.5
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "roof": "#e25a4f",
+   "variant": "fish",
+   "seed": 834
+  },
+  {
+   "type": "bunting",
+   "position": [
+    378,
+    67
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "points": [
+    [
+     352,
+     62
+    ],
+    [
+     378,
+     64
+    ],
+    [
+     405,
+     62
+    ]
+   ],
+   "seed": 840
+  },
+  {
+   "type": "bunting",
+   "position": [
+    378,
+    67
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "points": [
+    [
+     352,
+     72
+    ],
+    [
+     378,
+     70
+    ],
+    [
+     405,
+     72
+    ]
+   ],
+   "seed": 841
+  },
+  {
+   "type": "lamp",
+   "position": [
+    350,
+    62
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    350,
+    72
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    407,
+    62
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    407,
+    72
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "market-hall",
+   "position": [
+    380,
+    98.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    26,
+    10,
+    16
+   ],
+   "ref": "harbor-market",
+   "color": "#efe2c8",
+   "roof": "#46708a",
+   "seed": 850
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    372,
+    88
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    0.4,
+    1.2
+   ],
+   "seed": 851
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    388,
+    88
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    0.4,
+    1.2
+   ],
+   "seed": 852
+  },
+  {
+   "type": "terminal",
+   "position": [
+    412.09999999999997,
+    14
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    14,
+    8,
+    9
+   ],
+   "ref": "harbor-terminal",
+   "color": "#f4f6f8",
+   "roof": "#2f6db5"
+  },
+  {
+   "type": "statue",
+   "position": [
+    383,
+    4
+   ],
+   "yaw": 0,
+   "size": [
+    1.8,
+    4.6,
+    1.8
+   ],
+   "variant": "anchor",
+   "color": "#5d6d7e"
+  },
+  {
+   "type": "bench",
+   "position": [
+    376,
+    4
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    390,
+    4
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    383,
+    -2.5
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    0.4,
+    1.4
+   ],
+   "seed": 861
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    383,
+    10.5
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    0.4,
+    1.4
+   ],
+   "seed": 862
+  },
+  {
+   "type": "lamp",
+   "position": [
+    370,
+    -3
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    396,
+    -3
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    370,
+    11
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    396,
+    11
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "noticeboard",
+   "position": [
+    400,
+    18
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "warehouse",
+   "position": [
+    411.9,
+    -22
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    16,
+    8,
+    11
+   ],
+   "color": "#d9cbb4",
+   "roof": "#8b6f55",
+   "seed": 871
+  },
+  {
+   "type": "warehouse",
+   "position": [
+    411.9,
+    124
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    16,
+    8,
+    11
+   ],
+   "color": "#cfc4b0",
+   "roof": "#6d7f8c",
+   "seed": 872
+  },
+  {
+   "type": "warehouse",
+   "position": [
+    412.4,
+    142
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    14,
+    7,
+    10
+   ],
+   "color": "#d9cbb4",
+   "roof": "#8b6f55",
+   "seed": 873
+  },
+  {
+   "type": "house",
+   "position": [
+    335.4,
+    72
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "color": "#f4ead7",
+   "roof": "#d9674e",
+   "variant": "gable",
+   "seed": 881
+  },
+  {
+   "type": "house",
+   "position": [
+    335.4,
+    94
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "color": "#efe2c8",
+   "roof": "#4f7fc9",
+   "variant": "two-storey",
+   "seed": 882
+  },
+  {
+   "type": "house",
+   "position": [
+    335.4,
+    116
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    5.6,
+    8
+   ],
+   "color": "#f7f1e6",
+   "roof": "#6aa56b",
+   "variant": "cottage",
+   "seed": 883
+  },
+  {
+   "type": "house",
+   "position": [
+    335.4,
+    138
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "color": "#f2e6d0",
+   "roof": "#a7695a",
+   "variant": "gable",
+   "seed": 884
+  },
+  {
+   "type": "house",
+   "position": [
+    354.6,
+    102
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "color": "#e8dcc6",
+   "roof": "#5b93a8",
+   "variant": "gable",
+   "seed": 885
+  },
+  {
+   "type": "house",
+   "position": [
+    354.6,
+    124
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "color": "#f4ead7",
+   "roof": "#c85d7c",
+   "variant": "two-storey",
+   "seed": 886
+  },
+  {
+   "type": "house",
+   "position": [
+    354.6,
+    142
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    9,
+    5.6,
+    8
+   ],
+   "color": "#efe2c8",
+   "roof": "#e0a13a",
+   "variant": "cottage",
+   "seed": 887
+  },
+  {
+   "type": "laundry",
+   "position": [
+    329,
+    84
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.1,
+    0.2
+   ],
+   "seed": 888
+  },
+  {
+   "type": "garden",
+   "position": [
+    327,
+    127
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    0.4,
+    6
+   ],
+   "variant": "veg",
+   "seed": 889
+  },
+  {
+   "type": "house",
+   "position": [
+    345.4,
+    -40
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    6,
+    8
+   ],
+   "color": "#f2e6d0",
+   "roof": "#46708a",
+   "variant": "timber",
+   "seed": 891
+  },
+  {
+   "type": "house",
+   "position": [
+    376.6,
+    -45
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    9,
+    5.6,
+    8
+   ],
+   "color": "#f7f1e6",
+   "roof": "#9a5a48",
+   "variant": "cottage",
+   "seed": 892
+  },
+  {
+   "type": "house",
+   "position": [
+    325.4,
+    5
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "color": "#efe2c8",
+   "roof": "#5b8a5a",
+   "variant": "gable",
+   "seed": 893
+  },
+  {
+   "type": "lighthouse",
+   "position": [
+    425,
+    -64
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    6,
+    26,
+    6
+   ],
+   "color": "#fbfbf6",
+   "roof": "#d9453b",
+   "ref": "harbor-lighthouse",
+   "variant": "keeper"
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     414,
+     -74
+    ],
+    [
+     414,
+     -53
+    ]
+   ]
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     422,
+     -48
+    ],
+    [
+     436,
+     -48
+    ]
+   ]
+  },
+  {
+   "type": "rocks",
+   "position": [
+    436,
+    -74
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    1,
+    3
+   ],
+   "seed": 895
+  },
+  {
+   "type": "rocks",
+   "position": [
+    412,
+    -80
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    1,
+    2.4
+   ],
+   "seed": 896
+  },
+  {
+   "type": "bench",
+   "position": [
+    431,
+    -46
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    1.6,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    340,
+    33.9
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    356,
+    44.4
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    372,
+    32.5
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    388,
+    43
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    404,
+    31
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    420,
+    41.5
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "tree",
+   "position": [
+    360,
+    43.5
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "palm",
+   "seed": 900
+  },
+  {
+   "type": "tree",
+   "position": [
+    412,
+    42
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "palm",
+   "seed": 931
+  },
+  {
+   "type": "tree",
+   "position": [
+    402,
+    24
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "palm",
+   "seed": 962
+  },
+  {
+   "type": "tree",
+   "position": [
+    345,
+    16
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "palm",
+   "seed": 993
+  },
+  {
+   "type": "tree",
+   "position": [
+    410,
+    -6
+   ],
+   "yaw": 0.5168146928204136,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "palm",
+   "seed": 1024
+  },
+  {
+   "type": "tree",
+   "position": [
+    362,
+    108
+   ],
+   "yaw": 2.2168146928204138,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 1055
+  },
+  {
+   "type": "tree",
+   "position": [
+    335,
+    60
+   ],
+   "yaw": 3.916814692820413,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 1086
+  },
+  {
+   "type": "tree",
+   "position": [
+    355,
+    150
+   ],
+   "yaw": 5.616814692820414,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 1117
+  },
+  {
+   "type": "tree",
+   "position": [
+    320,
+    150
+   ],
+   "yaw": 1.0336293856408272,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "pine",
+   "seed": 1148
+  },
+  {
+   "type": "tree",
+   "position": [
+    312,
+    100
+   ],
+   "yaw": 2.7336293856408265,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 1179
+  },
+  {
+   "type": "tree",
+   "position": [
+    312,
+    60
+   ],
+   "yaw": 4.4336293856408275,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 1210
+  },
+  {
+   "type": "tree",
+   "position": [
+    318,
+    -20
+   ],
+   "yaw": 6.133629385640827,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 1241
+  },
+  {
+   "type": "tree",
+   "position": [
+    338,
+    -60
+   ],
+   "yaw": 1.5504440784612399,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "pine",
+   "seed": 1272
+  },
+  {
+   "type": "tree",
+   "position": [
+    390,
+    -28
+   ],
+   "yaw": 3.250444078461239,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 1303
+  },
+  {
+   "type": "tree",
+   "position": [
+    405,
+    100
+   ],
+   "yaw": 4.950444078461242,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 1334
+  },
+  {
+   "type": "tree",
+   "position": [
+    405,
+    84
+   ],
+   "yaw": 0.36725877128165507,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 1365
+  },
+  {
+   "type": "tree",
+   "position": [
+    360,
+    17
+   ],
+   "yaw": 2.0672587712816544,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 1396
+  },
+  {
+   "type": "seawall",
+   "position": [
+    441.2,
+    40
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    5.2,
+    200
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "deck",
+   "position": [
+    453.5,
+    25
+   ],
+   "yaw": 0,
+   "size": [
+    25,
+    0.4,
+    6
+   ],
+   "y": 2.4,
+   "rails": "nse",
+   "gaps": []
+  },
+  {
+   "type": "boat",
+   "position": [
+    458,
+    15.5
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    7,
+    5,
+    20
+   ],
+   "y": 0,
+   "color": "#f5f5f0",
+   "roof": "#2f6db5",
+   "collide": true,
+   "ref": "ferry-boat"
+  },
+  {
+   "type": "bollard",
+   "position": [
+    463,
+    22.6
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.6,
+    0.4
+   ],
+   "y": 2.4
+  },
+  {
+   "type": "bollard",
+   "position": [
+    452,
+    22.6
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.6,
+    0.4
+   ],
+   "y": 2.4
+  },
+  {
+   "type": "lantern",
+   "position": [
+    465,
+    27.5
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.6,
+    0.3
+   ],
+   "y": 2.4,
+   "color": "#f2b134"
+  },
+  {
+   "type": "deck",
+   "position": [
+    457,
+    115
+   ],
+   "yaw": 0,
+   "size": [
+    30,
+    0.4,
+    4
+   ],
+   "y": 2.4,
+   "rails": "nse",
+   "gaps": [
+    [
+     "e",
+     0,
+     4
+    ]
+   ]
+  },
+  {
+   "type": "deck",
+   "position": [
+    474,
+    115
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    0.4,
+    14
+   ],
+   "y": 2.4,
+   "rails": "nse",
+   "gaps": [
+    [
+     "w",
+     0,
+     4
+    ]
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    474,
+    110
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.6,
+    0.9,
+    0.6
+   ],
+   "y": 2.4
+  },
+  {
+   "type": "bench",
+   "position": [
+    474,
+    120
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.6,
+    0.9,
+    0.6
+   ],
+   "y": 2.4
+  },
+  {
+   "type": "barrel",
+   "position": [
+    476,
+    121.2
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "y": 2.4
+  },
+  {
+   "type": "lantern",
+   "position": [
+    462,
+    113.2
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    3.4,
+    0.3
+   ],
+   "y": 2.4
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    466,
+    108
+   ],
+   "yaw": 1.4,
+   "size": [
+    1.8,
+    0.6,
+    4.4
+   ],
+   "y": 0.05,
+   "color": "#d9674e"
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    448,
+    121
+   ],
+   "yaw": -1.3,
+   "size": [
+    1.7,
+    0.6,
+    4.2
+   ],
+   "y": 0.05,
+   "color": "#5b93a8"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    488,
+    95
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    2,
+    1
+   ],
+   "y": 0
+  },
+  {
+   "type": "buoy",
+   "position": [
+    490,
+    40
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    2,
+    1
+   ],
+   "y": 0,
+   "color": "#f2f0e6"
+  },
+  {
+   "type": "buoy",
+   "position": [
+    486,
+    -20
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    2,
+    1
+   ],
+   "y": 0
+  },
+  {
+   "type": "shed",
+   "position": [
+    428,
+    108
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    10,
+    4.6,
+    6
+   ],
+   "roof": "#2f6db5",
+   "variant": "fish",
+   "y": 2.6
+  },
+  {
+   "type": "crane",
+   "position": [
+    433,
+    -28
+   ],
+   "yaw": 0,
+   "size": [
+    7,
+    15,
+    5
+   ],
+   "color": "#e0a13a",
+   "y": 2.6
+  },
+  {
+   "type": "crane",
+   "position": [
+    433,
+    70
+   ],
+   "yaw": 0,
+   "size": [
+    7,
+    15,
+    5
+   ],
+   "color": "#c8503c",
+   "y": 2.6
+  },
+  {
+   "type": "container",
+   "position": [
+    424,
+    -44
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 2.6,
+   "color": "#c8503c"
+  },
+  {
+   "type": "container",
+   "position": [
+    424,
+    -44
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 5.2,
+   "color": "#2f6db5"
+  },
+  {
+   "type": "container",
+   "position": [
+    424,
+    -37.6
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 2.6,
+   "color": "#e0a13a"
+  },
+  {
+   "type": "container",
+   "position": [
+    426.7,
+    -44
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 2.6,
+   "color": "#5b8a5a"
+  },
+  {
+   "type": "container",
+   "position": [
+    426.7,
+    -44
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 5.2,
+   "color": "#8a6fb0"
+  },
+  {
+   "type": "container",
+   "position": [
+    426.7,
+    -44
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 7.800000000000001,
+   "color": "#46708a"
+  },
+  {
+   "type": "container",
+   "position": [
+    426.7,
+    -37.6
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 2.6,
+   "color": "#c8503c"
+  },
+  {
+   "type": "container",
+   "position": [
+    429.4,
+    -44
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 2.6,
+   "color": "#2f6db5"
+  },
+  {
+   "type": "container",
+   "position": [
+    429.4,
+    -44
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 5.2,
+   "color": "#e0a13a"
+  },
+  {
+   "type": "container",
+   "position": [
+    429.4,
+    -37.6
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 2.6,
+   "color": "#5b8a5a"
+  },
+  {
+   "type": "container",
+   "position": [
+    424,
+    78
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 2.6,
+   "color": "#5b8a5a"
+  },
+  {
+   "type": "container",
+   "position": [
+    424,
+    84.4
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 2.6,
+   "color": "#8a6fb0"
+  },
+  {
+   "type": "container",
+   "position": [
+    424,
+    84.4
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 5.2,
+   "color": "#46708a"
+  },
+  {
+   "type": "container",
+   "position": [
+    426.7,
+    78
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 2.6,
+   "color": "#c8503c"
+  },
+  {
+   "type": "container",
+   "position": [
+    426.7,
+    84.4
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 2.6,
+   "color": "#2f6db5"
+  },
+  {
+   "type": "container",
+   "position": [
+    426.7,
+    84.4
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 5.2,
+   "color": "#e0a13a"
+  },
+  {
+   "type": "container",
+   "position": [
+    426.7,
+    84.4
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    2.6,
+    6
+   ],
+   "y": 7.800000000000001,
+   "color": "#5b8a5a"
+  },
+  {
+   "type": "crate",
+   "position": [
+    436,
+    48
+   ],
+   "yaw": 0,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "crate",
+   "position": [
+    437.2,
+    49.1
+   ],
+   "yaw": 0.7,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "crate",
+   "position": [
+    436.4,
+    50.4
+   ],
+   "yaw": 1.4,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "crate",
+   "position": [
+    429,
+    92
+   ],
+   "yaw": 2.0999999999999996,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "crate",
+   "position": [
+    430.2,
+    93
+   ],
+   "yaw": 2.8,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "crate",
+   "position": [
+    436,
+    136
+   ],
+   "yaw": 3.5,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "barrel",
+   "position": [
+    437,
+    5
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "y": 2.6,
+   "color": "#9b6b43"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    437.8,
+    6
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "y": 2.6,
+   "color": "#7a5a32"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    436.6,
+    7
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "y": 2.6,
+   "color": "#9b6b43"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    425,
+    99
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "y": 2.6,
+   "color": "#7a5a32"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    437,
+    140
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "y": 2.6,
+   "color": "#9b6b43"
+  },
+  {
+   "type": "lamp",
+   "position": [
+    438,
+    -10
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    0.3,
+    4.6,
+    0.3
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "lamp",
+   "position": [
+    438,
+    40
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    0.3,
+    4.6,
+    0.3
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "lamp",
+   "position": [
+    438,
+    60
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    0.3,
+    4.6,
+    0.3
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "lamp",
+   "position": [
+    438,
+    95
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    0.3,
+    4.6,
+    0.3
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "lamp",
+   "position": [
+    438,
+    130
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    0.3,
+    4.6,
+    0.3
+   ],
+   "y": 2.6
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     352,
+     -150
+    ],
+    [
+     338,
+     -262
+    ],
+    [
+     327,
+     -355
+    ]
+   ]
+  },
+  {
+   "type": "boardwalk",
+   "id": "bridge-gym",
+   "position": [
+    0,
+    0
+   ],
+   "y": 6.1,
+   "yaw": 0,
+   "size": [
+    3,
+    0.35,
+    0
+   ],
+   "points": [
+    [
+     28.6,
+     -55
+    ],
+    [
+     119,
+     -55
+    ]
+   ]
+  },
+  {
+   "type": "boardwalk",
+   "id": "bridge-cuilan-river",
+   "position": [
+    0,
+    0
+   ],
+   "y": 6.976677417755127,
+   "yaw": 0,
+   "size": [
+    5,
+    0.35,
+    0
+   ],
+   "points": [
+    [
+     234,
+     94
+    ],
+    [
+     270,
+     71.5
+    ]
+   ]
+  },
+  {
+   "type": "breakable-rock",
+   "ref": "hidden-cave-rock",
+   "position": [
+    -249.6,
+    110
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    2.4,
+    5
+   ]
+  },
+  {
+   "type": "cave-mouth",
+   "ref": "meadow-hidden-cave",
+   "position": [
+    -243.5,
+    110.0
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    4.2,
+    4.6,
+    4
+   ]
+  }
+ ]
+}

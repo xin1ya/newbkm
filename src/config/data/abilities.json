@@ -1,0 +1,530 @@
+[
+ {
+  "id": "adaptability",
+  "name": {
+   "en": "Adaptability",
+   "zh": "适应力"
+  },
+  "shortEffect": "与自身同属性的招式 威力会提高。"
+ },
+ {
+  "id": "analytic",
+  "name": {
+   "en": "Analytic",
+   "zh": "分析"
+  },
+  "shortEffect": "如果在最后使出招式， 招式的威力会提高。"
+ },
+ {
+  "id": "big-pecks",
+  "name": {
+   "en": "Big Pecks",
+   "zh": "健壮胸肌"
+  },
+  "shortEffect": "不会受到防御降低的效果。"
+ },
+ {
+  "id": "blaze",
+  "name": {
+   "en": "Blaze",
+   "zh": "猛火"
+  },
+  "shortEffect": "ＨＰ减少的时候， 火属性的招式威力会提高。"
+ },
+ {
+  "id": "chlorophyll",
+  "name": {
+   "en": "Chlorophyll",
+   "zh": "叶绿素"
+  },
+  "shortEffect": "晴朗天气时， 速度会提高。"
+ },
+ {
+  "id": "clear-body",
+  "name": {
+   "en": "Clear Body",
+   "zh": "恒净之躯"
+  },
+  "shortEffect": "不会因为对手的招式或特性 而被降低能力。"
+ },
+ {
+  "id": "cloud-nine",
+  "name": {
+   "en": "Cloud Nine",
+   "zh": "无关天气"
+  },
+  "shortEffect": "任何天气的影响都会消失。"
+ },
+ {
+  "id": "compound-eyes",
+  "name": {
+   "en": "Compound Eyes",
+   "zh": "复眼"
+  },
+  "shortEffect": "因为拥有复眼， 招式的命中率会提高。"
+ },
+ {
+  "id": "cursed-body",
+  "name": {
+   "en": "Cursed Body",
+   "zh": "诅咒之躯"
+  },
+  "shortEffect": "受到攻击时， 有时会把对手的招式 变为定身法状态。"
+ },
+ {
+  "id": "damp",
+  "name": {
+   "en": "Damp",
+   "zh": "湿气"
+  },
+  "shortEffect": "通过把周围都弄湿， 使谁都无法使用自爆等爆炸类的招式。"
+ },
+ {
+  "id": "defiant",
+  "name": {
+   "en": "Defiant",
+   "zh": "不服输"
+  },
+  "shortEffect": "能力被降低时， 攻击会大幅提高。"
+ },
+ {
+  "id": "drizzle",
+  "name": {
+   "en": "Drizzle",
+   "zh": "降雨"
+  },
+  "shortEffect": "出场时， 会将天气变为下雨。"
+ },
+ {
+  "id": "dry-skin",
+  "name": {
+   "en": "Dry Skin",
+   "zh": "干燥皮肤"
+  },
+  "shortEffect": "下雨天气时和受到水属性的招式时， ＨＰ会回复。晴朗天气时和受到火属性的 招式时，ＨＰ会减少。"
+ },
+ {
+  "id": "effect-spore",
+  "name": {
+   "en": "Effect Spore",
+   "zh": "孢子"
+  },
+  "shortEffect": "受到攻击时， 有时会把接触到自己的对手 变为中毒、麻痹或睡眠状态。"
+ },
+ {
+  "id": "flash-fire",
+  "name": {
+   "en": "Flash Fire",
+   "zh": "引火"
+  },
+  "shortEffect": "受到火属性的招式攻击时， 吸收火焰，自己使出的 火属性招式会变强。"
+ },
+ {
+  "id": "frisk",
+  "name": {
+   "en": "Frisk",
+   "zh": "察觉"
+  },
+  "shortEffect": "出场时， 可以察觉对手的持有物。"
+ },
+ {
+  "id": "gluttony",
+  "name": {
+   "en": "Gluttony",
+   "zh": "贪吃鬼"
+  },
+  "shortEffect": "原本ＨＰ变得很少时才会吃树果， 在ＨＰ还有一半时就会把它吃掉。"
+ },
+ {
+  "id": "guts",
+  "name": {
+   "en": "Guts",
+   "zh": "毅力"
+  },
+  "shortEffect": "如果变为异常状态， 会拿出毅力， 攻击会提高。"
+ },
+ {
+  "id": "healer",
+  "name": {
+   "en": "Healer",
+   "zh": "治愈之心"
+  },
+  "shortEffect": "有时会治愈异常状态的同伴。"
+ },
+ {
+  "id": "hustle",
+  "name": {
+   "en": "Hustle",
+   "zh": "活力"
+  },
+  "shortEffect": "自己的攻击变高， 但命中率会降低。"
+ },
+ {
+  "id": "hydration",
+  "name": {
+   "en": "Hydration",
+   "zh": "湿润之躯"
+  },
+  "shortEffect": "下雨天气时， 异常状态会治愈。"
+ },
+ {
+  "id": "hyper-cutter",
+  "name": {
+   "en": "Hyper Cutter",
+   "zh": "怪力钳"
+  },
+  "shortEffect": "因为拥有以力量自豪的钳子， 不会被对手降低攻击。"
+ },
+ {
+  "id": "illuminate",
+  "name": {
+   "en": "Illuminate",
+   "zh": "发光"
+  },
+  "shortEffect": "通过让周围变亮， 变得容易遇到野生的宝可梦。"
+ },
+ {
+  "id": "illusion",
+  "name": {
+   "en": "Illusion",
+   "zh": "幻觉"
+  },
+  "shortEffect": "假扮成同行队伍中的 最后一个宝可梦出场， 迷惑对手。"
+ },
+ {
+  "id": "insomnia",
+  "name": {
+   "en": "Insomnia",
+   "zh": "不眠"
+  },
+  "shortEffect": "因为是不会睡觉的体质， 所以不会变为睡眠状态。"
+ },
+ {
+  "id": "intimidate",
+  "name": {
+   "en": "Intimidate",
+   "zh": "威吓"
+  },
+  "shortEffect": "出场时威吓对手， 让其退缩， 降低对手的攻击。"
+ },
+ {
+  "id": "keen-eye",
+  "name": {
+   "en": "Keen Eye",
+   "zh": "锐利目光"
+  },
+  "shortEffect": "多亏了锐利的目光， 命中率不会被降低。"
+ },
+ {
+  "id": "levitate",
+  "name": {
+   "en": "Levitate",
+   "zh": "飘浮"
+  },
+  "shortEffect": "从地面浮起， 从而不会受到地面属性招式的攻击。"
+ },
+ {
+  "id": "lightning-rod",
+  "name": {
+   "en": "Lightning Rod",
+   "zh": "避雷针"
+  },
+  "shortEffect": "将电属性的招式吸引到自己身上， 不会受到伤害，而是会提高特攻。"
+ },
+ {
+  "id": "liquid-ooze",
+  "name": {
+   "en": "Liquid Ooze",
+   "zh": "污泥浆"
+  },
+  "shortEffect": "吸收了污泥浆的对手 会因强烈的恶臭 而受到伤害，减少ＨＰ。"
+ },
+ {
+  "id": "long-reach",
+  "name": {
+   "en": "Long Reach",
+   "zh": "远隔"
+  },
+  "shortEffect": "可以不接触对手 就使出所有的招式。"
+ },
+ {
+  "id": "moxie",
+  "name": {
+   "en": "Moxie",
+   "zh": "自信过度"
+  },
+  "shortEffect": "如果打倒对手， 就会充满自信，攻击会提高。"
+ },
+ {
+  "id": "natural-cure",
+  "name": {
+   "en": "Natural Cure",
+   "zh": "自然回复"
+  },
+  "shortEffect": "回到同行队伍后， 异常状态就会被治愈。"
+ },
+ {
+  "id": "no-guard",
+  "name": {
+   "en": "No Guard",
+   "zh": "无防守"
+  },
+  "shortEffect": "由于无防守战术， 双方使出的招式都必定会击中。"
+ },
+ {
+  "id": "overcoat",
+  "name": {
+   "en": "Overcoat",
+   "zh": "防尘"
+  },
+  "shortEffect": "不会受到沙暴或冰雹等的伤害。 不会受到粉末类招式的攻击。"
+ },
+ {
+  "id": "overgrow",
+  "name": {
+   "en": "Overgrow",
+   "zh": "茂盛"
+  },
+  "shortEffect": "ＨＰ减少的时候， 草属性的招式威力会提高。"
+ },
+ {
+  "id": "perish-body",
+  "name": {
+   "en": "Perish Body",
+   "zh": "灭亡之躯"
+  },
+  "shortEffect": "受到接触类招式攻击时， 双方都会在３回合后变为濒死状态。 替换后效果消失。"
+ },
+ {
+  "id": "pickup",
+  "name": {
+   "en": "Pickup",
+   "zh": "捡拾"
+  },
+  "shortEffect": "有时会捡来对手用过的道具， 冒险过程中也会捡到。"
+ },
+ {
+  "id": "poison-point",
+  "name": {
+   "en": "Poison Point",
+   "zh": "毒刺"
+  },
+  "shortEffect": "有时会让接触到自己的 对手变为中毒状态。"
+ },
+ {
+  "id": "quick-feet",
+  "name": {
+   "en": "Quick Feet",
+   "zh": "飞毛腿"
+  },
+  "shortEffect": "变为异常状态时， 速度会提高。"
+ },
+ {
+  "id": "rain-dish",
+  "name": {
+   "en": "Rain Dish",
+   "zh": "雨盘"
+  },
+  "shortEffect": "下雨天气时， 会缓缓回复ＨＰ。"
+ },
+ {
+  "id": "rattled",
+  "name": {
+   "en": "Rattled",
+   "zh": "胆怯"
+  },
+  "shortEffect": "受到恶属性、幽灵属性 和虫属性的招式攻击时， 会因胆怯而速度提高。"
+ },
+ {
+  "id": "reckless",
+  "name": {
+   "en": "Reckless",
+   "zh": "舍身"
+  },
+  "shortEffect": "自己会因反作用力受伤的招式， 其威力会提高。"
+ },
+ {
+  "id": "regenerator",
+  "name": {
+   "en": "Regenerator",
+   "zh": "再生力"
+  },
+  "shortEffect": "退回同行队伍后， ＨＰ会少量回复。"
+ },
+ {
+  "id": "rock-head",
+  "name": {
+   "en": "Rock Head",
+   "zh": "坚硬脑袋"
+  },
+  "shortEffect": "即使使出会受反作用力伤害的招式， ＨＰ也不会减少。"
+ },
+ {
+  "id": "run-away",
+  "name": {
+   "en": "Run Away",
+   "zh": "逃跑"
+  },
+  "shortEffect": "一定能从野生宝可梦 那儿逃走。"
+ },
+ {
+  "id": "sand-veil",
+  "name": {
+   "en": "Sand Veil",
+   "zh": "沙隐"
+  },
+  "shortEffect": "在沙暴的时候， 闪避率会提高。"
+ },
+ {
+  "id": "shed-skin",
+  "name": {
+   "en": "Shed Skin",
+   "zh": "蜕皮"
+  },
+  "shortEffect": "通过蜕去身上的皮， 有时会治愈异常状态。"
+ },
+ {
+  "id": "sheer-force",
+  "name": {
+   "en": "Sheer Force",
+   "zh": "强行"
+  },
+  "shortEffect": "招式的追加效果消失， 但因此能以更高的威力使出招式。"
+ },
+ {
+  "id": "shell-armor",
+  "name": {
+   "en": "Shell Armor",
+   "zh": "硬壳盔甲"
+  },
+  "shortEffect": "被坚硬的壳保护着， 对手的攻击不会击中要害。"
+ },
+ {
+  "id": "shield-dust",
+  "name": {
+   "en": "Shield Dust",
+   "zh": "鳞粉"
+  },
+  "shortEffect": "被鳞粉守护着， 不会受到招式的追加效果影响。"
+ },
+ {
+  "id": "skill-link",
+  "name": {
+   "en": "Skill Link",
+   "zh": "连续攻击"
+  },
+  "shortEffect": "如果使用连续招式， 总是能使出最高次数。"
+ },
+ {
+  "id": "static",
+  "name": {
+   "en": "Static",
+   "zh": "静电"
+  },
+  "shortEffect": "身上带有静电， 有时会让接触到的对手麻痹。"
+ },
+ {
+  "id": "steadfast",
+  "name": {
+   "en": "Steadfast",
+   "zh": "不屈之心"
+  },
+  "shortEffect": "每次畏缩时， 不屈之心就会燃起， 速度也会提高。"
+ },
+ {
+  "id": "stench",
+  "name": {
+   "en": "Stench",
+   "zh": "恶臭"
+  },
+  "shortEffect": "通过释放臭臭的气味， 在攻击的时候， 有时会使对手畏缩。"
+ },
+ {
+  "id": "sturdy",
+  "name": {
+   "en": "Sturdy",
+   "zh": "结实"
+  },
+  "shortEffect": "即使受到对手的招式攻击， 也不会被一击打倒。 一击必杀的招式也没有效果。"
+ },
+ {
+  "id": "swift-swim",
+  "name": {
+   "en": "Swift Swim",
+   "zh": "悠游自如"
+  },
+  "shortEffect": "下雨天气时， 速度会提高。"
+ },
+ {
+  "id": "tangled-feet",
+  "name": {
+   "en": "Tangled Feet",
+   "zh": "蹒跚"
+  },
+  "shortEffect": "在混乱状态时， 闪避率会提高。"
+ },
+ {
+  "id": "tinted-lens",
+  "name": {
+   "en": "Tinted Lens",
+   "zh": "有色眼镜"
+  },
+  "shortEffect": "可以将效果不好的招式 以通常的威力使出。"
+ },
+ {
+  "id": "torrent",
+  "name": {
+   "en": "Torrent",
+   "zh": "激流"
+  },
+  "shortEffect": "ＨＰ减少的时候， 水属性的招式威力会提高。"
+ },
+ {
+  "id": "unaware",
+  "name": {
+   "en": "Unaware",
+   "zh": "纯朴"
+  },
+  "shortEffect": "可以无视对手能力的变化， 进行攻击。"
+ },
+ {
+  "id": "unnerve",
+  "name": {
+   "en": "Unnerve",
+   "zh": "紧张感"
+  },
+  "shortEffect": "让对手紧张， 使其无法食用树果。"
+ },
+ {
+  "id": "water-absorb",
+  "name": {
+   "en": "Water Absorb",
+   "zh": "储水"
+  },
+  "shortEffect": "受到水属性的招式攻击时， 不会受到伤害，而是会回复。"
+ },
+ {
+  "id": "water-compaction",
+  "name": {
+   "en": "Water Compaction",
+   "zh": "遇水凝固"
+  },
+  "shortEffect": "受到水属性的招式攻击时， 防御会大幅提高。"
+ },
+ {
+  "id": "water-veil",
+  "name": {
+   "en": "Water Veil",
+   "zh": "水幕"
+  },
+  "shortEffect": "将水幕裹在身上， 不会变为灼伤状态。"
+ },
+ {
+  "id": "weak-armor",
+  "name": {
+   "en": "Weak Armor",
+   "zh": "碎裂铠甲"
+  },
+  "shortEffect": "如果因物理招式受到伤害， 防御会降低， 速度会大幅提高。"
+ }
+]

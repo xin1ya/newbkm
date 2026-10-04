@@ -1,0 +1,26 @@
+{
+  "id": 72,
+  "name": "tentacool",
+  "heightM": 0.9,
+  "plan": "rigid",
+  "tris": 3956,
+  "fit": "height",
+  "bones": 11,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "swim"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "072_tentacool_shiny.png"
+}

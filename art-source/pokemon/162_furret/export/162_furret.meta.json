@@ -1,0 +1,25 @@
+{
+  "id": 162,
+  "name": "furret",
+  "heightM": 1.8,
+  "plan": "quadruped",
+  "tris": 8132,
+  "fit": "length",
+  "bones": 21,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "162_furret_shiny.png"
+}

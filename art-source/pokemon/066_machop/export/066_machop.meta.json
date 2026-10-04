@@ -1,0 +1,25 @@
+{
+  "id": 66,
+  "name": "machop",
+  "heightM": 0.8,
+  "plan": "biped",
+  "tris": 11436,
+  "fit": "height",
+  "bones": 16,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.4666666666666667,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "066_machop_shiny.png"
+}

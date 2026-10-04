@@ -1,0 +1,24 @@
+{
+  "id": 120,
+  "name": "staryu",
+  "heightM": 0.8,
+  "plan": "biped",
+  "tris": 5460,
+  "bones": 12,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.4666666666666667,
+    "attack_special": 0.8
+  },
+  "shiny": "120_staryu_shiny.png"
+}

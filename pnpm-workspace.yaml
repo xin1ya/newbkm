@@ -1,0 +1,3 @@
+# 允许执行构建脚本的依赖（pnpm 11 使用 allowBuilds；onlyBuiltDependencies 已不再识别）
+allowBuilds:
+  esbuild: true

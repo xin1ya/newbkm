@@ -1,0 +1,26 @@
+{
+  "id": 16,
+  "name": "pidgey",
+  "heightM": 0.3,
+  "plan": "bird",
+  "tris": 6888,
+  "fit": "height",
+  "bones": 18,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.8666666666666667
+  },
+  "shiny": "016_pidgey_shiny.png"
+}

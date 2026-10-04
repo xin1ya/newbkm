@@ -1,0 +1,26 @@
+{
+  "id": 723,
+  "name": "dartrix",
+  "heightM": 0.7,
+  "plan": "bird",
+  "tris": 9900,
+  "fit": "height",
+  "bones": 19,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "723_dartrix_shiny.png"
+}

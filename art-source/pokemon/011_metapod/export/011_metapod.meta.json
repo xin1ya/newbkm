@@ -1,0 +1,25 @@
+{
+  "id": 11,
+  "name": "metapod",
+  "heightM": 0.7,
+  "plan": "rigid",
+  "tris": 2644,
+  "fit": "height",
+  "bones": 7,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "011_metapod_shiny.png"
+}

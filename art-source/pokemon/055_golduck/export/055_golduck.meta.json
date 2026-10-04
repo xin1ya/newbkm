@@ -1,0 +1,25 @@
+{
+  "id": 55,
+  "name": "golduck",
+  "heightM": 1.7,
+  "plan": "biped",
+  "tris": 7672,
+  "fit": "height",
+  "bones": 21,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "055_golduck_shiny.png"
+}

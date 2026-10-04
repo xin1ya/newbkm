@@ -1,0 +1,687 @@
+[
+ {
+  "id": "oran-berry",
+  "name": "橙橙果",
+  "category": "heal",
+  "effect": {
+   "healHp": 10
+  },
+  "flavor": {
+   "spicy": 10,
+   "dry": 10,
+   "sweet": 0,
+   "bitter": 10,
+   "sour": 10
+  },
+  "smoothness": 20,
+  "growHours": 8,
+  "yield": [
+   2,
+   4
+  ],
+  "color": {
+   "fruit": "#4a8fe0",
+   "shade": "#2f63b0",
+   "leaf": "#4f9a48"
+  },
+  "shape": "round",
+  "desc": "携带后HP降到一半以下时自动食用，回复10点HP。"
+ },
+ {
+  "id": "sitrus-berry",
+  "name": "文柚果",
+  "category": "heal",
+  "effect": {
+   "healFrac": 0.25
+  },
+  "flavor": {
+   "spicy": 0,
+   "dry": 10,
+   "sweet": 10,
+   "bitter": 10,
+   "sour": 10
+  },
+  "smoothness": 20,
+  "growHours": 16,
+  "yield": [
+   1,
+   3
+  ],
+  "color": {
+   "fruit": "#f2d24a",
+   "shade": "#c9a012",
+   "leaf": "#4f9a48"
+  },
+  "shape": "oval",
+  "desc": "携带后HP降到一半以下时自动食用，回复最大HP的1/4。"
+ },
+ {
+  "id": "leppa-berry",
+  "name": "苹野果",
+  "category": "heal",
+  "effect": {
+   "pp": 10
+  },
+  "flavor": {
+   "spicy": 10,
+   "dry": 0,
+   "sweet": 10,
+   "bitter": 10,
+   "sour": 10
+  },
+  "smoothness": 20,
+  "growHours": 16,
+  "yield": [
+   1,
+   3
+  ],
+  "color": {
+   "fruit": "#e8484a",
+   "shade": "#a8322a",
+   "leaf": "#5aa04a"
+  },
+  "shape": "round",
+  "desc": "在野外使用可回复1个招式10点PP；携带后PP用完时自动食用。"
+ },
+ {
+  "id": "cheri-berry",
+  "name": "樱子果",
+  "category": "status",
+  "effect": {
+   "cure": [
+    "par"
+   ]
+  },
+  "flavor": {
+   "spicy": 10,
+   "dry": 0,
+   "sweet": 0,
+   "bitter": 0,
+   "sour": 0
+  },
+  "smoothness": 25,
+  "growHours": 8,
+  "yield": [
+   2,
+   4
+  ],
+  "color": {
+   "fruit": "#e8484a",
+   "shade": "#a8322a",
+   "leaf": "#4f9a48"
+  },
+  "shape": "twin",
+  "desc": "携带后陷入麻痹时自动食用，治愈麻痹。"
+ },
+ {
+  "id": "chesto-berry",
+  "name": "零余果",
+  "category": "status",
+  "effect": {
+   "cure": [
+    "slp"
+   ]
+  },
+  "flavor": {
+   "spicy": 0,
+   "dry": 10,
+   "sweet": 0,
+   "bitter": 0,
+   "sour": 0
+  },
+  "smoothness": 25,
+  "growHours": 8,
+  "yield": [
+   2,
+   4
+  ],
+  "color": {
+   "fruit": "#7a5ad0",
+   "shade": "#4a3a90",
+   "leaf": "#4f9a48"
+  },
+  "shape": "round",
+  "desc": "携带后陷入睡眠时自动食用，从睡眠中醒来。"
+ },
+ {
+  "id": "pecha-berry",
+  "name": "桃桃果",
+  "category": "status",
+  "effect": {
+   "cure": [
+    "psn",
+    "tox"
+   ]
+  },
+  "flavor": {
+   "spicy": 0,
+   "dry": 0,
+   "sweet": 10,
+   "bitter": 0,
+   "sour": 0
+  },
+  "smoothness": 25,
+  "growHours": 8,
+  "yield": [
+   2,
+   4
+  ],
+  "color": {
+   "fruit": "#f6a0c0",
+   "shade": "#c96a8e",
+   "leaf": "#5aa04a"
+  },
+  "shape": "heart",
+  "desc": "携带后陷入中毒时自动食用，治愈中毒。"
+ },
+ {
+  "id": "rawst-berry",
+  "name": "莓莓果",
+  "category": "status",
+  "effect": {
+   "cure": [
+    "brn"
+   ]
+  },
+  "flavor": {
+   "spicy": 0,
+   "dry": 0,
+   "sweet": 0,
+   "bitter": 10,
+   "sour": 0
+  },
+  "smoothness": 25,
+  "growHours": 8,
+  "yield": [
+   2,
+   4
+  ],
+  "color": {
+   "fruit": "#6fcf8a",
+   "shade": "#3f9a5a",
+   "leaf": "#4f9a48"
+  },
+  "shape": "leafy",
+  "desc": "携带后陷入灼伤时自动食用，治愈灼伤。"
+ },
+ {
+  "id": "aspear-berry",
+  "name": "利木果",
+  "category": "status",
+  "effect": {
+   "cure": [
+    "frz"
+   ]
+  },
+  "flavor": {
+   "spicy": 0,
+   "dry": 0,
+   "sweet": 0,
+   "bitter": 0,
+   "sour": 10
+  },
+  "smoothness": 25,
+  "growHours": 8,
+  "yield": [
+   2,
+   4
+  ],
+  "color": {
+   "fruit": "#f6e66a",
+   "shade": "#c9b82a",
+   "leaf": "#5aa04a"
+  },
+  "shape": "oval",
+  "desc": "携带后陷入冰冻时自动食用，治愈冰冻。"
+ },
+ {
+  "id": "lum-berry",
+  "name": "木子果",
+  "category": "status",
+  "effect": {
+   "cure": [
+    "psn",
+    "tox",
+    "par",
+    "slp",
+    "brn",
+    "frz"
+   ],
+   "confusion": true
+  },
+  "flavor": {
+   "spicy": 10,
+   "dry": 10,
+   "sweet": 10,
+   "bitter": 10,
+   "sour": 0
+  },
+  "smoothness": 35,
+  "growHours": 24,
+  "yield": [
+   1,
+   2
+  ],
+  "color": {
+   "fruit": "#7fcf6a",
+   "shade": "#4a9a3a",
+   "leaf": "#3f8a3a"
+  },
+  "shape": "lum",
+  "desc": "携带后陷入任何异常状态或混乱时自动食用，全部治愈。"
+ },
+ {
+  "id": "pomeg-berry",
+  "name": "榴石果",
+  "category": "ev",
+  "effect": {
+   "ev": "hp"
+  },
+  "flavor": {
+   "spicy": 10,
+   "dry": 0,
+   "sweet": 10,
+   "bitter": 10,
+   "sour": 0
+  },
+  "smoothness": 20,
+  "growHours": 24,
+  "yield": [
+   1,
+   3
+  ],
+  "color": {
+   "fruit": "#d0303a",
+   "shade": "#8a1a22",
+   "leaf": "#4a8a3a"
+  },
+  "shape": "round",
+  "desc": "降低1只宝可梦10点HP努力值，同时让它更亲近你。"
+ },
+ {
+  "id": "kelpsy-berry",
+  "name": "藻根果",
+  "category": "ev",
+  "effect": {
+   "ev": "atk"
+  },
+  "flavor": {
+   "spicy": 0,
+   "dry": 10,
+   "sweet": 0,
+   "bitter": 10,
+   "sour": 10
+  },
+  "smoothness": 20,
+  "growHours": 24,
+  "yield": [
+   1,
+   3
+  ],
+  "color": {
+   "fruit": "#5aa9e6",
+   "shade": "#2f6db5",
+   "leaf": "#4a8a3a"
+  },
+  "shape": "root",
+  "desc": "降低1只宝可梦10点攻击努力值，同时让它更亲近你。"
+ },
+ {
+  "id": "qualot-berry",
+  "name": "比巴果",
+  "category": "ev",
+  "effect": {
+   "ev": "def"
+  },
+  "flavor": {
+   "spicy": 10,
+   "dry": 0,
+   "sweet": 10,
+   "bitter": 0,
+   "sour": 10
+  },
+  "smoothness": 20,
+  "growHours": 24,
+  "yield": [
+   1,
+   3
+  ],
+  "color": {
+   "fruit": "#f2d24a",
+   "shade": "#c9a012",
+   "leaf": "#4a8a3a"
+  },
+  "shape": "oval",
+  "desc": "降低1只宝可梦10点防御努力值，同时让它更亲近你。"
+ },
+ {
+  "id": "hondew-berry",
+  "name": "哈密果",
+  "category": "ev",
+  "effect": {
+   "ev": "spa"
+  },
+  "flavor": {
+   "spicy": 10,
+   "dry": 10,
+   "sweet": 0,
+   "bitter": 10,
+   "sour": 0
+  },
+  "smoothness": 20,
+  "growHours": 24,
+  "yield": [
+   1,
+   3
+  ],
+  "color": {
+   "fruit": "#8fd16a",
+   "shade": "#5a9a3a",
+   "leaf": "#4a8a3a"
+  },
+  "shape": "round",
+  "desc": "降低1只宝可梦10点特攻努力值，同时让它更亲近你。"
+ },
+ {
+  "id": "grepa-berry",
+  "name": "萄葡果",
+  "category": "ev",
+  "effect": {
+   "ev": "spd"
+  },
+  "flavor": {
+   "spicy": 0,
+   "dry": 10,
+   "sweet": 10,
+   "bitter": 0,
+   "sour": 10
+  },
+  "smoothness": 20,
+  "growHours": 24,
+  "yield": [
+   1,
+   3
+  ],
+  "color": {
+   "fruit": "#f6e09a",
+   "shade": "#c9a85a",
+   "leaf": "#4a8a3a"
+  },
+  "shape": "twin",
+  "desc": "降低1只宝可梦10点特防努力值，同时让它更亲近你。"
+ },
+ {
+  "id": "tamato-berry",
+  "name": "茄番果",
+  "category": "ev",
+  "effect": {
+   "ev": "spe"
+  },
+  "flavor": {
+   "spicy": 20,
+   "dry": 10,
+   "sweet": 0,
+   "bitter": 0,
+   "sour": 0
+  },
+  "smoothness": 30,
+  "growHours": 24,
+  "yield": [
+   1,
+   3
+  ],
+  "color": {
+   "fruit": "#e8484a",
+   "shade": "#a8322a",
+   "leaf": "#4a8a3a"
+  },
+  "shape": "round",
+  "desc": "降低1只宝可梦10点速度努力值，同时让它更亲近你。"
+ },
+ {
+  "id": "occa-berry",
+  "name": "巧可果",
+  "category": "resist",
+  "effect": {
+   "resist": "fire"
+  },
+  "flavor": {
+   "spicy": 15,
+   "dry": 0,
+   "sweet": 10,
+   "bitter": 0,
+   "sour": 0
+  },
+  "smoothness": 30,
+  "growHours": 36,
+  "yield": [
+   1,
+   2
+  ],
+  "color": {
+   "fruit": "#f08a3c",
+   "shade": "#c04a1a",
+   "leaf": "#4f9a48"
+  },
+  "shape": "spiky",
+  "desc": "受到效果绝佳的火属性招式时食用，伤害减半1次。"
+ },
+ {
+  "id": "passho-berry",
+  "name": "千香果",
+  "category": "resist",
+  "effect": {
+   "resist": "water"
+  },
+  "flavor": {
+   "spicy": 0,
+   "dry": 15,
+   "sweet": 0,
+   "bitter": 10,
+   "sour": 0
+  },
+  "smoothness": 30,
+  "growHours": 36,
+  "yield": [
+   1,
+   2
+  ],
+  "color": {
+   "fruit": "#5ac8e6",
+   "shade": "#2f8ab5",
+   "leaf": "#4f9a48"
+  },
+  "shape": "oval",
+  "desc": "受到效果绝佳的水属性招式时食用，伤害减半1次。"
+ },
+ {
+  "id": "wacan-berry",
+  "name": "烛木果",
+  "category": "resist",
+  "effect": {
+   "resist": "electric"
+  },
+  "flavor": {
+   "spicy": 0,
+   "dry": 0,
+   "sweet": 15,
+   "bitter": 0,
+   "sour": 10
+  },
+  "smoothness": 30,
+  "growHours": 36,
+  "yield": [
+   1,
+   2
+  ],
+  "color": {
+   "fruit": "#f6d84a",
+   "shade": "#c9a012",
+   "leaf": "#4f9a48"
+  },
+  "shape": "oval",
+  "desc": "受到效果绝佳的电属性招式时食用，伤害减半1次。"
+ },
+ {
+  "id": "rindo-berry",
+  "name": "罗子果",
+  "category": "resist",
+  "effect": {
+   "resist": "grass"
+  },
+  "flavor": {
+   "spicy": 10,
+   "dry": 0,
+   "sweet": 0,
+   "bitter": 15,
+   "sour": 0
+  },
+  "smoothness": 30,
+  "growHours": 36,
+  "yield": [
+   1,
+   2
+  ],
+  "color": {
+   "fruit": "#5fbf5a",
+   "shade": "#2f7a3a",
+   "leaf": "#4f9a48"
+  },
+  "shape": "leafy",
+  "desc": "受到效果绝佳的草属性招式时食用，伤害减半1次。"
+ },
+ {
+  "id": "yache-berry",
+  "name": "番荔果",
+  "category": "resist",
+  "effect": {
+   "resist": "ice"
+  },
+  "flavor": {
+   "spicy": 0,
+   "dry": 10,
+   "sweet": 0,
+   "bitter": 0,
+   "sour": 15
+  },
+  "smoothness": 30,
+  "growHours": 36,
+  "yield": [
+   1,
+   2
+  ],
+  "color": {
+   "fruit": "#a8e6f5",
+   "shade": "#5ab0d0",
+   "leaf": "#4f9a48"
+  },
+  "shape": "spiky",
+  "desc": "受到效果绝佳的冰属性招式时食用，伤害减半1次。"
+ },
+ {
+  "id": "chople-berry",
+  "name": "莲蒲果",
+  "category": "resist",
+  "effect": {
+   "resist": "fighting"
+  },
+  "flavor": {
+   "spicy": 15,
+   "dry": 0,
+   "sweet": 0,
+   "bitter": 10,
+   "sour": 0
+  },
+  "smoothness": 30,
+  "growHours": 36,
+  "yield": [
+   1,
+   2
+  ],
+  "color": {
+   "fruit": "#e8706a",
+   "shade": "#a8423a",
+   "leaf": "#4f9a48"
+  },
+  "shape": "round",
+  "desc": "受到效果绝佳的格斗属性招式时食用，伤害减半1次。"
+ },
+ {
+  "id": "razz-berry",
+  "name": "蔓莓果",
+  "category": "flavor",
+  "effect": {},
+  "flavor": {
+   "spicy": 10,
+   "dry": 10,
+   "sweet": 0,
+   "bitter": 0,
+   "sour": 0
+  },
+  "smoothness": 20,
+  "growHours": 12,
+  "yield": [
+   2,
+   4
+  ],
+  "color": {
+   "fruit": "#e8484a",
+   "shade": "#a8322a",
+   "leaf": "#5aa04a"
+  },
+  "shape": "bumpy",
+  "desc": "酸甜带点辛辣的树果，是制作能量方块的常用原料。"
+ },
+ {
+  "id": "figy-berry",
+  "name": "勿花果",
+  "category": "flavor",
+  "effect": {},
+  "flavor": {
+   "spicy": 15,
+   "dry": 0,
+   "sweet": 0,
+   "bitter": 0,
+   "sour": 0
+  },
+  "smoothness": 25,
+  "growHours": 12,
+  "yield": [
+   2,
+   4
+  ],
+  "color": {
+   "fruit": "#e86a8a",
+   "shade": "#a83a5a",
+   "leaf": "#5aa04a"
+  },
+  "shape": "heart",
+  "desc": "辣味浓烈的树果，用来制作辣味能量方块。"
+ },
+ {
+  "id": "wiki-berry",
+  "name": "异奇果",
+  "category": "flavor",
+  "effect": {},
+  "flavor": {
+   "spicy": 0,
+   "dry": 15,
+   "sweet": 0,
+   "bitter": 0,
+   "sour": 0
+  },
+  "smoothness": 25,
+  "growHours": 12,
+  "yield": [
+   1,
+   3
+  ],
+  "color": {
+   "fruit": "#9a6ad0",
+   "shade": "#5a3a90",
+   "leaf": "#3a7a6a"
+  },
+  "shape": "spiky",
+  "desc": "只在幻影之森夜晚结果的奇异树果，涩味很重，是高级能量方块的原料。"
+ }
+]

@@ -1,0 +1,25 @@
+{
+  "id": 341,
+  "name": "corphish",
+  "heightM": 0.6,
+  "plan": "quadruped",
+  "tris": 6996,
+  "fit": "height",
+  "bones": 18,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.4666666666666667,
+    "attack_special": 0.7333333333333333
+  },
+  "shiny": "341_corphish_shiny.png"
+}
