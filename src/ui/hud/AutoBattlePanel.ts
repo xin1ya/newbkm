@@ -43,7 +43,7 @@ export interface AutoSettingsData {
   pp: AutoOption[];
   /** 首发宝可梦的招式 */
   leadName: string;
-  moves: { index: number; name: string; pp: number; maxPp: number; damaging?: boolean }[];
+  moves: { index: number; id: string; name: string; pp: number; maxPp: number; damaging?: boolean }[];
 }
 
 export type AutoSettingsResult = { action: 'start' | 'stop' | 'close'; config: AutoBattleConfig };
@@ -208,15 +208,21 @@ export class AutoBattleSettings implements UiWidget {
     // 右：策略
     const right = el('div', 'col', win);
     const g1 = el('div', 'grp', right);
-    el('div', 'h', g1, `使用的招式（${data.leadName}）`);
+    el('div', 'h', g1, `可使用的招式（${data.leadName}）`);
     const mv = el('div', 'chips', g1);
-    const auto = el('button', `chip${cfg.moveSlot < 0 ? ' on' : ''}`, mv, '自动（效果最好）');
-    auto.addEventListener('click', () => this.set(() => (cfg.moveSlot = -1)));
     for (const m of data.moves) {
-      const b = el('button', `chip${cfg.moveSlot === m.index ? ' on' : ''}`, mv, `${m.name} ${m.pp}/${m.maxPp}${m.damaging === false ? '（变化招式·不使用）' : ''}`);
+      const off = m.damaging === false || cfg.disabledMoves.includes(m.id);
+      const b = el('button', `chip${off ? '' : ' on'}`, mv, `${off ? '☐' : '☑'} ${m.name} ${m.pp}/${m.maxPp}${m.damaging === false ? '（变化招式）' : ''}`);
       b.disabled = m.damaging === false;
-      b.addEventListener('click', () => this.set(() => (cfg.moveSlot = m.index)));
+      b.addEventListener('click', () =>
+        this.set(() => {
+          const i = cfg.disabledMoves.indexOf(m.id);
+          if (i >= 0) cfg.disabledMoves.splice(i, 1);
+          else cfg.disabledMoves.push(m.id);
+        }),
+      );
     }
+    el('div', 'meta', g1, '每回合在勾选的攻击招式里自动挑效果最好的；打不到对手的招式（属性免疫）自动跳过。').style.cssText = 'font-size:11px;color:#6a7190;margin-top:4px';
     el('div', 'meta', g1, '捕捉时会自动换用不会打倒对方的招式，对方进入红血后扔球。').style.cssText = 'font-size:11px;color:#6a7190;margin-top:4px';
 
     const g2 = el('div', 'grp', right);
@@ -236,7 +242,7 @@ export class AutoBattleSettings implements UiWidget {
     for (const it of data.heal) this.itemChip(hc, it, cfg.healItems);
 
     const g4 = el('div', 'grp', right);
-    el('div', 'h', g4, '所选招式 PP 低于等于');
+    el('div', 'h', g4, '勾选招式 PP 都低于等于');
     this.stepper(g4, `${cfg.ppMin}`, (d) => (cfg.ppMin = Math.min(10, Math.max(0, cfg.ppMin + d))));
     const pc = el('div', 'chips', g4);
     pc.style.marginTop = '6px';

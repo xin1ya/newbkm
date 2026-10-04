@@ -24,9 +24,11 @@ describe('自动战斗决策', () => {
     const b = battle([mon(722, 15)], [mon(16, 5)]);
     const r = req(b);
     const slot = r.moves.find((m) => estimateDamage(b, m.index, 1) > 0)!.index;
-    const d1 = decideAutoAction(b, r, 'defeat', cfg({ moveSlot: slot }), {});
+    // 只勾选一个招式 → 只用它
+    const others = r.moves.filter((m) => m.index !== slot).map((m) => m.id);
+    const d1 = decideAutoAction(b, r, 'defeat', cfg({ disabledMoves: others }), {});
     expect(d1).toMatchObject({ kind: 'act', action: { type: 'move', moveIndex: slot } });
-    const d2 = decideAutoAction(b, r, 'defeat', cfg({ moveSlot: -1 }), {});
+    const d2 = decideAutoAction(b, r, 'defeat', cfg(), {});
     expect(d2.kind).toBe('act');
     if (d2.kind === 'act' && d2.action.type === 'move') {
       const dmg = r.moves.map((m) => estimateDamage(b, m.index, 0.925));
@@ -52,19 +54,23 @@ describe('自动战斗决策', () => {
       { id: 'tackle', pp: 35, maxPp: 35 },
     ];
     const b = battle([me], [mon(16, 5)]);
-    expect(decideAutoAction(b, req(b), 'defeat', cfg({ moveSlot: 0 }), {})).toMatchObject({ action: { type: 'move', moveIndex: 1 } });
-    expect(decideAutoAction(b, req(b), 'defeat', cfg({ moveSlot: -1 }), {})).toMatchObject({ action: { type: 'move', moveIndex: 1 } });
+    expect(decideAutoAction(b, req(b), 'defeat', cfg(), {})).toMatchObject({ action: { type: 'move', moveIndex: 1 } });
+    // 取消勾选唯一的攻击招式 → 不会去用变化招式，而是撤退
+    expect(decideAutoAction(b, req(b), 'defeat', cfg({ disabledMoves: ['tackle'] }), {})).toMatchObject({ action: { type: 'run' } });
     const me2 = mon(722, 15);
     me2.moves = [{ id: 'growl', pp: 40, maxPp: 40 }];
     const b2 = battle([me2], [mon(16, 5)]);
     expect(decideAutoAction(b2, req(b2), 'defeat', cfg(), {})).toMatchObject({ action: { type: 'run' } });
   });
 
-  it('所选招式 PP 低 → 用苹野果（战斗中可用，回复 10 PP）', () => {
+  it('勾选的攻击招式 PP 都低 → 用苹野果（战斗中可用，回复 10 PP）', () => {
     const me = mon(722, 15);
+    me.moves = [
+      { id: 'tackle', pp: 1, maxPp: 35 },
+      { id: 'growl', pp: 40, maxPp: 40 },
+    ];
     const b = battle([me], [mon(16, 5)]);
-    me.moves[0]!.pp = 1;
-    const d = decideAutoAction(b, req(b), 'defeat', cfg({ moveSlot: 0, ppMin: 2 }), { 'leppa-berry': 1 });
+    const d = decideAutoAction(b, req(b), 'defeat', cfg({ ppMin: 2 }), { 'leppa-berry': 1 });
     expect(d).toMatchObject({ action: { type: 'item', itemId: 'leppa-berry' } });
     if (d.kind === 'act') b.submit(d.action, { type: 'move', moveIndex: 0 });
     expect(me.moves[0]!.pp).toBe(Math.min(me.moves[0]!.maxPp, 11));
@@ -120,10 +126,10 @@ describe('自动战斗决策', () => {
   });
 
   it('配置清洗', () => {
-    const c = sanitizeAutoConfig({ targets: { 16: 'capture', 19: 'x', abc: 'defeat' }, ball: 'master-ball', moveSlot: 9, hpPct: 5, healItems: ['potion', 'rare-candy'] });
+    const c = sanitizeAutoConfig({ targets: { 16: 'capture', 19: 'x', abc: 'defeat' }, ball: 'master-ball', disabledMoves: ['tackle', 3], hpPct: 5, healItems: ['potion', 'rare-candy'] });
     expect(c.targets).toEqual({ 16: 'capture' });
     expect(c.ball).toBe('poke-ball');
-    expect(c.moveSlot).toBe(3);
+    expect(c.disabledMoves).toEqual(['tackle']);
     expect(c.hpPct).toBe(0.9);
     expect(c.healItems).toEqual(['potion']);
     expect(c.centerHeal).toBe(true);

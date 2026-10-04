@@ -193,7 +193,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
         heal: opt(AUTO_HEAL_ITEMS),
         pp: opt(AUTO_PP_ITEMS),
         leadName: lead ? displayName(dex, lead) : '—',
-        moves: (lead?.moves ?? []).map((m, index) => ({ index, name: dex.move(m.id).name.zh, pp: m.pp, maxPp: m.maxPp, damaging: this.isAttack(m.id) })),
+        moves: (lead?.moves ?? []).map((m, index) => ({ index, id: m.id, name: dex.move(m.id).name.zh, pp: m.pp, maxPp: m.maxPp, damaging: this.isAttack(m.id) })),
       }),
     );
     const r = await w.done;
@@ -416,7 +416,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
     // 首发低血且没有回复道具 / 招式 PP 用完 / 首发倒下 → 回宝可梦中心（或停止）
     const hpRatio = lead.hp / Math.max(1, maxHp(this.d.dex, lead));
     const noHeal = hpRatio < cfg.hpPct && !cfg.healItems.some((id) => id !== 'full-heal' && (this.d.state.bag[id] ?? 0) > 0);
-    const noPp = !lead.moves.some((m) => m.pp > 0 && this.isAttack(m.id)) && !cfg.ppItems.some((id) => (this.d.state.bag[id] ?? 0) > 0);
+    const noPp = !lead.moves.some((m) => m.pp > 0 && this.isAttack(m.id) && !cfg.disabledMoves.includes(m.id)) && !cfg.ppItems.some((id) => (this.d.state.bag[id] ?? 0) > 0);
     const leadDown = (party[0]?.hp ?? 1) <= 0;
     if (cfg.centerHeal && (noHeal || noPp || leadDown)) {
       void this.goHeal(noHeal ? 'HP 低且回复道具用完' : noPp ? '攻击招式 PP 用完' : '首发倒下');
