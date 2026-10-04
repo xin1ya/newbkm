@@ -109,6 +109,34 @@ export const LOOK_PRESETS: Record<NpcLook, LookPreset> = {
     palette: { hair: '#2b2020', cap: '#23395d', capBrim: '#23395d', jacket: '#34568b', shirt: '#ffffff', pants: '#23395d', shoes: '#1f1f2a' },
     style: { ...NO_BAG, hat: 'cap' },
   },
+  // ———— M2-19 碧潮群岛（程序化占位造型；手工人物模型到位后按 look 替换） ————
+  'leader-grass': {
+    palette: { hair: '#5d9a3e', jacket: '#3f7a3a', shirt: '#f2f0d8', pants: '#5a4028', shoes: '#3a2a1a' },
+    style: { ...NO_BAG, hat: 'none', hair: 'long', coat: 'dress' },
+    accent: '#a6e07a',
+  },
+  'leader-rock': {
+    palette: { hair: '#3a2a1a', skin: '#d9a77c', cap: '#c08a3e', capBrim: '#8a5a2a', jacket: '#8a6440', shirt: '#f2d9a0', pants: '#4a3a2a', shoes: '#2a2018' },
+    style: { ...NO_BAG, hat: 'bandana', hair: 'short', beard: true },
+  },
+  'leader-fire': {
+    palette: { hair: '#e8502a', jacket: '#2c2428', shirt: '#f0742a', pants: '#2c2428', shoes: '#c8502a' },
+    style: { ...NO_BAG, hat: 'none', hair: 'spiky', coat: 'long' },
+    accent: '#f0742a',
+  },
+  miner: {
+    palette: { hair: '#3a2a1a', skin: '#e0b088', cap: '#f2c230', capBrim: '#c89a1a', jacket: '#c07a3a', shirt: '#6a6a72', pants: '#3d4a6a', shoes: '#3a2a1a' },
+    style: { ...NO_BAG, hat: 'cap', hair: 'short' },
+  },
+  researcher: {
+    palette: { hair: '#2b2b35', jacket: '#f2f0ea', shirt: '#c8502a', pants: '#3b3640', shoes: '#2a2a30' },
+    style: { ...NO_BAG, hat: 'none', hair: 'short', coat: 'long', glasses: true },
+  },
+  'kimono-f': {
+    palette: { hair: '#2b2020', jacket: '#3f6db5', shirt: '#f2e6d0', pants: '#3f6db5', shoes: '#f2e6d0' },
+    style: { ...NO_BAG, hat: 'none', hair: 'bun', coat: 'dress' },
+    accent: '#e07a8a',
+  },
 };
 
 export function createNpcModel(a: NpcAppearance): TrainerModel {

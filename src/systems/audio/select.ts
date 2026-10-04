@@ -4,7 +4,7 @@
  */
 import type { FieldWeather, TimeOfDay } from '../encounters';
 
-export type BattleKind = 'wild' | 'trainer' | 'gym';
+export type BattleKind = 'wild' | 'trainer' | 'gym' | 'boss';
 
 export interface MusicSituation {
   battle: BattleKind | null;
@@ -15,8 +15,8 @@ export interface MusicSituation {
   zoneBgm: string | null;
 }
 
-export const BATTLE_BGM: Record<BattleKind, string> = { wild: 'battle-wild', trainer: 'battle-trainer', gym: 'battle-gym' };
-export const VICTORY_BGM: Record<BattleKind, string> = { wild: 'victory-wild', trainer: 'victory-trainer', gym: 'victory-trainer' };
+export const BATTLE_BGM: Record<BattleKind, string> = { wild: 'battle-wild', trainer: 'battle-trainer', gym: 'battle-gym', boss: 'battle-boss' };
+export const VICTORY_BGM: Record<BattleKind, string> = { wild: 'victory-wild', trainer: 'victory-trainer', gym: 'victory-trainer', boss: 'victory-trainer' };
 export const SURF_BGM = 'surf';
 
 export function pickBgm(s: MusicSituation): string | null {

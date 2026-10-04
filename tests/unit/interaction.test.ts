@@ -17,6 +17,8 @@ import {
 import { ALL_INTERACTIONS, INTERACTION_BY_ID } from '@/config/interactions';
 import { INTERIORS } from '@/config/interiors';
 import { SPROUT } from '@/config/islands/sprout';
+import { ISLANDS } from '@/config/islands';
+import { KEY_ITEM_BY_ID } from '@/config/items';
 import { dex } from '@/config/data';
 import { blockerEdge } from '@/scenes/common/interactSources';
 
@@ -125,7 +127,7 @@ describe('M1-07 文字选择', () => {
 describe('M1-07 配置交叉校验', () => {
   const furnitureIds = new Set<string>();
   for (const i of Object.values(INTERIORS)) for (const r of i.rooms) for (const f of r.furniture) if (f.interact) furnitureIds.add(f.interact);
-  const poiIds = new Set(SPROUT.pois.map((p) => p.id));
+  const poiIds = new Set(Object.values(ISLANDS).flatMap((isl) => isl.pois.map((p) => p.id)));
 
   it('每个可互动家具都有文字', () => {
     for (const id of furnitureIds) expect(INTERACTION_BY_ID.has(id), id).toBe(true);
@@ -138,7 +140,7 @@ describe('M1-07 配置交叉校验', () => {
     for (const d of ALL_INTERACTIONS) {
       expect(d.pages.length, d.id).toBeGreaterThan(0);
       for (const b of d.byFlag ?? []) expect(b.pages.length, d.id).toBeGreaterThan(0);
-      for (const e of d.effects ?? []) if (e.kind === 'give-item') expect(dex.item(e.item), e.item).toBeTruthy();
+      for (const e of d.effects ?? []) if (e.kind === 'give-item') expect(!!dex.item(e.item) || KEY_ITEM_BY_ID.has(e.item), e.item).toBe(true);
     }
     expect(INTERACTION_BY_ID.get('harbor-ferry')?.kind).toBe('ferry');
   });

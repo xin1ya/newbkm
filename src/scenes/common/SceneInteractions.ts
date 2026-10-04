@@ -136,6 +136,11 @@ export class SceneInteractions {
     return { label: keyLabel(b.keys[0] ?? '?'), pad: false };
   }
 
+  /** 互动定义的 showIf 判定（家具 / 地标共用） */
+  visible(def: InteractionDef): boolean {
+    return !def.showIf || this.o.state.flags[def.showIf] === true;
+  }
+
   /** 家具 / 地标：按配置显示文字并执行效果 */
   async runDef(def: InteractionDef): Promise<void> {
     const { ui, state, game } = this.o;

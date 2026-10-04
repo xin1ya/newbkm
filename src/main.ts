@@ -297,7 +297,10 @@ async function boot(): Promise<void> {
     rng,
     transition,
     toast: (t) => toaster.show(t),
-    host: () => (game.scenes.find('interior') ? { kind: 'interior' } : overworld.story),
+    host: () => {
+      const interior = game.scenes.find<InteriorScene>('interior');
+      return interior ? interior.storyHost() : overworld.story;
+    },
     itemName: (id) => itemInfo(dex, id, KEY_ITEM_BY_ID).name,
   });
   registerStoryDirector(story);

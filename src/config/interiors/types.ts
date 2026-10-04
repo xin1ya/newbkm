@@ -123,6 +123,38 @@ export interface RoomConfig {
   /** 战斗舞台（对战时玩家站位与朝向；缺省在玩家前方就地开战） */
   /** radius：战斗场半径（默认 ARENA_RADIUS 7 m；室内按房间缩小） */
   battleStage?: { position: Vec2; yaw: number; radius?: number };
+  /** M2-15 洞窟暗雷：在房间里走动按遇敌表触发野生战斗（config/encounters 的表 id） */
+  encounters?: { table: string; ratePerMeter?: number };
+  /** M2-12 黑暗房间：flag 未置位时只剩玩家身边一圈微光（「闪光」照亮） */
+  dark?: { flag: string; hint: string };
+  /** M2-10/11/13 室内场地能力阻挡（与大地图 blockers 同一套 cleared:<id> 标记） */
+  blockers?: InteriorBlocker[];
+  /** 室内剧情触发区（走进范围自动执行一次） */
+  triggers?: InteriorTrigger[];
+}
+
+export interface InteriorBlocker {
+  id: string;
+  type: 'strength' | 'rock-smash' | 'vines';
+  requiresFlag: string;
+  position: Vec2;
+  /** 宽、高、深（米） */
+  size: [number, number, number];
+  yaw?: number;
+  hint: string;
+  color?: string;
+}
+
+export interface InteriorTrigger {
+  id: string;
+  position: Vec2;
+  radius: number;
+  script: string;
+  doneFlag: string;
+  /** 可重复触发直到脚本自己置位 doneFlag（剧情战斗：输了下次再来） */
+  repeat?: boolean;
+  showIf?: string[];
+  hideIf?: string[];
 }
 
 export interface InteriorConfig {

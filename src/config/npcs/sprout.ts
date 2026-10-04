@@ -48,6 +48,14 @@ export const SPROUT_NPCS: NpcDef[] = [
     title: '宝可梦博士',
     appearance: { look: 'professor' },
     dialogByQuest: [
+      // M2 · 碧潮支线「古代石板解读」
+      {
+        questId: 'side-ancient-tablet',
+        when: 'active',
+        setFlags: ['ancient-tablet-delivered'],
+        dialog: ['这是……碧潮群岛矿洞里挖出来的石板？！', '这些文字……和研究所收藏的古代文献是同一种！', '「五岛升于海，七片守其约。」……七片——是异变碎片的数量吗？', '太了不起了！我已经把碧潮群岛的生态数据补进你的图鉴里了。', '这是研究经费的一部分，一定要收下！'],
+      },
+      { questId: 'side-ancient-tablet', when: 'completed', dialog: ['石板的解读还在继续。', '七块碎片、五座岛……群岛的历史比我们想象的还要古老。'] },
       {
         questId: 'main-get-starter',
         when: 'active',

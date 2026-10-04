@@ -129,7 +129,7 @@ export type BattleStartData = (
       /** 头目已被能量方块安抚（计划文档 §9.5） */
       calmed?: boolean;
       /** M1-13/14 剧情战斗：禁止捕捉 / 逃跑（如索罗亚的信任之战） */
-      scripted?: { noCapture?: boolean | undefined; noRun?: boolean | undefined } | undefined;
+      scripted?: { noCapture?: boolean | undefined; noRun?: boolean | undefined; boss?: boolean | undefined } | undefined;
     }
   | {
       kind: 'trainer';
@@ -196,10 +196,10 @@ export class BattleScene implements Scene {
     this.data = data as BattleStartData;
     const { host } = this;
     const d = this.data;
-    this.battleKind = d.kind === 'trainer' ? ((d.trainer.title ?? '').includes('馆主') ? 'gym' : 'trainer') : 'wild';
+    this.battleKind = d.kind === 'trainer' ? ((d.trainer.title ?? '').includes('馆主') ? 'gym' : 'trainer') : d.scripted?.boss ? 'boss' : 'wild';
     host.events.emit(
       'battle:start',
-      d.kind === 'trainer' ? { kind: this.battleKind, trainerId: d.trainer.id } : { kind: 'wild' },
+      d.kind === 'trainer' ? { kind: this.battleKind, trainerId: d.trainer.id } : { kind: this.battleKind },
     );
     const stage = host.battleStage?.() ?? null;
     if (stage) host.player.teleport(stage.x, stage.z, stage.yaw);
@@ -847,7 +847,7 @@ export class BattleScene implements Scene {
   }
 
   /** M1-20 战斗类型（选 BGM） */
-  battleKind: 'wild' | 'trainer' | 'gym' = 'wild';
+  battleKind: 'wild' | 'trainer' | 'gym' | 'boss' = 'wild';
 
   private async conclude(): Promise<void> {
     const { host, fx } = this;

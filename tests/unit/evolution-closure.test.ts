@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import species from '@/config/data/species.json';
 import { SPROUT_ENCOUNTERS } from '@/config/encounters/sprout';
+import { TIDE_ENCOUNTERS } from '@/config/encounters/tide';
 import { BEHAVIOR } from '@/config/encounters/behavior';
 
 // 第 7 步「进化线闭合」：凡是野外可遇到的物种，其后续所有进化形态都必须有模型和野外行为，
@@ -23,7 +24,7 @@ function descendants(id: number, out = new Set<number>()): Set<number> {
 
 describe('进化线闭合', () => {
   const wild = new Set<number>();
-  for (const t of Object.values(SPROUT_ENCOUNTERS)) for (const e of t.entries) wild.add(e.speciesId);
+  for (const t of [...Object.values(SPROUT_ENCOUNTERS), ...Object.values(TIDE_ENCOUNTERS)]) for (const e of t.entries) wild.add(e.speciesId);
 
   it('野外物种的所有进化形态都有模型和行为', () => {
     const missing: string[] = [];

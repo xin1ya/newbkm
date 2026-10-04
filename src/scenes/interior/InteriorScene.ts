@@ -47,6 +47,9 @@ import { TRAINER_BY_ID } from '@/config/trainers';
 import { say } from '@/ui/core';
 import { jingle, sfx } from '@/core/audio';
 import { isTalking } from '@/scenes/common/npcTalk';
+import { InteriorField } from './InteriorField';
+import type { StoryBattleResult, StoryHost } from '@/scenes/common/StoryDirector';
+import { createPokemon, type PokemonInstance } from '@/systems/pokemon/Pokemon';
 
 export interface InteriorDeps {
   game: Game;
@@ -127,6 +130,8 @@ export class InteriorScene implements Scene, BattleHost {
   readonly rig: CameraRig;
   inBattle = false;
   private prevTrainers: TrainerBattles | null = null;
+  /** M2 地城玩法：阻挡 / 黑暗 / 暗雷 / 触发区 */
+  field: InteriorField;
   /** 固定舞台开战前的玩家位置（战斗结束后放回） */
   private preBattle: { x: number; z: number; yaw: number } | null = null;
   /** 地面：平地 y = 0；道馆水池内由机关给出石岛 / 木筏 / 栈道高度 */
@@ -185,6 +190,20 @@ export class InteriorScene implements Scene, BattleHost {
     });
     this.interactions.addSource(this.follower.source());
     this.interactions.addSource((player, out) => this.valveSource(player, out));
+    this.field = new InteriorField({
+      game: d.game,
+      ui: d.ui,
+      state: d.state,
+      dex: d.dex,
+      rng: d.rng,
+      world: this.world,
+      collision: this.collision,
+      timeOfDay: () => d.timeOfDay(),
+      startWild: (wild) => this.startWildBattle(wild),
+      canTrigger: () => !this.inBattle && !this.switching && !this.d.ui.busy && !this.interactions.busy && !this.trainers.busy && !isTalking(),
+      toast: d.toast,
+    });
+    this.interactions.addSource(this.field.source());
     this.prevTrainers = TrainerBattles.current;
     this.trainers = new TrainerBattles({
       game: d.game,
@@ -291,6 +310,7 @@ export class InteriorScene implements Scene, BattleHost {
       this.puzzle = new WaterPuzzleView(this.room.waterPuzzle, this.collision);
       this.world.add(this.puzzle.group);
     }
+    this.field.load(this.room, this.built.lights);
     const preset = LIGHT_PRESETS[this.room.lighting];
     this.world.background = new THREE.Color(preset.fog);
     this.world.fog = null;
@@ -350,6 +370,7 @@ export class InteriorScene implements Scene, BattleHost {
     this.puzzle?.update(dt);
     this.starterTable?.update(dt);
     this.trainers.update(dt);
+    this.field.update(dt, this.player);
     this.healMachine?.update(dt);
     this.d.hud.setClock(this.d.game.clock.format(), '');
   }
@@ -580,6 +601,47 @@ export class InteriorScene implements Scene, BattleHost {
     return st ? { x: st.position[0], z: st.position[1], yaw: st.yaw, radius: st.radius } : null;
   }
 
+  /** M2-15 洞窟暗雷 / 剧情野生战斗：在玩家前方 3.5 m 开战 */
+  private startWildBattle(wild: PokemonInstance, scripted?: { noCapture?: boolean | undefined; noRun?: boolean | undefined; boss?: boolean | undefined }): void {
+    this.inBattle = true;
+    this.player.velocity.set(0, 0, 0);
+    const p = this.player.position;
+    const f = this.player.facing;
+    const wx = p.x + Math.sin(f) * 3.5;
+    const wz = p.z + Math.cos(f) * 3.5;
+    const look = new THREE.Vector3();
+    this.camera.getWorldDirection(look);
+    this.rig.setOverride(this.camera.position.clone(), this.camera.position.clone().add(look.multiplyScalar(10)), 1);
+    this.d.hud.setVisible(false);
+    this.d.game.clockRunning = false;
+    void this.d.game.scenes.push(new BattleScene(this), {
+      follower: this.follower.lend(),
+      kind: 'wild',
+      wild,
+      wildEntity: null,
+      initiative: null,
+      method: 'grass',
+      entityId: -1,
+      wildPosition: { x: wx, y: 0, z: wz },
+      ...(scripted ? { scripted } : {}),
+    });
+  }
+
+  /** 剧情宿主（室内：对话类步骤 + 剧情野生战斗） */
+  storyHost(): StoryHost {
+    return {
+      kind: 'interior',
+      battle: (o) => {
+        const wild = createPokemon(this.d.dex, o.species, o.level, this.d.rng, o.moves ? { moves: o.moves } : {});
+        const done = new Promise<StoryBattleResult>((resolve) => {
+          this.d.game.events.once('battle:end', (e) => resolve(e.result as StoryBattleResult));
+        });
+        this.startWildBattle(wild, { noCapture: o.noCapture, noRun: o.noRun, boss: o.boss });
+        return done;
+      },
+    };
+  }
+
   private startTrainerBattle(data: BattleStartData): void {
     this.inBattle = true;
     // 道馆第二轮：馆主台两侧水幕喷泉随对战升起
@@ -655,16 +717,16 @@ export class InteriorScene implements Scene, BattleHost {
       this.player.teleport(p.x, p.z, Math.atan2(npc.position.x - p.x, npc.position.z - p.z));
     }
     const speaker = `翠澜道馆馆主 ${leader}`;
-    await say(this.d.ui, ['精彩的对战。你和伙伴之间，流淌着和湖水一样深的信任。', '按照道馆的规矩，这枚徽章属于你了。'], { speaker });
+    await say(this.d.ui, gym.ceremony?.win ?? ['精彩的对战。你和伙伴之间，流淌着和湖水一样深的信任。', '按照道馆的规矩，这枚徽章属于你了。'], { speaker });
     void jingle('jingle-badge');
     // 徽章不依赖任务目标顺序：直接置位；「水之试炼」以 badge-verdant 为 completeFlag，随之完成并发放奖励
     this.d.state.flags[gym.badgeFlag] = true;
     this.d.game.events.emit('flag:set', { flag: gym.badgeFlag, value: true });
     this.d.game.events.emit('gym:badge', { gym: gym.id, badgeFlag: gym.badgeFlag });
-    await say(this.d.ui, ['获得了「翠澜徽章」！'], { speaker: '' });
+    await say(this.d.ui, [`获得了「${gym.badgeName ?? '翠澜徽章'}」！`], { speaker: '' });
     await say(
       this.d.ui,
-      ['有了翠澜徽章，伙伴们会更信任你，等级 20 以内的宝可梦都会乖乖听话。', '另外，收下这个吧——招式学习器「水之波动」，还有「冲浪」的骑乘许可。', '驾着水上的伙伴，湖对岸、海上的小岛，你都能去看看了。'],
+      gym.ceremony?.effect ?? ['有了翠澜徽章，伙伴们会更信任你，等级 20 以内的宝可梦都会乖乖听话。', '另外，收下这个吧——招式学习器「水之波动」，还有「冲浪」的骑乘许可。', '驾着水上的伙伴，湖对岸、海上的小岛，你都能去看看了。'],
       { speaker },
     );
   }
@@ -685,6 +747,7 @@ export class InteriorScene implements Scene, BattleHost {
     if (TrainerBattles.current === this.trainers) TrainerBattles.current = this.prevTrainers;
     this.puzzle?.dispose();
     this.puzzle = null;
+    this.field.dispose();
     this.follower.dispose();
     this.npcs.dispose();
     this.interactions.dispose();

@@ -153,6 +153,10 @@ export interface GymDef {
   ivs: number;
   prizeMoney: number;
   items?: { id: string; qty: number }[];
+  /** 徽章显示名（缺省「翠澜徽章」） */
+  badgeName?: string;
+  /** 胜利仪式台词：win = 授予前，effect = 徽章效果与奖励说明 */
+  ceremony?: { win: string[]; effect: string[] };
 }
 
 /** 本岛已获得的徽章数（不含本道馆） */

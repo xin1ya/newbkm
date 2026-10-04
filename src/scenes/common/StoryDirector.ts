@@ -23,7 +23,7 @@ export type StoryBattleResult = 'win' | 'lose' | 'run' | 'capture';
 
 export interface StoryHost {
   readonly kind: 'overworld' | 'interior';
-  battle?(o: { species: number; level: number; moves?: string[] | undefined; noCapture?: boolean | undefined; noRun?: boolean | undefined }): Promise<StoryBattleResult>;
+  battle?(o: { species: number; level: number; moves?: string[] | undefined; noCapture?: boolean | undefined; noRun?: boolean | undefined; boss?: boolean | undefined }): Promise<StoryBattleResult>;
   teleport?(x: number, z: number, yaw: number): Promise<void>;
   /** M2-01 前往另一座岛 */
   travel?(island: IslandId, x: number, z: number, yaw: number): Promise<void>;
@@ -159,7 +159,7 @@ export class StoryDirector {
           await say(ui, ['宝可梦们都没有力气了……先去治疗吧。']);
           return;
         }
-        const r = await host.battle({ species: s.species, level: s.level, moves: s.moves, noCapture: s.noCapture, noRun: s.noRun });
+        const r = await host.battle({ species: s.species, level: s.level, moves: s.moves, noCapture: s.noCapture, noRun: s.noRun, boss: s.boss });
         await this.steps(r === 'win' || r === 'capture' ? (s.onWin ?? []) : (s.onLose ?? []));
         return;
       }

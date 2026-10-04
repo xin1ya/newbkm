@@ -52,6 +52,8 @@ export interface BlockerConfig {
   /** 阻挡半径（米） */
   radius?: number;
   hint: string;
+  /** 可见特效：结界穹顶 / 热浪帘（M2-14） */
+  fx?: 'barrier' | 'heat';
 }
 
 /** 湖泊等高于海平面的水体 */

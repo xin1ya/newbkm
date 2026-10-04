@@ -11,3 +11,4 @@ export { LampLights } from './props/LampLights';
 export { ZoneMap, pointInPolygon } from './island/ZoneMap';
 export { hash2, seeded } from './util/hash';
 export * from './ecology';
+export { BarrierDome, type BarrierKind } from './fx/BarrierDome';

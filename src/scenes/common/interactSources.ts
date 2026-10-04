@@ -39,7 +39,7 @@ export function furnitureSource(
     const p = player.position;
     for (const [id, fp] of footprints()) {
       const def = INTERACTION_BY_ID.get(id);
-      if (!def) continue;
+      if (!def || !host.visible(def)) continue;
       const c = closestOnRect(p.x, p.z, fp);
       out.push({
         id: `furniture:${id}`,
@@ -99,7 +99,7 @@ export function overworldSources(host: SceneInteractions, d: OverworldSourceDeps
   const landmarks: InteractSource = (_player, out) => {
     for (const poi of d.island.pois) {
       const def: InteractionDef | undefined = INTERACTION_BY_ID.get(poi.id);
-      if (!def || poi.interior) continue;
+      if (!def || poi.interior || !host.visible(def)) continue;
       const [x, , z] = poi.position;
       out.push({
         id: `poi:${poi.id}`,

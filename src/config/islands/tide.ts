@@ -323,7 +323,7 @@ export const TIDE: IslandConfig = {
   ],
   blockers: [
     // 异变遗迹入口平台：3 枚本岛徽章前被紫色异变结界封住
-    { id: 'ruins-seal', type: 'story', requiresFlag: 'ruins-seal-open', position: [44, 0, -420], radius: 12, hint: '一层紫色的异变结界挡住了遗迹入口……\n听说集齐碧潮群岛的三枚徽章，结界就会回应。' },
+    { id: 'ruins-seal', type: 'story', requiresFlag: 'ruins-seal-open', position: [44, 0, -420], radius: 12, fx: 'barrier', hint: '一层紫色的异变结界挡住了遗迹入口……\n听说集齐碧潮群岛的三枚徽章，结界就会回应。' },
     // 碧潮古森：藤蔓封住的小径（割草开路）
     { id: 'forest-vines', type: 'vines', requiresFlag: 'field-cut', position: [-372, 0, -414], radius: 4, hint: '粗壮的藤蔓缠住了小径……似乎需要某种能力才能通过。' },
     { id: 'forest-vines-shrine', type: 'vines', requiresFlag: 'field-cut', position: [-396, 0, -452], radius: 3.5, hint: '藤蔓后面隐约能看到一座古老的神龛……似乎需要某种能力才能通过。' },
@@ -334,6 +334,6 @@ export const TIDE: IslandConfig = {
     // 温泉乡码头：碧潮—雷鸣海域在 M3 开放
     { id: 'thunder-route', type: 'story', requiresFlag: 'thunder-route-open', position: [566, 0, 668], radius: 7, hint: '船老大：碧潮—雷鸣海域最近洋流很乱，航线暂时关闭了。' },
     // 火山口：登山道尽头的熔岩热浪（地热异常调查前）
-    { id: 'crater-heat', type: 'story', requiresFlag: 'volcano-heat-cleared', position: [598, 0, -213], radius: 6, hint: '灼人的热浪从火山口涌出……先去火山镇的地热观测站问问情况吧。' },
+    { id: 'crater-heat', type: 'story', requiresFlag: 'volcano-heat-cleared', position: [598, 0, -213], radius: 6, fx: 'heat', hint: '灼人的热浪从火山口涌出……先去火山镇的地热观测站问问情况吧。' },
   ],
 };

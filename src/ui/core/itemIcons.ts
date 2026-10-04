@@ -617,6 +617,13 @@ const ICONS: Record<string, () => Svg> = {
 };
 for (const [id, [c, g]] of Object.entries(VITAMIN_ICON)) ICONS[id] = () => vitamin(c, g);
 ICONS['golden-watering-can'] = goldenCan;
+ICONS['anomaly-shard-red'] = () => shard('#e8484a', '#ffd0c8');
+ICONS['anomaly-shard-orange'] = () => shard('#f08a3c', '#ffe2b8');
+ICONS['anomaly-shard-purple'] = () => shard('#9a5ae0', '#e6d0ff');
+ICONS['anomaly-shard-memory'] = () => shard('#7fc8e8', '#ffffff');
+ICONS['ancient-tablet'] = tablet;
+ICONS['volcano-egg'] = () => egg('#f6e6c8', '#e8743a');
+ICONS['mine-pickaxe'] = pickaxe;
 for (const n of natures as { id: string; plus: string | null; minus: string | null }[]) {
   if ((n.plus && n.plus !== n.minus) || n.id === 'serious') ICONS[`mint-${n.id}`] = () => mintLeaf(n.plus && n.plus !== n.minus ? (MINT_COLOR[n.plus] ?? '#8fd6a0') : '#c9d4e6');
 }
@@ -624,6 +631,26 @@ for (const n of natures as { id: string; plus: string | null; minus: string | nu
 for (const m of ALPHA_MATERIALS) ICONS[m.id] = () => alphaMatIcon(m.color);
 for (const b of BERRIES) if (!ICONS[b.id]) ICONS[b.id] = () => berry(b.color.fruit, b.color.shade, b.shape);
 
+function shard(c: string, glow: string): Svg {
+  return wrap(
+    `<path d="M24 6l9 14-5 22h-8l-5-22z" fill="${c}" stroke="${O}" stroke-width="${SW}"/><path d="M24 6l-2 16 2 20" stroke="${glow}" stroke-width="1.6" fill="none"/><path d="M19 14l3 4" stroke="${HL}" stroke-width="2"/>`,
+  );
+}
+function tablet(): Svg {
+  return wrap(
+    `<path d="M12 8h24l2 32H10z" fill="#9a8f7a" stroke="${O}" stroke-width="${SW}"/><path d="M16 15h16M15 21h12M17 27h14M15 33h10" stroke="#5e5446" stroke-width="1.6"/><circle cx="31" cy="22" r="2" fill="#b98cff"/>`,
+  );
+}
+function egg(c: string, spot: string): Svg {
+  return wrap(
+    `<ellipse cx="24" cy="26" rx="12" ry="15" fill="${c}" stroke="${O}" stroke-width="${SW}"/><circle cx="19" cy="22" r="3" fill="${spot}"/><circle cx="28" cy="30" r="3.5" fill="${spot}"/><circle cx="27" cy="18" r="2" fill="${spot}"/><path d="M17 16c1-3 3-4 5-5" stroke="${HL}" stroke-width="2" fill="none"/>`,
+  );
+}
+function pickaxe(): Svg {
+  return wrap(
+    `<path d="M14 38l18-22" stroke="#8a6040" stroke-width="4"/><path d="M14 38l18-22" stroke="${O}" stroke-width="1" fill="none"/><path d="M20 10c8-2 16 2 20 10l-4 2c-3-5-8-8-14-8z" fill="#9aa4b4" stroke="${O}" stroke-width="${SW}"/>`,
+  );
+}
 const cache = new Map<string, Svg>();
 
 /**

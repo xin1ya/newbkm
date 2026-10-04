@@ -72,7 +72,13 @@ export type NpcLook =
   | 'guard'
   | 'youngster'
   | 'lass'
-  | 'camper';
+  | 'camper'
+  | 'leader-grass'
+  | 'leader-rock'
+  | 'leader-fire'
+  | 'miner'
+  | 'researcher'
+  | 'kimono-f';
 
 export interface NpcAppearance {
   look: NpcLook;

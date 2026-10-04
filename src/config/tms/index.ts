@@ -43,6 +43,10 @@ export const TM_DEFS: readonly TmDef[] = [
   { no: 19, move: 'thunderbolt', source: { kind: 'den', den: 'den-cliffs' } },
   { no: 20, move: 'flamethrower', source: { kind: 'field', pickup: 'tm-highlands', position: [-50, -260], hint: '高地的岩石间有个发光的东西' } },
   { no: 21, move: 'confusion', source: { kind: 'shop', shop: 'harbor-tms', price: 1000 } },
+  // M2 · 碧潮群岛道馆奖励（07-22 §3.6 #6/#8/#10）
+  { no: 22, move: 'magical-leaf', source: { kind: 'gym', gym: 'gym-azure' } },
+  { no: 23, move: 'rock-tomb', source: { kind: 'gym', gym: 'gym-ore' } },
+  { no: 24, move: 'incinerate', source: { kind: 'gym', gym: 'gym-flame' } },
 ];
 
 export const tmItemId = (move: string): string => `tm-${move}`;

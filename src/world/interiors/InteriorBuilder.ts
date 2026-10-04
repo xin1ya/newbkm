@@ -866,7 +866,11 @@ export class InteriorBuilder {
         break;
       }
       case 'pool': {
-        const water = createToonMaterial({ color: c ?? '#3aa6d8', kind: 'scene', transparent: true, opacity: 0.85 });
+        // M2：熔岩池（accent = 'lava'）：不透明、自发光的橙红岩浆，石质黑边
+        const lava = a === 'lava';
+        const water = lava
+          ? createToonMaterial({ color: c ?? '#f0742a', kind: 'scene', emissive: c ?? '#f0742a', emissiveIntensity: 0.9 })
+          : createToonMaterial({ color: c ?? '#3aa6d8', kind: 'scene', transparent: true, opacity: 0.85 });
         water.userData.uTime = { value: 0 };
         water.onBeforeCompile = (sh) => {
           sh.uniforms.uTime = water.userData.uTime as { value: number };
@@ -877,7 +881,7 @@ export class InteriorBuilder {
         surf.position.y = 0.02;
         surf.userData.noShadow = true;
         g.add(surf);
-        const rim = this.mat('#e9f6f9', 'scene');
+        const rim = this.mat(lava ? '#2c2428' : '#e9f6f9', 'scene');
         for (const sx of [-1, 1]) {
           const r1 = new THREE.Mesh(this.geo(new THREE.BoxGeometry(0.2, 0.14, d + 0.4)), rim);
           r1.position.set(sx * (w / 2 + 0.1), 0.07, 0);

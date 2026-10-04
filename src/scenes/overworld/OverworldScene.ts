@@ -43,6 +43,7 @@ import {
   WeatherState,
   ZoneMap,
   type SpawnContext,
+  BarrierDome,
 } from '@/world';
 import { LAYER, PostChain, type QualitySettings } from '@/render';
 import { PlayerController } from '@/actors/player';
@@ -130,6 +131,8 @@ export class OverworldScene implements Scene, BattleHost {
   private exploreGrid!: ExploreGrid;
   private currentZone: string | null = null;
   private time = 0;
+  /** M2-14 剧情封锁特效（结界 / 热浪） */
+  private barriers: { dome: BarrierDome; flag: string }[] = [];
   private encounterCooldown = 0;
   private inBattle = false;
   private paused = false;
@@ -222,6 +225,12 @@ export class OverworldScene implements Scene, BattleHost {
     this.props = new GrayboxProps(this.terrain.hf, this.collision, propsFile);
     // 已清除的能力阻挡（读档）
     for (const b of island.blockers) if (CLEARABLE_BLOCKERS.has(b.type) && blockerOpen(b, (f) => this.d.state.flags[f] === true)) this.props.clearBlocker(b.id);
+    for (const b of island.blockers) {
+      if (!b.fx || this.d.state.flags[b.requiresFlag] === true) continue;
+      const y = this.terrain.hf.heightAt(b.position[0], b.position[2]);
+      const dome = new BarrierDome(b.fx, new THREE.Vector3(b.position[0], y - 0.3, b.position[2]), (b.radius ?? 4) + 1);
+      this.barriers.push({ dome, flag: b.requiresFlag });
+    }
     this.lamps = new LampLights(this.props.lampPositions, {
       pool: quality.tier === 'high' ? 12 : quality.tier === 'medium' ? 8 : 4,
       groundAt: (x, z, maxY) => {
@@ -348,6 +357,7 @@ export class OverworldScene implements Scene, BattleHost {
     const w = this.world;
     w.fog = this.sky.fog;
     w.add(this.sky.group, this.terrain.farMesh, this.chunks.group, this.life.group, this.water.group, this.props.group, this.lamps.group, this.spawns.group, this.alpha.group, this.player.root);
+    for (const br of this.barriers) w.add(br.dome.group);
     this.minimap = new SceneMiniMap({ ui: this.d.ui, hud: this.d.hud, state: this.d.state, island: this.d.island, hf: this.terrain.hf, toast: (t) => this.d.toaster.show(t) });
     this.minimap.attach(w);
 
@@ -758,6 +768,10 @@ export class OverworldScene implements Scene, BattleHost {
     const vis = this.weather.visual;
     const sky = this.sky.update(dt, hour, p, this.camera.position, vis, this.windDir);
     this.water.update(this.time);
+    for (const br of this.barriers) {
+      if (!br.dome.done && this.d.state.flags[br.flag] === true) br.dome.dissolve();
+      br.dome.update(dt, this.time);
+    }
     this.water.setLighting(sky.sunDir, sky.sunColor, sky.ambient, vis.rain);
     this.props.setNight(sky.night);
     this.lamps.update(dt, p, sky.night);
@@ -1110,7 +1124,7 @@ export class OverworldScene implements Scene, BattleHost {
   private scriptedBattle = false;
 
   /** 剧情脚本发起的野生战斗；返回战斗结果 */
-  storyBattle(o: { species: number; level: number; moves?: string[] | undefined; noCapture?: boolean | undefined; noRun?: boolean | undefined }): Promise<BattleResultKind> {
+  storyBattle(o: { species: number; level: number; moves?: string[] | undefined; noCapture?: boolean | undefined; noRun?: boolean | undefined; boss?: boolean | undefined }): Promise<BattleResultKind> {
     const wild = createPokemon(this.d.dex, o.species, o.level, this.d.rng, o.moves ? { moves: o.moves } : {});
     const p = this.player.position;
     const f = this.player.facing;
@@ -1134,7 +1148,7 @@ export class OverworldScene implements Scene, BattleHost {
       method: 'visible',
       entityId: -1,
       wildPosition: { x: wx, y: this.terrain.heightAt(wx, wz), z: wz },
-      scripted: { noCapture: o.noCapture, noRun: o.noRun },
+      scripted: { noCapture: o.noCapture, noRun: o.noRun, boss: o.boss },
     });
     return done;
   }
@@ -1410,6 +1424,8 @@ export class OverworldScene implements Scene, BattleHost {
 
   dispose(): void {
     this.story.dispose();
+    for (const br of this.barriers) br.dome.dispose();
+    this.barriers = [];
     this.gather.dispose();
     this.farm.dispose();
     this.blocks.dispose();

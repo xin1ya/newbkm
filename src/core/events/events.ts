@@ -71,9 +71,9 @@ export interface GameEvents {
   /** M1-12 骑乘状态变化 */
   'ride:change': { mode: 'walk' | 'surf' | 'bike' | 'fly'; ride: string; speciesId: number };
   /** M1-20 战斗开始（BGM 切换） */
-  'battle:start': { kind: 'wild' | 'trainer' | 'gym'; trainerId?: string };
+  'battle:start': { kind: 'wild' | 'trainer' | 'gym' | 'boss'; trainerId?: string };
   /** M1-20 战斗胜利 / 捕获（凯旋曲） */
-  'battle:victory': { kind: 'wild' | 'trainer' | 'gym' };
+  'battle:victory': { kind: 'wild' | 'trainer' | 'gym' | 'boss' };
   /** M1-15 钓鱼 */
   'fishing:start': { rod: string; spot: string | null };
   'fishing:end': { result: string; speciesId: number | null };

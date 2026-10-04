@@ -119,7 +119,12 @@ export const SPROUT_LANDMARKS: InteractionDef[] = [
     id: 'harbor-ferry',
     kind: 'ferry',
     range: 3.5,
-    pages: ['渡船码头。', '「前往碧潮群岛的渡船：暂停运营。」', '好像要等港口的事情处理完才能开船。'],
-    byFlag: [{ when: 'main-harbor-ferry', pages: ['渡船码头。', '「前往碧潮群岛的渡船：即将开航。」', '找售票员办理登船手续吧。'] }],
+    // M2-04：首次跨海（冲浪横渡水路 1）之后，渡船可在港湾市 ↔ 碧潮镇之间往返
+    pages: ['渡船码头。', '「前往碧潮群岛的渡船：每日往返。」'],
+    effects: [{ kind: 'story', script: 'ferry-to-tide' }],
+    byFlag: [
+      { when: '!ferry-route-opened', pages: ['渡船码头。', '「前往碧潮群岛的渡船：暂停运营。」', '好像要等港口的事情处理完才能开船。'] },
+      { when: '!cross-sea-1-done', pages: ['渡船码头。', '「前往碧潮群岛的渡船：首航排期中。」', '售票员说：会冲浪的话，从码头往东横渡水路 1 就能先过去看看。'] },
+    ],
   },
 ];

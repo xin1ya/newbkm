@@ -25,7 +25,7 @@ export type StoryStep =
   /** 选择御三家（UI），写入 flags starter-chosen 与 starter-<物种> */
   | { kind: 'starter'; species: number[]; level: number }
   /** 脚本野生战斗：胜利 / 失败 / 逃跑后分别执行分支 */
-  | { kind: 'battle'; species: number; level: number; moves?: string[]; noCapture?: boolean; noRun?: boolean; onWin?: StoryStep[]; onLose?: StoryStep[] }
+  | { kind: 'battle'; species: number; level: number; moves?: string[]; noCapture?: boolean; noRun?: boolean; /** BOSS 战（播放 BOSS 战曲） */ boss?: boolean; onWin?: StoryStep[]; onLose?: StoryStep[] }
   | { kind: 'fx'; name: StoryFx; ms?: number }
   | { kind: 'wait'; ms: number }
   /** 章节卡 / 结尾卡 */

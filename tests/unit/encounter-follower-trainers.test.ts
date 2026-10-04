@@ -3,6 +3,7 @@ import { dex } from '@/config/data';
 import { ALL_TRAINERS, TRAINER_BY_ID, TRAINER_NPCS } from '@/config/trainers';
 import { ALL_NPCS } from '@/config/npcs';
 import { getIsland } from '@/config/islands';
+import type { IslandId } from '@/systems/state/GameState';
 import { blackoutPenalty, contactEmote, encounterOpening } from '@/systems/encounters';
 import { FollowerTrail, followSpeed, followerMood, followerOf, talkFriendship, type MoodContext } from '@/systems/follower';
 import { approachPoint, buildTrainerParty, canSee, isDefeated, prizeMoney, terrainBlocks, trainerFlag, trainerInfo } from '@/systems/trainers';
@@ -138,11 +139,11 @@ describe('M1-10 训练家', () => {
     expect(TRAINER_NPCS.every((n) => n.dialog?.length)).toBe(true);
   });
 
-  it('训练家站位在萌芽群岛陆地范围内，等级与区域等级相符（±2）', () => {
-    const island = getIsland('sprout');
+  it('训练家站位在所在岛屿陆地范围内，等级与区域等级相符（±2）', () => {
     for (const t of ALL_TRAINERS) {
       const at = t.npc.schedule?.[0]?.at as { island?: string; position: [number, number] };
-      expect(at.island).toBe('sprout');
+      expect(['sprout', 'tide']).toContain(at.island);
+      const island = getIsland(at.island as IslandId);
       const [x, z] = at.position;
       expect(Math.abs(x)).toBeLessThan(island.size[0] / 2);
       expect(Math.abs(z)).toBeLessThan(island.size[1] / 2);
@@ -158,8 +159,8 @@ describe('M1-10 训练家', () => {
       });
       if (zone?.levelRange) {
         const top = Math.max(...t.def.party.map((m) => m.level));
-        expect(top).toBeLessThanOrEqual(zone.levelRange[1] + 2);
-        expect(top).toBeGreaterThanOrEqual(zone.levelRange[0] - 2);
+        expect(top, `${t.def.id}@${zone.id}`).toBeLessThanOrEqual(zone.levelRange[1] + 2);
+        expect(top, `${t.def.id}@${zone.id}`).toBeGreaterThanOrEqual(zone.levelRange[0] - 2);
       }
     }
   });
