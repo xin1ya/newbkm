@@ -870,3 +870,166 @@ export function templeGate(w: number, h: number, seed = 1): PropParts {
   }
   return p;
 }
+
+// ———————————————————————— 彩幽市（M3-14） ————————————————————————
+const MARBLE = '#f4f1ea';
+const GOLD = '#d8b860';
+const EVER = '#3a5ab8';
+
+/** 栏杆：沿 x 方向一排宝瓶柱 + 扶手（y = 底座高度） */
+function balustrade(p: PropParts, len: number, x: number, y: number, z: number, ry = 0, color = MARBLE): void {
+  const c = Math.cos(ry);
+  const s = Math.sin(ry);
+  const n = Math.max(2, Math.round(len / 0.45));
+  for (let k = 0; k <= n; k++) {
+    const u = (k / n - 0.5) * len;
+    p.solid.push(cyl(0.07, 0.1, 0.6, 6, color, x + u * c, y, z - u * s));
+  }
+  p.solid.push(boxAt(len + 0.2, 0.12, 0.26, color, x, y + 0.66, z, ry));
+}
+
+/**
+ * 彩幽宅邸：白大理石两层方楼 + 金色檐线，平顶女儿墙栏杆，屋顶花园（灌木 + 花）；
+ * 正面四柱门廊（爱奥尼柱 + 三角山花，山花里一枚星徽），二层拱窗配蓝色遮阳篷。hotel = 三层、更宽的旅馆（门楣招牌）。
+ */
+export function everHouse(w: number, h: number, d: number, accent = EVER, seed = 1, hotel = false): PropParts {
+  const p = newParts();
+  const r = rng(seed);
+  const floors = hotel ? 3 : 2;
+  const fh = (h - 0.5 - 0.9) / floors;
+  p.solid.push(box(w + 0.6, 0.5, d + 0.6, '#d8d2c6'));
+  p.solid.push(box(w, fh * floors, d, MARBLE, 0, 0.5, 0));
+  for (let f = 1; f <= floors; f++) p.solid.push(box(w + 0.2, 0.18, d + 0.2, GOLD, 0, 0.5 + fh * f - 0.18, 0));
+  // 平顶 + 女儿墙栏杆 + 屋顶花园
+  const top = 0.5 + fh * floors;
+  p.solid.push(box(w + 0.3, 0.3, d + 0.3, shade(MARBLE, -0.05), 0, top, 0));
+  balustrade(p, w, 0, top + 0.3, d / 2, 0);
+  balustrade(p, w, 0, top + 0.3, -d / 2, 0);
+  balustrade(p, d, w / 2, top + 0.3, 0, Math.PI / 2);
+  balustrade(p, d, -w / 2, top + 0.3, 0, Math.PI / 2);
+  for (let k = 0; k < Math.round(w * d * 0.06); k++) {
+    const x = (r() - 0.5) * (w - 1.4);
+    const z = (r() - 0.5) * (d - 1.4);
+    p.solid.push(sphere(0.45 + r() * 0.25, k % 3 ? '#5f9e4a' : '#4f8a3e', x, top + 0.6, z, 1, 0.8, 1, 0));
+    if (k % 2) p.solid.push(sphere(0.14, ['#f26b8a', '#f7d046', '#b98cf0', '#ffffff'][k % 4]!, x, top + 1.0, z, 1, 1, 1, 0));
+  }
+  // 窗：一层方窗 + 上层拱窗（蓝篷）
+  for (let f = 0; f < floors; f++) {
+    const y = 0.5 + fh * f + 0.8;
+    for (const u of evenly(w, windowCount(w, 2.6), f === 0)) {
+      windowAt(p, 'front', w, d, u, y, { size: [1.0, Math.min(1.5, fh - 1.2)], frame: GOLD, rand: r });
+      if (f > 0) p.solid.push(boxAt(1.3, 0.1, 0.7, accent, u, y + Math.min(1.5, fh - 1.2) + 0.25, d / 2 + 0.35, 0, 0.35));
+    }
+    for (const face of ['left', 'right', 'back'] as const) {
+      const len = face === 'back' ? w : d;
+      for (const u of evenly(len, windowCount(len, 3))) windowAt(p, face, w, d, u, y, { size: [0.9, Math.min(1.4, fh - 1.2)], frame: GOLD, rand: r });
+    }
+  }
+  // 门廊：四根柱 + 檐 + 三角山花 + 星徽
+  const pw = Math.min(w - 1, hotel ? 7 : 5);
+  const ph = fh * (hotel ? 1.5 : 1) + 0.2;
+  const pz = d / 2 + 1.4;
+  p.solid.push(box(pw + 0.8, 0.3, 2.8, '#e4ded2', 0, 0.2, d / 2 + 1.2));
+  for (const u of [-pw / 2, -pw / 6, pw / 6, pw / 2]) {
+    p.solid.push(cyl(0.22, 0.26, ph, 10, MARBLE, u, 0.5, pz));
+    p.solid.push(box(0.6, 0.18, 0.6, GOLD, u, 0.5 + ph - 0.18, pz));
+    p.solid.push(box(0.6, 0.2, 0.6, '#e4ded2', u, 0.5, pz));
+  }
+  p.solid.push(box(pw + 0.8, 0.4, 2.8, MARBLE, 0, 0.5 + ph, d / 2 + 1.2));
+  const tri = new THREE.Shape();
+  tri.moveTo(-pw / 2 - 0.4, 0);
+  tri.lineTo(0, 1.2);
+  tri.lineTo(pw / 2 + 0.4, 0);
+  tri.lineTo(-pw / 2 - 0.4, 0);
+  p.solid.push(paint(new THREE.ExtrudeGeometry(tri, { depth: 2.8, bevelEnabled: false }).translate(0, 0.9 + ph, d / 2 - 0.2), MARBLE));
+  p.solid.push(paint(new THREE.CircleGeometry(0.35, 5).rotateZ(Math.PI / 2).translate(0, 0.9 + ph + 0.45, d / 2 + 2.62), GOLD));
+  doorAt(p, w, d, 0, { width: hotel ? 2.2 : 1.4, height: 2.5, y: 0.5, frame: GOLD, color: accent, glass: hotel, canopy: null, lamp: false, step: '#e4ded2' });
+  if (hotel) {
+    p.solid.push(box(4.2, 0.8, 0.12, accent, 0, 0.5 + fh + 0.3, d / 2 + 0.08));
+    p.glow.push(box(3.6, 0.4, 0.05, '#fff1c2', 0, 0.5 + fh + 0.5, d / 2 + 0.16));
+  }
+  // 门廊两侧花盆
+  for (const s of [-1, 1]) {
+    p.solid.push(cyl(0.35, 0.28, 0.6, 8, '#c8a878', s * (pw / 2 + 0.9), 0.5, d / 2 + 2.3));
+    p.solid.push(sphere(0.42, '#5f9e4a', s * (pw / 2 + 0.9), 1.25, d / 2 + 2.3, 1, 0.9, 1, 0));
+    for (let k = 0; k < 3; k++) p.solid.push(sphere(0.1, '#f26b8a', s * (pw / 2 + 0.9) + (k - 1) * 0.2, 1.55, d / 2 + 2.3 + (k % 2) * 0.15, 1, 1, 1, 0));
+  }
+  return p;
+}
+
+/**
+ * 精灵联盟大门：宽大的白金凯旋门。三开间（中门最高），四根巨柱 + 金色柱头，门楣横匾（联盟徽：金星 + 蓝环），
+ * 顶部阁楼上一排 11 枚徽章浮雕（对应 11 座道馆），两侧挂长幅蓝旗；门前三段宽石阶。
+ */
+export function leagueGate(w: number, h: number): PropParts {
+  const p = newParts();
+  const half = w / 2;
+  const depth = 6;
+  // 台基 + 门前石阶（+Z 为正面）
+  p.solid.push(box(w + 6, 1.2, depth + 4, '#e4ded2', 0, 0, 0));
+  for (let k = 0; k < 4; k++) p.solid.push(box(w * 0.6 - k * 0.4, 0.3, 1.0, '#ece6da', 0, 0.9 - k * 0.3, depth / 2 + 2 + 0.5 + k * 1.0));
+  const baseY = 1.2;
+  const archH = h * 0.62;
+  // 墩柱（三开间 → 四个墩）
+  const piers = [-half + 1.6, -half * 0.33, half * 0.33, half - 1.6];
+  for (const x of piers) {
+    p.solid.push(box(3.2, archH, depth, MARBLE, x, baseY, 0));
+    // 立面巨柱
+    p.solid.push(cyl(0.8, 0.9, archH - 0.6, 14, MARBLE, x, baseY + 0.3, depth / 2 + 0.6));
+    p.solid.push(box(2.0, 0.5, 2.0, GOLD, x, baseY + archH - 0.5, depth / 2 + 0.6));
+    p.solid.push(box(2.0, 0.4, 2.0, '#e4ded2', x, baseY, depth / 2 + 0.6));
+    for (let k = 0; k < 12; k++) {
+      const a = (k / 12) * Math.PI * 2;
+      p.solid.push(boxAt(0.08, archH - 1.4, 0.12, shade(MARBLE, -0.08), x + Math.cos(a) * 0.86, baseY + 0.7 + (archH - 1.4) / 2, depth / 2 + 0.6 + Math.sin(a) * 0.86));
+    }
+  }
+  // 拱顶横梁（中门更高：中间开间的拱）
+  const span = (half * 0.66) - 3.2;
+  p.solid.push(paint(new THREE.TorusGeometry(span / 2 + 0.6, 0.7, 6, 18, Math.PI).translate(0, baseY + archH * 0.72, depth / 2), MARBLE));
+  for (const s of [-1, 1]) p.solid.push(paint(new THREE.TorusGeometry((half - 1.6 - half * 0.33 - 3.2) / 2 + 0.5, 0.5, 6, 14, Math.PI).translate(s * (half * 0.665 - 0.0), baseY + archH * 0.55, depth / 2), MARBLE));
+  // 檐 + 横匾 + 联盟徽
+  const ey = baseY + archH;
+  p.solid.push(box(w + 1.2, 1.4, depth + 1.6, MARBLE, 0, ey, 0));
+  p.solid.push(box(w + 1.4, 0.3, depth + 1.8, GOLD, 0, ey + 1.4, 0));
+  p.solid.push(box(w * 0.42, 1.0, 0.2, EVER, 0, ey + 0.2, depth / 2 + 0.85));
+  p.glow.push(paint(new THREE.TorusGeometry(1.4, 0.18, 6, 24).translate(0, ey + 3.4, depth / 2 + 0.95), '#6a9af0'));
+  const star = new THREE.Shape();
+  for (let k = 0; k < 10; k++) {
+    const a = (k / 10) * Math.PI * 2 + Math.PI / 2;
+    const rr = k % 2 ? 0.45 : 1.1;
+    if (k === 0) star.moveTo(Math.cos(a) * rr, Math.sin(a) * rr);
+    else star.lineTo(Math.cos(a) * rr, Math.sin(a) * rr);
+  }
+  p.glow.push(paint(new THREE.ExtrudeGeometry(star, { depth: 0.2, bevelEnabled: false }).translate(0, ey + 3.4, depth / 2 + 0.9), GOLD));
+  // 阁楼 + 11 枚徽章浮雕
+  const ay = ey + 1.7;
+  p.solid.push(box(w * 0.8, h - ay, depth, MARBLE, 0, ay, 0));
+  const badgeColors = ['#5fae4a', '#4a8ae8', '#a07a48', '#e8603a', '#f2d23a', '#c8c8d8', '#8fd8f0', '#7ab8e8', '#c86ad8', '#a88af0', '#4ab8f0'];
+  for (let k = 0; k < 11; k++) {
+    const x = (k / 10 - 0.5) * w * 0.7;
+    if (Math.abs(x) < 1.8) continue;
+    p.solid.push(paint(new THREE.TorusGeometry(0.42, 0.08, 4, 12).translate(x, ay + (h - ay) * 0.45, depth / 2 + 0.05), GOLD));
+    p.glow.push(paint(new THREE.CircleGeometry(0.36, 8).translate(x, ay + (h - ay) * 0.45, depth / 2 + 0.06), badgeColors[k]!));
+  }
+  p.solid.push(box(w * 0.82, 0.3, depth + 0.2, GOLD, 0, h, 0));
+  // 中门：深蓝门扇（关闭）+ 门缝光
+  p.solid.push(box(span, archH * 0.72, 0.3, '#2a3a78', 0, baseY, 0));
+  p.glow.push(box(0.1, archH * 0.7, 0.05, '#fff1c2', 0, baseY, 0.18));
+  for (const s of [-1, 1]) {
+    p.solid.push(sphere(0.25, GOLD, s * 0.6, baseY + archH * 0.33, 0.25, 1, 1, 0.5, 1));
+  }
+  // 侧门：金色铁栅（关闭）
+  for (const sgn of [-1, 1]) {
+    const cx = sgn * ((half - 1.6 + half * 0.33) / 2);
+    const bw = half - 1.6 - half * 0.33 - 3.2;
+    for (let u = -bw / 2 + 0.2; u <= bw / 2 - 0.2; u += 0.35) p.solid.push(cyl(0.05, 0.05, archH * 0.55, 4, GOLD, cx + u, baseY, 0));
+    for (const y of [0.3, 0.5, 0.95]) p.solid.push(box(bw, 0.1, 0.1, GOLD, cx, baseY + archH * 0.55 * y, 0));
+  }
+  // 长幅蓝旗
+  for (const x of piers) {
+    p.solid.push(box(1.4, archH * 0.55, 0.06, EVER, x, baseY + archH * 0.3, depth / 2 + 1.55));
+    p.solid.push(box(1.5, 0.12, 0.1, GOLD, x, baseY + archH * 0.85, depth / 2 + 1.55));
+    p.glow.push(paint(new THREE.CircleGeometry(0.38, 5).rotateZ(Math.PI / 2).translate(x, baseY + archH * 0.65, depth / 2 + 1.6), GOLD));
+  }
+  return p;
+}

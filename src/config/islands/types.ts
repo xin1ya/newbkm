@@ -252,6 +252,9 @@ export type PropType =
   // ——— M3-13 琉璃镇 ———
   /** 海底神殿之门（海中石台门楼，M3-18 潜水入口） */
   | 'temple-gate'
+  // ——— M3-14 彩幽市 ———
+  /** 精灵联盟大门（白金凯旋门） */
+  | 'league-gate'
   | 'glb';
 
 export interface PropInstance {

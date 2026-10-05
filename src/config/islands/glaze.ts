@@ -77,7 +77,7 @@ export const GLAZE: IslandConfig = {
       id: 'ever-city',
       name: '彩幽市',
       kind: 'town',
-      polygon: [[-60, -830], [150, -830], [190, -760], [150, -700], [-60, -700], [-100, -760]],
+      polygon: [[-60, -892], [150, -892], [190, -760], [150, -700], [60, -690], [60, -645], [20, -645], [20, -690], [-60, -700], [-100, -760]],
       bgm: 'town-ever',
       legacyMapId: 'ever-grande',
     },
@@ -275,6 +275,14 @@ export const GLAZE: IslandConfig = {
     { id: 'ghost-cemetery', kind: 'landmark', name: '幽冥古墓园', position: [-474, 0, -118], showOnMap: true },
     { id: 'ghost-bell-tower', kind: 'landmark', name: '幽冥钟楼', position: [-466, 0, -136] },
     { id: 'ghost-noticeboard', kind: 'landmark', name: '幽冥镇告示板', position: [-445, 0, -169.5] },
+    // M3-14 彩幽市
+    { id: 'pokecenter-ever', kind: 'pokecenter', name: '宝可梦中心（彩幽市）', position: [31, 0, -735], interior: 'pokecenter', showOnMap: true },
+    { id: 'mart-ever', kind: 'mart', name: '友好商店（彩幽市）', position: [49, 0, -735], interior: 'mart', showOnMap: true },
+    { id: 'ever-hotel', kind: 'door', name: '训练家旅馆', position: [31, 0, -800], interior: 'ever-hotel', showOnMap: true },
+    { id: 'ever-flower-house', kind: 'door', name: '彩幽花店', position: [49, 0, -800], interior: 'ever-flower-house', showOnMap: true },
+    { id: 'ever-fountain', kind: 'landmark', name: '彩幽喷泉', position: [40, 0, -758] },
+    { id: 'ever-noticeboard', kind: 'landmark', name: '彩幽市告示板', position: [52, 0, -712] },
+    { id: 'ever-champion-statues', kind: 'landmark', name: '冠军大道', position: [40, 0, -834], showOnMap: true },
     // M3-13 琉璃镇
     { id: 'pokecenter-glaze', kind: 'pokecenter', name: '宝可梦中心（琉璃镇）', position: [426, 0, 146], interior: 'pokecenter', showOnMap: true },
     { id: 'mart-glaze', kind: 'mart', name: '友好商店（琉璃镇）', position: [512, 0, 146], interior: 'mart', showOnMap: true },

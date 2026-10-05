@@ -30,6 +30,17 @@ export const GLAZE_FURNITURE: InteractionDef[] = [
   { id: 'diver-shells', kind: 'examine', pages: ['贝壳、珊瑚枝、一块刻着浪纹的碎石片。', '石片上的纹样，和石堤尽头那座门楼一模一样。'] },
   { id: 'diver-chart', kind: 'examine', pages: ['手绘的东海岸海图。', '深水暗区的中央画了一个圈，旁边写着：「门 · 约 30 米」。'] },
   { id: 'diver-aquarium', kind: 'examine', pages: ['小水缸里养着几株海草和一只寄居蟹。'] },
+  // ——— 彩幽市 · 训练家旅馆 ———
+  { id: 'hotel-reception', kind: 'examine', pages: ['前台的登记簿上，挑战者的名字一页接一页。', '旁边写着：「挑战精灵联盟的训练家，可在大堂床铺免费休息」。'] },
+  { id: 'hotel-trophy', kind: 'examine', pages: ['奖杯柜里摆着历届联盟大赛的奖杯。', '最高的那座金杯底座上刻着：「翠澜冠军」——名字栏还是空的。'] },
+  { id: 'hotel-champion-wall', kind: 'examine', pages: ['一面挂满合影的墙。', '每张照片里都有一位训练家站在联盟大门前，身后是他们的宝可梦。'] },
+  { id: 'hotel-strategy-books', kind: 'examine', pages: ['《属性相克全表》《四天王对策笔记》《如何培养一支均衡的队伍》……', '翻开的那本里画满了红线。'] },
+  { id: 'hotel-bed', kind: 'rest', pages: ['柔软的白色床铺。要休息一下吗？'], effects: [{ kind: 'heal-party', fade: true }], after: ['一觉醒来，精神饱满！宝可梦们也恢复了。'] },
+  // ——— 彩幽市 · 彩幽花店 ———
+  { id: 'florist-counter', kind: 'examine', pages: ['柜台上摆着一束刚扎好的花，卡片上写着「祝挑战成功」。'] },
+  { id: 'florist-pots', kind: 'examine', pages: ['一排排小花盆：彩幽堇、高原蓝铃、星光百合……', '标签上写着：「彩幽高原特产，海拔九十六米以上才开花」。'] },
+  { id: 'florist-bouquets', kind: 'examine', pages: ['五颜六色的花束。', '据说挑战联盟前，训练家们都会来买一束放在冠军大道的星像下。'] },
+  { id: 'florist-bench', kind: 'examine', pages: ['剪刀、丝带、包装纸。', '桌上的笔记本写着：「花与宝可梦都一样——要每天照顾」。'] },
 ];
 
 export const GLAZE_LANDMARKS: InteractionDef[] = [
@@ -97,4 +108,15 @@ export const GLAZE_LANDMARKS: InteractionDef[] = [
     range: 3,
     pages: ['神殿石碑。', '碑上的古文字已经磨得很浅了。', '能读懂的只有一句：「潮落之门，唯与海同息者可入」。'],
   },
+  // ——— 彩幽市 ———
+  {
+    id: 'league-gate',
+    kind: 'examine',
+    range: 6,
+    pages: ['精灵联盟大门。', '白色大理石拱门上嵌着 11 枚徽章浮雕，中央的蓝色大门紧紧关着。', '门卫说：集齐翠澜地区全部 11 枚徽章，大门才会为你打开。'],
+    byFlag: [{ when: 'league-open', pages: ['精灵联盟大门。', '11 枚徽章浮雕都亮着光——大门已经为你敞开。'] }],
+  },
+  { id: 'ever-fountain', kind: 'examine', range: 6, pages: ['彩幽喷泉。', '水柱在阳光下化成一道道彩虹——「彩幽」这个名字就是这么来的。'], night: ['彩幽喷泉。', '夜里，池底的灯把水柱照成了淡蓝色。'] },
+  { id: 'ever-noticeboard', kind: 'examine', pages: ['彩幽市告示板：', '「北 · 精灵联盟　南 · 冠军之路」', '「挑战者须知：进入联盟后，在击败四天王与冠军之前无法离开。请在旅馆做好准备。」'] },
+  { id: 'ever-champion-statues', kind: 'examine', range: 10, pages: ['冠军大道。两侧立着六座金色星像。', '每座底座都刻着一位历代冠军的名字和年份。', '最后一座的底座还是空白的。'] },
 ];

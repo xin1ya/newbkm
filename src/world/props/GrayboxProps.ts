@@ -261,6 +261,8 @@ export class GrayboxProps {
                                 ? GL.glassHouse(w, h, d, wall, roof, seed, p.accent)
                                 : p.variant === 'glassworks'
                                   ? GL.glassworks(w, h, d, wall, roof)
+                                  : p.variant === 'ever' || p.variant === 'ever-hotel'
+                                    ? GL.everHouse(w, h, d, p.accent ?? roof, seed, p.variant === 'ever-hotel')
                         : T.house(w, h, d, wall, roof, p.variant, seed, p.accent)
             : p.type === 'lab'
               ? T.lab(w, h, d, wall, roof)
@@ -856,6 +858,23 @@ export class GrayboxProps {
         if (collide) this.addBox(x, z, w + 0.6, w + 0.6, yaw, ground, ground + h, 'bell-tower');
         this.lampPositions.push(new THREE.Vector3(x, ground + h * 0.7, z));
         return true;
+      // ——— M3-14 彩幽市 ———
+      case 'league-gate': {
+        // 精灵联盟大门：台基可站立（顶 +1.2，前沿石阶）；四个墩柱 + 中门门扇（M3-21 由联盟入口开启）
+        this.place(GL.leagueGate(w, h), x, ground, z, yaw);
+        this.addBox(x, z, w + 6, 10, yaw, ground - 2, ground + 1.2, 'league-plinth', true);
+        for (let k = 0; k < 4; k++) {
+          const [sx, sz] = at(0, 5.5 + k);
+          this.addBox(sx, sz, w * 0.6 - k * 0.4, 1, yaw, ground - 2, ground + 1.2 - k * 0.3, 'league-steps', true);
+        }
+        for (const lx of [-w / 2 + 1.6, -w * 0.165, w * 0.165, w / 2 - 1.6]) {
+          const [px, pz] = at(lx, 0.6);
+          this.addBox(px, pz, 3.4, 7.4, yaw, ground, ground + h, 'league-pier');
+        }
+        this.addBox(x, z, w, 0.6, yaw, ground, ground + h, 'league-door');
+        this.lampPositions.push(new THREE.Vector3(x, ground + h * 0.75, z + 4));
+        return true;
+      }
       // ——— M3-13 琉璃镇 ———
       case 'temple-gate': {
         // 海中石台：y = 海面（石台顶 +0.7 可站立）；门洞被封印光幕挡住（M3-18 潜水开放）

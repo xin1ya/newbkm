@@ -5477,6 +5477,1509 @@
    "color": "#8fe8ff"
   },
   {
+   "type": "pokecenter",
+   "position": [
+    23.4,
+    -735
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    18,
+    8.5,
+    14
+   ],
+   "ref": "pokecenter-ever",
+   "color": "#fbf7f0",
+   "roof": "#e25a4f"
+  },
+  {
+   "type": "mart",
+   "position": [
+    55.6,
+    -735
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    14,
+    7,
+    12
+   ],
+   "ref": "mart-ever",
+   "color": "#f4f6f8",
+   "roof": "#3f7fd6"
+  },
+  {
+   "type": "house",
+   "position": [
+    23.4,
+    -800
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    18,
+    13,
+    14
+   ],
+   "variant": "ever-hotel",
+   "ref": "ever-hotel",
+   "accent": "#3a5ab8",
+   "seed": 4601
+  },
+  {
+   "type": "house",
+   "position": [
+    54.6,
+    -800
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    12,
+    8.5,
+    10
+   ],
+   "variant": "ever",
+   "accent": "#8a5ab8",
+   "seed": 4602,
+   "ref": "ever-flower-house"
+  },
+  {
+   "type": "house",
+   "position": [
+    -50,
+    -776.1
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    9,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#3a5ab8",
+   "seed": 4611
+  },
+  {
+   "type": "house",
+   "position": [
+    -30,
+    -776.1
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    9.4,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#5a7ad8",
+   "seed": 4612
+  },
+  {
+   "type": "house",
+   "position": [
+    -10,
+    -776.1
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    9,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#2a8a9a",
+   "seed": 4613
+  },
+  {
+   "type": "house",
+   "position": [
+    90,
+    -776.1
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    9.2,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#5a7ad8",
+   "seed": 4614
+  },
+  {
+   "type": "house",
+   "position": [
+    110,
+    -776.1
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    9,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#8a5ab8",
+   "seed": 4615
+  },
+  {
+   "type": "house",
+   "position": [
+    130,
+    -776.1
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    9.4,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#3a5ab8",
+   "seed": 4616
+  },
+  {
+   "type": "house",
+   "position": [
+    -50,
+    -753.9
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    9.2,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#2a8a9a",
+   "seed": 4621
+  },
+  {
+   "type": "house",
+   "position": [
+    -30,
+    -753.9
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    9,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#3a5ab8",
+   "seed": 4622
+  },
+  {
+   "type": "house",
+   "position": [
+    -10,
+    -753.9
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    9.4,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#8a5ab8",
+   "seed": 4623
+  },
+  {
+   "type": "house",
+   "position": [
+    90,
+    -753.9
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    9,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#3a5ab8",
+   "seed": 4624
+  },
+  {
+   "type": "house",
+   "position": [
+    110,
+    -753.9
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    9.2,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#2a8a9a",
+   "seed": 4625
+  },
+  {
+   "type": "house",
+   "position": [
+    130,
+    -753.9
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    9,
+    9
+   ],
+   "variant": "ever",
+   "accent": "#5a7ad8",
+   "seed": 4626
+  },
+  {
+   "type": "fountain",
+   "position": [
+    40,
+    -765
+   ],
+   "yaw": 0,
+   "size": [
+    10,
+    2.4,
+    10
+   ],
+   "color": "#8fc8f0",
+   "variant": "grand"
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    47.77817459305202,
+    -757.221825406948
+   ],
+   "yaw": 0.7853981633974483,
+   "size": [
+    3,
+    0.5,
+    3
+   ],
+   "variant": "round",
+   "seed": 4630
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    47.77817459305202,
+    -772.778174593052
+   ],
+   "yaw": 2.356194490192345,
+   "size": [
+    3,
+    0.5,
+    3
+   ],
+   "variant": "round",
+   "seed": 4631
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32.22182540694798,
+    -772.778174593052
+   ],
+   "yaw": 3.9269908169872414,
+   "size": [
+    3,
+    0.5,
+    3
+   ],
+   "variant": "round",
+   "seed": 4632
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32.22182540694798,
+    -757.221825406948
+   ],
+   "yaw": 5.497787143782138,
+   "size": [
+    3,
+    0.5,
+    3
+   ],
+   "variant": "round",
+   "seed": 4633
+  },
+  {
+   "type": "bench",
+   "position": [
+    26,
+    -752
+   ],
+   "yaw": 3.9269908169872414,
+   "size": [
+    2.2,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    54,
+    -752
+   ],
+   "yaw": 2.356194490192345,
+   "size": [
+    2.2,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    26,
+    -778
+   ],
+   "yaw": -0.7853981633974483,
+   "size": [
+    2.2,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    54,
+    -778
+   ],
+   "yaw": 0.7853981633974483,
+   "size": [
+    2.2,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32,
+    -650
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4640
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32,
+    -658
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4641
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32,
+    -666
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4642
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32,
+    -674
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4643
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32,
+    -682
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4644
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32,
+    -690
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4645
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32,
+    -698
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4646
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32,
+    -706
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4647
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    32,
+    -714
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4648
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    48,
+    -650
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4650
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    48,
+    -658
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4651
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    48,
+    -666
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4652
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    48,
+    -674
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4653
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    48,
+    -682
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4654
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    48,
+    -690
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4655
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    48,
+    -698
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4656
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    48,
+    -706
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4657
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    48,
+    -714
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4658
+  },
+  {
+   "type": "sign",
+   "ref": "ever-city-sign",
+   "position": [
+    33,
+    -700
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "noticeboard",
+   "ref": "ever-noticeboard",
+   "position": [
+    53,
+    -712
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "statue",
+   "position": [
+    31,
+    -818
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    2,
+    4.2,
+    2
+   ],
+   "variant": "star",
+   "color": "#d8c27a",
+   "seed": 4660
+  },
+  {
+   "type": "statue",
+   "position": [
+    49,
+    -818
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    2,
+    4.2,
+    2
+   ],
+   "variant": "star",
+   "color": "#d8c27a",
+   "seed": 4670
+  },
+  {
+   "type": "statue",
+   "position": [
+    31,
+    -834
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    2,
+    4.2,
+    2
+   ],
+   "variant": "star",
+   "color": "#d8c27a",
+   "seed": 4661
+  },
+  {
+   "type": "statue",
+   "position": [
+    49,
+    -834
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    2,
+    4.2,
+    2
+   ],
+   "variant": "star",
+   "color": "#d8c27a",
+   "seed": 4671
+  },
+  {
+   "type": "statue",
+   "position": [
+    31,
+    -850
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    2,
+    4.2,
+    2
+   ],
+   "variant": "star",
+   "color": "#d8c27a",
+   "seed": 4662
+  },
+  {
+   "type": "statue",
+   "position": [
+    49,
+    -850
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    2,
+    4.2,
+    2
+   ],
+   "variant": "star",
+   "color": "#d8c27a",
+   "seed": 4672
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    26,
+    -814
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4680
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    26,
+    -822
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4681
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    26,
+    -830
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4682
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    26,
+    -838
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4683
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    26,
+    -846
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4684
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    26,
+    -854
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4685
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    54,
+    -814
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4690
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    54,
+    -822
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4691
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    54,
+    -830
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4692
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    54,
+    -838
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4693
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    54,
+    -846
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4694
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    54,
+    -854
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    0.5,
+    6
+   ],
+   "seed": 4695
+  },
+  {
+   "type": "league-gate",
+   "ref": "league-gate-building",
+   "position": [
+    40,
+    -880
+   ],
+   "yaw": 0,
+   "size": [
+    30,
+    22,
+    10
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    35,
+    -660
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    45,
+    -680
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    35,
+    -700
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    45,
+    -720
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    35,
+    -745
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    45,
+    -785
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    35,
+    -812
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    45,
+    -826
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    35,
+    -842
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    45,
+    -858
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -60,
+    -768
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -20,
+    -762
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    80,
+    -762
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    120,
+    -768
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    160,
+    -762
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -70,
+    -762
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.8,
+    0.3
+   ]
+  },
+  {
+   "type": "tree",
+   "position": [
+    -60,
+    -730
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 4700
+  },
+  {
+   "type": "tree",
+   "position": [
+    -30,
+    -735
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 4731
+  },
+  {
+   "type": "tree",
+   "position": [
+    0,
+    -728
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 4762
+  },
+  {
+   "type": "tree",
+   "position": [
+    80,
+    -730
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 4793
+  },
+  {
+   "type": "tree",
+   "position": [
+    110,
+    -735
+   ],
+   "yaw": 0.5168146928204136,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 4824
+  },
+  {
+   "type": "tree",
+   "position": [
+    140,
+    -728
+   ],
+   "yaw": 2.2168146928204138,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 4855
+  },
+  {
+   "type": "tree",
+   "position": [
+    -60,
+    -800
+   ],
+   "yaw": 3.916814692820413,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 4886
+  },
+  {
+   "type": "tree",
+   "position": [
+    -25,
+    -805
+   ],
+   "yaw": 5.616814692820414,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 4917
+  },
+  {
+   "type": "tree",
+   "position": [
+    5,
+    -798
+   ],
+   "yaw": 1.0336293856408272,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 4948
+  },
+  {
+   "type": "tree",
+   "position": [
+    80,
+    -800
+   ],
+   "yaw": 2.7336293856408265,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 4979
+  },
+  {
+   "type": "tree",
+   "position": [
+    115,
+    -805
+   ],
+   "yaw": 4.4336293856408275,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 5010
+  },
+  {
+   "type": "tree",
+   "position": [
+    145,
+    -798
+   ],
+   "yaw": 6.133629385640827,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "round",
+   "seed": 5041
+  },
+  {
+   "type": "tree",
+   "position": [
+    10,
+    -860
+   ],
+   "yaw": 1.5504440784612399,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 5072
+  },
+  {
+   "type": "tree",
+   "position": [
+    70,
+    -860
+   ],
+   "yaw": 3.250444078461239,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 5103
+  },
+  {
+   "type": "tree",
+   "position": [
+    0,
+    -700
+   ],
+   "yaw": 4.950444078461242,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 5134
+  },
+  {
+   "type": "tree",
+   "position": [
+    80,
+    -705
+   ],
+   "yaw": 0.36725877128165507,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 5165
+  },
+  {
+   "type": "hedge",
+   "position": [
+    -40,
+    -745
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    1.2,
+    1.2
+   ],
+   "seed": 4720
+  },
+  {
+   "type": "hedge",
+   "position": [
+    -20,
+    -745
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    1.2,
+    1.2
+   ],
+   "seed": 4721
+  },
+  {
+   "type": "hedge",
+   "position": [
+    100,
+    -745
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    1.2,
+    1.2
+   ],
+   "seed": 4722
+  },
+  {
+   "type": "hedge",
+   "position": [
+    120,
+    -745
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    1.2,
+    1.2
+   ],
+   "seed": 4723
+  },
+  {
+   "type": "hedge",
+   "position": [
+    -40,
+    -785
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    1.2,
+    1.2
+   ],
+   "seed": 4730
+  },
+  {
+   "type": "hedge",
+   "position": [
+    -20,
+    -785
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    1.2,
+    1.2
+   ],
+   "seed": 4731
+  },
+  {
+   "type": "hedge",
+   "position": [
+    100,
+    -785
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    1.2,
+    1.2
+   ],
+   "seed": 4732
+  },
+  {
+   "type": "hedge",
+   "position": [
+    120,
+    -785
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    1.2,
+    1.2
+   ],
+   "seed": 4733
+  },
+  {
    "type": "sign",
    "ref": "mirage-obelisk",
    "position": [
@@ -5524,6 +7027,34 @@
    "position": [
     -466,
     -136
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "ever-fountain",
+   "position": [
+    40,
+    -758
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "ever-champion-statues",
+   "position": [
+    40,
+    -834
    ],
    "yaw": 0,
    "size": [
@@ -9270,51 +10801,6 @@
    ],
    "seed": 6853,
    "variant": "bleached"
-  },
-  {
-   "type": "ruin-arch",
-   "ref": "league-gate",
-   "position": [
-    40,
-    -880
-   ],
-   "yaw": 0,
-   "size": [
-    12,
-    10,
-    2
-   ],
-   "variant": "league"
-  },
-  {
-   "type": "statue",
-   "position": [
-    31,
-    -870
-   ],
-   "yaw": 0,
-   "size": [
-    2,
-    4,
-    2
-   ],
-   "variant": "star",
-   "color": "#d8c27a"
-  },
-  {
-   "type": "statue",
-   "position": [
-    49,
-    -870
-   ],
-   "yaw": 0,
-   "size": [
-    2,
-    4,
-    2
-   ],
-   "variant": "star",
-   "color": "#d8c27a"
   },
   {
    "type": "shipwreck",

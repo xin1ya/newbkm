@@ -1004,12 +1004,7 @@ for (const [x, z, s] of [[-120, 360, 1], [40, 330, 2], [180, 350, 3], [300, 420,
   props.push({ type: 'rocks', position: [x, z], yaw: s, size: [3.6, 2.2, 3.6], seed: 6800 + s, color: '#d9c49a' });
 for (const [x, z, s] of [[-200, 400, 1], [80, 400, 2], [250, 330, 3]] as Array<[number, number, number]>)
   props.push({ type: 'dead-tree', position: [x, z], yaw: s, size: [2.4, 4, 2.4], seed: 6850 + s, variant: 'bleached' });
-// 精灵联盟大门（高原北端）：先立门前石碑，联盟大门建筑在 M3-14
-{
-  const lg = GLAZE.pois.find((p) => p.id === 'league-gate')!;
-  props.push({ type: 'ruin-arch', ref: 'league-gate', position: [lg.position[0], lg.position[2] - 4], yaw: 0, size: [12, 10, 2], variant: 'league' });
-  for (const s of [-1, 1]) props.push({ type: 'statue', position: [lg.position[0] + s * 9, lg.position[2] + 6], yaw: 0, size: [2, 4, 2], variant: 'star', color: '#d8c27a' });
-}
+// 精灵联盟大门：建筑与门前广场在 towns/glaze.ts（M3-14 彩幽市）
 // 蜃景沙洲：搁浅的旧船
 props.push({ type: 'shipwreck', ref: 'sandbar-wreck', position: [-40, 672], y: heightAt(-40, 672) - 0.4, yaw: 0.9, size: [6, 3, 18] });
 // 礁石迷宫：每个缺口两侧一红一绿的航标；迷宫南口一块告示浮标

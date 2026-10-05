@@ -18,6 +18,10 @@
  *   镇南是水晶喷泉广场；玻璃工坊在主街南侧。沙滩北头立着灯塔；
  *   海底神殿之门：沙滩外一条长石堤通向海中石台上的古门楼（门洞封印，M3-18 潜水开放），门外即东岸深水暗区。
  *
+ * - 彩幽市（北·联盟高原 96 m）：精灵联盟门前的花之都。白大理石宅邸（四柱门廊、屋顶花园），十字大道交汇处是彩幽喷泉广场；
+ *   南口接冠军之路北洞口，北端「冠军大道」两侧立着历代冠军星像，尽头是精灵联盟大门（白金凯旋门，11 枚徽章浮雕）。
+ *   宝可梦中心 / 商店夹着南段大道；训练家旅馆与花店夹着北段大道。
+ *
  * 门口坐标与 glaze.ts 的 POI 一一对应（atDoor 反推建筑中心；道馆 = 门口沿朝向后退 w/2 + 1）。
  */
 import type { PropInstance, TownLayout, Vec2, Vec3 } from '../types';
@@ -377,4 +381,84 @@ export const GLAZE_TOWN: TownLayout = {
   props: glazeTown,
 };
 
-export const GLAZE_TOWNS: TownLayout[] = [MIRAGE_TOWN, GHOST_TOWN, GLAZE_TOWN];
+// ———————————————————————— 彩幽市 ————————————————————————
+// 大道 x = 40（z −640 冠军之路北口 → −872 联盟大门）；十字大道 z = −765（x −70 → 170）；喷泉广场 (40, −765)。
+// 十字大道北侧门口 z = −771 朝南、南侧门口 z = −759 朝北；南段大道西 / 东侧门口 x = 31 / 49。
+const ever = (door: Vec2, yaw: number, size: Vec3, accent: string, seed: number, extra: Partial<PropInstance> = {}): PropInstance =>
+  atDoor('house', door, yaw, size, { variant: 'ever', accent, seed, ...extra });
+const A1 = '#3a5ab8';
+const A2 = '#5a7ad8';
+const A3 = '#2a8a9a';
+const A4 = '#8a5ab8';
+const flowerRow = (x: number, z0: number, z1: number, seed: number): PropInstance[] => {
+  const out: PropInstance[] = [];
+  for (let z = z0, i = 0; z >= z1; z -= 8, i++) out.push({ type: 'flowerbed', position: [x, z], yaw: 0, size: [2.4, 0.5, 6], seed: seed + i });
+  return out;
+};
+
+const everCity: PropInstance[] = [
+  atDoor('pokecenter', [31, -735], FACE.east, [18, 8.5, 14], { ref: 'pokecenter-ever', color: '#fbf7f0', roof: '#e25a4f' }),
+  atDoor('mart', [49, -735], FACE.west, [14, 7, 12], { ref: 'mart-ever', color: '#f4f6f8', roof: '#3f7fd6' }),
+  atDoor('house', [31, -800], FACE.east, [18, 13, 14], { variant: 'ever-hotel', ref: 'ever-hotel', accent: A1, seed: 4601 }),
+  ever([49, -800], FACE.west, [12, 8.5, 10], A4, 4602, { ref: 'ever-flower-house' }),
+  // 十字大道北侧（门朝南）
+  ever([-50, -771], FACE.south, [10, 9, 9], A1, 4611),
+  ever([-30, -771], FACE.south, [10, 9.4, 9], A2, 4612),
+  ever([-10, -771], FACE.south, [10, 9, 9], A3, 4613),
+  ever([90, -771], FACE.south, [10, 9.2, 9], A2, 4614),
+  ever([110, -771], FACE.south, [10, 9, 9], A4, 4615),
+  ever([130, -771], FACE.south, [10, 9.4, 9], A1, 4616),
+  // 十字大道南侧（门朝北）
+  ever([-50, -759], FACE.north, [10, 9.2, 9], A3, 4621),
+  ever([-30, -759], FACE.north, [10, 9, 9], A1, 4622),
+  ever([-10, -759], FACE.north, [10, 9.4, 9], A4, 4623),
+  ever([90, -759], FACE.north, [10, 9, 9], A1, 4624),
+  ever([110, -759], FACE.north, [10, 9.2, 9], A3, 4625),
+  ever([130, -759], FACE.north, [10, 9, 9], A2, 4626),
+  // 喷泉广场
+  { type: 'fountain', position: [40, -765], yaw: 0, size: [10, 2.4, 10], color: '#8fc8f0', variant: 'grand' },
+  ...[0, 1, 2, 3].map((k): PropInstance => ({ type: 'flowerbed', position: [40 + Math.sin((k * PI) / 2 + PI / 4) * 11, -765 + Math.cos((k * PI) / 2 + PI / 4) * 11], yaw: (k * PI) / 2 + PI / 4, size: [3, 0.5, 3], variant: 'round', seed: 4630 + k })),
+  { type: 'bench', position: [26, -752], yaw: PI / 4 + PI, size: [2.2, 0.9, 0.6] },
+  { type: 'bench', position: [54, -752], yaw: -PI / 4 + PI, size: [2.2, 0.9, 0.6] },
+  { type: 'bench', position: [26, -778], yaw: -PI / 4, size: [2.2, 0.9, 0.6] },
+  { type: 'bench', position: [54, -778], yaw: PI / 4, size: [2.2, 0.9, 0.6] },
+  // 南口花道（冠军之路出口 → 市区）
+  ...flowerRow(32, -650, -718, 4640),
+  ...flowerRow(48, -650, -718, 4650),
+  { type: 'sign', ref: 'ever-city-sign', position: [33, -700], yaw: FACE.south, size: [1.6, 1.6, 0.2] },
+  { type: 'noticeboard', ref: 'ever-noticeboard', position: [53, -712], yaw: FACE.west, size: [2, 2.2, 0.3] },
+  // 冠军大道：历代冠军星像 + 花坛
+  ...[-818, -834, -850].flatMap((z, i): PropInstance[] => [
+    { type: 'statue', position: [31, z], yaw: FACE.east, size: [2, 4.2, 2], variant: 'star', color: '#d8c27a', seed: 4660 + i },
+    { type: 'statue', position: [49, z], yaw: FACE.west, size: [2, 4.2, 2], variant: 'star', color: '#d8c27a', seed: 4670 + i },
+  ]),
+  ...flowerRow(26, -814, -858, 4680),
+  ...flowerRow(54, -814, -858, 4690),
+  // 精灵联盟大门
+  { type: 'league-gate', ref: 'league-gate-building', position: [40, -880], yaw: 0, size: [30, 22, 10] },
+  ...lamps([[35, -660], [45, -680], [35, -700], [45, -720], [35, -745], [45, -785], [35, -812], [45, -826], [35, -842], [45, -858], [-60, -768], [-20, -762], [80, -762], [120, -768], [160, -762], [-70, -762]], 4.8),
+  ...trees(
+    [[-60, -730, 7, 'round'], [-30, -735, 6.5, 'round'], [0, -728, 7, 'round'], [80, -730, 7, 'round'], [110, -735, 6.5, 'round'], [140, -728, 7, 'round'],
+      [-60, -800, 7, 'round'], [-25, -805, 6.5, 'round'], [5, -798, 7, 'round'], [80, -800, 7, 'round'], [115, -805, 6.5, 'round'], [145, -798, 7, 'round'],
+      [10, -860, 6, 'round'], [70, -860, 6, 'round'], [0, -700, 6, 'round'], [80, -705, 6, 'round']],
+    4700,
+  ),
+  ...[-40, -20, 100, 120].map((x, i): PropInstance => ({ type: 'hedge', position: [x, -745], yaw: 0, size: [8, 1.2, 1.2], seed: 4720 + i })),
+  ...[-40, -20, 100, 120].map((x, i): PropInstance => ({ type: 'hedge', position: [x, -785], yaw: 0, size: [8, 1.2, 1.2], seed: 4730 + i })),
+];
+
+export const EVER_CITY: TownLayout = {
+  id: 'ever-city',
+  zone: 'ever-city',
+  paths: [
+    { id: 'town-ever-plaza', surface: 'stone', width: 30, points: [[40, -758], [40, -772]] },
+    { id: 'town-ever-champion-walk', surface: 'stone', width: 14, points: [[40, -812], [40, -866]] },
+    { id: 'town-ever-gate-plaza', surface: 'stone', width: 40, points: [[40, -864], [40, -870]] },
+    { id: 'town-ever-west-lane', surface: 'dirt', width: 4, points: [[-60, -790], [20, -790]] },
+    { id: 'town-ever-east-lane', surface: 'dirt', width: 4, points: [[60, -790], [140, -790]] },
+  ],
+  pads: [{ position: [40, -780], size: [240, 230], y: 96, blend: 12 }],
+  props: everCity,
+};
+
+export const GLAZE_TOWNS: TownLayout[] = [MIRAGE_TOWN, GHOST_TOWN, GLAZE_TOWN, EVER_CITY];
