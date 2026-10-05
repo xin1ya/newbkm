@@ -115,6 +115,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
   private rideBusy = false;
   private rideCooldown = 0;
   private landWait = 0;
+  private homePt: { x: number; z: number; t: number } | null = null;
   /** 本次自动的战绩 */
   readonly tally = { battles: 0, defeated: 0, captured: 0, fled: 0 };
   /** 本次自动中错过（未学）的招式 */
@@ -399,9 +400,17 @@ export class SceneAutoBattle implements BattleAutoPilot {
         this.stop('离开了区域');
         return false;
       }
-      const c = centroid(home);
-      this.drive(dt, c.x, c.z);
+      // 目标点：区域边界上离自己最近的点再往里 8 m（形心可能落在凹多边形外 / 水里 / 障碍物上）
+      if (!this.homePt || this.homePt.t < this.time || Math.hypot(this.homePt.x - p.x, this.homePt.z - p.z) < 2) this.homePt = { ...nearestInside(home, p.x, p.z, flying ? null : (x, zz) => this.d.walkable(x, zz)), t: this.time + 10 };
       this.status = '回到区域内';
+      if (flying) {
+        this.flyTo(dt, this.homePt.x, this.homePt.z, null);
+        return true;
+      }
+      // 步行回不去（被挡住）：能飞就起飞回去
+      if (this.flyMode && Math.hypot(this.homePt.x - p.x, this.homePt.z - p.z) > 12 && this.tryTakeoff()) return true;
+      // 卡住就换一个回归点（候选按距离排序，换不同的落脚点）
+      if (this.drive(dt, this.homePt.x, this.homePt.z)) this.homePt = { ...nearestInside(home, p.x + (this.d.rng.next() - 0.5) * 40, p.z + (this.d.rng.next() - 0.5) * 40, (x, zz) => this.d.walkable(x, zz)), t: this.time + 10 };
       return true;
     }
     for (const [id, until] of this.blacklist) if (until < this.time) this.blacklist.delete(id);
@@ -491,7 +500,8 @@ export class SceneAutoBattle implements BattleAutoPilot {
     }
   }
 
-  private drive(dt: number, tx: number, tz: number, entity?: number): void {
+  /** 返回 true = 本步判定为卡住 */
+  private drive(dt: number, tx: number, tz: number, entity?: number): boolean {
     const pl = this.d.player;
     const p = pl.position;
     const dx = tx - p.x;
@@ -508,9 +518,12 @@ export class SceneAutoBattle implements BattleAutoPilot {
       if (moved < 1.2) {
         if (entity !== undefined) this.blacklist.set(entity, this.time + BLACKLIST_S);
         this.wander = this.pickWander(this.d.zones.get(this.zoneId ?? '') ?? null, true);
+        this.stuck = { t: 0, x: p.x, z: p.z };
+        return true;
       }
       this.stuck = { t: 0, x: p.x, z: p.z };
     }
+    return false;
   }
 
   private pickTarget() {
@@ -665,6 +678,30 @@ export class SceneAutoBattle implements BattleAutoPilot {
   dispose(): void {
     this.card.dispose();
   }
+}
+
+/** 区域内离 (x, z) 最近的点（边界最近点向形心方向内移 8 m）；ok = 可选的落脚检查 */
+function nearestInside(zone: ZoneConfig, x: number, z: number, ok: ((x: number, z: number) => boolean) | null): { x: number; z: number } {
+  const poly = zone.polygon;
+  const c = centroid(zone);
+  const cands: { x: number; z: number; d: number }[] = [];
+  for (let i = 0; i < poly.length; i++) {
+    const [ax, az] = poly[i]!;
+    const [bx, bz] = poly[(i + 1) % poly.length]!;
+    for (let k = 0; k <= 8; k++) {
+      const t = k / 8;
+      const ex = ax + (bx - ax) * t;
+      const ez = az + (bz - az) * t;
+      for (const inset of [8, 16, 28]) {
+        const dl = Math.hypot(c.x - ex, c.z - ez) || 1;
+        const px = ex + ((c.x - ex) / dl) * inset;
+        const pz = ez + ((c.z - ez) / dl) * inset;
+        if (pointInPolygon(px, pz, poly)) cands.push({ x: px, z: pz, d: Math.hypot(px - x, pz - z) });
+      }
+    }
+  }
+  cands.sort((a, b) => a.d - b.d);
+  return cands.find((q) => !ok || ok(q.x, q.z)) ?? cands[0] ?? c;
 }
 
 function centroid(z: ZoneConfig): { x: number; z: number } {
