@@ -26,6 +26,8 @@ import {
 import { Sky, WEATHER_VISUALS } from '@/world';
 import { broadleafTreeGeometry, bushGeometry, grassClumpGeometry, pineTreeGeometry, rockGeometry } from '@/world/foliage/geometries';
 import { TrainerModel } from '@/actors/player';
+import { createNpcModel, LOOK_PRESETS } from '@/actors/npc';
+import type { NpcLook } from '@/systems/npcs';
 import { createMonModel } from '@/scenes/battle/BattleActor';
 
 const params = new URLSearchParams(location.search);
@@ -163,6 +165,24 @@ const swatches = new THREE.Group();
 toonify(swatches, 'character');
 addHullOutlines(swatches);
 scene.add(swatches);
+
+// —— ?looks=leader-ice,champion,...：NPC 造型阵列（M3-29 人物占位验收用）——
+const lookList = params.get('looks');
+if (lookList) {
+  trainer.root.visible = rowlet.visible = swatches.visible = false;
+  const looks = lookList.split(',').filter((l): l is NpcLook => l in LOOK_PRESETS);
+  const back = params.has('back');
+  looks.forEach((look, i) => {
+    const m = createNpcModel({ look });
+    m.root.position.set((i - (looks.length - 1) / 2) * 1.05, 0, 1.2);
+    m.root.rotation.y = back ? Math.PI : 0;
+    m.root.traverse((o) => ((o as THREE.Mesh).castShadow = true));
+    scene.add(m.root);
+  });
+  const w = looks.length * 1.05;
+  camera.position.set(0, 1.5, 1.2 + Math.max(4, w * 1.25));
+  controls.target.set(0, 0.85, 1.2);
+}
 
 const post = new PostChain(renderer, scene, camera);
 post.bloomAlways = true;

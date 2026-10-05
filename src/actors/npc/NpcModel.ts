@@ -137,6 +137,77 @@ export const LOOK_PRESETS: Record<NpcLook, LookPreset> = {
     style: { ...NO_BAG, hat: 'none', hair: 'bun', coat: 'dress' },
     accent: '#e07a8a',
   },
+  // ———— M3-29 雷鸣 / 琉璃 馆主、四天王、冠军、关键 NPC（程序化占位；各有区分，共用骨骼命名 hip/spine/head/arm.*/leg.*） ————
+  'leader-electric': {
+    palette: { hair: '#f2d040', skin: '#f0c8a0', cap: '#2a2e3a', capBrim: '#3a3e4a', jacket: '#2a2e3a', shirt: '#f2c230', pants: '#2a2e3a', shoes: '#f2c230' },
+    style: { ...NO_BAG, hat: 'goggles', hair: 'spiky', gloves: true, emblem: 'bolt' },
+    accent: '#f2d040',
+  },
+  'leader-normal': {
+    palette: { hair: '#f2c860', cap: '#f6e6b8', capBrim: '#f6e6b8', jacket: '#f2d080', shirt: '#fff8e6', pants: '#8a6a3a', shoes: '#8a5a2a' },
+    style: { ...NO_BAG, hat: 'sunhat', hair: 'long', coat: 'long', emblem: 'sun' },
+    accent: '#e8902a',
+  },
+  'leader-ice': {
+    palette: { hair: '#e8f4fa', skin: '#f6e0d4', cap: '#6ab0d8', capBrim: '#f2f8fc', jacket: '#bfe0f0', shirt: '#f2f8fc', pants: '#4a6a8a', shoes: '#f2f8fc' },
+    style: { ...NO_BAG, hat: 'beanie', hair: 'long', coat: 'long', scarf: true, emblem: 'snow' },
+    accent: '#6ab0d8',
+  },
+  'leader-flying': {
+    palette: { hair: '#8ab0e8', cap: '#3a5a8a', capBrim: '#f2f6ff', jacket: '#f2f6ff', shirt: '#8ab0e8', pants: '#3a4a6a', shoes: '#3a4a6a' },
+    style: { ...NO_BAG, hat: 'feather', hair: 'pony', cape: 'short', scarf: true, emblem: 'wing' },
+    accent: '#e8c050',
+  },
+  'leader-psychic': {
+    palette: { hair: '#d8c0f0', jacket: '#6a3a9a', shirt: '#f2e6ff', pants: '#2a2240', shoes: '#2a2240', capBrim: '#f0d060' },
+    style: { ...NO_BAG, hat: 'circlet', hair: 'long', coat: 'dress', emblem: 'eye', prop: 'orb' },
+    accent: '#c89af0',
+  },
+  'leader-ghost': {
+    palette: { hair: '#e8e8f0', skin: '#e8d8d0', cap: '#2a2440', jacket: '#2a2440', shirt: '#4a3e5a', pants: '#14141e', shoes: '#14141e' },
+    style: { ...NO_BAG, hat: 'hood', hair: 'long', coat: 'long', emblem: 'wisp', prop: 'lantern', stoop: 0.1 },
+    accent: '#a88af0',
+  },
+  'leader-glaze': {
+    palette: { hair: '#1a4a6a', cap: '#2a8a9a', capBrim: '#f2f8ff', jacket: '#5fc0d0', shirt: '#f2f8ff', pants: '#2a8a9a', shoes: '#f2f8ff' },
+    style: { ...NO_BAG, hat: 'circlet', hair: 'long', coat: 'dress', cape: 'short', emblem: 'wave', prop: 'staff' },
+    accent: '#9fe8f0',
+  },
+  'e4-dark': {
+    palette: { hair: '#c83a5a', cap: '#141018', jacket: '#2a2234', shirt: '#4a2a3a', pants: '#141018', shoes: '#141018' },
+    style: { ...NO_BAG, hat: 'none', hair: 'spiky', cape: 'long', gloves: true, emblem: 'moon' },
+    accent: '#c83a5a',
+  },
+  'e4-ghost': {
+    palette: { hair: '#2a1a3a', jacket: '#5a3a8a', shirt: '#e8dcf0', pants: '#5a3a8a', shoes: '#e8dcf0', capBrim: '#f0d060' },
+    style: { ...NO_BAG, hat: 'veil', hair: 'long', coat: 'dress', emblem: 'wisp', prop: 'fan' },
+    accent: '#3a2a5a',
+  },
+  'e4-ice': {
+    palette: { hair: '#e8f4ff', jacket: '#bfe6f8', shirt: '#ffffff', pants: '#5a8ab8', shoes: '#ffffff', capBrim: '#ffffff' },
+    style: { ...NO_BAG, hat: 'circlet', hair: 'long', coat: 'long', scarf: true, emblem: 'snow', cape: 'short' },
+    accent: '#5a8ab8',
+  },
+  'e4-dragon': {
+    palette: { hair: '#e8e8e8', skin: '#e8b890', cap: '#2a2a3a', jacket: '#8a2a2a', shirt: '#2a2a3a', pants: '#2a2a3a', shoes: '#1a1a22' },
+    style: { ...NO_BAG, hat: 'none', hair: 'short', beard: true, cape: 'long', shoulders: true, emblem: 'diamond', scale: 1.06 },
+    accent: '#d8a040',
+  },
+  champion: {
+    palette: { hair: '#7ac8e8', cap: '#2a4a8a', jacket: '#f2f6fa', shirt: '#3a6ab8', pants: '#3a6ab8', shoes: '#f2f6fa', capBrim: '#f2f6fa' },
+    style: { ...NO_BAG, hat: 'none', hair: 'short', cape: 'long', shoulders: true, gloves: true, emblem: 'wave' },
+    accent: '#e8c050',
+  },
+  oracle: {
+    palette: { hair: '#e8e2ff', jacket: '#7a4a9a', shirt: '#f2e6ff', pants: '#7a4a9a', shoes: '#e8e2ff', capBrim: '#f0d060' },
+    style: { ...NO_BAG, hat: 'veil', hair: 'long', coat: 'dress', prop: 'staff', emblem: 'eye', stoop: 0.12 },
+    accent: '#c8b0f0',
+  },
+  engineer: {
+    palette: { hair: '#3a3a40', cap: '#4a4a52', capBrim: '#6a6a72', jacket: '#e8b73a', shirt: '#4a4a52', pants: '#3d4a6a', shoes: '#2a2a30' },
+    style: { ...NO_BAG, hat: 'goggles', hair: 'short', gloves: true, glasses: true },
+    accent: '#8ad0f0',
+  },
 };
 
 export function createNpcModel(a: NpcAppearance): TrainerModel {

@@ -26,7 +26,7 @@ export interface TrainerPalette {
  * 人物造型（M1-06 NPC 复用同一套程序化人物）。缺省值 = 玩家造型。
  */
 export interface TrainerStyle {
-  hat: 'cap' | 'none' | 'nurse' | 'bucket' | 'sailor' | 'bandana';
+  hat: 'cap' | 'none' | 'nurse' | 'bucket' | 'sailor' | 'bandana' | 'beanie' | 'goggles' | 'hood' | 'circlet' | 'veil' | 'feather' | 'sunhat';
   hair: 'short' | 'long' | 'bun' | 'bald' | 'spiky' | 'pony';
   bag: boolean;
   /** 外套下摆：short = 夹克，long = 长外套 / 白大褂，dress = 连衣裙 */
@@ -38,7 +38,19 @@ export interface TrainerStyle {
   /** 整体缩放（小孩约 0.72，老人约 0.93） */
   scale: number;
   /** 驼背（老人） */
-  stoop: number;
+  stoop: number;  // ———— M3-29 馆主 / 四天王 / 冠军 区分部件（可选，缺省为无） ————
+  /** 披风：short 到腰，long 到小腿 */
+  cape?: 'none' | 'short' | 'long';
+  /** 围巾（accent 色） */
+  scarf?: boolean;
+  /** 手套（accent 色手） */
+  gloves?: boolean;
+  /** 肩甲（accent 色） */
+  shoulders?: boolean;
+  /** 胸前徽记（accent 色），按属性区分 */
+  emblem?: 'none' | 'bolt' | 'sun' | 'snow' | 'wing' | 'eye' | 'wisp' | 'wave' | 'moon' | 'diamond';
+  /** 手持道具（右手） */
+  prop?: 'none' | 'staff' | 'fan' | 'lantern' | 'orb';
 }
 
 export interface TrainerExtraPalette {
@@ -78,7 +90,22 @@ export type NpcLook =
   | 'leader-fire'
   | 'miner'
   | 'researcher'
-  | 'kimono-f';
+  | 'kimono-f'
+  // M3-29 雷鸣 / 琉璃 馆主、四天王、冠军与关键 NPC（程序化占位）
+  | 'leader-electric'
+  | 'leader-normal'
+  | 'leader-ice'
+  | 'leader-flying'
+  | 'leader-psychic'
+  | 'leader-ghost'
+  | 'leader-glaze'
+  | 'e4-dark'
+  | 'e4-ghost'
+  | 'e4-ice'
+  | 'e4-dragon'
+  | 'champion'
+  | 'oracle'
+  | 'engineer';
 
 export interface NpcAppearance {
   look: NpcLook;

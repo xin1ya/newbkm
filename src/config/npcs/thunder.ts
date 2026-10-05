@@ -12,7 +12,7 @@ export const THUNDER_NPCS: NpcDef[] = [
     id: 'thunder-engineer',
     name: '电工阿伏',
     title: '发电工程师',
-    appearance: { look: 'researcher', palette: { jacket: '#e8b73a', hair: '#3a3a40' }, style: { glasses: true } },
+    appearance: { look: 'engineer' },
     dialogByQuest: [
       { questId: 'side-crystal-treasure', when: 'completed', dialog: ['有了雷晶，冰川那边的线路一次都没断过！', '雷鸣镇的路灯，今晚也照常亮着。'] },
       { questId: 'side-crystal-treasure', when: 'active', requires: ['crystal-core-taken'], setFlags: ['crystal-treasure-done'], dialog: ['这就是雷晶？！电光这么稳……太完美了！', '把它装进变电箱，冰川线路再也不会冻断了。', '这几块属性石是我攒的，就当谢礼吧！'] },

@@ -91,7 +91,7 @@ export const GLAZE_NPCS: NpcDef[] = [
     id: 'mirage-seer',
     name: '先知娜芙',
     title: '幻影镇的先知',
-    appearance: { look: 'kimono-f', palette: { jacket: '#7a4a9a', hair: '#e8e2ff' } },
+    appearance: { look: 'oracle' },
     dialogByQuest: [
       { questId: 'side-mirage-prophecy', when: 'completed', dialog: ['已去之地、将至之门、群岛之外……', '你走的路，正是预言里写的路。'] },
       { questId: 'side-mirage-prophecy', when: 'active', requires: ['prophecy-1', 'prophecy-2', 'prophecy-3'], setFlags: ['prophecy-done'], dialog: ['……白昼之宫映出已去之地，月下之塔指向将至之门，海底之门通往群岛之外。', '七块碎片会在群岛之外重聚。孩子，那就是你要去的地方。', '这枚「先知之眼」和「精神强念」的学习器，是先知一脉的信物。带上它们吧。'] },
