@@ -495,6 +495,7 @@ export const GLACIER_RUINS_INTERIOR: InteriorConfig = {
         { type: 'crystal', position: [-8.6, -7.4], size: [0.8, 2.2, 0.8], color: ICE },
         { type: 'crystal', position: [8.6, -7.0], size: [0.7, 1.8, 0.7], color: ICE },
         { type: 'crate', position: [-8.4, 6.6], size: [0.9, 0.8, 0.9], color: '#8a6038', interact: 'gr-crate-sanctum' },
+        { type: 'crystal', position: [-5.6, -3.2], size: [0.5, 0.6, 0.5], color: '#9ad8a8', interact: 'gr-seed-crack' },
       ],
       smashRocks: { rocks: [[7.4, 5.6]], loot: ICE_LOOT },
       exits: [{ id: 'south', position: [0, 7.9], radius: 1.0, spawnOffset: [0, -1.6], spawnYaw: PI, to: { room: 'tablets', exit: 'north' }, label: '回到石碑之间' }],

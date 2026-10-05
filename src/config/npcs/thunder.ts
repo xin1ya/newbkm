@@ -13,6 +13,17 @@ export const THUNDER_NPCS: NpcDef[] = [
     name: '电工阿伏',
     title: '发电工程师',
     appearance: { look: 'researcher', palette: { jacket: '#e8b73a', hair: '#3a3a40' }, style: { glasses: true } },
+    dialogByQuest: [
+      { questId: 'side-crystal-treasure', when: 'completed', dialog: ['有了雷晶，冰川那边的线路一次都没断过！', '雷鸣镇的路灯，今晚也照常亮着。'] },
+      { questId: 'side-crystal-treasure', when: 'active', requires: ['crystal-core-taken'], setFlags: ['crystal-treasure-done'], dialog: ['这就是雷晶？！电光这么稳……太完美了！', '把它装进变电箱，冰川线路再也不会冻断了。', '这几块属性石是我攒的，就当谢礼吧！'] },
+      { questId: 'side-crystal-treasure', when: 'active', dialog: ['晶石洞窟在镇子北边的高原上。', '晶石栅栏要用怪力把石头推到压力板上才会沉下去。', '雷晶就在最深处的晶核外层——小心，晶簇里常有电系宝可梦。'] },
+      {
+        questId: 'side-crystal-treasure',
+        when: 'available',
+        setFlags: ['crystal-treasure-start'],
+        dialog: ['你是训练家吧？能帮个忙吗！', '通往冰川的输电线老是冻断，普通的电池扛不住那种冷。', '晶石洞窟深处的晶核外层有一种「雷晶」，能自己发电、不怕冻。', '我这把老骨头推不动洞里的石头……拜托你了！'],
+      },
+    ],
     dialog: ['欢迎来到雷鸣镇！这里一年有两百多天打雷。', '镇上每座房子都有避雷针，主避雷塔把雷电存进地下电池——所以我们的路灯从来不缺电。', '不过最近冰川那边的线路老是结冰，真让人头疼。'],
   },
   {
@@ -53,6 +64,9 @@ export const THUNDER_NPCS: NpcDef[] = [
     name: '磨坊主老麦',
     title: '晨光磨坊',
     appearance: { look: 'villager-m', palette: { jacket: '#c8a060' }, style: { apron: true, beard: true } },
+    dialogByQuest: [
+      { questId: 'side-cloud-mail', when: 'active', unless: ['mail-dawn-miller'], setFlags: ['mail-dawn-miller'], dialog: ['信？给我的？……是云雀镇的女儿寄来的！', '「爸爸，风车别修到半夜。」哈哈，这丫头。', '谢谢你，年轻人。'] },
+    ],
     dialog: ['晨光镇的风车，一转就是一百年。', '这里是群岛上最早看见日出的地方——所以叫「晨光」。', '白天和夜里，镇子简直是两个样子。晚上来走走，你就知道了。'],
   },
   {
@@ -159,5 +173,75 @@ export const THUNDER_NPCS: NpcDef[] = [
     appearance: { look: 'sailor', palette: { jacket: '#3f6a9a' } },
     schedule: [{ from: 5, to: 20, at: { island: 'thunder', position: [-150, -700], yaw: PI } }],
     dialog: ['从镇上走崖路下来，可要花上好一阵子。', '再往北就是雷鸣—琉璃海域，海雾大得看不见手——听说里面还有礁石迷宫。'],
+  },
+  // ———————————— M3-26 · 支线 NPC ————————————
+  {
+    id: 'storm-researcher',
+    name: '观测员 霁',
+    title: '雷云观测站',
+    appearance: { look: 'researcher', palette: { jacket: '#5a7a9a', hair: '#2a2a30' }, style: { glasses: true } },
+    schedule: [{ from: 0, to: 24, at: { island: 'thunder', position: [-322, -140], yaw: Math.PI / 2 } }],
+    dialogByQuest: [
+      { questId: 'side-thunder-observation', when: 'completed', dialog: ['三组数据对上了：雷云的放电节奏，和晶石洞窟的晶核完全同步。', '……还有冰川、天上的光。整个雷鸣群岛像是被同一颗心脏牵着。'] },
+      {
+        questId: 'side-thunder-observation',
+        when: 'active',
+        requires: ['storm-sample-1', 'storm-sample-2', 'storm-sample-3'],
+        setFlags: ['thunder-observation-done'],
+        dialog: ['三组都记下来了？我看看……', '果然！雷云不是乱打的，每次放电间隔都是一模一样的 7 秒。', '这几块雷之石是观测站的样本，送你了。谢谢！'],
+      },
+      { questId: 'side-thunder-observation', when: 'active', dialog: ['采样点在高原上闪着光的地方，一共三处。', '雷暴天也不用怕，采样仪是绝缘的。'] },
+      {
+        questId: 'side-thunder-observation',
+        when: 'available',
+        setFlags: ['thunder-observation-start'],
+        dialog: ['啊，正好！我一个人跑不过来。', '这几个月雷暴高原的雷云很反常——总在同几个地方打雷。', '这是采样仪。帮我在高原上 3 个采样点各记录一次数据，好吗？'],
+      },
+    ],
+    dialog: ['雷云观测站。屋顶的风速计又在疯转了。'],
+  },
+  {
+    id: 'snow-sculptor',
+    name: '冰雕师傅 凌叔',
+    title: '雪原冰雕节',
+    appearance: { look: 'elder', palette: { jacket: '#4a8ac8', hair: '#e8e8f0' } },
+    schedule: [{ from: 0, to: 24, at: { island: 'thunder', position: [146, -196], yaw: 0 } }],
+    dialogByQuest: [
+      { questId: 'side-ice-sculpture', when: 'completed', dialog: ['你那座冰雕还摆在广场上，天天有人排队拍照！', '明年还来啊，卫冕冠军。'] },
+      { questId: 'side-ice-sculpture', when: 'active', requires: ['ice-block-got'], dialog: [], story: 'ice-sculpture' },
+      { questId: 'side-ice-sculpture', when: 'active', dialog: ['冰湖就在西北边，湖边冰面裂开的地方最透。', '撬一块回来，咱们就开雕！'] },
+      {
+        questId: 'side-ice-sculpture',
+        when: 'available',
+        setFlags: ['ice-sculpture-start'],
+        dialog: ['冰雕节报名喽！外乡的训练家也欢迎！', '规矩很简单：自己去冰湖撬一块透明冰，用宝可梦的冰系招式雕。', '冰湖在镇子西北，冰川脚下。去吧！'],
+      },
+    ],
+    dialog: ['雪原镇的冰雕节，一年就这么一回。'],
+  },
+  {
+    id: 'lark-courier',
+    name: '信鸽站 羽姐',
+    title: '云雀镇信鸽站',
+    appearance: { look: 'villager-f', palette: { jacket: '#e8c86a', hair: '#6a4a3a' } },
+    schedule: [{ from: 0, to: 24, at: { island: 'thunder', position: [282, -640], yaw: Math.PI } }],
+    dialogByQuest: [
+      { questId: 'side-cloud-mail', when: 'completed', dialog: ['信鸽站的招牌，都快被你抢走啦！', '以后有急件，还找你。'] },
+      {
+        questId: 'side-cloud-mail',
+        when: 'active',
+        requires: ['mail-magnolia', 'mail-inn-owner', 'mail-dawn-miller'],
+        setFlags: ['cloud-mail-done'],
+        dialog: ['三封都送到了？一天跑三座岛，比信鸽还快！', '这是跑腿费，还有这个「锐利鸟嘴」——飞行宝可梦带着最合适。'],
+      },
+      { questId: 'side-cloud-mail', when: 'active', dialog: ['萌芽的木兰博士、温泉乡的汤老板、晨光镇的磨坊主。', '按 B 键就能飞，别迷路哦！'] },
+      {
+        questId: 'side-cloud-mail',
+        when: 'available',
+        setFlags: ['cloud-mail-start'],
+        dialog: ['你有会飞的宝可梦？太好了！', '风季来了，信鸽一只只都被吹回窝里，信堆成了山。', '这三封最急——萌芽、碧潮、晨光镇各一封。拜托啦！'],
+      },
+    ],
+    dialog: ['云雀镇信鸽站。风再大，信也要送到。'],
   },
 ];

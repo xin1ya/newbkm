@@ -24,6 +24,7 @@ export const DUNGEON_FURNITURE: InteractionDef[] = [
     kind: 'examine',
     label: '调查晶核',
     pages: ['一人多高的巨型晶簇，内部有电光在缓缓流动。', '把手靠近，汗毛一根根竖了起来……', '电光的节奏忽快忽慢，像是在回应高原上空的雷声。'],
+    effects: [{ kind: 'story', script: 'crystal-core' }],
   },
   { id: 'cc-survey-machine', kind: 'examine', pages: ['研究员架设的观测仪，屏幕上的波形乱成一团。', '「放电频率异常：与雷云异变同步。」'] },
   {
@@ -62,6 +63,8 @@ export const DUNGEON_FURNITURE: InteractionDef[] = [
     kind: 'examine',
     label: '调查透镜',
     pages: ['灯室中央巨大的菲涅耳透镜，蒙着厚厚的灰。', '灯芯早就熄了，透镜深处却残留着一点幽幽的绿光。', '……仿佛有什么东西，住在光里。'],
+    byFlag: [{ when: 'lh-lamp-lit', pages: ['灯芯稳稳地燃着，透镜擦得锃亮。', '灯座后面，一小团绿光在打盹。'] }],
+    effects: [{ kind: 'story', script: 'lighthouse-lamp' }],
   },
   // ——— 冰川遗迹 ———
   { id: 'gr-sign-hall', kind: 'examine', pages: ['「冰川遗迹 · 雷鸣大学考古队」', '「遗迹内部严禁明火。」', '「北：石碑之间 → 冰封圣坛」'] },
@@ -83,6 +86,7 @@ export const DUNGEON_FURNITURE: InteractionDef[] = [
     pages: ['圣坛被一整块透明的寒冰封住。', '冰里隐约能看到一团蓝色的光，在缓慢地脉动。', '用手敲了敲……冰坚硬得纹丝不动。'],
     byFlag: [{ when: 'snow-ruins-shard', pages: ['圣坛上的寒冰已经化开了，只剩一圈浅浅的水痕。', '碎片被取走后，冰晶柱里的蓝光也熄灭了。'] }],
   },
+  { id: 'gr-seed-crack', kind: 'examine', label: '调查冰缝', pages: ['圣坛旁的地面上，有一道细细的冰缝。'], effects: [{ kind: 'story', script: 'frozen-seed' }] },
   {
     id: 'gr-crate-sanctum',
     kind: 'examine',

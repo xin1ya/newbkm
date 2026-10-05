@@ -48,6 +48,7 @@ export const SPROUT_NPCS: NpcDef[] = [
     title: '宝可梦博士',
     appearance: { look: 'professor' },
     dialogByQuest: [
+      { questId: 'side-cloud-mail', when: 'active', unless: ['mail-magnolia'], setFlags: ['mail-magnolia'], dialog: ['云雀镇寄来的信？是雷鸣大学的白桦教授！', '……冰川遗迹里发现了蓝色的碎片？了不起，你帮我回个话：研究所全力支持。', '辛苦你跑这么远啦。'] },
       // M2 · 碧潮支线「古代石板解读」
       {
         questId: 'side-ancient-tablet',

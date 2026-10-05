@@ -346,6 +346,13 @@ export const TIDE_NPCS: NpcDef[] = [
     appearance: { look: 'kimono-f', palette: { hair: '#d8d4cc', jacket: '#e07a8a' }, style: { stoop: 0.12 } },
     service: { kind: 'breeder' },
     dialogByQuest: [
+      { questId: 'side-frozen-seed', when: 'completed', dialog: ['含羞苞还好吗？那可是冰川底下睡了几千年的孩子。', '温泉的水，比什么都能叫醒种子。'] },
+      {
+        questId: 'side-frozen-seed',
+        when: 'active',
+        setFlags: ['frozen-seed-sprouted'],
+        dialog: ['这颗种子……外面裹着冰，里面却是热的。', '埋进温泉边的土里，浇一瓢温泉水——', '哎呀，冒芽了！……不对，这是宝可梦！是含羞苞！', '它在冰里等了好久好久。带它去看看外面的世界吧。'],
+      },
       { questId: 'side-volcano-egg', when: 'completed', dialog: ['燃烧虫长得好吗？', '它是在温泉的热气里出生的，最喜欢暖和的地方。'] },
       {
         questId: 'side-volcano-egg',
@@ -369,6 +376,7 @@ export const TIDE_NPCS: NpcDef[] = [
     title: '汤之庭老板',
     appearance: { look: 'villager-m', palette: { jacket: '#3f6db5' }, style: { apron: true } },
     dialogByQuest: [
+      { questId: 'side-cloud-mail', when: 'active', unless: ['mail-inn-owner'], setFlags: ['mail-inn-owner'], dialog: ['哟，云雀镇的信？是我那个在雪原镇开旅馆的老同学。', '「今年冰雕节，来不来？」……哈哈，温泉可走不开啊。', '谢啦，送信的小英雄！'] },
       { questId: 'side-hot-spring-source', when: 'completed', dialog: ['温泉又热乎起来了！客人们都回来了！', '外面的露天温泉随便泡，不收钱！'] },
       {
         questId: 'side-hot-spring-source',

@@ -29,6 +29,17 @@ export const DUNGEON_NPCS: NpcDef[] = [
     name: '修塔工 阿钟',
     title: '灯塔修复队',
     appearance: { look: 'miner', palette: { jacket: '#3a6aa8' } },
+    dialogByQuest: [
+      { questId: 'side-lighthouse-ghost', when: 'completed', dialog: ['灯亮了以后，夜航的渔船又回来了。', '楼上偶尔还是有脚步声……不过现在我觉得，那是在守灯。'] },
+      { questId: 'side-lighthouse-ghost', when: 'active', requires: ['lh-lamp-lit'], setFlags: ['lighthouse-ghost-done'], dialog: ['亮了！真的亮了！三年了啊……', '你说灯室里住着一只鬼斯通？哈哈，那就让它当守灯人吧。', '这是修复队凑的谢礼，还有两块「日之石」——跟这盏灯一样亮。'] },
+      { questId: 'side-lighthouse-ghost', when: 'active', dialog: ['新灯芯给你了。灯室在最顶上。', '二楼黑，要「闪光」；三楼楼梯有落石，要「碎岩」。'] },
+      {
+        questId: 'side-lighthouse-ghost',
+        when: 'available',
+        setFlags: ['lighthouse-ghost-start'],
+        dialog: ['你能上到灯室？那太好了！', '每次我们装好灯芯，第二天就灭了。灯室里总有一团绿光……', '这是新灯芯。拜托你上去点一次灯——要是有什么东西拦着，就让它见识见识训练家！'],
+      },
+    ],
     dialog: [
       '古灯塔修了三年，到现在还没修好。',
       '一到晚上，楼上就有人走动的声音——可上面明明没人！',

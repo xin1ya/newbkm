@@ -4,6 +4,7 @@
  * 雪原道馆奖励「攀爬」许可（flag hm08-rock-climb，骑乘本体在 M3-17）。
  */
 import type { Quest } from '@/systems/quests';
+import { CLEAR_ICE_SPOT, STORM_SAMPLE_SPOTS } from '@/config/story/thunder';
 
 const ISLAND = '雷鸣群岛';
 const PRE = ['main-cross-sea-2'];
@@ -58,4 +59,104 @@ export const THUNDER_QUESTS: Quest[] = [
   },
   gymQuest('main-gym-snow', '冰之试炼', '雪原镇的道馆是一整片冰晶滑场。滑过冰面，挑战冰属性馆主霜凝。', 'snow-town', '雪原镇', '雪原道馆馆主霜凝', 'gym-snow-leader', 'badge-snow', [160, -132], 'tm-icy-wind', 'hm08-rock-climb'),
   gymQuest('main-gym-cloud', '天空异象', '云雀镇上空出现了奇异的光。乘着风桥越过深谷，挑战飞行属性馆主云翎。', 'lark-town', '云雀镇', '云雀道馆馆主云翎', 'gym-lark-leader', 'badge-lark', [370, -690], 'tm-aerial-ace'),
+  // —————————— M3-26 · 支线（07-22 §3.7 雷鸣群岛 6 条） ——————————
+  {
+    id: 'side-crystal-treasure',
+    title: '晶石洞窟寻宝',
+    category: 'side',
+    island: ISLAND,
+    summary: '雷鸣镇的电工阿伏想要一块晶石洞窟深处的「雷晶」，用来修冻坏的输电线路。洞里要用怪力推石压住压力板。',
+    prerequisites: ['main-cross-sea-2'],
+    startNpc: 'thunder-engineer',
+    startFlag: 'crystal-treasure-start',
+    completeFlag: 'crystal-treasure-done',
+    objectives: [
+      { id: 'core', text: '推石打开晶石栅栏，在晶洞深处的晶核上取下雷晶', completeFlag: 'crystal-core-taken', marker: { island: 'thunder', position: [-210, 0, -56] } },
+      { id: 'return', text: '把雷晶交给雷鸣镇的电工阿伏', completeFlag: 'crystal-treasure-done', marker: { island: 'thunder', position: [-395, 0, 412] } },
+    ],
+    reward: { items: [{ id: 'thunder-stone', qty: 1 }, { id: 'fire-stone', qty: 1 }, { id: 'water-stone', qty: 1 }] },
+  },
+  {
+    id: 'side-lighthouse-ghost',
+    title: '古灯塔幽灵灯',
+    category: 'side',
+    island: ISLAND,
+    summary: '古灯塔的灯熄了三年，海港终夜起雾。修塔工阿钟说，灯室里住着「不让点灯」的东西。',
+    prerequisites: ['main-cross-sea-2'],
+    startNpc: 'lh-repairman',
+    startFlag: 'lighthouse-ghost-start',
+    completeFlag: 'lighthouse-ghost-done',
+    objectives: [
+      { id: 'lamp', text: '登上古灯塔灯室，重新点亮灯火', completeFlag: 'lh-lamp-lit', marker: { island: 'thunder', position: [850, 0, 556] } },
+      { id: 'return', text: '回灯塔一楼告诉修塔工阿钟', completeFlag: 'lighthouse-ghost-done', marker: { island: 'thunder', position: [850, 0, 556] } },
+    ],
+    reward: { money: 5000, items: [{ id: 'sun-stone', qty: 2 }] },
+  },
+  {
+    id: 'side-thunder-observation',
+    title: '雷云观测站',
+    category: 'side',
+    island: ISLAND,
+    summary: '雷暴高原的雷云这几个月越来越反常。帮观测站的研究员在 3 个采样点记录雷云数据。',
+    prerequisites: ['main-cross-sea-2'],
+    startNpc: 'storm-researcher',
+    startFlag: 'thunder-observation-start',
+    completeFlag: 'thunder-observation-done',
+    objectives: [
+      ...STORM_SAMPLE_SPOTS.map(([x, z], i) => ({
+        id: `sample-${i + 1}`,
+        text: `在雷暴高原第 ${i + 1} 个采样点记录数据`,
+        completeFlag: `storm-sample-${i + 1}`,
+        marker: { island: 'thunder' as const, position: [x, 0, z] as [number, number, number], radius: 12 },
+      })),
+      { id: 'return', text: '回雷云观测站交给研究员', completeFlag: 'thunder-observation-done', marker: { island: 'thunder', position: [-330, 0, -150] } },
+    ],
+    reward: { items: [{ id: 'thunder-stone', qty: 2 }] },
+  },
+  {
+    id: 'side-ice-sculpture',
+    title: '雪原冰雕节',
+    category: 'side',
+    island: ISLAND,
+    summary: '雪原镇一年一度的冰雕节开始了！先去冰湖撬一块透明冰，再用宝可梦的冰系招式雕出作品。',
+    prerequisites: ['main-cross-sea-2'],
+    startNpc: 'snow-sculptor',
+    startFlag: 'ice-sculpture-start',
+    completeFlag: 'ice-sculpture-done',
+    objectives: [
+      { id: 'ice', text: '去冰湖边撬一块透明冰', completeFlag: 'ice-block-got', marker: { island: 'thunder', position: [CLEAR_ICE_SPOT[0], 0, CLEAR_ICE_SPOT[1]], radius: 12 } },
+      { id: 'carve', text: '把透明冰交给雪原镇的冰雕师傅，参加比赛', completeFlag: 'ice-sculpture-done', marker: { island: 'thunder', position: [146, 0, -196] } },
+    ],
+    reward: { items: [{ id: 'never-melt-ice', qty: 1 }, { id: 'water-stone', qty: 1 }] },
+  },
+  {
+    id: 'side-frozen-seed',
+    title: '冻土下的种子',
+    category: 'side',
+    island: ISLAND,
+    summary: '冰川遗迹圣坛的冰化开后，冰缝里露出一颗远古种子。温泉乡培育屋的暖婆婆也许能让它发芽。',
+    prerequisites: ['main-snow-ruins'],
+    startFlag: 'frozen-seed-found',
+    completeFlag: 'frozen-seed-sprouted',
+    objectives: [{ id: 'plant', text: '把远古种子带到碧潮群岛温泉乡的培育屋', completeFlag: 'frozen-seed-sprouted', marker: { island: 'tide', position: [340, 0, 548] } }],
+    reward: { pokemon: 406, pokemonLevel: 20 },
+  },
+  {
+    id: 'side-cloud-mail',
+    title: '云雀信使',
+    category: 'side',
+    island: ISLAND,
+    summary: '云雀镇的信鸽站人手不够。骑着飞行宝可梦，把三封信送到三座不同的岛上。',
+    prerequisites: ['badge-lark'],
+    startNpc: 'lark-courier',
+    startFlag: 'cloud-mail-start',
+    completeFlag: 'cloud-mail-done',
+    objectives: [
+      { id: 'sprout', text: '把信送给萌芽群岛研究所的木兰博士', completeFlag: 'mail-magnolia', marker: { island: 'sprout', position: [-20, 0, 345] } },
+      { id: 'tide', text: '把信送给碧潮群岛温泉旅馆的汤老板', completeFlag: 'mail-inn-owner', marker: { island: 'tide', position: [410, 0, 600] } },
+      { id: 'dawn', text: '把信送给晨光镇磨坊的磨坊主', completeFlag: 'mail-dawn-miller', marker: { island: 'thunder', zoneId: 'dawn-town' } },
+      { id: 'return', text: '回云雀镇信鸽站复命', completeFlag: 'cloud-mail-done', marker: { island: 'thunder', position: [282, 0, -640] } },
+    ],
+    reward: { money: 3000, items: [{ id: 'sharp-beak', qty: 1 }] },
+  },
 ];
