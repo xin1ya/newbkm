@@ -253,6 +253,10 @@ export class GrayboxProps {
                         ? TH.larkHouse(w, h, d, wall, roof, seed, p.accent)
                         : p.variant === 'mirage'
                           ? GL.mirageHouse(w, h, d, wall, roof, seed, p.accent)
+                          : p.variant === 'crypt'
+                            ? GL.cryptHouse(w, h, d, wall, roof, seed, p.accent)
+                            : p.variant === 'ossuary'
+                              ? GL.ossuary(w, h, d, wall, roof)
                         : T.house(w, h, d, wall, roof, p.variant, seed, p.accent)
             : p.type === 'lab'
               ? T.lab(w, h, d, wall, roof)
@@ -306,6 +310,7 @@ export class GrayboxProps {
           ice: () => TH.gymIce(w, h),
           flying: () => TH.gymFlying(w, h),
           mirage: () => GL.gymMirage(w, h),
+          ghost: () => GL.gymGhost(w, h),
         };
         this.place((gymParts[p.variant ?? ''] ?? (() => T.gym(w, h, wall, roof)))(), x, y, z, yaw);
         this.colAdd('props', { kind: 'circle', x, z, r: w / 2, y0: y, y1: y + h, tag: `building:${p.ref}` });
@@ -840,6 +845,19 @@ export class GrayboxProps {
         if (collide) this.addBox(x, z, 2.0, 2.0, yaw, ground, ground + h, 'prophecy-obelisk');
         this.lampPositions.push(new THREE.Vector3(x, ground + h + 1.6, z));
         return true;
+      // ——— M3-12 幽冥镇 ———
+      case 'bell-tower':
+        this.place(GL.bellTower(w, h, p.color, p.roof), x, ground - 0.05, z, yaw);
+        if (collide) this.addBox(x, z, w + 0.6, w + 0.6, yaw, ground, ground + h, 'bell-tower');
+        this.lampPositions.push(new THREE.Vector3(x, ground + h * 0.7, z));
+        return true;
+      case 'ghost-lamp': {
+        this.place(GL.ghostLamp(h, p.color), x, ground, z, yaw);
+        circle(0.2, h, 'ghost-lamp');
+        const [lx, lz] = at(0.75, 0);
+        this.lampPositions.push(new THREE.Vector3(lx, ground + h - 0.7, lz));
+        return true;
+      }
       case 'moon-tower':
         this.place(GL.moonTower(w, h), x, ground - 0.1, z, yaw);
         circle(w * 0.6, h, 'moon-tower');

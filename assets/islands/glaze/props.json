@@ -1793,6 +1793,2507 @@
    ]
   },
   {
+   "type": "pokecenter",
+   "position": [
+    -480,
+    -177.6
+   ],
+   "yaw": 0,
+   "size": [
+    15,
+    7.5,
+    12
+   ],
+   "ref": "pokecenter-ghost",
+   "color": "#f2ece6",
+   "roof": "#c24a44"
+  },
+  {
+   "type": "mart",
+   "position": [
+    -405,
+    -176.6
+   ],
+   "yaw": 0,
+   "size": [
+    12,
+    6.5,
+    10
+   ],
+   "ref": "mart-ghost",
+   "color": "#e8eaee",
+   "roof": "#3a64b0"
+  },
+  {
+   "type": "gym",
+   "ref": "gym-ghost",
+   "position": [
+    -430,
+    -212
+   ],
+   "yaw": 0,
+   "size": [
+    26,
+    16,
+    26
+   ],
+   "variant": "ghost"
+  },
+  {
+   "type": "house",
+   "position": [
+    -518,
+    -175.6
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "variant": "crypt",
+   "color": "#6e6878",
+   "roof": "#2e2a3a",
+   "seed": 4301,
+   "accent": "#5b4a78"
+  },
+  {
+   "type": "house",
+   "position": [
+    -501,
+    -175.1
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    6.8,
+    7
+   ],
+   "variant": "crypt",
+   "color": "#76707e",
+   "roof": "#3a3446",
+   "seed": 4302,
+   "accent": "#5b4a78"
+  },
+  {
+   "type": "house",
+   "position": [
+    -460,
+    -175.6
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    7.4,
+    8
+   ],
+   "variant": "crypt",
+   "color": "#646070",
+   "roof": "#2e2a3a",
+   "seed": 4303,
+   "accent": "#5b4a78"
+  },
+  {
+   "type": "house",
+   "position": [
+    -520,
+    -154.4
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7,
+    8
+   ],
+   "variant": "crypt",
+   "color": "#76707e",
+   "roof": "#2e2a3a",
+   "seed": 4311,
+   "accent": "#5b4a78"
+  },
+  {
+   "type": "house",
+   "position": [
+    -503,
+    -154.4
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7.4,
+    8
+   ],
+   "variant": "crypt",
+   "color": "#6e6878",
+   "roof": "#3a3446",
+   "seed": 4312,
+   "accent": "#5b4a78"
+  },
+  {
+   "type": "house",
+   "position": [
+    -486,
+    -154.9
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    8,
+    6.8,
+    7
+   ],
+   "variant": "crypt",
+   "color": "#646070",
+   "roof": "#2e2a3a",
+   "seed": 4313,
+   "accent": "#5b4a78",
+   "ref": "ghost-gravekeeper-house"
+  },
+  {
+   "type": "house",
+   "position": [
+    -469,
+    -154.4
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "variant": "crypt",
+   "color": "#76707e",
+   "roof": "#3a3446",
+   "seed": 4314,
+   "accent": "#5b4a78"
+  },
+  {
+   "type": "house",
+   "position": [
+    -431,
+    -154.4
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7,
+    8
+   ],
+   "variant": "crypt",
+   "color": "#6e6878",
+   "roof": "#2e2a3a",
+   "seed": 4315,
+   "accent": "#5b4a78"
+  },
+  {
+   "type": "house",
+   "position": [
+    -414,
+    -154.4
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7.4,
+    8
+   ],
+   "variant": "crypt",
+   "color": "#646070",
+   "roof": "#3a3446",
+   "seed": 4316,
+   "accent": "#5b4a78"
+  },
+  {
+   "type": "house",
+   "position": [
+    -434.4,
+    -125
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    10,
+    12,
+    16
+   ],
+   "variant": "ossuary",
+   "ref": "ghost-ossuary",
+   "color": "#6e6878",
+   "roof": "#2e2a3a"
+  },
+  {
+   "type": "bell-tower",
+   "position": [
+    -462,
+    -130
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    4.2,
+    20,
+    4.2
+   ],
+   "color": "#6e6878",
+   "roof": "#2e2a3a"
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     -476,
+     -128
+    ],
+    [
+     -476,
+     -146
+    ],
+    [
+     -532,
+     -146
+    ],
+    [
+     -532,
+     -103
+    ],
+    [
+     -476,
+     -103
+    ],
+    [
+     -476,
+     -121
+    ]
+   ]
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -526,
+    -142
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4320
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -521.8,
+    -142
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4321
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -517.6,
+    -142
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4322
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -513.4,
+    -142
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4323
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -509.2,
+    -142
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4324
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -505,
+    -142
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4325
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -500.8,
+    -142
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4326
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -496.6,
+    -142
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4327
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -492.4,
+    -142
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4328
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -488.2,
+    -142
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4329
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -484,
+    -142
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4330
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -479.8,
+    -142
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4331
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -525.64,
+    -137.9
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4337
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -521.4399999999999,
+    -137.9
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4338
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -517.24,
+    -137.9
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4339
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -513.04,
+    -137.9
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4340
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -508.84,
+    -137.9
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4341
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -504.64,
+    -137.9
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4342
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -500.44,
+    -137.9
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4343
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -496.24,
+    -137.9
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4344
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -492.03999999999996,
+    -137.9
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4345
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -487.84,
+    -137.9
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4346
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -483.64,
+    -137.9
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4347
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -479.44,
+    -137.9
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4348
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -525.88,
+    -133.8
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4354
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -521.68,
+    -133.8
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4355
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -517.48,
+    -133.8
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4356
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -513.28,
+    -133.8
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4357
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -509.08,
+    -133.8
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4358
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -504.88,
+    -133.8
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4359
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -500.68,
+    -133.8
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4360
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -496.48,
+    -133.8
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4361
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -492.28,
+    -133.8
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4362
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -488.08,
+    -133.8
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4363
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -483.88,
+    -133.8
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4364
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -479.68,
+    -133.8
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4365
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -525.52,
+    -129.7
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4371
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -521.3199999999999,
+    -129.7
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4372
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -517.12,
+    -129.7
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4373
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -512.92,
+    -129.7
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4374
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -508.71999999999997,
+    -129.7
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4375
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -504.52,
+    -129.7
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4376
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -500.32,
+    -129.7
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4377
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -496.12,
+    -129.7
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4378
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -491.91999999999996,
+    -129.7
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4379
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -487.71999999999997,
+    -129.7
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4380
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -526,
+    -121.5
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4405
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -521.8,
+    -121.5
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4406
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -517.6,
+    -121.5
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4407
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -513.4,
+    -121.5
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4408
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -509.2,
+    -121.5
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4409
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -505,
+    -121.5
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4410
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -500.8,
+    -121.5
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4411
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -496.6,
+    -121.5
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4412
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -492.4,
+    -121.5
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4413
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -488.2,
+    -121.5
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4414
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -525.64,
+    -117.4
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4422
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -521.4399999999999,
+    -117.4
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4423
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -517.24,
+    -117.4
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4424
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -513.04,
+    -117.4
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4425
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -508.84,
+    -117.4
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4426
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -504.64,
+    -117.4
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4427
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -500.44,
+    -117.4
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4428
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -496.24,
+    -117.4
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4429
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -492.03999999999996,
+    -117.4
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4430
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -487.84,
+    -117.4
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4431
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -483.64,
+    -117.4
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4432
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -479.44,
+    -117.4
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4433
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -525.88,
+    -113.30000000000001
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4439
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -521.68,
+    -113.30000000000001
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4440
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -517.48,
+    -113.30000000000001
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4441
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -513.28,
+    -113.30000000000001
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4442
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -509.08,
+    -113.30000000000001
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4443
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -504.88,
+    -113.30000000000001
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4444
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -500.68,
+    -113.30000000000001
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4445
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -496.48,
+    -113.30000000000001
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4446
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -492.28,
+    -113.30000000000001
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4447
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -488.08,
+    -113.30000000000001
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4448
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -483.88,
+    -113.30000000000001
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4449
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -479.68,
+    -113.30000000000001
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4450
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -525.52,
+    -109.2
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4456
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -521.3199999999999,
+    -109.2
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4457
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -517.12,
+    -109.2
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4458
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -512.92,
+    -109.2
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4459
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -508.71999999999997,
+    -109.2
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4460
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -504.52,
+    -109.2
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4461
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -500.32,
+    -109.2
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4462
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -496.12,
+    -109.2
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4463
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -491.91999999999996,
+    -109.2
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4464
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -487.71999999999997,
+    -109.2
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4465
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -483.52,
+    -109.2
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4466
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -479.32,
+    -109.2
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4467
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -525.76,
+    -105.1
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4473
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -521.56,
+    -105.1
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4474
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -517.36,
+    -105.1
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4475
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -513.16,
+    -105.1
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4476
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -508.96,
+    -105.1
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4477
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -504.76,
+    -105.1
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4478
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -500.56,
+    -105.1
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4479
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -496.36,
+    -105.1
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4480
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -492.15999999999997,
+    -105.1
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4481
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -487.96,
+    -105.1
+   ],
+   "yaw": 1.4907963267948965,
+   "size": [
+    0.9,
+    1.1,
+    0.3
+   ],
+   "variant": "slab",
+   "seed": 4482
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -483.76,
+    -105.1
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    0.9,
+    1.35,
+    0.3
+   ],
+   "variant": "round",
+   "seed": 4483
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -479.56,
+    -105.1
+   ],
+   "yaw": 1.6507963267948966,
+   "size": [
+    0.9,
+    1.6,
+    0.3
+   ],
+   "variant": "cross",
+   "seed": 4484
+  },
+  {
+   "type": "statue",
+   "position": [
+    -504,
+    -125
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.6,
+    3.4,
+    1.6
+   ],
+   "variant": "mourner",
+   "color": "#8a8690"
+  },
+  {
+   "type": "dead-tree",
+   "position": [
+    -529,
+    -106
+   ],
+   "yaw": 0,
+   "size": [
+    2.4,
+    6,
+    2.4
+   ],
+   "variant": "marsh",
+   "seed": 4340
+  },
+  {
+   "type": "dead-tree",
+   "position": [
+    -480,
+    -144
+   ],
+   "yaw": 1.2,
+   "size": [
+    2.4,
+    5,
+    2.4
+   ],
+   "variant": "marsh",
+   "seed": 4341
+  },
+  {
+   "type": "dead-tree",
+   "position": [
+    -528,
+    -136
+   ],
+   "yaw": 2.6,
+   "size": [
+    2.4,
+    5.5,
+    2.4
+   ],
+   "variant": "marsh",
+   "seed": 4342
+  },
+  {
+   "type": "wisp",
+   "position": [
+    -512,
+    -136
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    1.4,
+    0.5
+   ],
+   "seed": 4350,
+   "collide": false
+  },
+  {
+   "type": "wisp",
+   "position": [
+    -494,
+    -112
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    1.9,
+    0.5
+   ],
+   "seed": 4351,
+   "collide": false
+  },
+  {
+   "type": "wisp",
+   "position": [
+    -520,
+    -118
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    2.4,
+    0.5
+   ],
+   "seed": 4352,
+   "collide": false
+  },
+  {
+   "type": "wisp",
+   "position": [
+    -486,
+    -134
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    1.4,
+    0.5
+   ],
+   "seed": 4353,
+   "collide": false
+  },
+  {
+   "type": "wisp",
+   "position": [
+    -506,
+    -140
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    1.4,
+    0.5
+   ],
+   "seed": 4360,
+   "collide": false,
+   "color": "#b89af8",
+   "hours": [
+    0,
+    3
+   ]
+  },
+  {
+   "type": "wisp",
+   "position": [
+    -498,
+    -120
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    1.9,
+    0.5
+   ],
+   "seed": 4361,
+   "collide": false,
+   "color": "#b89af8",
+   "hours": [
+    0,
+    3
+   ]
+  },
+  {
+   "type": "wisp",
+   "position": [
+    -516,
+    -108
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    2.4,
+    0.5
+   ],
+   "seed": 4362,
+   "collide": false,
+   "color": "#b89af8",
+   "hours": [
+    0,
+    3
+   ]
+  },
+  {
+   "type": "wisp",
+   "position": [
+    -490,
+    -128
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    1.4,
+    0.5
+   ],
+   "seed": 4363,
+   "collide": false,
+   "color": "#b89af8",
+   "hours": [
+    0,
+    3
+   ]
+  },
+  {
+   "type": "wisp",
+   "position": [
+    -524,
+    -128
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    1.9,
+    0.5
+   ],
+   "seed": 4364,
+   "collide": false,
+   "color": "#b89af8",
+   "hours": [
+    0,
+    3
+   ]
+  },
+  {
+   "type": "wisp",
+   "position": [
+    -500,
+    -106
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    2.4,
+    0.5
+   ],
+   "seed": 4365,
+   "collide": false,
+   "color": "#b89af8",
+   "hours": [
+    0,
+    3
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "gym-ghost-sign",
+   "position": [
+    -422,
+    -196
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "noticeboard",
+   "ref": "ghost-noticeboard",
+   "position": [
+    -445,
+    -171
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "well",
+   "position": [
+    -440,
+    -150
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -525,
+    -152
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#4a3e36"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -524,
+    -150.7
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#4a3e36"
+  },
+  {
+   "type": "crate",
+   "position": [
+    -410,
+    -152
+   ],
+   "yaw": 0.4,
+   "size": [
+    1.1,
+    1.1,
+    1.1
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -526,
+    -169
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -508,
+    -161
+   ],
+   "yaw": 1.3,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -490,
+    -169
+   ],
+   "yaw": 2.6,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -472,
+    -161
+   ],
+   "yaw": 3.9000000000000004,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -454,
+    -169
+   ],
+   "yaw": 5.2,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -436,
+    -161
+   ],
+   "yaw": 6.5,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -418,
+    -169
+   ],
+   "yaw": 7.800000000000001,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -400,
+    -161
+   ],
+   "yaw": 9.1,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -453,
+    -140
+   ],
+   "yaw": 10.4,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -447,
+    -118
+   ],
+   "yaw": 11.700000000000001,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -426,
+    -186
+   ],
+   "yaw": 13,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -434,
+    -186
+   ],
+   "yaw": 14.3,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "tree",
+   "position": [
+    -538,
+    -180
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 4370
+  },
+  {
+   "type": "tree",
+   "position": [
+    -404,
+    -140
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    4.5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 4401
+  },
+  {
+   "type": "tree",
+   "position": [
+    -396,
+    -190
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 4432
+  },
+  {
+   "type": "dead-tree",
+   "position": [
+    -540,
+    -200
+   ],
+   "yaw": 0.3,
+   "size": [
+    2.4,
+    6.5,
+    2.4
+   ],
+   "variant": "marsh",
+   "seed": 4381
+  },
+  {
+   "type": "dead-tree",
+   "position": [
+    -470,
+    -205
+   ],
+   "yaw": 1.9,
+   "size": [
+    2.4,
+    5.5,
+    2.4
+   ],
+   "variant": "marsh",
+   "seed": 4382
+  },
+  {
+   "type": "dead-tree",
+   "position": [
+    -395,
+    -215
+   ],
+   "yaw": 2.9,
+   "size": [
+    2.4,
+    6,
+    2.4
+   ],
+   "variant": "marsh",
+   "seed": 4383
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -536,
+    -128
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    1.1,
+    3
+   ],
+   "seed": 4391,
+   "color": "#5e5a62"
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -410,
+    -112
+   ],
+   "yaw": 0,
+   "size": [
+    3.4,
+    1.2,
+    3.4
+   ],
+   "seed": 4392,
+   "color": "#5e5a62"
+  },
+  {
+   "type": "stilt-house",
+   "position": [
+    -584,
+    -100
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    7,
+    5,
+    9
+   ],
+   "y": 4.4,
+   "color": "#5a5048",
+   "roof": "#2e2a3a",
+   "seed": 4395,
+   "accent": "#5b4a78"
+  },
+  {
+   "type": "stilt-house",
+   "position": [
+    -586,
+    -124
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    7,
+    5,
+    9
+   ],
+   "y": 4.4,
+   "color": "#544a44",
+   "roof": "#3a3446",
+   "seed": 4396,
+   "accent": "#5b4a78"
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -572,
+    -112
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
+   "type": "ghost-lamp",
+   "position": [
+    -560,
+    -140
+   ],
+   "yaw": 1.3,
+   "size": [
+    0.4,
+    3.8,
+    0.4
+   ]
+  },
+  {
    "type": "sign",
    "ref": "mirage-obelisk",
    "position": [
@@ -1814,6 +4315,34 @@
     470
    ],
    "yaw": -3.0509327663890486,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "ghost-cemetery",
+   "position": [
+    -474,
+    -118
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "ghost-bell-tower",
+   "position": [
+    -466,
+    -136
+   ],
+   "yaw": 0,
    "size": [
     1.6,
     1.6,
@@ -1897,7 +4426,7 @@
     -520,
     -440
    ],
-   "yaw": 0,
+   "yaw": 0.35204431431541733,
    "size": [
     1.6,
     1.6,
@@ -3470,20 +5999,6 @@
   {
    "type": "dead-tree",
    "position": [
-    -562.6458741910756,
-    -127.19691354781389
-   ],
-   "yaw": 1.7876407655049116,
-   "size": [
-    3,
-    6.3474831292405725,
-    3
-   ],
-   "seed": 6312
-  },
-  {
-   "type": "dead-tree",
-   "position": [
     -510.1718393340707,
     -305.20359156653285
    ],
@@ -3493,7 +6008,7 @@
     5.555216102860868,
     3
    ],
-   "seed": 6313
+   "seed": 6312
   },
   {
    "type": "dead-tree",
@@ -3507,7 +6022,7 @@
     5.828574921004474,
     3
    ],
-   "seed": 6314
+   "seed": 6313
   },
   {
    "type": "dead-tree",
@@ -3521,7 +6036,7 @@
     5.739549519494176,
     3
    ],
-   "seed": 6315
+   "seed": 6314
   },
   {
    "type": "dead-tree",
@@ -3535,7 +6050,7 @@
     7.203166908584535,
     3
    ],
-   "seed": 6316
+   "seed": 6315
   },
   {
    "type": "dead-tree",
@@ -3549,7 +6064,7 @@
     5.821361898444593,
     3
    ],
-   "seed": 6317
+   "seed": 6316
   },
   {
    "type": "dead-tree",
@@ -3563,7 +6078,7 @@
     5.049085435457528,
     3
    ],
-   "seed": 6318
+   "seed": 6317
   },
   {
    "type": "dead-tree",
@@ -3577,7 +6092,7 @@
     8.798941134475172,
     3
    ],
-   "seed": 6319
+   "seed": 6318
   },
   {
    "type": "dead-tree",
@@ -3591,7 +6106,7 @@
     5.292906988412142,
     3
    ],
-   "seed": 6320
+   "seed": 6319
   },
   {
    "type": "dead-tree",
@@ -3605,7 +6120,7 @@
     6.607670983299613,
     3
    ],
-   "seed": 6321
+   "seed": 6320
   },
   {
    "type": "dead-tree",
@@ -3619,7 +6134,7 @@
     5.834738374687731,
     3
    ],
-   "seed": 6322
+   "seed": 6321
   },
   {
    "type": "dead-tree",
@@ -3633,7 +6148,7 @@
     6.722540061920881,
     3
    ],
-   "seed": 6323
+   "seed": 6322
   },
   {
    "type": "dead-tree",
@@ -3647,21 +6162,21 @@
     7.436358551494777,
     3
    ],
-   "seed": 6324
+   "seed": 6323
   },
   {
    "type": "dead-tree",
    "position": [
-    -561.6402934491634,
-    -133.98729564622045
+    -471.142513230443,
+    -266.0093885846436
    ],
-   "yaw": 3.279062542282045,
+   "yaw": 3.4535481365956366,
    "size": [
     3,
-    7.24279008153826,
+    7.574546908959746,
     3
    ],
-   "seed": 6325
+   "seed": 6324
   },
   {
    "type": "dead-tree",
@@ -3675,7 +6190,7 @@
     8.457834265194833,
     3
    ],
-   "seed": 6326
+   "seed": 6325
   },
   {
    "type": "dead-tree",
@@ -3689,7 +6204,7 @@
     6.395214773714542,
     3
    ],
-   "seed": 6327
+   "seed": 6326
   },
   {
    "type": "dead-tree",
@@ -3703,7 +6218,7 @@
     6.699853226542473,
     3
    ],
-   "seed": 6328
+   "seed": 6327
   },
   {
    "type": "dead-tree",
@@ -3717,7 +6232,7 @@
     7.315160999074578,
     3
    ],
-   "seed": 6329
+   "seed": 6328
   },
   {
    "type": "dead-tree",
@@ -3731,7 +6246,7 @@
     6.813575963489711,
     3
    ],
-   "seed": 6330
+   "seed": 6329
   },
   {
    "type": "dead-tree",
@@ -3745,7 +6260,7 @@
     5.776906533166766,
     3
    ],
-   "seed": 6331
+   "seed": 6330
   },
   {
    "type": "dead-tree",
@@ -3759,7 +6274,7 @@
     8.06316829379648,
     3
    ],
-   "seed": 6332
+   "seed": 6331
   },
   {
    "type": "dead-tree",
@@ -3773,7 +6288,7 @@
     6.74726268555969,
     3
    ],
-   "seed": 6333
+   "seed": 6332
   },
   {
    "type": "dead-tree",
@@ -3787,7 +6302,7 @@
     6.480324659496546,
     3
    ],
-   "seed": 6334
+   "seed": 6333
   },
   {
    "type": "dead-tree",
@@ -3801,7 +6316,7 @@
     6.0404416071251035,
     3
    ],
-   "seed": 6335
+   "seed": 6334
   },
   {
    "type": "dead-tree",
@@ -3815,7 +6330,7 @@
     8.027650863863528,
     3
    ],
-   "seed": 6336
+   "seed": 6335
   },
   {
    "type": "dead-tree",
@@ -3829,7 +6344,7 @@
     6.358570486307144,
     3
    ],
-   "seed": 6337
+   "seed": 6336
   },
   {
    "type": "dead-tree",
@@ -3843,7 +6358,7 @@
     8.253774056211114,
     3
    ],
-   "seed": 6338
+   "seed": 6337
   },
   {
    "type": "dead-tree",
@@ -3857,7 +6372,7 @@
     8.481782727874815,
     3
    ],
-   "seed": 6339
+   "seed": 6338
   },
   {
    "type": "dead-tree",
@@ -3871,7 +6386,7 @@
     5.54493064712733,
     3
    ],
-   "seed": 6340
+   "seed": 6339
   },
   {
    "type": "dead-tree",
@@ -3885,7 +6400,7 @@
     5.313855064101517,
     3
    ],
-   "seed": 6341
+   "seed": 6340
   },
   {
    "type": "dead-tree",
@@ -3899,7 +6414,7 @@
     5.848766088485718,
     3
    ],
-   "seed": 6342
+   "seed": 6341
   },
   {
    "type": "dead-tree",
@@ -3913,7 +6428,7 @@
     6.5852922117337584,
     3
    ],
-   "seed": 6343
+   "seed": 6342
   },
   {
    "type": "dead-tree",
@@ -3927,7 +6442,7 @@
     8.726807594299316,
     3
    ],
-   "seed": 6344
+   "seed": 6343
   },
   {
    "type": "dead-tree",
@@ -3941,18 +6456,47 @@
     8.419670236296952,
     3
    ],
+   "seed": 6344
+  },
+  {
+   "type": "dead-tree",
+   "position": [
+    -633.8855813443661,
+    -301.0481832548976
+   ],
+   "yaw": 4.7918227898236365,
+   "size": [
+    3,
+    8.000375895760953,
+    3
+   ],
    "seed": 6345
   },
   {
    "type": "tombstone",
    "position": [
-    -533.4739417866804,
-    -449.4998120521195
+    -541.2470601275563,
+    -450.7582357786596
    ],
-   "yaw": 0.062498088693246245,
+   "yaw": -0.019954462302848697,
    "size": [
     1.1,
-    1.8258819617331028,
+    1.7241955413483083,
+    0.35
+   ],
+   "seed": 6400,
+   "variant": "round"
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -534.7355640064925,
+    -449.64779570605606
+   ],
+   "yaw": -0.04769872617907822,
+   "size": [
+    1.1,
+    1.7757000427693128,
     0.35
    ],
    "seed": 6401,
@@ -3961,43 +6505,28 @@
   {
    "type": "tombstone",
    "position": [
-    -526.7361359149218,
-    -449.64520272938535
+    -518.3120537740178,
+    -449.39519292814657
    ],
-   "yaw": 0.24322338332422078,
+   "yaw": 0.06387888023164123,
    "size": [
     1.1,
-    1.3793307980522513,
-    0.35
-   ],
-   "seed": 6402,
-   "variant": "round"
-  },
-  {
-   "type": "tombstone",
-   "position": [
-    -518.6940632606857,
-    -449.6882137702778
-   ],
-   "yaw": -0.24430855247192085,
-   "size": [
-    1.1,
-    1.6310862438287586,
+    1.5314302732702345,
     0.35
    ],
    "seed": 6403,
-   "variant": "round"
+   "variant": "slab"
   },
   {
    "type": "tombstone",
    "position": [
-    -510.2285657557659,
-    -450.8371215034276
+    -509.7902374751866,
+    -450.75769549794495
    ],
-   "yaw": -0.13838368968572468,
+   "yaw": -0.12571421032771468,
    "size": [
     1.1,
-    1.889968741964549,
+    1.434123252844438,
     0.35
    ],
    "seed": 6404,
@@ -4006,62 +6535,47 @@
   {
    "type": "tombstone",
    "position": [
-    -502.55292249051854,
-    -450.5407546432689
+    -501.7012728326954,
+    -450.695433370769
    ],
-   "yaw": -0.15421351930126548,
+   "yaw": -0.02052071748767048,
    "size": [
     1.1,
-    1.8667468284256756,
+    1.3097168555017562,
     0.35
    ],
    "seed": 6405,
-   "variant": "slab"
-  },
-  {
-   "type": "tombstone",
-   "position": [
-    -542.9676104816608,
-    -443.37953215138987
-   ],
-   "yaw": 0.21668061381205916,
-   "size": [
-    1.1,
-    1.7076228267513216,
-    0.35
-   ],
-   "seed": 6406,
-   "variant": "cross"
-  },
-  {
-   "type": "tombstone",
-   "position": [
-    -534.2329689688049,
-    -443.1486582616344
-   ],
-   "yaw": 0.09177929314319044,
-   "size": [
-    1.1,
-    1.4962311137933284,
-    0.35
-   ],
-   "seed": 6407,
    "variant": "round"
   },
   {
    "type": "tombstone",
    "position": [
-    -526.7135386723094,
-    -442.48153344914317
+    -541.3824043166824,
+    -442.1554797408171
    ],
-   "yaw": 0.03939298167824745,
+   "yaw": -0.05824224220123142,
    "size": [
     1.1,
-    1.7083467514719815,
+    1.5554025215096772,
+    0.35
+   ],
+   "seed": 6406,
+   "variant": "slab"
+  },
+  {
+   "type": "tombstone",
+   "position": [
+    -525.8343869028613,
+    -443.71353867230937
+   ],
+   "yaw": 0.12961663771420717,
+   "size": [
+    1.1,
+    1.647271578013897,
     0.35
    ],
    "seed": 6408,
-   "variant": "cross"
+   "variant": "round"
   },
   {
    "type": "tombstone",

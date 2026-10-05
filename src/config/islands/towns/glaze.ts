@@ -9,6 +9,10 @@
  *     · 蜃楼宫（10–16 时，幻象）：东面沙丘上浮现的宫殿与双塔，半透明闪烁，走过去会穿过去。
  *   码头在镇南，栈桥伸进雷鸣—琉璃海域的礁石迷宫北口。
  *
+ * - 幽冥镇（西·沼泽边 3.8 m，常夜雾）：石墓屋与灵堂的小镇。暗石墙、陡板岩顶、冷光尖窗，街边是歪斜的幽灯；
+ *   镇南是沼泽古墓园（铁栅围起的墓碑群 + 鬼火），零点到三点墓园里的鬼火会多出一倍（分时摆放物）；
+ *   钟楼与灵堂在南街两侧；西边沼泽水塘上有两座高脚屋。幽灵系道馆「幽魄」在主街北侧。
+ *
  * 门口坐标与 glaze.ts 的 POI 一一对应（atDoor 反推建筑中心；道馆 = 门口沿朝向后退 w/2 + 1）。
  */
 import type { PropInstance, TownLayout, Vec2, Vec3 } from '../types';
@@ -183,4 +187,94 @@ export const MIRAGE_TOWN: TownLayout = {
   props: mirageTown,
 };
 
-export const GLAZE_TOWNS: TownLayout[] = [MIRAGE_TOWN];
+// ———————————————————————— 幽冥镇 ————————————————————————
+// 主街 z = −165（x −530 → −400 压平，往东爬坡进暗影林）；北侧门口 z = −171 朝南，南侧门口 z = −159 朝北；
+// 南街 x = −450（z −159 → −110）；古墓园 x −530 ~ −476、z −146 ~ −104。
+const crypt = (door: Vec2, yaw: number, size: Vec3, color: string, roof: string, seed: number, extra: Partial<PropInstance> = {}): PropInstance =>
+  atDoor('house', door, yaw, size, { variant: 'crypt', color, roof, seed, accent: '#5b4a78', ...extra });
+const S1 = '#6e6878';
+const S2 = '#76707e';
+const S3 = '#646070';
+const R1 = '#2e2a3a';
+const R2 = '#3a3446';
+const ghostLamps = (list: Vec2[], color?: string): PropInstance[] => list.map((p, i) => ({ type: 'ghost-lamp', position: p, yaw: i * 1.3, size: [0.4, 3.8, 0.4], ...(color ? { color } : {}) }));
+/** 墓碑方阵：起点、列数 × 行数、间距；墓碑造型轮换 */
+function graves(x0: number, z0: number, cols: number, rows: number, dx: number, dz: number, seed: number, skip: (c: number, r: number) => boolean): PropInstance[] {
+  const out: PropInstance[] = [];
+  const kinds = ['slab', 'round', 'cross'];
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++) {
+      if (skip(c, r)) continue;
+      const k = (c * 7 + r * 3 + seed) % 3;
+      out.push({ type: 'tombstone', position: [x0 + c * dx + ((r * 13 + c * 5) % 5) * 0.12, z0 + r * dz], yaw: FACE.east + (((c + r) % 3) - 1) * 0.08, size: [0.9, 1.1 + ((c + r * 2) % 3) * 0.25, 0.3], variant: kinds[k]!, seed: seed + r * 17 + c });
+    }
+  return out;
+}
+const wisps = (list: Vec2[], seed: number, color?: string): PropInstance[] => list.map(([x, z], i) => ({ type: 'wisp', position: [x, z], yaw: 0, size: [0.5, 1.4 + (i % 3) * 0.5, 0.5], seed: seed + i, collide: false, ...(color ? { color } : {}) }));
+
+export const GHOST_HOURS = { midnight: [0, 3] as [number, number] };
+
+const ghostTown: PropInstance[] = [
+  atDoor('pokecenter', [-480, -171], FACE.south, [15, 7.5, 12], { ref: 'pokecenter-ghost', color: '#f2ece6', roof: '#c24a44' }),
+  atDoor('mart', [-405, -171], FACE.south, [12, 6.5, 10], { ref: 'mart-ghost', color: '#e8eaee', roof: '#3a64b0' }),
+  gymAt('gym-ghost', [-430, -198], FACE.south, 26, 16, 'ghost'),
+  // 北侧石墓屋（门朝南）
+  crypt([-518, -171], FACE.south, [9, 7.2, 8], S1, R1, 4301),
+  crypt([-501, -171], FACE.south, [8, 6.8, 7], S2, R2, 4302),
+  crypt([-460, -171], FACE.south, [9, 7.4, 8], S3, R1, 4303),
+  // 南侧（门朝北）
+  crypt([-520, -159], FACE.north, [9, 7.0, 8], S2, R1, 4311),
+  crypt([-503, -159], FACE.north, [9, 7.4, 8], S1, R2, 4312),
+  crypt([-486, -159], FACE.north, [8, 6.8, 7], S3, R1, 4313, { ref: 'ghost-gravekeeper-house' }),
+  crypt([-469, -159], FACE.north, [9, 7.2, 8], S2, R2, 4314),
+  crypt([-431, -159], FACE.north, [9, 7.0, 8], S1, R1, 4315),
+  crypt([-414, -159], FACE.north, [9, 7.4, 8], S3, R2, 4316),
+  // 灵堂（南街东侧，门朝西）+ 钟楼（南街西侧）
+  atDoor('house', [-443, -125], FACE.west, [10, 12, 16], { variant: 'ossuary', ref: 'ghost-ossuary', color: '#6e6878', roof: '#2e2a3a' }),
+  { type: 'bell-tower', position: [-462, -130], yaw: FACE.east, size: [4.2, 20, 4.2], color: '#6e6878', roof: '#2e2a3a' },
+  // 古墓园：铁栅围墙（东侧留门）+ 墓碑方阵 + 枯树 + 鬼火
+  fence([[-476, -128], [-476, -146], [-532, -146], [-532, -103], [-476, -103], [-476, -121]]),
+  ...graves(-526, -142, 12, 10, 4.2, 4.1, 4320, (c, r) => r === 4 || (c >= 10 && r >= 3 && r <= 5)),
+  { type: 'statue', position: [-504, -125], yaw: FACE.east, size: [1.6, 3.4, 1.6], variant: 'mourner', color: '#8a8690' },
+  ...trees([[-529, -106, 6, 'round']], 4340).map((t) => ({ ...t, type: 'dead-tree' as const, size: [2.4, 6, 2.4] as Vec3, variant: 'marsh' })),
+  { type: 'dead-tree', position: [-480, -144], yaw: 1.2, size: [2.4, 5, 2.4], variant: 'marsh', seed: 4341 },
+  { type: 'dead-tree', position: [-528, -136], yaw: 2.6, size: [2.4, 5.5, 2.4], variant: 'marsh', seed: 4342 },
+  ...wisps([[-512, -136], [-494, -112], [-520, -118], [-486, -134]], 4350),
+  // 零点到三点：墓园里的鬼火多出一倍（只发光、没有碰撞）
+  ...during(GHOST_HOURS.midnight, wisps([[-506, -140], [-498, -120], [-516, -108], [-490, -128], [-524, -128], [-500, -106]], 4360, '#b89af8')),
+  // 主街 / 南街小品
+  { type: 'sign', ref: 'gym-ghost-sign', position: [-422, -196], yaw: FACE.south, size: [1.6, 1.6, 0.2] },
+  { type: 'noticeboard', ref: 'ghost-noticeboard', position: [-445, -171], yaw: FACE.south, size: [2, 2.2, 0.3] },
+  { type: 'well', position: [-440, -150], yaw: 0, size: [2, 3, 2] },
+  { type: 'barrel', position: [-525, -152], yaw: 0, size: [0.8, 1, 0.8], color: '#4a3e36' },
+  { type: 'barrel', position: [-524, -150.7], yaw: 0, size: [0.8, 1, 0.8], color: '#4a3e36' },
+  { type: 'crate', position: [-410, -152], yaw: 0.4, size: [1.1, 1.1, 1.1] },
+  ...ghostLamps([[-526, -169], [-508, -161], [-490, -169], [-472, -161], [-454, -169], [-436, -161], [-418, -169], [-400, -161], [-453, -140], [-447, -118], [-426, -186], [-434, -186]]),
+  ...trees([[-538, -180, 5, 'shrub'], [-404, -140, 4.5, 'shrub'], [-396, -190, 5, 'shrub']], 4370),
+  { type: 'dead-tree', position: [-540, -200], yaw: 0.3, size: [2.4, 6.5, 2.4], variant: 'marsh', seed: 4381 },
+  { type: 'dead-tree', position: [-470, -205], yaw: 1.9, size: [2.4, 5.5, 2.4], variant: 'marsh', seed: 4382 },
+  { type: 'dead-tree', position: [-395, -215], yaw: 2.9, size: [2.4, 6, 2.4], variant: 'marsh', seed: 4383 },
+  prop('rocks', [-536, -128], [3, 1.1, 3], { seed: 4391, color: '#5e5a62' }),
+  prop('rocks', [-410, -112], [3.4, 1.2, 3.4], { seed: 4392, color: '#5e5a62' }),
+  // 西边沼泽水塘上的高脚屋（门朝东）
+  { type: 'stilt-house', position: [-584, -100], yaw: FACE.east, size: [7, 5, 9], y: 4.4, color: '#5a5048', roof: '#2e2a3a', seed: 4395, accent: '#5b4a78' },
+  { type: 'stilt-house', position: [-586, -124], yaw: FACE.east, size: [7, 5, 9], y: 4.4, color: '#544a44', roof: '#3a3446', seed: 4396, accent: '#5b4a78' },
+  ...ghostLamps([[-572, -112], [-560, -140]]),
+];
+
+export const GHOST_TOWN: TownLayout = {
+  id: 'ghost-town',
+  zone: 'ghost-town',
+  paths: [
+    { id: 'town-ghost-gym-walk', surface: 'stone', width: 6, points: [[-430, -169], [-430, -195]] },
+    { id: 'town-ghost-cemetery', surface: 'dirt', width: 3, points: [[-447, -124], [-476, -124], [-528, -124]] },
+    { id: 'town-ghost-stilt-walk', surface: 'dirt', width: 3, points: [[-530, -160], [-552, -140], [-574, -114]] },
+  ],
+  pads: [
+    { position: [-470, -160], size: [150, 120], y: 3.8, blend: 16 },
+    { position: [-430, -212], size: [38, 38], y: 3.9, blend: 10 },
+  ],
+  props: ghostTown,
+};
+
+export const GLAZE_TOWNS: TownLayout[] = [MIRAGE_TOWN, GHOST_TOWN];

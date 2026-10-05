@@ -244,6 +244,11 @@ export type PropType =
   | 'prophecy-obelisk'
   /** 月影塔（夜间蜃楼） */
   | 'moon-tower'
+  // ——— M3-12 幽冥镇 ———
+  /** 钟楼 */
+  | 'bell-tower'
+  /** 幽灯（冷光铁灯） */
+  | 'ghost-lamp'
   | 'glb';
 
 export interface PropInstance {

@@ -79,7 +79,7 @@ describe('幻影镇布局', () => {
   });
   it('NPC 在镇里，摊主日程与集市时间一致；互动都有定义', () => {
     const zone = GLAZE.zones.find((z) => z.id === 'mirage-town')!;
-    for (const n of GLAZE_NPCS) for (const e of n.schedule ?? []) if ('island' in e.at && n.id !== 'mirage-scholar' && n.id !== 'mirage-fisher') expect(pointInPolygon(e.at.position[0], e.at.position[1], zone.polygon), n.id).toBe(true);
+    for (const n of GLAZE_NPCS.filter((q) => q.id.startsWith('mirage-'))) for (const e of n.schedule ?? []) if ('island' in e.at && n.id !== 'mirage-scholar' && n.id !== 'mirage-fisher') expect(pointInPolygon(e.at.position[0], e.at.position[1], zone.polygon), n.id).toBe(true);
     const night = GLAZE_NPCS.find((n) => n.id === 'mirage-night-vendor')!.schedule![0]!;
     for (let h = 0; h < 24; h++) expect(hourInRange(h, night.from, night.to)).toBe(inHourWindow(h, MIRAGE_HOURS.nightMarket));
     const ids = new Set(ALL_INTERACTIONS.map((i) => i.id));

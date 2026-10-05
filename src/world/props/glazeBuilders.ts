@@ -5,11 +5,13 @@
  * - 海蚀石林：喀斯特石笋（层层收分的灰白石灰岩尖塔，竖向溶沟 + 顶部苔草）
  * - 幽灵沼泽：枯树（扭曲枝干，无叶；bleached = 沙丘里被晒白的枯木）、墓碑（平板 / 圆顶 / 十字）、鬼火（悬浮的冷色火团）
  * - 玻璃海岸：玻璃晶簇（一簇倾斜的六棱晶柱，晶尖微光）
+ * - 幽冥镇（M3-12）：石墓屋（陡四坡板岩顶 + 冷光尖窗 + 铁栅前院）、灵堂（尖山墙 + 玫瑰窗 + 小钟楼）、钟楼、幽灯、
+ *   幽灵系道馆「幽魄」
  * - 幻影镇（M3-11）：白灰泥穹顶屋、宣礼塔式蜃楼塔、马蹄拱门、预言石柱、月影塔、超能系道馆「幻月」
  */
 import * as THREE from 'three';
 import { box, cyl, paint, type PropParts } from './builders';
-import { beam, boxAt, doorAt, evenly, rng, shade, sphere, V, windowAt, windowCount } from './townBuilders';
+import { beam, boxAt, chimney, doorAt, evenly, hip, rng, shade, sphere, V, windowAt, windowCount } from './townBuilders';
 
 const newParts = (): PropParts => ({ solid: [], glow: [] });
 
@@ -409,6 +411,242 @@ export function gymMirage(w: number, h: number): PropParts {
     p.solid.push(paint(new THREE.CylinderGeometry(0.3, 0.5, 4.2, 4).rotateY(Math.PI / 4).translate(x, 1.0 + 2.1, z), '#d8d0bc'));
     p.solid.push(paint(new THREE.ConeGeometry(0.34, 0.6, 4).rotateY(Math.PI / 4).translate(x, 1.0 + 4.2 + 0.3, z), '#c9a86a'));
     p.glow.push(sphere(0.22, PSY, x, 3.6, z + 0.42, 1.4, 0.8, 0.3, 1));
+  }
+  return p;
+}
+
+// ———————————————————————— M3-12 幽冥镇 ————————————————————————
+
+const SOUL = '#8fe8d8';
+const GHOST = '#a88af0';
+
+/** 尖拱窗（冷光）：face 前 / 后墙；u 沿墙偏移 */
+function lancet(p: PropParts, d: number, u: number, y: number, ww: number, wh: number, frame: string, glow = SOUL, back = false): void {
+  const z = (back ? -1 : 1) * (d / 2 + 0.05);
+  const ry = back ? Math.PI : 0;
+  p.glow.push(boxAt(ww, wh, 0.06, glow, u, y + wh / 2, z, ry));
+  p.glow.push(paint(new THREE.ConeGeometry(ww * 0.72, ww * 0.9, 4).rotateY(Math.PI / 4).scale(1, 1, 0.12).rotateY(ry).translate(u, y + wh + ww * 0.45, z), glow));
+  p.solid.push(boxAt(ww + 0.24, 0.14, 0.16, frame, u, y - 0.05, z, ry));
+  p.solid.push(boxAt(0.06, wh, 0.1, frame, u, y + wh / 2, z + (back ? -0.03 : 0.03), ry));
+}
+
+/**
+ * 石墓屋：粗糙暗石墙（错缝石块凸出）+ 陡四坡板岩顶 + 歪烟囱，尖拱冷光窗，门上挂一盏幽灯；
+ * 门前一圈矮铁栅小院（中间开口），墙角堆着两只瓦罐，墙面爬着暗紫苔。
+ */
+export function cryptHouse(w: number, h: number, d: number, wall: string, roof: string, seed = 1, accent = '#5b4a78'): PropParts {
+  const p = newParts();
+  const r = rng(seed);
+  const wallH = h * 0.5;
+  p.solid.push(box(w + 0.6, 0.5, d + 0.6, shade(wall, -0.25)));
+  p.solid.push(box(w, wallH, d, wall, 0, 0.5, 0));
+  // 凸出的石块
+  for (let k = 0; k < Math.round(w * d * 0.18); k++) {
+    const face = Math.floor(r() * 4);
+    const u = (r() - 0.5) * (face < 2 ? w - 0.6 : d - 0.6);
+    const y = 0.7 + r() * (wallH - 0.6);
+    const bw = 0.5 + r() * 0.5;
+    const c = shade(wall, (r() - 0.5) * 0.18);
+    if (face === 0) p.solid.push(box(bw, 0.3, 0.08, c, u, y, d / 2 + 0.02));
+    else if (face === 1) p.solid.push(box(bw, 0.3, 0.08, c, u, y, -d / 2 - 0.08));
+    else p.solid.push(box(0.08, 0.3, bw, c, (face === 2 ? 1 : -1) * (w / 2 + 0.02), y, u));
+  }
+  // 苔痕
+  for (let k = 0; k < 3; k++) p.solid.push(sphere(0.5 + r() * 0.4, '#5e5372', (r() - 0.5) * w, 0.6, d / 2 + 0.05, 1, 0.5 + r() * 0.6, 0.2, 0));
+  hip(p, w, h - wallH - 0.5, d, 0.5 + wallH, roof, 0.45);
+  chimney(p, w * 0.28 * (r() > 0.5 ? 1 : -1), 0.5 + wallH + (h - wallH - 0.5) * 0.35, -d * 0.18, h - wallH - 0.5 + 1.4, shade(wall, -0.1));
+  doorAt(p, w, d, 0, { width: 1.2, height: 2.3, y: 0.5, frame: shade(wall, -0.3), color: '#3a2e3a', canopy: null });
+  p.solid.push(paint(new THREE.ConeGeometry(0.85, 0.9, 4).rotateY(Math.PI / 4).scale(1, 1, 0.15).translate(0, 0.5 + 2.3 + 0.45, d / 2 + 0.06), shade(wall, -0.3)));
+  // 门灯（铁臂 + 冷光灯罩）
+  p.solid.push(boxAt(0.05, 0.05, 0.6, '#2a2a30', 0.95, 0.5 + 2.5, d / 2 + 0.3));
+  p.glow.push(sphere(0.16, SOUL, 0.95, 0.5 + 2.2, d / 2 + 0.6, 1, 1.4, 1, 1));
+  p.solid.push(paint(new THREE.ConeGeometry(0.22, 0.25, 6).translate(0.95, 0.5 + 2.5, d / 2 + 0.6), '#2a2a30'));
+  for (const u of evenly(w, windowCount(w, 3), true)) lancet(p, d, u, 0.5 + 1.0, 0.55, 1.0, shade(wall, -0.3));
+  for (const s of [-1, 1]) for (const u of evenly(d, windowCount(d, 3.4))) {
+    const m = new THREE.Matrix4().makeRotationY((s * Math.PI) / 2);
+    const g: PropParts = { solid: [], glow: [] };
+    lancet(g, w, -u * s, 0.5 + 1.0, 0.5, 0.9, shade(wall, -0.3));
+    for (const q of g.solid) p.solid.push(q.applyMatrix4(m));
+    for (const q of g.glow) p.glow.push(q.applyMatrix4(m));
+  }
+  // 前院铁栅（中间留门）
+  const yd = 2.2;
+  for (let u = -w / 2; u <= w / 2 + 0.01; u += 0.35) {
+    if (Math.abs(u) < 0.9) continue;
+    p.solid.push(box(0.05, 0.9, 0.05, '#2a2a30', u, 0, d / 2 + yd));
+    p.solid.push(paint(new THREE.ConeGeometry(0.05, 0.14, 4).translate(u, 0.97, d / 2 + yd), accent));
+  }
+  for (const s of [-1, 1]) {
+    p.solid.push(box(w / 2 - 0.9, 0.05, 0.05, '#2a2a30', s * (w / 4 + 0.45), 0.75, d / 2 + yd));
+    for (let z = 0.4; z < yd; z += 0.35) p.solid.push(box(0.05, 0.9, 0.05, '#2a2a30', s * (w / 2), 0, d / 2 + z));
+  }
+  for (let k = 0; k < 2; k++) p.solid.push(sphere(0.3, '#6a5a50', (k ? -1 : 1) * (w / 2 - 0.5), 0.75, d / 2 + 0.7, 1, 1.2, 1, 1));
+  return p;
+}
+
+/** 灵堂：长方石堂 + 前后尖山墙（陡）+ 正面玫瑰窗与尖拱门 + 屋脊小钟亭；两侧扶壁，墙内透出紫光 */
+export function ossuary(w: number, h: number, d: number, wall = '#6e6878', roof = '#2e2a3a'): PropParts {
+  const p = newParts();
+  const wallH = h * 0.48;
+  p.solid.push(box(w + 1, 0.5, d + 1, shade(wall, -0.25)));
+  p.solid.push(box(w, wallH, d, wall, 0, 0.5, 0));
+  // 尖山墙屋顶（陡 60°）
+  const rh = (w / 2) * 1.7;
+  const shape = new THREE.Shape();
+  shape.moveTo(-w / 2 - 0.4, 0);
+  shape.lineTo(0, rh);
+  shape.lineTo(w / 2 + 0.4, 0);
+  shape.lineTo(-w / 2 - 0.4, 0);
+  p.solid.push(paint(new THREE.ExtrudeGeometry(shape, { depth: d + 0.8, bevelEnabled: false }).translate(0, 0.5 + wallH, -d / 2 - 0.4), roof));
+  // 山墙面（墙色）
+  for (const s of [-1, 1]) {
+    const g = new THREE.Shape();
+    g.moveTo(-w / 2, 0);
+    g.lineTo(0, rh * 0.94);
+    g.lineTo(w / 2, 0);
+    g.lineTo(-w / 2, 0);
+    p.solid.push(paint(new THREE.ExtrudeGeometry(g, { depth: 0.1, bevelEnabled: false }).translate(0, 0.5 + wallH, s * (d / 2) - (s > 0 ? 0 : 0.1)), wall));
+  }
+  // 扶壁
+  for (const s of [-1, 1]) for (const z of evenly(d, 3, true)) p.solid.push(boxAt(0.6, wallH * 0.9, 0.8, shade(wall, -0.12), s * (w / 2 + 0.3), 0.5 + wallH * 0.45, z, 0, 0, s * 0.08));
+  // 玫瑰窗
+  const ry = 0.5 + wallH + rh * 0.3;
+  p.glow.push(paint(new THREE.CircleGeometry(1.1, 16).translate(0, ry, d / 2 + 0.12), GHOST));
+  p.solid.push(paint(new THREE.TorusGeometry(1.15, 0.12, 6, 18).translate(0, ry, d / 2 + 0.14), shade(wall, -0.3)));
+  for (let k = 0; k < 8; k++) p.solid.push(boxAt(0.06, 2.1, 0.05, shade(wall, -0.3), 0, ry, d / 2 + 0.16, 0, 0, (k / 8) * Math.PI));
+  // 尖拱门
+  p.solid.push(boxAt(2.0, 3.0, 0.1, '#2a2230', 0, 0.5 + 1.5, d / 2 + 0.06));
+  p.solid.push(paint(new THREE.ConeGeometry(1.42, 1.4, 4).rotateY(Math.PI / 4).scale(1, 1, 0.08).translate(0, 0.5 + 3.0 + 0.7, d / 2 + 0.06), '#2a2230'));
+  p.glow.push(boxAt(0.1, 2.6, 0.04, GHOST, 0, 0.5 + 1.4, d / 2 + 0.12));
+  for (const u of evenly(d, 3)) for (const s of [-1, 1]) {
+    p.glow.push(boxAt(0.06, 1.6, 0.5, GHOST, s * (w / 2 + 0.03), 0.5 + 1.2 + 0.8, u));
+  }
+  // 屋脊钟亭
+  const by = 0.5 + wallH + rh * 0.62;
+  p.solid.push(box(1.4, 1.6, 1.4, wall, 0, by, d / 2 - 1.2));
+  p.solid.push(paint(new THREE.ConeGeometry(1.1, 2.4, 4).rotateY(Math.PI / 4).translate(0, by + 1.6 + 1.2, d / 2 - 1.2), roof));
+  p.solid.push(paint(new THREE.SphereGeometry(0.35, 8, 6, 0, Math.PI * 2, 0, Math.PI / 2).rotateX(Math.PI).translate(0, by + 1.3, d / 2 - 1.2), '#8a7a4a'));
+  return p;
+}
+
+/** 钟楼：方形石塔（逐层收分）+ 开敞钟室（铜钟）+ 尖顶 + 风向鸡（乌鸦）；钟室四面透冷光 */
+export function bellTower(w: number, h: number, stone = '#6e6878', roof = '#2e2a3a'): PropParts {
+  const p = newParts();
+  const base = h * 0.62;
+  p.solid.push(box(w + 0.6, 0.5, w + 0.6, shade(stone, -0.2)));
+  p.solid.push(box(w, base * 0.5, w, stone, 0, 0.5, 0));
+  p.solid.push(box(w * 0.88, base * 0.5, w * 0.88, shade(stone, 0.04), 0, 0.5 + base * 0.5, 0));
+  for (let k = 0; k < 3; k++) {
+    const y = 0.5 + base * (0.25 + k * 0.25);
+    lancet(p, w * 0.88 + (k ? 0 : w * 0.12), 0, y, 0.35, 0.8, shade(stone, -0.3));
+  }
+  // 钟室
+  const cy = 0.5 + base;
+  const cw = w * 0.88;
+  p.solid.push(box(cw + 0.3, 0.3, cw + 0.3, shade(stone, -0.15), 0, cy, 0));
+  for (const [sx, sz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]] as const) p.solid.push(box(0.6, h * 0.16, 0.6, stone, sx * (cw / 2 - 0.3), cy + 0.3, sz * (cw / 2 - 0.3)));
+  p.solid.push(box(cw + 0.3, 0.4, cw + 0.3, shade(stone, -0.15), 0, cy + 0.3 + h * 0.16, 0));
+  const bellY = cy + 0.3 + h * 0.08;
+  p.solid.push(paint(new THREE.CylinderGeometry(0.35, 0.8, 1.2, 12).translate(0, bellY, 0), '#8a7a4a'));
+  p.glow.push(sphere(cw * 0.32, SOUL, 0, bellY - 0.2, 0, 1, 0.8, 1, 1));
+  // 尖顶 + 乌鸦风向标
+  const ty = cy + 0.7 + h * 0.16;
+  p.solid.push(paint(new THREE.ConeGeometry(cw * 0.78, h - ty + 0.5, 4).rotateY(Math.PI / 4).translate(0, ty + (h - ty + 0.5) / 2, 0), roof));
+  p.solid.push(cyl(0.04, 0.04, 1.2, 4, '#2a2a30', 0, h + 0.4, 0));
+  p.solid.push(sphere(0.22, '#1e1e24', 0.05, h + 1.6, 0, 1.6, 0.8, 0.6, 1));
+  p.solid.push(paint(new THREE.ConeGeometry(0.08, 0.3, 4).rotateZ(-Math.PI / 2).translate(0.45, h + 1.65, 0), '#c9a86a'));
+  return p;
+}
+
+/** 幽灯：歪斜铁杆 + 吊臂，铁笼灯罩里一团冷色火焰（夜灯光源） */
+export function ghostLamp(h: number, color = SOUL): PropParts {
+  const p = newParts();
+  p.solid.push(cyl(0.18, 0.24, 0.3, 6, '#3a3640'));
+  p.solid.push(beam(V(0, 0.3, 0), V(0.12, h, 0), 0.06, '#2a2a30', 5));
+  p.solid.push(beam(V(0.12, h - 0.1, 0), V(0.75, h, 0), 0.04, '#2a2a30', 4));
+  p.solid.push(cyl(0.02, 0.02, 0.3, 3, '#2a2a30', 0.75, h - 0.3, 0));
+  for (let k = 0; k < 4; k++) {
+    const a = (k / 4) * Math.PI * 2;
+    p.solid.push(boxAt(0.03, 0.5, 0.03, '#2a2a30', 0.75 + Math.cos(a) * 0.17, h - 0.6, Math.sin(a) * 0.17));
+  }
+  p.solid.push(paint(new THREE.ConeGeometry(0.26, 0.2, 4).rotateY(Math.PI / 4).translate(0.75, h - 0.28, 0), '#2a2a30'));
+  p.glow.push(sphere(0.13, '#ffffff', 0.75, h - 0.68, 0, 1, 1.2, 1, 1));
+  p.glow.push(paint(new THREE.ConeGeometry(0.12, 0.32, 6).translate(0.75, h - 0.5, 0), color));
+  return p;
+}
+
+/**
+ * 幽灵系道馆「幽魄」：暗石哥特馆体（八角，四角细尖塔）+ 中央高尖塔，紫色尖拱窗 + 玫瑰窗，
+ * 尖塔周围浮着三团鬼火；正门为深色双扇尖拱门，门前一对石像鬼底座 + 幽灯。
+ */
+export function gymGhost(w: number, h: number): PropParts {
+  const p = newParts();
+  const half = w / 2;
+  p.solid.push(box(w + 3, 0.6, w + 3, '#4e4a58'));
+  p.solid.push(box(7, 0.3, 1.6, '#4e4a58', 0, 0, half + 2.4));
+  const wallH = h * 0.42;
+  p.solid.push(paint(new THREE.CylinderGeometry(half * 0.92, half * 0.95, wallH, 8).rotateY(Math.PI / 8).translate(0, 0.6 + wallH / 2, 0), '#5e5868'));
+  p.solid.push(paint(new THREE.CylinderGeometry(half * 0.97, half * 0.97, 0.5, 8).rotateY(Math.PI / 8).translate(0, 0.6 + wallH, 0), '#4a4654'));
+  // 每面两扇尖拱窗
+  for (let k = 0; k < 8; k++) {
+    const a = (k / 8) * Math.PI * 2;
+    if (Math.cos(a) > 0.9) continue;
+    const rr = half * 0.88;
+    for (const o of [-1.6, 1.6]) {
+      const x = Math.sin(a) * rr + Math.cos(a) * o;
+      const z = Math.cos(a) * rr - Math.sin(a) * o;
+      p.glow.push(boxAt(0.8, wallH * 0.45, 0.1, GHOST, x, 0.6 + wallH * 0.22 + wallH * 0.225, z, a));
+      p.glow.push(paint(new THREE.ConeGeometry(0.57, 0.8, 4).rotateY(Math.PI / 4).scale(1, 1, 0.15).rotateY(a).translate(x, 0.6 + wallH * 0.67 + 0.4, z), GHOST));
+    }
+  }
+  // 八角上的小尖塔
+  for (let k = 0; k < 8; k++) {
+    const a = (k / 8) * Math.PI * 2 + Math.PI / 8;
+    const x = Math.sin(a) * half * 0.95;
+    const z = Math.cos(a) * half * 0.95;
+    p.solid.push(cyl(0.45, 0.55, 1.6, 6, '#5e5868', x, 0.6 + wallH, z));
+    p.solid.push(paint(new THREE.ConeGeometry(0.55, 2.6, 6).translate(x, 0.6 + wallH + 1.6 + 1.3, z), '#2e2a3a'));
+  }
+  // 屋顶 + 中央塔
+  const ry = 0.6 + wallH + 0.5;
+  p.solid.push(paint(new THREE.ConeGeometry(half * 0.95, h * 0.18, 8).rotateY(Math.PI / 8).translate(0, ry + h * 0.09, 0), '#2e2a3a'));
+  const tw = half * 0.32;
+  p.solid.push(paint(new THREE.CylinderGeometry(tw * 0.9, tw, h * 0.3, 8).rotateY(Math.PI / 8).translate(0, ry + h * 0.15, 0), '#5e5868'));
+  for (let k = 0; k < 4; k++) {
+    const a = (k / 4) * Math.PI * 2;
+    p.glow.push(boxAt(0.6, h * 0.12, 0.1, GHOST, Math.sin(a) * tw * 0.92, ry + h * 0.2, Math.cos(a) * tw * 0.92, a));
+  }
+  const sy = ry + h * 0.3;
+  p.solid.push(paint(new THREE.ConeGeometry(tw * 1.05, h * 0.42, 8).rotateY(Math.PI / 8).translate(0, sy + h * 0.21, 0), '#2e2a3a'));
+  p.solid.push(cyl(0.05, 0.05, 1.4, 4, '#2a2a30', 0, sy + h * 0.42, 0));
+  p.glow.push(sphere(0.3, GHOST, 0, sy + h * 0.42 + 1.6, 0, 1, 1.3, 1, 1));
+  // 鬼火
+  for (let k = 0; k < 3; k++) {
+    const a = (k / 3) * Math.PI * 2 + 0.4;
+    const x = Math.sin(a) * tw * 2.4;
+    const z = Math.cos(a) * tw * 2.4;
+    const y = sy + h * (0.05 + k * 0.08);
+    p.glow.push(sphere(0.45, GHOST, x, y, z, 1, 1.4, 1, 1));
+    p.glow.push(paint(new THREE.ConeGeometry(0.3, 0.8, 6).translate(x, y + 0.75, z), GHOST));
+  }
+  // 玫瑰窗 + 正门
+  const fz = half * 0.92 + 0.05;
+  p.glow.push(paint(new THREE.CircleGeometry(1.5, 16).translate(0, 0.6 + wallH * 0.78, fz + 0.12), GHOST));
+  p.solid.push(paint(new THREE.TorusGeometry(1.55, 0.14, 6, 18).translate(0, 0.6 + wallH * 0.78, fz + 0.14), '#3a3644'));
+  p.solid.push(box(5.2, 4.6, 1.2, '#4a4654', 0, 0.6, fz));
+  p.solid.push(paint(new THREE.ConeGeometry(3.7, 2.2, 4).rotateY(Math.PI / 4).scale(1, 1, 0.24).translate(0, 0.6 + 4.6 + 1.1, fz + 0.2), '#4a4654'));
+  p.solid.push(box(3.4, 4.0, 0.1, '#241e2a', 0, 0.6, fz + 0.62));
+  p.glow.push(box(0.1, 3.8, 0.06, GHOST, 0, 0.7, fz + 0.68));
+  for (const s of [-1, 1]) {
+    const x = s * 5.2;
+    const z = half + 1.4;
+    p.solid.push(box(1.3, 1.3, 1.3, '#5e5868', x, 0.6, z));
+    // 石像鬼：蹲坐身体 + 头 + 翅
+    p.solid.push(sphere(0.55, '#6e6878', x, 2.4, z, 1, 1.1, 0.9, 1));
+    p.solid.push(sphere(0.32, '#6e6878', x, 3.2, z + 0.25, 1, 1, 1, 1));
+    for (const t of [-1, 1]) p.solid.push(boxAt(0.9, 0.7, 0.08, '#5e5868', x + t * 0.6, 2.7, z - 0.2, t * 0.6, 0, t * 0.4));
+    p.glow.push(sphere(0.07, GHOST, x + 0.12, 3.25, z + 0.55, 1, 1, 1, 0));
+    p.glow.push(sphere(0.07, GHOST, x - 0.12, 3.25, z + 0.55, 1, 1, 1, 0));
   }
   return p;
 }

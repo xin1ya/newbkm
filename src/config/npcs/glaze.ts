@@ -101,4 +101,71 @@ export const GLAZE_NPCS: NpcDef[] = [
     appearance: { look: 'youngster', palette: { jacket: '#3f7a8a' } },
     dialog: ['师父说预言石柱上的符文会在夜里发光。', '我抄了好几个晚上，还是看不懂……'],
   },
+  // ———————————————————————————— 幽冥镇 ————————————————————————————
+  {
+    id: 'ghost-guide',
+    name: '道馆向导',
+    title: '幽冥道馆',
+    appearance: { look: 'guide', palette: { cap: '#a88af0', jacket: '#4a3e5a' } },
+    schedule: [{ from: 0, to: 24, at: { island: 'glaze', position: [-436, -192], yaw: 0 } }],
+    dialog: ['这里是幽冥道馆，馆主幽魄用的是幽灵属性的宝可梦。', '馆里一片漆黑，只有灵火照亮的路是安全的。', '幽灵系招式对幽灵系效果拔群，恶属性也很管用。一般和格斗招式可是打不中它们的！'],
+  },
+  {
+    id: 'ghost-lamplighter',
+    name: '点灯人阿烛',
+    title: '幽冥镇点灯人',
+    appearance: { look: 'villager-m', palette: { jacket: '#3a3444', cap: '#2e2a3a' } },
+    schedule: [
+      { from: 17, to: 7, at: { island: 'glaze', position: [-458, -172], yaw: 0 }, activity: { kind: 'wander', radius: 6 } },
+      { from: 7, to: 17, at: { island: 'glaze', position: [-512, -176], yaw: PI } },
+    ],
+    dialog: ['镇上的灯笼点的都是灵火——不是我点的，是它们自己亮的。', '我只负责数一数，看有没有哪盏灯走丢了。', '雾太浓的时候，有些灯会自己飘到墓园那边去……'],
+  },
+  {
+    id: 'ghost-kid',
+    name: '胆小的小陌',
+    title: '幽冥镇的孩子',
+    appearance: { look: 'child-m', palette: { jacket: '#5a8aa8' } },
+    schedule: [{ from: 7, to: 19, at: { island: 'glaze', position: [-470, -150], yaw: PI / 2 }, activity: { kind: 'wander', radius: 3 } }],
+    dialog: ['我、我才不怕！', '……可是半夜十二点到三点，墓园里会多出好多鬼火，我奶奶说那是在开会。', '你要是敢去看，回来告诉我它们开会说了什么！'],
+  },
+  {
+    id: 'ghost-villager',
+    name: '提灯婆婆',
+    title: '幽冥镇居民',
+    appearance: { look: 'elder', palette: { jacket: '#4a3e5a' } },
+    schedule: [{ from: 6, to: 21, at: { island: 'glaze', position: [-520, -165], yaw: 0 }, activity: { kind: 'wander', radius: 3 } }],
+    dialog: ['这镇子的雾从来没散过，白天也一样。', '屋顶上尖尖的窗户是为了让灵魂找到回家的路。', '钟楼的钟每到午夜会自己响——没人敢去拉那根绳子。'],
+  },
+  {
+    id: 'ghost-stilt-fisher',
+    name: '沼泽钓客',
+    title: '高脚屋居民',
+    appearance: { look: 'fisher', palette: { jacket: '#5a6a4a' } },
+    schedule: [{ from: 5, to: 22, at: { island: 'glaze', position: [-572, -112], yaw: -PI / 2 } }],
+    dialog: ['沼泽里钓不到什么大鱼，倒是常钓上来会笑的泥巴。', '高脚屋是为了雨季涨水盖的。住习惯了，比镇上的石头房子暖和。'],
+  },
+  // ——— 守墓人之家 ———
+  {
+    id: 'ghost-gravekeeper',
+    name: '守墓人老墨',
+    title: '幽冥墓园守墓人',
+    appearance: { look: 'elder', palette: { jacket: '#2e2a3a', hair: '#d8d4dc' } },
+    dialog: ['墓园里躺着的，有人，也有宝可梦。', '每块墓碑我都记得。最近却多了几块没写名字的……', '午夜零点到三点别去墓园。不是危险——只是那段时间，它们不喜欢被打扰。'],
+  },
+  // ——— 灵堂 ———
+  {
+    id: 'ghost-priestess',
+    name: '守灵巫女澄',
+    title: '灵堂巫女',
+    appearance: { look: 'kimono-f', palette: { jacket: '#e8e2f0', hair: '#2a2a3a' } },
+    dialog: ['欢迎来到灵堂。请放轻脚步。', '这里供奉着翠澜古代海民的遗骨。他们相信，灵魂最终都会回到琉璃之海。', '幽魄馆主每个月都会来这里祈祷。他说，幽灵宝可梦也有想念的人。'],
+  },
+  {
+    id: 'ghost-mourner',
+    name: '悼念者',
+    title: '灵堂访客',
+    appearance: { look: 'villager-f', palette: { jacket: '#3a3444' } },
+    dialog: ['……我的耿鬼陪了我二十年。', '有时候夜里，我还能看见窗外有一对红眼睛在笑。'],
+  },
 ];

@@ -1212,6 +1212,16 @@ export function statue(h: number, variant = 'star', color = '#c9a86a'): PropPart
     p.solid.push(paint(new THREE.TorusGeometry(0.22, 0.06, 5, 10).translate(0, top + h * 0.55, 0), color));
     return p;
   }
+  if (variant === 'mourner') {
+    // M3-12 墓园石像：披斗篷低头的守墓人，双手捧着一盏灯
+    const body = new THREE.ConeGeometry(0.55, h * 0.5, 10).translate(0, top + h * 0.25, 0);
+    p.solid.push(paint(body, color));
+    p.solid.push(sphere(0.3, color, 0, top + h * 0.52, 0.08, 1, 1.15, 1, 1));
+    p.solid.push(paint(new THREE.SphereGeometry(0.36, 10, 6, 0, Math.PI * 2, 0, Math.PI * 0.6).rotateX(0.35).translate(0, top + h * 0.53, 0.02), shade(color, -0.1)));
+    p.solid.push(sphere(0.16, color, 0, top + h * 0.33, 0.42, 1.4, 0.8, 1, 1));
+    p.glow.push(sphere(0.12, '#8fe8d8', 0, top + h * 0.38, 0.5, 1, 1.3, 1, 1));
+    return p;
+  }
   const s = new THREE.Shape();
   const R = h * 0.32;
   for (let k = 0; k < 10; k++) {
