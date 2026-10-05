@@ -10,6 +10,9 @@
  *   捕捉目标的球用完；战斗中按 Esc 接管；进入室内 / 骑乘飞行 / 冲浪
  * - 自动骑车：目标 / 巡游点较远时自动骑上自行车（有车时）
  * - 回宝可梦中心：回复道具用完 / PP 用完 / 首发倒下时，飞回最近的宝可梦中心治疗，再飞回原地继续（需要能飞行）
+ * - 骑乘寻怪（config.flySearch，需要飞行坐骑）：在区域上空低飞巡游，发现目标后下滑降落、步行接触；
+ *   下一个目标较远时重新起飞（飞行中不触发草丛 / 其他野生宝可梦遇敌）
+ * - 代练指定打手（config.carrierUid / carrierMoves）：指定队伍里的某只宝可梦当打手并限定它的招式
  * - 配置保存在 Platform.storage 偏好（cuilan.autobattle）
  */
 import type { Game } from '@/core/Game';
@@ -25,7 +28,25 @@ import type { ZoneConfig } from '@/config/islands/types';
 import type { EncounterTable } from '@/systems/encounters';
 import { behaviorOf } from '@/config/encounters/behavior';
 import { BERRY_BY_ID } from '@/config/berries';
-import { AUTO_BALLS, AUTO_HEAL_ITEMS, AUTO_PP_ITEMS, EV_STATS, clampEvGain, evPlanDone, evUseful, pickCarrier, sanitizeAutoConfig, type AutoBattleConfig, type AutoGoal } from '@/systems/autobattle';
+import {
+  AUTO_BALLS,
+  AUTO_HEAL_ITEMS,
+  AUTO_PP_ITEMS,
+  EV_STATS,
+  FLY_SEARCH_RADIUS,
+  FLY_SEARCH_TAKEOFF_DIST,
+  clampEvGain,
+  evPlanDone,
+  evUseful,
+  flyCruiseVy,
+  flySearchStep,
+  moveAllowed,
+  pickCarrier,
+  sanitizeAutoConfig,
+  type AutoBattleConfig,
+  type AutoGoal,
+} from '@/systems/autobattle';
+import { FLY_CLIMB, FLY_LAND_ALTITUDE } from '@/systems/ride';
 import type { BattleAutoPilot, BattleResult } from '@/scenes/battle/BattleScene';
 import type { UiRoot } from '@/ui/core/UiRoot';
 import { AutoBattleCard, AutoBattleSettings, type AutoZoneSpecies } from '@/ui/hud/AutoBattlePanel';
@@ -62,6 +83,14 @@ export interface SceneAutoBattleDeps {
   mountBike(): boolean;
   /** 飞回最近的宝可梦中心治疗再飞回原地；失败返回原因 */
   healTrip(): Promise<string | null>;
+  /** 骑乘寻怪：有可用的飞行坐骑 */
+  canFly(): boolean;
+  /** 静默起飞（不能起飞返回 false） */
+  takeoff(): boolean;
+  /** 降落到正下方地面（不能降落返回 false） */
+  land(): Promise<boolean>;
+  /** 正下方可以降落 */
+  canLand(): boolean;
 }
 
 export class SceneAutoBattle implements BattleAutoPilot {
@@ -80,6 +109,9 @@ export class SceneAutoBattle implements BattleAutoPilot {
   private cardTimer = 0;
   /** 正在飞回宝可梦中心 */
   private tripping = false;
+  /** 骑乘寻怪：正在起飞 / 降落 */
+  private rideBusy = false;
+  private rideCooldown = 0;
   /** 本次自动的战绩 */
   readonly tally = { battles: 0, defeated: 0, captured: 0, fled: 0 };
   /** 本次自动中错过（未学）的招式 */
@@ -92,6 +124,15 @@ export class SceneAutoBattle implements BattleAutoPilot {
 
   get active(): boolean {
     return this.running;
+  }
+
+  /** 骑乘寻怪进行中（场景层据此允许飞行状态下继续自动） */
+  get flyAllowed(): boolean {
+    return this.running && this.flyMode;
+  }
+
+  private get flyMode(): boolean {
+    return this.config.flySearch && this.d.canFly();
   }
 
   private load(): AutoBattleConfig {
@@ -216,6 +257,16 @@ export class SceneAutoBattle implements BattleAutoPilot {
         pp: opt(AUTO_PP_ITEMS),
         leadName: lead ? displayName(dex, lead) : '—',
         trainee: state.party[0] ? { name: displayName(dex, state.party[0]), evs: { ...state.party[0].evs } } : undefined,
+        canFly: this.d.canFly(),
+        party: state.party.map((m, index) => ({
+          uid: m.uid,
+          index,
+          speciesId: m.speciesId,
+          name: displayName(dex, m),
+          level: m.level,
+          fainted: m.hp <= 0,
+          moves: m.moves.map((mv) => ({ id: mv.id, name: dex.move(mv.id).name.zh, pp: mv.pp, maxPp: mv.maxPp, damaging: this.isAttack(mv.id) })),
+        })),
         moves: (lead?.moves ?? []).map((m, index) => ({ index, id: m.id, name: dex.move(m.id).name.zh, pp: m.pp, maxPp: m.maxPp, damaging: this.isAttack(m.id) })),
       }),
     );
@@ -229,7 +280,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
   }
 
   start(): void {
-    const why = this.d.blocked();
+    const why = this.flyMode && this.d.player.mode === 'fly' ? null : this.d.blocked();
     if (why) {
       this.d.toast(why);
       return;
@@ -266,8 +317,16 @@ export class SceneAutoBattle implements BattleAutoPilot {
     Object.assign(this.tally, { battles: 0, defeated: 0, captured: 0, fled: 0 });
     this.missed = [];
     sfx('confirm', 0.7);
-    this.d.toast(`自动战斗开始：${this.describeTargets()}${this.config.train ? `（代练 ${this.d.state.party[0] ? displayName(this.d.dex, this.d.state.party[0]) : ''}）` : ''}`);
+    this.rideBusy = false;
+    this.rideCooldown = 0;
+    this.d.toast(`自动战斗开始：${this.describeTargets()}${this.config.train ? `（代练 ${this.d.state.party[0] ? displayName(this.d.dex, this.d.state.party[0]) : ''}${this.carrierText()}）` : ''}${this.flyMode ? ' · 骑乘寻怪' : ''}`);
     this.refreshCard();
+  }
+
+  private carrierText(): string {
+    const uid = this.config.carrierUid;
+    const c = uid ? this.d.state.party.find((m, i) => i > 0 && m.uid === uid) : undefined;
+    return c ? `，打手 ${displayName(this.d.dex, c)}` : '';
   }
 
   private describeTargets(): string {
@@ -309,13 +368,19 @@ export class SceneAutoBattle implements BattleAutoPilot {
       this.refreshCard();
     }
     if (!this.running) return false;
-    if (this.tripping) return true;
+    if (this.tripping || this.rideBusy) return true;
+    this.rideCooldown -= dt;
     if (moving) {
       this.stop('手动移动');
       return false;
     }
     if (!this.d.idle()) return false;
-    const why = this.d.blocked();
+    const flying = this.d.player.mode === 'fly';
+    if (flying && !this.flyMode) {
+      this.stop('飞行中不能自动战斗');
+      return false;
+    }
+    const why = flying ? null : this.d.blocked();
     if (why) {
       this.stop(why);
       return false;
@@ -340,16 +405,74 @@ export class SceneAutoBattle implements BattleAutoPilot {
       this.targetId = target.id;
       this.wander = null;
       const tp = target.root.position;
-      this.status = `前往 ${this.d.dex.species(target.mon.speciesId).name.zh}`;
+      const name = this.d.dex.species(target.mon.speciesId).name.zh;
+      const dist = Math.hypot(tp.x - p.x, tp.z - p.z);
+      if (flying) {
+        this.status = `飞向 ${name}`;
+        this.flyTo(dt, tp.x, tp.z, dist, target.id);
+        return true;
+      }
+      if (this.flyMode && dist > FLY_SEARCH_TAKEOFF_DIST && this.tryTakeoff()) return true;
+      this.status = `前往 ${name}`;
       this.drive(dt, tp.x, tp.z, target.id);
       return true;
     }
     this.targetId = null;
-    // 巡游
-    if (!this.wander || this.wander.t < this.time || Math.hypot(this.wander.x - p.x, this.wander.z - p.z) < 2) this.wander = this.pickWander(z);
-    this.status = '巡游寻找目标';
-    if (this.wander) this.drive(dt, this.wander.x, this.wander.z);
+    // 巡游（骑乘寻怪：先起飞，在区域上空巡航）
+    if (!flying && this.flyMode && this.tryTakeoff()) return true;
+    if (!this.wander || this.wander.t < this.time || Math.hypot(this.wander.x - p.x, this.wander.z - p.z) < (flying ? 6 : 2)) this.wander = this.pickWander(z, false, flying);
+    this.status = flying ? '空中巡游寻找目标' : '巡游寻找目标';
+    if (this.wander) {
+      if (flying) this.flyTo(dt, this.wander.x, this.wander.z, null);
+      else this.drive(dt, this.wander.x, this.wander.z);
+    }
     return true;
+  }
+
+  /** 骑乘寻怪：起飞（失败后冷却几秒，改为步行） */
+  private tryTakeoff(): boolean {
+    if (this.rideCooldown > 0) return false;
+    this.rideCooldown = 4;
+    if (!this.d.takeoff()) return false;
+    this.status = '起飞寻找目标';
+    return true;
+  }
+
+  /** 骑乘寻怪：飞向某点；dist = 到目标的距离（巡游点传 null，保持巡航高度） */
+  private flyTo(dt: number, tx: number, tz: number, dist: number | null, entity?: number): void {
+    const pl = this.d.player;
+    const p = pl.position;
+    const step = flySearchStep(dist, pl.flyAltitude, FLY_LAND_ALTITUDE);
+    if (step.kind === 'land' && !pl.flyOverWater && this.d.canLand() && this.rideCooldown <= 0) {
+      this.rideBusy = true;
+      this.status = '降落';
+      pl.velocity.set(0, 0, 0);
+      void this.d.land().then((ok) => {
+        this.rideBusy = false;
+        this.rideCooldown = 1.5;
+        this.stuck = { t: 0, x: pl.position.x, z: pl.position.z };
+        if (!ok && entity !== undefined) this.blacklist.set(entity, this.time + BLACKLIST_S);
+      });
+      return;
+    }
+    const want = step.kind === 'cruise' ? step.altitude : FLY_LAND_ALTITUDE * 0.5;
+    const dx = tx - p.x;
+    const dz = tz - p.z;
+    const l = Math.hypot(dx, dz);
+    // 远处用冲刺速度；接近目标时减速，给下降留时间
+    const speed = l > 60 ? pl.flySprint : dist !== null && l < 30 ? Math.max(4, pl.flySpeed * (l / 30)) : pl.flySpeed;
+    const k = l > 0.01 ? Math.min(1, l / 1.5) : 0;
+    pl.moveWithVelocity(dt, (dx / (l || 1)) * speed * k, (dz / (l || 1)) * speed * k, true, flyCruiseVy(pl.flyAltitude, want, FLY_CLIMB));
+    this.stuck.t += dt;
+    if (this.stuck.t >= STUCK_TIME) {
+      const moved = Math.hypot(p.x - this.stuck.x, p.z - this.stuck.z);
+      // 贴近目标悬停降落不算卡住
+      if (moved < 1.2 && !(dist !== null && dist < 3)) {
+        if (entity !== undefined) this.blacklist.set(entity, this.time + BLACKLIST_S);
+        this.wander = this.pickWander(this.d.zones.get(this.zoneId ?? '') ?? null, true, true);
+      }
+      this.stuck = { t: 0, x: p.x, z: p.z };
+    }
   }
 
   private drive(dt: number, tx: number, tz: number, entity?: number): void {
@@ -377,7 +500,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
   private pickTarget() {
     const p = this.d.player.position;
     let best = null;
-    let bd = SEEK_RADIUS;
+    let bd = this.flyMode ? FLY_SEARCH_RADIUS : SEEK_RADIUS;
     for (const w of this.d.spawns.wild.values()) {
       if (w.frozen || w.denId || w.mon.alpha || w.habitat === 'water' || w.zoneId !== this.zoneId) continue;
       if (!this.wants(w.mon.speciesId) || this.blacklist.has(w.id)) continue;
@@ -393,7 +516,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
     return best;
   }
 
-  private pickWander(z: ZoneConfig | null, away = false): { x: number; z: number; t: number } | null {
+  private pickWander(z: ZoneConfig | null, away = false, air = false): { x: number; z: number; t: number } | null {
     if (!z) return null;
     const p = this.d.player.position;
     let minX = Infinity;
@@ -419,9 +542,10 @@ export class SceneAutoBattle implements BattleAutoPilot {
       } else {
         x = minX + rng.next() * (maxX - minX);
         zz = minZ + rng.next() * (maxZ - minZ);
-        if (Math.hypot(x - p.x, zz - p.z) > 90) continue;
+        if (Math.hypot(x - p.x, zz - p.z) > (air ? 220 : 90)) continue;
       }
-      if (!pointInPolygon(x, zz, z.polygon) || !this.d.inBounds(x, zz) || !this.d.walkable(x, zz)) continue;
+      // 空中巡游不要求脚下可走（可以越过水面、陡坡）
+      if (!pointInPolygon(x, zz, z.polygon) || !this.d.inBounds(x, zz) || (!air && !this.d.walkable(x, zz))) continue;
       return { x, z: zz, t: this.time + 12 };
     }
     return null;
@@ -452,12 +576,17 @@ export class SceneAutoBattle implements BattleAutoPilot {
     if (!party.some((p) => p.hp > 0)) return this.stop('没有能战斗的宝可梦了');
     const cfg = this.config;
     // 代练时真正出手的是打手（等级最高的同伴），按它判断 HP / PP
-    const carrier = cfg.train ? pickCarrier(party.map((p) => ({ level: p.level, hp: p.hp, canHit: p.moves.some((m) => m.pp > 0 && this.isAttack(m.id)) }))) : null;
+    const carrier = cfg.train
+      ? pickCarrier(
+          party.map((p) => ({ uid: p.uid, level: p.level, hp: p.hp, canHit: p.moves.some((m) => m.pp > 0 && this.isAttack(m.id) && moveAllowed(cfg, p.uid, m.id)) })),
+          cfg.carrierUid,
+        )
+      : null;
     const lead = (carrier !== null ? party[carrier] : undefined) ?? party.find((p) => p.hp > 0)!;
     // 首发低血且没有回复道具 / 招式 PP 用完 / 首发倒下 → 回宝可梦中心（或停止）
     const hpRatio = lead.hp / Math.max(1, maxHp(this.d.dex, lead));
     const noHeal = hpRatio < cfg.hpPct && !cfg.healItems.some((id) => id !== 'full-heal' && (this.d.state.bag[id] ?? 0) > 0);
-    const noPp = !lead.moves.some((m) => m.pp > 0 && this.isAttack(m.id) && !cfg.disabledMoves.includes(m.id)) && !cfg.ppItems.some((id) => (this.d.state.bag[id] ?? 0) > 0);
+    const noPp = !lead.moves.some((m) => m.pp > 0 && this.isAttack(m.id) && moveAllowed(cfg, lead.uid, m.id)) && !cfg.ppItems.some((id) => (this.d.state.bag[id] ?? 0) > 0);
     const leadDown = (party[0]?.hp ?? 1) <= 0;
     if (cfg.centerHeal && (noHeal || noPp || leadDown)) {
       void this.goHeal(noHeal ? 'HP 低且回复道具用完' : noPp ? '攻击招式 PP 用完' : '首发倒下');

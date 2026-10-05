@@ -405,6 +405,10 @@ export class OverworldScene implements Scene, BattleHost {
       blocked: () => (this.fly.flying ? '飞行中不能自动战斗' : this.ride.surfing ? '冲浪中不能自动战斗' : this.fishing.active ? '钓鱼中' : null),
       mountBike: () => this.bike.owned && this.bike.mount(),
       healTrip: () => this.autoHealTrip(),
+      canFly: () => !!this.fly.flyRide(),
+      takeoff: () => this.fly.takeoff(true),
+      land: () => this.fly.land(),
+      canLand: () => !!this.fly.landingSpot(),
     });
     this.autoPath = new SceneAutoPath({
       player: this.player,

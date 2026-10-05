@@ -66,11 +66,12 @@ export class SceneFly {
     return null;
   }
 
-  takeoff(): boolean {
+  /** quiet = 自动战斗等系统调用：不弹提示 */
+  takeoff(quiet = false): boolean {
     if (this.flying || this.busy) return false;
     const why = this.takeoffBlock();
     if (why) {
-      this.d.toast(why);
+      if (!quiet) this.d.toast(why);
       return false;
     }
     const ride = this.flyRide()!;
@@ -100,7 +101,7 @@ export class SceneFly {
     player.beginFly();
     sfx('jump', 0.7);
     sfx('surf-mount', 0.6);
-    this.d.toast(choice.uid ? `骑上${choice.nickname}飞上了天空！（空格上升 · Shift/Ctrl 下降 · X 加速 · 近地按 G 降落）` : `租借的${choice.nickname}载着你飞上了天空！`);
+    if (!quiet) this.d.toast(choice.uid ? `骑上${choice.nickname}飞上了天空！（空格上升 · Shift/Ctrl 下降 · X 加速 · 近地按 G 降落）` : `租借的${choice.nickname}载着你飞上了天空！`);
     this.d.game.events.emit('ride:change', { mode: 'fly', ride: ride.id, speciesId: choice.speciesId });
     return true;
   }

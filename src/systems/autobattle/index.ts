@@ -38,6 +38,12 @@ export interface AutoBattleConfig {
   train: boolean;
   /** 努力值计划（代练对象 = 队伍第 1 只）：只打能提供未达标项努力值的目标，超出目标的努力值不计入，全部达标后停止 */
   evPlan: EvPlan;
+  /** 代练指定打手（宝可梦 uid；null = 自动选等级最高的同伴） */
+  carrierUid: string | null;
+  /** 指定打手使用的招式（空 = 它所有攻击招式都可用） */
+  carrierMoves: string[];
+  /** 骑乘寻怪：有飞行坐骑时在区域上空低飞巡游，发现目标后降落接触（飞行中不会触发其他遇敌） */
+  flySearch: boolean;
 }
 
 export interface EvPlan {
@@ -93,7 +99,7 @@ export const AUTO_BALLS = ['poke-ball', 'great-ball', 'ultra-ball', 'quick-ball'
 export const RED_HP = 0.2;
 
 export function defaultAutoConfig(): AutoBattleConfig {
-  return { targets: {}, ball: 'poke-ball', disabledMoves: [], hpPct: 0.35, ppMin: 2, healItems: ['potion', 'super-potion'], ppItems: ['leppa-berry'], centerHeal: true, train: false, evPlan: defaultEvPlan() };
+  return { targets: {}, ball: 'poke-ball', disabledMoves: [], hpPct: 0.35, ppMin: 2, healItems: ['potion', 'super-potion'], ppItems: ['leppa-berry'], centerHeal: true, train: false, evPlan: defaultEvPlan(), carrierUid: null, carrierMoves: [], flySearch: false };
 }
 
 /** 读档 / 本地存储恢复：字段缺失或非法时用默认值 */
@@ -117,6 +123,9 @@ export function sanitizeAutoConfig(raw: unknown): AutoBattleConfig {
     centerHeal: typeof r.centerHeal === 'boolean' ? r.centerHeal : d.centerHeal,
     train: typeof r.train === 'boolean' ? r.train : d.train,
     evPlan: sanitizeEvPlan(r.evPlan),
+    carrierUid: typeof r.carrierUid === 'string' && r.carrierUid ? r.carrierUid.slice(0, 64) : null,
+    carrierMoves: Array.isArray(r.carrierMoves) ? r.carrierMoves.filter((x): x is string => typeof x === 'string').slice(0, 4) : [],
+    flySearch: r.flySearch === true,
   };
 }
 
@@ -158,9 +167,18 @@ export function isDamagingMove(b: Battle, id: string): boolean {
   return mv.category !== 'status' && !!mv.power;
 }
 
+/**
+ * 这只宝可梦能否用该招式：代练指定打手且限定了招式 → 只用限定的招式；其余宝可梦 → 不在「取消勾选」里
+ */
+export function moveAllowed(cfg: AutoBattleConfig | undefined, uid: string | undefined, id: string): boolean {
+  if (!cfg) return true;
+  if (cfg.train && cfg.carrierUid && uid === cfg.carrierUid && cfg.carrierMoves.length) return cfg.carrierMoves.includes(id);
+  return !cfg.disabledMoves.includes(id);
+}
+
 function usableAttack(b: Battle, req: ActionRequest, i: number, cfg?: AutoBattleConfig): boolean {
   const id = req.moves[i]?.id;
-  if (!id || cfg?.disabledMoves.includes(id)) return false;
+  if (!id || !moveAllowed(cfg, b.active(0).pokemon.uid, id)) return false;
   return usable(req, i) && isDamagingMove(b, id) && estimateDamage(b, i, 1) > 0;
 }
 
@@ -184,9 +202,15 @@ export function effectiveSwitchIndex(b: Battle): number | null {
  * 代练的打手：除首发外还能战斗、有能打到对手的攻击招式、等级高于首发的宝可梦中等级最高的那只（同级取 HP 多的）。
  * levels / alive / canHit 由调用方按队伍顺序给出（场景层用存档队伍，战斗中用 Battle）。
  */
-export function pickCarrier(party: ReadonlyArray<{ level: number; hp: number; canHit: boolean }>): number | null {
+export function pickCarrier(party: ReadonlyArray<{ level: number; hp: number; canHit: boolean; uid?: string }>, preferUid?: string | null): number | null {
   const lead = party[0];
   if (!lead) return null;
+  // 指定的打手（不限等级）：还能战斗、打得到对手就用它，否则退回自动挑选
+  if (preferUid) {
+    const i = party.findIndex((m, idx) => idx > 0 && m.uid === preferUid);
+    const m = party[i];
+    if (m && m.hp > 0 && m.canHit) return i;
+  }
   let best: number | null = null;
   for (let i = 1; i < party.length; i++) {
     const m = party[i];
@@ -203,10 +227,12 @@ export function carrierIndex(b: Battle, cfg?: AutoBattleConfig): number | null {
   const foeTypes = b.types(b.active(1));
   return pickCarrier(
     s.party.map((m) => ({
+      uid: m.pokemon.uid,
       level: m.pokemon.level,
       hp: m.pokemon.hp,
-      canHit: m.pokemon.moves.some((mv) => mv.pp > 0 && !cfg?.disabledMoves.includes(mv.id) && isDamagingMove(b, mv.id) && b.dex.effectiveness(b.dex.move(mv.id).type, foeTypes) > 0),
+      canHit: m.pokemon.moves.some((mv) => mv.pp > 0 && moveAllowed(cfg, m.pokemon.uid, mv.id) && isDamagingMove(b, mv.id) && b.dex.effectiveness(b.dex.move(mv.id).type, foeTypes) > 0),
     })),
+    cfg?.carrierUid,
   );
 }
 
@@ -276,7 +302,7 @@ export function decideAutoAction(b: Battle, req: ActionRequest, goal: AutoGoal |
     return { kind: 'act', action: { type: 'item', itemId: 'full-heal', partyIndex: meIdx }, note: 'cure' };
   // 招式选择
   // 勾选的攻击招式全部 PP ≤ 阈值 → 给 PP 最少的那个用 PP 道具
-  const checked = req.moves.filter((m) => !cfg.disabledMoves.includes(m.id) && isDamagingMove(b, m.id) && estimateDamage(b, m.index, 1) > 0);
+  const checked = req.moves.filter((m) => moveAllowed(cfg, me.pokemon.uid, m.id) && isDamagingMove(b, m.id) && estimateDamage(b, m.index, 1) > 0);
   if (checked.length && checked.every((m) => m.pp <= cfg.ppMin)) {
     const pp = firstOwned(cfg.ppItems, bag);
     const low = checked.reduce((a, m) => (m.pp < a.pp ? m : a));
@@ -324,4 +350,37 @@ export function autoSwitchIndex(b: Battle, cfg?: AutoBattleConfig): number | nul
   }
   const i = s.party.findIndex((m, idx) => idx !== s.active && m.pokemon.hp > 0);
   return i >= 0 ? i : null;
+}
+
+// ———————————————————— 骑乘寻怪（飞行巡游） ————————————————————
+
+/** 巡航离地高度（m）：高于树冠、低到看得清地面的宝可梦 */
+export const FLY_SEARCH_CRUISE = 12;
+/** 飞行寻怪的发现半径（m） */
+export const FLY_SEARCH_RADIUS = 140;
+/** 离目标多远开始下降（m） */
+export const FLY_SEARCH_DESCEND = 26;
+/** 离目标多近、且离地多低时降落（m） */
+export const FLY_SEARCH_LAND_DIST = 7;
+/** 地面上离下一个目标超过这个距离就重新起飞（m） */
+export const FLY_SEARCH_TAKEOFF_DIST = 34;
+
+export type FlySearchStep = { kind: 'cruise'; altitude: number } | { kind: 'land' };
+
+/**
+ * 飞行寻怪的阶段：dist = 到目标的水平距离（没有目标 = null，巡游），alt = 当前离地高度，
+ * landAlt = 可降落的离地高度上限。远处巡航高度、接近后逐渐下降、贴近后降落。
+ */
+export function flySearchStep(dist: number | null, alt: number, landAlt: number): FlySearchStep {
+  if (dist === null) return { kind: 'cruise', altitude: FLY_SEARCH_CRUISE };
+  if (dist <= FLY_SEARCH_LAND_DIST && alt <= landAlt) return { kind: 'land' };
+  if (dist >= FLY_SEARCH_DESCEND) return { kind: 'cruise', altitude: FLY_SEARCH_CRUISE };
+  // 线性下滑：从巡航高度降到可降落高度的一半
+  const t = Math.max(0, (dist - FLY_SEARCH_LAND_DIST) / (FLY_SEARCH_DESCEND - FLY_SEARCH_LAND_DIST));
+  return { kind: 'cruise', altitude: landAlt * 0.5 + (FLY_SEARCH_CRUISE - landAlt * 0.5) * t };
+}
+
+/** 朝目标高度的垂直速度（比例控制，限幅 = 爬升 / 俯冲速度） */
+export function flyCruiseVy(alt: number, want: number, climb: number): number {
+  return Math.max(-climb * 1.3, Math.min(climb, (want - alt) * 1.6));
 }

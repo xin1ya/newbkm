@@ -46,6 +46,20 @@ export interface AutoSettingsData {
   /** 队伍第 1 只（代练 / 努力值计划对象）的名字与当前努力值 */
   trainee?: { name: string; evs: Record<string, number> } | undefined;
   moves: { index: number; id: string; name: string; pp: number; maxPp: number; damaging?: boolean }[];
+  /** 有可用的飞行坐骑（骑乘寻怪） */
+  canFly?: boolean;
+  /** 队伍（代练指定打手用） */
+  party?: AutoPartyMon[];
+}
+
+export interface AutoPartyMon {
+  uid: string;
+  index: number;
+  speciesId: number;
+  name: string;
+  level: number;
+  fainted: boolean;
+  moves: { id: string; name: string; pp: number; maxPp: number; damaging: boolean }[];
 }
 
 export type AutoSettingsResult = { action: 'start' | 'stop' | 'close'; config: AutoBattleConfig };
@@ -259,6 +273,13 @@ export class AutoBattleSettings implements UiWidget {
     tr.style.marginTop = '8px';
     tr.addEventListener('click', () => this.set(() => (cfg.train = !cfg.train)));
     el('div', 'meta', g5, '只对「打倒」目标生效；经验由首发与打手平分。首发须放在队伍第 1 位。').style.cssText = 'font-size:11px;color:#6a7190;margin-top:4px';
+    if (cfg.train) this.carrierPicker(g5);
+    const fy = el('button', `chip${cfg.flySearch && data.canFly ? ' on' : ''}`, g5, `${cfg.flySearch && data.canFly ? '☑' : '☐'} 骑乘寻怪：骑飞行宝可梦在区域上空巡游，发现目标后降落`);
+    fy.style.marginTop = '8px';
+    fy.disabled = !data.canFly;
+    fy.addEventListener('click', () => this.set(() => (cfg.flySearch = !cfg.flySearch)));
+    el('div', 'meta', g5, data.canFly ? '视野更大、移动更快，飞行中不会被草丛和其他野生宝可梦打断；下一个目标较远时自动重新起飞。' : '需要飞行坐骑（拿到「翠澜徽章」后可骑宝可梦飞行）。').style.cssText =
+      'font-size:11px;color:#6a7190;margin-top:4px';
 
     // 努力值计划
     const g6 = el('div', 'grp', right);
@@ -301,6 +322,62 @@ export class AutoBattleSettings implements UiWidget {
     go.addEventListener('click', () => this.finish('start'));
     const cl = el('button', 'btn', ft, '关闭');
     cl.addEventListener('click', () => this.finish('close'));
+  }
+
+  /** 代练：指定打手 + 它使用的招式 */
+  private carrierPicker(parent: HTMLElement): void {
+    const { cfg } = this;
+    const party = (this.data.party ?? []).filter((m) => m.index > 0);
+    const box = el('div', '', parent);
+    box.style.cssText = 'margin-top:8px;padding:8px;border:2px dashed #d7dcea;border-radius:10px';
+    el('div', 'h', box, '打手');
+    const chips = el('div', 'chips', box);
+    const auto = el('button', `chip${cfg.carrierUid ? '' : ' on'}`, chips, '自动（等级最高的同伴）');
+    auto.addEventListener('click', () =>
+      this.set(() => {
+        cfg.carrierUid = null;
+        cfg.carrierMoves = [];
+      }),
+    );
+    for (const m of party) {
+      const on = cfg.carrierUid === m.uid;
+      const b = el('button', `chip${on ? ' on' : ''}`, chips);
+      b.style.cssText = 'display:inline-flex;align-items:center;gap:4px';
+      monIcon(this.dex, m.speciesId, b, { size: 20 });
+      el('span', '', b, `${m.name} Lv.${m.level}${m.fainted ? '（濒死）' : ''}`);
+      b.addEventListener('click', () =>
+        this.set(() => {
+          cfg.carrierUid = m.uid;
+          cfg.carrierMoves = [];
+        }),
+      );
+    }
+    if (!party.length) el('div', 'meta', box, '队伍里只有一只宝可梦，没有可以当打手的同伴。').style.cssText = 'font-size:11px;color:#c0503a';
+    const sel = party.find((m) => m.uid === cfg.carrierUid);
+    if (cfg.carrierUid && !sel) el('div', 'meta', box, '指定的打手不在队伍里（或在第 1 位），将自动挑选。').style.cssText = 'font-size:11px;color:#c0503a;margin-top:4px';
+    if (!sel) return;
+    el('div', 'h', box, `${sel.name} 使用的招式`).style.marginTop = '8px';
+    const mv = el('div', 'chips', box);
+    const all = cfg.carrierMoves.length === 0;
+    for (const m of sel.moves) {
+      const on = m.damaging && (all || cfg.carrierMoves.includes(m.id));
+      const b = el('button', `chip${on ? ' on' : ''}`, mv, `${on ? '☑' : '☐'} ${m.name} ${m.pp}/${m.maxPp}${m.damaging ? '' : '（变化招式）'}`);
+      b.disabled = !m.damaging;
+      b.addEventListener('click', () =>
+        this.set(() => {
+          // 空列表 = 全部可用：第一次点击时先展开成「全部攻击招式」再切换
+          const list = cfg.carrierMoves.length ? cfg.carrierMoves : sel.moves.filter((x) => x.damaging).map((x) => x.id);
+          const i = list.indexOf(m.id);
+          if (i >= 0) list.splice(i, 1);
+          else list.push(m.id);
+          const dmg = sel.moves.filter((x) => x.damaging).length;
+          // 至少留一个；全部勾选时存成空列表（以后学会的新招式也可用）
+          if (!list.length) return;
+          cfg.carrierMoves = list.length === dmg ? [] : list;
+        }),
+      );
+    }
+    el('div', 'meta', box, '打手只用勾选的招式（至少一个）；勾选的招式都打不到对手时，自动换别的同伴。指定的打手倒下后同样换别的同伴。').style.cssText = 'font-size:11px;color:#6a7190;margin-top:4px';
   }
 
   private set(fn: () => void): void {

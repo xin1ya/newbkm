@@ -486,12 +486,15 @@ export class PlayerController {
   }
 
   /** 外部驱动（自动驾驶、脚本移动）：直接给期望速度 */
-  moveWithVelocity(dt: number, vx: number, vz: number, running: boolean): void {
+  moveWithVelocity(dt: number, vx: number, vz: number, running: boolean, flyVy?: number): void {
     this.prevPosition.copy(this.position);
     this.prevFacing = this.facing;
     if (this.mode === 'fly') {
       this.velocity.x = vx;
       this.velocity.z = vz;
+      // 外部驱动的飞行：给了垂直速度就平滑跟随，否则保持高度
+      this.flyVy += ((flyVy ?? 0) - this.flyVy) * (1 - Math.exp(-5 * dt));
+      this.flyDescending = (flyVy ?? 0) < -0.5;
       this.time += dt;
       this.moveFly(dt);
       return;
