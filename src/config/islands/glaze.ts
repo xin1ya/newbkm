@@ -14,6 +14,7 @@
  * 主色板（设计 §8.4）：玻璃青 / 暗紫。
  */
 import type { IslandConfig } from './types';
+import { GLAZE_TOWNS } from './towns/glaze';
 
 export const GLAZE: IslandConfig = {
   id: 'glaze',
@@ -251,11 +252,21 @@ export const GLAZE: IslandConfig = {
     { id: 'town-glaze-south', surface: 'stone', width: 6, points: [[430, 232], [430, 153]] },
     { id: 'town-ever-main', surface: 'stone', width: 9, points: [[40, -700], [40, -830]] },
     { id: 'town-ever-cross', surface: 'stone', width: 7, points: [[-70, -765], [170, -765]] },
+    // 城镇小路（towns/glaze.ts）
+    ...GLAZE_TOWNS.flatMap((t) => t.paths),
     // 沼泽木栈道（跨黑水塘之间的泥沼）
     { id: 'marsh-boardwalk', surface: 'boardwalk', width: 3, points: [[-520, -250], [-500, -300], [-470, -330]] },
   ],
   pois: [
     { id: 'mirage-dock', kind: 'dock', name: '幻影镇码头', position: [-380, 0, 572], showOnMap: true },
+    // M3-11 幻影镇
+    { id: 'pokecenter-mirage', kind: 'pokecenter', name: '宝可梦中心（幻影镇）', position: [-420, 0, 444], interior: 'pokecenter', showOnMap: true },
+    { id: 'mart-mirage', kind: 'mart', name: '友好商店（幻影镇）', position: [-345, 0, 444], interior: 'mart', showOnMap: true },
+    { id: 'gym-mirage', kind: 'gym', name: '幻影道馆', position: [-380, 0, 400], interior: 'gym-mirage', showOnMap: true },
+    { id: 'mirage-seer-house', kind: 'door', name: '先知之家', position: [-436, 0, 490], interior: 'mirage-seer-house', showOnMap: true },
+    { id: 'mirage-obelisk', kind: 'landmark', name: '预言石柱', position: [-396, 0, 439] },
+    { id: 'mirage-palace', kind: 'landmark', name: '蜃楼宫观景处', position: [-250, 0, 470], showOnMap: true },
+    { id: 'mirage-moon-tower', kind: 'landmark', name: '月影塔遗址', position: [-472, 0, 506], showOnMap: true },
     { id: 'glaze-dock', kind: 'dock', name: '琉璃镇码头', position: [612, 0, 150], showOnMap: true },
     { id: 'victory-road-south', kind: 'cave', name: '冠军之路（南口）', position: [80, 0, -232], interior: 'victory-road', doorYaw: 0, showOnMap: true },
     { id: 'victory-road-north', kind: 'cave', name: '冠军之路（北口）', position: [40, 0, -634], interior: 'victory-road', doorYaw: Math.PI, showOnMap: true },

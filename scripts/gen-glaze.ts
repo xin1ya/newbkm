@@ -22,6 +22,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GLAZE } from '../src/config/islands/glaze';
+import { GLAZE_TOWNS } from '../src/config/islands/towns/glaze';
 import { SURFACE_CHANNELS, type PropInstance, type PropsFile, type TownLayout, type Vec2 } from '../src/config/islands/types';
 import { clamp, distPolyline, lerp, makeNoise, nearestOnPolyline, sdPolygon, smoothstep } from './lib/noise';
 
@@ -30,7 +31,7 @@ const outDir = join(root, 'assets', GLAZE.heightmap.replace(/\/[^/]+$/, ''));
 const seedArg = process.argv.indexOf('--seed');
 const SEED = seedArg > 0 ? Number(process.argv[seedArg + 1]) : 20261006;
 /** 城镇手工布局在 M3-11 ~ M3-14 加入 */
-const TOWNS: TownLayout[] = [];
+const TOWNS: TownLayout[] = GLAZE_TOWNS;
 
 const N = 1025;
 const SIZE = GLAZE.size[0];
@@ -528,7 +529,7 @@ const pads: Pad[] = [];
 for (const t of TOWNS) {
   for (const q of t.pads ?? []) pads.push({ x: q.position[0], z: q.position[1], hw: q.size[0] / 2, hd: q.size[1] / 2, yaw: q.yaw ?? 0, y: q.y ?? null, blend: q.blend ?? 4 });
   for (const q of t.props) {
-    if (!PAD_TYPES.has(q.type) || q.y !== undefined) continue;
+    if (!PAD_TYPES.has(q.type) || q.y !== undefined || q.mirage) continue;
     const front = q.type === 'pokecenter' ? 3.5 : 1.5;
     const [w, , d] = q.size;
     pads.push({ x: q.position[0] + Math.sin(q.yaw) * (front / 2), z: q.position[1] + Math.cos(q.yaw) * (front / 2), hw: w / 2 + 2.5, hd: d / 2 + 2.5 + front / 2, yaw: q.yaw, y: null, blend: 3.5 });

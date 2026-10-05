@@ -858,6 +858,7 @@ export class OverworldScene implements Scene, BattleHost {
     }
     this.water.setLighting(sky.sunDir, sky.sunColor, sky.ambient, vis.rain);
     this.props.setNight(sky.night);
+    this.props.setHour(hour, dt);
     this.lamps.update(dt, p, sky.night);
     // 性能 P1 · Bloom 按需：夜晚（路灯 / 窗户 / 发光蘑菇）、附近有头目（火星粒子）时才开启
     if (sky.night > 0.25 || this.lamps.townGlow > 0.01 || this.alpha.glowNear) this.post.requestBloom(0.5);

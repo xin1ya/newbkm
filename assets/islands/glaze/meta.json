@@ -1,6 +1,6 @@
 {
   "seed": 20261006,
-  "generatedAt": "2026-10-05T12:17:28.450Z",
+  "generatedAt": "2026-10-05T12:40:44.582Z",
   "heightmap": {
     "size": 1025,
     "cell": 2,
@@ -25,13 +25,13 @@
       "flowers"
     ],
     "coverage": {
-      "grass": 0.2275,
+      "grass": 0.227,
       "forest": 0.034,
       "tallgrass": 0.0597,
-      "dirt": 0.003,
-      "sand": 0.5836,
+      "dirt": 0.0032,
+      "sand": 0.5835,
       "rock": 0.0821,
-      "stone": 0.0062,
+      "stone": 0.0065,
       "flowers": 0.004
     },
     "ext": {
@@ -41,7 +41,7 @@
       "dune": 0.0296
     }
   },
-  "props": 351,
+  "props": 461,
   "landRatio": 0.427,
   "landKm2": 1.8,
   "walkableRatio": 0.921,

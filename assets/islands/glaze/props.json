@@ -4,6 +4,1837 @@
  "generatedBy": "gen-glaze seed=20261006",
  "props": [
   {
+   "type": "pokecenter",
+   "position": [
+    -420,
+    437.4
+   ],
+   "yaw": 0,
+   "size": [
+    15,
+    7.5,
+    12
+   ],
+   "ref": "pokecenter-mirage",
+   "color": "#fbf5ee",
+   "roof": "#e25a4f"
+  },
+  {
+   "type": "mart",
+   "position": [
+    -345,
+    438.4
+   ],
+   "yaw": 0,
+   "size": [
+    12,
+    6.5,
+    10
+   ],
+   "ref": "mart-mirage",
+   "color": "#f4f6f8",
+   "roof": "#3f7fd6"
+  },
+  {
+   "type": "gym",
+   "ref": "gym-mirage",
+   "position": [
+    -380,
+    386
+   ],
+   "yaw": 0,
+   "size": [
+    26,
+    15,
+    26
+   ],
+   "variant": "mirage"
+  },
+  {
+   "type": "house",
+   "position": [
+    -460,
+    439.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.4,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#f4ecdc",
+   "roof": "#5fb8c0",
+   "seed": 4101,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -443,
+    439.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.8,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#efe2c8",
+   "roof": "#3f8aa8",
+   "seed": 4102,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -325,
+    439.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.6,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#f6f0e4",
+   "roof": "#7fd6d8",
+   "seed": 4103,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -308,
+    439.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#f4ecdc",
+   "roof": "#5fb8c0",
+   "seed": 4104,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -460,
+    460.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.6,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#efe2c8",
+   "roof": "#7fd6d8",
+   "seed": 4111,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -443,
+    460.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#f6f0e4",
+   "roof": "#5fb8c0",
+   "seed": 4112,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -426,
+    460.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.8,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#f4ecdc",
+   "roof": "#3f8aa8",
+   "seed": 4113,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -409,
+    460.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    8,
+    6.2,
+    7
+   ],
+   "variant": "mirage",
+   "color": "#efe2c8",
+   "roof": "#5fb8c0",
+   "seed": 4114,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -352,
+    460.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    8,
+    6.4,
+    7
+   ],
+   "variant": "mirage",
+   "color": "#f6f0e4",
+   "roof": "#7fd6d8",
+   "seed": 4115,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -335,
+    460.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.8,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#f4ecdc",
+   "roof": "#3f8aa8",
+   "seed": 4116,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -318,
+    460.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.2,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#efe2c8",
+   "roof": "#5fb8c0",
+   "seed": 4117,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -301,
+    460.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.6,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#f6f0e4",
+   "roof": "#7fd6d8",
+   "seed": 4118,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -455,
+    495.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    7,
+    9
+   ],
+   "variant": "mirage",
+   "color": "#f4ecdc",
+   "roof": "#3f8aa8",
+   "seed": 4121,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -436,
+    495.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    11,
+    7.6,
+    10
+   ],
+   "variant": "mirage",
+   "color": "#efe4d4",
+   "roof": "#7a4a9a",
+   "seed": 4122,
+   "accent": "#7a4a9a",
+   "ref": "mirage-seer-house"
+  },
+  {
+   "type": "house",
+   "position": [
+    -417,
+    494.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.6,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#f6f0e4",
+   "roof": "#5fb8c0",
+   "seed": 4123,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -343,
+    494.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.4,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#efe2c8",
+   "roof": "#7fd6d8",
+   "seed": 4124,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -324,
+    495.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    10,
+    7,
+    9
+   ],
+   "variant": "mirage",
+   "color": "#f4ecdc",
+   "roof": "#5fb8c0",
+   "seed": 4125,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "house",
+   "position": [
+    -305,
+    494.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.6,
+    8
+   ],
+   "variant": "mirage",
+   "color": "#f6f0e4",
+   "roof": "#3f8aa8",
+   "seed": 4126,
+   "accent": "#3f7a8a"
+  },
+  {
+   "type": "mirage-gate",
+   "position": [
+    -478,
+    450
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    8,
+    8.5,
+    2.2
+   ]
+  },
+  {
+   "type": "mirage-gate",
+   "position": [
+    -284,
+    450
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    8,
+    8.5,
+    2.2
+   ]
+  },
+  {
+   "type": "minaret",
+   "position": [
+    -410,
+    404
+   ],
+   "yaw": 0,
+   "size": [
+    2.6,
+    20,
+    2.6
+   ]
+  },
+  {
+   "type": "minaret",
+   "position": [
+    -350,
+    404
+   ],
+   "yaw": 0,
+   "size": [
+    2.6,
+    20,
+    2.6
+   ]
+  },
+  {
+   "type": "prophecy-obelisk",
+   "position": [
+    -392,
+    436
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    5.5,
+    2
+   ],
+   "seed": 4131
+  },
+  {
+   "type": "prophecy-obelisk",
+   "position": [
+    -368,
+    436
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    5.5,
+    2
+   ],
+   "seed": 4132
+  },
+  {
+   "type": "sign",
+   "ref": "gym-mirage-sign",
+   "position": [
+    -372,
+    404
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    -398,
+    420
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    -362,
+    420
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    1.8,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -388,
+    408
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    0.4,
+    1.2
+   ],
+   "seed": 4133
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    -372,
+    408
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    0.4,
+    1.2
+   ],
+   "seed": 4134
+  },
+  {
+   "type": "noticeboard",
+   "ref": "mirage-noticeboard",
+   "position": [
+    -402,
+    444
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "mailbox",
+   "position": [
+    -452,
+    441
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    1.2,
+    0.4
+   ],
+   "color": "#3f7a8a"
+  },
+  {
+   "type": "well",
+   "position": [
+    -470,
+    470
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "type": "fountain",
+   "position": [
+    -380,
+    470
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    2.4,
+    5
+   ],
+   "color": "#e4d8c0",
+   "variant": "star"
+  },
+  {
+   "type": "laundry",
+   "position": [
+    -446,
+    476
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.1,
+    0.2
+   ],
+   "seed": 4135
+  },
+  {
+   "type": "laundry",
+   "position": [
+    -316,
+    476
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.1,
+    0.2
+   ],
+   "seed": 4136
+  },
+  {
+   "type": "garden",
+   "position": [
+    -300,
+    476
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    0.4,
+    4
+   ],
+   "variant": "herb",
+   "seed": 4137
+  },
+  {
+   "type": "fence",
+   "position": [
+    0,
+    0
+   ],
+   "yaw": 0,
+   "size": [
+    0.12,
+    1.1,
+    0.12
+   ],
+   "points": [
+    [
+     -304,
+     472
+    ],
+    [
+     -296,
+     472
+    ],
+    [
+     -296,
+     480
+    ]
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    -356,
+    474
+   ],
+   "yaw": 0.3,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    -355,
+    475.4
+   ],
+   "yaw": 0.9,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -466,
+    482
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#8a5a32"
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -465,
+    483.3
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#8a5a32"
+  },
+  {
+   "type": "bunting",
+   "position": [
+    -380,
+    450
+   ],
+   "yaw": 0,
+   "size": [
+    0.1,
+    4,
+    0.1
+   ],
+   "points": [
+    [
+     -470,
+     447
+    ],
+    [
+     -430,
+     453
+    ],
+    [
+     -390,
+     447
+    ],
+    [
+     -350,
+     453
+    ],
+    [
+     -300,
+     447
+    ]
+   ],
+   "seed": 4138
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -466,
+    454
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -436,
+    446
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -404,
+    454
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -356,
+    446
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -330,
+    454
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -296,
+    446
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -376,
+    480
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    -384,
+    530
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "tree",
+   "position": [
+    -412,
+    426
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4140
+  },
+  {
+   "type": "tree",
+   "position": [
+    -348,
+    426
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4171
+  },
+  {
+   "type": "tree",
+   "position": [
+    -404,
+    412
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4202
+  },
+  {
+   "type": "tree",
+   "position": [
+    -356,
+    412
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4233
+  },
+  {
+   "type": "tree",
+   "position": [
+    -486,
+    436
+   ],
+   "yaw": 0.5168146928204136,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4264
+  },
+  {
+   "type": "tree",
+   "position": [
+    -486,
+    466
+   ],
+   "yaw": 2.2168146928204138,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4295
+  },
+  {
+   "type": "tree",
+   "position": [
+    -276,
+    436
+   ],
+   "yaw": 3.916814692820413,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4326
+  },
+  {
+   "type": "tree",
+   "position": [
+    -276,
+    466
+   ],
+   "yaw": 5.616814692820414,
+   "size": [
+    1,
+    7,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4357
+  },
+  {
+   "type": "tree",
+   "position": [
+    -396,
+    474
+   ],
+   "yaw": 1.0336293856408272,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4388
+  },
+  {
+   "type": "tree",
+   "position": [
+    -364,
+    474
+   ],
+   "yaw": 2.7336293856408265,
+   "size": [
+    1,
+    6.5,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4419
+  },
+  {
+   "type": "tree",
+   "position": [
+    -470,
+    500
+   ],
+   "yaw": 4.4336293856408275,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4450
+  },
+  {
+   "type": "tree",
+   "position": [
+    -292,
+    500
+   ],
+   "yaw": 6.133629385640827,
+   "size": [
+    1,
+    7.5,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4481
+  },
+  {
+   "type": "tree",
+   "position": [
+    -392,
+    540
+   ],
+   "yaw": 1.5504440784612399,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4512
+  },
+  {
+   "type": "tree",
+   "position": [
+    -368,
+    540
+   ],
+   "yaw": 3.250444078461239,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4543
+  },
+  {
+   "type": "tree",
+   "position": [
+    -480,
+    420
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    4.5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 4160
+  },
+  {
+   "type": "tree",
+   "position": [
+    -284,
+    420
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    4.5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 4191
+  },
+  {
+   "type": "tree",
+   "position": [
+    -430,
+    510
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    4,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 4222
+  },
+  {
+   "type": "tree",
+   "position": [
+    -330,
+    510
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    4,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 4253
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -494,
+    500
+   ],
+   "yaw": 0,
+   "size": [
+    3.6,
+    1.3,
+    3.6
+   ],
+   "seed": 4171,
+   "color": "#d8c8a4"
+  },
+  {
+   "type": "rocks",
+   "position": [
+    -268,
+    490
+   ],
+   "yaw": 0,
+   "size": [
+    3.2,
+    1.2,
+    3.2
+   ],
+   "seed": 4172,
+   "color": "#d8c8a4"
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -399,
+    428
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.6,
+    2.2
+   ],
+   "roof": "#d86a4a",
+   "variant": "fruit",
+   "seed": 4201,
+   "hours": [
+    7,
+    18
+   ]
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -399,
+    414
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.6,
+    2.2
+   ],
+   "roof": "#e8b73a",
+   "variant": "cloth",
+   "seed": 4202,
+   "hours": [
+    7,
+    18
+   ]
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -361,
+    428
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    3.2,
+    2.6,
+    2.2
+   ],
+   "roof": "#3f8aa8",
+   "variant": "pottery",
+   "seed": 4203,
+   "hours": [
+    7,
+    18
+   ]
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -361,
+    414
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    3.2,
+    2.6,
+    2.2
+   ],
+   "roof": "#7a4a9a",
+   "variant": "spice",
+   "seed": 4204,
+   "hours": [
+    7,
+    18
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    -402,
+    421
+   ],
+   "yaw": 0.2,
+   "size": [
+    1,
+    1,
+    1
+   ],
+   "hours": [
+    7,
+    18
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    -358,
+    421
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ],
+   "color": "#9b6b43",
+   "hours": [
+    7,
+    18
+   ]
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -394,
+    500
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.6,
+    2.2
+   ],
+   "roof": "#4b4a78",
+   "variant": "lantern",
+   "seed": 4211,
+   "hours": [
+    19,
+    3
+   ]
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -394,
+    512
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3.2,
+    2.6,
+    2.2
+   ],
+   "roof": "#7a4a9a",
+   "variant": "charm",
+   "seed": 4212,
+   "hours": [
+    19,
+    3
+   ]
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -366,
+    500
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    3.2,
+    2.6,
+    2.2
+   ],
+   "roof": "#3f6a9a",
+   "variant": "fish",
+   "seed": 4213,
+   "hours": [
+    19,
+    3
+   ]
+  },
+  {
+   "type": "market-stall",
+   "position": [
+    -366,
+    512
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    3.2,
+    2.6,
+    2.2
+   ],
+   "roof": "#5b4a78",
+   "variant": "sweets",
+   "seed": 4214,
+   "hours": [
+    19,
+    3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -397,
+    506
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    2.6,
+    0.5
+   ],
+   "color": "#e8c870",
+   "hours": [
+    19,
+    3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -363,
+    506
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    2.6,
+    0.5
+   ],
+   "color": "#e8c870",
+   "hours": [
+    19,
+    3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -386,
+    520
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    2.4,
+    0.5
+   ],
+   "color": "#c86ad8",
+   "hours": [
+    19,
+    3
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    -374,
+    520
+   ],
+   "yaw": 0,
+   "size": [
+    0.5,
+    2.4,
+    0.5
+   ],
+   "color": "#c86ad8",
+   "hours": [
+    19,
+    3
+   ]
+  },
+  {
+   "type": "bunting",
+   "position": [
+    -380,
+    506
+   ],
+   "yaw": 0,
+   "size": [
+    0.1,
+    3.6,
+    0.1
+   ],
+   "points": [
+    [
+     -396,
+     498
+    ],
+    [
+     -380,
+     504
+    ],
+    [
+     -364,
+     498
+    ]
+   ],
+   "seed": 4215,
+   "hours": [
+    19,
+    3
+   ]
+  },
+  {
+   "type": "bunting",
+   "position": [
+    -380,
+    514
+   ],
+   "yaw": 0,
+   "size": [
+    0.1,
+    3.6,
+    0.1
+   ],
+   "points": [
+    [
+     -396,
+     514
+    ],
+    [
+     -380,
+     520
+    ],
+    [
+     -364,
+     514
+    ]
+   ],
+   "seed": 4216,
+   "hours": [
+    19,
+    3
+   ]
+  },
+  {
+   "type": "moon-tower",
+   "position": [
+    -484,
+    492
+   ],
+   "yaw": 0,
+   "size": [
+    5,
+    26,
+    5
+   ],
+   "hours": [
+    20,
+    4
+   ]
+  },
+  {
+   "type": "prophecy-obelisk",
+   "position": [
+    -476,
+    500
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    4,
+    2
+   ],
+   "seed": 4221,
+   "hours": [
+    20,
+    4
+   ]
+  },
+  {
+   "type": "house",
+   "position": [
+    -204.4,
+    470
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    24,
+    14,
+    18
+   ],
+   "variant": "mirage",
+   "color": "#f8eed8",
+   "roof": "#8fe0e4",
+   "seed": 4231,
+   "accent": "#c9a86a",
+   "collide": false,
+   "hours": [
+    10,
+    16
+   ],
+   "mirage": true
+  },
+  {
+   "type": "minaret",
+   "position": [
+    -212,
+    448
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    30,
+    3
+   ],
+   "color": "#f8eed8",
+   "accent": "#8fe0e4",
+   "collide": false,
+   "hours": [
+    10,
+    16
+   ],
+   "mirage": true
+  },
+  {
+   "type": "minaret",
+   "position": [
+    -212,
+    492
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    30,
+    3
+   ],
+   "color": "#f8eed8",
+   "accent": "#8fe0e4",
+   "collide": false,
+   "hours": [
+    10,
+    16
+   ],
+   "mirage": true
+  },
+  {
+   "type": "mirage-gate",
+   "position": [
+    -236,
+    470
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    7,
+    9,
+    2.2
+   ],
+   "color": "#f8eed8",
+   "accent": "#c9a86a",
+   "collide": false,
+   "hours": [
+    10,
+    16
+   ],
+   "mirage": true
+  },
+  {
+   "type": "tree",
+   "position": [
+    -232,
+    452
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    9,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4240,
+   "collide": false,
+   "hours": [
+    10,
+    16
+   ],
+   "mirage": true
+  },
+  {
+   "type": "tree",
+   "position": [
+    -232,
+    488
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    9,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4271,
+   "collide": false,
+   "hours": [
+    10,
+    16
+   ],
+   "mirage": true
+  },
+  {
+   "type": "tree",
+   "position": [
+    -196,
+    446
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4302,
+   "collide": false,
+   "hours": [
+    10,
+    16
+   ],
+   "mirage": true
+  },
+  {
+   "type": "tree",
+   "position": [
+    -196,
+    494
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    8,
+    1
+   ],
+   "variant": "palm",
+   "seed": 4333,
+   "collide": false,
+   "hours": [
+    10,
+    16
+   ],
+   "mirage": true
+  },
+  {
+   "type": "deck",
+   "position": [
+    -380,
+    588
+   ],
+   "yaw": 0,
+   "size": [
+    7,
+    0.4,
+    26
+   ],
+   "y": 1.6,
+   "rails": "ew",
+   "gaps": []
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    -388,
+    596
+   ],
+   "yaw": 0.2,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 0.2
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    -372,
+    600
+   ],
+   "yaw": -0.3,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 0.2
+  },
+  {
+   "type": "bollard",
+   "position": [
+    -383,
+    598
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.7,
+    0.4
+   ],
+   "y": 1.6
+  },
+  {
+   "type": "bollard",
+   "position": [
+    -377,
+    598
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.7,
+    0.4
+   ],
+   "y": 1.6
+  },
+  {
+   "type": "net-rack",
+   "position": [
+    -396,
+    566
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    3,
+    2,
+    0.3
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    -367,
+    566
+   ],
+   "yaw": 0.4,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "mirage-dock-sign",
+   "position": [
+    -374,
+    568
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "mirage-obelisk",
+   "position": [
+    -396,
+    439
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "mirage-palace",
+   "position": [
+    -250,
+    470
+   ],
+   "yaw": -3.0509327663890486,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "mirage-moon-tower",
+   "position": [
+    -472,
+    506
+   ],
+   "yaw": -2.723368324010564,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
    "type": "cave-mouth",
    "ref": "victory-road-south",
    "position": [

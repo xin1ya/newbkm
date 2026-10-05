@@ -13,6 +13,21 @@ import * as T from './townBuilders';
 import * as TB from './tideBuilders';
 import * as TH from './thunderBuilders';
 import * as GL from './glazeBuilders';
+import { PHASE_FADE, phaseKey, phaseOpacity } from './phase';
+import type { Collider } from '../collision/CollisionWorld';
+
+/** M3-11 随时间出现 / 消失的一组摆放物 */
+interface PropPhase {
+  key: string;
+  hours: [number, number];
+  mirage: boolean;
+  meshes: THREE.Mesh[];
+  solid: THREE.MeshToonMaterial;
+  glow: THREE.MeshBasicMaterial;
+  colliders: Collider[];
+  opacity: number;
+  solidOn: boolean;
+}
 
 export class GrayboxProps {
   readonly group = new THREE.Group();
@@ -29,6 +44,11 @@ export class GrayboxProps {
   /** 有门的建筑：ref → 门口世界坐标与朝向 */
   readonly doors = new Map<string, { position: THREE.Vector3; yaw: number }>();
   private buckets = new Map<string, B.PropParts>();
+  /** 正在摆放的分时摆放物（放进独立桶，碰撞体另存） */
+  private phaseCur: PropPhase | null = null;
+  private readonly phases = new Map<string, PropPhase>();
+  private phaseInit = false;
+  private phaseTime = 0;
 
   constructor(
     private readonly hf: Heightfield,
@@ -41,8 +61,17 @@ export class GrayboxProps {
     for (const p of file.props) {
       try {
         this.blockerRef = (p.type === 'breakable-rock' || p.type === 'vine-wall' || p.type === 'boulder') && p.ref ? p.ref : null;
+        this.phaseCur = this.phaseFor(p);
+        const lamps = this.lampPositions.length;
+        const strikes = this.strikeTargets.length;
         this.addProp(p);
+        // 分时摆放物不提供夜灯 / 落雷点（消失后不该还亮着）
+        if (this.phaseCur) {
+          this.lampPositions.length = lamps;
+          this.strikeTargets.length = strikes;
+        }
         this.blockerRef = null;
+        this.phaseCur = null;
       } catch (e) {
         console.warn('[props] 生成失败', p, e);
       }
@@ -57,6 +86,7 @@ export class GrayboxProps {
         m.layers.set(LAYER.DEFAULT);
         this.group.add(m);
         this.trackBlocker(key, m);
+        this.trackPhase(key, m, false);
       }
       const glow = B.mergeParts(parts.glow);
       if (glow) {
@@ -64,9 +94,80 @@ export class GrayboxProps {
         m.name = `props-glow-${key}`;
         this.group.add(m);
         this.trackBlocker(key, m);
+        this.trackPhase(key, m, true);
       }
     }
     this.buckets.clear();
+  }
+
+  private phaseFor(p: PropInstance): PropPhase | null {
+    const key = phaseKey(p);
+    if (!key || !p.hours) return null;
+    let ph = this.phases.get(key);
+    if (!ph) {
+      const solid = createToonMaterial({ kind: 'scene', vertexColors: true, cacheKey: 'props', rim: false, specular: false, transparent: true });
+      solid.userData.outline = false;
+      const glow = this.glowMaterial.clone();
+      glow.transparent = true;
+      ph = { key, hours: [p.hours[0], p.hours[1]], mirage: p.mirage === true, meshes: [], solid, glow, colliders: [], opacity: 1, solidOn: false };
+      this.phases.set(key, ph);
+    }
+    return ph;
+  }
+
+  private trackPhase(key: string, m: THREE.Mesh, glow: boolean): void {
+    const ph = this.phases.get(key);
+    if (!ph) return;
+    m.material = glow ? ph.glow : ph.solid;
+    // 幻象不投影（热浪里的影子会穿帮）
+    if (ph.mirage) m.castShadow = false;
+    ph.meshes.push(m);
+  }
+
+  /** 碰撞体登记：分时摆放物另存（出现时才加入碰撞世界；幻象永远没有碰撞） */
+  private colAdd(group: string, c: Collider): void {
+    if (this.phaseCur) {
+      if (!this.phaseCur.mirage) this.phaseCur.colliders.push(c);
+      return;
+    }
+    this.collision.add(group, c);
+  }
+
+  /**
+   * M3-11 · 每帧按游戏时间更新分时摆放物：时间窗内淡入（实体出现时同时加入碰撞），窗外淡出并移除碰撞。
+   * 第一次调用直接跳到目标状态（读档 / 进岛时不播放淡入）。
+   */
+  setHour(hour: number, dt: number): void {
+    if (!this.phases.size) return;
+    this.phaseTime += dt;
+    const first = !this.phaseInit;
+    this.phaseInit = true;
+    for (const ph of this.phases.values()) {
+      const want = phaseOpacity(hour, ph.hours, ph.mirage, this.phaseTime);
+      if (first) ph.opacity = want;
+      // 幻象已经显现：直接跟随热浪闪烁
+      else if (ph.mirage && want > 0 && ph.opacity > 0.3) ph.opacity = want;
+      else ph.opacity += Math.sign(want - ph.opacity) * Math.min(Math.abs(want - ph.opacity), PHASE_FADE * dt);
+      const vis = ph.opacity > 0.01;
+      for (const m of ph.meshes) m.visible = vis;
+      ph.solid.opacity = ph.opacity;
+      ph.glow.opacity = ph.opacity;
+      ph.solid.depthWrite = ph.opacity > 0.97;
+      ph.solid.transparent = ph.opacity < 0.999;
+      ph.glow.transparent = ph.opacity < 0.999;
+      // 实体：一开始出现就有碰撞，开始消失就撤掉（避免玩家被困在正在淡出的墙里）
+      const on = !ph.mirage && want > 0;
+      if (on !== ph.solidOn) {
+        ph.solidOn = on;
+        if (on) for (const c of ph.colliders) this.collision.add(ph.key, c);
+        else this.collision.removeGroup(ph.key);
+      }
+    }
+  }
+
+  /** 调试 / 测试：各分时组当前状态 */
+  phaseState(): Array<{ key: string; opacity: number; solid: boolean; colliders: number }> {
+    return [...this.phases.values()].map((ph) => ({ key: ph.key, opacity: ph.opacity, solid: ph.solidOn, colliders: ph.colliders.length }));
   }
 
   private trackBlocker(key: string, m: THREE.Mesh): void {
@@ -90,7 +191,7 @@ export class GrayboxProps {
 
   private bucket(x: number, z: number): B.PropParts {
     const cs = this.hf.config.chunkSize;
-    const key = this.blockerRef ? `blocker:${this.blockerRef}` : `${Math.floor((x + this.hf.half) / cs)},${Math.floor((z + this.hf.half) / cs)}`;
+    const key = this.blockerRef ? `blocker:${this.blockerRef}` : this.phaseCur ? this.phaseCur.key : `${Math.floor((x + this.hf.half) / cs)},${Math.floor((z + this.hf.half) / cs)}`;
     let b = this.buckets.get(key);
     if (!b) this.buckets.set(key, (b = { solid: [], glow: [] }));
     return b;
@@ -115,7 +216,7 @@ export class GrayboxProps {
   }
 
   private addBox(x: number, z: number, w: number, d: number, yaw: number, y0: number, y1: number, tag: string, walkableTop = false, group = 'props'): void {
-    this.collision.add(group, { kind: 'box', x, z, hx: w / 2, hz: d / 2, yaw, y0, y1, tag, walkableTop });
+    this.colAdd(group, { kind: 'box', x, z, hx: w / 2, hz: d / 2, yaw, y0, y1, tag, walkableTop });
   }
 
   private addProp(p: PropInstance): void {
@@ -150,6 +251,8 @@ export class GrayboxProps {
                       ? TH.chaletHouse(w, h, d, roof, seed, p.accent)
                       : p.variant === 'lark'
                         ? TH.larkHouse(w, h, d, wall, roof, seed, p.accent)
+                        : p.variant === 'mirage'
+                          ? GL.mirageHouse(w, h, d, wall, roof, seed, p.accent)
                         : T.house(w, h, d, wall, roof, p.variant, seed, p.accent)
             : p.type === 'lab'
               ? T.lab(w, h, d, wall, roof)
@@ -178,7 +281,7 @@ export class GrayboxProps {
           }
           if (p.type === 'pokecenter') for (const sx of [-1, 1]) {
             const [px, pz] = at(sx * 3.3, d / 2 + 2.9);
-            this.collision.add('props', { kind: 'circle', x: px, z: pz, r: 0.2, y0: y, y1: y + 4, tag: 'pillar' });
+            this.colAdd('props', { kind: 'circle', x: px, z: pz, r: 0.2, y0: y, y1: y + 4, tag: 'pillar' });
           }
           if (p.type === 'warehouse') {
             const [lx, lz] = at(0, d / 2 + 1.1);
@@ -202,15 +305,16 @@ export class GrayboxProps {
           dawn: () => TH.gymDawn(w, h),
           ice: () => TH.gymIce(w, h),
           flying: () => TH.gymFlying(w, h),
+          mirage: () => GL.gymMirage(w, h),
         };
         this.place((gymParts[p.variant ?? ''] ?? (() => T.gym(w, h, wall, roof)))(), x, y, z, yaw);
-        this.collision.add('props', { kind: 'circle', x, z, r: w / 2, y0: y, y1: y + h, tag: `building:${p.ref}` });
+        this.colAdd('props', { kind: 'circle', x, z, r: w / 2, y0: y, y1: y + h, tag: `building:${p.ref}` });
         // 平台可站立
-        this.collision.add('props', { kind: 'box', x, z, hx: w / 2 + 1.5, hz: w / 2 + 1.5, yaw: 0, y0: y - 3, y1: y + 0.6, walkableTop: true, tag: 'gym-platform' });
+        this.colAdd('props', { kind: 'box', x, z, hx: w / 2 + 1.5, hz: w / 2 + 1.5, yaw: 0, y0: y - 3, y1: y + 0.6, walkableTop: true, tag: 'gym-platform' });
         // 大门前台阶：顶面 +0.3（平台 0.6 超过一步可跨高度 0.55，需要中间一级）
         {
           const sd = w / 2 + 2.4;
-          this.collision.add('props', { kind: 'box', x: x + Math.sin(yaw) * sd, z: z + Math.cos(yaw) * sd, hx: 3.5, hz: 0.8, yaw, y0: y - 3, y1: y + 0.3, walkableTop: true, tag: 'gym-steps' });
+          this.colAdd('props', { kind: 'box', x: x + Math.sin(yaw) * sd, z: z + Math.cos(yaw) * sd, hx: 3.5, hz: 0.8, yaw, y0: y - 3, y1: y + 0.3, walkableTop: true, tag: 'gym-steps' });
         }
         if (p.ref) this.doors.set(p.ref, { position: new THREE.Vector3(x + Math.sin(yaw) * (w / 2 + 1), y + 0.6, z + Math.cos(yaw) * (w / 2 + 1)), yaw });
         break;
@@ -223,7 +327,7 @@ export class GrayboxProps {
           const bz = z - Math.cos(yaw) * (w * 0.8 + 2.4);
           this.addBox(bx, bz, 5, 4.2, yaw, y, y + 4.4, 'lighthouse-keeper');
         }
-        this.collision.add('props', { kind: 'circle', x, z, r: w * 0.75, y0: y, y1: y + h, tag: 'lighthouse' });
+        this.colAdd('props', { kind: 'circle', x, z, r: w * 0.75, y0: y, y1: y + h, tag: 'lighthouse' });
         this.lampPositions.push(new THREE.Vector3(x, y + h - 3, z));
         break;
       }
@@ -302,7 +406,7 @@ export class GrayboxProps {
       case 'lamp': {
         const y = this.hf.heightAt(x, z) - 0.05;
         this.place(B.lamp(h), x, y, z, yaw);
-        this.collision.add('props', { kind: 'circle', x, z, r: 0.15, y0: y, y1: y + h, tag: 'lamp' });
+        this.colAdd('props', { kind: 'circle', x, z, r: 0.15, y0: y, y1: y + h, tag: 'lamp' });
         this.lampPositions.push(new THREE.Vector3(x + 0.55, y + h - 0.4, z));
         break;
       }
@@ -321,7 +425,7 @@ export class GrayboxProps {
       case 'breakable-rock': {
         const y = this.hf.heightAt(x, z) - 0.2;
         this.place(B.breakableRock(w / 2), x, y, z, 0);
-        this.collision.add(`blocker:${p.ref}`, { kind: 'circle', x, z, r: w / 2, y0: y, y1: y + h, tag: `blocker:${p.ref}` });
+        this.colAdd(`blocker:${p.ref}`, { kind: 'circle', x, z, r: w / 2, y0: y, y1: y + h, tag: `blocker:${p.ref}` });
         break;
       }
       case 'cave-mouth': {
@@ -333,7 +437,7 @@ export class GrayboxProps {
       case 'well': {
         const y = this.hf.heightAt(x, z) - 0.05;
         this.place(T.well(), x, y, z, yaw);
-        this.collision.add('props', { kind: 'circle', x, z, r: 1.2, y0: y, y1: y + 3.5, tag: 'well' });
+        this.colAdd('props', { kind: 'circle', x, z, r: 1.2, y0: y, y1: y + 3.5, tag: 'well' });
         break;
       }
       case 'market-stall': {
@@ -369,7 +473,7 @@ export class GrayboxProps {
       return this.hf.heightAt(wx, wz) - deckY;
     };
     const circle = (r: number, top: number, tag: string, cx = x, cz = z) => {
-      if (collide) this.collision.add('props', { kind: 'circle', x: cx, z: cz, r, y0: ground, y1: ground + top, tag });
+      if (collide) this.colAdd('props', { kind: 'circle', x: cx, z: cz, r, y0: ground, y1: ground + top, tag });
     };
     const rails = (deckY: number, rs: string, gaps: Array<[string, number, number]>) => {
       for (const seg of T.railSegments(w, d, rs, gaps)) {
@@ -571,12 +675,12 @@ export class GrayboxProps {
       }
       case 'vine-wall': {
         this.place(TB.vineWall(w, h, seed), x, ground, z, yaw);
-        if (p.ref) this.collision.add(`blocker:${p.ref}`, { kind: 'box', x, z, hx: w / 2, hz: 0.8, yaw, y0: ground, y1: ground + h, tag: `blocker:${p.ref}` });
+        if (p.ref) this.colAdd(`blocker:${p.ref}`, { kind: 'box', x, z, hx: w / 2, hz: 0.8, yaw, y0: ground, y1: ground + h, tag: `blocker:${p.ref}` });
         return true;
       }
       case 'boulder':
         this.place(TB.boulder(w / 2, seed), x, ground, z, yaw);
-        if (p.ref) this.collision.add(`blocker:${p.ref}`, { kind: 'circle', x, z, r: w / 2, y0: ground, y1: ground + h, tag: `blocker:${p.ref}` });
+        if (p.ref) this.colAdd(`blocker:${p.ref}`, { kind: 'circle', x, z, r: w / 2, y0: ground, y1: ground + h, tag: `blocker:${p.ref}` });
         return true;
       case 'headframe':
         this.place(TB.headframe(w, h), x, ground, z, yaw);
@@ -716,6 +820,31 @@ export class GrayboxProps {
       case 'wisp':
         this.place(GL.wisp(h, p.color, seed), x, ground, z, yaw);
         return true;
+      // ——— M3-11 幻影镇 ———
+      case 'minaret': {
+        const bw = Math.max(2.4, h * 0.11);
+        this.place(GL.minaret(h, p.color, p.accent), x, ground - 0.1, z, yaw);
+        if (collide) this.addBox(x, z, bw, bw, yaw, ground, ground + h, 'minaret');
+        return true;
+      }
+      case 'mirage-gate': {
+        this.place(GL.mirageGate(w, h, p.color, p.accent), x, ground - 0.05, z, yaw);
+        for (const s of [-1, 1]) {
+          const [px, pz] = at(s * (w / 2 + 1.1), 0);
+          if (collide) this.addBox(px, pz, 2.2, 2.2, yaw, ground, ground + h, 'mirage-gate');
+        }
+        return true;
+      }
+      case 'prophecy-obelisk':
+        this.place(GL.prophecyObelisk(h, seed), x, ground - 0.05, z, yaw);
+        if (collide) this.addBox(x, z, 2.0, 2.0, yaw, ground, ground + h, 'prophecy-obelisk');
+        this.lampPositions.push(new THREE.Vector3(x, ground + h + 1.6, z));
+        return true;
+      case 'moon-tower':
+        this.place(GL.moonTower(w, h), x, ground - 0.1, z, yaw);
+        circle(w * 0.6, h, 'moon-tower');
+        this.lampPositions.push(new THREE.Vector3(x, ground + h * 0.85, z));
+        return true;
       default:
         return false;
     }
@@ -725,6 +854,7 @@ export class GrayboxProps {
   setNight(k: number): void {
     const v = THREE.MathUtils.lerp(0.9, 2.4, k);
     this.glowMaterial.color.setRGB(v, v * 0.95, v * 0.82);
+    for (const ph of this.phases.values()) ph.glow.color.copy(this.glowMaterial.color);
   }
 
   dispose(): void {
@@ -732,5 +862,10 @@ export class GrayboxProps {
     this.solidMaterial.dispose();
     this.glowMaterial.dispose();
     this.collision.removeGroup('props');
+    for (const ph of this.phases.values()) {
+      this.collision.removeGroup(ph.key);
+      ph.solid.dispose();
+      ph.glow.dispose();
+    }
   }
 }

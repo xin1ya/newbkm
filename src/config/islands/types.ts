@@ -235,6 +235,15 @@ export type PropType =
   | 'glass-crystal'
   /** 鬼火（只发光，无碰撞） */
   | 'wisp'
+  // ——— M3-11 幻影镇 ———
+  /** 宣礼塔式蜃楼塔 */
+  | 'minaret'
+  /** 马蹄拱城门（size.x = 门洞宽） */
+  | 'mirage-gate'
+  /** 预言石柱（发光符文） */
+  | 'prophecy-obelisk'
+  /** 月影塔（夜间蜃楼） */
+  | 'moon-tower'
   | 'glb';
 
 export interface PropInstance {
@@ -268,6 +277,10 @@ export interface PropInstance {
   rails?: string;
   /** deck：栏杆开口 [边, 沿边中心偏移, 宽度] */
   gaps?: Array<[string, number, number]>;
+  /** M3-11 只在这段时间（小时 [起, 止)，可跨午夜）出现；缺省 = 一直都在 */
+  hours?: [number, number];
+  /** M3-11 幻象：半透明闪烁、没有碰撞（白天的海市蜃楼） */
+  mirage?: boolean;
 }
 
 /** M1-02/03/04 · 城镇布局（手工摆放，gen-sprout 读取后写入 props.json） */

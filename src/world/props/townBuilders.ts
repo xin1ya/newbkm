@@ -1375,6 +1375,13 @@ export function marketStall(w: number, h: number, d: number, canopy: string, see
     fish: ['#9bb6c9', '#c9d4db', '#e3a07a'],
     berry: ['#5a3d8a', '#e25a4f', '#2f6db5', '#f7d046'],
     goods: ['#5aa9e6', '#f2c14e', '#ffffff', '#c86b5a'],
+    // M3-11 幻影镇市集
+    cloth: ['#c8402e', '#3f6a9a', '#e8b73a', '#7a4a9a'],
+    pottery: ['#c8784a', '#a8603a', '#3f8aa8', '#efe4cc'],
+    spice: ['#d8a030', '#b8402a', '#8a6a3a', '#e8c870'],
+    lantern: ['#e8c870', '#f28c28', '#c86ad8', '#ffe0a0'],
+    charm: ['#c86ad8', '#7fd6d8', '#e8e2ff', '#5b4a78'],
+    sweets: ['#f7a8c8', '#fff0c8', '#a8e0c8', '#e8c870'],
   };
   const pal = palettes[goods] ?? palettes.fruit!;
   const crates = Math.max(2, Math.floor(w / 0.8));
