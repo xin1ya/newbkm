@@ -147,7 +147,7 @@ export class Heightfield {
   /** 是否是熔岩（不可踏入） */
   isLava(x: number, z: number): boolean {
     const ext = this.splat[2];
-    if (!ext) return false;
+    if (!ext || (this.config.ext && !this.config.ext.lava)) return false;
     const s = this.splatSize;
     const i = Math.min(s - 1, Math.max(0, Math.floor(((x + this.half) / this.config.size[0]) * s)));
     const j = Math.min(s - 1, Math.max(0, Math.floor(((z + this.half) / this.config.size[1]) * s)));

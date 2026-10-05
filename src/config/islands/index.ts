@@ -1,11 +1,13 @@
 import type { IslandId } from '@/systems/state/GameState';
 import { SPROUT } from './sprout';
+import { THUNDER } from './thunder';
 import { TIDE } from './tide';
 import type { IslandConfig } from './types';
 
 export const ISLANDS: Partial<Record<IslandId, IslandConfig>> = {
   sprout: SPROUT,
   tide: TIDE,
+  thunder: THUNDER,
 };
 
 export function getIsland(id: IslandId): IslandConfig {

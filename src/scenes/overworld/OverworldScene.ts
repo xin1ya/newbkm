@@ -76,6 +76,8 @@ import { SceneBlocks } from '@/scenes/common/SceneBlocks';
 import { SceneAlpha } from '@/scenes/common/SceneAlpha';
 import { makeRoaming } from '@/systems/alpha';
 import { applyTravel, canUseLink, linkAt, TRAVEL_SLOT_KEY } from '@/systems/travel';
+import { currentAt, whirlpoolAt, whirlpoolEject } from '@/systems/travel/sea';
+import { SeaFx } from '@/world/water/SeaFx';
 import { BLOCKER_ABILITY, CLEARABLE_BLOCKERS, blockerOpen } from '@/systems/interaction';
 import type { IslandId } from '@/systems/state/GameState';
 import { BattleScene, type BattleHost, type BattleResult, type BattleResultKind, type BattleStartData } from '@/scenes/battle';
@@ -118,6 +120,9 @@ export class OverworldScene implements Scene, BattleHost {
   player!: PlayerController;
   terrain!: Terrain;
   private water!: Water;
+  /** M3-03 洋流 / 漩涡表现 */
+  private seaFx!: SeaFx;
+  private whirlBusy = false;
   private foliage!: FoliageLibrary;
   private life!: AmbientLife;
   private chunks!: ChunkManager;
@@ -244,6 +249,7 @@ export class OverworldScene implements Scene, BattleHost {
     });
     progress(0.5, '生成水面与天空……');
     this.water = new Water(this.terrain.hf, quality.water === 'full');
+    this.seaFx = new SeaFx(island);
     this.sky = new Sky(quality);
     this.foliage = new FoliageLibrary(quality);
     // 生态自然化：分区决定树种 / 林下植物 / 环境生物
@@ -360,7 +366,7 @@ export class OverworldScene implements Scene, BattleHost {
 
     const w = this.world;
     w.fog = this.sky.fog;
-    w.add(this.sky.group, this.terrain.farMesh, this.chunks.group, this.life.group, this.water.group, this.props.group, this.lamps.group, this.spawns.group, this.alpha.group, this.player.root);
+    w.add(this.sky.group, this.terrain.farMesh, this.chunks.group, this.life.group, this.water.group, this.seaFx.group, this.props.group, this.lamps.group, this.spawns.group, this.alpha.group, this.player.root);
     for (const br of this.barriers) w.add(br.dome.group);
     this.minimap = new SceneMiniMap({ ui: this.d.ui, hud: this.d.hud, state: this.d.state, island: this.d.island, hf: this.terrain.hf, toast: (t) => this.d.toaster.show(t) });
     this.minimap.attach(w);
@@ -634,6 +640,7 @@ export class OverworldScene implements Scene, BattleHost {
     }
     const axis = input ? input.moveAxis() : { x: 0, y: 0 };
     this.ride.fixedUpdate(dt, rideKey, Math.hypot(axis.x, axis.y) > 0.2);
+    this.seaStep();
     this.fly.fixedUpdate(dt, !!input && input.pressed('fly'));
     this.footsteps.fixedUpdate(this.player);
     const p = this.player.position;
@@ -743,6 +750,33 @@ export class OverworldScene implements Scene, BattleHost {
     this.d.game.events.emit('blocker:cleared', { id: b.id, type: b.type });
   }
 
+  /** M3-03 洋流推动 + 漩涡卷入（只在冲浪时） */
+  private seaStep(): void {
+    const isl = this.d.island;
+    const p = this.player.position;
+    const surf = this.ride.surfing && !this.fly.flying && !this.inBattle;
+    const c = surf && isl.currents ? currentAt(isl.currents, p.x, p.z) : null;
+    this.player.drift.x = c ? c.x : 0;
+    this.player.drift.z = c ? c.z : 0;
+    if (!surf || this.whirlBusy || !isl.whirlpools) return;
+    const w = whirlpoolAt(isl.whirlpools, p.x, p.z);
+    if (w) void this.spinOut(w);
+  }
+
+  private async spinOut(w: { id: string; center: [number, number]; radius: number }): Promise<void> {
+    this.whirlBusy = true;
+    this.autoPath.stop();
+    sfx('splash');
+    this.d.toaster.show('被卷进漩涡了！……好不容易才挣脱出来。');
+    await this.d.transition.fadeOut(350);
+    const p = this.player.position;
+    const out = whirlpoolEject(w, p.x, p.z);
+    this.player.teleport(out.x, out.z, out.yaw);
+    this.rig.snap();
+    await this.d.transition.fadeIn(450);
+    this.whirlBusy = false;
+  }
+
   private checkIslandLink(): void {
     if (this.traveling || this.inBattle || this.d.ui.busy) return;
     const p = this.player.position;
@@ -755,7 +789,16 @@ export class OverworldScene implements Scene, BattleHost {
       return;
     }
     // 首次跨海由剧情触发器（同一矩形）放行，这里不挡
-    if (v.reason === 'locked' || v.reason === 'on-foot') return;
+    if (v.reason === 'on-foot') return;
+    if (v.reason === 'locked') {
+      if (!link.lockedHint) return;
+      this.player.nudge(link.pushBack[0] * 2.5, link.pushBack[1] * 2.5);
+      if (this.time - this.linkHintAt > 4) {
+        this.linkHintAt = this.time;
+        this.d.toaster.show(link.lockedHint);
+      }
+      return;
+    }
     this.player.nudge(link.pushBack[0] * 2.5, link.pushBack[1] * 2.5);
     if (v.hint && this.time - this.linkHintAt > 4) {
       this.linkHintAt = this.time;
@@ -796,6 +839,7 @@ export class OverworldScene implements Scene, BattleHost {
     const vis = this.weather.visual;
     const sky = this.sky.update(dt, hour, p, this.camera.position, vis, this.windDir);
     this.water.update(this.time);
+    this.seaFx.update(this.time);
     for (const br of this.barriers) {
       if (!br.dome.done && this.d.state.flags[br.flag] === true) br.dome.dissolve();
       br.dome.update(dt, this.time);
@@ -1531,6 +1575,7 @@ export class OverworldScene implements Scene, BattleHost {
     this.post.dispose();
     this.sky.dispose();
     this.water.dispose();
+    this.seaFx.dispose();
     this.foliage.dispose();
     this.life.dispose();
     this.props.dispose();

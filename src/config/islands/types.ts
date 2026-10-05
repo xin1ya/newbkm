@@ -120,6 +120,12 @@ export interface IslandConfig {
   travelBounds?: Vec2[];
   /** M2-02 熔岩流（地形生成器刻出熔岩河道；运行时不可踏入） */
   lavaFlows?: Array<{ id: string; points: Vec2[]; width: number }>;
+  /** M3-02 第三张 splat 的扩展覆盖层：名称 / 颜色；lava=false 时第 3 通道不是熔岩（可走、不发光）。缺省 = 碧潮（赭石 / 火山灰 / 熔岩 / 苔藓） */
+  ext?: { names: [string, string, string, string]; colors: [string, string, string, string]; lava: boolean };
+  /** M3-03 洋流：冲浪时沿折线方向推动（米/秒） */
+  currents?: Array<{ id: string; points: Vec2[]; width: number; speed: number }>;
+  /** M3-03 漩涡：冲浪靠近会被卷入并甩回航线 */
+  whirlpools?: Array<{ id: string; center: Vec2; radius: number }>;
   /** 本岛主色板（设计 §8.4） */
   palette: { primary: string; secondary: string; accent: string };
   /** 分块尺寸（米），默认 128 */

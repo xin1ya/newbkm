@@ -23,6 +23,7 @@
     "fetch-data": "tsx scripts/fetch-data.ts",
     "gen:sprout": "tsx scripts/gen-sprout.ts",
     "gen:tide": "tsx scripts/gen-tide.ts",
+    "gen:thunder": "tsx scripts/gen-thunder.ts",
     "gen:tms": "tsx scripts/gen-tms.ts",
     "data:moves": "tsx scripts/augment-moves.ts",
     "validate": "tsx scripts/validate.ts",

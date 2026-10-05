@@ -28,7 +28,7 @@ export const TIDE: IslandConfig = {
   spawnYaw: 0,
   // 冲浪 / 飞行只能在航线走廊 + 主岛近海内（走廊外是暗礁、巨浪与海雾）
   travelBounds: [
-    [-1024, -232], [-700, -232], [-660, -300], [-640, -720], [0, -800], [700, -800], [1000, -700], [1010, 0], [1000, 760], [400, 800], [-300, 760], [-640, 640], [-660, 300], [-700, 232], [-1024, 232],
+    [-1024, -232], [-700, -232], [-660, -300], [-640, -720], [0, -800], [700, -800], [1000, -700], [1010, 0], [1010, 500], [1024, 500], [1024, 795], [1000, 795], [400, 800], [-300, 760], [-640, 640], [-660, 300], [-700, 232], [-1024, 232],
   ],
   zones: [
     // ———————— 城镇 ————————
@@ -331,7 +331,7 @@ export const TIDE: IslandConfig = {
     { id: 'spring-source-rock', type: 'rock-smash', requiresFlag: 'hm05-rock-smash', position: [588, 0, 312], radius: 3, hint: '巨大的落石堵住了泉眼……似乎需要某种能力才能撞开。' },
     // 赭石丘陵：滚落的巨石堵住骨冢小径（需要怪力，支线·矿洞救援后获得）
     { id: 'ochre-boulder', type: 'strength', requiresFlag: 'hm06-strength', position: [54, 0, 486], radius: 2.6, hint: '一块巨石挡住了小径……似乎需要某种能力才能推开。' },
-    // 温泉乡码头：碧潮—雷鸣海域在 M3 开放
+    // 温泉乡码头：碧潮—雷鸣海域（主线 13 听完汤婆婆的故事后，船老大放行 → thunder-route-open）
     { id: 'thunder-route', type: 'story', requiresFlag: 'thunder-route-open', position: [566, 0, 668], radius: 7, hint: '船老大：碧潮—雷鸣海域最近洋流很乱，航线暂时关闭了。' },
     // 火山口：登山道尽头的熔岩热浪（地热异常调查前）
     { id: 'crater-heat', type: 'story', requiresFlag: 'volcano-heat-cleared', position: [598, 0, -213], radius: 6, fx: 'heat', hint: '灼人的热浪从火山口涌出……先去火山镇的地热观测站问问情况吧。' },

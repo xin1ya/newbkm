@@ -423,7 +423,17 @@ export const TIDE_NPCS: NpcDef[] = [
     title: '温泉乡码头',
     appearance: { look: 'sailor', palette: { jacket: '#c8402e' }, style: { beard: true } },
     schedule: [{ from: 0, to: 24, at: { island: 'tide', position: [560, 640], yaw: PI / 2 } }],
+    hideIf: ['thunder-route-open'],
     dialog: ['碧潮—雷鸣海域最近洋流很乱，航线暂时关闭了。', '等海况好了，我第一个开船。'],
+  },
+  {
+    id: 'spring-captain-open',
+    name: '船老大',
+    title: '温泉乡码头',
+    appearance: { look: 'sailor', palette: { jacket: '#c8402e' }, style: { beard: true } },
+    schedule: [{ from: 0, to: 24, at: { island: 'tide', position: [560, 640], yaw: PI / 2 } }],
+    showIf: ['thunder-route-open'],
+    dialog: ['渡轮还得等洋流再稳一点才敢开。', '冲浪过去的话：一直往东，海面上那两条白色流纹就是洋流，顺着它斜着切过去。', '看见打转的漩涡就绕开——卷进去可要被甩出老远！'],
   },
   {
     id: 'spring-villager-1',

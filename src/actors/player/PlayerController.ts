@@ -78,6 +78,8 @@ export class PlayerController {
   noclip = false;
   /** M1-12 骑乘模式 */
   mode: RideMode = 'walk';
+  /** M3-03 洋流速度（米/秒，世界坐标），场景每步写入；只在冲浪时生效 */
+  readonly drift = { x: 0, z: 0 };
   surfSpeed = 6.2;
   surfSprint = 9;
   flySpeed = 14;
@@ -325,10 +327,13 @@ export class PlayerController {
     const fz = Math.cos(cameraYaw);
     const rx = -fz;
     const rz = fx;
-    const wantX = (fx * axis.y + rx * axis.x) * speed;
-    const wantZ = (fz * axis.y + rz * axis.x) * speed;
+    // M3-03 洋流：冲浪时叠加到目标速度（经过正常的碰撞 / 可达范围检查）
+    const surfDrift = this.mode === 'surf';
+    const wantX = (fx * axis.y + rx * axis.x) * speed + (surfDrift ? this.drift.x : 0);
+    const wantZ = (fz * axis.y + rz * axis.x) * speed + (surfDrift ? this.drift.z : 0);
     // 自行车：起步与刹车更柔和（有滑行惯性）
-    const accel = this.mode === 'bike' ? (axis.x || axis.y ? bikeGear(this.bikeGear).accel : 3.2) : axis.x || axis.y ? 14 : 18;
+    const drifting = surfDrift && (this.drift.x !== 0 || this.drift.z !== 0);
+    const accel = this.mode === 'bike' ? (axis.x || axis.y ? bikeGear(this.bikeGear).accel : 3.2) : axis.x || axis.y ? 14 : drifting ? 2.5 : 18;
     const k = 1 - Math.exp(-accel * dt);
     this.velocity.x += (wantX - this.velocity.x) * k;
     this.velocity.z += (wantZ - this.velocity.z) * k;

@@ -31,7 +31,9 @@ export function createTerrainMaterial(hf: Heightfield): THREE.MeshToonMaterial {
     uSplat0: { value: s0 },
     uSplat1: { value: s1 },
     uSplat2: { value: s2 },
-    uExt: { value: EXT_COLORS.map((c) => new THREE.Color(c)) },
+    uExt: { value: (hf.config.ext?.colors ?? EXT_COLORS).map((c) => new THREE.Color(c)) },
+    // M3-02 第 3 通道是否为熔岩（雷鸣是冰面：不发光）
+    uLava: { value: hf.config.ext && !hf.config.ext.lava ? 0 : 1 },
     uTime: { value: 0 },
     uWorldSize: { value: new THREE.Vector2(hf.config.size[0], hf.config.size[1]) },
     uSurf: { value: SURFACE_COLORS.map((c) => new THREE.Color(c)) },
@@ -59,6 +61,7 @@ export function createTerrainMaterial(hf: Heightfield): THREE.MeshToonMaterial {
           uniform sampler2D uSplat1;
           uniform sampler2D uSplat2;
           uniform vec3 uExt[4];
+          uniform float uLava;
           uniform float uTime;
           float vLavaGlow = 0.0;
           uniform vec2 uWorldSize;
@@ -93,7 +96,7 @@ export function createTerrainMaterial(hf: Heightfield): THREE.MeshToonMaterial {
             // 湿沙 / 水下
             float wet = smoothstep(uSeaLevel + 0.9, uSeaLevel - 0.2, vTerrWorld.y);
             col = mix(col, col * vec3(0.78, 0.8, 0.82), wet);
-            // M2 覆盖层：赭石 / 火山灰 / 熔岩 / 苔藓（按权重直接覆盖底色）
+            // 扩展覆盖层（碧潮：赭石 / 火山灰 / 熔岩 / 苔藓；雷鸣：积雪 / 冰面 / 板岩 / 石楠）
             vec4 e = texture2D(uSplat2, suv);
             float es = dot(e, vec4(1.0));
             if (es > 0.003) {
@@ -102,7 +105,7 @@ export function createTerrainMaterial(hf: Heightfield): THREE.MeshToonMaterial {
               col = mix(col, ec, clamp(es, 0.0, 1.0));
               // 熔岩：流动的亮纹（自发光在 emissive 里叠加）
               float flow = tNoise(vTerrWorld.xz * 0.12 + vec2(uTime * 0.25, uTime * 0.1));
-              vLavaGlow = e.b * (0.65 + 0.5 * flow);
+              vLavaGlow = e.b * (0.65 + 0.5 * flow) * uLava;
             }
             diffuseColor.rgb *= col;
           }`,

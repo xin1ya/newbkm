@@ -20,6 +20,10 @@ export interface IslandLink {
   arrive: (x: number, z: number) => { x: number; z: number; yaw: number };
   /** 首次通过前必须为真的 flag（第一次跨海由剧情放行） */
   requiresFlag?: string;
+  /** 必须全部为真的 flag（例如集齐本岛徽章才开放下一片海域） */
+  requiresAll?: string[];
+  /** 未开放时冲浪靠近的提示（不设则静默放行给剧情触发器） */
+  lockedHint?: string;
   /** 被挡回时推回的方向（单位向量，来源岛坐标） */
   pushBack: [number, number];
 }
@@ -45,7 +49,34 @@ export const ISLAND_LINKS: readonly IslandLink[] = [
     arrive: (_x, z) => ({ x: 488, z: clampZ(z), yaw: -Math.PI / 2 }),
     pushBack: [1, 0],
   },
+  // M3-03 温泉乡码头往东 → 碧潮东南海域边缘 ↔ 雷鸣西端的碧潮—雷鸣海域（按比例换算横向位置）
+  {
+    id: 'tide-to-thunder',
+    from: 'tide',
+    rect: [1008, 520, 1024, 780],
+    to: 'thunder',
+    arrive: (_x, z) => ({ x: -1000, z: tideToThunderZ(z), yaw: Math.PI / 2 }),
+    requiresFlag: 'thunder-route-open',
+    lockedHint: '洋流太乱了，浪头一个接一个……还是先回温泉乡码头问问船老大吧。',
+    pushBack: [-1, 0],
+  },
+  {
+    id: 'thunder-to-tide',
+    from: 'thunder',
+    rect: [-1024, 120, -1008, 680],
+    to: 'tide',
+    arrive: (_x, z) => ({ x: 998, z: thunderToTideZ(z), yaw: -Math.PI / 2 }),
+    pushBack: [1, 0],
+  },
 ];
+
+/** 碧潮 z ∈ [520, 780] ↔ 雷鸣 z ∈ [130, 670] */
+export function tideToThunderZ(z: number): number {
+  return Math.max(140, Math.min(660, 130 + ((z - 520) / 260) * 540));
+}
+export function thunderToTideZ(z: number): number {
+  return Math.max(525, Math.min(775, 520 + ((z - 130) / 540) * 260));
+}
 
 export const visitedFlag = (island: IslandId): string => `visited-${island}`;
 
@@ -66,7 +97,8 @@ export type TravelVerdict = { ok: true } | { ok: false; reason: 'fly-unvisited' 
 
 /** 当前移动方式能否经过该连接 */
 export function canUseLink(state: GameState, link: IslandLink, mode: 'walk' | 'surf' | 'bike' | 'fly'): TravelVerdict {
-  if (link.requiresFlag && !state.flags[link.requiresFlag]) return { ok: false, reason: 'locked', hint: '前方的航线还没有开通……' };
+  if (link.requiresFlag && !state.flags[link.requiresFlag]) return { ok: false, reason: 'locked', hint: link.lockedHint ?? '前方的航线还没有开通……' };
+  if (link.requiresAll?.some((f) => !state.flags[f])) return { ok: false, reason: 'locked', hint: link.lockedHint ?? '前方的航线还没有开通……' };
   if (mode === 'fly' && !hasVisited(state, link.to)) return { ok: false, reason: 'fly-unvisited', hint: '飞行只能前往已经到访过的岛屿。先冲浪渡海过去吧！' };
   if (mode === 'walk' || mode === 'bike') return { ok: false, reason: 'on-foot', hint: '' };
   return { ok: true };

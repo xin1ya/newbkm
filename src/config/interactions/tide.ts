@@ -90,7 +90,13 @@ export const TIDE_LANDMARKS: InteractionDef[] = [
     effects: [{ kind: 'story', script: 'ferry-to-sprout' }],
     byFlag: [{ when: '!ferry-route-opened', pages: ['碧潮镇码头。', '「乘船请出示渡船船票。」'] }],
   },
-  { id: 'spring-dock', kind: 'examine', range: 3.5, pages: ['温泉乡码头。', '「碧潮—雷鸣海域航线：洋流异常，暂停运营。」'] },
+  {
+    id: 'spring-dock',
+    kind: 'examine',
+    range: 3.5,
+    pages: ['温泉乡码头。', '「碧潮—雷鸣海域：渡轮停运中。冲浪横渡请注意——两股南北向洋流、海面有漩涡，被卷入会被甩回外侧。」', '一直往东就是雷鸣群岛。'],
+    byFlag: [{ when: '!thunder-route-open', pages: ['温泉乡码头。', '「碧潮—雷鸣海域航线：洋流异常，暂停运营。」'] }],
+  },
   {
     id: 'hot-spring',
     kind: 'rest',

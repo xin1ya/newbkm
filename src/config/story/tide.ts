@@ -178,6 +178,14 @@ const hotSpringHistory: StoryStep[] = [
   { kind: 'card', title: '第二章 · 异变痕迹', subtitle: '— 完 —', ms: 2600 },
 ];
 
+// ———————————————————————— 主线 14 · 碧潮—雷鸣海域开放（M3-03） ————————————————————————
+const thunderRouteOpen: StoryStep[] = [
+  { kind: 'say', speaker: '船老大', lines: ['哦，是你！听汤婆婆说，你要去雷鸣群岛的冰川？', '渡轮还开不了——这阵子海上两股洋流一南一北地横着冲，还卷出好几个漩涡。'] },
+  { kind: 'say', speaker: '船老大', lines: ['不过你的宝可梦会冲浪吧？', '从码头一直往东。看见海面上一道道白色流纹，那就是洋流，斜着切过去别硬顶。', '打转的漩涡千万绕开！被卷进去，会被甩到老远的地方。'] },
+  { kind: 'say', lines: ['碧潮—雷鸣海域可以冲浪通过了！'] },
+  { kind: 'flag', set: 'thunder-route-open' },
+];
+
 const scripts: StoryScript[] = [
   { id: 'ferry-to-tide', steps: ferryToTide },
   { id: 'ferry-to-sprout', steps: ferryToSprout },
@@ -190,6 +198,7 @@ const scripts: StoryScript[] = [
   { id: 'ruins-sanctum', steps: ruinsSanctum },
   { id: 'ruins-guardian', steps: ruinsGuardian },
   { id: 'hot-spring-history', steps: hotSpringHistory },
+  { id: 'thunder-route-open', steps: thunderRouteOpen },
 ];
 
 export const TIDE_STORY: StoryScript[] = scripts;
@@ -208,4 +217,6 @@ export const TIDE_TRIGGERS: StoryTrigger[] = [
     doneFlag: 'ruins-seal-open',
     showIf: ['badge-azure', 'badge-ore', 'badge-flame'],
   },
+  // 听完汤婆婆的故事后走到温泉乡码头 → 船老大放行碧潮—雷鸣海域
+  { id: 'thunder-route-open', island: 'tide', position: [562, 650], radius: 9, script: 'thunder-route-open', doneFlag: 'thunder-route-open', showIf: ['hot-spring-info-heard'] },
 ];
