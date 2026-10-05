@@ -52,6 +52,10 @@ export const TM_DEFS: readonly TmDef[] = [
   { no: 26, move: 'facade', source: { kind: 'gym', gym: 'gym-dawn' } },
   { no: 27, move: 'icy-wind', source: { kind: 'gym', gym: 'gym-snow' } },
   { no: 28, move: 'aerial-ace', source: { kind: 'gym', gym: 'gym-lark' } },
+  // M3-16 · 琉璃群岛道馆奖励（暗影球已是 No.16、水之波动已是 No.04，改发冥想 / 暗影爪 / 热水）
+  { no: 29, move: 'calm-mind', source: { kind: 'gym', gym: 'gym-mirage' } },
+  { no: 30, move: 'shadow-claw', source: { kind: 'gym', gym: 'gym-ghost' } },
+  { no: 31, move: 'scald', source: { kind: 'gym', gym: 'gym-glaze' } },
 ];
 
 export const tmItemId = (move: string): string => `tm-${move}`;

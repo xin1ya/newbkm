@@ -14,7 +14,7 @@ function frontDoor(): ExitConfig {
   return { id: 'front', position: [0, D / 2 - 0.35], radius: 0.85, spawnOffset: [0, -1.4], spawnYaw: PI, to: { overworld: true }, label: '出门' };
 }
 
-interface Theme {
+export interface Theme {
   main: string;
   accent: string;
   dark: string;
@@ -51,7 +51,7 @@ function commonFurniture(gym: string, t: Theme, rug: string): FurnitureConfig[] 
   ];
 }
 
-function gymRoom(id: string, name: string, t: Theme, floor: RoomConfig['floor'], extra: FurnitureConfig[], rest: Pick<RoomConfig, 'mechanism' | 'npcs'>, rug: string): RoomConfig {
+export function gymRoom(id: string, name: string, t: Theme, floor: RoomConfig['floor'], extra: FurnitureConfig[], rest: Pick<RoomConfig, 'mechanism' | 'npcs'>, rug: string): RoomConfig {
   return {
     id: 'main',
     name,

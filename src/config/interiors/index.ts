@@ -3,11 +3,12 @@ import { SPROUT_INTERIORS } from './sprout';
 import { TIDE_INTERIORS } from './tide';
 import { THUNDER_INTERIORS } from './thunder';
 import { THUNDER_GYM_INTERIORS } from './thunderGyms';
+import { GLAZE_GYM_INTERIORS } from './glazeGyms';
 import { GLAZE_INTERIORS } from './glaze';
 
 export type * from './types';
 
-export const INTERIORS: Readonly<Record<string, InteriorConfig>> = Object.fromEntries([...SPROUT_INTERIORS, ...TIDE_INTERIORS, ...THUNDER_INTERIORS, ...THUNDER_GYM_INTERIORS, ...GLAZE_INTERIORS].map((i) => [i.id, i]));
+export const INTERIORS: Readonly<Record<string, InteriorConfig>> = Object.fromEntries([...SPROUT_INTERIORS, ...TIDE_INTERIORS, ...THUNDER_INTERIORS, ...THUNDER_GYM_INTERIORS, ...GLAZE_INTERIORS, ...GLAZE_GYM_INTERIORS].map((i) => [i.id, i]));
 
 export function getInterior(id: string): InteriorConfig {
   const i = INTERIORS[id];

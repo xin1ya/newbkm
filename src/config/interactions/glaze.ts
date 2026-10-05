@@ -4,6 +4,10 @@
 import type { InteractionDef } from '@/systems/interaction';
 
 export const GLAZE_FURNITURE: InteractionDef[] = [
+  // M3-16 · 道馆须知牌
+  { id: 'gym-mirage-rules', kind: 'examine', pages: ['「幻影道馆 · 挑战须知」', '六间镜厅之间没有门，只有镜子。', '灰框的镜子都通往大厅。', '念力水晶球的三种光，会转动金框镜子的去向。', '——馆主 幻月'] },
+  { id: 'gym-ghost-rules', kind: 'examine', pages: ['「幽冥道馆 · 挑战须知」', '入口烛台：轮流照亮西翼、东翼、中廊。', '两翼长明灯：点亮后长明不熄。', '中廊灵火：需中廊之光与西翼长明灯。', '终点灵火：需东翼长明灯。', '——馆主 幽魄'] },
+  { id: 'gym-glaze-rules', kind: 'examine', pages: ['「琉璃道馆 · 挑战须知」', '石岛上的阀门：升高 / 放低全池水位。', '高水位：木筏浮起；低水位：栈道露出。', '每座石岛都有阀门，走错了也能回头。', '——馆主 琉璃'] },
   // ——— 幻影镇 · 先知之家 ———
   { id: 'seer-crystal-ball', kind: 'examine', pages: ['紫色的水晶球里，雾气缓缓旋转。', '……一瞬间，好像看见了沉在海底的门。'] },
   { id: 'seer-books', kind: 'examine', pages: ['《蜃景志》《月相与超能力》《翠澜古代海民考》……', '书脊都被翻得发白了。'] },

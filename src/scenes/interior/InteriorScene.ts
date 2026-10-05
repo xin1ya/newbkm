@@ -43,7 +43,7 @@ import { BattleScene, type BattleHost, type BattleResult, type BattleStartData }
 import { WaterPuzzleView } from '@/world/interiors/WaterPuzzleView';
 import { toggleLevel, valveAt } from '@/systems/puzzles/waterLevel';
 import { GymMechanismView } from '@/world/interiors/GymMechanismView';
-import { cardinal, onIce, SLIDE_SPEED, switchVar } from '@/systems/puzzles/gymMechanism';
+import { cardinal, mirrorAt, mirrorTarget, onIce, SLIDE_SPEED, switchVar } from '@/systems/puzzles/gymMechanism';
 import { GYMS } from '@/config/encounters';
 import { TRAINER_BY_ID } from '@/config/trainers';
 import { say } from '@/ui/core';
@@ -128,6 +128,11 @@ export class InteriorScene implements Scene, BattleHost {
   puzzle: WaterPuzzleView | null = null;
   /** M3-15 道馆 5–8 馆内机关 */
   mech: GymMechanismView | null = null;
+  /** M3-16 传送镜：离开所有法阵 1.2 m 后才重新激活（防止落地即再传） */
+  private mirrorArmed = true;
+  private mirrorBusy = false;
+  /** M3-16 常暗道馆：玩家身边的提灯光 */
+  private lantern: THREE.PointLight | null = null;
   /** 滑冰中的方向（null = 没在滑） */
   private slideDir: readonly [number, number] | null = null;
   /** M1-11 室内训练家对战（道馆） */
@@ -287,6 +292,9 @@ export class InteriorScene implements Scene, BattleHost {
     this.puzzle = null;
     this.mech?.dispose();
     this.mech = null;
+    this.lantern?.removeFromParent();
+    this.lantern?.dispose();
+    this.lantern = null;
     this.slideDir = null;
     this.room = getRoom(this.config, roomId);
     this.built = this.builder.build(this.room);
@@ -324,7 +332,9 @@ export class InteriorScene implements Scene, BattleHost {
       // 机关不存档：每次进门复位；晨辉道馆的昼夜取真实时间
       this.mech = new GymMechanismView(this.room.mechanism, this.collision, this.d.timeOfDay() === 'night');
       this.world.add(this.mech.group);
+      if (this.room.mechanism.dark) this.applyMechDark(this.built.lights);
     }
+    this.mirrorArmed = false;
     this.field.load(this.room, this.built.lights);
     const preset = LIGHT_PRESETS[this.room.lighting];
     this.world.background = new THREE.Color(preset.fog);
@@ -355,6 +365,7 @@ export class InteriorScene implements Scene, BattleHost {
     if (!this.slideStep(dt)) this.player.fixedUpdate(dt, this.gameplayInput, this.rig.forwardYaw);
     this.footsteps.fixedUpdate(this.player);
     this.checkExits();
+    this.checkMirrors();
   }
 
   update(dt: number): void {
@@ -384,6 +395,11 @@ export class InteriorScene implements Scene, BattleHost {
     this.built?.update(this.time, day);
     this.puzzle?.update(dt);
     this.mech?.update(dt);
+    if (this.lantern) {
+      const p = this.player.position;
+      this.lantern.position.set(p.x + Math.sin(this.player.facing) * 0.4, p.y + 1.7, p.z + Math.cos(this.player.facing) * 0.4);
+      this.lantern.intensity = 7 * (1 + Math.sin(this.time * 7.3) * 0.04);
+    }
     this.starterTable?.update(dt);
     this.trainers.update(dt);
     this.field.update(dt, this.player);
@@ -597,6 +613,61 @@ export class InteriorScene implements Scene, BattleHost {
     return true;
   }
 
+  /** 常暗道馆：房间灯压到一成多（含每帧按 base 重算的灯），玩家带一盏提灯；机关灯台自带点光源 */
+  private applyMechDark(lights: THREE.Object3D): void {
+    lights.traverse((o) => {
+      const l = o as THREE.Light;
+      if (!l.isLight) return;
+      const k = l instanceof THREE.AmbientLight || l instanceof THREE.HemisphereLight ? 0.18 : 0.1;
+      if (typeof l.userData.base === 'number') l.userData.base *= k;
+      l.intensity *= k;
+    });
+    this.lantern = new THREE.PointLight('#ffd9a0', 7, 6.5, 1.6);
+    this.lantern.name = 'gym-lantern';
+    this.world.add(this.lantern);
+  }
+
+  /** 传送镜：踩上法阵 → 淡出 → 传到镜子的当前去向 → 淡入 */
+  private checkMirrors(): void {
+    const mech = this.mech;
+    if (!mech?.cfg.mirrors?.length || this.mirrorBusy || this.switching || this.inBattle || this.trainers.busy) return;
+    const p = this.player.position;
+    if (!this.mirrorArmed) {
+      if (!mirrorAt(mech.cfg, p.x, p.z, 1.2)) this.mirrorArmed = true;
+      return;
+    }
+    const m = mirrorAt(mech.cfg, p.x, p.z);
+    if (!m) return;
+    void this.useMirror(m.id);
+  }
+
+  /** 走进传送镜（也供 e2e 调用；需站在法阵上） */
+  async useMirror(id: string): Promise<boolean> {
+    const mech = this.mech;
+    const m = mech?.cfg.mirrors?.find((q) => q.id === id);
+    if (!mech || !m || this.mirrorBusy) return false;
+    const p = this.player.position;
+    if (Math.hypot(p.x - m.at[0], p.z - m.at[1]) > 1.2) return false;
+    this.mirrorBusy = true;
+    this.mirrorArmed = false;
+    try {
+      const [tx, tz] = mirrorTarget(m, mech.state);
+      mech.flashMirror(m.id);
+      sfx('valve');
+      this.player.velocity.set(0, 0, 0);
+      await this.d.transition.fadeOut(260);
+      this.player.teleport(tx, tz, this.player.facing);
+      this.follower.warp();
+      this.snapCamera();
+      await this.d.transition.fadeIn(260);
+      const back = mech.cfg.start && Math.hypot(tx - mech.cfg.start[0], tz - mech.cfg.start[1]) < 2.5;
+      if (back) this.d.toast?.('镜面泛起涟漪……你又回到了大厅。');
+      return true;
+    } finally {
+      this.mirrorBusy = false;
+    }
+  }
+
   /** 是否正在滑冰（e2e） */
   get sliding(): boolean {
     return this.slideDir !== null;
@@ -606,7 +677,7 @@ export class InteriorScene implements Scene, BattleHost {
     const mech = this.mech;
     if (!mech) return;
     for (const s of mech.cfg.switches) {
-      const verb = s.style === 'lever' ? '拉动拉杆' : s.style === 'sundial' ? '拨动日晷' : '切换风扇';
+      const verb = s.style === 'lever' ? '拉动拉杆' : s.style === 'sundial' ? '拨动日晷' : s.style === 'orb' ? '转动水晶球' : s.style === 'lamp' ? ((s.states ?? 2) > 2 ? '转动烛台' : '点灯 / 熄灯') : '切换风扇';
       const v = mech.state[switchVar(s)] ?? 0;
       out.push({
         id: `mech:${s.id}`,
@@ -646,6 +717,10 @@ export class InteriorScene implements Scene, BattleHost {
         ? res.name === '黑夜'
           ? '日晷转向了月纹——馆内暗了下来，日光墙消散了，影墙浮现。'
           : '日晷转向了日纹——馆内亮了起来，影墙消散了，日光墙重新凝聚。'
+        : kind === 'mirror'
+          ? `水晶球放出了${res.name}——金框镜子里的景色变了。`
+          : kind === 'lamp'
+            ? `${s.style === 'lamp' && (s.states ?? 2) > 2 ? '烛台' : '长明灯'}：${res.name}。${res.opened.length ? '有灵火退散了！' : ''}${res.closed.length ? '有灵火重新聚了起来……' : ''}`
         : kind === 'wind'
           ? `风扇：${res.name}。${res.opened.length ? '气流托起了风桥！' : ''}${res.closed.length ? '有风桥散开了……' : ''}`
           : `拉杆：${res.name}。${res.opened.length ? '有电栅栏熄灭了！' : ''}${res.closed.length ? '有电栅栏通电了……' : ''}`;

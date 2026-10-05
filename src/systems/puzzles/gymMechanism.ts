@@ -8,6 +8,11 @@
  * - 霜凝道馆（冰）：冰面（ice）——踏上冰面后沿进入方向一直滑行，直到撞上冰块 / 墙或滑出冰面。
  * - 云翎道馆（飞）：深谷（pit，永远不可通行）+ 风桥（wind 闸门：打开 = 风托起的桥，关闭 = 深谷），由风扇开关驱动。
  *
+ * - 幻影道馆（超）：传送镜（mirror）——踏上镜前的光阵就被传送；镜子的去向可由「念力水晶球」（orb 开关）旋转切换，
+ *   走错的镜子会把人送回入口。
+ * - 幽冥道馆（鬼）：常暗房间（dark）；灵火墙（spirit 闸门）挡路，点亮对应的灯台（lamp 开关）才会退散；
+ *   烛台可以有 3 档（轮流点亮不同的厅）。
+ *
  * 闸门语义统一：`openWhen` 中每个变量都取到指定值时闸门「打开」（可通行），否则是实体阻挡。
  * 提供：可通行判定、阻挡矩形（给碰撞系统）、滑冰终点、BFS 求解（单元测试证明可解、非平凡、无死局）。
  */
@@ -16,9 +21,9 @@ import type { Rect } from './waterLevel';
 export type { Rect };
 export type Vec2 = readonly [number, number];
 
-export type GateStyle = 'electric' | 'sunlight' | 'shadow' | 'wind';
-export type SwitchStyle = 'lever' | 'sundial' | 'fan';
-export type WallStyle = 'stone' | 'metal' | 'ice' | 'cloud';
+export type GateStyle = 'electric' | 'sunlight' | 'shadow' | 'wind' | 'spirit';
+export type SwitchStyle = 'lever' | 'sundial' | 'fan' | 'orb' | 'lamp';
+export type WallStyle = 'stone' | 'metal' | 'ice' | 'cloud' | 'crystal' | 'grave';
 
 export interface MechSwitch {
   id: string;
@@ -49,8 +54,25 @@ export interface MechWall {
   height?: number;
 }
 
+export interface MechMirror {
+  id: string;
+  /** 光阵中心（踏上即传送） */
+  at: Vec2;
+  /** 固定去向（无 variable 时） */
+  to?: Vec2;
+  /** 由变量决定去向：targets[state] */
+  variable?: string;
+  targets?: readonly Vec2[];
+  /** 镜面朝向（视图用，弧度，0 = 镜面朝 +z） */
+  yaw?: number;
+  /** 光阵颜色（同色成对，提示用） */
+  color?: string;
+}
+
+export const MIRROR_RADIUS = 0.7;
+
 export interface GymMechanismConfig {
-  kind: 'electric' | 'sundial' | 'ice' | 'wind';
+  kind: 'electric' | 'sundial' | 'ice' | 'wind' | 'mirror' | 'lamp';
   /** 机关区域（BFS 与视图范围；房间坐标） */
   bounds: Rect;
   switches: readonly MechSwitch[];
@@ -60,6 +82,10 @@ export interface GymMechanismConfig {
   pits?: readonly Rect[];
   /** 冰面 */
   ice?: readonly Rect[];
+  /** 传送镜 */
+  mirrors?: readonly MechMirror[];
+  /** 常暗：房间灯压暗，只有玩家提灯与点亮的灯台照明 */
+  dark?: boolean;
   /** 变量初值（缺省 0） */
   initial?: Readonly<Record<string, number>>;
   /** 按真实时钟取初值的变量：白天 0 / 夜里 1 */
@@ -84,6 +110,7 @@ export function variables(cfg: GymMechanismConfig): string[] {
   const set = new Set<string>();
   for (const s of cfg.switches) set.add(switchVar(s));
   for (const g of cfg.gates) for (const k of Object.keys(g.openWhen)) set.add(k);
+  for (const m of cfg.mirrors ?? []) if (m.variable) set.add(m.variable);
   return [...set].sort();
 }
 
@@ -114,6 +141,17 @@ export function blockingRects(cfg: GymMechanismConfig, st: Readonly<MechState>):
 /** 拨动后会关上、且与 (x, z) 半径 r 重叠的闸门（视图据此拒绝拨动，防止把人关进墙里） */
 export function gatesClosingOn(cfg: GymMechanismConfig, before: Readonly<MechState>, after: Readonly<MechState>, x: number, z: number, r = 0.4): MechGate[] {
   return cfg.gates.filter((g) => gateOpen(g, before) && !gateOpen(g, after) && inRect(g.rect, x, z, r));
+}
+
+/** 当前状态下镜子的去向 */
+export function mirrorTarget(m: MechMirror, st: Readonly<MechState>): Vec2 {
+  if (m.variable && m.targets?.length) return m.targets[(st[m.variable] ?? 0) % m.targets.length]!;
+  return m.to ?? m.at;
+}
+
+export function mirrorAt(cfg: GymMechanismConfig, x: number, z: number, r = MIRROR_RADIUS): MechMirror | null {
+  for (const m of cfg.mirrors ?? []) if (Math.hypot(x - m.at[0], z - m.at[1]) <= r) return m;
+  return null;
 }
 
 export function onIce(cfg: GymMechanismConfig, x: number, z: number): boolean {
@@ -211,6 +249,13 @@ export function solveMechanism(cfg: GymMechanismConfig, night = false): SolveRes
       while (iceAt(ni, nj) && free(sk, ni + di, nj + dj)) {
         ni += di;
         nj += dj;
+      }
+      // 传送镜：落点是光阵就被送到镜子当前的去向
+      const mir = mirrorAt(cfg, cx(ni), cz(nj), 0.6);
+      if (mir) {
+        const [tx, tz] = mirrorTarget(mir, dec(sk));
+        [ni, nj] = cell(tx, tz);
+        if (!free(sk, ni, nj)) continue;
       }
       out.push([ni, nj, sk, 0]);
     }

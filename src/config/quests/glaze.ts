@@ -1,0 +1,32 @@
+/**
+ * M3-16 · 琉璃群岛三座道馆任务（07-22 §3.6 第四章）。其余第四章主线与支线在 M3-25 / M3-27 加入。
+ * 三座道馆挑战顺序自由（动态等级按本岛徽章数取 3 档）；徽章名暂统一为「翠澜徽章」。
+ */
+import type { Quest } from '@/systems/quests';
+import { THUNDER_BADGES } from '@/config/story/thunder';
+
+const ISLAND = '琉璃群岛';
+const PRE = ['badge-azure', 'badge-ore', 'badge-flame', ...THUNDER_BADGES];
+
+function gymQuest(id: string, title: string, summary: string, zoneId: string, townName: string, leader: string, trainerId: string, badge: string, door: [number, number], tm: string): Quest {
+  return {
+    id,
+    title,
+    category: 'main',
+    island: ISLAND,
+    summary,
+    prerequisites: PRE,
+    completeFlag: badge,
+    objectives: [
+      { id: 'reach-town', text: `前往${townName}`, completeFlag: `arrived-${zoneId}`, marker: { island: 'glaze', zoneId }, trigger: { type: 'enter-zone', zoneId } },
+      { id: 'beat-leader', text: `击败${leader}`, completeFlag: badge, marker: { island: 'glaze', position: [door[0], 0, door[1]] }, trigger: { type: 'defeat', trainerId } },
+    ],
+    reward: { items: [{ id: tm, qty: 1 }] },
+  };
+}
+
+export const GLAZE_QUESTS: Quest[] = [
+  gymQuest('main-gym-mirage', '镜中幻影', '幻影镇的道馆里只有镜子没有门。转动念力水晶球，穿过镜厅挑战超能力属性馆主幻月。', 'mirage-town', '幻影镇', '幻影道馆馆主幻月', 'gym-mirage-leader', 'badge-mirage', [-380, 400], 'tm-calm-mind'),
+  gymQuest('main-gym-ghost', '长明之灯', '彩幽市的道馆是一座常暗的墓厅。点亮长明灯驱散灵火，挑战幽灵属性馆主幽魄。', 'ghost-town', '彩幽市', '幽冥道馆馆主幽魄', 'gym-ghost-leader', 'badge-ghost', [-430, -198], 'tm-shadow-claw'),
+  gymQuest('main-gym-lily', '琉璃水镜', '琉璃镇的道馆是玻璃穹顶下的一池清水。转动阀门升降水位，挑战水属性馆主琉璃。', 'glaze-town', '琉璃镇', '琉璃道馆馆主琉璃', 'gym-glaze-leader', 'badge-glaze', [486, 118], 'tm-scald'),
+];

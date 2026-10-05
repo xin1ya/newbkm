@@ -10,7 +10,7 @@ const START = [0, 18] as const;
 const GOAL = [0, -11.5] as const;
 
 /** 横墙（z 方向 1 m 厚，中心 z），gaps = 留空的 x 区间 */
-function rowWall(z: number, gaps: Array<[number, number]>, style: WallStyle, height?: number, x0 = -15, x1 = 15): MechWall[] {
+export function rowWall(z: number, gaps: Array<[number, number]>, style: WallStyle, height?: number, x0 = -15, x1 = 15): MechWall[] {
   const out: MechWall[] = [];
   let x = x0;
   for (const [a, b] of [...gaps].sort((p, q) => p[0] - q[0])) {
@@ -21,7 +21,7 @@ function rowWall(z: number, gaps: Array<[number, number]>, style: WallStyle, hei
   return out;
 }
 /** 纵墙（x 方向 1 m 厚，中心 x），gaps = 留空的 z 区间 */
-function colWall(x: number, z0: number, z1: number, gaps: Array<[number, number]>, style: WallStyle, height?: number): MechWall[] {
+export function colWall(x: number, z0: number, z1: number, gaps: Array<[number, number]>, style: WallStyle, height?: number): MechWall[] {
   const out: MechWall[] = [];
   let z = z0;
   for (const [a, b] of [...gaps].sort((p, q) => p[0] - q[0])) {
@@ -31,7 +31,7 @@ function colWall(x: number, z0: number, z1: number, gaps: Array<[number, number]
   if (z < z1) out.push({ rect: [x - 0.5, z, x + 0.5, z1], style, ...(height ? { height } : {}) });
   return out;
 }
-const gate = (id: string, rect: Rect, style: MechGate['style'], openWhen: Record<string, number>): MechGate => ({ id, rect, style, openWhen });
+export const gate = (id: string, rect: Rect, style: MechGate['style'], openWhen: Record<string, number>): MechGate => ({ id, rect, style, openWhen });
 
 // ———————————————————— 雷霆道馆 · 导电开关 ————————————————————
 // 三条通道：西道（拉杆 C）、东道（拉杆 B）、中道（通往战斗场）。入口拉杆 A 在西 / 东道入口之间二选一；

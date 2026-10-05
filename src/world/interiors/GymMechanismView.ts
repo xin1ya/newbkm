@@ -9,12 +9,15 @@
  * - 深谷：深蓝谷底 + 石质边沿 + 缓慢漂移的云雾；冰面：亮蓝冰板 + 反光纹；
  * - 开关：lever（拉杆台，档位灯）、sundial（日晷：晷针 + 日 / 月指示）、fan（风扇台：转动的叶片，可按档位转向）；
  * - 晨辉道馆的昼夜：暖金 / 冷蓝两盏顶灯随状态渐变。
+ * - M3-16：crystal（幻月：紫水晶墙 + 发光棱）、grave（幽魄：苔藓墓墙 + 墓碑压顶）；spirit 灵火墙（一排飘动的鬼火，打开时散去）；
+ *   orb 念力水晶球（三色档位，悬浮自转）、lamp 灯台（点亮时带真实点光源；3 档烛台按档位变色）；
+ *   传送镜：镜框 + 发光镜面 + 地面法阵，金框镜顶部的宝石随水晶球变色；传送时镜面闪光（flashMirror）。
  * - 碰撞：当前所有阻挡矩形（组 gym-mech）在每次拨动后重建；开关台座单独一组。
  */
 import * as THREE from 'three';
 import { createToonMaterial } from '@/render';
 import type { CollisionWorld } from '../collision/CollisionWorld';
-import { blockingRects, cycleSwitch, gateOpen, gatesClosingOn, initialState, switchVar, type GymMechanismConfig, type MechGate, type MechState, type MechSwitch, type MechWall, type Rect } from '@/systems/puzzles/gymMechanism';
+import { blockingRects, cycleSwitch, gateOpen, gatesClosingOn, initialState, switchVar, type GymMechanismConfig, type MechGate, type MechMirror, type MechState, type MechSwitch, type MechWall, type Rect } from '@/systems/puzzles/gymMechanism';
 
 export const GYM_MECH_GROUP = 'gym-mech';
 const SWITCH_GROUP = 'gym-mech-switch';
@@ -36,8 +39,23 @@ interface SwitchView {
   moon?: THREE.Object3D;
   rotor?: THREE.Object3D;
   head?: THREE.Object3D;
+  orb?: THREE.Mesh;
+  flame?: THREE.Mesh;
+  light?: THREE.PointLight;
   spin: number;
 }
+
+interface MirrorView {
+  def: MechMirror;
+  glass: THREE.Mesh;
+  pad: THREE.Mesh;
+  gem?: THREE.Mesh | undefined;
+  flash: number;
+}
+
+/** 水晶球 / 烛台各档位的颜色（与镜顶宝石一致） */
+const ORB_COLORS = ['#c86ad8', '#6a9ad8', '#e8c870'];
+const CANDLE_COLORS = ['#9a7aff', '#7ad8ff', '#ffd27a'];
 
 const rectCenter = (r: Rect): [number, number, number, number] => [(r[0] + r[2]) / 2, (r[1] + r[3]) / 2, r[2] - r[0], r[3] - r[1]];
 
@@ -52,6 +70,7 @@ export class GymMechanismView {
   private dayLight: THREE.PointLight | null = null;
   private nightLight: THREE.PointLight | null = null;
   private sunMix = 0;
+  private mirrors: MirrorView[] = [];
 
   constructor(
     readonly cfg: GymMechanismConfig,
@@ -82,6 +101,12 @@ export class GymMechanismView {
     if (sv) sv.spin = 1;
     const v = this.state[switchVar(s)] ?? 0;
     return { name: s.stateNames?.[v] ?? `第 ${v + 1} 档`, opened, closed };
+  }
+
+  /** 传送时让镜面闪一下 */
+  flashMirror(id: string): void {
+    const m = this.mirrors.find((q) => q.def.id === id);
+    if (m) m.flash = 1;
   }
 
   value(id: string): number {
@@ -120,6 +145,19 @@ export class GymMechanismView {
             e.scale.setScalar(Math.max(0.01, 1 - o));
             if (g.def.style === 'sunlight') e.position.y = 1.4 + Math.sin(t * 1.7 + i) * 0.4;
             else e.rotation.y = t * 0.6 + i;
+          }
+          break;
+        }
+        case 'spirit': {
+          for (const [i, e] of (p.extras ?? []).entries()) {
+            e.visible = o < 0.98;
+            const k = Math.max(0.01, 1 - o);
+            e.scale.set(k * (1 + Math.sin(t * 9 + i * 1.7) * 0.15), k * (1.2 + Math.sin(t * 6 + i) * 0.25), k);
+            e.position.y = 0.9 + ((i * 0.43) % 1) * 1.2 + Math.sin(t * 2.1 + i * 0.9) * 0.18 + o * 1.5;
+          }
+          if (p.panel) {
+            (p.panel.material as THREE.MeshToonMaterial).opacity = (1 - o) * (0.22 + Math.sin(t * 3.1) * 0.05);
+            p.panel.visible = o < 0.98;
           }
           break;
         }
@@ -162,6 +200,26 @@ export class GymMechanismView {
           s.head.rotation.y += (target - s.head.rotation.y) * Math.min(1, dt * 4);
         }
       }
+      if (s.orb) {
+        s.orb.rotation.y = t * 0.8;
+        s.orb.position.y = 1.35 + Math.sin(t * 1.6) * 0.06;
+        const m = s.orb.material as THREE.MeshToonMaterial;
+        m.emissive.set(ORB_COLORS[v % ORB_COLORS.length]!);
+        m.color.set(ORB_COLORS[v % ORB_COLORS.length]!);
+      }
+      if (s.flame) {
+        const states = s.def.states ?? 2;
+        const lit = states > 2 || v > 0;
+        const col = states > 2 ? CANDLE_COLORS[v % CANDLE_COLORS.length]! : '#ffb85a';
+        s.flame.visible = lit;
+        s.flame.scale.set(1, 1 + Math.sin(t * 13 + s.def.position[0]) * 0.15, 1);
+        (s.flame.material as THREE.MeshToonMaterial).emissive.set(col);
+        if (s.light) {
+          s.light.color.set(col);
+          const target = lit ? (states > 2 ? 14 : 22) : 0;
+          s.light.intensity += (target * (0.92 + Math.sin(t * 11 + s.def.position[1]) * 0.08) - s.light.intensity) * Math.min(1, dt * 6);
+        }
+      }
       if (s.spin > 0) {
         s.spin = Math.max(0, s.spin - dt * 2);
         s.group.position.y = Math.sin(s.spin * Math.PI) * 0.05;
@@ -173,6 +231,18 @@ export class GymMechanismView {
       c.mesh.position.x = x0 + (x1 - x0) * k;
       c.mesh.position.z = THREE.MathUtils.lerp(z0, z1, 0.5 + Math.sin(t * 0.3 + c.phase * 6) * 0.35);
       (c.mesh.material as THREE.MeshToonMaterial).opacity = 0.35 * Math.sin(k * Math.PI);
+    }
+    for (const m of this.mirrors) {
+      const gm = m.glass.material as THREE.MeshToonMaterial;
+      m.flash = Math.max(0, m.flash - dt * 1.6);
+      gm.emissiveIntensity = 0.55 + Math.sin(t * 2 + m.def.at[0]) * 0.12 + m.flash * 2.5;
+      (m.pad.material as THREE.MeshToonMaterial).opacity = 0.45 + Math.sin(t * 3 + m.def.at[1]) * 0.15 + m.flash * 0.4;
+      m.pad.rotation.z = t * 0.4;
+      if (m.gem && m.def.variable) {
+        const c = ORB_COLORS[(this.state[m.def.variable] ?? 0) % ORB_COLORS.length]!;
+        (m.gem.material as THREE.MeshToonMaterial).emissive.set(c);
+        m.gem.rotation.y = t * 1.5;
+      }
     }
     if (this.cfg.fromClock && this.dayLight && this.nightLight) {
       const target = this.state[this.cfg.fromClock] ?? 0;
@@ -232,6 +302,7 @@ export class GymMechanismView {
     for (const w of this.cfg.walls) this.buildWall(w);
     for (const g of this.cfg.gates) this.gates.push(this.buildGate(g));
     for (const s of this.cfg.switches) this.switches.push(this.buildSwitch(s));
+    for (const m of this.cfg.mirrors ?? []) this.mirrors.push(this.buildMirror(m));
     if (this.cfg.fromClock) {
       const [x, z] = [(this.cfg.bounds[0] + this.cfg.bounds[2]) / 2, (this.cfg.bounds[1] + this.cfg.bounds[3]) / 2];
       this.dayLight = new THREE.PointLight('#ffd38a', 26, 40, 1.2);
@@ -278,6 +349,41 @@ export class GymMechanismView {
       crack.position.set(x + wd * 0.18, h * 0.5, z + dd / 2 - 0.02);
       crack.rotation.z = 0.5;
       this.group.add(crack);
+    } else if (w.style === 'crystal') {
+      const blk = this.box(wd, h, dd, this.mat('crystal', { color: '#5a3a8a', transparent: true, opacity: 0.9, emissive: '#3a1a6a', emissiveIntensity: 0.35, specular: true }), x, h / 2, z);
+      blk.castShadow = false;
+      // 顶部棱晶簇 + 发光底棱
+      const alongX = wd >= dd;
+      const len = alongX ? wd : dd;
+      const n = Math.max(1, Math.round(len / 1.4));
+      for (let i = 0; i < n; i++) {
+        const k = (i + 0.5) / n - 0.5;
+        const c = new THREE.Mesh(new THREE.OctahedronGeometry(0.32 + ((i * 0.37) % 1) * 0.22), this.mat(i % 2 ? 'crys-a' : 'crys-b', { color: i % 2 ? '#c86ad8' : '#8a7ae8', emissive: i % 2 ? '#a03ac0' : '#5a4ac8', emissiveIntensity: 0.7 }));
+        c.position.set(alongX ? x + k * wd : x, h + 0.18, alongX ? z : z + k * dd);
+        c.scale.y = 1.6;
+        c.rotation.y = i * 0.9;
+        this.group.add(c);
+      }
+      this.box(wd + 0.06, 0.08, dd + 0.06, this.mat('crys-glow', { color: '#f0e0ff', emissive: '#c86ad8', emissiveIntensity: 1.1 }), x, 0.04, z);
+    } else if (w.style === 'grave') {
+      this.box(wd, h, dd, this.mat('grave', { color: '#4a4c58' }), x, h / 2, z);
+      this.box(wd + 0.14, 0.16, dd + 0.14, this.mat('grave-cap', { color: '#6a6c78' }), x, h + 0.08, z);
+      // 苔藓斑
+      const alongX = wd >= dd;
+      const len = alongX ? wd : dd;
+      const n = Math.max(1, Math.round(len / 2.2));
+      for (let i = 0; i < n; i++) {
+        const k = (i + 0.3) / n - 0.5;
+        this.box(alongX ? 0.7 : dd + 0.03, 0.35, alongX ? dd + 0.03 : 0.7, this.mat('moss', { color: '#3a5a3a' }), alongX ? x + k * wd : x, 0.2 + ((i * 0.618) % 1) * (h - 0.5), alongX ? z : z + k * dd);
+      }
+      // 墙头小墓碑
+      if (h > 1.6) {
+        for (let i = 0; i < n; i++) {
+          const k = (i + 0.5) / n - 0.5;
+          const st = this.box(0.42, 0.5, 0.12, this.mat('tomb', { color: '#8a8c98' }), alongX ? x + k * wd : x, h + 0.41, alongX ? z : z + k * dd);
+          if (!alongX) st.rotation.y = Math.PI / 2;
+        }
+      }
     } else {
       this.box(wd, h, dd, this.mat('cloudwall', { color: '#eef4ff' }), x, h / 2, z);
     }
@@ -390,6 +496,27 @@ export class GymMechanismView {
       const strip = new THREE.Mesh(new THREE.BoxGeometry(alongX ? len : 0.3, 0.03, alongX ? 0.3 : len), this.mat(sun ? 'sunstrip' : 'moonstrip', { color: sun ? '#d8a83a' : '#5a4a9a' }));
       strip.position.y = 0.015;
       g.add(strip);
+    } else if (def.style === 'spirit') {
+      parts.panel = new THREE.Mesh(
+        new THREE.BoxGeometry(alongX ? len : 0.1, 2.4, alongX ? 0.1 : len),
+        this.ownMat({ color: '#6a4ab8', emissive: '#4a2a9a', emissiveIntensity: 0.6, transparent: true, opacity: 0.22, side: THREE.DoubleSide }),
+      );
+      parts.panel.position.y = 1.2;
+      parts.panel.renderOrder = 3;
+      g.add(parts.panel);
+      parts.extras = [];
+      const n = Math.max(3, Math.round(len * 2));
+      for (let i = 0; i < n; i++) {
+        const k = (i + 0.5) / n - 0.5;
+        const f = new THREE.Mesh(new THREE.SphereGeometry(0.16, 10, 8), this.ownMat({ color: '#d8ccff', emissive: '#8a6aff', emissiveIntensity: 1.5, transparent: true, opacity: 0.85 }));
+        f.position.set(alongX ? k * len : 0, 1, alongX ? 0 : k * len);
+        g.add(f);
+        parts.extras.push(f);
+      }
+      // 地面封印纹
+      const strip = new THREE.Mesh(new THREE.BoxGeometry(alongX ? len : 0.3, 0.03, alongX ? 0.3 : len), this.mat('spiritstrip', { color: '#5a4a9a', emissive: '#3a2a7a', emissiveIntensity: 0.6 }));
+      strip.position.y = 0.015;
+      g.add(strip);
     } else {
       // wind：谷底 + 风桥
       const pit = new THREE.Mesh(new THREE.PlaneGeometry(w, d), this.mat('pit', { color: '#13233e', emissive: '#0a1a3a', emissiveIntensity: 0.6 }));
@@ -491,6 +618,55 @@ export class GymMechanismView {
       g.add(sun, moon);
       sv.sun = sun;
       sv.moon = moon;
+    } else if (def.style === 'orb') {
+      const base = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.55, 0.9, 6), this.mat('orb-base', { color: '#3a2a5a' }));
+      base.position.y = 0.45;
+      const cup = new THREE.Mesh(new THREE.TorusGeometry(0.28, 0.06, 8, 18), this.mat('gold', { color: '#d8a83a', emissive: '#5a3a00', emissiveIntensity: 0.3 }));
+      cup.rotation.x = Math.PI / 2;
+      cup.position.y = 0.95;
+      g.add(base, cup);
+      sv.orb = new THREE.Mesh(new THREE.IcosahedronGeometry(0.3, 2), this.ownMat({ color: ORB_COLORS[0]!, emissive: ORB_COLORS[0]!, emissiveIntensity: 1.1, transparent: true, opacity: 0.88 }));
+      sv.orb.position.y = 1.35;
+      g.add(sv.orb);
+      sv.light = new THREE.PointLight('#c86ad8', 0, 7, 1.6);
+      sv.light.position.y = 1.6;
+      g.add(sv.light);
+    } else if (def.style === 'lamp') {
+      const tall = (def.states ?? 2) > 2;
+      const stone = this.mat('lamp-stone', { color: '#5a5a68' });
+      const post = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.22, tall ? 1.3 : 1.0, 8), stone);
+      post.position.y = tall ? 0.65 : 0.5;
+      const foot = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.5, 0.2, 8), stone);
+      foot.position.y = 0.1;
+      g.add(post, foot);
+      const topY = tall ? 1.3 : 1.0;
+      if (tall) {
+        // 三臂烛台
+        for (let i = 0; i < 3; i++) {
+          const a = (i / 3) * Math.PI * 2;
+          const arm = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.05, 0.05), this.mat('iron', { color: '#2a2a30' }));
+          arm.position.set(Math.cos(a) * 0.2, topY, Math.sin(a) * 0.2);
+          arm.rotation.y = -a;
+          const candle = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.22, 8), this.mat('candle', { color: '#efe6d0' }));
+          candle.position.set(Math.cos(a) * 0.4, topY + 0.11, Math.sin(a) * 0.4);
+          g.add(arm, candle);
+        }
+      } else {
+        // 石灯笼
+        this.box(0.5, 0.06, 0.5, stone, 0, topY, 0, g);
+        for (const [dx, dz] of [[-0.2, -0.2], [0.2, -0.2], [-0.2, 0.2], [0.2, 0.2]] as const) this.box(0.06, 0.4, 0.06, stone, dx, topY + 0.23, dz, g);
+        const roof = new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.3, 4), stone);
+        roof.position.y = topY + 0.58;
+        roof.rotation.y = Math.PI / 4;
+        g.add(roof);
+      }
+      sv.flame = new THREE.Mesh(new THREE.SphereGeometry(tall ? 0.16 : 0.13, 10, 8), this.ownMat({ color: '#fff4d8', emissive: '#ffb85a', emissiveIntensity: 2.0 }));
+      sv.flame.scale.y = 1.3;
+      sv.flame.position.y = topY + (tall ? 0.34 : 0.24);
+      g.add(sv.flame);
+      sv.light = new THREE.PointLight('#ffb85a', 0, tall ? 9 : 13, 1.4);
+      sv.light.position.y = topY + 0.5;
+      g.add(sv.light);
     } else {
       // fan：台座 + 可转向的风扇头
       const base = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.55, 0.5, 12), this.mat('fan-base', { color: '#dfe6f2' }));
@@ -519,5 +695,48 @@ export class GymMechanismView {
     }
     this.collision.add(SWITCH_GROUP, { kind: 'circle', x, z, r: 0.5, y0: 0, y1: 1.6, tag: `mech-switch:${def.id}` });
     return sv;
+  }
+
+  private buildMirror(def: MechMirror): MirrorView {
+    const g = new THREE.Group();
+    g.name = `mech-mirror:${def.id}`;
+    g.position.set(def.at[0], 0, def.at[1]);
+    g.rotation.y = def.yaw ?? 0;
+    this.group.add(g);
+    const color = def.color ?? '#c86ad8';
+    const gold = !!def.variable;
+    const frame = this.mat(gold ? 'mir-gold' : `mir-frame-${color}`, gold ? { color: '#d8a83a', emissive: '#6a4a00', emissiveIntensity: 0.4 } : { color: '#2a2440' });
+    // 镜框：立在法阵后方（-z 侧），玩家站上法阵即传送
+    const back = -0.55;
+    this.box(0.14, 2.3, 0.14, frame, -0.7, 1.15, back, g);
+    this.box(0.14, 2.3, 0.14, frame, 0.7, 1.15, back, g);
+    this.box(1.54, 0.14, 0.14, frame, 0, 2.3, back, g);
+    this.box(1.7, 0.14, 0.3, frame, 0, 0.07, back, g);
+    const arch = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.07, 6, 16, Math.PI), frame);
+    arch.position.set(0, 2.3, back);
+    g.add(arch);
+    const glass = new THREE.Mesh(new THREE.PlaneGeometry(1.26, 2.1), this.ownMat({ color: '#e8f0ff', emissive: color, emissiveIntensity: 0.6, transparent: true, opacity: 0.85, side: THREE.DoubleSide, specular: true }));
+    glass.position.set(0, 1.2, back);
+    g.add(glass);
+    // 地面法阵
+    const pad = new THREE.Mesh(new THREE.RingGeometry(0.35, 0.62, 24), this.ownMat({ color, emissive: color, emissiveIntensity: 1.0, transparent: true, opacity: 0.5, side: THREE.DoubleSide }));
+    pad.rotation.x = -Math.PI / 2;
+    pad.position.y = 0.03;
+    g.add(pad);
+    const inner = new THREE.Mesh(new THREE.CircleGeometry(0.3, 6), this.mat(`mir-inner-${color}`, { color, emissive: color, emissiveIntensity: 0.6, transparent: true, opacity: 0.35 }));
+    inner.rotation.x = -Math.PI / 2;
+    inner.position.y = 0.025;
+    g.add(inner);
+    let gem: THREE.Mesh | undefined;
+    if (gold) {
+      gem = new THREE.Mesh(new THREE.OctahedronGeometry(0.18), this.ownMat({ color: '#ffffff', emissive: ORB_COLORS[0]!, emissiveIntensity: 1.4 }));
+      gem.position.set(0, 3.15, back);
+      g.add(gem);
+    }
+    // 镜框挡人（法阵本身可踩）
+    const c = Math.cos(def.yaw ?? 0);
+    const sn = Math.sin(def.yaw ?? 0);
+    this.collision.add(SWITCH_GROUP, { kind: 'box', x: def.at[0] + sn * back, z: def.at[1] + c * back, hx: 0.85, hz: 0.18, yaw: def.yaw ?? 0, y0: 0, y1: 2.6, tag: `mech-mirror:${def.id}` });
+    return { def, glass, pad, gem, flash: 0 };
   }
 }

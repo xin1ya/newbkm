@@ -6,6 +6,8 @@
  */
 import type { StoryScript, StoryStep, StoryTrigger } from '@/systems/story';
 
+/** M3-16 · 琉璃群岛三枚徽章。 */
+export const GLAZE_BADGES = ['badge-mirage', 'badge-ghost', 'badge-glaze'] as const;
 export const THUNDER_BADGES = ['badge-thunder', 'badge-dawn', 'badge-snow', 'badge-lark'] as const;
 
 const glazeRouteOpen: StoryStep[] = [
