@@ -360,7 +360,7 @@ export class QuestDirector {
     const r = compassReading(p, this.fwd, target, inZone);
     const area = target.radius > 0 || !!target.zoneId;
     const note = r.inside ? (target.zoneId ? '已进入目标区域' : '目标就在附近，仔细找找') : formatDistance(r.distance);
-    this.hud.setTracker({ category: q.category, title: q.title, objective: obj.text, progress, note });
+    this.hud.setTracker({ category: q.category, title: q.title, objective: obj.text, progress, note: r.inside ? note : `${note} · T 自动寻路` });
     this.hud.setCompass({ heading: r.heading, target: { relative: r.relative, distance: formatDistance(r.distance), inside: r.inside, area } });
     const showWorld = s.settings.showWorldMarkers && visible && !r.inside;
     this.anchor.set(target.x, ctx.heightAt(target.x, target.z) + (area ? 3 : 4.2), target.z);

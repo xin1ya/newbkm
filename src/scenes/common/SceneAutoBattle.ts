@@ -25,7 +25,7 @@ import type { ZoneConfig } from '@/config/islands/types';
 import type { EncounterTable } from '@/systems/encounters';
 import { behaviorOf } from '@/config/encounters/behavior';
 import { BERRY_BY_ID } from '@/config/berries';
-import { AUTO_BALLS, AUTO_HEAL_ITEMS, AUTO_PP_ITEMS, sanitizeAutoConfig, type AutoBattleConfig, type AutoGoal } from '@/systems/autobattle';
+import { AUTO_BALLS, AUTO_HEAL_ITEMS, AUTO_PP_ITEMS, pickCarrier, sanitizeAutoConfig, type AutoBattleConfig, type AutoGoal } from '@/systems/autobattle';
 import type { BattleAutoPilot, BattleResult } from '@/scenes/battle/BattleScene';
 import type { UiRoot } from '@/ui/core/UiRoot';
 import { AutoBattleCard, AutoBattleSettings, type AutoZoneSpecies } from '@/ui/hud/AutoBattlePanel';
@@ -233,7 +233,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
     Object.assign(this.tally, { battles: 0, defeated: 0, captured: 0, fled: 0 });
     this.missed = [];
     sfx('confirm', 0.7);
-    this.d.toast(`自动战斗开始：${this.describeTargets()}`);
+    this.d.toast(`自动战斗开始：${this.describeTargets()}${this.config.train ? `（代练 ${this.d.state.party[0] ? displayName(this.d.dex, this.d.state.party[0]) : ''}）` : ''}`);
     this.refreshCard();
   }
 
@@ -415,8 +415,10 @@ export class SceneAutoBattle implements BattleAutoPilot {
     const party = this.d.state.party;
     if (r.result === 'lose') return this.stop('队伍全灭');
     if (!party.some((p) => p.hp > 0)) return this.stop('没有能战斗的宝可梦了');
-    const lead = party.find((p) => p.hp > 0)!;
     const cfg = this.config;
+    // 代练时真正出手的是打手（等级最高的同伴），按它判断 HP / PP
+    const carrier = cfg.train ? pickCarrier(party.map((p) => ({ level: p.level, hp: p.hp, canHit: p.moves.some((m) => m.pp > 0 && this.isAttack(m.id)) }))) : null;
+    const lead = (carrier !== null ? party[carrier] : undefined) ?? party.find((p) => p.hp > 0)!;
     // 首发低血且没有回复道具 / 招式 PP 用完 / 首发倒下 → 回宝可梦中心（或停止）
     const hpRatio = lead.hp / Math.max(1, maxHp(this.d.dex, lead));
     const noHeal = hpRatio < cfg.hpPct && !cfg.healItems.some((id) => id !== 'full-heal' && (this.d.state.bag[id] ?? 0) > 0);

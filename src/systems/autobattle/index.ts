@@ -33,6 +33,8 @@ export interface AutoBattleConfig {
   ppItems: string[];
   /** 回复道具用完 / PP 用完 / 首发倒下时，飞回最近的宝可梦中心治疗后回来继续（需要能飞行） */
   centerHeal: boolean;
+  /** 代练：首发（队伍第 1 只）只上场露面，开战后换成队伍里等级最高、打得到对手的宝可梦去打倒（经验按参战平分给首发） */
+  train: boolean;
 }
 
 /** 战斗中可用的回复道具（与 Battle.useItem 支持的一致） */
@@ -43,7 +45,7 @@ export const AUTO_BALLS = ['poke-ball', 'great-ball', 'ultra-ball', 'quick-ball'
 export const RED_HP = 0.2;
 
 export function defaultAutoConfig(): AutoBattleConfig {
-  return { targets: {}, ball: 'poke-ball', disabledMoves: [], hpPct: 0.35, ppMin: 2, healItems: ['potion', 'super-potion'], ppItems: ['leppa-berry'], centerHeal: true };
+  return { targets: {}, ball: 'poke-ball', disabledMoves: [], hpPct: 0.35, ppMin: 2, healItems: ['potion', 'super-potion'], ppItems: ['leppa-berry'], centerHeal: true, train: false };
 }
 
 /** 读档 / 本地存储恢复：字段缺失或非法时用默认值 */
@@ -65,6 +67,7 @@ export function sanitizeAutoConfig(raw: unknown): AutoBattleConfig {
     healItems: strs(r.healItems, AUTO_HEAL_ITEMS, d.healItems),
     ppItems: strs(r.ppItems, AUTO_PP_ITEMS, d.ppItems),
     centerHeal: typeof r.centerHeal === 'boolean' ? r.centerHeal : d.centerHeal,
+    train: typeof r.train === 'boolean' ? r.train : d.train,
   };
 }
 
@@ -116,6 +119,36 @@ export function effectiveSwitchIndex(b: Battle): number | null {
   return i >= 0 ? i : null;
 }
 
+/**
+ * 代练的打手：除首发外还能战斗、有能打到对手的攻击招式、等级高于首发的宝可梦中等级最高的那只（同级取 HP 多的）。
+ * levels / alive / canHit 由调用方按队伍顺序给出（场景层用存档队伍，战斗中用 Battle）。
+ */
+export function pickCarrier(party: ReadonlyArray<{ level: number; hp: number; canHit: boolean }>): number | null {
+  const lead = party[0];
+  if (!lead) return null;
+  let best: number | null = null;
+  for (let i = 1; i < party.length; i++) {
+    const m = party[i];
+    if (!m || m.hp <= 0 || !m.canHit || m.level <= lead.level) continue;
+    const b = best === null ? null : party[best];
+    if (!b || m.level > b.level || (m.level === b.level && m.hp > b.hp)) best = i;
+  }
+  return best;
+}
+
+/** 战斗中的代练打手（对当前对手） */
+export function carrierIndex(b: Battle, cfg?: AutoBattleConfig): number | null {
+  const s = b.sides[0];
+  const foeTypes = b.types(b.active(1));
+  return pickCarrier(
+    s.party.map((m) => ({
+      level: m.pokemon.level,
+      hp: m.pokemon.hp,
+      canHit: m.pokemon.moves.some((mv) => mv.pp > 0 && !cfg?.disabledMoves.includes(mv.id) && isDamagingMove(b, mv.id) && b.dex.effectiveness(b.dex.move(mv.id).type, foeTypes) > 0),
+    })),
+  );
+}
+
 /** 没有能造成伤害的招式（例如一般 / 格斗系招式打鬼斯）：捕捉目标直接扔球 → 换上打得到的同伴 → 逃跑 → 停止 */
 function noEffectiveMove(b: Battle, req: ActionRequest, goal: AutoGoal | null, cfg: AutoBattleConfig, bag: Readonly<Record<string, number>>): AutoDecision {
   if (goal === 'capture' && req.canCatch && (bag[cfg.ball] ?? 0) > 0) return { kind: 'act', action: { type: 'ball', itemId: cfg.ball }, note: 'ball' };
@@ -157,8 +190,13 @@ export function decideAutoAction(b: Battle, req: ActionRequest, goal: AutoGoal |
     if (m < 0) return noEffectiveMove(b, req, goal, cfg, bag);
     return { kind: 'act', action: { type: 'move', moveIndex: m } };
   }
-  const me = b.active(0);
   const meIdx = b.sides[0].active;
+  // 代练：首发在场 → 换打手上场（首发已和对手照面，打倒后分到经验）
+  if (cfg.train && goal === 'defeat' && meIdx === 0 && req.canSwitch) {
+    const c = carrierIndex(b, cfg);
+    if (c !== null) return { kind: 'act', action: { type: 'switch', partyIndex: c }, note: 'train' };
+  }
+  const me = b.active(0);
   const foe = b.active(1);
   const foeMax = b.maxHp(foe);
   // HP 阈值 → 回复道具
@@ -216,8 +254,13 @@ export function decideAutoAction(b: Battle, req: ActionRequest, goal: AutoGoal |
 }
 
 /** 换人请求（首发倒下）：第一只还能战斗的宝可梦 */
-export function autoSwitchIndex(b: Battle): number | null {
+export function autoSwitchIndex(b: Battle, cfg?: AutoBattleConfig): number | null {
   const s = b.sides[0];
+  if (cfg?.train) {
+    // 代练中打手倒下：换下一只能打的高等级同伴，不让首发（低等级）顶上
+    const c = carrierIndex(b, cfg);
+    if (c !== null && c !== s.active) return c;
+  }
   const i = s.party.findIndex((m, idx) => idx !== s.active && m.pokemon.hp > 0);
   return i >= 0 ? i : null;
 }

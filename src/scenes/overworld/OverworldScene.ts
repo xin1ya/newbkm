@@ -60,6 +60,9 @@ import { SceneRide } from '@/scenes/common/SceneRide';
 import { SceneBike } from '@/scenes/common/SceneBike';
 import { SceneFly } from '@/scenes/common/SceneFly';
 import { SceneAutoBattle } from '@/scenes/common/SceneAutoBattle';
+import { SceneAutoPath } from '@/scenes/common/SceneAutoPath';
+import { QuestDirector } from '@/scenes/common/QuestDirector';
+import { ISLAND_NAMES } from '@/systems/quests/runtime';
 import { SceneFishing } from '@/scenes/common/SceneFishing';
 import { createNpcServices, type NpcServices } from '@/scenes/common/npcServices';
 import { Footsteps } from '@/scenes/common/Footsteps';
@@ -159,6 +162,7 @@ export class OverworldScene implements Scene, BattleHost {
   bike!: SceneBike;
   fly!: SceneFly;
   auto!: SceneAutoBattle;
+  autoPath!: SceneAutoPath;
   /** M1-15 钓鱼 */
   fishing!: SceneFishing;
   /** M1-13/14 剧情拾取物 / 抵达触发 / 剧情宿主 */
@@ -396,6 +400,23 @@ export class OverworldScene implements Scene, BattleHost {
       mountBike: () => this.bike.owned && this.bike.mount(),
       healTrip: () => this.autoHealTrip(),
     });
+    this.autoPath = new SceneAutoPath({
+      player: this.player,
+      island: () => this.d.island.id,
+      target: () => QuestDirector.current?.target ?? null,
+      questName: () => QuestDirector.current?.tracked?.title ?? null,
+      zoneAt: (x, z) => this.zones.at(x, z)?.id ?? null,
+      // 自动寻路不会自己冲浪：深水不可通行
+      cost: (x, z) => {
+        const w = this.terrain.hf.waterAt(x, z);
+        return w && w.depth > 0.45 ? Infinity : this.pathCost(x, z);
+      },
+      toast: (t) => this.d.toaster.show(t),
+      idle: () => !busyNow() && !this.fishing.active && !this.enteringDoor && !this.inBattle,
+      blocked: () => (this.fly.flying ? '飞行中不能自动寻路' : this.ride.surfing ? '冲浪中不能自动寻路' : this.fishing.active ? '钓鱼中' : this.auto.active ? '自动战斗中' : null),
+      mountBike: () => this.bike.owned && this.bike.mount(),
+      islandName: (id) => ISLAND_NAMES[id as keyof typeof ISLAND_NAMES] ?? id,
+    });
     this.ride = new SceneRide({
       game,
       state: this.d.state,
@@ -591,9 +612,14 @@ export class OverworldScene implements Scene, BattleHost {
     const wasRunning = this.player.runLatched;
     {
       const ax = input ? input.moveAxis() : { x: 0, y: 0 };
-      if (input?.pressed('autoBattle') && !this.inBattle && !this.fishing.active && !this.enteringDoor) this.auto.onKey();
-      // 自动战斗接管移动（玩家按移动键 → 停止）
-      const driven = this.auto.fixedUpdate(dt, !!input && (ax.x !== 0 || ax.y !== 0));
+      if (input?.pressed('autoBattle') && !this.inBattle && !this.fishing.active && !this.enteringDoor) {
+        this.autoPath.stop();
+        this.auto.onKey();
+      }
+      if (input?.pressed('autoPath') && !this.inBattle && !this.enteringDoor) this.autoPath.toggle();
+      // 自动战斗 / 自动寻路接管移动（玩家按移动键 → 停止）
+      const manual = !!input && (ax.x !== 0 || ax.y !== 0);
+      const driven = this.auto.fixedUpdate(dt, manual) || this.autoPath.fixedUpdate(dt, manual);
       if (!driven) this.player.fixedUpdate(dt, this.fishing.active ? null : input, this.rig.forwardYaw);
     }
     if (this.player.runToggle && wasRunning !== this.player.runLatched) this.d.game.events.emit('ui:toast', { text: this.player.runLatched ? '奔跑：开' : '奔跑：关', ms: 900 });
@@ -1315,6 +1341,7 @@ export class OverworldScene implements Scene, BattleHost {
     if (this.ride.surfing) await this.ride.stop(null, true);
     if (this.fly.flying) await this.fly.land(true);
     this.auto.stop('进入了室内');
+    this.autoPath.stop();
     this.bike.dismount(true);
     sfx('door');
     this.d.game.events.emit('interior:enter', { interior: interiorId, door: this.lastDoor });

@@ -498,3 +498,5 @@ render ◄── world ◄── actors ◄── scenes ◄── ui
 | 2026-10-04 | **工作空间清理 + git + M2 拆分**：清理本地截图 377 张、远端 `.sync` 临时文件、`x.mjs`、`dist`、`test-results`；`.gitignore` 增加 `*.blend1`、`.sync/`、`.yfcode/`；`git init`，首个提交推送到 github.com/xin1ya/newbkm（R-05 解决）。M2 拆分为 24 项（§3.3），M2 状态改为进行中。飞行规则调整：封锁圈对飞行同样有效（surf 封锁除外），后续限制在已到访岛屿内；岛 2「翠澜森林」改名为「碧潮古森」 |
 
 - 2026-10-04 第二批 45 模型参考相似度验收：44 个全部剪影 IoU ≥0.70（864 豁免），详见 docs/art/similarity-batch2.md。
+
+- 2026-10-05 任务自动寻路 + 自动战斗代练：① T 键沿 A* 路线自动走 / 骑车到追踪任务目标（`scenes/common/SceneAutoPath.ts`；深水视为不可通行，3 s / 偏离 6 m / 卡住时重新寻路；到达、移动键、再按 T、换岛、进室内、自动战斗时停止；战斗对话中暂停后继续；任务追踪栏显示「T 自动寻路」）。② 自动战斗设置新增「代练」（config.train）：「打倒」目标时首发（队伍第 1 位）露面后换上等级最高、打得到对手的同伴击败，经验按参战分给首发；打手倒下优先换另一只高等级同伴；战后 HP / PP 判定按打手。tests/unit/autopath-train.test.ts 7 项；tsc / eslint 通过，vitest 582/582。

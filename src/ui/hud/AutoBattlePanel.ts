@@ -252,6 +252,10 @@ export class AutoBattleSettings implements UiWidget {
     const ch = el('button', `chip${cfg.centerHeal ? ' on' : ''}`, g5, `${cfg.centerHeal ? '☑' : '☐'} 道具 / PP 用完时飞回宝可梦中心治疗，再回来继续`);
     ch.addEventListener('click', () => this.set(() => (cfg.centerHeal = !cfg.centerHeal)));
     el('div', 'meta', g5, '需要能骑宝可梦飞行（翠澜徽章）；不勾选则直接停止。').style.cssText = 'font-size:11px;color:#6a7190;margin-top:4px';
+    const tr = el('button', `chip${cfg.train ? ' on' : ''}`, g5, `${cfg.train ? '☑' : '☐'} 代练：首发低等级宝可梦露面后，换队伍里等级最高的同伴打倒目标`);
+    tr.style.marginTop = '8px';
+    tr.addEventListener('click', () => this.set(() => (cfg.train = !cfg.train)));
+    el('div', 'meta', g5, '只对「打倒」目标生效；经验由首发与打手平分。首发须放在队伍第 1 位。').style.cssText = 'font-size:11px;color:#6a7190;margin-top:4px';
 
     // 底部
     const ft = el('div', 'ft', win);

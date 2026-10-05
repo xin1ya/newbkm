@@ -387,7 +387,7 @@ export class BattleScene implements Scene {
         continue;
       }
       if (req.kind === 'switch' && this.pilot) {
-        const idx = autoSwitchIndex(this.battle);
+        const idx = autoSwitchIndex(this.battle, this.pilot.config);
         if (idx !== null) {
           await this.play(this.battle.submitSwitch(0, idx));
           continue;

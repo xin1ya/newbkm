@@ -32,7 +32,8 @@ export type Action =
   | 'gearDown'
   | 'fly'
   | 'descend'
-  | 'autoBattle';
+  | 'autoBattle'
+  | 'autoPath';
 
 export interface Binding {
   keys: string[];
@@ -98,6 +99,8 @@ export const DEFAULT_BINDINGS: BindingTable = {
   descend: { keys: ['ControlLeft', 'ControlRight'], pad: [PAD.LT] },
   // 自动战斗设置（野外区域）
   autoBattle: { keys: ['KeyK'] },
+  // 任务自动寻路（追踪任务目标）
+  autoPath: { keys: ['KeyT'] },
 };
 
 /** 合并玩家自定义映射（未知动作忽略，缺失动作用默认值） */
