@@ -1,0 +1,30 @@
+{
+ "id": 593,
+ "name": "jellicent",
+ "heightM": 2.2,
+ "plan": "rigid",
+ "src": "593.glb",
+ "drop": [
+  "Icosphere"
+ ],
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ]
+}

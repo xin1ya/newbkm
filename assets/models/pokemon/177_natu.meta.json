@@ -1,0 +1,26 @@
+{
+  "id": 177,
+  "name": "natu",
+  "heightM": 0.2,
+  "plan": "bird",
+  "tris": 731,
+  "fit": "oss",
+  "bones": 7,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "fly"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.8666666666666667
+  },
+  "source": "oss:pokemon-3d/177.glb"
+}

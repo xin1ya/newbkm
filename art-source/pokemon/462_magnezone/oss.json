@@ -1,0 +1,30 @@
+{
+ "id": 462,
+ "name": "magnezone",
+ "heightM": 1.2,
+ "plan": "rigid",
+ "src": "462.glb",
+ "drop": [
+  "Icosphere"
+ ],
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ]
+}

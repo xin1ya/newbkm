@@ -1,0 +1,30 @@
+{
+ "id": 101,
+ "name": "electrode",
+ "heightM": 1.2,
+ "plan": "rigid",
+ "src": "101.glb",
+ "drop": [
+  "Icosphere"
+ ],
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ]
+}

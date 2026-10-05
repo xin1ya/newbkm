@@ -1,0 +1,30 @@
+{
+ "id": 178,
+ "name": "xatu",
+ "heightM": 1.5,
+ "plan": "rigid",
+ "src": "178.glb",
+ "drop": [
+  "Icosphere"
+ ],
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ]
+}

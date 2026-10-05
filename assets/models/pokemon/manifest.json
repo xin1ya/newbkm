@@ -821,6 +821,90 @@
       "rawBytes": 307828
     },
     {
+      "id": 63,
+      "name": "abra",
+      "heightM": 0.9,
+      "plan": "biped",
+      "tris": 4438,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/63.glb",
+      "file": "063_abra.glb",
+      "bytes": 137060,
+      "rawBytes": 334016
+    },
+    {
+      "id": 64,
+      "name": "kadabra",
+      "heightM": 1.3,
+      "plan": "biped",
+      "tris": 5852,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/64.glb",
+      "file": "064_kadabra.glb",
+      "bytes": 191036,
+      "rawBytes": 427660
+    },
+    {
+      "id": 65,
+      "name": "alakazam",
+      "heightM": 1.5,
+      "plan": "biped",
+      "tris": 5126,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/65.glb",
+      "file": "065_alakazam.glb",
+      "bytes": 169736,
+      "rawBytes": 420680
+    },
+    {
       "id": 66,
       "name": "machop",
       "heightM": 0.8,
@@ -1243,6 +1327,120 @@
       "rawBytes": 353568
     },
     {
+      "id": 81,
+      "name": "magnemite",
+      "heightM": 0.3,
+      "plan": "rigid",
+      "tris": 13720,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/81.glb",
+      "file": "081_magnemite.glb",
+      "bytes": 189588,
+      "rawBytes": 611004
+    },
+    {
+      "id": 82,
+      "name": "magneton",
+      "heightM": 1,
+      "plan": "rigid",
+      "tris": 8598,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/82.glb",
+      "file": "082_magneton.glb",
+      "bytes": 196080,
+      "rawBytes": 671948
+    },
+    {
+      "id": 86,
+      "name": "seel",
+      "heightM": 1.1,
+      "plan": "fish",
+      "tris": 4648,
+      "fit": "oss",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/86.glb",
+      "file": "086_seel.glb",
+      "bytes": 130104,
+      "rawBytes": 310292
+    },
+    {
+      "id": 87,
+      "name": "dewgong",
+      "heightM": 1.7,
+      "plan": "fish",
+      "tris": 4928,
+      "fit": "oss",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/87.glb",
+      "file": "087_dewgong.glb",
+      "bytes": 125460,
+      "rawBytes": 312240
+    },
+    {
       "id": 90,
       "name": "shellder",
       "heightM": 0.3,
@@ -1468,6 +1666,62 @@
       "rawBytes": 330376
     },
     {
+      "id": 100,
+      "name": "voltorb",
+      "heightM": 0.5,
+      "plan": "rigid",
+      "tris": 5774,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/100.glb",
+      "file": "100_voltorb.glb",
+      "bytes": 78160,
+      "rawBytes": 246768
+    },
+    {
+      "id": 101,
+      "name": "electrode",
+      "heightM": 1.2,
+      "plan": "rigid",
+      "tris": 2576,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/101.glb",
+      "file": "101_electrode.glb",
+      "bytes": 70288,
+      "rawBytes": 156724
+    },
+    {
       "id": 104,
       "name": "cubone",
       "heightM": 0.4,
@@ -1578,6 +1832,64 @@
       "file": "112_rhydon.glb",
       "bytes": 106272,
       "rawBytes": 337412
+    },
+    {
+      "id": 116,
+      "name": "horsea",
+      "heightM": 0.4,
+      "plan": "fish",
+      "tris": 3820,
+      "fit": "oss",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/116.glb",
+      "file": "116_horsea.glb",
+      "bytes": 114080,
+      "rawBytes": 269144
+    },
+    {
+      "id": 117,
+      "name": "seadra",
+      "heightM": 1.2,
+      "plan": "fish",
+      "tris": 5172,
+      "fit": "oss",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/117.glb",
+      "file": "117_seadra.glb",
+      "bytes": 142764,
+      "rawBytes": 356700
     },
     {
       "id": 118,
@@ -1692,6 +2004,34 @@
       "rawBytes": 345800
     },
     {
+      "id": 125,
+      "name": "electabuzz",
+      "heightM": 1.1,
+      "plan": "biped",
+      "tris": 5056,
+      "fit": "oss",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/125.glb",
+      "file": "125_electabuzz.glb",
+      "bytes": 182188,
+      "rawBytes": 414148
+    },
+    {
       "id": 129,
       "name": "magikarp",
       "heightM": 0.9,
@@ -1748,6 +2088,92 @@
       "file": "130_gyarados.glb",
       "bytes": 142988,
       "rawBytes": 537812
+    },
+    {
+      "id": 147,
+      "name": "dratini",
+      "heightM": 1.8,
+      "plan": "serpent",
+      "tris": 3348,
+      "fit": "length",
+      "bones": 8,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/147.glb",
+      "file": "147_dratini.glb",
+      "bytes": 116648,
+      "rawBytes": 265180
+    },
+    {
+      "id": 148,
+      "name": "dragonair",
+      "heightM": 4,
+      "plan": "serpent",
+      "tris": 4626,
+      "fit": "length",
+      "bones": 8,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/148.glb",
+      "file": "148_dragonair.glb",
+      "bytes": 130916,
+      "rawBytes": 319120
+    },
+    {
+      "id": 149,
+      "name": "dragonite",
+      "heightM": 2.2,
+      "plan": "biped",
+      "tris": 5306,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/149.glb",
+      "file": "149_dragonite.glb",
+      "bytes": 210396,
+      "rawBytes": 429728
     },
     {
       "id": 155,
@@ -2029,6 +2455,64 @@
       "rawBytes": 248748
     },
     {
+      "id": 170,
+      "name": "chinchou",
+      "heightM": 0.5,
+      "plan": "fish",
+      "tris": 12792,
+      "fit": "oss",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/170.glb",
+      "file": "170_chinchou.glb",
+      "bytes": 173272,
+      "rawBytes": 567896
+    },
+    {
+      "id": 171,
+      "name": "lanturn",
+      "heightM": 1.2,
+      "plan": "fish",
+      "tris": 13719,
+      "fit": "oss",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/171.glb",
+      "file": "171_lanturn.glb",
+      "bytes": 429292,
+      "rawBytes": 1980700
+    },
+    {
       "id": 172,
       "name": "pichu",
       "heightM": 0.3,
@@ -2055,6 +2539,147 @@
       "file": "172_pichu.glb",
       "bytes": 111804,
       "rawBytes": 325680
+    },
+    {
+      "id": 177,
+      "name": "natu",
+      "heightM": 0.2,
+      "plan": "bird",
+      "tris": 731,
+      "fit": "oss",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "fly"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.8666666666666667
+      },
+      "source": "oss:pokemon-3d/177.glb",
+      "file": "177_natu.glb",
+      "bytes": 83372,
+      "rawBytes": 133488
+    },
+    {
+      "id": 178,
+      "name": "xatu",
+      "heightM": 1.5,
+      "plan": "rigid",
+      "tris": 810,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/178.glb",
+      "file": "178_xatu.glb",
+      "bytes": 42044,
+      "rawBytes": 79036
+    },
+    {
+      "id": 179,
+      "name": "mareep",
+      "heightM": 0.6,
+      "plan": "quadruped",
+      "tris": 952,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/179.glb",
+      "file": "179_mareep.glb",
+      "bytes": 91424,
+      "rawBytes": 183016
+    },
+    {
+      "id": 180,
+      "name": "flaaffy",
+      "heightM": 0.8,
+      "plan": "biped",
+      "tris": 5968,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/180.glb",
+      "file": "180_flaaffy.glb",
+      "bytes": 229256,
+      "rawBytes": 463728
+    },
+    {
+      "id": 181,
+      "name": "ampharos",
+      "heightM": 1.4,
+      "plan": "biped",
+      "tris": 5884,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/181.glb",
+      "file": "181_ampharos.glb",
+      "bytes": 174280,
+      "rawBytes": 407312
     },
     {
       "id": 182,
@@ -2197,6 +2822,34 @@
       "rawBytes": 395716
     },
     {
+      "id": 200,
+      "name": "misdreavus",
+      "heightM": 0.7,
+      "plan": "rigid",
+      "tris": 13720,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/200.glb",
+      "file": "200_misdreavus.glb",
+      "bytes": 172824,
+      "rawBytes": 696460
+    },
+    {
       "id": 208,
       "name": "steelix",
       "heightM": 9.2,
@@ -2252,6 +2905,34 @@
       "file": "214_heracross.glb",
       "bytes": 103348,
       "rawBytes": 337384
+    },
+    {
+      "id": 215,
+      "name": "sneasel",
+      "heightM": 0.9,
+      "plan": "biped",
+      "tris": 4584,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/215.glb",
+      "file": "215_sneasel.glb",
+      "bytes": 171052,
+      "rawBytes": 390804
     },
     {
       "id": 218,
@@ -2310,6 +2991,62 @@
       "rawBytes": 198156
     },
     {
+      "id": 220,
+      "name": "swinub",
+      "heightM": 0.4,
+      "plan": "quadruped",
+      "tris": 582,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/220.glb",
+      "file": "220_swinub.glb",
+      "bytes": 87084,
+      "rawBytes": 168120
+    },
+    {
+      "id": 221,
+      "name": "piloswine",
+      "heightM": 1.1,
+      "plan": "quadruped",
+      "tris": 1664,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/221.glb",
+      "file": "221_piloswine.glb",
+      "bytes": 99300,
+      "rawBytes": 207256
+    },
+    {
       "id": 222,
       "name": "corsola",
       "heightM": 0.6,
@@ -2336,6 +3073,34 @@
       "file": "222_corsola.glb",
       "bytes": 143288,
       "rawBytes": 402340
+    },
+    {
+      "id": 225,
+      "name": "delibird",
+      "heightM": 0.9,
+      "plan": "biped",
+      "tris": 5866,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/225.glb",
+      "file": "225_delibird.glb",
+      "bytes": 200648,
+      "rawBytes": 467108
     },
     {
       "id": 228,
@@ -2392,6 +3157,147 @@
       "file": "229_houndoom.glb",
       "bytes": 120432,
       "rawBytes": 406928
+    },
+    {
+      "id": 230,
+      "name": "kingdra",
+      "heightM": 1.8,
+      "plan": "fish",
+      "tris": 961,
+      "fit": "oss",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/230.glb",
+      "file": "230_kingdra.glb",
+      "bytes": 66136,
+      "rawBytes": 143388
+    },
+    {
+      "id": 239,
+      "name": "elekid",
+      "heightM": 0.6,
+      "plan": "biped",
+      "tris": 1573,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/239.glb",
+      "file": "239_elekid.glb",
+      "bytes": 148392,
+      "rawBytes": 373172
+    },
+    {
+      "id": 246,
+      "name": "larvitar",
+      "heightM": 0.6,
+      "plan": "biped",
+      "tris": 3316,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/246.glb",
+      "file": "246_larvitar.glb",
+      "bytes": 160072,
+      "rawBytes": 342588
+    },
+    {
+      "id": 247,
+      "name": "pupitar",
+      "heightM": 1.2,
+      "plan": "biped",
+      "tris": 3606,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/247.glb",
+      "file": "247_pupitar.glb",
+      "bytes": 159608,
+      "rawBytes": 346624
+    },
+    {
+      "id": 248,
+      "name": "tyranitar",
+      "heightM": 2,
+      "plan": "biped",
+      "tris": 7352,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/248.glb",
+      "file": "248_tyranitar.glb",
+      "bytes": 213340,
+      "rawBytes": 501196
     },
     {
       "id": 258,
@@ -2589,6 +3495,90 @@
       "rawBytes": 273688
     },
     {
+      "id": 280,
+      "name": "ralts",
+      "heightM": 0.4,
+      "plan": "biped",
+      "tris": 3882,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/280.glb",
+      "file": "280_ralts.glb",
+      "bytes": 158228,
+      "rawBytes": 335100
+    },
+    {
+      "id": 281,
+      "name": "kirlia",
+      "heightM": 0.8,
+      "plan": "biped",
+      "tris": 4868,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/281.glb",
+      "file": "281_kirlia.glb",
+      "bytes": 138828,
+      "rawBytes": 343416
+    },
+    {
+      "id": 282,
+      "name": "gardevoir",
+      "heightM": 1.6,
+      "plan": "biped",
+      "tris": 5774,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/282.glb",
+      "file": "282_gardevoir.glb",
+      "bytes": 190524,
+      "rawBytes": 417528
+    },
+    {
       "id": 283,
       "name": "surskit",
       "heightM": 0.5,
@@ -2700,6 +3690,34 @@
       "file": "286_breloom.glb",
       "bytes": 112464,
       "rawBytes": 388952
+    },
+    {
+      "id": 299,
+      "name": "nosepass",
+      "heightM": 1,
+      "plan": "rigid",
+      "tris": 556,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/299.glb",
+      "file": "299_nosepass.glb",
+      "bytes": 37528,
+      "rawBytes": 76436
     },
     {
       "id": 315,
@@ -2926,6 +3944,204 @@
       "rawBytes": 226100
     },
     {
+      "id": 355,
+      "name": "duskull",
+      "heightM": 0.8,
+      "plan": "rigid",
+      "tris": 1504,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/355.glb",
+      "file": "355_duskull.glb",
+      "bytes": 123312,
+      "rawBytes": 317924
+    },
+    {
+      "id": 356,
+      "name": "dusclops",
+      "heightM": 1.6,
+      "plan": "biped",
+      "tris": 986,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/356.glb",
+      "file": "356_dusclops.glb",
+      "bytes": 88880,
+      "rawBytes": 186320
+    },
+    {
+      "id": 361,
+      "name": "snorunt",
+      "heightM": 0.7,
+      "plan": "rigid",
+      "tris": 4252,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/361.glb",
+      "file": "361_snorunt.glb",
+      "bytes": 146544,
+      "rawBytes": 282352
+    },
+    {
+      "id": 362,
+      "name": "glalie",
+      "heightM": 1.5,
+      "plan": "rigid",
+      "tris": 3942,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/362.glb",
+      "file": "362_glalie.glb",
+      "bytes": 141396,
+      "rawBytes": 296212
+    },
+    {
+      "id": 363,
+      "name": "spheal",
+      "heightM": 0.8,
+      "plan": "rigid",
+      "tris": 2890,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/363.glb",
+      "file": "363_spheal.glb",
+      "bytes": 57664,
+      "rawBytes": 161840
+    },
+    {
+      "id": 364,
+      "name": "sealeo",
+      "heightM": 1.1,
+      "plan": "fish",
+      "tris": 4750,
+      "fit": "oss",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/364.glb",
+      "file": "364_sealeo.glb",
+      "bytes": 110108,
+      "rawBytes": 287232
+    },
+    {
+      "id": 365,
+      "name": "walrein",
+      "heightM": 1.4,
+      "plan": "fish",
+      "tris": 8312,
+      "fit": "oss",
+      "bones": 7,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep",
+        "swim"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5333333333333333,
+        "attack_special": 0.8
+      },
+      "source": "oss:pokemon-3d/365.glb",
+      "file": "365_walrein.glb",
+      "bytes": 131576,
+      "rawBytes": 408744
+    },
+    {
       "id": 377,
       "name": "regirock",
       "heightM": 1.7,
@@ -3041,6 +4257,90 @@
       "rawBytes": 405816
     },
     {
+      "id": 403,
+      "name": "shinx",
+      "heightM": 0.5,
+      "plan": "quadruped",
+      "tris": 978,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/403.glb",
+      "file": "403_shinx.glb",
+      "bytes": 109800,
+      "rawBytes": 202536
+    },
+    {
+      "id": 404,
+      "name": "luxio",
+      "heightM": 0.9,
+      "plan": "quadruped",
+      "tris": 5958,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/404.glb",
+      "file": "404_luxio.glb",
+      "bytes": 145200,
+      "rawBytes": 382148
+    },
+    {
+      "id": 405,
+      "name": "luxray",
+      "heightM": 1.4,
+      "plan": "quadruped",
+      "tris": 1470,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/405.glb",
+      "file": "405_luxray.glb",
+      "bytes": 114840,
+      "rawBytes": 222588
+    },
+    {
       "id": 406,
       "name": "budew",
       "heightM": 0.2,
@@ -3097,6 +4397,286 @@
       "rawBytes": 414084
     },
     {
+      "id": 425,
+      "name": "drifloon",
+      "heightM": 0.4,
+      "plan": "rigid",
+      "tris": 1090,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/425.glb",
+      "file": "425_drifloon.glb",
+      "bytes": 36796,
+      "rawBytes": 79452
+    },
+    {
+      "id": 426,
+      "name": "drifblim",
+      "heightM": 1.2,
+      "plan": "rigid",
+      "tris": 1290,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/426.glb",
+      "file": "426_drifblim.glb",
+      "bytes": 88256,
+      "rawBytes": 244020
+    },
+    {
+      "id": 429,
+      "name": "mismagius",
+      "heightM": 0.9,
+      "plan": "rigid",
+      "tris": 5152,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/429.glb",
+      "file": "429_mismagius.glb",
+      "bytes": 93780,
+      "rawBytes": 258892
+    },
+    {
+      "id": 443,
+      "name": "gible",
+      "heightM": 0.7,
+      "plan": "biped",
+      "tris": 4040,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/443.glb",
+      "file": "443_gible.glb",
+      "bytes": 152004,
+      "rawBytes": 334164
+    },
+    {
+      "id": 444,
+      "name": "gabite",
+      "heightM": 1.4,
+      "plan": "biped",
+      "tris": 6178,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/444.glb",
+      "file": "444_gabite.glb",
+      "bytes": 179476,
+      "rawBytes": 426576
+    },
+    {
+      "id": 445,
+      "name": "garchomp",
+      "heightM": 1.9,
+      "plan": "biped",
+      "tris": 6488,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/445.glb",
+      "file": "445_garchomp.glb",
+      "bytes": 183096,
+      "rawBytes": 438368
+    },
+    {
+      "id": 459,
+      "name": "snover",
+      "heightM": 1,
+      "plan": "biped",
+      "tris": 976,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/459.glb",
+      "file": "459_snover.glb",
+      "bytes": 87676,
+      "rawBytes": 178784
+    },
+    {
+      "id": 460,
+      "name": "abomasnow",
+      "heightM": 2.2,
+      "plan": "biped",
+      "tris": 3937,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/460.glb",
+      "file": "460_abomasnow.glb",
+      "bytes": 196244,
+      "rawBytes": 450816
+    },
+    {
+      "id": 461,
+      "name": "weavile",
+      "heightM": 1.1,
+      "plan": "biped",
+      "tris": 6356,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/461.glb",
+      "file": "461_weavile.glb",
+      "bytes": 185792,
+      "rawBytes": 501064
+    },
+    {
+      "id": 462,
+      "name": "magnezone",
+      "heightM": 1.2,
+      "plan": "rigid",
+      "tris": 5404,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/462.glb",
+      "file": "462_magnezone.glb",
+      "bytes": 175824,
+      "rawBytes": 351848
+    },
+    {
       "id": 464,
       "name": "rhyperior",
       "heightM": 2.4,
@@ -3123,6 +4703,174 @@
       "file": "464_rhyperior.glb",
       "bytes": 110260,
       "rawBytes": 367336
+    },
+    {
+      "id": 466,
+      "name": "electivire",
+      "heightM": 1.8,
+      "plan": "biped",
+      "tris": 6936,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/466.glb",
+      "file": "466_electivire.glb",
+      "bytes": 195108,
+      "rawBytes": 471128
+    },
+    {
+      "id": 473,
+      "name": "mamoswine",
+      "heightM": 2.5,
+      "plan": "quadruped",
+      "tris": 1556,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/473.glb",
+      "file": "473_mamoswine.glb",
+      "bytes": 112684,
+      "rawBytes": 232100
+    },
+    {
+      "id": 475,
+      "name": "gallade",
+      "heightM": 1.6,
+      "plan": "biped",
+      "tris": 5248,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/475.glb",
+      "file": "475_gallade.glb",
+      "bytes": 177372,
+      "rawBytes": 397312
+    },
+    {
+      "id": 476,
+      "name": "probopass",
+      "heightM": 1.4,
+      "plan": "rigid",
+      "tris": 1354,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/476.glb",
+      "file": "476_probopass.glb",
+      "bytes": 46620,
+      "rawBytes": 99836
+    },
+    {
+      "id": 477,
+      "name": "dusknoir",
+      "heightM": 2.2,
+      "plan": "biped",
+      "tris": 1660,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/477.glb",
+      "file": "477_dusknoir.glb",
+      "bytes": 161332,
+      "rawBytes": 405824
+    },
+    {
+      "id": 478,
+      "name": "froslass",
+      "heightM": 1.3,
+      "plan": "biped",
+      "tris": 5094,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/478.glb",
+      "file": "478_froslass.glb",
+      "bytes": 145936,
+      "rawBytes": 353376
     },
     {
       "id": 570,
@@ -3179,6 +4927,62 @@
       "file": "571_zoroark.glb",
       "bytes": 131500,
       "rawBytes": 424980
+    },
+    {
+      "id": 592,
+      "name": "frillish",
+      "heightM": 1.2,
+      "plan": "rigid",
+      "tris": 1404,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/592.glb",
+      "file": "592_frillish.glb",
+      "bytes": 50492,
+      "rawBytes": 110236
+    },
+    {
+      "id": 593,
+      "name": "jellicent",
+      "heightM": 2.2,
+      "plan": "rigid",
+      "tris": 918,
+      "fit": "oss",
+      "bones": 2,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/593.glb",
+      "file": "593_jellicent.glb",
+      "bytes": 39220,
+      "rawBytes": 81084
     },
     {
       "id": 636,

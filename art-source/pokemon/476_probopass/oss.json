@@ -1,0 +1,30 @@
+{
+ "id": 476,
+ "name": "probopass",
+ "heightM": 1.4,
+ "plan": "rigid",
+ "src": "476.glb",
+ "drop": [
+  "Icosphere"
+ ],
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": 247,
+  "name": "pupitar",
+  "heightM": 1.2,
+  "plan": "biped",
+  "tris": 3606,
+  "fit": "oss",
+  "bones": 14,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "source": "oss:pokemon-3d/247.glb"
+}

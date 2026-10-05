@@ -1,0 +1,30 @@
+{
+ "id": 200,
+ "name": "misdreavus",
+ "heightM": 0.7,
+ "plan": "rigid",
+ "src": "200.glb",
+ "drop": [
+  "Icosphere"
+ ],
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ]
+}

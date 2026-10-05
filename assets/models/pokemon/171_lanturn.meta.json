@@ -1,0 +1,26 @@
+{
+  "id": 171,
+  "name": "lanturn",
+  "heightM": 1.2,
+  "plan": "fish",
+  "tris": 13719,
+  "fit": "oss",
+  "bones": 7,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "swim"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5333333333333333,
+    "attack_special": 0.8
+  },
+  "source": "oss:pokemon-3d/171.glb"
+}

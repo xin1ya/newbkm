@@ -1,0 +1,30 @@
+{
+ "id": 82,
+ "name": "magneton",
+ "heightM": 1.0,
+ "plan": "rigid",
+ "src": "82.glb",
+ "drop": [
+  "Icosphere"
+ ],
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ]
+}

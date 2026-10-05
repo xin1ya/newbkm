@@ -53,8 +53,33 @@ def oss_import(cfg):
     bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
     if len(keep) > 1: bpy.ops.object.join()
     mesh = bpy.context.active_object; mesh.name = KEY.split('_', 1)[1]; mesh.data.name = mesh.name
+    # optional pre-rotation (degrees XYZ) for sources modelled in odd poses (e.g. serpents standing upright)
+    if cfg.get('rot'):
+        from mathutils import Euler
+        R = Euler([math.radians(a) for a in cfg['rot']]).to_matrix()
+        for v in mesh.data.vertices: v.co = R @ v.co
+        mesh.data.update()
+    # optional cuts: drop vertices beyond planes in normalized source bbox coords (stretched stub geometry)
+    #   "cut": [["y", ">", 0.45], ["x", "|>|", 0.6]]   (x,y in [-1,1] half extents; z in [0,1] of height)
+    if cfg.get('cut'):
+        import bmesh
+        mn0, mx0 = _bbox([mesh]); c0 = (mn0 + mx0) / 2; h0 = (mx0 - mn0) / 2
+        def N(co):
+            return {'x': (co.x - c0.x) / (h0.x or 1), 'y': (co.y - c0.y) / (h0.y or 1), 'z': (co.z - mn0.z) / ((mx0.z - mn0.z) or 1)}
+        bm = bmesh.new(); bm.from_mesh(mesh.data)
+        dead = []
+        for v in bm.verts:
+            n = N(v.co)
+            for ax, op, val in cfg['cut']:
+                x = n[ax]
+                if (op == '>' and x > val) or (op == '<' and x < val) or (op == '|>|' and abs(x) > val): dead.append(v); break
+        bmesh.ops.delete(bm, geom=dead, context='VERTS'); bm.to_mesh(mesh.data); bm.free(); mesh.data.update()
+        print('oss cut verts', len(dead))
+    bpy.context.view_layer.update()
     # normalize
-    mn, mx = _bbox([mesh]); H = cfg['heightM']; k = H / (mx.z - mn.z)
+    mn, mx = _bbox([mesh]); H = cfg['heightM']
+    # fit 'length': heightM is the body length (serpents lying along Y), like hand-made 'length' models
+    k = H / (mx.y - mn.y) if cfg.get('fit') == 'length' else H / (mx.z - mn.z)
     off = Vector(((mn.x + mx.x) / 2, (mn.y + mx.y) / 2, mn.z))
     for v in mesh.data.vertices: v.co = (v.co - off) * k
     mesh.data.update()
@@ -111,6 +136,11 @@ def oss_toon_textures(mesh, cfg):
             nt.links.new(img_node.outputs['Color'], base)
     for im in list(bpy.data.images):
         if im.users == 0: bpy.data.images.remove(im)
+    # any texture the base-colour walk did not reach (odd node chains): still clamp its size
+    for im in list(bpy.data.images):
+        if im.size[0] and max(im.size) > tmax:
+            s = tmax / max(im.size); im.scale(max(1, int(im.size[0] * s)), max(1, int(im.size[1] * s)))
+            print('oss clamp texture', im.name, tuple(im.size))
 
 def oss_rig(mesh, cfg):
     mn, mx = _bbox([mesh]); hw = max(abs(mn.x), abs(mx.x)); hd = max(abs(mn.y), abs(mx.y)); H = mx.z
@@ -222,7 +252,7 @@ def oss_build(key, sheet_poses=None):
     if os.environ.get('OSS_SHEET', '1') == '1':
         oss_sheet(rig, mesh, H, sheet_poses or [('walk', 7), ('attack_physical', 15), ('faint', 30)])
     bpy.ops.file.pack_all()
-    export(cfg['id'], cfg['name'], H, cfg['plan'], rig, mesh, fit='oss')
+    export(cfg['id'], cfg['name'], H, cfg['plan'], rig, mesh, fit='length' if cfg.get('fit') == 'length' else 'oss')
     m = D('art-source', 'pokemon', key, 'export', f'{key}.meta.json')
     meta = json.load(open(m, encoding='utf-8')); meta['source'] = 'oss:pokemon-3d/' + cfg['src']
     json.dump(meta, open(m, 'w', encoding='utf-8'), indent=2)

@@ -1,0 +1,30 @@
+{
+ "id": 429,
+ "name": "mismagius",
+ "heightM": 0.9,
+ "plan": "rigid",
+ "src": "429.glb",
+ "drop": [
+  "Icosphere"
+ ],
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ]
+}

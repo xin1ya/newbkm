@@ -1,0 +1,25 @@
+{
+  "id": 178,
+  "name": "xatu",
+  "heightM": 1.5,
+  "plan": "rigid",
+  "tris": 810,
+  "fit": "oss",
+  "bones": 2,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "source": "oss:pokemon-3d/178.glb"
+}

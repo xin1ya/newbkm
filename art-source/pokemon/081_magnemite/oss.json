@@ -1,2 +1,28 @@
-{"id":81,"name":"magnemite","heightM":0.3,"plan":"rigid","src":"81.glb",
- "bones":[["root",[0,0,0],null],["spine",[0,0,0.5],"root"]]}
+{
+ "id": 81,
+ "name": "magnemite",
+ "heightM": 0.3,
+ "plan": "rigid",
+ "src": "81.glb",
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ],
+ "texMax": 128
+}

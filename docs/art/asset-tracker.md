@@ -74,6 +74,79 @@
 | elder-pu | 蒲婆婆 | NPC 512 | P2 | 2 | ⬜ | ⬜ | ⬜ | ⬜ | |
 | npc-generic ×6 | 通用 NPC（渔夫、少年、水手、店员、护士、登山者），换色复用 | NPC 512 | P2 | 6 | ⬜ | ⬜ | ⬜ | ⬜ | |
 
+## M3 · 开源底模转换（ADR 0010；来源 rcghpge/pokemon-3d，`art-source/tools/ossconv.py` 重绑骨 + Toon 色阶）
+
+| 编号 | 英文名 | 体型 plan | 来源 | 入库 | 备注 |
+|---|---|---|---|---|---|
+| 001 | bulbasaur | quadruped | oss:pokemon-3d/1.glb | ✅ |  |
+| 002 | ivysaur | quadruped | oss:pokemon-3d/2.glb | ✅ |  |
+| 003 | venusaur | quadruped | oss:pokemon-3d/3.glb | ✅ |  |
+| 063 | abra | biped | oss:pokemon-3d/63.glb | ✅ |  |
+| 064 | kadabra | biped | oss:pokemon-3d/64.glb | ✅ |  |
+| 065 | alakazam | biped | oss:pokemon-3d/65.glb | ✅ |  |
+| 081 | magnemite | rigid | oss:pokemon-3d/81.glb | ✅ |  |
+| 082 | magneton | rigid | oss:pokemon-3d/82.glb | ✅ |  |
+| 086 | seel | fish | oss:pokemon-3d/86.glb | ✅ |  |
+| 087 | dewgong | fish | oss:pokemon-3d/87.glb | ✅ |  |
+| 100 | voltorb | rigid | oss:pokemon-3d/100.glb | ✅ |  |
+| 101 | electrode | rigid | oss:pokemon-3d/101.glb | ✅ |  |
+| 116 | horsea | fish | oss:pokemon-3d/116.glb | ✅ |  |
+| 117 | seadra | fish | oss:pokemon-3d/117.glb | ✅ |  |
+| 125 | electabuzz | biped | oss:pokemon-3d/125.glb | ✅ |  |
+| 147 | dratini | serpent | oss:pokemon-3d/147.glb | ✅ |  |
+| 148 | dragonair | serpent | oss:pokemon-3d/148.glb | ✅ |  |
+| 149 | dragonite | biped | oss:pokemon-3d/149.glb | ✅ |  |
+| 170 | chinchou | fish | oss:pokemon-3d/170.glb | ✅ |  |
+| 171 | lanturn | fish | oss:pokemon-3d/171.glb | ✅ |  |
+| 177 | natu | bird | oss:pokemon-3d/177.glb | ✅ |  |
+| 178 | xatu | rigid | oss:pokemon-3d/178.glb | ✅ |  |
+| 179 | mareep | quadruped | oss:pokemon-3d/179.glb | ✅ |  |
+| 180 | flaaffy | biped | oss:pokemon-3d/180.glb | ✅ |  |
+| 181 | ampharos | biped | oss:pokemon-3d/181.glb | ✅ |  |
+| 200 | misdreavus | rigid | oss:pokemon-3d/200.glb | ✅ |  |
+| 215 | sneasel | biped | oss:pokemon-3d/215.glb | ✅ |  |
+| 220 | swinub | quadruped | oss:pokemon-3d/220.glb | ✅ |  |
+| 221 | piloswine | quadruped | oss:pokemon-3d/221.glb | ✅ |  |
+| 225 | delibird | biped | oss:pokemon-3d/225.glb | ✅ |  |
+| 230 | kingdra | fish | oss:pokemon-3d/230.glb | ✅ |  |
+| 239 | elekid | biped | oss:pokemon-3d/239.glb | ✅ |  |
+| 246 | larvitar | biped | oss:pokemon-3d/246.glb | ✅ |  |
+| 247 | pupitar | biped | oss:pokemon-3d/247.glb | ✅ |  |
+| 248 | tyranitar | biped | oss:pokemon-3d/248.glb | ✅ |  |
+| 280 | ralts | biped | oss:pokemon-3d/280.glb | ✅ |  |
+| 281 | kirlia | biped | oss:pokemon-3d/281.glb | ✅ |  |
+| 282 | gardevoir | biped | oss:pokemon-3d/282.glb | ✅ |  |
+| 299 | nosepass | rigid | oss:pokemon-3d/299.glb | ✅ |  |
+| 355 | duskull | rigid | oss:pokemon-3d/355.glb | ✅ |  |
+| 356 | dusclops | biped | oss:pokemon-3d/356.glb | ✅ |  |
+| 361 | snorunt | rigid | oss:pokemon-3d/361.glb | ✅ |  |
+| 362 | glalie | rigid | oss:pokemon-3d/362.glb | ✅ |  |
+| 363 | spheal | rigid | oss:pokemon-3d/363.glb | ✅ |  |
+| 364 | sealeo | fish | oss:pokemon-3d/364.glb | ✅ |  |
+| 365 | walrein | fish | oss:pokemon-3d/365.glb | ✅ |  |
+| 403 | shinx | quadruped | oss:pokemon-3d/403.glb | ✅ |  |
+| 404 | luxio | quadruped | oss:pokemon-3d/404.glb | ✅ |  |
+| 405 | luxray | quadruped | oss:pokemon-3d/405.glb | ✅ |  |
+| 425 | drifloon | rigid | oss:pokemon-3d/425.glb | ✅ |  |
+| 426 | drifblim | rigid | oss:pokemon-3d/426.glb | ✅ |  |
+| 429 | mismagius | rigid | oss:pokemon-3d/429.glb | ✅ |  |
+| 443 | gible | biped | oss:pokemon-3d/443.glb | ✅ |  |
+| 444 | gabite | biped | oss:pokemon-3d/444.glb | ✅ |  |
+| 445 | garchomp | biped | oss:pokemon-3d/445.glb | ✅ |  |
+| 459 | snover | biped | oss:pokemon-3d/459.glb | ✅ |  |
+| 460 | abomasnow | biped | oss:pokemon-3d/460.glb | ✅ |  |
+| 461 | weavile | biped | oss:pokemon-3d/461.glb | ✅ |  |
+| 462 | magnezone | rigid | oss:pokemon-3d/462.glb | ✅ |  |
+| 466 | electivire | biped | oss:pokemon-3d/466.glb | ✅ |  |
+| 473 | mamoswine | quadruped | oss:pokemon-3d/473.glb | ✅ |  |
+| 475 | gallade | biped | oss:pokemon-3d/475.glb | ✅ |  |
+| 476 | probopass | rigid | oss:pokemon-3d/476.glb | ✅ |  |
+| 477 | dusknoir | biped | oss:pokemon-3d/477.glb | ✅ |  |
+| 478 | froslass | biped | oss:pokemon-3d/478.glb | ✅ |  |
+| 592 | frillish | rigid | oss:pokemon-3d/592.glb | ✅ |  |
+| 593 | jellicent | rigid | oss:pokemon-3d/593.glb | ✅ |  |
+| 903 | sneasler | biped | oss:pokemon-3d/903.glb | ⬜ | 源模型网格损坏，暂用灰模占位 |
+
 ## 更新规则
 
 - 开工前在“负责人”一栏填名字，并把对应状态改为 🟨；入库的 PR 同时更新本表。
@@ -87,3 +160,4 @@
   入库剩余：gltf-transform 压缩、样张页三时段验收、注册 manifest（随 M1-21 代码侧 glb 接入完成）。
 
 - 2026-10-04 第二批 45 模型参考相似度验收：44 个全部剪影 IoU ≥0.70（864 豁免），详见 docs/art/similarity-batch2.md。
+- 2026-10-06：M3-31 开源底模批量转换 64 个（+001–003），清单 187 个模型；大狃拉 903 源网格损坏未入库。

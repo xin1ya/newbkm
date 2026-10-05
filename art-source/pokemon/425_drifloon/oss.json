@@ -1,0 +1,37 @@
+{
+ "id": 425,
+ "name": "drifloon",
+ "heightM": 0.4,
+ "plan": "rigid",
+ "src": "425.glb",
+ "drop": [
+  "Icosphere"
+ ],
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ],
+ "cut": [
+  [
+   "x",
+   "|>|",
+   0.36
+  ]
+ ]
+}

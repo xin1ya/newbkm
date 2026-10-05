@@ -1,0 +1,25 @@
+{
+  "id": 363,
+  "name": "spheal",
+  "heightM": 0.8,
+  "plan": "rigid",
+  "tris": 2890,
+  "fit": "oss",
+  "bones": 2,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "source": "oss:pokemon-3d/363.glb"
+}

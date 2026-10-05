@@ -1,0 +1,30 @@
+{
+ "id": 100,
+ "name": "voltorb",
+ "heightM": 0.5,
+ "plan": "rigid",
+ "src": "100.glb",
+ "drop": [
+  "Icosphere"
+ ],
+ "bones": [
+  [
+   "root",
+   [
+    0,
+    0,
+    0
+   ],
+   null
+  ],
+  [
+   "spine",
+   [
+    0,
+    0,
+    0.5
+   ],
+   "root"
+  ]
+ ]
+}

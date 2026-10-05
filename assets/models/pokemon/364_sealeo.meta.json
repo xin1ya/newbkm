@@ -1,0 +1,26 @@
+{
+  "id": 364,
+  "name": "sealeo",
+  "heightM": 1.1,
+  "plan": "fish",
+  "tris": 4750,
+  "fit": "oss",
+  "bones": 7,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep",
+    "swim"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5333333333333333,
+    "attack_special": 0.8
+  },
+  "source": "oss:pokemon-3d/364.glb"
+}
