@@ -1,5 +1,5 @@
 /**
- * M3-18 · 琉璃群岛：潜水骑乘 + 海底神殿。
+ * M3-18 · 琉璃群岛：潜水骑乘 + 海底神殿。M3-25 · 主线 22「亡魂低吟」：暗影洞窟祭坛 → 被异变缠住的耿鬼 → 异变碎片·幽（ghost-event-solved）。
  * 支线「深叔的旧罗盘」（side-old-diver）：琉璃道馆胜利后，老潜水员深叔托你找回他年轻时掉在东海岸礁湾的潜水罗盘；
  *   罗盘漂在琉璃沙滩东侧的浅湾里（冲浪靠近），交还后获得潜水许可（flag hm08-dive）。
  * 支线「潮落之门」（side-sea-temple）：从神殿海沟（深水暗区）下潜 → 海底神殿前厅（潮汐螺机关）→ 圣所祭坛。
@@ -49,6 +49,34 @@ const altar: StoryStep[] = [
 ];
 
 // ———————————————— M3-20 冠军之路 ————————————————
+// ———————————————————————— M3-25 · 主线 22 亡魂低吟 ————————————————————————
+const shadowEnter: StoryStep[] = [
+  { kind: 'narrate', lines: ['洞口吹出的风是冷的，带着潮湿的土腥味。', '风里夹着低低的吟唱声……像很多人在很远的地方，同时念着一个名字。'] },
+  { kind: 'flag', set: 'shadow-cave-entered' },
+];
+
+const shadowAltar: StoryStep[] = [
+  { kind: 'say', lines: ['祭坛上的紫色晶石猛地亮了起来，低吟声一下子变成了尖啸！', '背包里的碎片跟着震动——晶石里，封着第五块碎片。'] },
+  { kind: 'fx', name: 'shake', ms: 700 },
+  { kind: 'say', lines: ['晶石的光里浮出一对红色的眼睛。', '一只被异变缠住的耿鬼，挡在了祭坛前面！'] },
+  {
+    kind: 'battle',
+    species: 94,
+    level: 48,
+    moves: ['shadow-ball', 'sludge-bomb', 'hypnosis', 'dream-eater'],
+    noCapture: true,
+    noRun: true,
+    boss: true,
+    onWin: [
+      { kind: 'say', lines: ['耿鬼身上的紫光一点点褪去。', '它看了看洞口的方向——幽冥镇的方向——咧嘴笑了笑，化成一缕烟散开了。'] },
+      { kind: 'fx', name: 'flash', ms: 400 },
+      { kind: 'say', lines: ['从晶石里取出了「异变碎片·幽」！', '五块碎片排成一行，古文字又多亮起了一段：「……七晶归一之处，在群岛之外。」', '低吟声停了。回幽冥镇灵堂告诉巫女澄吧。'] },
+      { kind: 'flag', set: 'ghost-event-solved' },
+    ],
+    onLose: [{ kind: 'say', lines: ['眼前一黑……', '醒来时已经在洞口了。尖啸声还在深处回荡。'] }],
+  },
+];
+
 const vrGateEnter: StoryStep[] = [
   { kind: 'narrate', lines: ['关所里很安静。对面那扇门后传来低沉的风声——那是冠军山腹地的呼吸。', '门边的守卫抬起头，目光落在你的徽章盒上。'] },
   { kind: 'flag', set: 'vr-entered' },
@@ -98,6 +126,8 @@ const leagueHallOfFame: StoryStep[] = [
 ];
 
 export const GLAZE_STORY: StoryScript[] = [
+  { id: 'shadow-enter', steps: shadowEnter },
+  { id: 'shadow-altar', steps: shadowAltar },
   { id: 'league-hall-of-fame', steps: leagueHallOfFame },
   { id: 'league-hof-browse', steps: [{ kind: 'hall-of-fame', browse: true }] },
   { id: 'vr-gate-enter', steps: vrGateEnter },

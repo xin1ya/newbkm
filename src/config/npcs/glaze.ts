@@ -159,6 +159,21 @@ export const GLAZE_NPCS: NpcDef[] = [
     name: '守灵巫女澄',
     title: '灵堂巫女',
     appearance: { look: 'kimono-f', palette: { jacket: '#e8e2f0', hair: '#2a2a3a' } },
+    dialogByQuest: [
+      {
+        questId: 'main-ghost-event',
+        when: 'available',
+        setFlags: ['ghost-event-start'],
+        dialog: [
+          '……你身上带着和那道光一样的东西。',
+          '这一个月，幽冥镇每晚都有亡魂在哭。灯一盏一盏地灭，墓园里多了没写名字的墓碑。',
+          '低吟声是从镇北的暗影洞窟传出来的。洞底有一座古代海民的祭坛。',
+          '请你去看看。洞里很深很黑，带上会「闪光」「怪力」「碎岩」的伙伴。',
+        ],
+      },
+      { questId: 'main-ghost-event', when: 'active', dialog: ['暗影洞窟在镇子北边。低吟声……今晚又更响了。'] },
+      { questId: 'main-ghost-event', when: 'completed', dialog: ['昨夜，镇上的灯一盏都没灭。', '谢谢你让它们安息。灵魂终于可以回到琉璃之海了。'] },
+    ],
     dialog: ['欢迎来到灵堂。请放轻脚步。', '这里供奉着翠澜古代海民的遗骨。他们相信，灵魂最终都会回到琉璃之海。', '幽魄馆主每个月都会来这里祈祷。他说，幽灵宝可梦也有想念的人。'],
   },
   {
@@ -166,6 +181,9 @@ export const GLAZE_NPCS: NpcDef[] = [
     name: '悼念者',
     title: '灵堂访客',
     appearance: { look: 'villager-f', palette: { jacket: '#3a3444' } },
+    dialogByQuest: [
+      { questId: 'main-ghost-event', when: 'completed', dialog: ['昨晚窗外那对红眼睛又来了。', '这次它没有笑……它冲我挥了挥手，然后就慢慢散开了。', '……谢谢你。'] },
+    ],
     dialog: ['……我的耿鬼陪了我二十年。', '有时候夜里，我还能看见窗外有一对红眼睛在笑。'],
   },
   // ———————————————————————————— 琉璃镇 ————————————————————————————

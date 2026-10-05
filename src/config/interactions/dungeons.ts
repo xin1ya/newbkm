@@ -111,6 +111,7 @@ export const DUNGEON_FURNITURE: InteractionDef[] = [
     kind: 'examine',
     label: '调查祭坛',
     pages: ['断裂的石环中央，嵌着一块紫色的晶石。', '耳边响起若有若无的低吟……像很多人在远处说话。', '晶石的光，和异变碎片的光一模一样。'],
+    byFlag: [{ when: 'ghost-event-solved', pages: ['石环中央空了，只剩一个碎片形状的凹槽。', '低吟声消失了。洞窟里安静得能听见水滴声。'] }],
   },
   {
     id: 'sc-crate-abyss',

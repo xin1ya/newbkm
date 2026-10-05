@@ -1,5 +1,5 @@
 /**
- * M3-16 · 琉璃群岛三座道馆任务（07-22 §3.6 第四章）。其余第四章主线与支线在 M3-25 / M3-27 加入。
+ * M3-16 / M3-25 · 琉璃群岛第四章主线（07-22 §3.6 第四章 #20–#27）：三度跨海、三座道馆、亡魂低吟、冠军之路、联盟。支线在 M3-27 加入。
  * 三座道馆挑战顺序自由（动态等级按本岛徽章数取 3 档）；徽章名暂统一为「翠澜徽章」。
  */
 import type { Quest } from '@/systems/quests';
@@ -8,7 +8,7 @@ import { DIVER_COMPASS_POS } from '@/config/story/glaze';
 import { VICTORY_ROAD_BADGES, VICTORY_ROAD_CLEARED } from '@/config/interiors/victoryRoad';
 
 const ISLAND = '琉璃群岛';
-const PRE = ['badge-azure', 'badge-ore', 'badge-flame', ...THUNDER_BADGES];
+const PRE = ['main-cross-sea-3'];
 
 function gymQuest(id: string, title: string, summary: string, zoneId: string, townName: string, leader: string, trainerId: string, badge: string, door: [number, number], tm: string): Quest {
   return {
@@ -28,6 +28,37 @@ function gymQuest(id: string, title: string, summary: string, zoneId: string, to
 }
 
 export const GLAZE_QUESTS: Quest[] = [
+  // ——— M3-25 · 主线 20 三度跨海 ———
+  {
+    id: 'main-cross-sea-3',
+    title: '三度跨海',
+    category: 'main',
+    island: ISLAND,
+    summary: '北方天空的裂光指向终年起雾的琉璃群岛。去云雀镇码头找钓竿爷，穿过礁石迷宫。',
+    prerequisites: [...THUNDER_BADGES, 'snow-ruins-shard'],
+    completeFlag: 'glaze-arrival-card',
+    objectives: [
+      { id: 'fisher', text: '去云雀镇码头找钓竿爷打听航路', completeFlag: 'glaze-route-open', marker: { island: 'thunder', position: [-146, 0, -690] } },
+      { id: 'cross', text: '冲浪向北，循着红绿浮标穿过礁石迷宫，抵达琉璃群岛', completeFlag: 'glaze-arrival-card', marker: { island: 'glaze', position: [-380, 0, 470] } },
+    ],
+  },
+  // ——— M3-25 · 主线 22 亡魂低吟 ———
+  {
+    id: 'main-ghost-event',
+    title: '亡魂低吟',
+    category: 'main',
+    island: ISLAND,
+    summary: '幽冥镇每晚都有亡魂哭泣，长明灯一盏盏熄灭。灵堂的巫女澄说，低吟声来自镇北的暗影洞窟。',
+    prerequisites: ['main-cross-sea-3'],
+    startNpc: 'ghost-priestess',
+    startFlag: 'ghost-event-start',
+    completeFlag: 'ghost-event-solved',
+    objectives: [
+      { id: 'cave', text: '前往幽冥镇北边的暗影洞窟', completeFlag: 'shadow-cave-entered', marker: { island: 'glaze', position: [-268, 0, -318] } },
+      { id: 'altar', text: '穿过漆黑的迷廊，平息深渊大厅祭坛的低吟', completeFlag: 'ghost-event-solved', marker: { island: 'glaze', position: [-268, 0, -318] } },
+    ],
+    reward: { items: [{ id: 'anomaly-shard-ghost', qty: 1 }, { id: 'spell-tag', qty: 1 }] },
+  },
   // ——— M3-20 · 冠军之路 ———
   {
     id: 'main-victory-road',
@@ -62,9 +93,9 @@ export const GLAZE_QUESTS: Quest[] = [
     ],
     reward: { money: 30000, items: [{ id: 'master-ball', qty: 1 }] },
   },
-  gymQuest('main-gym-mirage', '镜中幻影', '幻影镇的道馆里只有镜子没有门。转动念力水晶球，穿过镜厅挑战超能力属性馆主幻月。', 'mirage-town', '幻影镇', '幻影道馆馆主幻月', 'gym-mirage-leader', 'badge-mirage', [-380, 400], 'tm-calm-mind'),
-  gymQuest('main-gym-ghost', '长明之灯', '彩幽市的道馆是一座常暗的墓厅。点亮长明灯驱散灵火，挑战幽灵属性馆主幽魄。', 'ghost-town', '彩幽市', '幽冥道馆馆主幽魄', 'gym-ghost-leader', 'badge-ghost', [-430, -198], 'tm-shadow-claw'),
-  gymQuest('main-gym-lily', '琉璃水镜', '琉璃镇的道馆是玻璃穹顶下的一池清水。转动阀门升降水位，挑战水属性馆主琉璃。', 'glaze-town', '琉璃镇', '琉璃道馆馆主琉璃', 'gym-glaze-leader', 'badge-glaze', [486, 118], 'tm-scald'),
+  gymQuest('main-gym-mirage', '精神异变', '幻影镇的道馆里只有镜子没有门。转动念力水晶球，穿过镜厅挑战超能力属性馆主幻月。', 'mirage-town', '幻影镇', '幻影道馆馆主幻月', 'gym-mirage-leader', 'badge-mirage', [-380, 400], 'tm-calm-mind'),
+  gymQuest('main-gym-ghost', '幽之试炼', '幽冥镇的道馆是一座常暗的墓厅。点亮长明灯驱散灵火，挑战幽灵属性馆主幽魄。', 'ghost-town', '幽冥镇', '幽冥道馆馆主幽魄', 'gym-ghost-leader', 'badge-ghost', [-430, -198], 'tm-shadow-claw'),
+  gymQuest('main-gym-lily', '水之试炼·终', '琉璃镇的道馆是玻璃穹顶下的一池清水。转动阀门升降水位，挑战水属性馆主琉璃。', 'glaze-town', '琉璃镇', '琉璃道馆馆主琉璃', 'gym-glaze-leader', 'badge-glaze', [486, 118], 'tm-scald'),
   // ——— M3-18 · 潜水 + 海底神殿 ———
   {
     id: 'side-old-diver',

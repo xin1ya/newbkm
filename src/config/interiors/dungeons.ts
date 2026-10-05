@@ -544,6 +544,7 @@ export const SHADOW_CAVE_INTERIOR: InteriorConfig = {
         { id: 'front', position: [0, 9.65], radius: 0.95, spawnOffset: [0, -1.5], spawnYaw: PI, to: { overworld: true }, label: '出口' },
         { id: 'north', position: [0, -9.2], radius: 1.1, spawnOffset: [0, 1.6], spawnYaw: 0, to: { room: 'maze', exit: 'south' }, label: '暗影迷廊' },
       ],
+      triggers: [{ id: 'shadow-enter', position: [0, 7.2], radius: 2.6, script: 'shadow-enter', doneFlag: 'shadow-cave-entered' }],
       npcs: [
         { id: 'sc-guide', position: [-3.2, 5.2], yaw: PI / 2 },
         { id: 'sc-trainer-ace', position: [3.0, -4.4], yaw: -PI / 2 },
@@ -621,6 +622,7 @@ export const SHADOW_CAVE_INTERIOR: InteriorConfig = {
       ],
       smashRocks: { rocks: [[6.4, 3.6], [-3.6, 6.4]], loot: SHADOW_LOOT, wildChance: 0.25 },
       exits: [{ id: 'up', position: [0, 10.9], radius: 1.0, spawnOffset: [0, -1.6], spawnYaw: PI, to: { room: 'maze', exit: 'down' }, label: '回到暗影迷廊' }],
+      triggers: [{ id: 'shadow-altar', position: [0, -4.6], radius: 2.4, script: 'shadow-altar', doneFlag: 'ghost-event-solved', repeat: true, showIf: ['ghost-event-start'] }],
       npcs: [{ id: 'sc-trainer-hex', position: [4.0, -1.6], yaw: -PI / 2 }],
     },
   ],

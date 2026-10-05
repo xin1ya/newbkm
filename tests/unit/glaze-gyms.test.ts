@@ -70,14 +70,14 @@ describe('M3-16 琉璃群岛道馆 · 定义', () => {
       expect(inter.has(`${g.id}-rules`)).toBe(true);
     }
   });
-  it('任务：前置为雷鸣四徽章；奖励 TM 29–31 来自对应道馆', () => {
+  it('任务：前置为三度跨海（M3-25）；奖励 TM 29–31 来自对应道馆', () => {
     for (const [q, gym, no] of [
       ['main-gym-mirage', 'gym-mirage', 29],
       ['main-gym-ghost', 'gym-ghost', 30],
       ['main-gym-lily', 'gym-glaze', 31],
     ] as const) {
       const quest = QUEST_REGISTRY.get(q)!;
-      expect(quest.prerequisites).toContain('badge-lark');
+      expect(quest.prerequisites).toEqual(['glaze-arrival-card']);
       const tm = TM_BY_ITEM.get(quest.reward!.items![0]!.id)!;
       expect(tm.source).toEqual({ kind: 'gym', gym });
       expect(tm.no).toBe(no);

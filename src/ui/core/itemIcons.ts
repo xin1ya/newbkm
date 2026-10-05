@@ -633,6 +633,7 @@ ICONS['anomaly-shard-red'] = () => shard('#e8484a', '#ffd0c8');
 ICONS['anomaly-shard-orange'] = () => shard('#f08a3c', '#ffe2b8');
 ICONS['anomaly-shard-purple'] = () => shard('#9a5ae0', '#e6d0ff');
 ICONS['anomaly-shard-blue'] = () => shard('#3a7ae8', '#d0e4ff');
+ICONS['anomaly-shard-ghost'] = () => shard('#5a3a8a', '#d8c8f0');
 ICONS['anomaly-shard-memory'] = () => shard('#7fc8e8', '#ffffff');
 ICONS['ancient-tablet'] = tablet;
 ICONS['volcano-egg'] = () => egg('#f6e6c8', '#e8743a');
