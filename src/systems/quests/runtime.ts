@@ -154,7 +154,7 @@ export const ISLAND_NAMES: Record<IslandId, string> = {
   sprout: '萌芽群岛',
   tide: '碧潮群岛',
   thunder: '雷鸣群岛',
-  glaze: '未开放的岛屿',
+  glaze: '琉璃群岛',
   secret: '未开放的岛屿',
 };
 

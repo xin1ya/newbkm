@@ -66,8 +66,8 @@ export function ambienceMix(a: AmbienceSituation): Record<AmbienceLayer, number>
   }
   const wet = a.weather === 'rain' || a.weather === 'storm';
   const night = a.time === 'night';
-  const forest = a.zoneBgm === 'field-phantom-forest';
-  const cliffs = a.zoneBgm === 'field-cliffs';
+  const forest = a.zoneBgm === 'field-phantom-forest' || a.zoneBgm === 'field-shadow-wood' || a.zoneBgm === 'field-marsh';
+  const cliffs = a.zoneBgm === 'field-cliffs' || a.zoneBgm === 'field-cliff' || a.zoneBgm === 'field-stone-forest';
   // 风：高处 / 海崖 / 海面更大，暴风雨最大
   const windBase = 0.12 + clamp01(a.altitude / 40) * 0.35 + (cliffs ? 0.2 : 0) + a.sea * 0.12 + (a.surfing ? 0.1 : 0);
   out.wind = clamp01(windBase + (a.weather === 'storm' ? 0.4 : 0) + (a.weather === 'snow' ? 0.15 : 0) + (a.weather === 'blizzard' ? 0.6 : 0) - (a.weather === 'seafog' || a.weather === 'nightfog' ? 0.08 : 0)) * duck;

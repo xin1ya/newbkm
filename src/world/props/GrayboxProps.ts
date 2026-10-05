@@ -12,6 +12,7 @@ import * as B from './builders';
 import * as T from './townBuilders';
 import * as TB from './tideBuilders';
 import * as TH from './thunderBuilders';
+import * as GL from './glazeBuilders';
 
 export class GrayboxProps {
   readonly group = new THREE.Group();
@@ -694,6 +695,26 @@ export class GrayboxProps {
         this.place(TH.windTurbine(h, p.color), x, ground, z, yaw);
         circle(1.3, h, 'wind-turbine');
         this.lampPositions.push(new THREE.Vector3(x, ground + h, z));
+        return true;
+      // ——— M3-04 琉璃群岛 ———
+      case 'karst-pinnacle':
+        this.place(GL.karstPinnacle(w, h, seed, p.color), x, ground - 0.3, z, yaw);
+        circle(w * 0.42, h, 'karst-pinnacle');
+        return true;
+      case 'dead-tree':
+        this.place(GL.deadTree(h, seed, p.variant), x, ground, z, yaw);
+        circle(0.35, h, 'dead-tree');
+        return true;
+      case 'tombstone':
+        this.place(GL.tombstone(w, h, p.variant, seed), x, ground, z, yaw);
+        if (collide) this.addBox(x, z, w * 1.25, 0.7, yaw, ground, ground + h, 'tombstone');
+        return true;
+      case 'glass-crystal':
+        this.place(GL.glassCrystal(w, h, seed, p.color), x, ground - 0.1, z, yaw);
+        circle(w * 0.35, h, 'glass-crystal');
+        return true;
+      case 'wisp':
+        this.place(GL.wisp(h, p.color, seed), x, ground, z, yaw);
         return true;
       default:
         return false;

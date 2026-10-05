@@ -224,6 +224,17 @@ export type PropType =
   /** 滑翔台（悬挑平台，可站立） */
   | 'glide-deck'
   | 'wind-turbine'
+  // ——— M3-04 琉璃群岛 ———
+  /** 喀斯特石笋（海蚀石林） */
+  | 'karst-pinnacle'
+  /** 枯树（variant: marsh / bleached） */
+  | 'dead-tree'
+  /** 墓碑（variant: slab / round / cross） */
+  | 'tombstone'
+  /** 玻璃晶簇 */
+  | 'glass-crystal'
+  /** 鬼火（只发光，无碰撞） */
+  | 'wisp'
   | 'glb';
 
 export interface PropInstance {
