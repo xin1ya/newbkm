@@ -20,6 +20,10 @@ export type StoryStep =
   /** 旁白（梦境 / 心声）：全屏暗幕中央文字 */
   | { kind: 'narrate'; lines: string[]; voice?: string }
   | { kind: 'flag'; set: string }
+  /** M3-21 清除 flag（联盟每轮挑战重置击败记录） */
+  | { kind: 'unflag'; clear: string[] }
+  /** M3-21 名人堂：记录当前队伍（GameState.hallOfFame）并播放入殿演出 */
+  | { kind: 'hall-of-fame'; /** 只浏览历次记录（名人堂记录机），不新增 */ browse?: boolean }
   | { kind: 'var'; name: string; add: number }
   | { kind: 'item'; id: string; qty: number }
   /** 选择御三家（UI），写入 flags starter-chosen 与 starter-<物种> */

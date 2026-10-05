@@ -153,6 +153,33 @@ export const SHOPS: readonly ShopDef[] = [
       { item: 'rich-mulch', flag: 'breeder-lv3' },
     ],
   },
+  // M3-21 精灵联盟：大厅商店（齐全）与四条回廊的补给台（只卖对战药品，不卖球）
+  {
+    id: 'league-mart',
+    name: '联盟商店',
+    greeting: '联盟商店，全翠澜最齐全的对战补给！',
+    buysBack: true,
+    stock: [
+      { item: 'ultra-ball' },
+      { item: 'quick-ball' },
+      { item: 'hyper-potion' },
+      { item: 'super-potion' },
+      { item: 'full-heal' },
+      { item: 'revive' },
+      { item: 'antidote' },
+      { item: 'paralyze-heal' },
+      { item: 'awakening' },
+      { item: 'burn-heal' },
+      { item: 'ice-heal' },
+    ],
+  },
+  {
+    id: 'league-supply',
+    name: '回廊补给台',
+    greeting: '补给台：只供应对战药品。',
+    buysBack: false,
+    stock: [{ item: 'hyper-potion' }, { item: 'super-potion' }, { item: 'full-heal' }, { item: 'revive' }],
+  },
   {
     id: 'harbor-tools',
     name: '阿强杂货摊',

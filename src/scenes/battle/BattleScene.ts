@@ -199,7 +199,7 @@ export class BattleScene implements Scene {
     this.data = data as BattleStartData;
     const { host } = this;
     const d = this.data;
-    this.battleKind = d.kind === 'trainer' ? ((d.trainer.title ?? '').includes('馆主') ? 'gym' : 'trainer') : d.scripted?.boss ? 'boss' : 'wild';
+    this.battleKind = d.kind === 'trainer' ? battleKindOfTitle(d.trainer.title ?? '') : d.scripted?.boss ? 'boss' : 'wild';
     host.events.emit(
       'battle:start',
       d.kind === 'trainer' ? { kind: this.battleKind, trainerId: d.trainer.id } : { kind: this.battleKind },
@@ -851,7 +851,7 @@ export class BattleScene implements Scene {
   }
 
   /** M1-20 战斗类型（选 BGM） */
-  battleKind: 'wild' | 'trainer' | 'gym' | 'boss' = 'wild';
+  battleKind: 'wild' | 'trainer' | 'gym' | 'boss' | 'elite' | 'champion' = 'wild';
 
   private async conclude(): Promise<void> {
     const { host, fx } = this;
@@ -940,4 +940,11 @@ export class BattleScene implements Scene {
     this.ended = true;
     this.host.finish(result);
   }
+}
+
+/** 训练家称号 → 战斗曲类别（M3-21 四天王 / 冠军有专属战斗曲） */
+function battleKindOfTitle(title: string): 'trainer' | 'gym' | 'elite' | 'champion' {
+  if (title.includes('四天王')) return 'elite';
+  if (title.includes('冠军')) return 'champion';
+  return title.includes('馆主') ? 'gym' : 'trainer';
 }

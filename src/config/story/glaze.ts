@@ -70,7 +70,36 @@ const vrCleared: StoryStep[] = [
   { kind: 'say', lines: ['冠军之路通关！联盟高原上空的乱流平息了，以后可以骑宝可梦飞往彩幽市。'] },
 ];
 
+/** M3-21 名人堂：战胜冠军后走进名人堂自动执行（每轮挑战一次） */
+const leagueHallOfFame: StoryStep[] = [
+  { kind: 'say', speaker: '名人堂管理员', lines: ['欢迎来到名人堂。', '恭喜你——翠澜地区新的冠军！', '请让我把你和伙伴们的名字，记录进名人堂。'] },
+  { kind: 'fx', name: 'flash' },
+  { kind: 'hall-of-fame' },
+  {
+    kind: 'if',
+    flags: ['league-champion-title'],
+    then: [{ kind: 'say', speaker: '名人堂管理员', lines: ['又一次载入名人堂了！', '四天王随时欢迎你回来再挑战。'] }],
+    else: [
+      { kind: 'card', title: '翠澜地区 · 新冠军诞生', subtitle: '与伙伴们一同，登上了顶峰', ms: 3200 },
+      {
+        kind: 'narrate',
+        lines: [
+          '萌芽镇的晨光、碧潮的古树、雷鸣的雪原、琉璃的海。',
+          '一路上遇见的每一位训练家，每一只宝可梦，都成了这段旅程的一部分。',
+          '旅程还没有结束——翠澜的海上，还有许多没被发现的秘密。',
+        ],
+      },
+      { kind: 'flag', set: 'league-champion-title' },
+      { kind: 'say', speaker: '名人堂管理员', lines: ['从今天起，你就是翠澜的冠军了。', '大门外就是彩幽市。四天王随时接受再挑战——每一轮都从第一间重新开始。'] },
+    ],
+  },
+  { kind: 'unflag', clear: ['league-run'] },
+  { kind: 'flag', set: 'league-hof-run' },
+];
+
 export const GLAZE_STORY: StoryScript[] = [
+  { id: 'league-hall-of-fame', steps: leagueHallOfFame },
+  { id: 'league-hof-browse', steps: [{ kind: 'hall-of-fame', browse: true }] },
   { id: 'vr-gate-enter', steps: vrGateEnter },
   { id: 'vr-hm07', steps: vrHm07 },
   { id: 'vr-cleared', steps: vrCleared },

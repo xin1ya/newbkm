@@ -873,6 +873,11 @@ export class GrayboxProps {
         }
         this.addBox(x, z, w, 0.6, yaw, ground, ground + h, 'league-door');
         this.lampPositions.push(new THREE.Vector3(x, ground + h * 0.75, z + 4));
+        // M3-21 中门入口（台基顶面上、门扇正前方）
+        if (p.ref) {
+          const [dx, dz] = at(0, 1.1);
+          this.doors.set(p.ref, { position: new THREE.Vector3(dx, ground + 1.2, dz), yaw });
+        }
         return true;
       }
       // ——— M3-13 琉璃镇 ———

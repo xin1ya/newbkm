@@ -119,6 +119,10 @@ export interface ExitConfig {
   requires?: string[];
   lockedHint?: string;
   action?: 'waterfall' | 'climb';
+  /** M3-21 通过前确认（是 / 否）：pages 说明文字；选「否」被挡回 */
+  confirm?: string[];
+  /** M3-21 通过时修改 flag（联盟：进入四天王之间时重置上一轮的击败记录） */
+  onPass?: { set?: string[]; clear?: string[] };
 }
 
 export interface NpcSpot {

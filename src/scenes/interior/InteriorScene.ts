@@ -52,7 +52,7 @@ import { cellAt, cellCenter, holeFlag, pushDir, STRENGTH_FLAG, usedFlag } from '
 import { cardinal, currentAt, CURRENT_SPEED, mirrorAt, mirrorTarget, onIce, SLIDE_SPEED, switchVar } from '@/systems/puzzles/gymMechanism';
 import { GYMS } from '@/config/encounters';
 import { TRAINER_BY_ID } from '@/config/trainers';
-import { say } from '@/ui/core';
+import { say, choose } from '@/ui/core';
 import { jingle, sfx } from '@/core/audio';
 import { isTalking } from '@/scenes/common/npcTalk';
 import { InteriorField } from './InteriorField';
@@ -533,7 +533,40 @@ export class InteriorScene implements Scene, BattleHost {
       void this.lockedExit(inside);
       return;
     }
+    if (inside.confirm || inside.onPass) {
+      void this.confirmExit(inside);
+      return;
+    }
     void this.useExit(inside);
+  }
+
+  /** M3-21 需要确认 / 会修改 flag 的出口（精灵联盟：走进四天王之间） */
+  private async confirmExit(e: ExitConfig): Promise<void> {
+    if (e.confirm) {
+      this.exitsArmed = false;
+      this.switching = true;
+      this.player.velocity.set(0, 0, 0);
+      let yes = false;
+      try {
+        await say(this.d.ui, e.confirm);
+        yes = (await choose(this.d.ui, [{ label: '是', value: true }, { label: '否', value: false }], { cancellable: true })) === true;
+      } finally {
+        this.switching = false;
+      }
+      if (!yes) {
+        const p = this.player.position;
+        const dx = p.x - e.position[0];
+        const dz = p.z - e.position[1];
+        const d = Math.hypot(dx, dz) || 1;
+        const back = (e.radius ?? 0.8) + 0.9;
+        this.player.teleport(e.position[0] + (dx / d) * back, e.position[1] + (dz / d) * back, Math.atan2(dx, dz));
+        return;
+      }
+    }
+    const flags = this.d.state.flags;
+    for (const f of e.onPass?.clear ?? []) if (flags[f]) delete flags[f];
+    for (const f of e.onPass?.set ?? []) flags[f] = true;
+    await this.useExit(e);
   }
 
   private exitOpen(e: ExitConfig): boolean {

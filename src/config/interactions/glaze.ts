@@ -94,6 +94,33 @@ export const VICTORY_ROAD_FURNITURE: InteractionDef[] = [
   { id: 'vr-summit-plaque', kind: 'examine', label: '查看铭牌', pages: ['「冠军之路 · 终点」', '「前方：联盟高原 · 彩幽市」', '「愿你与伙伴，一同登上顶峰。」'] },
 ];
 
+/** M3-21 精灵联盟 */
+export const LEAGUE_FURNITURE: InteractionDef[] = [
+  {
+    id: 'league-rules',
+    kind: 'examine',
+    label: '查看告示',
+    pages: ['「精灵联盟 · 挑战规则」', '「一、挑战者须依次击败四天王花月、芙蓉、波妮、源治，最后挑战冠军。」', '「二、进入四天王之间后不得返回大厅；厅间回廊设有补给台，但不提供恢复。」', '「三、全队失去战斗能力即视为挑战失败，须从第一间重新开始。」', '「四、战胜冠军者，其名字与伙伴将载入名人堂。」'],
+  },
+  {
+    id: 'league-trophy',
+    kind: 'examine',
+    pages: ['奖杯柜里摆着历代冠军的奖杯。', '最新的一座底座上刻着「米可利」。旁边还空着一个位置。'],
+    byFlag: [{ when: 'league-champion-title', pages: ['奖杯柜里摆着历代冠军的奖杯。', '最新的一座奖杯上，刻着你的名字。'] }],
+  },
+  { id: 'league-corridor-1-sign', kind: 'examine', pages: ['「下一间：四天王 · 芙蓉」', '「幽灵属性。普通、格斗招式无效；幽灵、恶属性招式效果拔群。」'] },
+  { id: 'league-corridor-2-sign', kind: 'examine', pages: ['「下一间：四天王 · 波妮」', '「冰与水的招式。电、草、格斗、岩石属性的招式可以一试。」'] },
+  { id: 'league-corridor-3-sign', kind: 'examine', pages: ['「下一间：四天王 · 源治」', '「岩石、钢、地面与飞行混编。小心暴鲤龙的龙之舞。」'] },
+  { id: 'league-corridor-4-sign', kind: 'examine', pages: ['「下一间：冠军之间」', '「冠军 · 米可利」', '「全队水属性，副属性各不相同。这是最后一战。」'] },
+  {
+    id: 'league-hof-machine',
+    kind: 'use',
+    label: '查看名人堂记录',
+    pages: ['名人堂记录机。历代冠军和他们的伙伴，都记录在这里。'],
+    effects: [{ kind: 'story', script: 'league-hof-browse' }],
+  },
+];
+
 export const GLAZE_LANDMARKS: InteractionDef[] = [
   { id: 'mirage-dock', kind: 'examine', range: 3.5, pages: ['幻影镇码头。', '「南方航线：雷鸣—琉璃海域。终年海雾，礁石迷宫——请认准缺口两侧的红绿浮标。」', '一直往南冲浪就能回到雷鸣群岛的云雀镇。'] },
   {
@@ -168,8 +195,8 @@ export const GLAZE_LANDMARKS: InteractionDef[] = [
     id: 'league-gate',
     kind: 'examine',
     range: 6,
-    pages: ['精灵联盟大门。', '白色大理石拱门上嵌着 11 枚徽章浮雕，中央的蓝色大门紧紧关着。', '门卫说：集齐翠澜地区全部 11 枚徽章，大门才会为你打开。'],
-    byFlag: [{ when: 'league-open', pages: ['精灵联盟大门。', '11 枚徽章浮雕都亮着光——大门已经为你敞开。'] }],
+    pages: ['精灵联盟大门。', '白色大理石拱门上嵌着 11 枚徽章浮雕，中央的蓝色大门紧紧关着。', '门卫说：走完冠军之路的训练家，大门才会为你打开。'],
+    byFlag: [{ when: 'victory-road-cleared', pages: ['精灵联盟大门。', '11 枚徽章浮雕都亮着光。走近中央的蓝色大门，就能进去。'] }],
   },
   { id: 'ever-fountain', kind: 'examine', range: 6, pages: ['彩幽喷泉。', '水柱在阳光下化成一道道彩虹——「彩幽」这个名字就是这么来的。'], night: ['彩幽喷泉。', '夜里，池底的灯把水柱照成了淡蓝色。'] },
   { id: 'ever-noticeboard', kind: 'examine', pages: ['彩幽市告示板：', '「北 · 精灵联盟　南 · 冠军之路」', '「挑战者须知：进入联盟后，在击败四天王与冠军之前无法离开。请在旅馆做好准备。」'] },

@@ -21,6 +21,15 @@ export const MONEY_MAX = 9_999_999;
 export type IslandId = 'sprout' | 'tide' | 'thunder' | 'glaze' | 'secret';
 export type Quality = 'auto' | 'low' | 'medium' | 'high';
 
+/** M3-21 名人堂记录 */
+export interface HallOfFameEntry {
+  /** 第几次入殿（从 1 开始） */
+  n: number;
+  day: number;
+  playTime: number;
+  team: Array<{ speciesId: number; nickname: string | null; level: number; shiny: boolean; ot: string }>;
+}
+
 export interface Settings {
   quality: Quality;
   volume: { master: number; bgm: number; sfx: number; ambient: number };
@@ -108,6 +117,8 @@ export interface GameState {
   mapPins?: MapPin[] | undefined;
   navPin?: string | null | undefined;
   navTarget?: NavTarget | null | undefined;
+  /** M3-21 名人堂（每次战胜冠军记录一次队伍）。旧存档缺省为空，无需迁移 */
+  hallOfFame?: HallOfFameEntry[] | undefined;
   settings: Settings;
   /**
    * 黑屏复活点（M1-09）：最近一次在宝可梦中心 / 家中回复的门口；缺省为岛屿出生点。

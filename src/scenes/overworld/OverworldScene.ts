@@ -1478,6 +1478,15 @@ export class OverworldScene implements Scene, BattleHost {
       const walkingIn = speed > 0.5 && (v.x * inx + v.z * inz) / speed > 0.6 && dist < 1.0;
       const facingIn = Math.sin(this.player.facing) * inx + Math.cos(this.player.facing) * inz > 0.3;
       if (walkingIn || (interact && facingIn)) {
+        // M3-21 有通行条件的门（精灵联盟）：没满足时提示并挡回
+        if (poi.requires && !poi.requires.every((f) => this.d.state.flags[f] === true)) {
+          if (this.lockedDoorHint !== poi.id || interact) {
+            this.lockedDoorHint = poi.id;
+            this.player.velocity.set(0, 0, 0);
+            void say(this.d.ui, [poi.lockedHint ?? '门锁着。']).then(() => (this.lockedDoorHint = null));
+          }
+          return;
+        }
         void this.enterInterior(poi.interior, poi.id);
         return;
       }
@@ -1485,6 +1494,7 @@ export class OverworldScene implements Scene, BattleHost {
   }
 
   private lastDoor: string | null = null;
+  private lockedDoorHint: string | null = null;
 
   /** 进入室内（也用于读档恢复：room 指定楼层，此时不做淡出） */
   async enterInterior(interiorId: string, doorId: string | null, room?: string, instant = false): Promise<void> {

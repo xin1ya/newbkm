@@ -31,6 +31,6 @@ describe('M3-14 彩幽市', () => {
     const all = new Set([...GLAZE_FURNITURE, ...GLAZE_LANDMARKS].map((d) => d.id));
     for (const id of ['league-gate', 'ever-fountain', 'ever-noticeboard', 'ever-champion-statues', 'hotel-bed']) expect(all.has(id), id).toBe(true);
     const gate = GLAZE_LANDMARKS.find((d) => d.id === 'league-gate')!;
-    expect(gate.byFlag?.[0]?.when).toBe('league-open');
+    expect(gate.byFlag?.[0]?.when).toBe('victory-road-cleared');
   });
 });

@@ -305,6 +305,8 @@ export const GLAZE: IslandConfig = {
     { id: 'mirage-sandbar', kind: 'landmark', name: '蜃景沙洲', position: [-60, 0, 650], showOnMap: true },
     { id: 'vein-spring', kind: 'landmark', name: '琉璃水脉泉眼', position: [292, 0, -232], showOnMap: true },
     { id: 'league-gate', kind: 'landmark', name: '精灵联盟大门', position: [40, 0, -876], showOnMap: true },
+    // M3-21 联盟大门中央的入口（走完冠军之路后开放）
+    { id: 'league-entrance', kind: 'door', name: '精灵联盟', position: [40, 0, -879], interior: 'pokemon-league', requires: ['victory-road-cleared'], lockedHint: '蓝色的大门紧紧关着。门卫说：「只有走完冠军之路的训练家，才能进入精灵联盟。」' },
   ],
   // M3-18 潜水点：琉璃镇外海的深水暗区（海底神殿）与琉璃沙滩外的珊瑚花园
   diveSpots: [

@@ -17,7 +17,8 @@ import { createMonModel } from '@/actors/pokemon/monModel';
 import { activeStarterTable } from './StarterTable';
 import { STORY_SCRIPTS, STARTER_CARDS } from '@/config/story';
 import { say, choose, type UiRoot, type Transition } from '@/ui/core';
-import { StoryOverlay, pickStarter } from '@/ui/story';
+import { StoryOverlay, pickStarter, showHallOfFame, browseHallOfFame } from '@/ui/story';
+import { recordHallOfFame } from '@/systems/league';
 
 export type StoryBattleResult = 'win' | 'lose' | 'run' | 'capture';
 
@@ -118,6 +119,23 @@ export class StoryDirector {
       case 'var': {
         state.vars[s.name] = (state.vars[s.name] ?? 0) + s.add;
         game.events.emit('var:change', { name: s.name, value: state.vars[s.name] ?? 0 });
+        return;
+      }
+      case 'unflag':
+        for (const f of s.clear) {
+          if (!state.flags[f]) continue;
+          delete state.flags[f];
+          game.events.emit('flag:set', { flag: f, value: false });
+        }
+        return;
+      case 'hall-of-fame': {
+        if (s.browse) {
+          if (state.hallOfFame?.length) await browseHallOfFame(ui, dex, state.hallOfFame, state.player.name);
+          else await say(ui, ['名人堂记录机里还没有任何记录。']);
+          return;
+        }
+        const entry = recordHallOfFame(state);
+        await showHallOfFame(ui, dex, entry, state.player.name);
         return;
       }
       case 'item':

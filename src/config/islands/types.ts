@@ -44,6 +44,9 @@ export interface PoiConfig {
   doorYaw?: number;
   /** 在大地图上显示 */
   showOnMap?: boolean;
+  /** M3-21 门的通行条件：全部 flag 为真才能进入（没满足时提示 lockedHint） */
+  requires?: string[];
+  lockedHint?: string;
 }
 
 export interface BlockerConfig {
