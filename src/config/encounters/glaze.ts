@@ -213,4 +213,36 @@ export const GLAZE_ENCOUNTERS: Record<string, EncounterTable> = {
       { speciesId: 94, weight: 6, levels: [52, 54], time: 'night', formation: 'rare' },
     ],
   },
+  // —— M3-23 暗影洞窟（高等级）——
+  'shadow-cave': {
+    id: 'shadow-cave',
+    ...base,
+    grassRatePerMeter: 0.045,
+    density: [6, 9],
+    entries: [
+      { speciesId: 93, weight: 18, levels: [50, 53] }, // 鬼斯通
+      { speciesId: 94, weight: 4, levels: [53, 54], formation: 'rare' }, // 耿鬼
+      { speciesId: 42, weight: 14, levels: [50, 52], formation: 'group', groupSize: [2, 3] },
+      { speciesId: 169, weight: 8, levels: [52, 54] }, // 叉字蝠
+      { speciesId: 570, weight: 12, levels: [50, 52] }, // 索罗亚
+      { speciesId: 228, weight: 10, levels: [50, 52] }, // 戴鲁比
+      { speciesId: 770, weight: 8, levels: [51, 54] }, // 噬沙堡爷
+      { speciesId: 342, weight: 8, levels: [50, 53] }, // 铁螯龙虾
+    ],
+  },
+  'shadow-cave-deep': {
+    id: 'shadow-cave-deep',
+    ...base,
+    grassRatePerMeter: 0.04,
+    density: [5, 8],
+    entries: [
+      { speciesId: 94, weight: 10, levels: [53, 56] },
+      { speciesId: 571, weight: 8, levels: [53, 56] }, // 索罗亚克
+      { speciesId: 229, weight: 10, levels: [53, 55] }, // 黑鲁加
+      { speciesId: 862, weight: 6, levels: [54, 56], formation: 'rare' }, // 堵拦熊
+      { speciesId: 864, weight: 10, levels: [53, 55] }, // 魔灵珊瑚
+      { speciesId: 169, weight: 14, levels: [53, 55] },
+      { speciesId: 93, weight: 14, levels: [52, 54] },
+    ],
+  },
 };

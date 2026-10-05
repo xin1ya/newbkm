@@ -161,6 +161,14 @@ export const VICTORY_ROAD_INTERIOR: InteriorConfig = {
       lighting: 'cave',
       encounters: { table: 'victory-road', ratePerMeter: 0.045 },
       cameraDistance: 13,
+      // M3-23 碎岩：裂纹小岩（掉道具 / 跳出野生宝可梦）
+      smashRocks: {
+        rocks: [
+          [-9, 8],
+          [9, -2],
+          [-2.6, -13],
+        ],
+      },
       furniture: [
         ...rubble(26, 34, 14, 2011, ROCK, [
           [0, 16, 3.5],
@@ -292,6 +300,12 @@ export const VICTORY_ROAD_INTERIOR: InteriorConfig = {
       lighting: 'cave',
       encounters: { table: 'victory-road', ratePerMeter: 0.045 },
       cameraDistance: 14,
+      smashRocks: {
+        rocks: [
+          [-4, 10],
+          [9, 6],
+        ],
+      },
       furniture: [
         ...rubble(30, 30, 12, 9001, ROCK, [
           [-10, -10, 4],

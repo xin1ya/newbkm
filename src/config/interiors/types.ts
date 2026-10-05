@@ -1,6 +1,7 @@
 import type { WaterPuzzleConfig } from '@/systems/puzzles/waterLevel';
 import type { GymMechanismConfig } from '@/systems/puzzles/gymMechanism';
 import type { BoulderPuzzleConfig } from '@/systems/puzzles/boulders';
+import type { SmashRocksConfig } from '@/systems/field/rockSmash';
 /**
  * M1-05 · 室内场景配置格式。
  *
@@ -172,6 +173,8 @@ export interface RoomConfig {
   triggers?: InteriorTrigger[];
   /** M3-20 怪力推石谜题（冠军之路） */
   boulders?: BoulderPuzzleConfig;
+  /** M3-23 碎岩：可反复撞碎的裂纹小岩（掉道具 / 跳出野生宝可梦，离开房间后复原） */
+  smashRocks?: SmashRocksConfig;
 }
 
 export interface InteriorBlocker {

@@ -51,7 +51,7 @@ export const THUNDER_LANDMARKS: InteractionDef[] = [
   },
   { id: 'dawn-sundial-sign', kind: 'examine', range: 3, pages: ['「晨光日晷」', '「晨光镇是群岛上最早看见日出的地方。」', '晷针的影子正指向……'], night: ['「晨光日晷」', '夜里看不见影子。等明天太阳出来吧。'] },
   { id: 'lark-glide-deck', kind: 'examine', range: 4, pages: ['北崖滑翔台。', '脚下是七十多米高的悬崖，海风呼呼地往上吹。', '「滑翔需要俱乐部会员资格及飞行系宝可梦协助。」'] },
-  { id: 'old-lighthouse', kind: 'examine', range: 5, pages: ['古灯塔。', '石砌的塔身被海风侵蚀得坑坑洼洼，灯室早就不亮了。', '门上挂着锁：「灯塔修复中」。'] },
+  { id: 'old-lighthouse', kind: 'examine', range: 5, pages: ['古灯塔。', '石砌的塔身被海风侵蚀得坑坑洼洼，灯室早就不亮了。', '门边钉着一块木牌：「灯塔修复中 · 内部昏暗，注意脚下」。'] },
   { id: 'frozen-lake', kind: 'examine', range: 6, pages: ['冰湖。', '湖面结着厚厚的冰，底下隐约有影子游过。', '冰面中央插着一根木桩，上面写着：「冰层下方有裂缝，勿近」。'] },
   { id: 'storm-observatory', kind: 'examine', range: 5, pages: ['雷云观测站。', '屋顶的风速计疯狂旋转着。', '门口贴着告示：「观测员外出采样中」。'] },
   // M3-19 瀑顶石匣（攀瀑后才能到达）

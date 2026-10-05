@@ -5,6 +5,7 @@
  * - 裂谷（chasm）：深色凹陷地面 + 浅色崖沿 + 谷底飘的冷雾
  * - 地洞（holes）：圆形深坑 + 一圈崖沿；被填平后变成嵌在地面里的碎石盘
  * - 巨石（boulders）：大块扁圆岩石，正面刻着「怪力」掌印纹（发暗金色微光，提示可推）
+ * - M3-23 压力板（plates）：嵌在地面的晶石符文盘，压上石头时亮起；石闸（gate）：一排晶石栅柱，全部压上后沉入地面
  * 推动有 0.35 s 缓动；掉进洞的石头下沉 + 扬尘。
  */
 import * as THREE from 'three';
@@ -45,6 +46,9 @@ export class BoulderPuzzleView {
   private mist: Array<{ mesh: THREE.Mesh; phase: number; base: THREE.Vector3 }> = [];
   private dust: Array<{ mesh: THREE.Mesh; t: number; v: THREE.Vector3 }> = [];
   private time = 0;
+  private plateMeshes: Array<{ glow: THREE.MeshToonMaterial; cell: readonly [number, number] }> = [];
+  private gateGroup: THREE.Group | null = null;
+  private gateAnim = -1;
 
   constructor(
     readonly cfg: BoulderPuzzleConfig,
@@ -171,6 +175,47 @@ export class BoulderPuzzleView {
       this.group.add(pit, fill);
       this.holeMeshes.push({ pit, fill });
     });
+    // —— M3-23 压力板 ——
+    const plateBase = this.mat({ color: '#5a5470' });
+    for (const cell of cfg.plates ?? []) {
+      const [x, z] = cellCenter(cfg, cell[0], cell[1]);
+      const base = new THREE.Mesh(this.geo(new THREE.CylinderGeometry(cs * 0.44, cs * 0.47, 0.08, 6)), plateBase);
+      base.position.set(x, 0.04, z);
+      base.receiveShadow = true;
+      const glow = this.mat({ color: '#8fd8ff', emissive: '#3aa0ff', emissiveIntensity: 0.15 });
+      const rune = new THREE.Mesh(this.geo(new THREE.RingGeometry(cs * 0.18, cs * 0.3, 6)), glow);
+      rune.rotation.x = -Math.PI / 2;
+      rune.position.set(x, 0.085, z);
+      const dot = new THREE.Mesh(this.geo(new THREE.CircleGeometry(cs * 0.08, 6)), glow);
+      dot.rotation.x = -Math.PI / 2;
+      dot.position.set(x, 0.086, z);
+      this.group.add(base, rune, dot);
+      this.plateMeshes.push({ glow, cell });
+    }
+    // —— M3-23 石闸：晶石栅柱 ——
+    if (cfg.gate?.length) {
+      const gg = new THREE.Group();
+      gg.name = 'boulder-gate';
+      const crystal = this.mat({ color: '#a8c8ff', emissive: '#4a70d0', emissiveIntensity: 0.35, transparent: true, opacity: 0.88 });
+      const frame = this.mat({ color: '#4a4660' });
+      cfg.gate.forEach(([c, r], i) => {
+        const [x, z] = cellCenter(cfg, c, r);
+        for (let k = 0; k < 3; k++) {
+          const h = 2.6 + hash(i * 7 + k) * 0.9;
+          const m = new THREE.Mesh(this.geo(new THREE.CylinderGeometry(0, 0.32, h, 6)), crystal);
+          const off = (k - 1) * cs * 0.32;
+          m.position.set(x + off, h / 2, z + (hash(i + k) - 0.5) * 0.3);
+          m.rotation.z = (hash(i * 3 + k) - 0.5) * 0.2;
+          gg.add(m);
+        }
+        const sill = new THREE.Mesh(this.geo(new THREE.BoxGeometry(cs, 0.2, cs * 0.5)), frame);
+        sill.position.set(x, 0.1, z);
+        gg.add(sill);
+      });
+      this.group.add(gg);
+      this.gateGroup = gg;
+      if (this.state.gateOpen) gg.position.y = -3.2;
+    }
     // —— 巨石 ——
     cfg.boulders.forEach((_, j) => {
       this.boulders.push(this.buildBoulder(j));
@@ -234,6 +279,7 @@ export class BoulderPuzzleView {
       if (!this.state.filled[i]) add(c, r, 0.05, 4);
     });
     for (const b of this.state.boulders) if (b) add(b[0], b[1], 0.08, 2);
+    if (!this.state.gateOpen) for (const [c, r] of this.cfg.gate ?? []) add(c, r, 0, 4);
   }
 
   /** 推一块石头（动画 + 碰撞更新）；返回逻辑结果 */
@@ -242,6 +288,7 @@ export class BoulderPuzzleView {
     const res = pushBoulder(this.cfg, this.state, c, r, dc, dr);
     if (!res.ok || j < 0) return res;
     this.state = res.state;
+    if (res.openedGate) this.gateAnim = this.time + PUSH_MS / 1000;
     const m = this.boulders[j];
     if (m) {
       const [tx, tz] = cellCenter(this.cfg, res.to[0], res.to[1]);
@@ -258,6 +305,19 @@ export class BoulderPuzzleView {
 
   update(dt: number): void {
     this.time += dt;
+    // 压力板：压着石头时亮起（脉动）
+    for (const pm of this.plateMeshes) {
+      const on = this.state.boulders.some((b) => b && b[0] === pm.cell[0] && b[1] === pm.cell[1]) && !this.boulders.some((b) => b?.anim);
+      const want = on ? 1.4 + Math.sin(this.time * 4) * 0.25 : 0.15;
+      pm.glow.emissiveIntensity += (want - pm.glow.emissiveIntensity) * Math.min(1, dt * 6);
+    }
+    // 石闸沉入地面（1.6 s，带轻微抖动）
+    if (this.gateGroup && this.gateAnim >= 0 && this.time >= this.gateAnim) {
+      const k = Math.min(1, (this.time - this.gateAnim) / 1.6);
+      this.gateGroup.position.y = -3.2 * k * k;
+      this.gateGroup.position.x = k < 1 ? Math.sin(this.time * 60) * 0.05 : 0;
+      if (k >= 1) this.gateAnim = -1;
+    }
     for (const [j, b] of this.boulders.entries()) {
       if (!b?.anim) continue;
       const a = b.anim;

@@ -6,6 +6,7 @@
  * - 黑暗房间（闪光）：flag 未置位时把房间灯压到很暗，只有玩家身边一圈微光；置位后正常照明。
  * - 洞窟暗雷：按遇敌表 `grassRatePerMeter`（可被房间覆盖）累计行走距离触发野生战斗。
  * - 剧情触发区：走进范围自动执行一次剧情脚本。
+ * - M3-23 碎岩：房间里的裂纹小岩，有「碎岩」可撞碎（掉道具 / 跳出野生宝可梦），离开房间后复原。
  */
 import * as THREE from 'three';
 import type { InteriorBlocker, RoomConfig } from '@/config/interiors';
@@ -27,6 +28,10 @@ import { sfx } from '@/core/audio';
 import type { Interactable } from '@/scenes/common/SceneInteractions';
 import type { PlayerController } from '@/actors/player';
 import { displayName } from '@/systems/pokemon/Pokemon';
+import { ROCK_SMASH_FLAG, rollSmash } from '@/systems/field/rockSmash';
+import { addItem } from '@/systems/state/GameState';
+import { itemInfo } from '@/systems/items';
+import { KEY_ITEM_BY_ID } from '@/config/items';
 
 export interface InteriorFieldDeps {
   game: Game;
@@ -61,6 +66,9 @@ export class InteriorField {
   private graceMeters = 0;
   private running = false;
   private hintCooldown = 0;
+  private smash: Array<{ i: number; x: number; z: number; group: THREE.Group }> = [];
+  private smashMats: THREE.Material[] = [];
+  private smashing = false;
 
   constructor(private readonly d: InteriorFieldDeps) {}
 
@@ -80,6 +88,7 @@ export class InteriorField {
       if (this.flag(`cleared:${b.id}`)) continue;
       this.blockers.push({ def: b, group: this.buildBlocker(b) });
     }
+    room.smashRocks?.rocks.forEach(([x, z], i) => this.smash.push({ i, x, z, group: this.buildSmashRock(i, x, z) }));
     this.dimmed = [];
     lights.traverse((o) => {
       if ((o as THREE.Light).isLight) this.dimmed.push({ light: o as THREE.Light, base: (o as THREE.Light).intensity });
@@ -178,6 +187,105 @@ export class InteriorField {
     return g;
   }
 
+  /** M3-23 裂纹小岩：两三块碎岩叠成一堆，正面一道发光裂缝 */
+  private buildSmashRock(i: number, x: number, z: number): THREE.Group {
+    const g = new THREE.Group();
+    g.name = `smash-rock:${i}`;
+    if (!this.smashMats.length) {
+      this.smashMats.push(
+        createToonMaterial({ color: '#a08c74', kind: 'scene' }),
+        createToonMaterial({ color: '#7e6c58', kind: 'scene' }),
+        createToonMaterial({ color: '#f2d9a0', kind: 'scene', emissive: '#a07040', emissiveIntensity: 0.45 }),
+      );
+    }
+    const [light, dark, crackMat] = this.smashMats as [THREE.Material, THREE.Material, THREE.Material];
+    const hsh = (n: number) => {
+      const v = Math.sin(n * 12.9898 + i * 78.233) * 43758.5453;
+      return v - Math.floor(v);
+    };
+    for (let k = 0; k < 3; k++) {
+      const geo = new THREE.IcosahedronGeometry(1, 0);
+      const pos = geo.getAttribute('position');
+      for (let q = 0; q < pos.count; q++) {
+        const j = 0.8 + hsh(q + k * 13) * 0.35;
+        pos.setXYZ(q, pos.getX(q) * j, pos.getY(q) * j, pos.getZ(q) * j);
+      }
+      geo.computeVertexNormals();
+      const m = new THREE.Mesh(geo, k === 0 ? light : dark);
+      const s = k === 0 ? 0.62 : 0.34;
+      m.scale.set(s, s * 0.82, s);
+      m.position.set(k === 0 ? 0 : Math.cos(k * 2.4 + i) * 0.5, s * 0.75, k === 0 ? 0 : Math.sin(k * 2.4 + i) * 0.5);
+      m.castShadow = true;
+      m.receiveShadow = true;
+      g.add(m);
+    }
+    const crack = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.5, 0.05), crackMat);
+    crack.position.set(0.08, 0.55, 0.55);
+    crack.rotation.z = 0.35;
+    const crack2 = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.3, 0.04), crackMat);
+    crack2.position.set(-0.1, 0.42, 0.56);
+    crack2.rotation.z = -0.5;
+    g.add(crack, crack2);
+    g.position.set(x, 0, z);
+    g.rotation.y = hsh(5) * Math.PI * 2;
+    this.d.world.add(g);
+    this.d.collision.add(`ismash:${i}`, { kind: 'circle', x, z, r: 0.62, y0: 0, y1: 1.1 });
+    return g;
+  }
+
+  private async smashRock(rock: { i: number; x: number; z: number; group: THREE.Group }): Promise<void> {
+    const room = this.room;
+    if (!room?.smashRocks || this.smashing) return;
+    this.smashing = true;
+    try {
+      const lead = this.d.state.party.find((m) => m.hp > 0);
+      await say(this.d.ui, [`${lead ? displayName(this.d.dex, lead) : '宝可梦'} 使用了「碎岩」！`]);
+      sfx('hit-strong');
+      // 碎裂：碎块向外弹开、缩小下沉
+      const parts = rock.group.children.slice();
+      const dirs = parts.map((_, k) => new THREE.Vector3(Math.cos(k * 2.1), 0, Math.sin(k * 2.1)));
+      const t0 = performance.now();
+      await new Promise<void>((resolve) => {
+        const step = () => {
+          const k = Math.min(1, (performance.now() - t0) / 500);
+          parts.forEach((m, n) => {
+            m.position.addScaledVector(dirs[n]!, 0.03);
+            m.position.y = Math.max(0, m.position.y + (0.06 - k * 0.14));
+            m.scale.multiplyScalar(0.965);
+          });
+          if (k >= 1) resolve();
+          else requestAnimationFrame(step);
+        };
+        step();
+      });
+      rock.group.removeFromParent();
+      rock.group.traverse((o) => (o as THREE.Mesh).geometry?.dispose());
+      this.d.collision.removeGroup(`ismash:${rock.i}`);
+      this.smash = this.smash.filter((r) => r !== rock);
+      this.d.game.events.emit('rock:smashed', { index: rock.i });
+      const table = room.encounters ? ENCOUNTER_TABLES[room.encounters.table] : undefined;
+      const canFight = !!table && this.d.state.party.some((m) => m.hp > 0);
+      const res = rollSmash(this.d.rng, room.smashRocks, canFight);
+      if (res.kind === 'wild' && table) {
+        const rolled = rollEncounter(table, { time: this.d.timeOfDay(), weather: 'clear', method: 'cave' }, this.d.rng, this.d.dex);
+        if (rolled) {
+          this.graceMeters = 8;
+          this.d.toast?.('碎石里突然跳出了野生宝可梦！');
+          this.d.startWild(createWild(this.d.dex, { ...rolled, count: 1, formation: 'single' }, this.d.rng));
+          return;
+        }
+      }
+      if (res.kind === 'item') {
+        addItem(this.d.state, res.item, res.qty);
+        sfx('item');
+        const name = itemInfo(this.d.dex, res.item, KEY_ITEM_BY_ID).name;
+        this.d.toast?.(`在碎石里找到了 ${name}${res.qty > 1 ? ` ×${res.qty}` : ''}！`);
+      } else this.d.toast?.('岩石碎了……里面什么也没有。');
+    } finally {
+      this.smashing = false;
+    }
+  }
+
   /** 交互源：阻挡物 + 黑暗房间的「闪光」 */
   source(): (player: PlayerController, out: Interactable[]) => void {
     return (player, out) => {
@@ -197,6 +305,22 @@ export class InteriorField {
           action: has ? 'interact' : null,
           range: reach,
           ...(has ? { run: () => this.clear(bb) } : { ability: BLOCKER_ABILITY[b.type] ?? b.type, hint: b.hint }),
+        });
+      }
+      if (this.smashing) return;
+      const canSmash = this.flag(ROCK_SMASH_FLAG);
+      for (const r of this.smash) {
+        if (Math.hypot(p.x - r.x, p.z - r.z) > 3) continue;
+        out.push({
+          id: `ismash:${r.i}`,
+          kind: 'blocked',
+          x: r.x,
+          z: r.z,
+          y: 1.5,
+          label: canSmash ? '撞碎岩石（碎岩）' : '裂纹岩',
+          action: canSmash ? 'interact' : null,
+          range: 1.9,
+          ...(canSmash ? { run: () => this.smashRock(r) } : { ability: '碎岩', hint: '布满裂纹的岩石……用「碎岩」或许能撞碎，说不定里面藏着什么。' }),
         });
       }
     };
@@ -295,6 +419,12 @@ export class InteriorField {
       this.d.collision.removeGroup(`iblocker:${bb.def.id}`);
     }
     this.blockers = [];
+    for (const r of this.smash) {
+      r.group.removeFromParent();
+      r.group.traverse((o) => (o as THREE.Mesh).geometry?.dispose());
+      this.d.collision.removeGroup(`ismash:${r.i}`);
+    }
+    this.smash = [];
     if (this.darkLight) {
       this.darkLight.removeFromParent();
       this.darkLight.dispose();

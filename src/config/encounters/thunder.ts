@@ -138,4 +138,79 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
       { speciesId: 94, weight: 6, levels: [43, 46], time: 'night', formation: 'rare' }, // 耿鬼
     ],
   },
+  // —— M3-23 洞窟 / 塔 ——
+  'crystal-cave': {
+    id: 'crystal-cave',
+    ...base,
+    grassRatePerMeter: 0.045,
+    density: [6, 9],
+    entries: [
+      { speciesId: 74, weight: 16, levels: [38, 40] }, // 小拳石
+      { speciesId: 75, weight: 18, levels: [38, 41] }, // 隆隆石
+      { speciesId: 95, weight: 10, levels: [39, 42] }, // 大岩蛇
+      { speciesId: 41, weight: 14, levels: [38, 40], formation: 'group', groupSize: [2, 3] }, // 超音蝠
+      { speciesId: 42, weight: 8, levels: [40, 42] }, // 大嘴蝠
+      { speciesId: 343, weight: 14, levels: [38, 41] }, // 天秤偶
+      { speciesId: 25, weight: 8, levels: [39, 41] }, // 皮卡丘（被晶石的电吸引来）
+      { speciesId: 26, weight: 2, levels: [42, 43], formation: 'rare' }, // 雷丘
+    ],
+  },
+  'crystal-cave-deep': {
+    id: 'crystal-cave-deep',
+    ...base,
+    grassRatePerMeter: 0.04,
+    density: [5, 8],
+    entries: [
+      { speciesId: 75, weight: 16, levels: [41, 43] },
+      { speciesId: 76, weight: 4, levels: [43, 44], formation: 'rare' }, // 隆隆岩
+      { speciesId: 344, weight: 12, levels: [41, 44] }, // 念力土偶
+      { speciesId: 343, weight: 12, levels: [40, 42] },
+      { speciesId: 208, weight: 6, levels: [42, 44] }, // 大钢蛇
+      { speciesId: 42, weight: 14, levels: [41, 43] },
+      { speciesId: 26, weight: 6, levels: [42, 44] },
+    ],
+  },
+  'old-lighthouse': {
+    id: 'old-lighthouse',
+    ...base,
+    grassRatePerMeter: 0.04,
+    density: [5, 8],
+    entries: [
+      { speciesId: 92, weight: 22, levels: [36, 38] }, // 鬼斯
+      { speciesId: 93, weight: 8, levels: [38, 40], formation: 'rare' }, // 鬼斯通
+      { speciesId: 41, weight: 16, levels: [36, 38], formation: 'group', groupSize: [2, 3] },
+      { speciesId: 42, weight: 8, levels: [38, 40] },
+      { speciesId: 769, weight: 10, levels: [36, 39] }, // 沙丘娃（被海风吹进塔里的沙）
+      { speciesId: 864, weight: 4, levels: [39, 40], formation: 'rare' }, // 魔灵珊瑚
+      { speciesId: 25, weight: 10, levels: [36, 39] }, // 皮卡丘（灯室残存的电）
+      { speciesId: 164, weight: 10, levels: [37, 39], time: 'night' }, // 猫头夜鹰
+    ],
+  },
+  'glacier-ruins': {
+    id: 'glacier-ruins',
+    ...base,
+    grassRatePerMeter: 0.04,
+    density: [5, 8],
+    entries: [
+      { speciesId: 91, weight: 16, levels: [42, 45] }, // 刺甲贝
+      { speciesId: 343, weight: 16, levels: [42, 44] }, // 天秤偶
+      { speciesId: 344, weight: 8, levels: [44, 46] }, // 念力土偶
+      { speciesId: 95, weight: 10, levels: [42, 45] },
+      { speciesId: 195, weight: 12, levels: [42, 45] }, // 沼王
+      { speciesId: 42, weight: 14, levels: [42, 44] },
+      { speciesId: 169, weight: 3, levels: [45, 46], formation: 'rare' }, // 叉字蝠
+    ],
+  },
+  'glacier-ruins-deep': {
+    id: 'glacier-ruins-deep',
+    ...base,
+    grassRatePerMeter: 0.03,
+    density: [4, 7],
+    entries: [
+      { speciesId: 344, weight: 18, levels: [44, 46] },
+      { speciesId: 91, weight: 16, levels: [44, 46] },
+      { speciesId: 76, weight: 6, levels: [45, 46], formation: 'rare' },
+      { speciesId: 169, weight: 8, levels: [45, 46] },
+    ],
+  },
 };

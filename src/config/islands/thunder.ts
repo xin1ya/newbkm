@@ -310,7 +310,7 @@ export const THUNDER: IslandConfig = {
     { id: 'lark-dock', kind: 'dock', name: '云雀镇码头', position: [-150, 0, -694], showOnMap: true },
     { id: 'crystal-cave', kind: 'cave', name: '晶石洞窟', position: [-210, 0, -56], interior: 'crystal-cave', doorYaw: 2.3, showOnMap: true },
     { id: 'glacier-ruins', kind: 'cave', name: '冰川遗迹', position: [-74, 0, -372], interior: 'glacier-ruins', doorYaw: 2.0, showOnMap: true },
-    { id: 'old-lighthouse', kind: 'landmark', name: '古灯塔', position: [850, 0, 556], showOnMap: true },
+    { id: 'old-lighthouse', kind: 'landmark', name: '古灯塔', position: [850, 0, 556], interior: 'old-lighthouse', showOnMap: true },
     { id: 'frozen-lake', kind: 'landmark', name: '冰湖', position: [-150, 0, -440], showOnMap: true },
     { id: 'storm-observatory', kind: 'landmark', name: '雷云观测站', position: [-330, 0, -150], showOnMap: true },
     { id: 'glacier-ledge-cache', kind: 'landmark', name: '冰岩台上的古代石匣', position: [-87.3, 0, -362.6] },

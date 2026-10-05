@@ -341,6 +341,12 @@ export class GrayboxProps {
         }
         this.colAdd('props', { kind: 'circle', x, z, r: w * 0.75, y0: y, y1: y + h, tag: 'lighthouse' });
         this.lampPositions.push(new THREE.Vector3(x, y + h - 3, z));
+        // M3-23 古灯塔可进入：塔门（局部 +Z）外侧登记为门口
+        if (p.variant === 'old' && p.ref) {
+          const dx = x + Math.sin(yaw) * (w * 0.75 + 1.2);
+          const dz = z + Math.cos(yaw) * (w * 0.75 + 1.2);
+          this.doors.set(p.ref, { position: new THREE.Vector3(dx, this.hf.heightAt(dx, dz), dz), yaw });
+        }
         break;
       }
       case 'dock': {

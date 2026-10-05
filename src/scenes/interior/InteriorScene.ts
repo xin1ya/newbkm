@@ -48,7 +48,7 @@ import { RIDES } from '@/config/rides';
 import { toggleLevel, valveAt } from '@/systems/puzzles/waterLevel';
 import { GymMechanismView } from '@/world/interiors/GymMechanismView';
 import { BoulderPuzzleView } from '@/world/interiors/BoulderPuzzleView';
-import { cellAt, cellCenter, holeFlag, pushDir, STRENGTH_FLAG, usedFlag } from '@/systems/puzzles/boulders';
+import { cellAt, cellCenter, gateFlag, holeFlag, pushDir, STRENGTH_FLAG, usedFlag } from '@/systems/puzzles/boulders';
 import { cardinal, currentAt, CURRENT_SPEED, mirrorAt, mirrorTarget, onIce, SLIDE_SPEED, switchVar } from '@/systems/puzzles/gymMechanism';
 import { GYMS } from '@/config/encounters';
 import { TRAINER_BY_ID } from '@/config/trainers';
@@ -681,6 +681,13 @@ export class InteriorScene implements Scene, BattleHost {
       }
       setTimeout(() => sfx('hit-strong'), 380);
       this.d.toast?.('巨石轰隆一声落进了地洞，把洞填平了！');
+    }
+    if (res.openedGate) {
+      const f = gateFlag(cfg);
+      this.d.state.flags[f] = true;
+      this.d.game.events.emit('flag:set', { flag: f, value: true });
+      setTimeout(() => sfx('hit-strong'), 420);
+      this.d.toast?.('所有压力板都亮了起来！晶石栅栏轰隆隆地沉进了地面！');
     }
   }
 

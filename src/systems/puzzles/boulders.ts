@@ -7,6 +7,10 @@
  * - boulders：怪力巨石，玩家朝它走（有「怪力」）就沿推的方向挪一格；前方是墙 / 另一块石头 / 出界就推不动
  * 进度存档：填平的洞记 `boulder:<id>:hole<i>`，掉进洞的石头记 `boulder:<id>:used<j>`；
  * 其余石头每次进门复位（推死了出去再进来即可重来）。
+ *
+ * M3-23 压力板 + 石闸（晶石洞窟）：
+ * - plates：压力板，人和石头都能站；所有压力板上同时压着石头 → 石闸（gate）打开
+ * - gate：石闸格，关着时同墙；打开后变成地面。打开状态记 `boulder:<id>:gate`（之后永久打开）
  */
 
 export type Cell = readonly [number, number];
@@ -28,6 +32,10 @@ export interface BoulderPuzzleConfig {
   goal: Cell;
   /** 需要的能力 flag（缺省 hm06-strength） */
   requiresFlag?: string;
+  /** M3-23 压力板（全部压上石头 → 打开 gate） */
+  plates?: readonly Cell[];
+  /** M3-23 石闸格（关闭时同墙） */
+  gate?: readonly Cell[];
 }
 
 export interface BoulderState {
@@ -35,18 +43,22 @@ export interface BoulderState {
   boulders: Array<[number, number] | null>;
   /** 每个洞是否已填平 */
   filled: boolean[];
+  /** M3-23 石闸已打开（没有石闸的谜题恒为 true） */
+  gateOpen: boolean;
 }
 
 export const STRENGTH_FLAG = 'hm06-strength';
 
 export const holeFlag = (cfg: BoulderPuzzleConfig, i: number): string => `boulder:${cfg.id}:hole${i}`;
 export const usedFlag = (cfg: BoulderPuzzleConfig, j: number): string => `boulder:${cfg.id}:used${j}`;
+export const gateFlag = (cfg: BoulderPuzzleConfig): string => `boulder:${cfg.id}:gate`;
 
 /** 进门时的状态：已填的洞保持填平，已用掉的石头不再出现，其余石头回到初始位置 */
 export function loadBoulderState(cfg: BoulderPuzzleConfig, flags: Readonly<Record<string, boolean | undefined>> = {}): BoulderState {
   return {
     boulders: cfg.boulders.map((b, j) => (flags[usedFlag(cfg, j)] ? null : [b[0], b[1]])),
     filled: cfg.holes.map((_, i) => !!flags[holeFlag(cfg, i)]),
+    gateOpen: !cfg.gate?.length || !!flags[gateFlag(cfg)],
   };
 }
 
@@ -71,19 +83,29 @@ function holeIndex(cfg: BoulderPuzzleConfig, c: number, r: number): number {
   return cfg.holes.findIndex((h) => h[0] === c && h[1] === r);
 }
 
+function isGate(cfg: BoulderPuzzleConfig, st: BoulderState, c: number, r: number): boolean {
+  return !st.gateOpen && !!cfg.gate?.some((g) => g[0] === c && g[1] === r);
+}
+
+/** 所有压力板上都压着石头 */
+export function platesCovered(cfg: BoulderPuzzleConfig, boulders: BoulderState['boulders']): boolean {
+  const plates = cfg.plates ?? [];
+  return plates.length > 0 && plates.every((p) => boulders.some((b) => b && b[0] === p[0] && b[1] === p[1]));
+}
+
 export function inGrid(cfg: BoulderPuzzleConfig, c: number, r: number): boolean {
   return c >= 0 && r >= 0 && c < cfg.cols && r < cfg.rows;
 }
 
 /** 玩家能否站在这一格（墙 / 未填的洞 / 石头都不行） */
 export function walkable(cfg: BoulderPuzzleConfig, st: BoulderState, c: number, r: number, walls = wallSet(cfg)): boolean {
-  if (!inGrid(cfg, c, r) || walls.has(key(c, r))) return false;
+  if (!inGrid(cfg, c, r) || walls.has(key(c, r)) || isGate(cfg, st, c, r)) return false;
   const h = holeIndex(cfg, c, r);
   if (h >= 0 && !st.filled[h]) return false;
   return !st.boulders.some((b) => b && b[0] === c && b[1] === r);
 }
 
-export type PushResult = { ok: false; reason: 'blocked' | 'none' } | { ok: true; to: [number, number]; filledHole: number | null; state: BoulderState };
+export type PushResult = { ok: false; reason: 'blocked' | 'none' } | { ok: true; to: [number, number]; filledHole: number | null; openedGate: boolean; state: BoulderState };
 
 /** 把位于 (c, r) 的石头沿 (dc, dr) 推一格 */
 export function pushBoulder(cfg: BoulderPuzzleConfig, st: BoulderState, c: number, r: number, dc: number, dr: number, walls = wallSet(cfg)): PushResult {
@@ -91,7 +113,7 @@ export function pushBoulder(cfg: BoulderPuzzleConfig, st: BoulderState, c: numbe
   if (j < 0) return { ok: false, reason: 'none' };
   const tc = c + dc;
   const tr = r + dr;
-  if (!inGrid(cfg, tc, tr) || walls.has(key(tc, tr))) return { ok: false, reason: 'blocked' };
+  if (!inGrid(cfg, tc, tr) || walls.has(key(tc, tr)) || isGate(cfg, st, tc, tr)) return { ok: false, reason: 'blocked' };
   if (st.boulders.some((b) => b && b[0] === tc && b[1] === tr)) return { ok: false, reason: 'blocked' };
   const h = holeIndex(cfg, tc, tr);
   const boulders = st.boulders.map((b) => (b ? ([b[0], b[1]] as [number, number]) : null));
@@ -102,7 +124,8 @@ export function pushBoulder(cfg: BoulderPuzzleConfig, st: BoulderState, c: numbe
     boulders[j] = null;
     filledHole = h;
   } else boulders[j] = [tc, tr];
-  return { ok: true, to: [tc, tr], filledHole, state: { boulders, filled } };
+  const openedGate = !st.gateOpen && platesCovered(cfg, boulders);
+  return { ok: true, to: [tc, tr], filledHole, openedGate, state: { boulders, filled, gateOpen: st.gateOpen || openedGate } };
 }
 
 /** 从 from 出发不推石头能走到的格子 */
@@ -153,7 +176,7 @@ export function solveBoulders(cfg: BoulderPuzzleConfig, init?: BoulderState, lim
       .map((b) => (b ? key(b[0], b[1]) : -1))
       .sort((a, b) => a - b)
       .join(',');
-    return `${m}|${bs}|${st.filled.map((f) => (f ? 1 : 0)).join('')}`;
+    return `${m}|${bs}|${st.filled.map((f) => (f ? 1 : 0)).join('')}|${st.gateOpen ? 1 : 0}`;
   };
   const goalK = key(cfg.goal[0], cfg.goal[1]);
   const r0 = reachable(cfg, st0, cfg.start, walls);

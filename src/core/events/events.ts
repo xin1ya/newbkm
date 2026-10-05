@@ -57,6 +57,7 @@ export interface GameEvents {
   'trainer:spotted': { trainer: string; how: 'spotted' | 'talk' };
   'blocker:hit': { id: string; hint: string };
   'blocker:cleared': { id: string; type: string };
+  'rock:smashed': { index: number };
   /** M2-01 岛间旅行开始（随后存档并重新加载） */
   'island:travel': { from: string; to: string };
   'time:period': { period: TimeOfDay; hour: number };
