@@ -80,7 +80,7 @@ export const THUNDER: IslandConfig = {
       levelRange: [35, 39],
       weather: [
         { weather: 'clear', weight: 3 },
-        { weather: 'fog', weight: 3 },
+        { weather: 'seafog', weight: 3 },
         { weather: 'storm', weight: 1 },
       ],
     },
@@ -137,7 +137,8 @@ export const THUNDER: IslandConfig = {
       encounterTable: 'glacier',
       levelRange: [38, 42],
       weather: [
-        { weather: 'snow', weight: 5 },
+        { weather: 'snow', weight: 4 },
+        { weather: 'blizzard', weight: 2 },
         { weather: 'clear', weight: 2 },
         { weather: 'fog', weight: 1 },
       ],
@@ -152,6 +153,7 @@ export const THUNDER: IslandConfig = {
       levelRange: [40, 44],
       weather: [
         { weather: 'snow', weight: 4 },
+        { weather: 'blizzard', weight: 1 },
         { weather: 'clear', weight: 2 },
         { weather: 'fog', weight: 1 },
       ],
@@ -168,6 +170,7 @@ export const THUNDER: IslandConfig = {
       weather: [
         { weather: 'clear', weight: 4 },
         { weather: 'fog', weight: 2 },
+        { weather: 'blizzard', weight: 1 },
         { weather: 'storm', weight: 1 },
       ],
     },
@@ -183,6 +186,7 @@ export const THUNDER: IslandConfig = {
       weather: [
         { weather: 'clear', weight: 4 },
         { weather: 'rain', weight: 2 },
+        { weather: 'seafog', weight: 1 },
         { weather: 'storm', weight: 2 },
       ],
       legacyMapId: 'water-route-2',
@@ -195,6 +199,11 @@ export const THUNDER: IslandConfig = {
       bgm: 'sea-route',
       encounterTable: 'thunder-nearshore',
       levelRange: [32, 38],
+      weather: [
+        { weather: 'clear', weight: 4 },
+        { weather: 'seafog', weight: 2 },
+        { weather: 'storm', weight: 1 },
+      ],
     },
   ],
   waterBodies: [

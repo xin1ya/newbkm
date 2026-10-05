@@ -12,7 +12,8 @@ import type { Flavor } from '@/config/berries';
 import { lureWeight } from '../blocks';
 
 export type TimeOfDay = 'day' | 'night';
-export type FieldWeather = 'clear' | 'rain' | 'fog' | 'snow' | 'storm' | 'sandstorm' | 'anomaly';
+/** M3-06：blizzard 暴雪（冰川 / 云崖）、seafog 海雾（海域 / 海岬）、nightfog 常夜雾（幽冥镇沼泽，白天也昏暗） */
+export type FieldWeather = 'clear' | 'rain' | 'fog' | 'snow' | 'storm' | 'sandstorm' | 'anomaly' | 'blizzard' | 'seafog' | 'nightfog';
 export type EncounterMethod = 'visible' | 'grass' | 'surf' | 'fish' | 'cave';
 export type Formation = 'single' | 'group' | 'rare';
 export type Temperament = 'timid' | 'curious' | 'aggressive' | 'sleepy' | 'calm';
@@ -72,6 +73,9 @@ export const WEATHER_TYPE_BOOST: Partial<Record<FieldWeather, Partial<Record<Typ
   sandstorm: { ground: 1.6, rock: 1.6 },
   clear: { fire: 1.1, grass: 1.1 },
   anomaly: { psychic: 1.5, dragon: 1.5 },
+  blizzard: { ice: 2.0, fire: 0.4, bug: 0.5, grass: 0.6 },
+  seafog: { water: 1.4, ghost: 1.3, flying: 0.6 },
+  nightfog: { ghost: 2.0, dark: 1.6, poison: 1.2, grass: 0.7 },
 };
 
 export function eligibleEntries(table: EncounterTable, ctx: EncounterContext): EncounterEntry[] {

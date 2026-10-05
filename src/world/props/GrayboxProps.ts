@@ -23,6 +23,8 @@ export class GrayboxProps {
   readonly glowMaterial = new THREE.MeshBasicMaterial({ vertexColors: true, color: new THREE.Color(0.9, 0.9, 0.9), fog: true });
   /** 灯的位置（夜间点光源池使用） */
   readonly lampPositions: THREE.Vector3[] = [];
+  /** M3-06 闪电优先落点（避雷塔塔顶） */
+  readonly strikeTargets: THREE.Vector3[] = [];
   /** 有门的建筑：ref → 门口世界坐标与朝向 */
   readonly doors = new Map<string, { position: THREE.Vector3; yaw: number }>();
   private buckets = new Map<string, B.PropParts>();
@@ -660,6 +662,7 @@ export class GrayboxProps {
         this.place(TH.lightningTower(w, h), x, ground, z, yaw);
         if (collide) this.addBox(x, z, w + 1.2, w + 1.2, yaw, ground, ground + h, 'lightning-tower');
         this.lampPositions.push(new THREE.Vector3(x, ground + h, z));
+        this.strikeTargets.push(new THREE.Vector3(x, ground + h, z));
         return true;
       case 'sundial':
         this.place(TH.sundial(w), x, ground, z, yaw);

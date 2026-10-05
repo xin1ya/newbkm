@@ -150,6 +150,7 @@ const FIELD_TO_BATTLE_WEATHER: Partial<Record<FieldWeather, Weather>> = {
   rain: 'rain',
   storm: 'rain',
   snow: 'hail',
+  blizzard: 'hail',
   sandstorm: 'sand',
 };
 const WEATHER_ZH: Record<Weather, string> = { none: '', rain: '下雨', sun: '大晴天', sand: '沙暴', hail: '冰雹' };

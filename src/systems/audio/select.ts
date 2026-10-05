@@ -70,7 +70,7 @@ export function ambienceMix(a: AmbienceSituation): Record<AmbienceLayer, number>
   const cliffs = a.zoneBgm === 'field-cliffs';
   // 风：高处 / 海崖 / 海面更大，暴风雨最大
   const windBase = 0.12 + clamp01(a.altitude / 40) * 0.35 + (cliffs ? 0.2 : 0) + a.sea * 0.12 + (a.surfing ? 0.1 : 0);
-  out.wind = clamp01(windBase + (a.weather === 'storm' ? 0.4 : 0) + (a.weather === 'snow' ? 0.15 : 0)) * duck;
+  out.wind = clamp01(windBase + (a.weather === 'storm' ? 0.4 : 0) + (a.weather === 'snow' ? 0.15 : 0) + (a.weather === 'blizzard' ? 0.6 : 0) - (a.weather === 'seafog' || a.weather === 'nightfog' ? 0.08 : 0)) * duck;
   // 雨
   out.rain = (a.weather === 'storm' ? 0.85 : a.weather === 'rain' ? 0.6 : 0) * duck;
   // 海浪：看周围海面比例；水上骑乘时贴近水面
@@ -78,12 +78,13 @@ export function ambienceMix(a: AmbienceSituation): Record<AmbienceLayer, number>
   // 湖岸拍水
   out.lap = clamp01(a.fresh * 0.8 + (a.surfing && a.fresh > 0 ? 0.2 : 0)) * duck;
   // 海鸥：海边白天
-  out.gulls = !night && !wet && a.sea > 0.15 ? clamp01(0.25 + a.sea * 0.5) * duck : 0;
+  const murky = a.weather === 'seafog' || a.weather === 'nightfog' || a.weather === 'blizzard';
+  out.gulls = !night && !wet && !murky && a.sea > 0.15 ? clamp01(0.25 + a.sea * 0.5) * duck : 0;
   // 鸟鸣：白天陆地（森林更密），雨天停
   const land = a.surfing ? 0.2 : 1 - clamp01(a.sea * 1.2);
-  out.birds = !night && !wet && a.weather !== 'storm' ? clamp01((a.zoneKind === 'town' ? 0.35 : 0.55) + (forest ? 0.2 : 0)) * land * duck : 0;
+  out.birds = !night && !wet && !murky && a.weather !== 'storm' ? clamp01((a.zoneKind === 'town' ? 0.35 : 0.55) + (forest ? 0.2 : 0)) * land * duck : 0;
   // 虫鸣：夜晚陆地
-  out.crickets = night && !wet ? clamp01((a.zoneKind === 'town' ? 0.35 : 0.6) * land) * duck : 0;
+  out.crickets = night && !wet && a.weather !== 'blizzard' ? clamp01((a.zoneKind === 'town' ? 0.35 : 0.6) * land) * duck : 0;
   // 森林：低沉嗡鸣 + 枝叶 / 猫头鹰
   out.forest = forest ? (night ? 0.7 : 0.45) * duck : 0;
   // 蛙鸣：淡水边，夜晚最盛，小雨天白天也叫（暴风雨停）
@@ -92,7 +93,7 @@ export function ambienceMix(a: AmbienceSituation): Record<AmbienceLayer, number>
   const river = a.river ?? 0;
   out.stream = river > 0.02 ? clamp01(0.25 + river * 1.2) * duck : 0;
   // 昆虫：晴朗白天的野外（蜜蜂嗡嗡 / 蝉鸣），城镇少、森林里和鸟鸣叠加
-  out.insects = !night && !wet && a.weather !== 'snow' && a.zoneKind !== 'sea' ? clamp01((a.zoneKind === 'town' ? 0.12 : 0.35) + (forest ? 0.1 : 0)) * land * duck : 0;
+  out.insects = !night && !wet && !murky && a.weather !== 'snow' && a.zoneKind !== 'sea' ? clamp01((a.zoneKind === 'town' ? 0.12 : 0.35) + (forest ? 0.1 : 0)) * land * duck : 0;
   return out;
 }
 

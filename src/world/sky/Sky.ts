@@ -44,6 +44,7 @@ export class Sky {
     this.group.name = 'sky';
     this.group.add(this.dome.mesh, this.clouds.mesh, this.sun, this.sun.target, this.hemi);
     this.weatherFx = new WeatherFx(q.weatherParticles);
+    this.weatherFx.boltsEnabled = q.weatherParticles >= 4000;
     this.group.add(this.weatherFx.group);
     this.applyQuality(q);
     this.outputs = { sunDir: new THREE.Vector3(), sunColor: new THREE.Color(), ambient: new THREE.Color(), night: 0, flash: 0, state: this.state };
@@ -86,6 +87,16 @@ export class Sky {
     st.zenith.lerp(gray.clone().multiplyScalar(0.7 + (1 - st.night) * 0.3), cover * 0.55);
     st.horizon.lerp(gray, cover * 0.5);
     st.fog.lerp(gray.clone().multiplyScalar(0.55 + (1 - st.night) * 0.45), Math.max(cover * 0.5, weather.fog * 0.7));
+    // M3-06 压暗：常夜雾 / 暴雪让白天也昏沉（偏冷紫）
+    const dark = weather.dark ?? 0;
+    if (dark > 0) {
+      const dusk = new THREE.Color(0x2a2c3e);
+      st.zenith.lerp(dusk, dark * 0.8);
+      st.horizon.lerp(dusk, dark * 0.6);
+      st.fog.lerp(new THREE.Color(0x4a4d63), dark * 0.7);
+      st.sunIntensity *= 1 - dark * 0.75;
+      st.hemiIntensity *= 1 - dark * 0.5;
+    }
     const { dir, isMoon } = sunDirection(hour);
     const u = this.dome.uniforms;
     u.uZenith.value.copy(st.zenith);

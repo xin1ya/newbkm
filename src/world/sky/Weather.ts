@@ -1,6 +1,7 @@
 /**
  * 天气：区域规则（ZoneConfig.weather）决定可能的天气，按权重抽取并维持 4–10 游戏小时；
- * 视觉参数在 8 秒内平滑过渡。天气也作为 encounters 的输入（雨天水系、雾天幽灵系出现率提升）。
+ * 视觉参数在 8 秒内平滑过渡。天气也作为 encounters 的输入（雨天水系、雾天幽灵系、雷暴电系、暴雪冰系出现率提升），
+ * 并映射为战斗天气（雨 / 雷暴 → 下雨，雪 / 暴雪 → 冰雹，沙暴 → 沙暴）。
  */
 import type { FieldWeather } from '@/systems/encounters';
 import type { WeatherRule } from '@/config/islands/types';
@@ -13,16 +14,21 @@ export interface WeatherVisual {
   snow: number;
   wind: number;
   lightning: number;
+  /** M3-06 压暗（常夜雾：白天也像黄昏；暴雪略暗） */
+  dark: number;
 }
 
 export const WEATHER_VISUALS: Record<FieldWeather, WeatherVisual> = {
-  clear: { cloud: 0.05, rain: 0, fog: 0, snow: 0, wind: 0.6, lightning: 0 },
-  rain: { cloud: 0.7, rain: 0.7, fog: 0.25, snow: 0, wind: 1.1, lightning: 0 },
-  storm: { cloud: 0.95, rain: 1, fog: 0.35, snow: 0, wind: 2, lightning: 1 },
-  fog: { cloud: 0.45, rain: 0, fog: 1, snow: 0, wind: 0.25, lightning: 0 },
-  snow: { cloud: 0.6, rain: 0, fog: 0.35, snow: 1, wind: 0.7, lightning: 0 },
-  sandstorm: { cloud: 0.5, rain: 0, fog: 0.7, snow: 0, wind: 2.2, lightning: 0 },
-  anomaly: { cloud: 0.8, rain: 0, fog: 0.6, snow: 0, wind: 1.4, lightning: 0.4 },
+  clear: { cloud: 0.05, rain: 0, fog: 0, snow: 0, wind: 0.6, lightning: 0, dark: 0 },
+  rain: { cloud: 0.7, rain: 0.7, fog: 0.25, snow: 0, wind: 1.1, lightning: 0, dark: 0 },
+  storm: { cloud: 0.95, rain: 1, fog: 0.35, snow: 0, wind: 2, lightning: 1, dark: 0.15 },
+  fog: { cloud: 0.45, rain: 0, fog: 1, snow: 0, wind: 0.25, lightning: 0, dark: 0 },
+  snow: { cloud: 0.6, rain: 0, fog: 0.35, snow: 0.6, wind: 0.7, lightning: 0, dark: 0 },
+  sandstorm: { cloud: 0.5, rain: 0, fog: 0.7, snow: 0, wind: 2.2, lightning: 0, dark: 0 },
+  anomaly: { cloud: 0.8, rain: 0, fog: 0.6, snow: 0, wind: 1.4, lightning: 0.4, dark: 0.1 },
+  blizzard: { cloud: 0.9, rain: 0, fog: 0.85, snow: 1, wind: 2.8, lightning: 0, dark: 0.2 },
+  seafog: { cloud: 0.55, rain: 0, fog: 1.15, snow: 0, wind: 0.35, lightning: 0, dark: 0.05 },
+  nightfog: { cloud: 0.8, rain: 0, fog: 0.95, snow: 0, wind: 0.15, lightning: 0, dark: 0.65 },
 };
 
 export function pickWeather(rules: readonly WeatherRule[] | undefined, isNight: boolean, r: number): FieldWeather {

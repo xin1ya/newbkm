@@ -34,7 +34,7 @@ import { sfx } from '@/core/audio';
 
 const STORE_KEY = 'cuilan.autobattle';
 const STAT_ZH: Record<string, string> = { hp: 'HP', atk: '攻击', def: '防御', spa: '特攻', spd: '特防', spe: '速度' };
-const WEATHER_ZH: Record<string, string> = { clear: '晴天', rain: '雨天', fog: '雾天', snow: '雪天', storm: '暴风雨', sandstorm: '沙暴', anomaly: '异象' };
+const WEATHER_ZH: Record<string, string> = { clear: '晴天', rain: '雨天', fog: '雾天', snow: '雪天', storm: '暴风雨', sandstorm: '沙暴', anomaly: '异象', blizzard: '暴雪', seafog: '海雾', nightfog: '常夜雾' };
 /** 寻敌半径（m） */
 const SEEK_RADIUS = 70;
 const STUCK_TIME = 2;

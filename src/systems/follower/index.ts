@@ -96,7 +96,11 @@ export function followerMood(c: MoodContext): Mood {
   const rainy = c.weather === 'rain' || c.weather === 'storm';
   if (rainy && c.type === 'water') return { emote: '♪', lines: [`${n}在雨里开心地转圈！`] };
   if (rainy && c.type === 'fire') return { emote: '…', lines: [`${n}缩着身子躲雨，尾巴的火苗小了一圈。`] };
-  if (c.weather === 'fog') return { emote: '?', lines: [`${n}盯着雾的深处，好像听到了什么……`] };
+  if (c.weather === 'storm' && c.type === 'electric') return { emote: '!', lines: [`${n}浑身噼里啪啦地冒着电火花，兴奋极了！`] };
+  if ((c.weather === 'snow' || c.weather === 'blizzard') && c.type === 'ice') return { emote: '♪', lines: [`${n}在雪里打了个滚，开心得不得了！`] };
+  if (c.weather === 'blizzard') return { emote: '…', lines: [`${n}眯着眼顶着风雪，紧紧跟在你身后。`] };
+  if (c.weather === 'nightfog' && (c.type === 'ghost' || c.type === 'dark')) return { emote: '♪', lines: [`${n}在昏暗的雾里显得格外自在。`] };
+  if (c.weather === 'fog' || c.weather === 'seafog' || c.weather === 'nightfog') return { emote: '?', lines: [`${n}盯着雾的深处，好像听到了什么……`] };
   if (c.hour >= 23 || c.hour < 5) return { emote: 'z', lines: [`${n}揉着眼睛，已经困了。`] };
   if (c.friendship >= 220) return { emote: '♥', lines: [pick([`${n}紧紧地贴着你！`, `${n}用头蹭了蹭你的手。`, `${n}看着你，眼里满是信任。`])] };
   if (c.friendship >= 150) return { emote: '♪', lines: [pick([`${n}心情很好的样子。`, `${n}哼着小曲跟在你身后。`, `${n}开心地跳了一下！`])] };

@@ -87,7 +87,7 @@ export const SAVE_SLOT = 'slot1';
 export const LAST_SLOT_PREF = 'cl.lastSlot';
 /** 3 个存档位 */
 export const SAVE_SLOTS = ['slot1', 'slot2', 'slot3'] as const;
-const WEATHER_ZH: Record<FieldWeather, string> = { clear: '晴', rain: '雨', fog: '雾', snow: '雪', storm: '雷雨', sandstorm: '沙暴', anomaly: '异象' };
+const WEATHER_ZH: Record<FieldWeather, string> = { clear: '晴', rain: '雨', fog: '雾', snow: '雪', storm: '雷雨', sandstorm: '沙暴', anomaly: '异象', blizzard: '暴雪', seafog: '海雾', nightfog: '常夜雾' };
 const ENCOUNTER_COOLDOWN = 3;
 const GRASS_THRESHOLD = 0.45;
 
@@ -837,6 +837,14 @@ export class OverworldScene implements Scene, BattleHost {
       this.d.game.events.emit('weather:change', { weather: this.weather.current, zoneId: this.currentZone });
     }
     const vis = this.weather.visual;
+    if (!this.sky.weatherFx.onStrike) {
+      this.sky.weatherFx.targets = this.props.strikeTargets;
+      this.sky.weatherFx.onStrike = (dist) => {
+        // 声速 340 m/s：先见闪光后闻雷声，越远越轻
+        const vol = Math.max(0.25, 1 - dist / 400);
+        window.setTimeout(() => sfx(dist < 120 ? 'thunder-near' : 'thunder', vol), (dist / 340) * 1000);
+      };
+    }
     const sky = this.sky.update(dt, hour, p, this.camera.position, vis, this.windDir);
     this.water.update(this.time);
     this.seaFx.update(this.time);

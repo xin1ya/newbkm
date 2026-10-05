@@ -186,7 +186,7 @@ export function rollGather(def: GatherPointDef, ctx: GatherContext, rng: Rng): G
       if (rng.chance(0.04)) push(items, 'heart-scale', 1);
       break;
     case 'mushroom': {
-      doubled = isNight(ctx.hour) || ctx.weather === 'fog';
+      doubled = isNight(ctx.hour) || ctx.weather === 'fog' || ctx.weather === 'nightfog';
       const k = doubled ? 2 : 1;
       push(items, 'tiny-mushroom', rng.int(1, 2) * k);
       if (rng.chance(0.15)) push(items, 'big-mushroom', k);

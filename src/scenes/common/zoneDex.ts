@@ -6,7 +6,7 @@ import type { EncounterTable } from '@/systems/encounters';
 import { ZONE_VISITED_PREFIX } from '@/systems/state/GameState';
 import type { ZoneDexSpecies, ZoneDexZone } from '@/ui/menu/types';
 
-const WEATHER_ZH: Record<string, string> = { clear: '晴天', rain: '雨天', fog: '雾天', snow: '雪天', storm: '暴风雨', sandstorm: '沙暴', anomaly: '异象' };
+const WEATHER_ZH: Record<string, string> = { clear: '晴天', rain: '雨天', fog: '雾天', snow: '雪天', storm: '暴风雨', sandstorm: '沙暴', anomaly: '异象', blizzard: '暴雪', seafog: '海雾', nightfog: '常夜雾' };
 const METHOD_ZH: Record<string, string> = { grass: '草丛', visible: '可见', surf: '水面', fish: '钓鱼', cave: '洞窟' };
 
 export function buildZoneDex(island: IslandConfig, tables: Readonly<Record<string, EncounterTable>>, flags: Readonly<Record<string, boolean>>): { island: string; zones: ZoneDexZone[] } {

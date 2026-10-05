@@ -19,6 +19,8 @@ export type SfxName =
   | 'step-water'
   | 'bump'
   | 'splash'
+  | 'thunder'
+  | 'thunder-near'
   | 'surf-mount'
   | 'surf-dismount'
   | 'shiny'
@@ -142,6 +144,17 @@ const R: Record<SfxName, Recipe> = {
   },
   'step-water': (s, o, t, v) => noise(s, o, t, { type: 'bandpass', freq: 1400, freq1: 600, q: 1.5, dur: 0.16, gain: 0.1 * v, attack: 0.02 }),
   bump: (s, o, t, v) => tone(s, o, t, { type: 'sine', f0: 110, f1: 60, dur: 0.12, gain: 0.25 * v }),
+  thunder: (s, o, t, v) => {
+    // 远雷：低频滚动的隆隆声
+    noise(s, o, t, { type: 'lowpass', freq: 260, freq1: 90, dur: 2.6, gain: 0.5 * v, attack: 0.25 });
+    noise(s, o, t + 0.6, { type: 'lowpass', freq: 180, freq1: 70, dur: 2.2, gain: 0.35 * v, attack: 0.3 });
+  },
+  'thunder-near': (s, o, t, v) => {
+    // 近雷：先一声爆裂，再接长滚雷
+    noise(s, o, t, { type: 'highpass', freq: 1800, dur: 0.12, gain: 0.35 * v, attack: 0.003 });
+    noise(s, o, t + 0.02, { type: 'lowpass', freq: 900, freq1: 120, dur: 0.6, gain: 0.6 * v, attack: 0.005 });
+    noise(s, o, t + 0.3, { type: 'lowpass', freq: 240, freq1: 70, dur: 2.8, gain: 0.5 * v, attack: 0.2 });
+  },
   splash: (s, o, t, v) => {
     noise(s, o, t, { type: 'lowpass', freq: 3000, freq1: 400, dur: 0.45, gain: 0.35 * v, attack: 0.01 });
     for (let i = 0; i < 4; i++) tone(s, o, t + 0.05 + i * 0.05, { type: 'sine', f0: 900 + Math.random() * 900, f1: 400, dur: 0.06, gain: 0.05 * v });
