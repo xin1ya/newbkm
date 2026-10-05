@@ -163,6 +163,43 @@ export const GLAZE_ENCOUNTERS: Record<string, EncounterTable> = {
       { speciesId: 398, weight: 12, levels: [48, 52] }, // 姆克鹰
     ],
   },
+  // —— M3-20 冠军之路（洞窟 / 地下暗河）——
+  'victory-road': {
+    id: 'victory-road',
+    ...base,
+    grassRatePerMeter: 0.045,
+    density: [7, 10],
+    entries: [
+      { speciesId: 75, weight: 16, levels: [50, 53] }, // 隆隆石
+      { speciesId: 76, weight: 6, levels: [52, 54], formation: 'rare' }, // 隆隆岩
+      { speciesId: 95, weight: 12, levels: [50, 53] }, // 大岩蛇
+      { speciesId: 208, weight: 6, levels: [52, 54] }, // 大钢蛇
+      { speciesId: 67, weight: 14, levels: [50, 53] }, // 豪力
+      { speciesId: 68, weight: 4, levels: [53, 54], formation: 'rare' }, // 怪力
+      { speciesId: 42, weight: 16, levels: [50, 53], formation: 'group', groupSize: [2, 3] }, // 大嘴蝠
+      { speciesId: 169, weight: 4, levels: [53, 54] }, // 叉字蝠
+      { speciesId: 105, weight: 10, levels: [50, 53] }, // 嘎啦嘎啦
+      { speciesId: 112, weight: 8, levels: [51, 54] }, // 钻角犀兽
+      { speciesId: 770, weight: 4, levels: [52, 54] }, // 噬沙堡爷
+    ],
+  },
+  'victory-road-river': {
+    id: 'victory-road-river',
+    ...base,
+    grassRatePerMeter: 0.045,
+    density: [6, 9],
+    entries: [
+      { speciesId: 42, weight: 18, levels: [50, 53], formation: 'group', groupSize: [2, 3] },
+      { speciesId: 195, weight: 14, levels: [50, 53] }, // 沼王
+      { speciesId: 260, weight: 6, levels: [52, 54], formation: 'rare' }, // 巨沼怪
+      { speciesId: 91, weight: 10, levels: [50, 53] }, // 刺甲贝
+      { speciesId: 342, weight: 12, levels: [50, 53] }, // 铁螯龙虾
+      { speciesId: 62, weight: 10, levels: [50, 53] }, // 蚊香泳士
+      { speciesId: 119, weight: 12, levels: [50, 53] }, // 金鱼王
+      { speciesId: 130, weight: 3, levels: [54, 55], formation: 'rare' }, // 暴鲤龙
+      { speciesId: 95, weight: 8, levels: [50, 53] },
+    ],
+  },
   'league-plateau': {
     id: 'league-plateau',
     ...base,

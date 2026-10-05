@@ -2,11 +2,13 @@
  * M2-14 · 剧情封锁的可见特效：
  * - barrier：异变遗迹入口的紫色结界穹顶（菲涅尔边缘发光 + 流动的六边形网格 + 底部光环），打开时收缩消散；
  * - heat：火山口的热浪帘（半透明橙色、向上流动的扭曲条纹），热源解除后淡出。
+ * - windwall（M3-20）：联盟高原上空的高空乱流墙——沿多边形边界、离地 12–80 m 的一圈半透明气流带，
+ *   横向飞掠的白色风纹 + 上下渐隐；只挡飞行（冠军之路通关后消散）。
  * 只用于提示「这里被封住了」，碰撞仍由 BlockerConfig 负责。
  */
 import * as THREE from 'three';
 
-export type BarrierKind = 'barrier' | 'heat';
+export type BarrierKind = 'barrier' | 'heat' | 'windwall';
 
 const VERT = /* glsl */ `
 varying vec3 vN;
@@ -63,6 +65,69 @@ void main() {
 }
 `;
 
+const FRAG_WIND = /* glsl */ `
+uniform float uTime;
+uniform float uFade;
+uniform vec3 uColor;
+varying vec3 vN;
+varying vec3 vV;
+varying vec2 vUv;
+varying float vY;
+float h1(float n) { return fract(sin(n) * 43758.5453); }
+void main() {
+  // 多条不同速度、不同高度的风纹横向飞掠
+  float a = 0.0;
+  for (int i = 0; i < 5; i++) {
+    float fi = float(i);
+    float y = 0.15 + fi * 0.17 + sin(vUv.x * 0.7 + fi * 2.1 + uTime * 0.3) * 0.04;
+    float line = 1.0 - smoothstep(0.0, 0.018 + fi * 0.003, abs(vUv.y - y));
+    float dash = smoothstep(0.35, 0.6, fract(vUv.x * (0.6 + h1(fi) * 0.5) - uTime * (0.35 + fi * 0.08)));
+    a += line * dash;
+  }
+  float swirl = sin(vUv.x * 3.0 - uTime * 1.2 + sin(vUv.y * 8.0 + uTime) * 1.5) * 0.5 + 0.5;
+  float edge = smoothstep(0.0, 0.2, vUv.y) * (1.0 - smoothstep(0.7, 1.0, vUv.y));
+  float alpha = (0.05 + swirl * 0.06 + a * 0.5) * edge * uFade;
+  gl_FragColor = vec4(uColor * (0.9 + a * 0.6), alpha);
+}
+`;
+
+/** 沿多边形（逐段加密）生成离地 [lo, hi] 的竖直条带 */
+function ribbonGeometry(poly: ReadonlyArray<readonly [number, number]>, heightAt: (x: number, z: number) => number, lo: number, hi: number): THREE.BufferGeometry {
+  const pts: Array<[number, number]> = [];
+  for (let i = 0; i < poly.length; i++) {
+    const [ax, az] = poly[i]!;
+    const [bx, bz] = poly[(i + 1) % poly.length]!;
+    const n = Math.max(1, Math.ceil(Math.hypot(bx - ax, bz - az) / 16));
+    for (let k = 0; k < n; k++) pts.push([ax + ((bx - ax) * k) / n, az + ((bz - az) * k) / n]);
+  }
+  pts.push(pts[0]!);
+  const pos: number[] = [];
+  const uv: number[] = [];
+  const idx: number[] = [];
+  let s = 0;
+  pts.forEach(([x, z], i) => {
+    if (i > 0) s += Math.hypot(x - pts[i - 1]![0], z - pts[i - 1]![1]);
+    const g = Math.max(0, heightAt(x, z));
+    pos.push(x, g + lo, z, x, g + hi, z);
+    uv.push(s / 40, 0, s / 40, 1);
+    if (i > 0) {
+      const a = (i - 1) * 2;
+      idx.push(a, a + 2, a + 1, a + 1, a + 2, a + 3);
+    }
+  });
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  geo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+  geo.setIndex(idx);
+  geo.computeVertexNormals();
+  return geo;
+}
+
+export interface BarrierShape {
+  polygon: ReadonlyArray<readonly [number, number]>;
+  heightAt: (x: number, z: number) => number;
+}
+
 export class BarrierDome {
   readonly group = new THREE.Group();
   private readonly mat: THREE.ShaderMaterial;
@@ -74,11 +139,12 @@ export class BarrierDome {
     readonly kind: BarrierKind,
     position: THREE.Vector3,
     radius: number,
+    shape?: BarrierShape,
   ) {
-    const color = new THREE.Color(kind === 'barrier' ? '#a46aff' : '#ff8a3c');
+    const color = new THREE.Color(kind === 'barrier' ? '#a46aff' : kind === 'windwall' ? '#e8f4ff' : '#ff8a3c');
     this.mat = new THREE.ShaderMaterial({
       vertexShader: VERT,
-      fragmentShader: kind === 'barrier' ? FRAG_BARRIER : FRAG_HEAT,
+      fragmentShader: kind === 'barrier' ? FRAG_BARRIER : kind === 'windwall' ? FRAG_WIND : FRAG_HEAT,
       uniforms: { uTime: { value: 0 }, uFade: { value: 1 }, uColor: { value: color } },
       transparent: true,
       depthWrite: false,
@@ -86,7 +152,9 @@ export class BarrierDome {
       blending: kind === 'barrier' ? THREE.AdditiveBlending : THREE.NormalBlending,
     });
     const geo =
-      kind === 'barrier'
+      kind === 'windwall' && shape
+        ? ribbonGeometry(shape.polygon, shape.heightAt, 12, 80)
+        : kind === 'barrier'
         ? new THREE.SphereGeometry(radius, 48, 24, 0, Math.PI * 2, 0, Math.PI / 2)
         : new THREE.CylinderGeometry(radius, radius * 1.1, 9, 40, 1, true).translate(0, 4.5, 0);
     const shell = new THREE.Mesh(geo, this.mat);
@@ -102,7 +170,7 @@ export class BarrierDome {
       light.position.y = radius * 0.5;
       this.group.add(light);
     }
-    this.group.position.copy(position);
+    if (kind !== 'windwall' || !shape) this.group.position.copy(position);
     this.group.name = `barrier:${kind}`;
   }
 

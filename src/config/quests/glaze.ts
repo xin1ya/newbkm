@@ -5,6 +5,7 @@
 import type { Quest } from '@/systems/quests';
 import { THUNDER_BADGES } from '@/config/story/thunder';
 import { DIVER_COMPASS_POS } from '@/config/story/glaze';
+import { VICTORY_ROAD_BADGES, VICTORY_ROAD_CLEARED } from '@/config/interiors/victoryRoad';
 
 const ISLAND = '琉璃群岛';
 const PRE = ['badge-azure', 'badge-ore', 'badge-flame', ...THUNDER_BADGES];
@@ -27,6 +28,22 @@ function gymQuest(id: string, title: string, summary: string, zoneId: string, to
 }
 
 export const GLAZE_QUESTS: Quest[] = [
+  // ——— M3-20 · 冠军之路 ———
+  {
+    id: 'main-victory-road',
+    title: '冠军之路',
+    category: 'main',
+    island: ISLAND,
+    summary: '集齐翠澜四岛全部 11 枚徽章后，穿过冠军山腹地的冠军之路，抵达联盟高原上的彩幽市。',
+    prerequisites: [...VICTORY_ROAD_BADGES],
+    completeFlag: VICTORY_ROAD_CLEARED,
+    objectives: [
+      { id: 'gate', text: '前往冠军山南麓的冠军之路南口', completeFlag: 'vr-entered', marker: { island: 'glaze', position: [80, 0, -232] } },
+      { id: 'waterfall', text: '在地下暗河找到攀瀑老人，学会「攀瀑」', completeFlag: 'hm07-waterfall', marker: { island: 'glaze', position: [80, 0, -232] } },
+      { id: 'summit', text: '逆瀑而上、攀上岩壁，走出冠军之路北口', completeFlag: VICTORY_ROAD_CLEARED, marker: { island: 'glaze', position: [80, 0, -232] } },
+    ],
+    reward: { money: 10000, items: [{ id: 'ultra-ball', qty: 5 }, { id: 'hyper-potion', qty: 3 }] },
+  },
   gymQuest('main-gym-mirage', '镜中幻影', '幻影镇的道馆里只有镜子没有门。转动念力水晶球，穿过镜厅挑战超能力属性馆主幻月。', 'mirage-town', '幻影镇', '幻影道馆馆主幻月', 'gym-mirage-leader', 'badge-mirage', [-380, 400], 'tm-calm-mind'),
   gymQuest('main-gym-ghost', '长明之灯', '彩幽市的道馆是一座常暗的墓厅。点亮长明灯驱散灵火，挑战幽灵属性馆主幽魄。', 'ghost-town', '彩幽市', '幽冥道馆馆主幽魄', 'gym-ghost-leader', 'badge-ghost', [-430, -198], 'tm-shadow-claw'),
   gymQuest('main-gym-lily', '琉璃水镜', '琉璃镇的道馆是玻璃穹顶下的一池清水。转动阀门升降水位，挑战水属性馆主琉璃。', 'glaze-town', '琉璃镇', '琉璃道馆馆主琉璃', 'gym-glaze-leader', 'badge-glaze', [486, 118], 'tm-scald'),

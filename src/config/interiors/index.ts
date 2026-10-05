@@ -6,10 +6,11 @@ import { THUNDER_GYM_INTERIORS } from './thunderGyms';
 import { GLAZE_GYM_INTERIORS } from './glazeGyms';
 import { GLAZE_INTERIORS } from './glaze';
 import { GLAZE_SEA_INTERIORS } from './glazeSea';
+import { VICTORY_ROAD_INTERIOR } from './victoryRoad';
 
 export type * from './types';
 
-export const INTERIORS: Readonly<Record<string, InteriorConfig>> = Object.fromEntries([...SPROUT_INTERIORS, ...TIDE_INTERIORS, ...THUNDER_INTERIORS, ...THUNDER_GYM_INTERIORS, ...GLAZE_INTERIORS, ...GLAZE_GYM_INTERIORS, ...GLAZE_SEA_INTERIORS].map((i) => [i.id, i]));
+export const INTERIORS: Readonly<Record<string, InteriorConfig>> = Object.fromEntries([...SPROUT_INTERIORS, ...TIDE_INTERIORS, ...THUNDER_INTERIORS, ...THUNDER_GYM_INTERIORS, ...GLAZE_INTERIORS, ...GLAZE_GYM_INTERIORS, ...GLAZE_SEA_INTERIORS, VICTORY_ROAD_INTERIOR].map((i) => [i.id, i]));
 
 export function getInterior(id: string): InteriorConfig {
   const i = INTERIORS[id];

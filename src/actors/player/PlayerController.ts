@@ -21,7 +21,7 @@ import type { BlockerConfig } from '@/config/islands/types';
 import type { Terrain, CollisionWorld } from '@/world';
 import { HumanModel } from './HumanModel';
 import { sfx } from '@/core/audio';
-import { blockerOpen } from '@/systems/interaction';
+import { blockerContains, blockerOpen } from '@/systems/interaction';
 import { BIKE_DEFAULT_GEAR, BIKE_GEARS, bikeGear, bikeTargetSpeed, FLY_ABS_MAX, FLY_CEILING, FLY_CLEARANCE, FLY_CLIMB, SURF_MIN_DEPTH, SURF_SINK, type RideMode } from '@/systems/ride';
 
 export const PLAYER_RADIUS = 0.32;
@@ -168,8 +168,9 @@ export class PlayerController {
     for (const b of this.blockers) {
       if (blockerOpen(b, this.flags)) continue;
       if (this.mode === 'fly' && b.type === 'surf') continue;
-      const r = (b.radius ?? 2) + PLAYER_RADIUS;
-      if (Math.hypot(x - b.position[0], z - b.position[2]) < r) return b;
+      // M3-20 只挡飞行的高空乱流（联盟高原）
+      if (b.flyOnly && this.mode !== 'fly') continue;
+      if (blockerContains(b, x, z, PLAYER_RADIUS)) return b;
     }
     return null;
   }
@@ -417,18 +418,28 @@ export class PlayerController {
       this.velocity.z *= 0.3;
     }
     // 封锁圈（异变结界等）：飞行同样阻挡，沿圆周滑开并提示
-    const blk = this.blockedByBlocker(nx, nz);
+    let blk = this.blockedByBlocker(nx, nz);
+    // 多边形墙只挡「从外飞进去」：本来就在里面（从北口出来后起飞）可以自由飞出
+    if (blk?.polygon && blockerContains(blk, sx, sz)) blk = null;
     if (blk) {
       if ((this.lastBlockerHint.get(blk.id) ?? -99) + 4 < this.time) {
         this.lastBlockerHint.set(blk.id, this.time);
         this.events.emit('blocker:hit', { id: blk.id, hint: blk.hint });
       }
-      const dx = nx - blk.position[0];
-      const dz = nz - blk.position[2];
-      const d = Math.hypot(dx, dz) || 1;
-      const r = (blk.radius ?? 2) + PLAYER_RADIUS + 0.01;
-      nx = blk.position[0] + (dx / d) * r;
-      nz = blk.position[2] + (dz / d) * r;
+      if (blk.polygon) {
+        // 多边形乱流墙：被吹回（退回上一帧位置并减速）
+        nx = sx;
+        nz = sz;
+        this.velocity.x *= -0.3;
+        this.velocity.z *= -0.3;
+      } else {
+        const dx = nx - blk.position[0];
+        const dz = nz - blk.position[2];
+        const d = Math.hypot(dx, dz) || 1;
+        const r = (blk.radius ?? 2) + PLAYER_RADIUS + 0.01;
+        nx = blk.position[0] + (dx / d) * r;
+        nz = blk.position[2] + (dz / d) * r;
+      }
     }
     // 建筑 / 树木：只在该高度范围内阻挡（飞得够高就越过去）
     const res = this.collision.resolve(nx, nz, PLAYER_RADIUS + 0.4, p.y - 0.6, p.y + PLAYER_HEIGHT);

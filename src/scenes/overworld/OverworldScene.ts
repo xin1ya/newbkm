@@ -82,7 +82,7 @@ import { makeRoaming } from '@/systems/alpha';
 import { applyTravel, canUseLink, linkAt, TRAVEL_SLOT_KEY } from '@/systems/travel';
 import { currentAt, whirlpoolAt, whirlpoolEject } from '@/systems/travel/sea';
 import { SeaFx } from '@/world/water/SeaFx';
-import { BLOCKER_ABILITY, CLEARABLE_BLOCKERS, blockerOpen } from '@/systems/interaction';
+import { BLOCKER_ABILITY, CLEARABLE_BLOCKERS, blockerContains, blockerOpen } from '@/systems/interaction';
 import type { IslandId } from '@/systems/state/GameState';
 import { BattleScene, type BattleHost, type BattleResult, type BattleResultKind, type BattleStartData } from '@/scenes/battle';
 
@@ -247,7 +247,9 @@ export class OverworldScene implements Scene, BattleHost {
     for (const b of island.blockers) {
       if (!b.fx || this.d.state.flags[b.requiresFlag] === true) continue;
       const y = this.terrain.hf.heightAt(b.position[0], b.position[2]);
-      const dome = new BarrierDome(b.fx, new THREE.Vector3(b.position[0], y - 0.3, b.position[2]), (b.radius ?? 4) + 1);
+      const hf = this.terrain.hf;
+      const shape = b.polygon ? { polygon: b.polygon, heightAt: (x: number, z: number) => hf.heightAt(x, z) } : undefined;
+      const dome = new BarrierDome(b.fx, new THREE.Vector3(b.position[0], y - 0.3, b.position[2]), (b.radius ?? 4) + 1, shape);
       this.barriers.push({ dome, flag: b.requiresFlag });
     }
     this.lamps = new LampLights(this.props.lampPositions, {
@@ -1118,7 +1120,7 @@ export class OverworldScene implements Scene, BattleHost {
     const w = hf.waterAt(x, z);
     if (w && w.depth > 0.45) return this.d.state.flags['hm03-surf'] ? 2.2 : Infinity;
     if (hf.slopeAt(x, z) > 36) return Infinity;
-    for (const b of this.d.island.blockers) if (!blockerOpen(b, (f) => this.d.state.flags[f] === true) && Math.hypot(x - b.position[0], z - b.position[2]) < (b.radius ?? 2) + 0.6) return Infinity;
+    for (const b of this.d.island.blockers) if (!b.flyOnly && !blockerOpen(b, (f) => this.d.state.flags[f] === true) && Math.hypot(x - b.position[0], z - b.position[2]) < (b.radius ?? 2) + 0.6) return Infinity;
     for (const c of this.collision.query(x, z, 0.6)) {
       if (c.tag === 'foliage-tree') continue;
       if (c.kind === 'circle') {
@@ -1478,7 +1480,7 @@ export class OverworldScene implements Scene, BattleHost {
         quality: this.d.quality,
         islandName: this.d.island.name,
         save: () => this.save(),
-        leave: (id) => this.leaveInterior(id),
+        leave: (id, via) => this.leaveInterior(id, via),
         toast: (t) => this.d.toaster.show(t),
         dex: this.d.dex,
         rng: this.d.rng,
@@ -1488,7 +1490,16 @@ export class OverworldScene implements Scene, BattleHost {
       },
       interiorId,
     );
-    await this.d.game.scenes.push(scene, room ? { room, exit: scene.config.rooms.find((r) => r.id === room)?.exits[0]?.id } : undefined);
+    // M3-20 多洞口室内（冠军之路）：POI.room 指定落在哪个房间、从 to.poi = 该门的出口进入
+    const poi = doorId ? this.d.island.pois.find((q) => q.id === doorId) : undefined;
+    let entry: { room: string; exit: string | undefined } | undefined;
+    if (room) entry = { room, exit: scene.config.rooms.find((r) => r.id === room)?.exits[0]?.id };
+    else if (poi?.room) {
+      const r = scene.config.rooms.find((q) => q.id === poi.room);
+      const ex = r?.exits.find((e) => 'overworld' in e.to && e.to.poi === poi.id) ?? r?.exits[0];
+      if (r) entry = { room: r.id, exit: ex?.id };
+    }
+    await this.d.game.scenes.push(scene, entry);
     await this.d.transition.fadeIn(300);
     this.enteringDoor = false;
   }
@@ -1509,7 +1520,10 @@ export class OverworldScene implements Scene, BattleHost {
     const spot = spots.find((q) => q.id === via) ?? spots.find((q) => q.id === this.lastDoor);
     sfx(spot ? 'splash' : 'door');
     await this.d.game.scenes.pop();
-    const lastPoi = this.lastDoor ? this.d.island.pois.find((q) => q.id === this.lastDoor) : undefined;
+    // M3-20 出口指定了洞口（via = POI id）时从那个门出去，否则回到进来的门
+    const viaPoi = via ? this.d.island.pois.find((q) => q.id === via) : undefined;
+    if (viaPoi) this.lastDoor = viaPoi.id;
+    const lastPoi = viaPoi ?? (this.lastDoor ? this.d.island.pois.find((q) => q.id === this.lastDoor) : undefined);
     const door = spot ? null : (lastPoi && this.doorOf(lastPoi)) || this.doorFor(interiorId);
     if (spot) {
       const [x, z] = spot.center;
@@ -1546,6 +1560,9 @@ export class OverworldScene implements Scene, BattleHost {
     let bd = Infinity;
     for (const poi of this.d.island.pois) {
       if (poi.kind !== 'pokecenter') continue;
+      // M3-20 高空乱流里的宝可梦中心（彩幽市）：冠军之路通关前飞不进去（玩家本身就在里面时除外）
+      const walled = this.d.island.blockers.some((b) => b.flyOnly && !blockerOpen(b, (f) => this.d.state.flags[f] === true) && blockerContains(b, poi.position[0], poi.position[2]) && !blockerContains(b, p.x, p.z));
+      if (walled) continue;
       const door = this.doorOf(poi);
       if (!door) continue;
       const dd = Math.hypot(door.position.x - p.x, door.position.z - p.z);

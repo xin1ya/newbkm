@@ -1,5 +1,6 @@
 import type { WaterPuzzleConfig } from '@/systems/puzzles/waterLevel';
 import type { GymMechanismConfig } from '@/systems/puzzles/gymMechanism';
+import type { BoulderPuzzleConfig } from '@/systems/puzzles/boulders';
 /**
  * M1-05 · 室内场景配置格式。
  *
@@ -61,7 +62,15 @@ export type FurnitureType =
   | 'coral'
   | 'clam'
   | 'ruin'
-  | 'anemone';
+  | 'anemone'
+  // M3-20 冠军之路：瀑布（流水幕 + 水潭 + 水雾）/ 暗河水道 / 石笋 / 可攀岩壁 / 火把 / 木桥 / 联盟旗
+  | 'waterfall'
+  | 'river'
+  | 'stalagmite'
+  | 'cliffwall'
+  | 'torch'
+  | 'bridge'
+  | 'pennant';
 
 export interface FurnitureConfig {
   type: FurnitureType;
@@ -83,8 +92,8 @@ export interface FurnitureConfig {
 }
 
 export type ExitTarget =
-  /** 回到大地图：出现在 PoiConfig 对应门口 */
-  | { overworld: true }
+  /** 回到大地图：出现在 PoiConfig 对应门口（poi 指定从哪个门出去：一个室内有多个洞口时用，M3-20 冠军之路） */
+  | { overworld: true; poi?: string }
   /** 同一室内场景的另一个房间（楼梯），出现在目标房间的 exit 旁 */
   | { room: string; exit: string };
 
@@ -102,6 +111,14 @@ export interface ExitConfig {
   label?: string;
   /** M3-18 上浮光柱：回到大地图时出现在这个潜水点（IslandConfig.diveSpots 的 id），继续冲浪 */
   surfaceAt?: string;
+  /**
+   * M3-20 通行条件：全部 flag 为真才能通过。
+   * - 普通出口（徽章检查门）：没满足时走进去弹出 lockedHint 并被挡回
+   * - action 出口（瀑布 / 岩壁）：不靠走进触发，而是在触发区里按互动键「攀瀑 / 攀岩」
+   */
+  requires?: string[];
+  lockedHint?: string;
+  action?: 'waterfall' | 'climb';
 }
 
 export interface NpcSpot {
@@ -149,6 +166,8 @@ export interface RoomConfig {
   bgm?: string;
   /** 室内剧情触发区（走进范围自动执行一次） */
   triggers?: InteriorTrigger[];
+  /** M3-20 怪力推石谜题（冠军之路） */
+  boulders?: BoulderPuzzleConfig;
 }
 
 export interface InteriorBlocker {

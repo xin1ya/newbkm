@@ -117,7 +117,7 @@ export function overworldSources(host: SceneInteractions, d: OverworldSourceDeps
   const blockers: InteractSource = (player, out) => {
     const p = player.position;
     for (const b of d.island.blockers) {
-      if (blockerOpen(b, (f) => d.flag(f))) continue;
+      if (b.flyOnly || blockerOpen(b, (f) => d.flag(f))) continue;
       const edge = blockerEdge(b, p.x, p.z);
       // 已经掌握能力：变成可交互的“使用能力”
       if (CLEARABLE_BLOCKERS.has(b.type) && d.flag(b.requiresFlag) && d.clearBlocker) {

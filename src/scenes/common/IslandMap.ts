@@ -85,6 +85,7 @@ export class IslandMap {
       markers.push({ id: poi.id, kind: POI_KIND[poi.kind], name: poi.name, x: poi.position[0], z: poi.position[2] });
     }
     for (const b of cfg.blockers) {
+      if (b.flyOnly) continue;
       markers.push({ id: b.id, kind: 'blocker', name: '无法通行', sub: BLOCKER_NEEDS[b.type], x: b.position[0], z: b.position[2], cleared: blockerOpen(b, (f) => !!s.flags[f]) });
     }
     // M3-17 攀爬点：标在崖脚；没有「攀岩」时副标题提示需要的能力

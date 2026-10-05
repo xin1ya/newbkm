@@ -172,6 +172,24 @@ export function blockerOpen(b: { id: string; type: string; requiresFlag: string 
   return flag(b.requiresFlag);
 }
 
+/**
+ * M3-20 阻挡范围判定：多边形（polygon）或圆形（position + radius）。pad = 额外外扩（玩家半径）。
+ * 多边形用射线法判断内外，pad 只对圆形生效（多边形边界本身就是硬边）。
+ */
+export function blockerContains(b: { position: readonly [number, number, number]; radius?: number | undefined; polygon?: ReadonlyArray<readonly [number, number]> | undefined }, x: number, z: number, pad = 0): boolean {
+  if (b.polygon) {
+    let inside = false;
+    const poly = b.polygon;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const [xi, zi] = poly[i]!;
+      const [xj, zj] = poly[j]!;
+      if (zi > z !== zj > z && x < ((xj - xi) * (z - zi)) / (zj - zi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+  return Math.hypot(x - b.position[0], z - b.position[2]) < (b.radius ?? 2) + pad;
+}
+
 export const BLOCKER_ABILITY: Record<string, string> = {
   surf: '水上骑乘',
   'rock-smash': '碎岩',

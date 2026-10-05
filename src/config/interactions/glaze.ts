@@ -56,6 +56,44 @@ export const GLAZE_FURNITURE: InteractionDef[] = [
   { id: 'sanctum-mural-east', kind: 'examine', pages: ['东墙壁画：群岛的轮廓被一圈浪纹环绕，五座岛的中心各画着一颗小小的光点。', '光点之间用细线连在一起——像是某种脉络。'], effects: [{ kind: 'give-item', item: 'revive', qty: 1, flag: 'got-sanctum-mural-east', itemName: '活力碎片' }], byFlag: [{ when: 'got-sanctum-mural-east', pages: ['东墙壁画：五座岛之间的光点用细线连在一起。'] }] },
 ];
 
+/** M3-20 冠军之路 */
+export const VICTORY_ROAD_FURNITURE: InteractionDef[] = [
+  { id: 'vr-badge-plaque', kind: 'examine', label: '查看铭牌', pages: ['「冠军之路」', '「集齐翠澜四岛 11 枚徽章者，方可通行。」', '铭牌下刻着一行小字：「萌芽 一 · 碧潮 三 · 雷鸣 四 · 琉璃 三」。'] },
+  { id: 'vr-gate-notice', kind: 'examine', pages: ['「冠军之路通行须知」', '「一、洞内无宝可梦中心，请在关所做好补给。」', '「二、沿途需要怪力、闪光、攀瀑、攀岩等能力。」', '「三、走完全程者，联盟高原上空的乱流将为其平息。」'] },
+  { id: 'vr-sign-hall', kind: 'examine', pages: ['「石柱大厅 → 西北：巨石大厅」', '木牌被凿得坑坑洼洼，像是被谁的拳头练过。'] },
+  {
+    id: 'vr-crate-hall',
+    kind: 'examine',
+    pages: ['一只被落石压歪的补给箱。里面还有东西……'],
+    effects: [{ kind: 'give-item', item: 'ultra-ball', qty: 3, flag: 'vr-crate-hall-taken', itemName: '高级球' }],
+    byFlag: [{ when: 'vr-crate-hall-taken', pages: ['补给箱已经空了。'] }],
+  },
+  { id: 'vr-strength-sign', kind: 'examine', pages: ['「巨石大厅」', '「裂谷的缺口下有两个深洞。把巨石推进洞里填平，才能过谷。」', '「推错了也不要紧——走出大厅再回来，没掉进洞的石头会回到原位。」'] },
+  {
+    id: 'vr-crate-boulder',
+    kind: 'examine',
+    pages: ['墙角的木箱上压着一块小石头。'],
+    effects: [{ kind: 'give-item', item: 'hyper-potion', qty: 2, flag: 'vr-crate-boulder-taken', itemName: '厉害伤药' }],
+    byFlag: [{ when: 'vr-crate-boulder-taken', pages: ['木箱已经空了。'] }],
+  },
+  {
+    id: 'vr-crate-river',
+    kind: 'examine',
+    pages: ['被水汽泡得发黑的木箱。'],
+    effects: [{ kind: 'give-item', item: 'revive', qty: 2, flag: 'vr-crate-river-taken', itemName: '活力碎片' }],
+    byFlag: [{ when: 'vr-crate-river-taken', pages: ['木箱已经空了。'] }],
+  },
+  { id: 'vr-river-sign', kind: 'examine', pages: ['「地下暗河」', '「水深流急，请走石桥。」', '「北侧瀑布通往上层岩台。」'] },
+  {
+    id: 'vr-crate-cliff',
+    kind: 'examine',
+    pages: ['岩台角落的补给箱，上面写着「给走到这里的人」。'],
+    effects: [{ kind: 'give-item', item: 'full-heal', qty: 3, flag: 'vr-crate-cliff-taken', itemName: '万灵药' }],
+    byFlag: [{ when: 'vr-crate-cliff-taken', pages: ['补给箱已经空了。'] }],
+  },
+  { id: 'vr-summit-plaque', kind: 'examine', label: '查看铭牌', pages: ['「冠军之路 · 终点」', '「前方：联盟高原 · 彩幽市」', '「愿你与伙伴，一同登上顶峰。」'] },
+];
+
 export const GLAZE_LANDMARKS: InteractionDef[] = [
   { id: 'mirage-dock', kind: 'examine', range: 3.5, pages: ['幻影镇码头。', '「南方航线：雷鸣—琉璃海域。终年海雾，礁石迷宫——请认准缺口两侧的红绿浮标。」', '一直往南冲浪就能回到雷鸣群岛的云雀镇。'] },
   {

@@ -85,10 +85,17 @@ const DEFAULT_SIZE: Record<FurnitureType, [number, number, number]> = {
   clam: [1.3, 0.8, 1.1],
   ruin: [1.0, 3.0, 1.0],
   anemone: [0.9, 0.6, 0.9],
+  waterfall: [4, 8, 1.6],
+  river: [4, 0.3, 10],
+  stalagmite: [1.1, 2.4, 1.1],
+  cliffwall: [6, 9, 1.2],
+  torch: [0.45, 2.0, 0.45],
+  bridge: [2.6, 0.3, 5],
+  pennant: [0.3, 3.4, 0.3],
 };
 
 /** 默认不生成碰撞的类型 */
-const NO_COLLIDE = new Set<FurnitureType>(['rug', 'poster', 'window', 'pc', 'pool', 'banner', 'emblem', 'beam', 'dais', 'skylight', 'poolLight', 'kelp', 'anemone']);
+const NO_COLLIDE = new Set<FurnitureType>(['rug', 'poster', 'window', 'pc', 'pool', 'banner', 'emblem', 'beam', 'dais', 'skylight', 'poolLight', 'kelp', 'anemone', 'bridge']);
 
 /** 水幕升降速度（每秒水幕高度比例变化） */
 const FOUNTAIN_RATE = 0.8;
@@ -127,6 +134,10 @@ export class InteriorBuilder {
   /** 水幕喷泉：对战时升起 */
   private fountains: Array<{ curtain: THREE.Mesh; tex: THREE.Texture; splash: THREE.Mesh; h: number; level: number }> = [];
   private textures: THREE.Texture[] = [];
+  /** M3-20 流水纹理（瀑布 / 暗河）：每帧按 speed 滚动 offset */
+  private flows: Array<{ tex: THREE.Texture; sx: number; sy: number }> = [];
+  /** M3-20 水雾 / 水花：每帧轻微起伏缩放 */
+  private bobs: Array<{ mesh: THREE.Object3D; base: THREE.Vector3; phase: number; amp: number; pulse: number }> = [];
   private battle = false;
   private lastTime = 0;
   /** 当前房间的四面墙：内侧面上一点 + 指向室内的法线 + 归属物体 */
@@ -169,6 +180,8 @@ export class InteriorBuilder {
     // 出口地垫 / 楼梯
     // 海底房间的出口由 UnderwaterFx 画成上浮光柱 / 礁石拱门
     for (const e of room.underwater ? [] : room.exits) {
+      // M3-20 瀑布 / 岩壁出口由对应家具表现
+      if (e.action) continue;
       const isStairs = 'room' in e.to;
       if (isStairs) group.add(this.stairsMarker(room, e.position));
       else group.add(this.doorMat(e.position));
@@ -206,6 +219,16 @@ export class InteriorBuilder {
         for (const m of this.shaftMats) {
           m.opacity = (m.userData.base as number) * day * (0.9 + Math.sin(time * 0.4) * 0.1);
           m.visible = day > 0.02;
+        }
+        for (const fl of this.flows) {
+          fl.tex.offset.x = (time * fl.sx) % 1;
+          fl.tex.offset.y = (time * fl.sy) % 1;
+        }
+        for (const b of this.bobs) {
+          const t = time + b.phase;
+          b.mesh.position.set(b.base.x + Math.sin(t * 0.7) * b.amp, b.base.y + Math.sin(t * 1.3) * b.amp * 0.5, b.base.z + Math.cos(t * 0.9) * b.amp);
+          const k = 1 + Math.sin(t * 2.2) * b.pulse;
+          b.mesh.scale.set(b.mesh.userData.sx * k, b.mesh.userData.sy * k, b.mesh.userData.sz * k);
         }
         const dt = Math.min(0.1, Math.max(0, time - this.lastTime));
         this.lastTime = time;
@@ -1393,6 +1416,247 @@ export class InteriorBuilder {
         }
         break;
       }
+      // ———————— M3-20 冠军之路 ————————
+      case 'waterfall': {
+        // 瀑布：背后的岩壁（分层岩带）+ 顶部崖口碎石 + 向下滚动的水幕（两层错速）+ 底部水潭（波纹）+ 水花环 + 水雾
+        const rock = c ?? '#5a5048';
+        const water = a ?? '#9fdcf5';
+        const back = box(w + 2.4, h, 0.8, 0, h / 2, -d / 2 + 0.4, rock);
+        back.userData.outline = false;
+        for (let i = 0; i < 5; i++) box(w + 2.5, 0.12, 0.84, 0, h * (0.15 + i * 0.18), -d / 2 + 0.4, shade(rock, i % 2 ? 1.15 : 0.82));
+        for (let i = 0; i < 7; i++) {
+          const r = new THREE.Mesh(this.geo(new THREE.DodecahedronGeometry(0.45 + (i % 3) * 0.15, 0)), this.mat(shade(rock, 0.9 + (i % 2) * 0.2), 'scene'));
+          r.position.set(-w / 2 - 0.6 + (i / 6) * (w + 1.2), h + 0.05, -d / 2 + 0.6);
+          r.rotation.set(i, i * 2, 0);
+          g.add(r);
+        }
+        const mkSheet = (speed: number, op: number, z: number, rep: number) => {
+          const tex = this.stripeTexture();
+          tex.repeat.set(Math.max(1, w / 1.2) * rep, 2.5);
+          this.flows.push({ tex, sx: 0, sy: speed });
+          const m = new THREE.MeshBasicMaterial({ map: tex, color: water, transparent: true, opacity: op, depthWrite: false, side: THREE.DoubleSide, toneMapped: false });
+          this.mats.set(`fall-${this.mats.size}`, m);
+          const sheet = new THREE.Mesh(this.geo(new THREE.PlaneGeometry(w, h + 0.2, 1, 8)), m);
+          // 水幕略向前鼓出（上窄下宽的弧）
+          const pos = sheet.geometry.getAttribute('position');
+          for (let k = 0; k < pos.count; k++) {
+            const t = (h / 2 - pos.getY(k)) / h;
+            pos.setZ(k, Math.sin(t * Math.PI * 0.5) * 0.5);
+          }
+          sheet.position.set(0, h / 2, -d / 2 + 0.85 + z);
+          sheet.userData.noShadow = true;
+          sheet.userData.dynamic = true;
+          g.add(sheet);
+        };
+        mkSheet(1.4, 0.82, 0, 1);
+        mkSheet(2.1, 0.45, 0.06, 1.6);
+        // 水潭
+        const poolMat = createToonMaterial({ color: '#3a8ab8', kind: 'scene', transparent: true, opacity: 0.85 });
+        poolMat.userData.uTime = { value: 0 };
+        poolMat.onBeforeCompile = (sh) => {
+          sh.uniforms.uTime = poolMat.userData.uTime as { value: number };
+          sh.vertexShader = 'uniform float uTime;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\ntransformed.y += sin(length(position.xz) * 6.0 - uTime * 4.0) * 0.025;');
+        };
+        this.waterMats.push(poolMat);
+        const pool = new THREE.Mesh(this.geo(new THREE.CircleGeometry(1, 28, 0, Math.PI).rotateX(-Math.PI / 2)), poolMat);
+        pool.rotation.y = Math.PI;
+        pool.scale.set(w * 0.62, 1, d * 0.9);
+        pool.position.set(0, 0.04, -d / 2 + 0.85);
+        pool.userData.noShadow = true;
+        pool.userData.dynamic = true;
+        g.add(pool);
+        // 水花环 + 水雾
+        const foamMat = new THREE.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.7, depthWrite: false, toneMapped: false });
+        this.mats.set(`foam-${this.mats.size}`, foamMat);
+        for (let i = 0; i < 6; i++) {
+          const fm = new THREE.Mesh(this.geo(new THREE.SphereGeometry(0.35, 8, 6)), foamMat);
+          const x = -w / 2 + 0.4 + (i / 5) * (w - 0.8);
+          fm.userData.sx = 1.2;
+          fm.userData.sy = 0.45;
+          fm.userData.sz = 0.9;
+          fm.scale.set(1.2, 0.45, 0.9);
+          const base = new THREE.Vector3(x, 0.15, -d / 2 + 1.2);
+          fm.position.copy(base);
+          fm.userData.noShadow = true;
+          fm.userData.dynamic = true;
+          g.add(fm);
+          this.bobs.push({ mesh: fm, base, phase: i * 1.7, amp: 0.06, pulse: 0.18 });
+        }
+        const mistMat = new THREE.MeshBasicMaterial({ color: '#e8f6ff', transparent: true, opacity: 0.22, depthWrite: false, toneMapped: false });
+        this.mats.set(`mist-${this.mats.size}`, mistMat);
+        for (let i = 0; i < 5; i++) {
+          const ms = new THREE.Mesh(this.geo(new THREE.SphereGeometry(1, 10, 8)), mistMat);
+          ms.userData.sx = w * 0.3;
+          ms.userData.sy = 0.9;
+          ms.userData.sz = 0.9;
+          ms.scale.set(w * 0.3, 0.9, 0.9);
+          const base = new THREE.Vector3(-w / 2 + (i + 0.5) * (w / 5), 0.8 + (i % 2) * 0.5, -d / 2 + 1.6);
+          ms.position.copy(base);
+          ms.userData.noShadow = true;
+          ms.userData.dynamic = true;
+          g.add(ms);
+          this.bobs.push({ mesh: ms, base, phase: i * 2.3, amp: 0.25, pulse: 0.08 });
+        }
+        g.userData.outline = false;
+        break;
+      }
+      case 'river': {
+        // 暗河水道：沿局部 Z 流动的水面（条纹纹理滚动）+ 两岸卵石 + 漂浮的白沫
+        const water = c ?? '#2f7fae';
+        const tex = this.stripeTexture();
+        tex.rotation = Math.PI / 2;
+        tex.center.set(0.5, 0.5);
+        tex.repeat.set(Math.max(1, d / 3), Math.max(1, w / 1.5));
+        this.flows.push({ tex, sx: a === 'still' ? 0 : -0.35, sy: 0 });
+        const base = createToonMaterial({ color: water, kind: 'scene', transparent: true, opacity: 0.9 });
+        base.userData.uTime = { value: 0 };
+        base.onBeforeCompile = (sh) => {
+          sh.uniforms.uTime = base.userData.uTime as { value: number };
+          sh.vertexShader = 'uniform float uTime;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\ntransformed.y += sin(position.z * 2.0 + uTime * 2.4) * 0.02;');
+        };
+        this.waterMats.push(base);
+        const surf = new THREE.Mesh(this.geo(new THREE.PlaneGeometry(w, d, Math.ceil(w), Math.ceil(d)).rotateX(-Math.PI / 2)), base);
+        surf.position.y = 0.03;
+        surf.userData.noShadow = true;
+        surf.userData.dynamic = true;
+        g.add(surf);
+        const streakMat = new THREE.MeshBasicMaterial({ map: tex, color: '#d8f4ff', transparent: true, opacity: 0.35, depthWrite: false, toneMapped: false });
+        this.mats.set(`river-${this.mats.size}`, streakMat);
+        const streak = new THREE.Mesh(this.geo(new THREE.PlaneGeometry(w * 0.9, d).rotateX(-Math.PI / 2)), streakMat);
+        streak.position.y = 0.05;
+        streak.userData.noShadow = true;
+        streak.userData.dynamic = true;
+        g.add(streak);
+        // 水底深色
+        const bed = new THREE.Mesh(this.geo(new THREE.PlaneGeometry(w, d).rotateX(-Math.PI / 2)), this.mat('#10283a', 'scene'));
+        bed.position.y = -0.2;
+        g.add(bed);
+        if (!f.noCollide) {
+          const n = Math.max(2, Math.round(d / 0.9));
+          for (const sx of [-1, 1])
+            for (let i = 0; i < n; i++) {
+              const st = new THREE.Mesh(this.geo(new THREE.DodecahedronGeometry(0.22 + ((i * 0.37) % 1) * 0.16, 0)), this.mat(i % 3 ? '#6a6460' : '#8a8278', 'scene'));
+              st.position.set(sx * (w / 2 + 0.05), 0.08, -d / 2 + (i + 0.5) * (d / n));
+              st.scale.y = 0.55;
+              st.rotation.y = i;
+              g.add(st);
+            }
+        }
+        g.userData.outline = false;
+        break;
+      }
+      case 'stalagmite': {
+        // 石笋：主锥 + 2 个小锥，尖端偏亮；底部一圈碎石
+        const col = c ?? '#7a6e62';
+        const cone = (r: number, ch: number, x: number, z: number, tilt: number) => {
+          const m = new THREE.Mesh(this.geo(new THREE.ConeGeometry(r, ch, 7)), this.mat(col, 'scene'));
+          m.position.set(x, ch / 2, z);
+          m.rotation.set(tilt, 0, -tilt * 0.6);
+          g.add(m);
+          const tip = new THREE.Mesh(this.geo(new THREE.ConeGeometry(r * 0.3, ch * 0.28, 6)), this.mat(shade(col, 1.35), 'scene'));
+          tip.position.set(x, ch * 0.86, z);
+          tip.rotation.copy(m.rotation);
+          g.add(tip);
+        };
+        cone(w * 0.42, h, 0, 0, 0.04);
+        cone(w * 0.26, h * 0.55, w * 0.32, d * 0.18, 0.12);
+        cone(w * 0.2, h * 0.4, -w * 0.28, -d * 0.2, -0.1);
+        for (let i = 0; i < 4; i++) {
+          const r = new THREE.Mesh(this.geo(new THREE.DodecahedronGeometry(0.13, 0)), this.mat(shade(col, 0.8), 'scene'));
+          r.position.set(Math.cos(i * 1.6) * w * 0.5, 0.06, Math.sin(i * 1.6) * d * 0.5);
+          g.add(r);
+        }
+        break;
+      }
+      case 'cliffwall': {
+        // 可攀岩壁：分层岩带 + 外凸岩块 + 藤蔓（accent 'crack' 时为发白的裂缝与岩钉）
+        const col = c ?? '#6a5e52';
+        box(w, h, d, 0, h / 2, 0, col);
+        for (let i = 0; i < 6; i++) box(w + 0.06, 0.18, d + 0.06, 0, h * (0.1 + i * 0.16), 0, shade(col, i % 2 ? 1.18 : 0.8));
+        for (let i = 0; i < 10; i++) {
+          const r = new THREE.Mesh(this.geo(new THREE.DodecahedronGeometry(0.35 + ((i * 0.41) % 1) * 0.3, 0)), this.mat(shade(col, 0.85 + ((i * 0.3) % 0.4)), 'scene'));
+          r.position.set(-w / 2 + ((i * 0.618) % 1) * w, 0.6 + ((i * 0.37) % 1) * (h - 1.2), d / 2);
+          r.scale.z = 0.5;
+          g.add(r);
+        }
+        if (a === 'crack') {
+          const crackMat = createToonMaterial({ color: '#f2e2c0', kind: 'scene', emissive: '#806040', emissiveIntensity: 0.35 });
+          this.mats.set(`crack-${this.mats.size}`, crackMat);
+          for (let i = 0; i < 6; i++) {
+            const cr = new THREE.Mesh(this.geo(new THREE.BoxGeometry(0.07, h / 6 + 0.3, 0.05)), crackMat);
+            cr.position.set(Math.sin(i * 1.3) * 0.35, (i + 0.5) * (h / 6), d / 2 + 0.03);
+            cr.rotation.z = (i % 2 ? 1 : -1) * 0.35;
+            g.add(cr);
+            const peg = new THREE.Mesh(this.geo(new THREE.CylinderGeometry(0.04, 0.04, 0.3, 6).rotateX(Math.PI / 2)), this.mat('#b8bcc4', 'scene'));
+            peg.position.set(Math.sin(i * 1.3) * 0.35 + 0.3, (i + 0.5) * (h / 6), d / 2 + 0.12);
+            g.add(peg);
+          }
+        } else {
+          const vine = this.mat('#3f7a3a', 'scene');
+          const leaf = this.mat('#5a9a48', 'scene');
+          for (let k = 0; k < 4; k++) {
+            const x0 = -1.2 + k * 0.8;
+            const pts = [0, 0.25, 0.5, 0.75, 1].map((t) => new THREE.Vector3(x0 + Math.sin(k * 1.9 + t * 6) * 0.3, t * h, d / 2 + 0.08 + Math.cos(t * 5 + k) * 0.05));
+            g.add(new THREE.Mesh(this.geo(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 16, 0.07, 5)), vine));
+            for (let i = 0; i < 8; i++) {
+              const lf = new THREE.Mesh(this.geo(new THREE.SphereGeometry(0.17, 5, 4)), leaf);
+              const p = pts[Math.min(4, Math.floor(i / 2))]!;
+              lf.position.set(p.x + ((i % 2) - 0.5) * 0.3, p.y + (i % 2) * 0.5 + 0.2, p.z + 0.04);
+              lf.scale.set(1, 0.55, 0.35);
+              g.add(lf);
+            }
+          }
+        }
+        break;
+      }
+      case 'torch': {
+        // 火把：木柱 + 铁碗 + 火焰（两层锥，发光）
+        cyl(0.07, 0.09, h, 0, h / 2, 0, '#6a4a2c', 8);
+        box(0.3, 0.06, 0.06, 0, h * 0.7, 0, '#4a3420');
+        cyl(0.2, 0.12, 0.18, 0, h + 0.05, 0, '#3a3a40', 10);
+        const fl = new THREE.Mesh(this.geo(new THREE.ConeGeometry(0.15, 0.48, 8)), this.basic('#ffb040'));
+        fl.position.y = h + 0.36;
+        const core = new THREE.Mesh(this.geo(new THREE.ConeGeometry(0.08, 0.3, 8)), this.basic('#fff0b0'));
+        core.position.y = h + 0.3;
+        fl.userData.noShadow = core.userData.noShadow = true;
+        g.add(fl, core);
+        g.userData.glow = '#ffb040';
+        break;
+      }
+      case 'bridge': {
+        // 木桥（沿局部 Z）：横铺木板 + 两根纵梁 + 绳索扶手与立柱
+        const wood = c ?? '#8a6440';
+        const n = Math.max(4, Math.round(d / 0.32));
+        for (let i = 0; i < n; i++) box(w, 0.08, d / n - 0.04, 0, h, -d / 2 + (i + 0.5) * (d / n), shade(wood, i % 2 ? 1 : 0.88));
+        for (const sx of [-1, 1]) {
+          box(0.14, 0.16, d + 0.4, sx * (w / 2 - 0.12), h - 0.1, 0, shade(wood, 0.7));
+          for (const sz of [-1, 0, 1]) cyl(0.06, 0.07, 1.1, sx * (w / 2 - 0.05), h + 0.55, (sz * d) / 2.2, shade(wood, 0.75), 6);
+          const rope = new THREE.Mesh(this.geo(new THREE.CylinderGeometry(0.03, 0.03, d, 5).rotateX(Math.PI / 2)), this.mat(a ?? '#c8b080', 'scene'));
+          rope.position.set(sx * (w / 2 - 0.05), h + 1.0, 0);
+          g.add(rope);
+        }
+        break;
+      }
+      case 'pennant': {
+        // 联盟旗：旗杆 + 三角旗（蓝底金边）+ 杆头金球
+        cyl(0.05, 0.06, h, 0, h / 2, 0, '#c8ccd4', 8);
+        const ball = new THREE.Mesh(this.geo(new THREE.SphereGeometry(0.1, 10, 8)), this.mat('#e8c050', 'scene'));
+        ball.position.y = h + 0.08;
+        g.add(ball);
+        const shape = new THREE.Shape();
+        shape.moveTo(0, 0);
+        shape.lineTo(1.2, -0.42);
+        shape.lineTo(0, -0.84);
+        shape.lineTo(0, 0);
+        const flag = new THREE.Mesh(this.geo(new THREE.ShapeGeometry(shape)), createToonMaterial({ color: c ?? '#2f4fa8', kind: 'scene', side: THREE.DoubleSide }));
+        this.mats.set(`pennant-${this.mats.size}`, flag.material as THREE.Material);
+        flag.position.set(0.05, h - 0.05, 0);
+        g.add(flag);
+        const trim = new THREE.Mesh(this.geo(new THREE.CircleGeometry(0.14, 12)), this.mat(a ?? '#e8c050', 'scene'));
+        trim.position.set(0.42, h - 0.47, 0.01);
+        g.add(trim);
+        break;
+      }
       case 'aquarium': {
         box(w, 0.6, d, 0, 0.3, 0, '#3d4b58');
         const glass = createToonMaterial({ color: '#7fd0f0', kind: 'scene', transparent: true, opacity: 0.45 });
@@ -1452,6 +1716,27 @@ export class InteriorBuilder {
         const l = new THREE.PointLight(f.color ?? p.lamp, p.lampIntensity * 0.5, 5, 2);
         l.userData.base = p.lampIntensity * 0.5;
         l.position.set(f.position[0], (f.size ?? DEFAULT_SIZE.lamp)[1] - 0.2, f.position[1]);
+        g.add(l);
+        this.lampLights.push(l);
+      }
+    // M3-20 火把：暖色火光（沿用灯具的轻微闪烁）
+    for (const f of room.furniture)
+      if (f.type === 'torch') {
+        const th = (f.size ?? DEFAULT_SIZE.torch)[1];
+        const l = new THREE.PointLight(f.color ?? '#ffb060', p.lampIntensity * 1.1, 9, 1.8);
+        l.userData.base = p.lampIntensity * 1.1;
+        l.position.set(f.position[0], th + 0.35, f.position[1]);
+        g.add(l);
+        this.lampLights.push(l);
+      }
+    // M3-20 瀑布：水潭上方一盏冷白光，让水幕在暗洞里发亮
+    for (const f of room.furniture)
+      if (f.type === 'waterfall') {
+        const [, fh, fd] = f.size ?? DEFAULT_SIZE.waterfall;
+        const yaw = f.yaw ?? 0;
+        const l = new THREE.PointLight('#bfe8ff', p.lampIntensity * 1.2, 12, 1.6);
+        l.userData.base = p.lampIntensity * 1.2;
+        l.position.set(f.position[0] + Math.sin(yaw) * fd, fh * 0.45, f.position[1] + Math.cos(yaw) * fd);
         g.add(l);
         this.lampLights.push(l);
       }
@@ -1563,6 +1848,8 @@ export class InteriorBuilder {
     this.nightLights = [];
     this.shaftMats = [];
     this.fountains = [];
+    this.flows = [];
+    this.bobs = [];
     this.battle = false;
     this.collision.removeGroup(INTERIOR_COLLISION_GROUP);
   }

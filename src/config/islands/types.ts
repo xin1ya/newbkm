@@ -38,6 +38,8 @@ export interface PoiConfig {
   position: Vec3;
   /** 门：进入的室内场景 id */
   interior?: string;
+  /** 从这个门进入时落在哪个房间（缺省 = 室内的 entryRoom；出生在该房间 to.poi = 本门的出口旁） */
+  room?: string;
   /** 没有建筑摆放物的入口（洞穴等）：门外朝向（弧度，0 = +Z）；位置即 position */
   doorYaw?: number;
   /** 在大地图上显示 */
@@ -52,8 +54,12 @@ export interface BlockerConfig {
   /** 阻挡半径（米） */
   radius?: number;
   hint: string;
-  /** 可见特效：结界穹顶 / 热浪帘（M2-14） */
-  fx?: 'barrier' | 'heat';
+  /** 可见特效：结界穹顶 / 热浪帘（M2-14）/ 高空乱流墙（M3-20） */
+  fx?: 'barrier' | 'heat' | 'windwall';
+  /** M3-20 多边形范围（给出时代替圆形 radius；position 仅作提示锚点） */
+  polygon?: Vec2[];
+  /** M3-20 只挡飞行（步行 / 冲浪不受影响）：联盟高原的高空乱流，防止飞越冠军之路 */
+  flyOnly?: boolean;
 }
 
 /**

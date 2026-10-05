@@ -48,7 +48,31 @@ const altar: StoryStep[] = [
   },
 ];
 
+// ———————————————— M3-20 冠军之路 ————————————————
+const vrGateEnter: StoryStep[] = [
+  { kind: 'narrate', lines: ['关所里很安静。对面那扇门后传来低沉的风声——那是冠军山腹地的呼吸。', '门边的守卫抬起头，目光落在你的徽章盒上。'] },
+  { kind: 'flag', set: 'vr-entered' },
+];
+
+const vrHm07: StoryStep[] = [
+  { kind: 'say', speaker: '攀瀑老人瀑翁', lines: ['哦？走到暗河这里来了啊。', '那道瀑布从上一层落下来，四十年没停过。我年轻时也想爬上去——可惜我的伙伴已经老了。'] },
+  { kind: 'say', speaker: '攀瀑老人瀑翁', lines: ['你的宝可梦眼神很好。来，我把逆流而上的诀窍教给你们。', '别跟水较劲。顺着水势找落脚的地方，借它的力往上冲。'] },
+  { kind: 'fx', name: 'flash' },
+  { kind: 'flag', set: 'hm07-waterfall' },
+  { kind: 'say', lines: ['学会了「攀瀑」！站在瀑布前按互动键，就能逆瀑而上。'] },
+];
+
+const vrCleared: StoryStep[] = [
+  { kind: 'fx', name: 'flash' },
+  { kind: 'narrate', lines: ['洞口外涌进来一阵明亮的风。', '远处，联盟高原上翻卷的云层慢慢散开——彩幽市的尖塔在阳光下闪闪发亮。'] },
+  { kind: 'flag', set: 'victory-road-cleared' },
+  { kind: 'say', lines: ['冠军之路通关！联盟高原上空的乱流平息了，以后可以骑宝可梦飞往彩幽市。'] },
+];
+
 export const GLAZE_STORY: StoryScript[] = [
+  { id: 'vr-gate-enter', steps: vrGateEnter },
+  { id: 'vr-hm07', steps: vrHm07 },
+  { id: 'vr-cleared', steps: vrCleared },
   { id: 'diver-compass-pickup', steps: compassFound },
   { id: 'diver-compass-return', steps: compassReturned },
   { id: 'sea-temple-hall-enter', steps: hallEnter },

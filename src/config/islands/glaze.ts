@@ -296,8 +296,8 @@ export const GLAZE: IslandConfig = {
     { id: 'glaze-temple-stele', kind: 'landmark', name: '神殿石碑', position: [597.5, 0, 186] },
     { id: 'mirage-moon-tower', kind: 'landmark', name: '月影塔遗址', position: [-472, 0, 506], showOnMap: true },
     { id: 'glaze-dock', kind: 'dock', name: '琉璃镇码头', position: [612, 0, 152], showOnMap: true },
-    { id: 'victory-road-south', kind: 'cave', name: '冠军之路（南口）', position: [80, 0, -232], interior: 'victory-road', doorYaw: 0, showOnMap: true },
-    { id: 'victory-road-north', kind: 'cave', name: '冠军之路（北口）', position: [40, 0, -634], interior: 'victory-road', doorYaw: Math.PI, showOnMap: true },
+    { id: 'victory-road-south', kind: 'cave', name: '冠军之路（南口）', position: [80, 0, -232], interior: 'victory-road', room: 'south-gate', doorYaw: 0, showOnMap: true },
+    { id: 'victory-road-north', kind: 'cave', name: '冠军之路（北口）', position: [40, 0, -634], interior: 'victory-road', room: 'summit', doorYaw: Math.PI, showOnMap: true },
     { id: 'shadow-cave', kind: 'cave', name: '暗影洞窟', position: [-268, 0, -318], interior: 'shadow-cave', doorYaw: -1.05, showOnMap: true },
     { id: 'stone-forest-sign', kind: 'landmark', name: '海蚀石林', position: [-560, 0, 160], showOnMap: true },
     { id: 'marsh-graves', kind: 'landmark', name: '沼泽古墓群', position: [-520, 0, -440], showOnMap: true },
@@ -312,6 +312,32 @@ export const GLAZE: IslandConfig = {
     { id: 'coral-garden', name: '珊瑚花园', center: [752, 330], radius: 16, interior: 'glaze-sea', room: 'reef' },
   ],
   blockers: [
-    // 冠军之路的徽章检查 / 联盟高原的飞行结界在 M3-20 加入；雷鸣—琉璃海域在 M3-05 连接
+    // M3-20 联盟高原的高空乱流：只挡飞行（步行仍须穿过冠军之路，南口有徽章检查）。
+    // 沿冠军山北麓山脊 + 高原外海一圈；北口（40,-634）在圈内，通关后乱流平息。
+    {
+      id: 'plateau-windwall',
+      type: 'story',
+      requiresFlag: 'victory-road-cleared',
+      position: [40, 0, -760],
+      radius: 4,
+      fx: 'windwall',
+      flyOnly: true,
+      polygon: [
+        [-740, -640],
+        [-470, -585],
+        [-410, -563],
+        [-350, -597],
+        [-300, -605],
+        [-100, -618],
+        [300, -605],
+        [360, -579],
+        [420, -611],
+        [480, -593],
+        [640, -632],
+        [640, -1010],
+        [-740, -1010],
+      ],
+      hint: '联盟高原上空刮着猛烈的乱流，飞不过去。只有走完冠军之路的训练家才能抵达彩幽市。',
+    },
   ],
 };

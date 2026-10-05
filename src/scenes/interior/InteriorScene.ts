@@ -47,6 +47,8 @@ import { chooseMount, rideFor, type MountChoice } from '@/systems/ride';
 import { RIDES } from '@/config/rides';
 import { toggleLevel, valveAt } from '@/systems/puzzles/waterLevel';
 import { GymMechanismView } from '@/world/interiors/GymMechanismView';
+import { BoulderPuzzleView } from '@/world/interiors/BoulderPuzzleView';
+import { cellAt, cellCenter, holeFlag, pushDir, STRENGTH_FLAG, usedFlag } from '@/systems/puzzles/boulders';
 import { cardinal, currentAt, CURRENT_SPEED, mirrorAt, mirrorTarget, onIce, SLIDE_SPEED, switchVar } from '@/systems/puzzles/gymMechanism';
 import { GYMS } from '@/config/encounters';
 import { TRAINER_BY_ID } from '@/config/trainers';
@@ -55,7 +57,7 @@ import { jingle, sfx } from '@/core/audio';
 import { isTalking } from '@/scenes/common/npcTalk';
 import { InteriorField } from './InteriorField';
 import type { StoryBattleResult, StoryHost } from '@/scenes/common/StoryDirector';
-import { createPokemon, type PokemonInstance } from '@/systems/pokemon/Pokemon';
+import { createPokemon, displayName, type PokemonInstance } from '@/systems/pokemon/Pokemon';
 
 export interface InteriorDeps {
   game: Game;
@@ -132,6 +134,11 @@ export class InteriorScene implements Scene, BattleHost {
   puzzle: WaterPuzzleView | null = null;
   /** M3-15 道馆 5–8 馆内机关 */
   mech: GymMechanismView | null = null;
+  /** M3-20 怪力推石谜题 */
+  boulders: BoulderPuzzleView | null = null;
+  private pushTimer = 0;
+  private boulderHintAt = -99;
+  private strengthAnnounced = false;
   /** M3-16 传送镜：离开所有法阵 1.2 m 后才重新激活（防止落地即再传） */
   private mirrorArmed = true;
   private mirrorBusy = false;
@@ -213,6 +220,7 @@ export class InteriorScene implements Scene, BattleHost {
     this.interactions.addSource(this.follower.source());
     this.interactions.addSource((player, out) => this.valveSource(player, out));
     this.interactions.addSource((player, out) => this.mechSource(player, out));
+    this.interactions.addSource((player, out) => this.actionExitSource(player, out));
     this.field = new InteriorField({
       game: d.game,
       ui: d.ui,
@@ -303,6 +311,10 @@ export class InteriorScene implements Scene, BattleHost {
     this.puzzle = null;
     this.mech?.dispose();
     this.mech = null;
+    this.boulders?.dispose();
+    this.boulders = null;
+    this.pushTimer = 0;
+    this.strengthAnnounced = false;
     this.lantern?.removeFromParent();
     this.lantern?.dispose();
     this.lantern = null;
@@ -350,6 +362,11 @@ export class InteriorScene implements Scene, BattleHost {
       this.world.add(this.mech.group);
       if (this.room.mechanism.dark) this.applyMechDark(this.built.lights);
     }
+    if (this.room.boulders) {
+      // 推石：填平的洞 / 用掉的石头存档，其余石头每次进门复位
+      this.boulders = new BoulderPuzzleView(this.room.boulders, this.collision, this.d.state.flags);
+      this.world.add(this.boulders.group);
+    }
     this.mirrorArmed = false;
     this.field.load(this.room, this.built.lights);
     const preset = LIGHT_PRESETS[this.room.lighting];
@@ -387,6 +404,7 @@ export class InteriorScene implements Scene, BattleHost {
   fixedUpdate(dt: number): void {
     // 第三 / 第一人称都按镜头朝向移动
     if (!this.slideStep(dt) && !this.currentStep(dt)) this.player.fixedUpdate(dt, this.gameplayInput, this.rig.forwardYaw);
+    this.boulderStep(dt);
     this.footsteps.fixedUpdate(this.player);
     this.checkExits();
     this.checkMirrors();
@@ -421,6 +439,7 @@ export class InteriorScene implements Scene, BattleHost {
     this.updateDiveMount(dt);
     this.puzzle?.update(dt);
     this.mech?.update(dt);
+    this.boulders?.update(dt);
     if (this.lantern) {
       const p = this.player.position;
       this.lantern.position.set(p.x + Math.sin(this.player.facing) * 0.4, p.y + 1.7, p.z + Math.cos(this.player.facing) * 0.4);
@@ -493,6 +512,8 @@ export class InteriorScene implements Scene, BattleHost {
     const v = this.player.velocity;
     let inside: ExitConfig | null = null;
     for (const e of this.room.exits) {
+      // M3-20 瀑布 / 岩壁出口只能按互动键使用
+      if (e.action) continue;
       const r = e.radius ?? 0.8;
       if (Math.hypot(p.x - e.position[0], p.z - e.position[1]) < r) inside = e;
     }
@@ -508,7 +529,126 @@ export class InteriorScene implements Scene, BattleHost {
     const isDoor = 'overworld' in inside.to && !this.room.underwater;
     const toward = isDoor ? v.z / speed : ((inside.position[0] - p.x) * v.x + (inside.position[1] - p.z) * v.z) / (speed * Math.max(0.1, Math.hypot(inside.position[0] - p.x, inside.position[1] - p.z)));
     if (toward < (isDoor ? 0.5 : 0.3)) return;
+    if (!this.exitOpen(inside)) {
+      void this.lockedExit(inside);
+      return;
+    }
     void this.useExit(inside);
+  }
+
+  private exitOpen(e: ExitConfig): boolean {
+    return (e.requires ?? []).every((f) => this.d.state.flags[f] === true);
+  }
+
+  /** M3-20 徽章检查门等：没满足条件时提示并把玩家挡回去 */
+  private async lockedExit(e: ExitConfig): Promise<void> {
+    this.exitsArmed = false;
+    const p = this.player.position;
+    const dx = p.x - e.position[0];
+    const dz = p.z - e.position[1];
+    const d = Math.hypot(dx, dz) || 1;
+    const back = (e.radius ?? 0.8) + 0.9;
+    this.player.velocity.set(0, 0, 0);
+    this.player.teleport(e.position[0] + (dx / d) * back, e.position[1] + (dz / d) * back, Math.atan2(dx, dz));
+    this.switching = true;
+    try {
+      await say(this.d.ui, [e.lockedHint ?? '现在还不能过去。']);
+    } finally {
+      this.switching = false;
+    }
+  }
+
+  /** M3-20 瀑布 / 岩壁出口的互动：有能力 → 攀瀑 / 攀岩（演出后切房间）；没有 → 提示需要的能力 */
+  private actionExitSource(_player: PlayerController, out: Parameters<Parameters<SceneInteractions['addSource']>[0]>[1]): void {
+    const p = this.player.position;
+    for (const e of this.room.exits) {
+      if (!e.action) continue;
+      const reach = (e.radius ?? 1) + 1.4;
+      if (Math.hypot(p.x - e.position[0], p.z - e.position[1]) > reach) continue;
+      const verb = e.action === 'waterfall' ? '攀瀑' : '攀岩';
+      const ability = e.action === 'waterfall' ? '攀瀑骑乘' : '攀岩骑乘';
+      const ok = this.exitOpen(e);
+      out.push({
+        id: `exit:${e.id}`,
+        kind: 'blocked',
+        x: e.position[0],
+        z: e.position[1],
+        y: 2.2,
+        label: ok ? `${e.label ?? verb}（${ability}）` : '无法通过',
+        action: ok ? 'interact' : null,
+        range: reach,
+        ...(ok ? { run: () => this.actionExit(e) } : { ability, hint: e.lockedHint ?? `需要「${ability}」。` }),
+      });
+    }
+  }
+
+  private async actionExit(e: ExitConfig): Promise<void> {
+    const lead = this.d.state.party.find((m) => m.hp > 0);
+    const name = lead ? displayName(this.d.dex, lead) : '宝可梦';
+    const up = e.label?.includes('下') ? false : true;
+    await say(this.d.ui, e.action === 'waterfall' ? [`${name} 使用了「攀瀑」！`, up ? '逆着奔涌的水流，一口气冲上了瀑布！' : '顺着瀑布一跃而下！'] : [`${name} 使用了「攀岩」！`, up ? '抓着岩缝一步步攀了上去！' : '贴着岩壁慢慢滑了下去！']);
+    sfx(e.action === 'waterfall' ? 'splash' : 'bump');
+    await this.useExit(e);
+  }
+
+  /** M3-20 怪力推石：朝石头持续走 0.25 s 推一格；没有「怪力」时提示 */
+  private boulderStep(dt: number): void {
+    const v = this.boulders;
+    const input = this.gameplayInput;
+    if (!v || v.busy || !input || this.interactions.busy) {
+      this.pushTimer = 0;
+      return;
+    }
+    const axis = input.moveAxis();
+    const dir = Math.hypot(axis.x, axis.y) > 0.3 ? pushDir(this.player.facing) : null;
+    const p = this.player.position;
+    const cfg = v.cfg;
+    const here = cellAt(cfg, p.x, p.z) ?? cellAt(cfg, p.x - (dir?.[0] ?? 0) * cfg.cell * 0.5, p.z - (dir?.[1] ?? 0) * cfg.cell * 0.5);
+    if (!dir || !here) {
+      this.pushTimer = 0;
+      return;
+    }
+    const tc = here[0] + dir[0];
+    const tr = here[1] + dir[1];
+    const j = v.state.boulders.findIndex((b) => b && b[0] === tc && b[1] === tr);
+    if (j < 0) {
+      this.pushTimer = 0;
+      return;
+    }
+    const [bx, bz] = cellCenter(cfg, tc, tr);
+    const along = (bx - p.x) * dir[0] + (bz - p.z) * dir[1];
+    const side = Math.abs((bx - p.x) * dir[1] - (bz - p.z) * dir[0]);
+    if (along > cfg.cell / 2 + 0.75 || side > cfg.cell * 0.45) {
+      this.pushTimer = 0;
+      return;
+    }
+    this.pushTimer += dt;
+    if (this.pushTimer < 0.25) return;
+    this.pushTimer = 0;
+    const need = cfg.requiresFlag ?? STRENGTH_FLAG;
+    if (!this.d.state.flags[need]) {
+      if (this.time - this.boulderHintAt > 4) {
+        this.boulderHintAt = this.time;
+        this.d.toast?.('巨石纹丝不动……掌印纹在微微发光，似乎需要「怪力」才能推动。');
+      }
+      return;
+    }
+    if (!this.strengthAnnounced) {
+      this.strengthAnnounced = true;
+      const lead = this.d.state.party.find((m) => m.hp > 0);
+      this.d.toast?.(`${lead ? displayName(this.d.dex, lead) : '宝可梦'} 使用了「怪力」！可以推动巨石了。`);
+    }
+    const res = v.push(tc, tr, dir[0], dir[1]);
+    sfx('bump');
+    if (!res.ok) return;
+    if (res.filledHole !== null) {
+      for (const f of [holeFlag(cfg, res.filledHole), usedFlag(cfg, j)]) {
+        this.d.state.flags[f] = true;
+        this.d.game.events.emit('flag:set', { flag: f, value: true });
+      }
+      setTimeout(() => sfx('hit-strong'), 380);
+      this.d.toast?.('巨石轰隆一声落进了地洞，把洞填平了！');
+    }
   }
 
   /** 使用出口（也供 e2e / 剧情脚本直接调用） */
@@ -518,7 +658,7 @@ export class InteriorScene implements Scene, BattleHost {
     this.player.velocity.set(0, 0, 0);
     try {
       if ('overworld' in e.to) {
-        await this.d.leave(this.config.id, e.surfaceAt);
+        await this.d.leave(this.config.id, e.surfaceAt ?? e.to.poi);
         return;
       }
       await this.d.transition.fadeOut(FADE_MS);
@@ -1056,6 +1196,8 @@ export class InteriorScene implements Scene, BattleHost {
     this.puzzle = null;
     this.mech?.dispose();
     this.mech = null;
+    this.boulders?.dispose();
+    this.boulders = null;
     this.field.dispose();
     this.follower.dispose();
     this.npcs.dispose();
