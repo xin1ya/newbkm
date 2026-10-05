@@ -43,6 +43,8 @@ export interface AutoSettingsData {
   pp: AutoOption[];
   /** 首发宝可梦的招式 */
   leadName: string;
+  /** 队伍第 1 只（代练 / 努力值计划对象）的名字与当前努力值 */
+  trainee?: { name: string; evs: Record<string, number> } | undefined;
   moves: { index: number; id: string; name: string; pp: number; maxPp: number; damaging?: boolean }[];
 }
 
@@ -112,7 +114,7 @@ export class AutoBattleCard {
     this.root.style.display = 'none';
   }
 
-  show(d: { zoneName: string; levelRange: string; species: AutoZoneSpecies[]; config: AutoBattleConfig; running: boolean; status: string; why: string | null }): void {
+  show(d: { zoneName: string; levelRange: string; species: AutoZoneSpecies[]; config: AutoBattleConfig; running: boolean; status: string; why: string | null; evLine?: string | null }): void {
     const r = this.root;
     r.style.display = '';
     r.textContent = '';
@@ -128,6 +130,7 @@ export class AutoBattleCard {
       el('div', 'ev', row, s.ev);
     }
     if (d.species.length > 9) el('div', 'sub', r, `……还有 ${d.species.length - 9} 种`);
+    if (d.evLine) el('div', 'sub', r, d.evLine);
     if (d.why) el('div', 'why', r, d.why);
     el('div', 'hint', r).innerHTML = d.running ? '<kbd>K</kbd> 设置 · 移动键 / <kbd>K</kbd> 停止' : '<kbd>K</kbd> 打开自动战斗设置';
   }
@@ -256,6 +259,34 @@ export class AutoBattleSettings implements UiWidget {
     tr.style.marginTop = '8px';
     tr.addEventListener('click', () => this.set(() => (cfg.train = !cfg.train)));
     el('div', 'meta', g5, '只对「打倒」目标生效；经验由首发与打手平分。首发须放在队伍第 1 位。').style.cssText = 'font-size:11px;color:#6a7190;margin-top:4px';
+
+    // 努力值计划
+    const g6 = el('div', 'grp', right);
+    const plan = cfg.evPlan;
+    const t6 = el('button', `chip${plan.on ? ' on' : ''}`, g6, `${plan.on ? '☑' : '☐'} 努力值计划${data.trainee ? `（${data.trainee.name}）` : ''}`);
+    t6.addEventListener('click', () => this.set(() => (plan.on = !plan.on)));
+    if (plan.on) {
+      const ZH: Record<string, string> = { hp: 'HP', atk: '攻击', def: '防御', spa: '特攻', spd: '特防', spe: '速度' };
+      const grid = el('div', '', g6);
+      grid.style.cssText = 'display:grid;grid-template-columns:auto 1fr;gap:4px 8px;align-items:center;margin-top:6px';
+      for (const k of ['hp', 'atk', 'def', 'spa', 'spd', 'spe'] as const) {
+        const cur = data.trainee?.evs[k] ?? 0;
+        el('div', 'meta', grid, `${ZH[k]} ${cur}`).style.cssText = 'font-size:12px;min-width:64px';
+        const row = el('div', '', grid);
+        row.style.cssText = 'display:flex;gap:4px;align-items:center';
+        this.stepper(row, `→ ${plan.target[k]}`, (dd) => (plan.target[k] = Math.max(0, Math.min(252, plan.target[k] + dd * 4))));
+        for (const [lab, v] of [['0', 0], ['满', 252]] as const) {
+          const b = el('button', 'chip', row, lab);
+          b.addEventListener('click', () => this.set(() => (plan.target[k] = v)));
+        }
+      }
+      const sum = Object.values(plan.target).reduce((a, b) => a + b, 0);
+      el('div', 'meta', g6, `目标合计 ${sum}/510${sum > 510 ? '（超过上限，超出部分无法获得）' : ''}`).style.cssText = `font-size:11px;margin-top:4px;color:${sum > 510 ? '#c0504d' : '#6a7190'}`;
+      const pc2 = el('button', `chip${plan.protectCarrier ? ' on' : ''}`, g6, `${plan.protectCarrier ? '☑' : '☐'} 代练时打手不获得努力值`);
+      pc2.style.marginTop = '6px';
+      pc2.addEventListener('click', () => this.set(() => (plan.protectCarrier = !plan.protectCarrier)));
+      el('div', 'meta', g6, '只打能提供未达标项的「打倒」目标（其余遭遇自动逃跑）；超出目标的努力值不计入；全部达标后自动停止。').style.cssText = 'font-size:11px;color:#6a7190;margin-top:4px';
+    }
 
     // 底部
     const ft = el('div', 'ft', win);

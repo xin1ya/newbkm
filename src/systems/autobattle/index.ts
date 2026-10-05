@@ -13,6 +13,7 @@
 import type { Battle, BattleRequest } from '../battle/engine';
 import type { BattleAction } from '../battle/types';
 import { calcDamage } from '../battle/damage';
+import type { BaseStatId, StatTable } from '../data/types';
 
 export type AutoGoal = 'defeat' | 'capture';
 
@@ -35,6 +36,53 @@ export interface AutoBattleConfig {
   centerHeal: boolean;
   /** 代练：首发（队伍第 1 只）只上场露面，开战后换成队伍里等级最高、打得到对手的宝可梦去打倒（经验按参战平分给首发） */
   train: boolean;
+  /** 努力值计划（代练对象 = 队伍第 1 只）：只打能提供未达标项努力值的目标，超出目标的努力值不计入，全部达标后停止 */
+  evPlan: EvPlan;
+}
+
+export interface EvPlan {
+  on: boolean;
+  /** 每项目标值（0–252；0 = 不要这项） */
+  target: StatTable;
+  /** 代练时打手不获得努力值（保持打手原有分配） */
+  protectCarrier: boolean;
+}
+
+export const EV_STATS: readonly BaseStatId[] = ['hp', 'atk', 'def', 'spa', 'spd', 'spe'];
+export const EV_STAT_MAX = 252;
+export const EV_TOTAL_MAX = 510;
+const zeroStats = (): StatTable => ({ hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 });
+
+/** 还需要的努力值（按计划目标与总量上限 510） */
+export function evNeeds(evs: StatTable, plan: EvPlan): StatTable {
+  const out = zeroStats();
+  const total = EV_STATS.reduce((a, k) => a + evs[k], 0);
+  if (total >= EV_TOTAL_MAX) return out;
+  for (const k of EV_STATS) out[k] = Math.max(0, Math.min(EV_STAT_MAX, plan.target[k]) - evs[k]);
+  return out;
+}
+
+/** 计划全部达标（没有设定任何目标也算达标） */
+export function evPlanDone(evs: StatTable, plan: EvPlan): boolean {
+  const n = evNeeds(evs, plan);
+  return EV_STATS.every((k) => n[k] <= 0);
+}
+
+/** 这种宝可梦对计划有用：至少提供一项还没达标的努力值 */
+export function evUseful(yieldTable: StatTable, evs: StatTable, plan: EvPlan): boolean {
+  const n = evNeeds(evs, plan);
+  return EV_STATS.some((k) => yieldTable[k] > 0 && n[k] > 0);
+}
+
+/** 战后修正：每项不超过 max(战前, 目标)，即计划外 / 超出目标的努力值不计入 */
+export function clampEvGain(before: StatTable, after: StatTable, plan: EvPlan): StatTable {
+  const out = { ...after };
+  for (const k of EV_STATS) out[k] = Math.min(after[k], Math.max(before[k], Math.min(EV_STAT_MAX, plan.target[k])));
+  return out;
+}
+
+export function defaultEvPlan(): EvPlan {
+  return { on: false, target: zeroStats(), protectCarrier: true };
 }
 
 /** 战斗中可用的回复道具（与 Battle.useItem 支持的一致） */
@@ -45,7 +93,7 @@ export const AUTO_BALLS = ['poke-ball', 'great-ball', 'ultra-ball', 'quick-ball'
 export const RED_HP = 0.2;
 
 export function defaultAutoConfig(): AutoBattleConfig {
-  return { targets: {}, ball: 'poke-ball', disabledMoves: [], hpPct: 0.35, ppMin: 2, healItems: ['potion', 'super-potion'], ppItems: ['leppa-berry'], centerHeal: true, train: false };
+  return { targets: {}, ball: 'poke-ball', disabledMoves: [], hpPct: 0.35, ppMin: 2, healItems: ['potion', 'super-potion'], ppItems: ['leppa-berry'], centerHeal: true, train: false, evPlan: defaultEvPlan() };
 }
 
 /** 读档 / 本地存储恢复：字段缺失或非法时用默认值 */
@@ -68,7 +116,20 @@ export function sanitizeAutoConfig(raw: unknown): AutoBattleConfig {
     ppItems: strs(r.ppItems, AUTO_PP_ITEMS, d.ppItems),
     centerHeal: typeof r.centerHeal === 'boolean' ? r.centerHeal : d.centerHeal,
     train: typeof r.train === 'boolean' ? r.train : d.train,
+    evPlan: sanitizeEvPlan(r.evPlan),
   };
+}
+
+function sanitizeEvPlan(raw: unknown): EvPlan {
+  const d = defaultEvPlan();
+  if (!raw || typeof raw !== 'object') return d;
+  const r = raw as Partial<EvPlan>;
+  const target = zeroStats();
+  for (const k of EV_STATS) {
+    const v = (r.target as Partial<StatTable> | undefined)?.[k];
+    target[k] = typeof v === 'number' && Number.isFinite(v) ? Math.max(0, Math.min(EV_STAT_MAX, Math.round(v))) : 0;
+  }
+  return { on: r.on === true, target, protectCarrier: typeof r.protectCarrier === 'boolean' ? r.protectCarrier : true };
 }
 
 export type AutoDecision = { kind: 'act'; action: BattleAction; note?: string } | { kind: 'stop'; reason: string };

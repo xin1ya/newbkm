@@ -12,6 +12,7 @@
 import type { Rng } from '../rng';
 import type { GameState } from '../state';
 import { addItem, removeItem } from '../state';
+import type { FarmCare } from './helpers';
 
 export type FarmField = 'home' | 'cuilan' | 'harbor';
 
@@ -44,6 +45,8 @@ export interface PlotState {
 
 export interface FarmState {
   plots: Record<string, PlotState>;
+  /** 宝可梦照料（驻场打工 / 自动续种 / 照料记录），见 helpers.ts */
+  care?: FarmCare | undefined;
 }
 
 export const STAGE_ZH = ['种子', '发芽', '长高', '开花', '结果'] as const;
@@ -201,3 +204,5 @@ export function harvest(s: GameState, plot: PlotDef, growHours: number, rng: Rng
   delete f.plots[plot.id];
   return { berry: p.berry, qty, bonus };
 }
+
+export * from './helpers';

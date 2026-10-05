@@ -25,11 +25,11 @@ import type { ZoneConfig } from '@/config/islands/types';
 import type { EncounterTable } from '@/systems/encounters';
 import { behaviorOf } from '@/config/encounters/behavior';
 import { BERRY_BY_ID } from '@/config/berries';
-import { AUTO_BALLS, AUTO_HEAL_ITEMS, AUTO_PP_ITEMS, pickCarrier, sanitizeAutoConfig, type AutoBattleConfig, type AutoGoal } from '@/systems/autobattle';
+import { AUTO_BALLS, AUTO_HEAL_ITEMS, AUTO_PP_ITEMS, EV_STATS, clampEvGain, evPlanDone, evUseful, pickCarrier, sanitizeAutoConfig, type AutoBattleConfig, type AutoGoal } from '@/systems/autobattle';
 import type { BattleAutoPilot, BattleResult } from '@/scenes/battle/BattleScene';
 import type { UiRoot } from '@/ui/core/UiRoot';
 import { AutoBattleCard, AutoBattleSettings, type AutoZoneSpecies } from '@/ui/hud/AutoBattlePanel';
-import { displayName, maxHp } from '@/systems/pokemon';
+import { displayName, maxHp, type PokemonInstance } from '@/systems/pokemon';
 import { sfx } from '@/core/audio';
 
 const STORE_KEY = 'cuilan.autobattle';
@@ -112,8 +112,28 @@ export class SceneAutoBattle implements BattleAutoPilot {
 
   goalFor(speciesId: number, alpha: boolean): AutoGoal | null {
     if (alpha) return null;
-    return this.config.targets[speciesId] ?? null;
+    return this.wants(speciesId);
   }
+
+  /** 努力值计划：只打能提供未达标项的目标（捕捉目标不受影响） */
+  private wants(speciesId: number): AutoGoal | null {
+    const g = this.config.targets[speciesId] ?? null;
+    const plan = this.config.evPlan;
+    const lead = this.d.state.party[0];
+    if (g === 'defeat' && plan.on && lead && !evUseful(this.d.dex.species(speciesId).evYield, lead.evs, plan)) return null;
+    return g;
+  }
+
+  /** 卡片 / 提示用：努力值计划进度 */
+  evProgress(): string | null {
+    const plan = this.config.evPlan;
+    const lead = this.d.state.party[0];
+    if (!plan.on || !lead) return null;
+    const parts = EV_STATS.filter((k) => plan.target[k] > 0).map((k) => `${STAT_ZH[k]} ${lead.evs[k]}/${plan.target[k]}`);
+    return parts.length ? `努力值（${displayName(this.d.dex, lead)}）：${parts.join(' · ')}` : '努力值计划：未设定目标';
+  }
+
+  private evBefore = new Map<string, PokemonInstance['evs']>();
 
   // ———————————————————— 区域信息 ————————————————————
 
@@ -167,7 +187,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
       this.card.hide();
       return;
     }
-    this.card.show({ zoneName: z.name, levelRange: this.levelText(z), species: this.zoneSpecies(z), config: this.config, running: this.running, status: this.status, why: this.why });
+    this.card.show({ zoneName: z.name, levelRange: this.levelText(z), species: this.zoneSpecies(z), config: this.config, running: this.running, status: this.status, why: this.why, evLine: this.evProgress() });
   }
 
   // ———————————————————— 设置面板 ————————————————————
@@ -195,6 +215,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
         heal: opt(AUTO_HEAL_ITEMS),
         pp: opt(AUTO_PP_ITEMS),
         leadName: lead ? displayName(dex, lead) : '—',
+        trainee: state.party[0] ? { name: displayName(dex, state.party[0]), evs: { ...state.party[0].evs } } : undefined,
         moves: (lead?.moves ?? []).map((m, index) => ({ index, id: m.id, name: dex.move(m.id).name.zh, pp: m.pp, maxPp: m.maxPp, damaging: this.isAttack(m.id) })),
       }),
     );
@@ -222,6 +243,18 @@ export class SceneAutoBattle implements BattleAutoPilot {
     if (!this.d.state.party.some((p) => p.hp > 0)) {
       this.d.toast('没有能战斗的宝可梦。');
       return;
+    }
+    const lead0 = this.d.state.party[0];
+    if (this.config.evPlan.on && lead0) {
+      if (evPlanDone(lead0.evs, this.config.evPlan)) {
+        this.d.toast(`${displayName(this.d.dex, lead0)} 的努力值计划已经全部达成。`);
+        return;
+      }
+      const useful = Object.entries(this.config.targets).some(([id, g]) => g === 'defeat' && evUseful(this.d.dex.species(Number(id)).evYield, lead0.evs, this.config.evPlan));
+      if (!useful) {
+        this.d.toast('勾选的「打倒」目标都提供不了还缺的努力值，换个目标或区域吧。');
+        return;
+      }
     }
     this.running = true;
     this.zoneId = z.id;
@@ -347,7 +380,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
     let bd = SEEK_RADIUS;
     for (const w of this.d.spawns.wild.values()) {
       if (w.frozen || w.denId || w.mon.alpha || w.habitat === 'water' || w.zoneId !== this.zoneId) continue;
-      if (!this.config.targets[w.mon.speciesId] || this.blacklist.has(w.id)) continue;
+      if (!this.wants(w.mon.speciesId) || this.blacklist.has(w.id)) continue;
       if (w.brain.state === 'flee') continue;
       const dd = Math.hypot(w.root.position.x - p.x, w.root.position.z - p.z);
       // 正在追的目标稍微优先（避免两只之间来回切换）
@@ -401,11 +434,13 @@ export class SceneAutoBattle implements BattleAutoPilot {
     if (!this.running) return;
     this.tally.battles++;
     this.status = '战斗中';
+    this.evBefore = new Map(this.d.state.party.map((p) => [p.uid, { ...p.evs }]));
   }
 
   /** 战斗结束（afterBattle 里调用） */
   onBattleEnd(r: BattleResult): void {
     if (!this.running) return;
+    this.applyEvPlan();
     if (r.result === 'win') this.tally.defeated++;
     else if (r.result === 'capture') this.tally.captured++;
     else if (r.result === 'run') this.tally.fled++;
@@ -433,7 +468,24 @@ export class SceneAutoBattle implements BattleAutoPilot {
     const defeating = Object.values(cfg.targets).some((g) => g === 'defeat');
     if (capturing.length && !defeating && (this.d.state.bag[cfg.ball] ?? 0) <= 0) return this.stop('设定的精灵球用完了');
     if (noPp) return this.stop('攻击招式 PP 用完了');
+    const plan = cfg.evPlan;
+    if (plan.on && party[0] && evPlanDone(party[0].evs, plan)) return this.stop(`${displayName(this.d.dex, party[0])} 的努力值计划全部达成`);
     this.refreshCard();
+  }
+
+  /** 战后：代练对象超出计划的努力值不计入；代练时打手（可选）不获得努力值 */
+  private applyEvPlan(): void {
+    const plan = this.config.evPlan;
+    const before = this.evBefore;
+    this.evBefore = new Map();
+    if (!plan.on || !before.size) return;
+    const party = this.d.state.party;
+    party.forEach((p, i) => {
+      const b = before.get(p.uid);
+      if (!b) return;
+      if (i === 0) p.evs = clampEvGain(b, p.evs, plan);
+      else if (this.config.train && plan.protectCarrier) p.evs = { ...b };
+    });
   }
 
   private isAttack(id: string): boolean {
