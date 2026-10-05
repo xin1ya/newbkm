@@ -9,7 +9,7 @@ import type { GymMechanismConfig } from '@/systems/puzzles/gymMechanism';
  */
 import type { Vec2 } from '../islands/types';
 
-export type LightingPreset = 'home' | 'lab' | 'center' | 'mart' | 'gym' | 'market' | 'cave';
+export type LightingPreset = 'home' | 'lab' | 'center' | 'mart' | 'gym' | 'market' | 'cave' | 'undersea' | 'abyss';
 
 export type FurnitureType =
   | 'table'
@@ -55,7 +55,13 @@ export type FurnitureType =
   | 'reception'
   | 'trophy'
   | 'skylight'
-  | 'poolLight';
+  | 'poolLight'
+  // M3-18 海底：海带丛 / 珊瑚 / 巨蚌（可调查）/ 残柱拱门 / 海葵
+  | 'kelp'
+  | 'coral'
+  | 'clam'
+  | 'ruin'
+  | 'anemone';
 
 export interface FurnitureConfig {
   type: FurnitureType;
@@ -94,6 +100,8 @@ export interface ExitConfig {
   to: ExitTarget;
   /** 地垫 / 楼梯提示文字 */
   label?: string;
+  /** M3-18 上浮光柱：回到大地图时出现在这个潜水点（IslandConfig.diveSpots 的 id），继续冲浪 */
+  surfaceAt?: string;
 }
 
 export interface NpcSpot {
@@ -132,6 +140,13 @@ export interface RoomConfig {
   dark?: { flag: string; hint: string };
   /** M2-10/11/13 室内场地能力阻挡（与大地图 blockers 同一套 cleared:<id> 标记） */
   blockers?: InteriorBlocker[];
+  /**
+   * M3-18 海底房间：水下雾色 / 光束 / 气泡 / 焦散，玩家骑着潜水坐骑悬浮移动，音频整体低通；
+   * 墙用礁岩遮挡（rocks = 沿墙堆的礁石密度 0..1）。
+   */
+  underwater?: { rocks?: number; depth?: number };
+  /** 房间背景音乐（缺省用 InteriorConfig.bgm） */
+  bgm?: string;
   /** 室内剧情触发区（走进范围自动执行一次） */
   triggers?: InteriorTrigger[];
 }

@@ -17,7 +17,7 @@
 import * as THREE from 'three';
 import { createToonMaterial } from '@/render';
 import type { CollisionWorld } from '../collision/CollisionWorld';
-import { blockingRects, cycleSwitch, gateOpen, gatesClosingOn, initialState, switchVar, type GymMechanismConfig, type MechGate, type MechMirror, type MechState, type MechSwitch, type MechWall, type Rect } from '@/systems/puzzles/gymMechanism';
+import { blockingRects, currentActive, cycleSwitch, gateOpen, gatesClosingOn, initialState, switchVar, type GymMechanismConfig, type MechCurrent, type MechGate, type MechMirror, type MechState, type MechSwitch, type MechWall, type Rect } from '@/systems/puzzles/gymMechanism';
 
 export const GYM_MECH_GROUP = 'gym-mech';
 const SWITCH_GROUP = 'gym-mech-switch';
@@ -42,7 +42,18 @@ interface SwitchView {
   orb?: THREE.Mesh;
   flame?: THREE.Mesh;
   light?: THREE.PointLight;
+  /** M3-18 潮汐螺：螺壳（吹响时发光、轻震） */
+  conch?: THREE.Mesh;
+  rings?: THREE.Mesh[];
   spin: number;
+}
+
+interface CurrentView {
+  def: MechCurrent;
+  /** 0..1 生效程度（动画） */
+  on: number;
+  streaks: THREE.Mesh[];
+  bed: THREE.Mesh;
 }
 
 interface MirrorView {
@@ -71,6 +82,7 @@ export class GymMechanismView {
   private nightLight: THREE.PointLight | null = null;
   private sunMix = 0;
   private mirrors: MirrorView[] = [];
+  private currents: CurrentView[] = [];
 
   constructor(
     readonly cfg: GymMechanismConfig,
@@ -101,6 +113,14 @@ export class GymMechanismView {
     if (sv) sv.spin = 1;
     const v = this.state[switchVar(s)] ?? 0;
     return { name: s.stateNames?.[v] ?? `第 ${v + 1} 档`, opened, closed };
+  }
+
+  /** 直接设定机关状态（M3-18 已解开的神殿：进门即为解开状态） */
+  setState(st: Readonly<MechState>): void {
+    this.state = { ...this.state, ...st };
+    this.applyCollision();
+    for (const g of this.gates) g.open = gateOpen(g.def, this.state) ? 1 : 0;
+    for (const c of this.currents) c.on = currentActive(c.def, this.state) ? 1 : 0;
   }
 
   /** 传送时让镜面闪一下 */
@@ -158,6 +178,25 @@ export class GymMechanismView {
           if (p.panel) {
             (p.panel.material as THREE.MeshToonMaterial).opacity = (1 - o) * (0.22 + Math.sin(t * 3.1) * 0.05);
             p.panel.visible = o < 0.98;
+          }
+          break;
+        }
+        case 'tide': {
+          // 水幕：打开时向下退去（缩短 + 变淡），气泡停冒
+          if (p.panel) {
+            const m = p.panel.material as THREE.MeshToonMaterial;
+            m.opacity = (1 - o) * (0.5 + Math.sin(t * 2.6 + g.def.rect[0]) * 0.06);
+            p.panel.visible = o < 0.98;
+            p.panel.scale.y = Math.max(0.02, 1 - o);
+            p.panel.position.y = (2.6 * Math.max(0.02, 1 - o)) / 2;
+            const tex = m.map;
+            if (tex) tex.offset.y = (t * 0.6) % 1;
+          }
+          for (const [i, e] of (p.extras ?? []).entries()) {
+            e.visible = o < 0.9;
+            const k = ((t * 0.5 + i * 0.137) % 1 + 1) % 1;
+            e.position.y = 0.1 + k * 2.5 * (1 - o);
+            e.scale.setScalar(0.05 + k * 0.05);
           }
           break;
         }
@@ -220,10 +259,39 @@ export class GymMechanismView {
           s.light.intensity += (target * (0.92 + Math.sin(t * 11 + s.def.position[1]) * 0.08) - s.light.intensity) * Math.min(1, dt * 6);
         }
       }
+      if (s.conch) {
+        const m = s.conch.material as THREE.MeshToonMaterial;
+        m.emissiveIntensity += ((v ? 1.1 : 0.12) - m.emissiveIntensity) * Math.min(1, dt * 4);
+        s.conch.rotation.y = Math.sin(t * 0.8 + s.def.position[0]) * 0.15;
+        for (const [i, r] of (s.rings ?? []).entries()) {
+          const k = ((t * 0.6 + i / 3) % 1 + 1) % 1;
+          r.visible = v > 0;
+          r.scale.setScalar(0.4 + k * 2.2);
+          (r.material as THREE.MeshBasicMaterial).opacity = 0.5 * (1 - k);
+        }
+        if (s.light) s.light.intensity += ((v ? 9 : 1.5) - s.light.intensity) * Math.min(1, dt * 4);
+      }
       if (s.spin > 0) {
         s.spin = Math.max(0, s.spin - dt * 2);
         s.group.position.y = Math.sin(s.spin * Math.PI) * 0.05;
       }
+    }
+    for (const c of this.currents) {
+      const target = currentActive(c.def, this.state) ? 1 : 0;
+      c.on += Math.sign(target - c.on) * Math.min(Math.abs(target - c.on), dt * 2);
+      const [x0, z0, x1, z1] = c.def.rect;
+      const [dx, dz] = c.def.dir;
+      for (const [i, s] of c.streaks.entries()) {
+        const k = ((t * 0.9 + i * 0.173) % 1 + 1) % 1;
+        const u = ((i * 0.618) % 1);
+        // 沿流向滚动：x/z 一维在区间内循环，另一维固定在横向位置 u
+        const along = (a0: number, a1: number, d: number) => (d > 0 ? a0 + (a1 - a0) * k : d < 0 ? a1 - (a1 - a0) * k : a0 + (a1 - a0) * u);
+        s.position.x = along(x0 + 0.2, x1 - 0.2, dx);
+        s.position.z = along(z0 + 0.2, z1 - 0.2, dz);
+        (s.material as THREE.MeshBasicMaterial).opacity = 0.55 * c.on * Math.sin(k * Math.PI);
+        s.visible = c.on > 0.02;
+      }
+      (c.bed.material as THREE.MeshBasicMaterial).opacity = 0.18 + 0.2 * c.on;
     }
     for (const c of this.clouds) {
       const [x0, z0, x1, z1] = c.rect;
@@ -303,6 +371,7 @@ export class GymMechanismView {
     for (const g of this.cfg.gates) this.gates.push(this.buildGate(g));
     for (const s of this.cfg.switches) this.switches.push(this.buildSwitch(s));
     for (const m of this.cfg.mirrors ?? []) this.mirrors.push(this.buildMirror(m));
+    for (const c of this.cfg.currents ?? []) this.currents.push(this.buildCurrent(c));
     if (this.cfg.fromClock) {
       const [x, z] = [(this.cfg.bounds[0] + this.cfg.bounds[2]) / 2, (this.cfg.bounds[1] + this.cfg.bounds[3]) / 2];
       this.dayLight = new THREE.PointLight('#ffd38a', 26, 40, 1.2);
@@ -383,6 +452,31 @@ export class GymMechanismView {
           const st = this.box(0.42, 0.5, 0.12, this.mat('tomb', { color: '#8a8c98' }), alongX ? x + k * wd : x, h + 0.41, alongX ? z : z + k * dd);
           if (!alongX) st.rotation.y = Math.PI / 2;
         }
+      }
+    } else if (w.style === 'coral') {
+      // 珊瑚礁石墙：青灰石芯 + 浪纹压顶 + 墙面嵌珊瑚 / 藤壶
+      this.box(wd, h, dd, this.mat('coral-stone', { color: '#5a7a80' }), x, h / 2, z);
+      this.box(wd + 0.16, 0.2, dd + 0.16, this.mat('coral-cap', { color: '#2f8aa8', emissive: '#0a3a5a', emissiveIntensity: 0.3 }), x, h + 0.1, z);
+      this.box(wd + 0.1, 0.28, dd + 0.1, this.mat('coral-base', { color: '#46646a' }), x, 0.14, z);
+      const alongX = wd >= dd;
+      const len = alongX ? wd : dd;
+      const n = Math.max(2, Math.round(len / 1.3));
+      const cols = ['#f27a8a', '#f2a04a', '#a86ad8', '#4ac8a8'];
+      for (let i = 0; i < n; i++) {
+        const k = (i + 0.5) / n - 0.5;
+        for (const side of [-1, 1]) {
+          const cm = this.mat(`coral-${(i + (side > 0 ? 1 : 0)) % 4}`, { color: cols[(i + (side > 0 ? 1 : 0)) % 4]! });
+          const blob = new THREE.Mesh(new THREE.DodecahedronGeometry(0.16 + ((i * 0.37) % 1) * 0.12, 0), cm);
+          const off = (alongX ? dd : wd) / 2 + 0.05;
+          blob.position.set(alongX ? x + k * wd : x + side * off, 0.4 + ((i * 0.618 + (side > 0 ? 0.3 : 0)) % 1) * (h - 0.6), alongX ? z + side * off : z + k * dd);
+          blob.scale.set(1, 1.4, 1);
+          this.group.add(blob);
+        }
+        // 墙头的小珊瑚枝
+        const br = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.5, 5), this.mat(`coral-${i % 4}`, { color: cols[i % 4]! }));
+        br.position.set(alongX ? x + k * wd : x, h + 0.42, alongX ? z : z + k * dd);
+        br.rotation.z = ((i % 3) - 1) * 0.3;
+        this.group.add(br);
       }
     } else {
       this.box(wd, h, dd, this.mat('cloudwall', { color: '#eef4ff' }), x, h / 2, z);
@@ -517,6 +611,34 @@ export class GymMechanismView {
       const strip = new THREE.Mesh(new THREE.BoxGeometry(alongX ? len : 0.3, 0.03, alongX ? 0.3 : len), this.mat('spiritstrip', { color: '#5a4a9a', emissive: '#3a2a7a', emissiveIntensity: 0.6 }));
       strip.position.y = 0.015;
       g.add(strip);
+    } else if (def.style === 'tide') {
+      // 水幕：一面自上而下流动的半透明水墙（条纹纹理滚动）+ 地面浪纹石槛 + 不断上冒的气泡
+      const h = 2.6;
+      const tex = waterStripeTexture();
+      tex.repeat.set(Math.max(1, len / 1.5), 1);
+      const m = this.ownMat({ color: '#9ae8ff', map: tex, emissive: '#2a9ac8', emissiveIntensity: 0.55, transparent: true, opacity: 0.5, side: THREE.DoubleSide });
+      parts.panel = new THREE.Mesh(new THREE.BoxGeometry(alongX ? len : 0.14, h, alongX ? 0.14 : len), m);
+      parts.panel.position.y = h / 2;
+      parts.panel.renderOrder = 3;
+      g.add(parts.panel);
+      const sill = new THREE.Mesh(new THREE.BoxGeometry(alongX ? len : 0.4, 0.08, alongX ? 0.4 : len), this.mat('tide-sill', { color: '#2f8aa8', emissive: '#0a4a6a', emissiveIntensity: 0.4 }));
+      sill.position.y = 0.04;
+      g.add(sill);
+      // 两端的浪纹立石
+      for (const sd of [-1, 1]) {
+        const post = new THREE.Mesh(new THREE.BoxGeometry(0.3, 2.9, 0.3), this.mat('tide-post', { color: '#7f9fa8' }));
+        post.position.set(alongX ? (sd * len) / 2 : 0, 1.45, alongX ? 0 : (sd * len) / 2);
+        g.add(post);
+      }
+      parts.extras = [];
+      const n = Math.max(4, Math.round(len * 2));
+      for (let i = 0; i < n; i++) {
+        const k = (i + 0.5) / n - 0.5;
+        const b = new THREE.Mesh(new THREE.SphereGeometry(1, 8, 6), this.mat('tide-bubble', { color: '#e8fbff', transparent: true, opacity: 0.7, emissive: '#bff4ff', emissiveIntensity: 0.4 }));
+        b.position.set(alongX ? k * len : 0.05, 0.2, alongX ? 0.05 : k * len);
+        g.add(b);
+        parts.extras.push(b);
+      }
     } else {
       // wind：谷底 + 风桥
       const pit = new THREE.Mesh(new THREE.PlaneGeometry(w, d), this.mat('pit', { color: '#13233e', emissive: '#0a1a3a', emissiveIntensity: 0.6 }));
@@ -618,6 +740,44 @@ export class GymMechanismView {
       g.add(sun, moon);
       sv.sun = sun;
       sv.moon = moon;
+    } else if (def.style === 'conch') {
+      // 潮汐螺：珊瑚石台 + 螺旋巨螺（吹响时发光，向外扩散声波环）
+      const stone = this.mat('conch-base', { color: '#6a8a94' });
+      const base = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.55, 0.85, 8), stone);
+      base.position.y = 0.42;
+      const top = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.46, 0.12, 8), this.mat('conch-cap', { color: '#2f8aa8' }));
+      top.position.y = 0.9;
+      g.add(base, top);
+      // 螺壳：锥体 + 层层收窄的螺环，开口朝前
+      const shellMat = this.ownMat({ color: '#f4e0d0', emissive: '#5fd8ff', emissiveIntensity: 0.12 });
+      const shell = new THREE.Mesh(new THREE.ConeGeometry(0.28, 0.85, 12), shellMat);
+      shell.rotation.z = Math.PI / 2.4;
+      shell.position.set(0, 1.25, 0);
+      for (let i = 0; i < 4; i++) {
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(0.26 - i * 0.055, 0.045, 6, 14), shellMat);
+        ring.rotation.y = Math.PI / 2;
+        ring.position.y = -0.3 + i * 0.18;
+        shell.add(ring);
+      }
+      const lip = new THREE.Mesh(new THREE.CircleGeometry(0.2, 14), this.mat('conch-lip', { color: '#f28aa0' }));
+      lip.rotation.x = Math.PI / 2;
+      lip.position.y = -0.43;
+      shell.add(lip);
+      g.add(shell);
+      sv.conch = shell;
+      sv.rings = [];
+      for (let i = 0; i < 3; i++) {
+        const r = new THREE.Mesh(new THREE.RingGeometry(0.42, 0.5, 28), new THREE.MeshBasicMaterial({ color: '#bff8ff', transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide }));
+        this.mats.set(`conch-ring-${def.id}-${i}`, r.material as THREE.Material);
+        r.rotation.x = -Math.PI / 2;
+        r.position.y = 0.95;
+        r.visible = false;
+        g.add(r);
+        sv.rings.push(r);
+      }
+      sv.light = new THREE.PointLight('#5fd8ff', 1.5, 8, 1.6);
+      sv.light.position.y = 1.6;
+      g.add(sv.light);
     } else if (def.style === 'orb') {
       const base = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.55, 0.9, 6), this.mat('orb-base', { color: '#3a2a5a' }));
       base.position.y = 0.45;
@@ -697,6 +857,45 @@ export class GymMechanismView {
     return sv;
   }
 
+  /** 暗流：深色水道底 + 沿流向滚动的亮条（生效时可见） */
+  private buildCurrent(def: MechCurrent): CurrentView {
+    const [x, z, w, d] = rectCenter(def.rect);
+    const bedMat = new THREE.MeshBasicMaterial({ color: '#0a3a5a', transparent: true, opacity: 0.3, depthWrite: false });
+    this.mats.set(`cur-bed-${def.id}`, bedMat);
+    const bed = new THREE.Mesh(new THREE.PlaneGeometry(w, d), bedMat);
+    bed.rotation.x = -Math.PI / 2;
+    bed.position.set(x, 0.03, z);
+    this.group.add(bed);
+    // 流向箭纹（地面）
+    const arrowMat = this.mat('cur-arrow', { color: '#5fb8d0', emissive: '#2a7a9a', emissiveIntensity: 0.4 });
+    const [dx, dz] = def.dir;
+    const yaw = Math.atan2(dx, dz);
+    const along = dx !== 0 ? w : d;
+    const across = dx !== 0 ? d : w;
+    const na = Math.max(1, Math.round(along / 2.5));
+    const nc = Math.max(1, Math.round(across / 2.5));
+    for (let i = 0; i < na; i++)
+      for (let j = 0; j < nc; j++) {
+        const ka = (i + 0.5) / na - 0.5;
+        const kc = (j + 0.5) / nc - 0.5;
+        const ar = new THREE.Mesh(new THREE.CircleGeometry(0.32, 3), arrowMat);
+        ar.rotation.set(-Math.PI / 2, 0, -yaw + Math.PI / 2);
+        ar.position.set(x + (dx !== 0 ? ka * w : kc * w), 0.035, z + (dz !== 0 ? ka * d : kc * d));
+        this.group.add(ar);
+      }
+    const streaks: THREE.Mesh[] = [];
+    const n = Math.max(6, Math.round((w * d) / 3));
+    for (let i = 0; i < n; i++) {
+      const m = new THREE.MeshBasicMaterial({ color: '#dff8ff', transparent: true, opacity: 0, depthWrite: false });
+      this.mats.set(`cur-${def.id}-${i}`, m);
+      const s = new THREE.Mesh(new THREE.BoxGeometry(dx !== 0 ? 0.9 : 0.05, 0.04, dx !== 0 ? 0.05 : 0.9), m);
+      s.position.y = 0.25 + ((i * 0.37) % 1) * 1.2;
+      this.group.add(s);
+      streaks.push(s);
+    }
+    return { def, on: 1, streaks, bed };
+  }
+
   private buildMirror(def: MechMirror): MirrorView {
     const g = new THREE.Group();
     g.name = `mech-mirror:${def.id}`;
@@ -739,4 +938,23 @@ export class GymMechanismView {
     this.collision.add(SWITCH_GROUP, { kind: 'box', x: def.at[0] + sn * back, z: def.at[1] + c * back, hx: 0.85, hz: 0.18, yaw: def.yaw ?? 0, y0: 0, y1: 2.6, tag: `mech-mirror:${def.id}` });
     return { def, glass, pad, gem, flash: 0 };
   }
+}
+
+/** 水幕纹理：竖向流水条纹（DataTexture，无需 DOM） */
+function waterStripeTexture(): THREE.DataTexture {
+  const W = 32;
+  const H = 64;
+  const data = new Uint8Array(W * H * 4);
+  for (let y = 0; y < H; y++)
+    for (let x = 0; x < W; x++) {
+      const v = 0.5 + 0.3 * Math.sin((x / W) * Math.PI * 8 + Math.sin((y / H) * Math.PI * 2) * 1.2) + 0.2 * Math.sin((y / H) * Math.PI * 6 + x * 0.7);
+      const i = (y * W + x) * 4;
+      data[i] = data[i + 1] = data[i + 2] = 255;
+      data[i + 3] = Math.round(Math.max(0, Math.min(1, v)) * 255);
+    }
+  const t = new THREE.DataTexture(data, W, H, THREE.RGBAFormat);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.magFilter = THREE.LinearFilter;
+  t.needsUpdate = true;
+  return t;
 }

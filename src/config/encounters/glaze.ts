@@ -10,6 +10,36 @@ import { ROAMING_CHANCE } from '@/systems/alpha';
 const base = { alphaChance: ROAMING_CHANCE, shinyChance: DEFAULT_SHINY_CHANCE, grassRatePerMeter: 0.05 } as const;
 
 export const GLAZE_ENCOUNTERS: Record<string, EncounterTable> = {
+  // —— M3-18 海底（潜水；室内暗雷，method cave）——
+  'glaze-reef': {
+    id: 'glaze-reef',
+    ...base,
+    grassRatePerMeter: 0.04,
+    density: [4, 6],
+    entries: [
+      { speciesId: 222, weight: 22, levels: [46, 50] }, // 太阳珊瑚
+      { speciesId: 120, weight: 16, levels: [45, 49] }, // 海星星
+      { speciesId: 121, weight: 8, levels: [48, 52] }, // 宝石海星
+      { speciesId: 118, weight: 14, levels: [45, 48] }, // 角金鱼
+      { speciesId: 119, weight: 10, levels: [48, 51] }, // 金鱼王
+      { speciesId: 90, weight: 14, levels: [45, 49] }, // 大舌贝
+      { speciesId: 864, weight: 4, levels: [50, 53], formation: 'rare' }, // 魔灵珊瑚
+    ],
+  },
+  'glaze-trench': {
+    id: 'glaze-trench',
+    ...base,
+    grassRatePerMeter: 0.045,
+    density: [4, 6],
+    entries: [
+      { speciesId: 73, weight: 20, levels: [48, 52] }, // 毒刺水母
+      { speciesId: 91, weight: 14, levels: [49, 53] }, // 刺甲贝
+      { speciesId: 342, weight: 16, levels: [48, 52] }, // 铁螯龙虾
+      { speciesId: 99, weight: 14, levels: [48, 52] }, // 巨钳蟹
+      { speciesId: 864, weight: 8, levels: [50, 54] }, // 魔灵珊瑚
+      { speciesId: 130, weight: 4, levels: [52, 55], formation: 'rare' }, // 暴鲤龙
+    ],
+  },
   // —— 雷鸣—琉璃海域（冲浪，海雾）——
   'glaze-sea-route': {
     id: 'glaze-sea-route',

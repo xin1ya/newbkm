@@ -81,6 +81,9 @@ export class PlayerController {
   /** M3-03 洋流速度（米/秒，世界坐标），场景每步写入；只在冲浪时生效 */
   readonly drift = { x: 0, z: 0 };
   surfSpeed = 6.2;
+  /** M3-18 潜水（海底场景）：骑着水属性宝可梦贴着海床游 */
+  diveSpeed = 3.6;
+  diveSprint = 5.4;
   surfSprint = 9;
   flySpeed = 14;
   flySprint = 20;
@@ -325,7 +328,11 @@ export class PlayerController {
       }
     }
     const speed =
-      this.mode === 'surf'
+      this.mode === 'dive'
+        ? this.running
+          ? this.diveSprint
+          : this.diveSpeed
+        : this.mode === 'surf'
         ? this.running
           ? this.surfSprint
           : this.surfSpeed
@@ -647,7 +654,7 @@ export class PlayerController {
   /** 渲染帧：同步模型 */
   update(dt: number): void {
     // 骑乘时坐在坐骑背上（ride 坐姿，不播放走路动画）
-    this.model.pose = this.hopState ? null : this.mode === 'surf' || this.mode === 'fly' || this.mode === 'climb' ? 'ride' : this.mode === 'bike' ? 'sit' : null;
+    this.model.pose = this.hopState ? null : this.mode === 'surf' || this.mode === 'fly' || this.mode === 'climb' || this.mode === 'dive' ? 'ride' : this.mode === 'bike' ? 'sit' : null;
     this.model.airborne = this.mode === 'walk' && !this.swimming && (this.jumping || (!this.grounded && this.vy < -2));
     this.model.swimming = this.swimming;
     this.model.animate(
@@ -664,6 +671,7 @@ export class PlayerController {
     this.renderPosition.lerpVectors(this.prevPosition, this.position, a);
     this.root.position.copy(this.renderPosition);
     if (this.mode === 'surf' && !this.hopState) this.root.position.y += Math.sin(this.time * 2.1) * 0.05;
+    else if (this.mode === 'dive') this.root.position.y += Math.sin(this.time * 1.4) * 0.12; // 水中悬浮
     else if (this.swimming) this.root.position.y += Math.sin(this.time * 2.6) * 0.035; // 随波起伏
     let d = this.facing - this.prevFacing;
     d = Math.atan2(Math.sin(d), Math.cos(d));
@@ -674,6 +682,7 @@ export class PlayerController {
     this.renderPosition.copy(this.position);
     this.root.position.copy(this.position);
     if (this.mode === 'surf' && !this.hopState) this.root.position.y += Math.sin(this.time * 2.1) * 0.05;
+    else if (this.mode === 'dive') this.root.position.y += Math.sin(this.time * 1.4) * 0.12; // 水中悬浮
     else if (this.swimming) this.root.position.y += Math.sin(this.time * 2.6) * 0.035; // 随波起伏
     this.root.rotation.y = this.facing;
   }

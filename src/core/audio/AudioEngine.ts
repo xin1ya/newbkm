@@ -181,6 +181,9 @@ export class AudioEngine {
   /** 配音时压低 BGM / 环境音（0 = 不压，1 = 完全压） */
   private voiceDuck = 0;
   private nightFilter: BiquadFilterNode | null = null;
+  /** M3-18 海底低通（整条主输出） */
+  private underFilter: BiquadFilterNode | null = null;
+  private underwater = 0;
   private ambience: Ambience | null = null;
   private tracks = new Map<string, ParsedTrack>();
   private player: MusicPlayer | null = null;
@@ -260,7 +263,12 @@ export class AudioEngine {
     comp.release.value = 0.2;
     comp.connect(ctx.destination);
     this.master = ctx.createGain();
-    this.master.connect(comp);
+    this.underFilter = ctx.createBiquadFilter();
+    this.underFilter.type = 'lowpass';
+    this.underFilter.frequency.value = 20000;
+    this.underFilter.Q.value = 0.9;
+    this.underFilter.connect(comp);
+    this.master.connect(this.underFilter);
     this.nightFilter = ctx.createBiquadFilter();
     this.nightFilter.type = 'lowpass';
     this.nightFilter.frequency.value = 18000;
@@ -277,6 +285,7 @@ export class AudioEngine {
     this.applyVolumes();
     this.ambience.setMix(this.ambMix, 1.5);
     this.setNight(this.night);
+    if (this.underwater) this.underFilter.frequency.value = 700;
     if (ctx.state === 'suspended') void ctx.resume();
     this.timer = setInterval(() => this.tick(), 25);
     const want = this.desired;
@@ -434,6 +443,16 @@ export class AudioEngine {
   }
 
   /** 夜间程度 0–1：BGM 变得更暗更柔 */
+  /** M3-18 水下：k = 1 时主输出低通到约 700 Hz（平滑过渡） */
+  setUnderwater(k: number): void {
+    const v = Math.max(0, Math.min(1, k));
+    if (v === this.underwater) return;
+    this.underwater = v;
+    if (!this.ctx || !this.underFilter) return;
+    const f = 20000 * Math.pow(700 / 20000, v);
+    this.underFilter.frequency.setTargetAtTime(f, this.ctx.currentTime, 0.35);
+  }
+
   setNight(k: number): void {
     this.night = Math.max(0, Math.min(1, k));
     if (!this.ctx || !this.nightFilter) return;

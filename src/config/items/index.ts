@@ -63,6 +63,7 @@ export const KEY_ITEMS: KeyItemDef[] = [
   { id: 'bicycle', name: '自行车', desc: '萌芽镇友好商店出售的折叠自行车，翠澜蓝车架，带车篮和车铃。在户外按骑乘键（C）上车 / 下车，速度比奔跑快得多。', pocket: 'key' },
   { id: 'ferry-pass', name: '渡船船票', desc: '萌芽群岛与碧潮群岛之间的渡船船票，可以反复使用。', pocket: 'key' },
   { id: 'fisher-tackle', name: '钓具箱', desc: '渔民阿海被海浪卷走的钓具箱，是他爷爷传下来的。', pocket: 'key' },
+  { id: 'diver-compass', name: '旧潜水罗盘', desc: '老潜水员深叔年轻时用的黄铜潜水罗盘，表盘背面刻着一道浪纹。据说在深海里也能指向神殿。', pocket: 'key' },
   { id: 'moon-herb', name: '翠澜药草', desc: '生长在翠澜湖畔的药草，蒲婆婆需要它。', pocket: 'key' },
   // 个体值洗练道具（濒死也能用；王冠只升不降，洗练石重新随机）
   { id: 'reroll-stone', name: '洗练石', desc: '蕴含奇妙能量的石头。让1只宝可梦的6项个体值全部重新随机，可能变好也可能变差。', pocket: 'medicine' },

@@ -21,9 +21,9 @@ import type { Rect } from './waterLevel';
 export type { Rect };
 export type Vec2 = readonly [number, number];
 
-export type GateStyle = 'electric' | 'sunlight' | 'shadow' | 'wind' | 'spirit';
-export type SwitchStyle = 'lever' | 'sundial' | 'fan' | 'orb' | 'lamp';
-export type WallStyle = 'stone' | 'metal' | 'ice' | 'cloud' | 'crystal' | 'grave';
+export type GateStyle = 'electric' | 'sunlight' | 'shadow' | 'wind' | 'spirit' | 'tide';
+export type SwitchStyle = 'lever' | 'sundial' | 'fan' | 'orb' | 'lamp' | 'conch';
+export type WallStyle = 'stone' | 'metal' | 'ice' | 'cloud' | 'crystal' | 'grave' | 'coral';
 
 export interface MechSwitch {
   id: string;
@@ -71,8 +71,23 @@ export interface MechMirror {
 
 export const MIRROR_RADIUS = 0.7;
 
+/**
+ * M3-18 海底神殿 · 暗流：站进生效中的暗流就被冲着走（不读输入），直到冲出暗流区或撞上阻挡。
+ * variable / activeWhen：由开关控制是否生效（缺省常开）。
+ */
+export interface MechCurrent {
+  id: string;
+  rect: Rect;
+  /** 流向（四向单位向量） */
+  dir: Vec2;
+  variable?: string;
+  activeWhen?: number;
+}
+
+export const CURRENT_SPEED = 5.5;
+
 export interface GymMechanismConfig {
-  kind: 'electric' | 'sundial' | 'ice' | 'wind' | 'mirror' | 'lamp';
+  kind: 'electric' | 'sundial' | 'ice' | 'wind' | 'mirror' | 'lamp' | 'tide';
   /** 机关区域（BFS 与视图范围；房间坐标） */
   bounds: Rect;
   switches: readonly MechSwitch[];
@@ -84,12 +99,17 @@ export interface GymMechanismConfig {
   ice?: readonly Rect[];
   /** 传送镜 */
   mirrors?: readonly MechMirror[];
+  /** M3-18 暗流 */
+  currents?: readonly MechCurrent[];
   /** 常暗：房间灯压暗，只有玩家提灯与点亮的灯台照明 */
   dark?: boolean;
   /** 变量初值（缺省 0） */
   initial?: Readonly<Record<string, number>>;
   /** 按真实时钟取初值的变量：白天 0 / 夜里 1 */
   fromClock?: string;
+  /** M3-18 一旦置位这个 flag，进门时机关直接处于 solvedState（神殿解开后不再复位） */
+  solvedFlag?: string;
+  solvedState?: Readonly<Record<string, number>>;
   /** 求解起点（入口）与终点（馆主台前） */
   start: Vec2;
   goal: Vec2;
@@ -111,6 +131,7 @@ export function variables(cfg: GymMechanismConfig): string[] {
   for (const s of cfg.switches) set.add(switchVar(s));
   for (const g of cfg.gates) for (const k of Object.keys(g.openWhen)) set.add(k);
   for (const m of cfg.mirrors ?? []) if (m.variable) set.add(m.variable);
+  for (const c of cfg.currents ?? []) if (c.variable) set.add(c.variable);
   return [...set].sort();
 }
 
@@ -152,6 +173,17 @@ export function mirrorTarget(m: MechMirror, st: Readonly<MechState>): Vec2 {
 export function mirrorAt(cfg: GymMechanismConfig, x: number, z: number, r = MIRROR_RADIUS): MechMirror | null {
   for (const m of cfg.mirrors ?? []) if (Math.hypot(x - m.at[0], z - m.at[1]) <= r) return m;
   return null;
+}
+
+export function currentActive(c: MechCurrent, st: Readonly<MechState>): boolean {
+  return !c.variable || (st[c.variable] ?? 0) === (c.activeWhen ?? 1);
+}
+
+/** (x, z) 处生效中的暗流（重叠时取配置里靠后的，便于做转向块） */
+export function currentAt(cfg: GymMechanismConfig, st: Readonly<MechState>, x: number, z: number): MechCurrent | null {
+  let hit: MechCurrent | null = null;
+  for (const c of cfg.currents ?? []) if (currentActive(c, st) && inRect(c.rect, x, z)) hit = c;
+  return hit;
 }
 
 export function onIce(cfg: GymMechanismConfig, x: number, z: number): boolean {
@@ -233,9 +265,28 @@ export function solveMechanism(cfg: GymMechanismConfig, night = false): SolveRes
   };
   const free = (sk: string, i: number, j: number): boolean => i >= 0 && j >= 0 && i < g.nx && j < g.nz && blockedMap(sk)[j * g.nx + i] === 0;
   const iceAt = (i: number, j: number): boolean => onIce(cfg, cx(i), cz(j));
+  /** 暗流：被冲到停下为止（冲出暗流区 / 前方受阻）；防环上限 */
+  const settle = (i: number, j: number, sk: string): [number, number] => {
+    const st = dec(sk);
+    for (let n = 0; n < 400; n++) {
+      const c = currentAt(cfg, st, cx(i), cz(j));
+      if (!c || !free(sk, i + c.dir[0], j + c.dir[1])) break;
+      i += c.dir[0];
+      j += c.dir[1];
+    }
+    return [i, j];
+  };
 
   const neighbors = (i: number, j: number, sk: string): Array<[number, number, string, number]> => {
     const out: Array<[number, number, string, number]> = [];
+    // 站在仍能冲动的暗流上：唯一的移动就是被冲走
+    {
+      const c = currentAt(cfg, dec(sk), cx(i), cz(j));
+      if (c && free(sk, i + c.dir[0], j + c.dir[1])) {
+        const [ni, nj] = settle(i, j, sk);
+        return [[ni, nj, sk, 0]];
+      }
+    }
     for (const [di, dj] of [
       [1, 0],
       [-1, 0],
@@ -257,6 +308,7 @@ export function solveMechanism(cfg: GymMechanismConfig, night = false): SolveRes
         [ni, nj] = cell(tx, tz);
         if (!free(sk, ni, nj)) continue;
       }
+      [ni, nj] = settle(ni, nj, sk);
       out.push([ni, nj, sk, 0]);
     }
     {

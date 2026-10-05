@@ -45,6 +45,15 @@ export const GLAZE_FURNITURE: InteractionDef[] = [
   { id: 'florist-pots', kind: 'examine', pages: ['一排排小花盆：彩幽堇、高原蓝铃、星光百合……', '标签上写着：「彩幽高原特产，海拔九十六米以上才开花」。'] },
   { id: 'florist-bouquets', kind: 'examine', pages: ['五颜六色的花束。', '据说挑战联盟前，训练家们都会来买一束放在冠军大道的星像下。'] },
   { id: 'florist-bench', kind: 'examine', pages: ['剪刀、丝带、包装纸。', '桌上的笔记本写着：「花与宝可梦都一样——要每天照顾」。'] },
+  // ——— M3-18 · 海底（glaze-sea） ———
+  { id: 'reef-clam-west', kind: 'examine', label: '撬开', pages: ['一只比脸盆还大的砗磲，壳缝里透出淡淡的珠光。'], effects: [{ kind: 'give-item', item: 'pearl', qty: 2, flag: 'got-reef-clam-west', itemName: '珍珠 ×2' }], byFlag: [{ when: 'got-reef-clam-west', pages: ['砗磲慢慢合上了壳。过些日子也许还会再长出珍珠。'] }] },
+  { id: 'reef-clam-east', kind: 'examine', label: '撬开', pages: ['砗磲的壳上长满了小珊瑚，壳缝里卡着一颗心形的鳞片。'], effects: [{ kind: 'give-item', item: 'heart-scale', qty: 1, flag: 'got-reef-clam-east', itemName: '心之鳞片' }], byFlag: [{ when: 'got-reef-clam-east', pages: ['砗磲安静地一张一合。'] }] },
+  { id: 'reef-wreck-crate', kind: 'examine', label: '打开', pages: ['半埋在沙里的旧货箱，铁箍已经锈穿了。', '箱子里还有几样没泡坏的东西。'], effects: [{ kind: 'give-item', item: 'net-ball', qty: 3, flag: 'got-reef-wreck-crate', itemName: '捕网球 ×3' }], byFlag: [{ when: 'got-reef-wreck-crate', pages: ['空货箱。几条小鱼在里面安了家。'] }] },
+  { id: 'trench-stele', kind: 'examine', pages: ['海沟里的石碑，刻纹被水流磨得圆润。', '「门在最深处。水幕之后，唯螺声可开。」', '碑脚压着一块发蓝的石头。'], effects: [{ kind: 'give-item', item: 'water-stone', qty: 1, flag: 'got-trench-stele', itemName: '水之石' }], byFlag: [{ when: 'got-trench-stele', pages: ['海沟里的石碑。', '「门在最深处。水幕之后，唯螺声可开。」'] }] },
+  { id: 'temple-hall-tablet', kind: 'examine', pages: ['「潮之前厅」', '三只海螺，三道水幕。', '西螺开西幕，东螺开东幕；中螺之声——让左右的暗流各自改道。', '只有中幕后的门通往圣所。'] },
+  { id: 'sea-temple-altar', kind: 'use', label: '触碰晶石', pages: ['祭坛上的水蓝色晶石缓缓明灭，像在呼吸。'], effects: [{ kind: 'story', script: 'sea-temple-altar' }] },
+  { id: 'sanctum-mural-west', kind: 'examine', pages: ['西墙壁画：古代海民骑着巨大的水宝可梦，潜入一片发光的海。', '海底的门，就是这座神殿。'] },
+  { id: 'sanctum-mural-east', kind: 'examine', pages: ['东墙壁画：群岛的轮廓被一圈浪纹环绕，五座岛的中心各画着一颗小小的光点。', '光点之间用细线连在一起——像是某种脉络。'], effects: [{ kind: 'give-item', item: 'revive', qty: 1, flag: 'got-sanctum-mural-east', itemName: '活力碎片' }], byFlag: [{ when: 'got-sanctum-mural-east', pages: ['东墙壁画：五座岛之间的光点用细线连在一起。'] }] },
 ];
 
 export const GLAZE_LANDMARKS: InteractionDef[] = [
@@ -105,6 +114,10 @@ export const GLAZE_LANDMARKS: InteractionDef[] = [
     kind: 'examine',
     range: 5,
     pages: ['海底神殿之门。', '两根爬满珊瑚的石柱撑着弧形门楣，中央嵌着一颗深蓝色的宝珠。', '门洞被一层蓝光封着，伸手碰上去——冰凉，推不动。', '门后的石阶一级级没入海里。要下去，需要会「潜水」的宝可梦。'],
+    byFlag: [
+      { when: 'sea-temple-cleared', pages: ['海底神殿之门。', '宝珠里的蓝光比以前亮了些，随着海浪一明一暗。', '真正的神殿在东边海沟的最深处——你已经去过了。'] },
+      { when: 'hm08-dive', pages: ['海底神殿之门。', '门洞仍被蓝光封着。', '这只是一座「影门」——深叔说过，真正的入口在东边颜色最深的海里，水面打着旋的地方。'] },
+    ],
   },
   {
     id: 'glaze-temple-stele',

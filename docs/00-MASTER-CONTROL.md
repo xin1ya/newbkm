@@ -255,7 +255,7 @@ M0 最后 6 项已于 2026-09-29 完成：
 | M3-15 | C | 道馆 5–8 | 雷霆 / 晨辉 / 霜凝 / 云翎；4 档动态等级；馆内关卡（导电开关、昼夜机关、滑冰、风力桥） | M3-07~10 | ✅ 通用开关→闸门机关 `systems/puzzles/gymMechanism.ts`（BFS 证明可解 / 无死局）+ `world/interiors/GymMechanismView.ts`；4 馆室内、4 档队伍、11 名馆内训练家、4 个道馆任务（TM25–28，雪原给攀爬许可）；物种暂用现有图鉴，M3-28/31 替换 |
 | M3-16 | C | 道馆 9–11 | 幻月 / 幽魄 / 琉璃；3 档动态等级；馆内关卡（传送镜、暗灯、水位） | M3-11~13 | ✅ 幻影（6 间镜厅 + 传送镜 + 念力水晶球）/ 幽冥（常暗墓厅 + 烛台/长明灯 + 灵火墙，提灯照明）/ 琉璃（水位 4 阀门）；TM29–31；758 tests |
 | M3-17 | C | 攀爬骑乘 | 道馆 7 奖励：攀上藤蔓 / 裂缝崖壁；封锁点可见、首次靠近提示；飞行限岛规则同步 | M3-15 | ✅ 雷鸣高崖（cloud-scarp 13–15 m 陡崖，平台只经公路可达）3 处藤蔓/裂缝岩壁 + 冰川遗迹冰岩台（封锁 glacier-ledge，台顶石匣=不融冰）；climb 骑乘（W/S 沿崖面、坐骑俯仰、到端点翻上/落地）、无能力首次提示、地图 ⛰ 标记；攀爬中不遇敌/不可飞/存档落端点；tests/unit/climb.test.ts |
-| M3-18 | C | 潜水骑乘 + 海底神殿 | 支线奖励 `hm08-dive`：深水暗色区下潜，水下场景（光束、气泡、低通音频），海底神殿机关 | M3-13 | ⬜ |
+| M3-18 | C | 潜水骑乘 + 海底神殿 | 支线奖励 `hm08-dive`：深水暗色区下潜，水下场景（光束、气泡、低通音频），海底神殿机关 | M3-13 | ✅ 支线「深叔的旧罗盘」（琉璃徽章后，浅湾漂浮木匣 → 交还得 hm08-dive）+「潮落之门」；东海岸 2 处潜水点（漩涡+浮标，地图 ◎）冲浪下潜 → glaze-sea：珊瑚花园 / 神殿海沟 / 前厅 / 圣所（水下雾色、光束、气泡、焦散、低通音频，潜水坐骑悬浮）；前厅潮汐螺 ×3 + 水幕门 ×3 + 暗流（最少 3 次，解开后保持）；圣所祭坛奖励；tests/unit/sea-temple.test.ts |
 | M3-19 | C | 登瀑 | `hm07-waterfall`：水上骑乘升级，逆流攀瀑 | M3-20 | ⬜ |
 | M3-20 | C | 冠军之路 | 大型地下城：攀爬 / 推石 / 碎岩 / 登瀑综合谜题，多层，高等级训练家 | M3-17 | ⬜ |
 | M3-21 | C | 精灵联盟 | 独立场景链：四天王（花月→芙蓉→波妮→源治）→ 冠军米可利，连战不回复、厅间可补给；殿堂演出 | M3-14 | ⬜ |
@@ -562,3 +562,4 @@ render ◄── world ◄── actors ◄── scenes ◄── ui
 - 2026-10-05 M3-15 道馆 5–8 ✅：雷鸣（导电拉杆，最少 4 次）/ 晨辉（日晷昼夜，进门取真实时间）/ 霜凝（滑冰）/ 云翎（风扇风桥）；tierLevels 33/37/41/45；726 单测通过。
 - 2026-10-05 M3-16 道馆 9–11 完成：gymMechanism 增加传送镜/常暗/水晶·墓墙/灵火/水晶球/灯台；三馆内部、GymDef（47/51/55 三档）、训练家、向导、须知牌、主线 main-gym-mirage/ghost/lily、TM29 冥想/TM30 暗影爪/TM31 热水；BFS 证明可解无死局（tests/unit/glaze-gyms.test.ts）。
 - 2026-10-05 M3-17 攀爬骑乘完成：ClimbWallConfig/ScarpConfig，gen-thunder 陡崖 pass + 冰岩台；systems/ride/climb.ts、SceneClimb、world/props/ClimbWalls（藤蔓/裂缝/冰壁 + 石堆路标）；PlayerController climb 模式；飞行封锁同步（glacier-ledge type climb）。
+- 2026-10-05 M3-18 潜水骑乘 + 海底神殿：RideMode dive、DiveSpotConfig/SceneDive/DiveSpots、UnderwaterFx、InteriorScene 水下模式 + 暗流推送；GymMechanism 新增 tide 水幕门 / conch 潮汐螺 / coral 墙 / currents 与 solvedFlag；config/interiors/glazeSea.ts、story/glaze.ts、2 条支线、8 项海底互动、地图潜水点标记。

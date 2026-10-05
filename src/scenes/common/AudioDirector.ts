@@ -19,7 +19,7 @@ export interface AudioContextInfo {
   /** 当前是否在战斗场景里 */
   inBattle: boolean;
   interiorBgm: string | null;
-  indoor: 'room' | 'cave' | null;
+  indoor: 'room' | 'cave' | 'undersea' | null;
   zoneBgm: string | null;
   zoneKind: 'town' | 'wild' | 'sea' | 'dungeon-entrance' | null;
   surfing: boolean;
@@ -102,6 +102,8 @@ export class AudioDirector {
       this.night = nightK;
       eng.setNight(nightK);
     }
+    // M3-18 海底：整体低通（战斗中恢复清晰）
+    eng.setUnderwater(ctx.indoor === 'undersea' && !ctx.inBattle ? 1 : 0);
     // 环境音
     this.ambT -= dt;
     if (this.ambT > 0) return;

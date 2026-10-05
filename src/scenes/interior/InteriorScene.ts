@@ -41,9 +41,13 @@ import type { Rng } from '@/systems/rng';
 import { TrainerBattles } from '@/scenes/common/TrainerBattles';
 import { BattleScene, type BattleHost, type BattleResult, type BattleStartData } from '@/scenes/battle/BattleScene';
 import { WaterPuzzleView } from '@/world/interiors/WaterPuzzleView';
+import { UnderwaterFx } from '@/world/interiors/UnderwaterFx';
+import { createMonModel, createMonModelFor, disposeMonModel, setMonLoop, updateMonModel } from '@/actors/pokemon/monModel';
+import { chooseMount, rideFor, type MountChoice } from '@/systems/ride';
+import { RIDES } from '@/config/rides';
 import { toggleLevel, valveAt } from '@/systems/puzzles/waterLevel';
 import { GymMechanismView } from '@/world/interiors/GymMechanismView';
-import { cardinal, mirrorAt, mirrorTarget, onIce, SLIDE_SPEED, switchVar } from '@/systems/puzzles/gymMechanism';
+import { cardinal, currentAt, CURRENT_SPEED, mirrorAt, mirrorTarget, onIce, SLIDE_SPEED, switchVar } from '@/systems/puzzles/gymMechanism';
 import { GYMS } from '@/config/encounters';
 import { TRAINER_BY_ID } from '@/config/trainers';
 import { say } from '@/ui/core';
@@ -63,8 +67,8 @@ export interface InteriorDeps {
   islandName: string;
   /** 快速存档（由大地图实现） */
   save(): Promise<boolean>;
-  /** 从正门离开：由大地图负责 pop 与门口定位 */
-  leave(interiorId: string): Promise<void>;
+  /** 从正门离开：由大地图负责 pop 与门口定位；via = M3-18 上浮光柱对应的潜水点 id */
+  leave(interiorId: string, via?: string): Promise<void>;
   toast?: ((text: string) => void) | undefined;
   dex: Dex;
   /** M1-11 室内对战（道馆）：随机源、时间 / 天气（战斗场光照）、战败黑屏（由大地图实现：离开室内 → 复活点） */
@@ -133,6 +137,13 @@ export class InteriorScene implements Scene, BattleHost {
   private mirrorBusy = false;
   /** M3-16 常暗道馆：玩家身边的提灯光 */
   private lantern: THREE.PointLight | null = null;
+  /** M3-18 海底氛围（underwater 房间） */
+  underFx: UnderwaterFx | null = null;
+  /** M3-18 潜水坐骑（pivot 挂在玩家 root 下，随速度前倾） */
+  private diveMount: { pivot: THREE.Group; model: THREE.Group; choice: MountChoice } | null = null;
+  private divePitch = 0;
+  /** M3-18 暗流中（被冲着走） */
+  private currentDir: readonly [number, number] | null = null;
   /** 滑冰中的方向（null = 没在滑） */
   private slideDir: readonly [number, number] | null = null;
   /** M1-11 室内训练家对战（道馆） */
@@ -296,6 +307,9 @@ export class InteriorScene implements Scene, BattleHost {
     this.lantern?.dispose();
     this.lantern = null;
     this.slideDir = null;
+    this.currentDir = null;
+    this.underFx?.dispose();
+    this.underFx = null;
     this.room = getRoom(this.config, roomId);
     this.built = this.builder.build(this.room);
     this.world.add(this.built.group, this.built.lights);
@@ -331,6 +345,8 @@ export class InteriorScene implements Scene, BattleHost {
     if (this.room.mechanism) {
       // 机关不存档：每次进门复位；晨辉道馆的昼夜取真实时间
       this.mech = new GymMechanismView(this.room.mechanism, this.collision, this.d.timeOfDay() === 'night');
+      const mc = this.room.mechanism;
+      if (mc.solvedFlag && mc.solvedState && this.d.state.flags[mc.solvedFlag]) this.mech.setState(mc.solvedState);
       this.world.add(this.mech.group);
       if (this.room.mechanism.dark) this.applyMechDark(this.built.lights);
     }
@@ -339,6 +355,14 @@ export class InteriorScene implements Scene, BattleHost {
     const preset = LIGHT_PRESETS[this.room.lighting];
     this.world.background = new THREE.Color(preset.fog);
     this.world.fog = null;
+    if (this.room.underwater) {
+      this.underFx = new UnderwaterFx(this.room);
+      this.world.add(this.underFx.group);
+      const fog = this.underFx.fog();
+      this.world.fog = fog;
+      this.world.background = fog.color.clone();
+      this.mountDive();
+    } else this.unmountDive();
     const s = spawnAtExit(getExit(this.room, exitId));
     this.player.teleport(s.x, s.z, s.yaw);
     this.follower.warp();
@@ -362,7 +386,7 @@ export class InteriorScene implements Scene, BattleHost {
 
   fixedUpdate(dt: number): void {
     // 第三 / 第一人称都按镜头朝向移动
-    if (!this.slideStep(dt)) this.player.fixedUpdate(dt, this.gameplayInput, this.rig.forwardYaw);
+    if (!this.slideStep(dt) && !this.currentStep(dt)) this.player.fixedUpdate(dt, this.gameplayInput, this.rig.forwardYaw);
     this.footsteps.fixedUpdate(this.player);
     this.checkExits();
     this.checkMirrors();
@@ -393,6 +417,8 @@ export class InteriorScene implements Scene, BattleHost {
     const hour = this.d.game.clock.hour;
     const day = THREE.MathUtils.clamp(Math.min((hour - 5.5) / 2, (19.5 - hour) / 2), 0, 1);
     this.built?.update(this.time, day);
+    this.underFx?.update(dt, this.camera);
+    this.updateDiveMount(dt);
     this.puzzle?.update(dt);
     this.mech?.update(dt);
     if (this.lantern) {
@@ -415,11 +441,11 @@ export class InteriorScene implements Scene, BattleHost {
 
   audioContext(outside: { time: TimeOfDay; weather: FieldWeather }): AudioContextInfo {
     const p = this.player.position;
-    const bgm = this.config.bgm ?? null;
+    const bgm = this.room.bgm ?? this.config.bgm ?? null;
     return {
       inBattle: this.inBattle && this.d.game.scenes.top !== this,
       interiorBgm: bgm,
-      indoor: bgm === 'cave' ? 'cave' : 'room',
+      indoor: this.room.underwater ? 'undersea' : bgm === 'cave' ? 'cave' : 'room',
       zoneBgm: null,
       zoneKind: null,
       surfing: false,
@@ -478,7 +504,8 @@ export class InteriorScene implements Scene, BattleHost {
     const speed = Math.hypot(v.x, v.z);
     if (speed < 0.5) return;
     // 朝出口方向移动：正门要求向 +Z 走；楼梯要求朝触发区中心走
-    const isDoor = 'overworld' in inside.to;
+    // 海底的上浮光柱：朝光柱中心游即可（不限 +Z）
+    const isDoor = 'overworld' in inside.to && !this.room.underwater;
     const toward = isDoor ? v.z / speed : ((inside.position[0] - p.x) * v.x + (inside.position[1] - p.z) * v.z) / (speed * Math.max(0.1, Math.hypot(inside.position[0] - p.x, inside.position[1] - p.z)));
     if (toward < (isDoor ? 0.5 : 0.3)) return;
     void this.useExit(inside);
@@ -491,7 +518,7 @@ export class InteriorScene implements Scene, BattleHost {
     this.player.velocity.set(0, 0, 0);
     try {
       if ('overworld' in e.to) {
-        await this.d.leave(this.config.id);
+        await this.d.leave(this.config.id, e.surfaceAt);
         return;
       }
       await this.d.transition.fadeOut(FADE_MS);
@@ -526,6 +553,7 @@ export class InteriorScene implements Scene, BattleHost {
     this.rig.update(dt, this.gameplayInput);
     this.player.model.root.visible = !this.firstPerson;
     this.built?.updateCutaway(this.camera.position);
+    this.underFx?.updateCutaway(this.camera.position);
   }
 
   // ———————————————————— M1-11 水位机关 ————————————————————
@@ -613,6 +641,99 @@ export class InteriorScene implements Scene, BattleHost {
     return true;
   }
 
+  // ———————————————————— M3-18 海底：潜水坐骑 / 暗流 ————————————————————
+
+  /** 骑上潜水坐骑（队伍里第一只合适的水属性宝可梦；没有就租借） */
+  private mountDive(): void {
+    const { state, dex } = this.d;
+    this.player.mode = 'dive';
+    const ride = rideFor(RIDES, 'deep', state.flags) ?? RIDES.find((r) => r.id === 'dive')!;
+    this.player.diveSpeed = ride.speed;
+    this.player.diveSprint = ride.sprint;
+    if (this.diveMount) return;
+    const choice = chooseMount(dex, state.party, ride);
+    const inst = state.party.find((q) => q.uid === choice.uid);
+    const model = inst ? createMonModel(dex, inst, { height: 1.5 }) : createMonModelFor(dex.species(choice.speciesId), { speciesId: choice.speciesId, shiny: false } as PokemonInstance, { height: 1.5 });
+    model.name = `dive-mount:${choice.speciesId}`;
+    setMonLoop(model, 'idle', 0);
+    const pivot = new THREE.Group();
+    pivot.name = 'dive-pivot';
+    pivot.position.y = 0.55;
+    pivot.add(model);
+    this.player.root.add(pivot);
+    this.player.model.root.position.y = 0.55 + 1.5 * 0.5;
+    this.diveMount = { pivot, model, choice };
+  }
+
+  private unmountDive(): void {
+    if (this.player.mode === 'dive') this.player.mode = 'walk';
+    if (!this.diveMount) return;
+    this.diveMount.pivot.removeFromParent();
+    disposeMonModel(this.diveMount.model);
+    this.diveMount = null;
+    this.player.model.root.position.y = 0;
+    this.player.model.root.rotation.x = 0;
+  }
+
+  /** 坐骑动画：游动时前倾、播放 walk（游泳）循环；停下悬停 idle */
+  private updateDiveMount(dt: number): void {
+    const m = this.diveMount;
+    if (!m) return;
+    const v = Math.hypot(this.player.velocity.x, this.player.velocity.z);
+    const moving = v > 0.4;
+    setMonLoop(m.model, moving ? 'walk' : 'idle', moving ? Math.min(1.4, v / 3) : 0);
+    updateMonModel(m.model, dt);
+    const want = moving ? Math.min(0.28, v * 0.05) : 0;
+    this.divePitch += (want - this.divePitch) * Math.min(1, dt * 4);
+    m.pivot.rotation.x = this.divePitch;
+    this.player.model.root.rotation.x = this.divePitch;
+  }
+
+  /** 潜水坐骑（e2e / 调试） */
+  get diveMountSpecies(): number | null {
+    return this.diveMount?.choice.speciesId ?? null;
+  }
+
+  /**
+   * 暗流：站进生效中的暗流就被冲着走（不读输入），吸附到 1 m 网格中线（与 BFS 一致）；
+   * 冲出暗流区或前方受阻（位移明显变小）时交还操作。返回 true 表示这一步由暗流接管。
+   */
+  private currentStep(dt: number): boolean {
+    const mech = this.mech;
+    if (!mech?.cfg.currents?.length || this.inBattle || this.trainers.busy || this.switching) {
+      this.currentDir = null;
+      return false;
+    }
+    const p = this.player.position;
+    const c = currentAt(mech.cfg, mech.state, p.x, p.z);
+    if (!c) {
+      if (this.currentDir) this.player.velocity.set(0, 0, 0);
+      this.currentDir = null;
+      return false;
+    }
+    const [dx, dz] = c.dir;
+    if (this.currentDir?.[0] !== dx || this.currentDir?.[1] !== dz) {
+      this.currentDir = c.dir;
+      const snap = (v: number): number => Math.floor(v) + 0.5;
+      this.player.teleport(dx === 0 ? snap(p.x) : p.x, dz === 0 ? snap(p.z) : p.z, Math.atan2(dx, dz));
+      sfx('splash', 0.35);
+    }
+    const sx = p.x;
+    const sz = p.z;
+    this.player.moveWithVelocity(dt, dx * CURRENT_SPEED, dz * CURRENT_SPEED, false);
+    if (Math.hypot(p.x - sx, p.z - sz) < CURRENT_SPEED * dt * 0.35) {
+      // 顶到墙 / 闸门：这一步交给玩家（可以横向离开暗流）
+      this.currentDir = null;
+      return false;
+    }
+    return true;
+  }
+
+  /** 是否被暗流冲着走（e2e） */
+  get inCurrent(): boolean {
+    return this.currentDir !== null;
+  }
+
   /** 常暗道馆：房间灯压到一成多（含每帧按 base 重算的灯），玩家带一盏提灯；机关灯台自带点光源 */
   private applyMechDark(lights: THREE.Object3D): void {
     lights.traverse((o) => {
@@ -677,7 +798,7 @@ export class InteriorScene implements Scene, BattleHost {
     const mech = this.mech;
     if (!mech) return;
     for (const s of mech.cfg.switches) {
-      const verb = s.style === 'lever' ? '拉动拉杆' : s.style === 'sundial' ? '拨动日晷' : s.style === 'orb' ? '转动水晶球' : s.style === 'lamp' ? ((s.states ?? 2) > 2 ? '转动烛台' : '点灯 / 熄灯') : '切换风扇';
+      const verb = s.style === 'conch' ? '吹响 / 放下潮汐螺' : s.style === 'lever' ? '拉动拉杆' : s.style === 'sundial' ? '拨动日晷' : s.style === 'orb' ? '转动水晶球' : s.style === 'lamp' ? ((s.states ?? 2) > 2 ? '转动烛台' : '点灯 / 熄灯') : '切换风扇';
       const v = mech.state[switchVar(s)] ?? 0;
       out.push({
         id: `mech:${s.id}`,
@@ -769,6 +890,7 @@ export class InteriorScene implements Scene, BattleHost {
   }
   animateWorld(dt: number): void {
     this.time += dt;
+    this.underFx?.update(dt, this.camera);
     this.puzzle?.update(dt);
     this.mech?.update(dt);
     const hour = this.d.game.clock.hour;
@@ -922,6 +1044,9 @@ export class InteriorScene implements Scene, BattleHost {
   }
 
   dispose(): void {
+    this.unmountDive();
+    this.underFx?.dispose();
+    this.underFx = null;
     this.healMachine?.dispose();
     this.healMachine = null;
     this.starterTable?.dispose();

@@ -248,6 +248,18 @@ export const GLAZE_NPCS: NpcDef[] = [
     name: '老潜水员深叔',
     title: '退休潜水员',
     appearance: { look: 'elder', palette: { jacket: '#2a6aa8', hair: '#d8dce0' } },
+    dialogByQuest: [
+      { questId: 'side-sea-temple', when: 'completed', dialog: ['你真的走到圣所了？那块会呼吸的晶石……我当年只隔着水幕看了一眼。', '谢谢你，替我把那一眼看完了。'] },
+      { questId: 'side-old-diver', when: 'completed', dialog: ['东边颜色最深的海，水面打着旋的地方，就是下潜点。', '神殿前厅的海螺，吹响一只，水幕和暗流就会跟着变。别急，一只一只试。'] },
+      { questId: 'side-old-diver', when: 'active', requires: ['diver-compass-found'], dialog: [], story: 'diver-compass-return' },
+      { questId: 'side-old-diver', when: 'active', dialog: ['罗盘应该还漂在琉璃沙滩东边的浅湾里。', '那只木匣是我亲手封的，泡不坏。冲浪过去，看见水面上一闪一闪的就是它。'] },
+      {
+        questId: 'side-old-diver',
+        when: 'available',
+        setFlags: ['diver-quest-start'],
+        dialog: ['琉璃的徽章？哈哈，这下你够格听我讲了。', '四十年前，我在东边深海里见过一座门——真正的海底神殿。石堤那座只是它的影子。', '可惜回来的路上，我把潜水罗盘掉在了琉璃沙滩东边的浅湾里。', '没有那只罗盘，在海沟里会迷路的。帮我找回来，我就把潜水的本事教给你。'],
+      },
+    ],
     dialog: ['年轻时我潜过东边那片深海。下到三十米，四周一片漆黑。', '然后……我看见了一座门，比石堤那座还大。门上刻着和这边一样的浪纹。', '没有会「潜水」的宝可梦陪着，可千万别去。等你有了本事，再来找我聊聊。'],
   },
   // ———————————————————————————— 彩幽市 ————————————————————————————

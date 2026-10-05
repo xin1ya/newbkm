@@ -4,6 +4,7 @@
  */
 import type { Quest } from '@/systems/quests';
 import { THUNDER_BADGES } from '@/config/story/thunder';
+import { DIVER_COMPASS_POS } from '@/config/story/glaze';
 
 const ISLAND = '琉璃群岛';
 const PRE = ['badge-azure', 'badge-ore', 'badge-flame', ...THUNDER_BADGES];
@@ -29,4 +30,36 @@ export const GLAZE_QUESTS: Quest[] = [
   gymQuest('main-gym-mirage', '镜中幻影', '幻影镇的道馆里只有镜子没有门。转动念力水晶球，穿过镜厅挑战超能力属性馆主幻月。', 'mirage-town', '幻影镇', '幻影道馆馆主幻月', 'gym-mirage-leader', 'badge-mirage', [-380, 400], 'tm-calm-mind'),
   gymQuest('main-gym-ghost', '长明之灯', '彩幽市的道馆是一座常暗的墓厅。点亮长明灯驱散灵火，挑战幽灵属性馆主幽魄。', 'ghost-town', '彩幽市', '幽冥道馆馆主幽魄', 'gym-ghost-leader', 'badge-ghost', [-430, -198], 'tm-shadow-claw'),
   gymQuest('main-gym-lily', '琉璃水镜', '琉璃镇的道馆是玻璃穹顶下的一池清水。转动阀门升降水位，挑战水属性馆主琉璃。', 'glaze-town', '琉璃镇', '琉璃道馆馆主琉璃', 'gym-glaze-leader', 'badge-glaze', [486, 118], 'tm-scald'),
+  // ——— M3-18 · 潜水 + 海底神殿 ———
+  {
+    id: 'side-old-diver',
+    title: '深叔的旧罗盘',
+    category: 'side',
+    island: ISLAND,
+    summary: '琉璃镇的老潜水员深叔年轻时把潜水罗盘掉在了琉璃沙滩东边的浅湾。找回罗盘，他就教你潜水。',
+    prerequisites: ['badge-glaze'],
+    startNpc: 'glaze-old-diver',
+    startFlag: 'diver-quest-start',
+    completeFlag: 'diver-compass-returned',
+    objectives: [
+      { id: 'find', text: '冲浪到琉璃沙滩东边的浅湾，找到漂浮的木匣', completeFlag: 'diver-compass-found', marker: { island: 'glaze', position: [DIVER_COMPASS_POS[0], 0, DIVER_COMPASS_POS[1]], radius: 18 } },
+      { id: 'return', text: '把罗盘交还给琉璃镇的深叔', completeFlag: 'diver-compass-returned', marker: { island: 'glaze', position: [460, 0, 158] } },
+    ],
+    reward: { hm: 'hm08-dive', items: [{ id: 'net-ball', qty: 5 }] },
+  },
+  {
+    id: 'side-sea-temple',
+    title: '潮落之门',
+    category: 'side',
+    island: ISLAND,
+    summary: '石堤尽头的门楼只是影门。从东边深海的漩涡潜下去，找到真正的海底神殿。',
+    prerequisites: ['side-old-diver'],
+    completeFlag: 'sea-temple-cleared',
+    objectives: [
+      { id: 'dive', text: '在东边深海的漩涡处下潜，进入海底神殿', completeFlag: 'sea-temple-entered', marker: { island: 'glaze', position: [800, 0, 200] } },
+      { id: 'hall', text: '吹响潮汐螺，穿过前厅的水幕', completeFlag: 'sea-temple-hall-open', marker: { island: 'glaze', position: [800, 0, 200] } },
+      { id: 'altar', text: '触碰圣所祭坛上的晶石', completeFlag: 'sea-temple-cleared', marker: { island: 'glaze', position: [800, 0, 200] } },
+    ],
+    reward: { money: 5000 },
+  },
 ];

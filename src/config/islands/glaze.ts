@@ -306,6 +306,11 @@ export const GLAZE: IslandConfig = {
     { id: 'vein-spring', kind: 'landmark', name: '琉璃水脉泉眼', position: [292, 0, -232], showOnMap: true },
     { id: 'league-gate', kind: 'landmark', name: '精灵联盟大门', position: [40, 0, -876], showOnMap: true },
   ],
+  // M3-18 潜水点：琉璃镇外海的深水暗区（海底神殿）与琉璃沙滩外的珊瑚花园
+  diveSpots: [
+    { id: 'temple-abyss', name: '神殿海沟', center: [800, 200], radius: 26, interior: 'glaze-sea', room: 'trench' },
+    { id: 'coral-garden', name: '珊瑚花园', center: [752, 330], radius: 16, interior: 'glaze-sea', room: 'reef' },
+  ],
   blockers: [
     // 冠军之路的徽章检查 / 联盟高原的飞行结界在 M3-20 加入；雷鸣—琉璃海域在 M3-05 连接
   ],

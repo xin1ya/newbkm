@@ -92,6 +92,11 @@ export class IslandMap {
     for (const w of cfg.climbWalls ?? []) {
       markers.push({ id: `climb:${w.id}`, kind: 'climb', name: `攀爬点 · ${w.name}`, sub: canClimb ? '走到崖脚的岩壁纹路前按互动键攀上' : '需要攀岩骑乘（雪原道馆）', x: w.base[0], z: w.base[1] });
     }
+    // M3-18 潜水点：深水区漩涡
+    const canDive = !!s.flags['hm08-dive'];
+    for (const d of cfg.diveSpots ?? []) {
+      markers.push({ id: `dive:${d.id}`, kind: 'dive', name: `潜水点 · ${d.name}`, sub: canDive ? '冲浪到漩涡中心按互动键下潜' : '需要潜水骑乘（琉璃镇·深叔）', x: d.center[0], z: d.center[1] });
+    }
     // 头目巢穴（计划文档 §3.2）：未发现显示「？」；冷却中灰显
     const day = this.o.game.clock.day;
     for (const den of cfg.alphaDens ?? []) {

@@ -481,6 +481,17 @@ function alphaScaleIcon(): Svg {
 }
 
 /** 心之鳞片：粉色心形鳞片 + 珠光高光 */
+function diverCompassIcon(): Svg {
+  return wrap(
+    `<circle cx="24" cy="25" r="17" fill="#c89a3a" stroke="${O}" stroke-width="${SW}"/>` +
+      `<circle cx="24" cy="25" r="12.5" fill="#f4ecd6" stroke="#8a6420" stroke-width="1.6"/>` +
+      `<rect x="21" y="4" width="6" height="5" rx="1.5" fill="#c89a3a" stroke="${O}" stroke-width="2"/>` +
+      `<path d="M24 15l3.5 10H20.5z" fill="#2f8aa8"/><path d="M24 35l-3.5-10h7z" fill="#d84a4a"/>` +
+      `<path d="M14 31c3-2 6 2 10 0s7 2 10 0" fill="none" stroke="#2f8aa8" stroke-width="1.4"/>` +
+      `<circle cx="24" cy="25" r="1.8" fill="${O}"/><circle cx="17" cy="17" r="2" fill="${HL}"/>`,
+  );
+}
+
 function heartScaleIcon(): Svg {
   return wrap(
     `<path d="M24 41C12 32 6 25 6 17a9 9 0 0 1 18-2 9 9 0 0 1 18 2c0 8-6 15-18 24z" fill="#f59ab8" stroke="${O}" stroke-width="${SW}"/>` +
@@ -610,6 +621,7 @@ const ICONS: Record<string, () => Svg> = {
   'surprise-mulch': () => mulchBag('#b68ae0', `<path d="M24 21l1.8 4 4.2.5-3.1 2.9.8 4.2-3.7-2.1-3.7 2.1.8-4.2-3.1-2.9 4.2-.5z" fill="#fff"/>`),
   'alpha-scale': alphaScaleIcon,
   'heart-scale': heartScaleIcon,
+  'diver-compass': diverCompassIcon,
   'reroll-stone': () => rerollStone(false),
   'focus-reroll-stone': () => rerollStone(true),
   'bottle-cap': () => cap('#e3e6ef', '#b6bdcf'),

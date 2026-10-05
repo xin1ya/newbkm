@@ -72,6 +72,20 @@ export interface ClimbWallConfig {
   width?: number;
 }
 
+/**
+ * M3-18 潜水点：海面上颜色发暗、冒气泡的深水区。冲浪进入半径后按互动键下潜（骑乘「潜水」，flag hm08-dive），
+ * 进入室内场景 interior 的 room（第一个出口 = 上浮光柱）；从任意 surfaceAt = 本 id 的出口上浮回到这里。
+ */
+export interface DiveSpotConfig {
+  id: string;
+  name: string;
+  /** 中心（x, z） */
+  center: Vec2;
+  radius: number;
+  interior: string;
+  room: string;
+}
+
 /** M3-17 陡崖（地形生成器沿折线刻出 > 60° 的崖壁；左侧 = 行进方向左手 = 高处） */
 export interface ScarpConfig {
   id: string;
@@ -150,6 +164,8 @@ export interface IslandConfig {
   whirlpools?: Array<{ id: string; center: Vec2; radius: number }>;
   /** M3-17 攀爬点 */
   climbWalls?: ClimbWallConfig[];
+  /** M3-18 潜水点 */
+  diveSpots?: DiveSpotConfig[];
   /** M3-17 陡崖（生成器用；运行时只做文档 / 自检） */
   scarps?: ScarpConfig[];
   /** 本岛主色板（设计 §8.4） */

@@ -60,6 +60,8 @@ import { SceneRide } from '@/scenes/common/SceneRide';
 import { SceneBike } from '@/scenes/common/SceneBike';
 import { SceneFly } from '@/scenes/common/SceneFly';
 import { SceneClimb } from '@/scenes/common/SceneClimb';
+import { SceneDive } from '@/scenes/common/SceneDive';
+import { DiveSpots } from '@/world/props/DiveSpots';
 import { ClimbWalls } from '@/world/props/ClimbWalls';
 import { SceneAutoBattle } from '@/scenes/common/SceneAutoBattle';
 import { SceneAutoPath } from '@/scenes/common/SceneAutoPath';
@@ -171,6 +173,9 @@ export class OverworldScene implements Scene, BattleHost {
   /** M3-17 攀爬骑乘 */
   climb!: SceneClimb;
   private climbWalls: ClimbWalls | null = null;
+  /** M3-18 潜水 */
+  dive!: SceneDive;
+  private diveSpots: DiveSpots | null = null;
   auto!: SceneAutoBattle;
   autoPath!: SceneAutoPath;
   /** M1-15 钓鱼 */
@@ -410,6 +415,24 @@ export class OverworldScene implements Scene, BattleHost {
       },
     });
     this.interactions.addSource(this.climb.source());
+    this.dive = new SceneDive({
+      state: this.d.state,
+      player: this.player,
+      spots: island.diveSpots ?? [],
+      toast: (t) => this.d.toaster.show(t),
+      say: (pages) => say(this.d.ui, pages),
+      canAct: () => !busyNow() && !this.fishing.active && !this.enteringDoor,
+      enter: (spot) => {
+        this.auto.stop('潜入了海底');
+        this.autoPath.stop();
+        return this.enterInterior(spot.interior, spot.id, spot.room);
+      },
+    });
+    this.interactions.addSource(this.dive.source());
+    if (island.diveSpots?.length) {
+      this.diveSpots = new DiveSpots(island.diveSpots, (x, z) => this.terrain.hf.waterAt(x, z)?.level ?? 0);
+      w.add(this.diveSpots.group);
+    }
     if (island.climbWalls?.length) {
       this.climbWalls = new ClimbWalls(island.climbWalls, (x, z) => this.terrain.heightAt(x, z));
       w.add(this.climbWalls.group);
@@ -677,6 +700,7 @@ export class OverworldScene implements Scene, BattleHost {
     this.seaStep();
     this.fly.fixedUpdate(dt, !!input && input.pressed('fly'));
     this.climb.fixedUpdate(dt, input ?? null);
+    this.dive.fixedUpdate(dt);
     this.footsteps.fixedUpdate(this.player);
     const p = this.player.position;
     const inGrass = !this.ride.surfing && !this.fly.flying && this.terrain.hf.surfaceWeight(p.x, p.z, 'tallgrass') > GRASS_THRESHOLD;
@@ -739,6 +763,7 @@ export class OverworldScene implements Scene, BattleHost {
     this.fly.update(dt);
     this.climb.update(dt);
     this.climbWalls?.update(dt);
+    this.diveSpots?.update(dt);
     this.fishing.update(dt);
     if (!this.inBattle || this.trainers.busy) this.npcs.update(dt, this.time, this.player, this.camera);
     this.follower.update(dt, this.inBattle || this.d.ui.busy || this.trainers.busy || !!this.pendingEncounter);
@@ -1432,7 +1457,7 @@ export class OverworldScene implements Scene, BattleHost {
   async enterInterior(interiorId: string, doorId: string | null, room?: string, instant = false): Promise<void> {
     if (this.enteringDoor) return;
     this.enteringDoor = true;
-    this.lastDoor = doorId ?? this.d.island.pois.find((q) => q.interior === interiorId)?.id ?? null;
+    this.lastDoor = doorId ?? this.d.island.pois.find((q) => q.interior === interiorId)?.id ?? this.d.island.diveSpots?.find((q) => q.interior === interiorId)?.id ?? null;
     this.player.velocity.set(0, 0, 0);
     if (this.ride.surfing) await this.ride.stop(null, true);
     if (this.fly.flying) await this.fly.land(true);
@@ -1477,13 +1502,23 @@ export class OverworldScene implements Scene, BattleHost {
   }
 
   /** 从室内正门离开：pop 回大地图，出现在门外、面朝外 */
-  async leaveInterior(interiorId: string): Promise<void> {
+  async leaveInterior(interiorId: string, via?: string): Promise<void> {
     await this.d.transition.fadeOut(300);
-    sfx('door');
+    // M3-18 上浮：回到潜水点海面继续冲浪（via = 光柱对应的潜水点；读档后 lastDoor 为空时按室内 id 找）
+    const spots = this.d.island.diveSpots ?? [];
+    const spot = spots.find((q) => q.id === via) ?? spots.find((q) => q.id === this.lastDoor);
+    sfx(spot ? 'splash' : 'door');
     await this.d.game.scenes.pop();
     const lastPoi = this.lastDoor ? this.d.island.pois.find((q) => q.id === this.lastDoor) : undefined;
-    const door = (lastPoi && this.doorOf(lastPoi)) || this.doorFor(interiorId);
-    if (door) {
+    const door = spot ? null : (lastPoi && this.doorOf(lastPoi)) || this.doorFor(interiorId);
+    if (spot) {
+      const [x, z] = spot.center;
+      const level = this.terrain.hf.waterAt(x, z)?.level ?? 0;
+      this.player.teleport(x, z, this.player.facing);
+      this.chunks.loadAround(x, z);
+      await this.ride.start({ x, z, level }, true);
+      this.d.toaster.show(`浮上了${spot.name}的海面。`);
+    } else if (door) {
       const x = door.position.x + Math.sin(door.yaw) * 0.9;
       const z = door.position.z + Math.cos(door.yaw) * 0.9;
       this.player.teleport(x, z, door.yaw);
@@ -1622,6 +1657,7 @@ export class OverworldScene implements Scene, BattleHost {
     this.fly.dispose();
     this.climb.dispose();
     this.climbWalls?.dispose();
+    this.diveSpots?.dispose();
     this.auto.dispose();
     this.fishing.dispose();
     this.npcs.dispose();

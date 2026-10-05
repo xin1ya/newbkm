@@ -11,7 +11,7 @@
 import type { Dex } from '../data/Dex';
 import type { PokemonInstance } from '../pokemon';
 
-export type RideMedium = 'water' | 'land' | 'rock' | 'air';
+export type RideMedium = 'water' | 'land' | 'rock' | 'air' | 'deep';
 
 export interface RideDef {
   id: string;
@@ -76,7 +76,7 @@ export function surfable(depth: number): boolean {
   return depth >= SURF_MIN_DEPTH;
 }
 
-export type RideMode = 'walk' | 'surf' | 'bike' | 'fly' | 'climb';
+export type RideMode = 'walk' | 'surf' | 'bike' | 'fly' | 'climb' | 'dive';
 
 /** 飞行骑乘：离下方地面 / 水面的最小间隙（m） */
 export const FLY_CLEARANCE = 0.9;

@@ -61,7 +61,8 @@ describe('室内场景配置', () => {
         it(`${room.id}：正门在 +Z 墙、出口触发区在房间内`, () => {
           for (const e of room.exits) {
             expect(inside(room, e.position[0], e.position[1], 0)).toBe(true);
-            if ('overworld' in e.to) expect(e.position[1]).toBeGreaterThan(room.size[1] / 2 - 1);
+            // 海底房间（M3-18）的上浮光柱可在房间任意位置
+            if ('overworld' in e.to && !room.underwater) expect(e.position[1]).toBeGreaterThan(room.size[1] / 2 - 1);
           }
         });
 

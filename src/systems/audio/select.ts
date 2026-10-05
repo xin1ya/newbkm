@@ -31,7 +31,8 @@ export type AmbienceLayer = 'wind' | 'birds' | 'crickets' | 'waves' | 'lap' | 'r
 export const AMBIENCE_LAYERS: readonly AmbienceLayer[] = ['wind', 'birds', 'crickets', 'waves', 'lap', 'rain', 'forest', 'gulls', 'room', 'cave', 'frogs', 'stream', 'insects'];
 
 export interface AmbienceSituation {
-  indoor: 'room' | 'cave' | null;
+  /** undersea：M3-18 海底（低沉水声 + 远处气泡；AudioDirector 另外整体低通） */
+  indoor: 'room' | 'cave' | 'undersea' | null;
   zoneKind: 'town' | 'wild' | 'sea' | 'dungeon-entrance' | null;
   /** 区域 bgm id，用于区分森林 / 海崖等 */
   zoneBgm: string | null;
@@ -62,6 +63,12 @@ export function ambienceMix(a: AmbienceSituation): Record<AmbienceLayer, number>
   }
   if (a.indoor === 'cave') {
     out.cave = 0.7 * duck;
+    return out;
+  }
+  if (a.indoor === 'undersea') {
+    out.cave = 0.45 * duck;
+    out.lap = 0.4 * duck;
+    out.stream = 0.2 * duck;
     return out;
   }
   const wet = a.weather === 'rain' || a.weather === 'storm';

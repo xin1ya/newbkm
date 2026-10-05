@@ -31,6 +31,9 @@ export const LIGHT_PRESETS: Record<LightingPreset, LightPreset> = {
   center: { ambient: '#fff0ee', ambientIntensity: 0.5, sky: '#fff6f4', ground: '#b8958f', key: '#fff4ee', keyIntensity: 1.4, lamp: '#ffd9cf', lampIntensity: 3, fog: '#2a1c1c' },
   mart: { ambient: '#f2f7ff', ambientIntensity: 0.4, sky: '#f6fbff', ground: '#8f9cab', key: '#ffffff', keyIntensity: 1.15, lamp: '#e6f2ff', lampIntensity: 2.2, fog: '#1b2128' },
   gym: { ambient: '#e4f6fb', ambientIntensity: 0.3, sky: '#dff4fb', ground: '#4a8398', key: '#e9fbff', keyIntensity: 1.1, lamp: '#bfe8f5', lampIntensity: 2.6, fog: '#0f2229' },
+  // M3-18 海底：青蓝环境光 + 从水面斜射的冷白主光；abyss 更暗（神殿海沟）
+  undersea: { ambient: '#7fd0e8', ambientIntensity: 0.42, sky: '#a8ecff', ground: '#1e4a5a', key: '#e8fbff', keyIntensity: 1.0, lamp: '#7fe8ff', lampIntensity: 1.6, fog: '#0f4a62' },
+  abyss: { ambient: '#5a90c8', ambientIntensity: 0.26, sky: '#6ab0e0', ground: '#0a1a2a', key: '#bfe8ff', keyIntensity: 0.55, lamp: '#5fd8ff', lampIntensity: 2.2, fog: '#06182a' },
   cave: { ambient: '#8fa3c4', ambientIntensity: 0.22, sky: '#6f84a8', ground: '#2c2a30', key: '#9fb4d8', keyIntensity: 0.5, lamp: '#7fe0ff', lampIntensity: 2.4, fog: '#07090d' },
   market: { ambient: '#fff0d8', ambientIntensity: 0.55, sky: '#fff2dc', ground: '#8f7456', key: '#ffe2b8', keyIntensity: 1.6, lamp: '#ffcf80', lampIntensity: 6, fog: '#2a2015' },
 };
@@ -77,10 +80,15 @@ const DEFAULT_SIZE: Record<FurnitureType, [number, number, number]> = {
   trophy: [2.0, 2.2, 0.5],
   skylight: [4, 0.3, 3],
   poolLight: [0.5, 0.5, 0.2],
+  kelp: [1.2, 3.2, 1.2],
+  coral: [1.4, 1.2, 1.2],
+  clam: [1.3, 0.8, 1.1],
+  ruin: [1.0, 3.0, 1.0],
+  anemone: [0.9, 0.6, 0.9],
 };
 
 /** 默认不生成碰撞的类型 */
-const NO_COLLIDE = new Set<FurnitureType>(['rug', 'poster', 'window', 'pc', 'pool', 'banner', 'emblem', 'beam', 'dais', 'skylight', 'poolLight']);
+const NO_COLLIDE = new Set<FurnitureType>(['rug', 'poster', 'window', 'pc', 'pool', 'banner', 'emblem', 'beam', 'dais', 'skylight', 'poolLight', 'kelp', 'anemone']);
 
 /** 水幕升降速度（每秒水幕高度比例变化） */
 const FOUNTAIN_RATE = 0.8;
@@ -159,7 +167,8 @@ export class InteriorBuilder {
       }
     }
     // 出口地垫 / 楼梯
-    for (const e of room.exits) {
+    // 海底房间的出口由 UnderwaterFx 画成上浮光柱 / 礁石拱门
+    for (const e of room.underwater ? [] : room.exits) {
       const isStairs = 'room' in e.to;
       if (isStairs) group.add(this.stairsMarker(room, e.position));
       else group.add(this.doorMat(e.position));
@@ -1272,6 +1281,116 @@ export class InteriorBuilder {
         lens.userData.dynamic = true;
         g.add(lens);
         g.userData.outline = false;
+        break;
+      }
+      // ———————— M3-18 海底 ————————
+      case 'kelp':
+      case 'anemone': {
+        // 海带 / 海葵会随水流摆动：由 UnderwaterFx 生成（合批会冻结动画），这里只放根部的小礁石
+        const rock = this.mat(shade(c ?? '#4a5a5a', 0.9), 'scene');
+        const m = new THREE.Mesh(this.geo(new THREE.DodecahedronGeometry(0.28, 0)), rock);
+        m.scale.set(w * 0.8, 0.5, d * 0.8);
+        m.position.y = 0.08;
+        g.add(m);
+        break;
+      }
+      case 'coral': {
+        // 枝状珊瑚：主干 + 两级分叉（锥体），顶端圆球；配色 c / a
+        const col = c ?? '#f27a8a';
+        const tip = a ?? '#ffd0d8';
+        const base = this.mat(shade(col, 0.75), 'scene');
+        const mb = new THREE.Mesh(this.geo(new THREE.DodecahedronGeometry(0.35, 0)), this.mat('#6a6a72', 'scene'));
+        mb.scale.set(w * 0.9, 0.45, d * 0.9);
+        mb.position.y = 0.1;
+        g.add(mb);
+        const seed = Math.abs(Math.sin(f.position[0] * 12.9 + f.position[1] * 78.2));
+        const branches = 5 + Math.round(seed * 3);
+        for (let i = 0; i < branches; i++) {
+          const ang = (i / branches) * Math.PI * 2 + seed * 3;
+          const lean = 0.2 + ((i * 0.37 + seed) % 1) * 0.5;
+          const len = h * (0.55 + ((i * 0.61 + seed) % 1) * 0.45);
+          const pivot = new THREE.Group();
+          pivot.position.set(Math.cos(ang) * 0.12 * w, 0.12, Math.sin(ang) * 0.12 * d);
+          pivot.rotation.set(Math.sin(ang) * lean, 0, -Math.cos(ang) * lean);
+          const br = new THREE.Mesh(this.geo(new THREE.CylinderGeometry(0.035, 0.09, len, 6)), this.mat(col, 'scene'));
+          br.position.y = len / 2;
+          const knob = new THREE.Mesh(this.geo(new THREE.SphereGeometry(0.075, 8, 6)), this.mat(tip, 'scene'));
+          knob.position.y = len;
+          pivot.add(br, knob);
+          // 二级分叉
+          if (i % 2 === 0) {
+            const sp = new THREE.Group();
+            sp.position.y = len * 0.5;
+            sp.rotation.set(0.7, 0, 0.3);
+            const sub = new THREE.Mesh(this.geo(new THREE.CylinderGeometry(0.025, 0.05, len * 0.45, 5)), this.mat(col, 'scene'));
+            sub.position.y = len * 0.225;
+            const k2 = new THREE.Mesh(this.geo(new THREE.SphereGeometry(0.055, 8, 6)), this.mat(tip, 'scene'));
+            k2.position.y = len * 0.45;
+            sp.add(sub, k2);
+            pivot.add(sp);
+          }
+          g.add(pivot);
+        }
+        void base;
+        break;
+      }
+      case 'clam': {
+        // 巨蚌：下壳 + 半开上壳 + 珍珠（可调查时珍珠发光）
+        const shell = c ?? '#d8c8e8';
+        const inner = a ?? '#f8e8f0';
+        const lower = new THREE.Mesh(this.geo(new THREE.SphereGeometry(0.5, 16, 8, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2)), this.mat(shell, 'scene'));
+        lower.scale.set(w, h * 0.55, d);
+        lower.position.y = h * 0.28;
+        g.add(lower);
+        const upper = new THREE.Group();
+        const top = new THREE.Mesh(this.geo(new THREE.SphereGeometry(0.5, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2)), this.mat(shade(shell, 0.92), 'scene'));
+        top.scale.set(w, h * 0.5, d);
+        top.position.z = d * 0.5;
+        upper.add(top);
+        upper.position.set(0, h * 0.28, -d * 0.5);
+        upper.rotation.x = -0.75;
+        g.add(upper);
+        // 壳上的放射肋
+        for (let i = -3; i <= 3; i++) {
+          const rib = box(0.04, 0.03, d * 0.9, (i / 3) * w * 0.38, h * 0.08, 0, shade(shell, 0.78));
+          rib.rotation.y = i * 0.12;
+        }
+        const lip = new THREE.Mesh(this.geo(new THREE.CircleGeometry(0.46, 18).rotateX(-Math.PI / 2)), this.mat(inner, 'scene'));
+        lip.scale.set(w, 1, d);
+        lip.position.y = h * 0.29;
+        g.add(lip);
+        if (f.interact) {
+          const pearl = new THREE.Mesh(this.geo(new THREE.SphereGeometry(0.11, 14, 10)), createToonMaterial({ color: '#fff8f0', kind: 'character', emissive: '#fff0e0', emissiveIntensity: 0.6 }));
+          this.mats.set(`pearl-${this.mats.size}`, pearl.material as THREE.Material);
+          pearl.position.set(0, h * 0.29 + 0.1, 0.05);
+          g.add(pearl);
+          g.userData.glow = '#fff0e0';
+        }
+        break;
+      }
+      case 'ruin': {
+        // 沉没神殿的残柱：方础 + 断成两截、微微倾斜的浪纹柱身 + 落在一旁的柱头；藤壶 / 海藻斑点
+        const col = c ?? '#b8c8c8';
+        const acc = a ?? '#3a8aa8';
+        box(w + 0.25, 0.3, d + 0.25, 0, 0.15, 0, shade(col, 0.8));
+        const lower = h * 0.55;
+        cyl(w * 0.38, w * 0.42, lower, 0, 0.3 + lower / 2, 0, col, 10);
+        const upperH = h * 0.32;
+        const up = cyl(w * 0.36, w * 0.38, upperH, w * 0.08, 0.3 + lower + upperH / 2 - 0.04, 0.04, shade(col, 0.95), 10);
+        up.rotation.set(0.12, 0, -0.16);
+        for (const y of [0.9, 1.15]) {
+          const ring = new THREE.Mesh(this.geo(new THREE.TorusGeometry(w * 0.41, 0.035, 5, 16).rotateX(Math.PI / 2)), this.mat(acc, 'scene'));
+          ring.position.y = y;
+          g.add(ring);
+        }
+        const capital = box(w * 1.1, 0.28, d * 1.1, w * 0.9, 0.14, -d * 0.6, shade(col, 0.88));
+        capital.rotation.set(0.1, 0.5, 0.3);
+        for (let i = 0; i < 6; i++) {
+          const ang = i * 2.3;
+          const sp = new THREE.Mesh(this.geo(new THREE.SphereGeometry(0.06, 6, 5)), this.mat(i % 2 ? '#5a8a5a' : '#d8d0c0', 'scene'));
+          sp.position.set(Math.cos(ang) * w * 0.4, 0.5 + ((i * 0.37) % 1) * lower, Math.sin(ang) * w * 0.4);
+          g.add(sp);
+        }
         break;
       }
       case 'aquarium': {
