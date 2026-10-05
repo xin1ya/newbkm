@@ -40,6 +40,14 @@ export const DUNGEON_NPCS: NpcDef[] = [
     name: '考古学者 白桦',
     title: '雷鸣大学',
     appearance: { look: 'researcher', palette: { jacket: '#e8eef4' } },
+    dialogByQuest: [
+      {
+        questId: 'main-snow-ruins',
+        when: 'active',
+        dialog: ['你也是来看圣坛的？最里面的圣坛被一整块寒冰封着，冰里有蓝光。', '石碑上写着「携异变之晶者至此，圣坛之冰自会消融」——你身上那几块碎片，说不定就是钥匙。', '石碑之间的冰裂缝要用「怪力」推石头填平，推错了就出去再进来。'],
+      },
+      { questId: 'main-snow-ruins', when: 'completed', dialog: ['蓝色的碎片……天降异光，碎为数晶。', '赤、橙、紫、蓝，加上石碑说的，应该一共七块。剩下的，恐怕在更北的琉璃群岛。'] },
+    ],
     dialog: [
       '冰川遗迹是古代人为「冰之试炼」修建的神殿。',
       '前厅东边的侧室被冰封住了，听说里面放着当年的祭具。会「碎岩」的话可以撞开冰块。',

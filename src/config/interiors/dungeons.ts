@@ -442,6 +442,7 @@ export const GLACIER_RUINS_INTERIOR: InteriorConfig = {
         { id: 'front', position: [0, 9.65], radius: 0.95, spawnOffset: [0, -1.5], spawnYaw: PI, to: { overworld: true }, label: '出口' },
         { id: 'north', position: [0, -9.2], radius: 1.1, spawnOffset: [0, 1.6], spawnYaw: 0, to: { room: 'tablets', exit: 'south' }, label: '石碑之间' },
       ],
+      triggers: [{ id: 'glacier-enter', position: [0, 7.2], radius: 2.6, script: 'glacier-enter', doneFlag: 'glacier-ruins-entered' }],
       npcs: [
         { id: 'gr-scholar', position: [-6.4, -1.4], yaw: PI / 2 },
         { id: 'gr-trainer-hiker', position: [2.6, 4.6], yaw: -PI / 2 },
@@ -497,6 +498,10 @@ export const GLACIER_RUINS_INTERIOR: InteriorConfig = {
       ],
       smashRocks: { rocks: [[7.4, 5.6]], loot: ICE_LOOT },
       exits: [{ id: 'south', position: [0, 7.9], radius: 1.0, spawnOffset: [0, -1.6], spawnYaw: PI, to: { room: 'tablets', exit: 'north' }, label: '回到石碑之间' }],
+      triggers: [
+        { id: 'glacier-sanctum', position: [0, 5.6], radius: 2.4, script: 'glacier-sanctum', doneFlag: 'glacier-sanctum-reached' },
+        { id: 'glacier-altar', position: [0, -2.0], radius: 2.2, script: 'glacier-altar', doneFlag: 'snow-ruins-shard', repeat: true, showIf: ['glacier-sanctum-reached'] },
+      ],
       npcs: [{ id: 'gr-trainer-researcher', position: [3.2, 0.4], yaw: -PI / 2 }],
     },
   ],

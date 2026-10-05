@@ -90,6 +90,7 @@ export const KEY_ITEMS: KeyItemDef[] = [
   { id: 'anomaly-shard-red', name: '异变碎片·赤', desc: '矿石镇矿洞深处找到的赤红色碎片，摸上去微微发烫。和群岛的异变有关。', pocket: 'key' },
   { id: 'anomaly-shard-orange', name: '异变碎片·橙', desc: '火山镇地热异常的源头找到的橙色碎片，内部像有岩浆在流动。', pocket: 'key' },
   { id: 'anomaly-shard-purple', name: '异变碎片·紫', desc: '原初守护者守护的紫色碎片，和遗迹外的紫色屏障是同一种光。', pocket: 'key' },
+  { id: 'anomaly-shard-blue', name: '异变碎片·蓝', desc: '冰川遗迹圣坛的寒冰里封存的蓝色碎片，握在手里却一点也不冷。', pocket: 'key' },
   { id: 'anomaly-shard-memory', name: '异变碎片·回忆', desc: '三位异变幸存者的讲述凝成的记忆。碎片里映出很久以前的群岛。', pocket: 'key' },
   { id: 'ancient-tablet', name: '古代石板', desc: '矿洞里挖出的石板，刻着群岛古代文明的文字。木兰博士一定很想看看。', pocket: 'key' },
   { id: 'volcano-egg', name: '火山口的蛋', desc: '在火山洞深处找到的温热的蛋。带去温泉乡的培育屋，让温泉的热气孵化它。', pocket: 'key' },

@@ -81,6 +81,7 @@ export const DUNGEON_FURNITURE: InteractionDef[] = [
     kind: 'examine',
     label: '调查圣坛',
     pages: ['圣坛被一整块透明的寒冰封住。', '冰里隐约能看到一团蓝色的光，在缓慢地脉动。', '用手敲了敲……冰坚硬得纹丝不动。'],
+    byFlag: [{ when: 'snow-ruins-shard', pages: ['圣坛上的寒冰已经化开了，只剩一圈浅浅的水痕。', '碎片被取走后，冰晶柱里的蓝光也熄灭了。'] }],
   },
   {
     id: 'gr-crate-sanctum',
