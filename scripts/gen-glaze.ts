@@ -1137,7 +1137,21 @@ for (const p of GLAZE.pois) {
   const h = heightAt(p.position[0], p.position[2]);
   const gi = clamp(Math.round((p.position[0] + HALF) / CELL), 0, N - 1);
   const gj = clamp(Math.round((p.position[2] + HALF) / CELL), 0, N - 1);
-  if (p.kind !== 'dock' && h < 0.3) poiReport.push(`${p.id} 在水里（${h.toFixed(1)} m）`);
+  // 站在栈桥 / 石堤 / 海中石台上的地标不算落水
+  const onDeck = TOWNS.some((t) =>
+    t.props.some((q) => {
+      if (q.type !== 'deck' && q.type !== 'temple-gate') return false;
+      const c = Math.cos(q.yaw);
+      const sn = Math.sin(q.yaw);
+      const dx = p.position[0] - q.position[0];
+      const dz = p.position[2] - q.position[1];
+      const lx = dx * c - dz * sn;
+      const lz = dx * sn + dz * c;
+      const [w, , d] = q.size;
+      return Math.abs(lx) <= w / 2 + 1 && Math.abs(lz) <= d / 2 + 1;
+    }),
+  );
+  if (p.kind !== 'dock' && !onDeck && h < 0.3) poiReport.push(`${p.id} 在水里（${h.toFixed(1)} m）`);
   if (LAVA_MASK[gj * N + gi]! > 0.3) poiReport.push(`${p.id} 在熔岩里`);
 }
 const meta = {

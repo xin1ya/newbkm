@@ -18,6 +18,18 @@ export const GLAZE_FURNITURE: InteractionDef[] = [
   { id: 'ossuary-altar', kind: 'examine', pages: ['祭坛上的徽记泛着淡紫色的光。', '刻文：「魂归琉璃，潮去潮来」。'] },
   { id: 'ossuary-niches', kind: 'examine', pages: ['一排排石龛，每格都放着小小的骨灰坛。', '有些坛子前摆着树果——是宝可梦的。'] },
   { id: 'ossuary-register', kind: 'examine', pages: ['访客登记簿。', '最新一行的字迹很工整：「幽魄 —— 本月祈祷完毕」。'] },
+  // ——— 琉璃镇 · 玻璃工坊 ———
+  { id: 'glassworks-furnace', kind: 'examine', pages: ['熔炉里的玻璃液像蜂蜜一样发着橙光。', '热浪扑面而来。'] },
+  { id: 'glassworks-bench', kind: 'examine', pages: ['吹管、夹钳、木模……', '桌上放着一只刚成形的蓝色玻璃浮球。'] },
+  { id: 'glassworks-shelf', kind: 'examine', pages: ['一排排玻璃风铃和瓶中海。', '瓶子里的琉璃沙随着倾斜慢慢流动，像潮水。'] },
+  { id: 'glassworks-aquarium', kind: 'examine', pages: ['用整块玻璃吹成的圆形鱼缸。', '几只小宝可梦在里面游来游去。'] },
+  { id: 'glassworks-counter', kind: 'examine', pages: ['柜台上的价目牌：「风铃 · 瓶中海 · 玻璃浮球 —— 本店手作」。'] },
+  { id: 'glassworks-sand', kind: 'examine', pages: ['一箱洁白的细沙。', '标签：「东岸白沙 —— 吹玻璃专用」。'] },
+  // ——— 琉璃镇 · 老潜水员之家 ———
+  { id: 'diver-helmet', kind: 'examine', pages: ['一顶黄铜潜水头盔，面窗上还留着海盐的痕迹。'] },
+  { id: 'diver-shells', kind: 'examine', pages: ['贝壳、珊瑚枝、一块刻着浪纹的碎石片。', '石片上的纹样，和石堤尽头那座门楼一模一样。'] },
+  { id: 'diver-chart', kind: 'examine', pages: ['手绘的东海岸海图。', '深水暗区的中央画了一个圈，旁边写着：「门 · 约 30 米」。'] },
+  { id: 'diver-aquarium', kind: 'examine', pages: ['小水缸里养着几株海草和一只寄居蟹。'] },
 ];
 
 export const GLAZE_LANDMARKS: InteractionDef[] = [
@@ -58,4 +70,31 @@ export const GLAZE_LANDMARKS: InteractionDef[] = [
     night: ['幽冥钟楼。', '钟身微微发着青光，仿佛刚刚有谁敲过。', '「此钟每逢午夜自鸣，请勿惊慌。」'],
   },
   { id: 'ghost-noticeboard', kind: 'examine', range: 3, pages: ['幽冥镇告示板。', '「幽冥道馆：馆主幽魄 —— 幽灵属性。」', '「夜间请沿灵火灯笼行走，勿入沼泽。」', '「墓园午夜（0–3 时）谢绝访客。——守墓人」'] },
+  { id: 'glaze-noticeboard', kind: 'examine', range: 3, pages: ['琉璃镇告示板。', '「琉璃道馆：馆主琉璃 —— 水属性。」', '「东岸深水区水深莫测，冲浪请勿越过浮标。」', '「玻璃工坊：手作风铃、瓶中海，欢迎选购。」'] },
+  {
+    id: 'glaze-fountain',
+    kind: 'examine',
+    range: 4,
+    pages: ['水晶喷泉。', '喷泉四周立着几簇天然玻璃晶柱，水花打在上面，折出细碎的彩光。'],
+    night: ['水晶喷泉。', '夜里，晶柱里透出淡淡的蓝光，水声比白天更清楚。'],
+  },
+  {
+    id: 'glaze-lighthouse',
+    kind: 'examine',
+    range: 4,
+    pages: ['琉璃灯塔。', '白色塔身，蓝色塔顶。', '「本灯塔照射东岸深水区。夜间请勿在暗区冲浪。」'],
+    night: ['琉璃灯塔。', '灯光一圈圈扫过东边的深海。', '……有一瞬间，海面下好像也亮了一下。'],
+  },
+  {
+    id: 'glaze-temple-gate',
+    kind: 'examine',
+    range: 5,
+    pages: ['海底神殿之门。', '两根爬满珊瑚的石柱撑着弧形门楣，中央嵌着一颗深蓝色的宝珠。', '门洞被一层蓝光封着，伸手碰上去——冰凉，推不动。', '门后的石阶一级级没入海里。要下去，需要会「潜水」的宝可梦。'],
+  },
+  {
+    id: 'glaze-temple-stele',
+    kind: 'examine',
+    range: 3,
+    pages: ['神殿石碑。', '碑上的古文字已经磨得很浅了。', '能读懂的只有一句：「潮落之门，唯与海同息者可入」。'],
+  },
 ];

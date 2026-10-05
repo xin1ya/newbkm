@@ -65,7 +65,7 @@ export const GLAZE: IslandConfig = {
       id: 'glaze-town',
       name: '琉璃镇',
       kind: 'town',
-      polygon: [[390, 80], [540, 70], [585, 150], [550, 230], [410, 235], [370, 160]],
+      polygon: [[390, 76], [540, 68], [630, 80], [645, 215], [550, 232], [410, 235], [370, 160]],
       bgm: 'town-glaze',
       legacyMapId: 'glaze-town',
       weather: [
@@ -240,7 +240,7 @@ export const GLAZE: IslandConfig = {
     // 幻影镇东口 → 蜃景沙丘 → 琉璃镇南口
     { id: 'road-dunes', surface: 'dirt', width: 5, points: [[-290, 450], [-180, 440], [-40, 422], [100, 404], [240, 384], [340, 330], [400, 280], [430, 232]] },
     // 琉璃镇 → 码头
-    { id: 'road-glaze-dock', surface: 'stone', width: 5, points: [[585, 150], [604, 150]] },
+    { id: 'road-glaze-dock', surface: 'stone', width: 5, points: [[566, 152], [608, 152]] },
     // 彩幽市：冠军之路北口 → 市区 → 联盟大门
     { id: 'road-league-exit', surface: 'stone', width: 7, points: [[40, -640], [40, -700]] },
     { id: 'road-league-gate', surface: 'stone', width: 9, points: [[40, -830], [40, -872]] },
@@ -248,7 +248,7 @@ export const GLAZE: IslandConfig = {
     { id: 'town-mirage-main', surface: 'stone', width: 8, points: [[-470, 450], [-290, 450]] },
     { id: 'town-ghost-main', surface: 'stone', width: 7, points: [[-530, -165], [-345, -165]] },
     { id: 'town-ghost-south', surface: 'stone', width: 6, points: [[-450, -110], [-450, -165]] },
-    { id: 'town-glaze-main', surface: 'stone', width: 8, points: [[372, 155], [585, 150]] },
+    { id: 'town-glaze-main', surface: 'stone', width: 8, points: [[372, 152], [566, 152]] },
     { id: 'town-glaze-south', surface: 'stone', width: 6, points: [[430, 232], [430, 153]] },
     { id: 'town-ever-main', surface: 'stone', width: 9, points: [[40, -700], [40, -830]] },
     { id: 'town-ever-cross', surface: 'stone', width: 7, points: [[-70, -765], [170, -765]] },
@@ -275,8 +275,19 @@ export const GLAZE: IslandConfig = {
     { id: 'ghost-cemetery', kind: 'landmark', name: '幽冥古墓园', position: [-474, 0, -118], showOnMap: true },
     { id: 'ghost-bell-tower', kind: 'landmark', name: '幽冥钟楼', position: [-466, 0, -136] },
     { id: 'ghost-noticeboard', kind: 'landmark', name: '幽冥镇告示板', position: [-445, 0, -169.5] },
+    // M3-13 琉璃镇
+    { id: 'pokecenter-glaze', kind: 'pokecenter', name: '宝可梦中心（琉璃镇）', position: [426, 0, 146], interior: 'pokecenter', showOnMap: true },
+    { id: 'mart-glaze', kind: 'mart', name: '友好商店（琉璃镇）', position: [512, 0, 146], interior: 'mart', showOnMap: true },
+    { id: 'gym-glaze', kind: 'gym', name: '琉璃道馆', position: [486, 0, 118], interior: 'gym-glaze', showOnMap: true },
+    { id: 'glaze-glassworks', kind: 'door', name: '玻璃工坊', position: [506, 0, 158], interior: 'glaze-glassworks', showOnMap: true },
+    { id: 'glaze-diver-house', kind: 'door', name: '老潜水员之家', position: [460, 0, 158], interior: 'glaze-diver-house', showOnMap: true },
+    { id: 'glaze-fountain', kind: 'landmark', name: '水晶喷泉', position: [486, 0, 191.5] },
+    { id: 'glaze-noticeboard', kind: 'landmark', name: '琉璃镇告示板', position: [466, 0, 147.5] },
+    { id: 'glaze-lighthouse', kind: 'landmark', name: '琉璃灯塔', position: [598, 0, 92], showOnMap: true },
+    { id: 'glaze-temple-gate', kind: 'landmark', name: '海底神殿之门', position: [684, 0, 182], showOnMap: true },
+    { id: 'glaze-temple-stele', kind: 'landmark', name: '神殿石碑', position: [597.5, 0, 186] },
     { id: 'mirage-moon-tower', kind: 'landmark', name: '月影塔遗址', position: [-472, 0, 506], showOnMap: true },
-    { id: 'glaze-dock', kind: 'dock', name: '琉璃镇码头', position: [612, 0, 150], showOnMap: true },
+    { id: 'glaze-dock', kind: 'dock', name: '琉璃镇码头', position: [612, 0, 152], showOnMap: true },
     { id: 'victory-road-south', kind: 'cave', name: '冠军之路（南口）', position: [80, 0, -232], interior: 'victory-road', doorYaw: 0, showOnMap: true },
     { id: 'victory-road-north', kind: 'cave', name: '冠军之路（北口）', position: [40, 0, -634], interior: 'victory-road', doorYaw: Math.PI, showOnMap: true },
     { id: 'shadow-cave', kind: 'cave', name: '暗影洞窟', position: [-268, 0, -318], interior: 'shadow-cave', doorYaw: -1.05, showOnMap: true },

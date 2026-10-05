@@ -650,3 +650,223 @@ export function gymGhost(w: number, h: number): PropParts {
   }
   return p;
 }
+
+// ———————————————————————— 琉璃镇（M3-13） ————————————————————————
+const SEA = '#5fc8e0';
+const DEEP = '#2a6aa8';
+const FOAM = '#e8fbff';
+const SEAGLASS = ['#7fd6d8', '#9fe0c8', '#6ab8e8', '#b8e8f0', '#8fc8f8'];
+
+/** 圆形彩色玻璃舷窗（贴在前墙）：外圈铜框 + 十字窗棂 */
+function porthole(p: PropParts, d: number, u: number, y: number, r: number, color: string): void {
+  const z = d / 2 + 0.06;
+  p.glow.push(paint(new THREE.CircleGeometry(r, 14).translate(u, y, z), color));
+  p.solid.push(paint(new THREE.TorusGeometry(r + 0.05, 0.08, 5, 16).translate(u, y, z + 0.02), '#b08a4a'));
+  p.solid.push(boxAt(0.05, r * 2, 0.04, '#b08a4a', u, y, z + 0.03));
+  p.solid.push(boxAt(r * 2, 0.05, 0.04, '#b08a4a', u, y, z + 0.03));
+}
+
+/**
+ * 琉璃屋：珊瑚白灰泥墙 + 海蓝勒脚，四坡顶铺海玻璃瓦（屋脊一排小晶尖），正面圆形彩玻舷窗；
+ * 玻璃雨篷门，门边挂一串渔网玻璃浮球，窗下蓝花槽。
+ */
+export function glassHouse(w: number, h: number, d: number, wall: string, roof: string, seed = 1, accent = DEEP): PropParts {
+  const p = newParts();
+  const r = rng(seed);
+  const wallH = h * 0.55;
+  p.solid.push(box(w + 0.5, 0.4, d + 0.5, '#d8d2c4'));
+  p.solid.push(box(w, wallH, d, wall, 0, 0.4, 0));
+  p.solid.push(box(w + 0.06, 0.7, d + 0.06, accent, 0, 0.4, 0));
+  p.solid.push(box(w + 0.12, 0.14, d + 0.12, shade(wall, -0.08), 0, 0.4 + wallH - 0.14, 0));
+  const rh = h - wallH - 0.4;
+  hip(p, w, rh, d, 0.4 + wallH, roof, 0.45);
+  // 檐口一圈海玻璃瓦当（明暗相间）
+  for (let k = 0; k < Math.round(w / 0.7); k++) {
+    const u = (k / Math.max(1, Math.round(w / 0.7) - 1) - 0.5) * (w + 0.6);
+    p.glow.push(sphere(0.12, k % 2 ? shade(roof, 0.2) : SEAGLASS[k % SEAGLASS.length]!, u, 0.4 + wallH - 0.05, d / 2 + 0.45, 1, 0.7, 0.6, 0));
+  }
+  // 屋脊晶尖
+  const ridgeY = 0.4 + wallH + rh;
+  for (const u of [-0.5, 0, 0.5]) p.glow.push(paint(new THREE.ConeGeometry(0.16, 0.7, 6).translate(u * Math.min(1.4, w * 0.12), ridgeY + 0.2, 0), SEAGLASS[Math.floor(r() * SEAGLASS.length)]!));
+  doorAt(p, w, d, 0, { width: 1.25, height: 2.3, y: 0.4, frame: '#f4f0e6', color: '#3f7a9a', canopy: SEA, lamp: true, step: '#cfc8b8' });
+  // 舷窗
+  for (const u of evenly(w, windowCount(w, 2.8), true)) porthole(p, d, u, 0.4 + wallH * 0.55, 0.5, SEAGLASS[Math.floor(r() * SEAGLASS.length)]!);
+  for (const face of ['left', 'right', 'back'] as const) {
+    const len = face === 'back' ? w : d;
+    for (const u of evenly(len, windowCount(len, 3))) windowAt(p, face, w, d, u, 0.4 + 1.0, { size: [0.9, 1.1], frame: '#f4f0e6', shutters: face === 'back' ? null : accent, rand: r });
+  }
+  // 渔网玻璃浮球
+  const fx = -0.95 - 0.4;
+  p.solid.push(boxAt(0.04, 1.4, 0.04, '#8a7a5a', fx, 0.4 + 1.2, d / 2 + 0.12));
+  for (let k = 0; k < 3; k++) p.glow.push(sphere(0.17, SEAGLASS[(seed + k) % SEAGLASS.length]!, fx + (k - 1) * 0.12, 0.4 + 0.9 + k * 0.38, d / 2 + 0.2, 1, 1, 1, 1));
+  // 花槽（蓝花）
+  for (const s of [-1, 1]) {
+    p.solid.push(box(1.2, 0.4, 0.4, '#e8e2d4', s * (w / 2 - 1.0), 0, d / 2 + 0.35));
+    for (let k = 0; k < 3; k++) p.solid.push(sphere(0.16, k % 2 ? '#6a9ad8' : '#9ac8f0', s * (w / 2 - 1.0) + (k - 1) * 0.35, 0.5, d / 2 + 0.35, 1, 0.8, 1, 0));
+  }
+  return p;
+}
+
+/**
+ * 玻璃工坊：宽体砖石工坊，正面大圆拱开口内是发红光的熔炉，侧面高砖烟囱（顶口透火光）；
+ * 门外木架上陈列一排彩色玻璃瓶 / 玻璃球，屋顶天窗。
+ */
+export function glassworks(w: number, h: number, d: number, wall = '#e8dcc8', roof = '#3f7a9a'): PropParts {
+  const p = newParts();
+  const wallH = h * 0.55;
+  p.solid.push(box(w + 0.6, 0.4, d + 0.6, '#c8bca8'));
+  p.solid.push(box(w, wallH, d, wall, 0, 0.4, 0));
+  // 砖缝
+  for (let y = 0.9; y < wallH; y += 0.55) p.solid.push(box(w + 0.04, 0.05, d + 0.04, shade(wall, -0.12), 0, 0.4 + y, 0));
+  hip(p, w, h - wallH - 0.4, d, 0.4 + wallH, roof, 0.5);
+  // 天窗
+  p.glow.push(boxAt(w * 0.3, 0.08, d * 0.25, '#bfe3f2', 0, 0.4 + wallH + (h - wallH - 0.4) * 0.45, d * 0.12, 0, -0.5));
+  // 圆拱开口 + 熔炉
+  const aw = Math.min(3.4, w * 0.4);
+  p.solid.push(box(aw, 2.6, 0.1, '#2a1e1a', 0, 0.4, d / 2 + 0.03));
+  p.solid.push(paint(new THREE.CircleGeometry(aw / 2, 12, 0, Math.PI).translate(0, 0.4 + 2.6, d / 2 + 0.04), '#2a1e1a'));
+  p.solid.push(paint(new THREE.TorusGeometry(aw / 2 + 0.1, 0.16, 5, 12, Math.PI).translate(0, 0.4 + 2.6, d / 2 + 0.08), shade(wall, -0.2)));
+  p.solid.push(box(1.6, 1.4, 1.2, '#7a4a3a', 0, 0.4, d / 2 - 1.0));
+  p.glow.push(paint(new THREE.CircleGeometry(0.45, 10).translate(0, 0.4 + 0.75, d / 2 - 0.38), '#ff8a3a'));
+  p.glow.push(sphere(0.6, '#ffb060', 0, 0.4 + 0.6, d / 2 - 0.2, 1.4, 0.6, 0.3, 1));
+  // 烟囱
+  const cx = w / 2 - 0.9;
+  p.solid.push(box(1.1, h + 2.2, 1.1, '#9a5a44', cx, 0, -d / 2 + 0.9));
+  for (let k = 1; k < h + 2; k += 0.6) p.solid.push(box(1.14, 0.05, 1.14, '#7a4434', cx, k, -d / 2 + 0.9));
+  p.glow.push(box(0.7, 0.12, 0.7, '#ff7a2a', cx, h + 2.2, -d / 2 + 0.9));
+  // 陈列架 + 玻璃器
+  for (const s of [-1, 1]) {
+    const x = s * (aw / 2 + 1.3);
+    p.solid.push(box(1.6, 0.06, 0.5, '#8a6a48', x, 0.9, d / 2 + 0.4));
+    p.solid.push(box(1.6, 0.06, 0.5, '#8a6a48', x, 1.5, d / 2 + 0.4));
+    for (const sy of [-0.75, 0.75]) p.solid.push(box(0.06, 1.6, 0.5, '#8a6a48', x + sy, 0, d / 2 + 0.4));
+    for (let k = 0; k < 4; k++) {
+      const c = SEAGLASS[(k + (s > 0 ? 2 : 0)) % SEAGLASS.length]!;
+      p.glow.push(sphere(0.13, c, x - 0.5 + k * 0.33, 1.08, d / 2 + 0.4, 1, 1.2, 1, 1));
+      p.glow.push(cyl(0.05, 0.1, 0.32, 6, c, x - 0.5 + k * 0.33, 1.56, d / 2 + 0.4));
+    }
+  }
+  // 招牌：玻璃瓶剪影
+  p.solid.push(box(2.0, 0.6, 0.1, '#3f7a9a', 0, 0.4 + 3.6, d / 2 + 0.06));
+  p.glow.push(cyl(0.1, 0.2, 0.45, 6, '#9fe0c8', 0, 0.4 + 3.66, d / 2 + 0.16));
+  return p;
+}
+
+/**
+ * 水系道馆「琉璃」：白石圆形馆体，外绕一圈环形水渠（四只喷泉口），上覆分瓣玻璃穹顶（金属肋 + 顶部水滴形晶体）；
+ * 正门两侧立海浪纹柱，门楣上是雨滴徽记。
+ */
+export function gymWater(w: number, h: number): PropParts {
+  const p = newParts();
+  const half = w / 2;
+  const wallH = h * 0.38;
+  p.solid.push(paint(new THREE.CylinderGeometry(half + 1.6, half + 1.8, 0.6, 32).translate(0, 0.3, 0), '#e4e0d8'));
+  // 环形水渠：外沿石栏 + 水面
+  p.solid.push(paint(new THREE.TorusGeometry(half + 0.9, 0.18, 5, 40).rotateX(Math.PI / 2).translate(0, 0.85, 0), '#f4f0e8'));
+  p.glow.push(paint(new THREE.RingGeometry(half * 0.9 + 0.05, half + 0.8, 40).rotateX(-Math.PI / 2).translate(0, 0.66, 0), SEA));
+  // 馆体
+  p.solid.push(paint(new THREE.CylinderGeometry(half * 0.9, half * 0.92, wallH, 32).translate(0, 0.6 + wallH / 2, 0), '#f6f4ee'));
+  p.solid.push(paint(new THREE.CylinderGeometry(half * 0.93, half * 0.93, 0.5, 32).translate(0, 0.6 + wallH, 0), DEEP));
+  // 海浪纹带
+  for (let k = 0; k < 24; k++) {
+    const a = (k / 24) * Math.PI * 2;
+    p.solid.push(paint(new THREE.TorusGeometry(0.5, 0.09, 4, 8, Math.PI).rotateY(a + Math.PI / 2).translate(Math.sin(a) * half * 0.905, 0.6 + wallH * 0.75, Math.cos(a) * half * 0.905), SEA));
+  }
+  // 竖窗
+  for (let k = 0; k < 12; k++) {
+    const a = (k / 12) * Math.PI * 2;
+    if (Math.cos(a) > 0.95) continue;
+    p.glow.push(boxAt(0.9, wallH * 0.42, 0.1, '#bfe8f8', Math.sin(a) * half * 0.905, 0.6 + wallH * 0.18 + wallH * 0.21, Math.cos(a) * half * 0.905, a));
+  }
+  // 玻璃穹顶 + 金属肋
+  const dy = 0.6 + wallH + 0.5;
+  const dr = half * 0.88;
+  p.glow.push(paint(new THREE.SphereGeometry(dr, 24, 10, 0, Math.PI * 2, 0, Math.PI / 2).scale(1, 0.62, 1).translate(0, dy, 0), '#a8e4f0'));
+  for (let k = 0; k < 12; k++) {
+    const a = (k / 12) * Math.PI * 2;
+    const g = new THREE.TorusGeometry(dr, 0.12, 4, 16, Math.PI / 2).rotateZ(0).scale(1, 0.62, 1);
+    p.solid.push(paint(g.rotateY(a).translate(0, dy, 0), '#d8dce4'));
+  }
+  p.solid.push(paint(new THREE.TorusGeometry(dr * 0.35, 0.14, 4, 20).rotateX(Math.PI / 2).translate(0, dy + dr * 0.62 * 0.94, 0), '#d8dce4'));
+  // 顶部水滴晶体
+  const ty = dy + dr * 0.62;
+  p.glow.push(sphere(0.9, '#6ad0f0', 0, ty + 1.2, 0, 1, 1, 1, 2));
+  p.glow.push(paint(new THREE.ConeGeometry(0.88, 1.6, 16).translate(0, ty + 2.4, 0), '#6ad0f0'));
+  p.solid.push(cyl(0.3, 0.4, 0.6, 8, '#d8dce4', 0, ty, 0));
+  // 喷泉口：四只鱼形出水口 + 水柱
+  for (let k = 0; k < 4; k++) {
+    const a = (k / 4) * Math.PI * 2 + Math.PI / 4;
+    const x = Math.sin(a) * (half + 0.4);
+    const z = Math.cos(a) * (half + 0.4);
+    p.solid.push(cyl(0.35, 0.45, 0.9, 8, '#e4e0d8', x, 0.6, z));
+    p.glow.push(paint(new THREE.ConeGeometry(0.22, 2.2, 8).translate(x, 1.5 + 1.1, z), FOAM));
+    p.glow.push(sphere(0.35, FOAM, x, 3.8, z, 1.2, 0.6, 1.2, 1));
+  }
+  // 正门：栈桥跨过水渠，两侧浪纹柱 + 雨滴徽记
+  const fz = half * 0.9;
+  p.solid.push(box(4.2, 0.3, half * 0.2 + 2.2, '#e4e0d8', 0, 0.6, fz + (half * 0.2 + 2.2) / 2 - 0.4));
+  p.solid.push(box(4.6, 4.6, 1.0, '#f6f4ee', 0, 0.6, fz - 0.2));
+  p.solid.push(box(3.0, 3.8, 0.1, '#2a5a8a', 0, 0.6, fz + 0.32));
+  p.glow.push(box(0.08, 3.6, 0.06, '#bfe8f8', 0, 0.7, fz + 0.38));
+  p.solid.push(paint(new THREE.CylinderGeometry(2.3, 2.3, 1.0, 16, 1, false, -Math.PI / 2, Math.PI).rotateX(Math.PI / 2).translate(0, 0.6 + 4.6, fz + 0.3), '#f6f4ee'));
+  p.glow.push(sphere(0.55, '#4ab8f0', 0, 0.6 + 5.2, fz + 0.9, 1, 1, 0.4, 1));
+  p.glow.push(paint(new THREE.ConeGeometry(0.54, 0.9, 12).scale(1, 1, 0.4).translate(0, 0.6 + 5.95, fz + 0.9), '#4ab8f0'));
+  for (const s of [-1, 1]) {
+    const x = s * 3.0;
+    p.solid.push(cyl(0.45, 0.5, 5.2, 10, '#f6f4ee', x, 0.6, fz + 0.6));
+    for (let k = 0; k < 4; k++) p.solid.push(paint(new THREE.TorusGeometry(0.5, 0.07, 4, 10).rotateX(Math.PI / 2).translate(x, 1.4 + k * 1.1, fz + 0.6), SEA));
+    p.glow.push(sphere(0.32, '#6ad0f0', x, 6.1, fz + 0.6, 1, 1.2, 1, 1));
+  }
+  return p;
+}
+
+/**
+ * 海底神殿之门：海中石台上的古代门楼。两根爬满珊瑚与藤壶的粗石柱，弧形门楣中央嵌着封印宝珠（深蓝微光），
+ * 门楣刻浪纹；门前石阶一级级没入海里（潜水入口，M3-18 开放）。石台四角立着矮石灯。
+ */
+export function templeGate(w: number, h: number, seed = 1): PropParts {
+  const p = newParts();
+  const r = rng(seed);
+  const stone = '#9aa8a8';
+  const half = w / 2;
+  // 石台（深入水下）
+  p.solid.push(box(w + 4, 3.4, 9, shade(stone, -0.15), 0, -3.0, 0));
+  p.solid.push(box(w + 3.4, 0.3, 8.4, stone, 0, 0.4, 0));
+  // 前方没入海里的台阶（+Z 方向）
+  for (let k = 0; k < 6; k++) p.solid.push(box(w - 0.5, 0.4, 1.0, shade(stone, -0.05 - k * 0.04), 0, 0.4 - (k + 1) * 0.42, 4.2 + k * 0.9));
+  // 石柱
+  for (const s of [-1, 1]) {
+    const x = s * (half - 0.4);
+    p.solid.push(box(1.8, 0.5, 1.8, shade(stone, -0.1), x, 0.7, 0));
+    p.solid.push(cyl(0.65, 0.75, h - 1.6, 10, stone, x, 1.2, 0));
+    for (let k = 0; k < 5; k++) p.solid.push(paint(new THREE.TorusGeometry(0.72, 0.05, 4, 12).rotateX(Math.PI / 2).translate(x, 1.6 + k * (h - 2.6) / 5, 0), shade(stone, -0.18)));
+    // 珊瑚 / 藤壶
+    for (let k = 0; k < 7; k++) {
+      const a = r() * Math.PI * 2;
+      const y = 1.3 + r() * (h * 0.45);
+      p.solid.push(sphere(0.18 + r() * 0.16, k % 3 ? '#e88a8a' : '#f0c8a0', x + Math.cos(a) * 0.72, y, Math.sin(a) * 0.72, 1, 0.7, 1, 0));
+    }
+    p.solid.push(box(1.7, 0.4, 1.7, shade(stone, -0.1), x, h - 0.4, 0));
+  }
+  // 弧形门楣 + 浪纹
+  p.solid.push(paint(new THREE.TorusGeometry(half - 0.4, 0.55, 6, 18, Math.PI).translate(0, h - 0.2, 0), stone));
+  p.solid.push(box(w + 1.2, 0.6, 1.4, shade(stone, -0.08), 0, h - 0.2, 0));
+  for (let k = 0; k < 7; k++) p.solid.push(paint(new THREE.TorusGeometry(0.35, 0.06, 4, 8, Math.PI).translate((k - 3) * (w / 8), h - 0.05, 0.72), SEA));
+  // 封印宝珠
+  const oy = h - 0.2 + half - 0.4;
+  p.solid.push(paint(new THREE.TorusGeometry(0.9, 0.16, 6, 18).translate(0, oy, 0.1), '#c9a86a'));
+  p.glow.push(sphere(0.75, '#2a7ac8', 0, oy, 0.1, 1, 1, 0.7, 2));
+  p.glow.push(sphere(0.3, '#bfe8ff', 0.2, oy + 0.2, 0.55, 1, 1, 0.5, 1));
+  // 门内：水面泛光（门洞里一层蓝光幕，提示入口）
+  p.glow.push(boxAt(w - 2.4, h - 1.8, 0.06, '#5fc8e0', 0, 0.6 + (h - 1.8) / 2, -0.2));
+  // 四角石灯
+  for (const [sx, sz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]] as const) {
+    const x = sx * (half + 1.2);
+    const z = sz * 3.4;
+    p.solid.push(box(0.6, 1.2, 0.6, stone, x, 0.7, z));
+    p.solid.push(box(0.9, 0.2, 0.9, shade(stone, -0.1), x, 1.9, z));
+    p.glow.push(box(0.4, 0.4, 0.4, '#8fe8ff', x, 2.1, z));
+    p.solid.push(paint(new THREE.ConeGeometry(0.6, 0.5, 4).rotateY(Math.PI / 4).translate(x, 2.75, z), shade(stone, -0.1)));
+  }
+  return p;
+}

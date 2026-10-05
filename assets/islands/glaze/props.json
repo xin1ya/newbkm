@@ -4294,6 +4294,1189 @@
    ]
   },
   {
+   "type": "pokecenter",
+   "position": [
+    426,
+    139.4
+   ],
+   "yaw": 0,
+   "size": [
+    15,
+    7.5,
+    12
+   ],
+   "ref": "pokecenter-glaze",
+   "color": "#fbf7f0",
+   "roof": "#e25a4f"
+  },
+  {
+   "type": "mart",
+   "position": [
+    512,
+    140.4
+   ],
+   "yaw": 0,
+   "size": [
+    12,
+    6.5,
+    10
+   ],
+   "ref": "mart-glaze",
+   "color": "#f4f6f8",
+   "roof": "#3f7fd6"
+  },
+  {
+   "type": "gym",
+   "ref": "gym-glaze",
+   "position": [
+    486,
+    103
+   ],
+   "yaw": 0,
+   "size": [
+    28,
+    16,
+    28
+   ],
+   "variant": "water"
+  },
+  {
+   "type": "house",
+   "position": [
+    406,
+    141.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    7,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f6f2ea",
+   "roof": "#5fb8c8",
+   "seed": 4501,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    446,
+    141.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f2ece2",
+   "roof": "#4a9ab8",
+   "seed": 4502,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    530,
+    141.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.8,
+    8
+   ],
+   "variant": "glass",
+   "color": "#eef4f2",
+   "roof": "#7fcfc0",
+   "seed": 4503,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    547,
+    141.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f6f2ea",
+   "roof": "#4a9ab8",
+   "seed": 4504,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    410,
+    119.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.8,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f2ece2",
+   "roof": "#7fcfc0",
+   "seed": 4505,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    446,
+    119.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    7,
+    8
+   ],
+   "variant": "glass",
+   "color": "#eef4f2",
+   "roof": "#5fb8c8",
+   "seed": 4506,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    526,
+    119.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f6f2ea",
+   "roof": "#7fcfc0",
+   "seed": 4507,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    544,
+    119.4
+   ],
+   "yaw": 0,
+   "size": [
+    9,
+    6.8,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f2ece2",
+   "roof": "#5fb8c8",
+   "seed": 4508,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    405,
+    162.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7,
+    8
+   ],
+   "variant": "glass",
+   "color": "#eef4f2",
+   "roof": "#4a9ab8",
+   "seed": 4511,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    418,
+    162.1
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    8,
+    6.6,
+    7
+   ],
+   "variant": "glass",
+   "color": "#f6f2ea",
+   "roof": "#5fb8c8",
+   "seed": 4512,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    443,
+    162.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f2ece2",
+   "roof": "#7fcfc0",
+   "seed": 4513,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    460,
+    162.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7,
+    8
+   ],
+   "variant": "glass",
+   "color": "#eef4f2",
+   "roof": "#4a9ab8",
+   "seed": 4514,
+   "accent": "#2a6aa8",
+   "ref": "glaze-diver-house"
+  },
+  {
+   "type": "house",
+   "position": [
+    506,
+    163.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    12,
+    7.5,
+    10
+   ],
+   "variant": "glassworks",
+   "ref": "glaze-glassworks",
+   "color": "#e8dcc8",
+   "roof": "#3f7a9a"
+  },
+  {
+   "type": "house",
+   "position": [
+    526,
+    162.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.8,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f6f2ea",
+   "roof": "#7fcfc0",
+   "seed": 4515,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    543,
+    162.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f2ece2",
+   "roof": "#5fb8c8",
+   "seed": 4516,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    412,
+    188.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7,
+    8
+   ],
+   "variant": "glass",
+   "color": "#eef4f2",
+   "roof": "#5fb8c8",
+   "seed": 4517,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    448,
+    188.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    6.8,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f6f2ea",
+   "roof": "#4a9ab8",
+   "seed": 4518,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    530,
+    188.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7,
+    8
+   ],
+   "variant": "glass",
+   "color": "#f2ece2",
+   "roof": "#7fcfc0",
+   "seed": 4519,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "house",
+   "position": [
+    548,
+    188.6
+   ],
+   "yaw": 3.141592653589793,
+   "size": [
+    9,
+    7.2,
+    8
+   ],
+   "variant": "glass",
+   "color": "#eef4f2",
+   "roof": "#4a9ab8",
+   "seed": 4520,
+   "accent": "#2a6aa8"
+  },
+  {
+   "type": "fountain",
+   "position": [
+    486,
+    196
+   ],
+   "yaw": 0,
+   "size": [
+    7,
+    2,
+    7
+   ],
+   "color": "#8fdcf0"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    478,
+    190
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    1.6
+   ],
+   "seed": 4530,
+   "color": "#8fdcdc"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    494,
+    190
+   ],
+   "yaw": 1.7,
+   "size": [
+    1.6,
+    1.8,
+    1.6
+   ],
+   "seed": 4531,
+   "color": "#9fe0c8"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    478,
+    203
+   ],
+   "yaw": 3.4,
+   "size": [
+    1.6,
+    1.7,
+    1.6
+   ],
+   "seed": 4532,
+   "color": "#8fc8f8"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    494,
+    203
+   ],
+   "yaw": 5.1,
+   "size": [
+    1.6,
+    1.5,
+    1.6
+   ],
+   "seed": 4533,
+   "color": "#8fdcdc"
+  },
+  {
+   "type": "bench",
+   "position": [
+    474,
+    196
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    2.2,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "bench",
+   "position": [
+    498,
+    196
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    2.2,
+    0.9,
+    0.6
+   ]
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    486,
+    210
+   ],
+   "yaw": 0,
+   "size": [
+    8,
+    0.5,
+    2.4
+   ],
+   "seed": 4535
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    470,
+    172
+   ],
+   "yaw": 0,
+   "size": [
+    6,
+    0.5,
+    2
+   ],
+   "seed": 4536
+  },
+  {
+   "type": "flowerbed",
+   "position": [
+    502,
+    176
+   ],
+   "yaw": 0,
+   "size": [
+    4,
+    0.5,
+    2
+   ],
+   "seed": 4537
+  },
+  {
+   "type": "sign",
+   "ref": "gym-glaze-sign",
+   "position": [
+    495,
+    119
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "noticeboard",
+   "ref": "glaze-noticeboard",
+   "position": [
+    466,
+    146.5
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    2.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    396,
+    148
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    416,
+    156
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    436,
+    148
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    456,
+    156
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    476,
+    148
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    496,
+    156
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    520,
+    148
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    538,
+    156
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    556,
+    148
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    574,
+    156
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    592,
+    148
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    482,
+    186
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "lamp",
+   "position": [
+    490,
+    206
+   ],
+   "yaw": 0,
+   "size": [
+    0.3,
+    4.2,
+    0.3
+   ]
+  },
+  {
+   "type": "tree",
+   "position": [
+    396,
+    128
+   ],
+   "yaw": 0,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 4540
+  },
+  {
+   "type": "tree",
+   "position": [
+    458,
+    118
+   ],
+   "yaw": 1.7,
+   "size": [
+    1,
+    5.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 4571
+  },
+  {
+   "type": "tree",
+   "position": [
+    556,
+    120
+   ],
+   "yaw": 3.4,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 4602
+  },
+  {
+   "type": "tree",
+   "position": [
+    398,
+    196
+   ],
+   "yaw": 5.1,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 4633
+  },
+  {
+   "type": "tree",
+   "position": [
+    470,
+    214
+   ],
+   "yaw": 0.5168146928204136,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 4664
+  },
+  {
+   "type": "tree",
+   "position": [
+    512,
+    214
+   ],
+   "yaw": 2.2168146928204138,
+   "size": [
+    1,
+    5,
+    1
+   ],
+   "variant": "shrub",
+   "seed": 4695
+  },
+  {
+   "type": "tree",
+   "position": [
+    560,
+    196
+   ],
+   "yaw": 3.916814692820413,
+   "size": [
+    1,
+    6,
+    1
+   ],
+   "variant": "round",
+   "seed": 4726
+  },
+  {
+   "type": "tree",
+   "position": [
+    520,
+    104
+   ],
+   "yaw": 5.616814692820414,
+   "size": [
+    1,
+    5.5,
+    1
+   ],
+   "variant": "round",
+   "seed": 4757
+  },
+  {
+   "type": "well",
+   "position": [
+    468,
+    128
+   ],
+   "yaw": 0,
+   "size": [
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "type": "barrel",
+   "position": [
+    516,
+    170
+   ],
+   "yaw": 0,
+   "size": [
+    0.8,
+    1,
+    0.8
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    497,
+    170
+   ],
+   "yaw": 0.3,
+   "size": [
+    1.1,
+    1.1,
+    1.1
+   ]
+  },
+  {
+   "type": "lighthouse",
+   "position": [
+    603,
+    86
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    5,
+    22,
+    5
+   ],
+   "color": "#fbfbf6",
+   "roof": "#2a6aa8",
+   "ref": "glaze-lighthouse",
+   "variant": "keeper"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    596,
+    112
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.4,
+    1.6
+   ],
+   "seed": 4550,
+   "color": "#8fdcdc"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    608,
+    128
+   ],
+   "yaw": 1.7,
+   "size": [
+    1.6,
+    1.2,
+    1.6
+   ],
+   "seed": 4551,
+   "color": "#9fe0c8"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    594,
+    176
+   ],
+   "yaw": 3.4,
+   "size": [
+    1.6,
+    1.6,
+    1.6
+   ],
+   "seed": 4552,
+   "color": "#8fc8f8"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    606,
+    204
+   ],
+   "yaw": 5.1,
+   "size": [
+    1.6,
+    1.3,
+    1.6
+   ],
+   "seed": 4553,
+   "color": "#8fdcdc"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    598,
+    220
+   ],
+   "yaw": 6.8,
+   "size": [
+    1.6,
+    1.5,
+    1.6
+   ],
+   "seed": 4554,
+   "color": "#9fe0c8"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    612,
+    104
+   ],
+   "yaw": 8.5,
+   "size": [
+    1.6,
+    1.1,
+    1.6
+   ],
+   "seed": 4555,
+   "color": "#8fc8f8"
+  },
+  {
+   "type": "deck",
+   "position": [
+    634,
+    152
+   ],
+   "yaw": 0,
+   "size": [
+    52,
+    0.4,
+    5
+   ],
+   "y": 1.6,
+   "rails": "ns",
+   "gaps": []
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    646,
+    146.5
+   ],
+   "yaw": 1.7207963267948965,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 0.2
+  },
+  {
+   "type": "rowboat",
+   "position": [
+    652,
+    157.5
+   ],
+   "yaw": 1.3707963267948966,
+   "size": [
+    1.6,
+    0.6,
+    4
+   ],
+   "y": 0.2
+  },
+  {
+   "type": "boat",
+   "position": [
+    664,
+    145
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    4,
+    3.5,
+    11
+   ],
+   "y": 0,
+   "color": "#f5f5f0",
+   "roof": "#2a6aa8",
+   "collide": true
+  },
+  {
+   "type": "bollard",
+   "position": [
+    640,
+    149.8
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.7,
+    0.4
+   ],
+   "y": 1.6
+  },
+  {
+   "type": "bollard",
+   "position": [
+    656,
+    154.2
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    0.7,
+    0.4
+   ],
+   "y": 1.6
+  },
+  {
+   "type": "net-rack",
+   "position": [
+    598,
+    142
+   ],
+   "yaw": 0,
+   "size": [
+    3,
+    2,
+    0.3
+   ]
+  },
+  {
+   "type": "crate",
+   "position": [
+    600,
+    160
+   ],
+   "yaw": 0.5,
+   "size": [
+    1.2,
+    1.2,
+    1.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "glaze-dock-sign",
+   "position": [
+    604,
+    148
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "deck",
+   "position": [
+    642,
+    182
+   ],
+   "yaw": 0,
+   "size": [
+    88,
+    0.4,
+    3.6
+   ],
+   "y": 1.4,
+   "rails": "ns",
+   "gaps": []
+  },
+  {
+   "type": "temple-gate",
+   "ref": "glaze-temple-gate",
+   "position": [
+    690,
+    182
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    8,
+    9,
+    8
+   ],
+   "y": 0.7,
+   "seed": 4560
+  },
+  {
+   "type": "stele",
+   "ref": "glaze-temple-stele",
+   "position": [
+    596,
+    186
+   ],
+   "yaw": 1.5707963267948966,
+   "size": [
+    1.6,
+    2.4,
+    0.8
+   ]
+  },
+  {
+   "type": "lantern",
+   "position": [
+    596,
+    178
+   ],
+   "yaw": 0,
+   "size": [
+    0.4,
+    2.2,
+    0.4
+   ],
+   "color": "#8fe8ff"
+  },
+  {
    "type": "sign",
    "ref": "mirage-obelisk",
    "position": [
@@ -4341,6 +5524,20 @@
    "position": [
     -466,
     -136
+   ],
+   "yaw": 0,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "glaze-fountain",
+   "position": [
+    486,
+    191.5
    ],
    "yaw": 0,
    "size": [
@@ -4440,7 +5637,7 @@
     640,
     300
    ],
-   "yaw": -2.90604767286893,
+   "yaw": -2.784680717238123,
    "size": [
     1.6,
     1.6,
@@ -7390,17 +8587,17 @@
   {
    "type": "glass-crystal",
    "position": [
-    529.483964680694,
-    -1.9514422677457333
+    608.3609543601051,
+    196.42266530543566
    ],
-   "yaw": 3.7458942775893957,
+   "yaw": 5.119164360575378,
    "size": [
-    2.2518909920006993,
-    2.7141836930066345,
-    1.917199981585145
+    2.416708213463426,
+    2.5377096893265843,
+    1.6202372997999193
    ],
    "seed": 6610,
-   "color": "#bfeef0"
+   "color": "#8fdcdc"
   },
   {
    "type": "glass-crystal",
@@ -7435,29 +8632,29 @@
   {
    "type": "glass-crystal",
    "position": [
-    597.4714578455314,
-    172.49040712602437
+    659.2294624494389,
+    37.62033210135996
    ],
-   "yaw": 2.161484565306455,
+   "yaw": 1.4445405252743513,
    "size": [
-    3.180593749880791,
-    3.2898702891543508,
-    2.300283134356141
+    1.7766136411577464,
+    2.2175139987841246,
+    2.384845795482397
    ],
    "seed": 6613,
-   "color": "#8fdcdc"
+   "color": "#bfeef0"
   },
   {
    "type": "glass-crystal",
    "position": [
-    401.94573977496475,
-    -28.371033677831292
+    397.9733200278133,
+    31.394945019856095
    ],
-   "yaw": 3.0805197472684087,
+   "yaw": 3.5846575356647374,
    "size": [
-    2.723383102566004,
-    2.439612220786512,
-    2.530077760666609
+    1.6378123473376036,
+    2.6643441295251247,
+    2.5419747665524484
    ],
    "seed": 6614,
    "color": "#8fdcdc"
@@ -7465,14 +8662,14 @@
   {
    "type": "glass-crystal",
    "position": [
-    583.7190070562065,
-    0.037776799872517586
+    374.6766469348222,
+    -31.844584830105305
    ],
-   "yaw": 0.2425509019754827,
+   "yaw": 4.743237101174891,
    "size": [
-    2.136836270987988,
-    3.212702076882124,
-    2.0578582748770717
+    2.0578582748770717,
+    1.9895131757482885,
+    1.8882551021873952
    ],
    "seed": 6615,
    "color": "#8fdcdc"
@@ -7480,14 +8677,14 @@
   {
    "type": "glass-crystal",
    "position": [
-    428.46058676950634,
-    -98.07983925566077
+    591.8449993710965,
+    -55.992711167782545
    ],
-   "yaw": 5.766024796701968,
+   "yaw": 0.8142046934366226,
    "size": [
-    1.7768081638962032,
-    3.2719253983348606,
-    1.6346400290727616
+    2.545777660980821,
+    1.4675915213301778,
+    2.5610656000673773
    ],
    "seed": 6616,
    "color": "#bfeef0"
@@ -7495,14 +8692,14 @@
   {
    "type": "glass-crystal",
    "position": [
-    588.2530800160021,
-    247.19051467254758
+    406.50081464089453,
+    -2.034613788127899
    ],
-   "yaw": 1.6175466529093683,
+   "yaw": 6.0052106268052015,
    "size": [
-    1.8495761755853892,
-    2.2794380722567436,
-    2.832467282190919
+    2.3387465171515944,
+    3.7672545054927467,
+    2.992384515330196
    ],
    "seed": 6617,
    "color": "#8fdcdc"

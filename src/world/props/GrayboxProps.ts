@@ -257,6 +257,10 @@ export class GrayboxProps {
                             ? GL.cryptHouse(w, h, d, wall, roof, seed, p.accent)
                             : p.variant === 'ossuary'
                               ? GL.ossuary(w, h, d, wall, roof)
+                              : p.variant === 'glass'
+                                ? GL.glassHouse(w, h, d, wall, roof, seed, p.accent)
+                                : p.variant === 'glassworks'
+                                  ? GL.glassworks(w, h, d, wall, roof)
                         : T.house(w, h, d, wall, roof, p.variant, seed, p.accent)
             : p.type === 'lab'
               ? T.lab(w, h, d, wall, roof)
@@ -311,6 +315,7 @@ export class GrayboxProps {
           flying: () => TH.gymFlying(w, h),
           mirage: () => GL.gymMirage(w, h),
           ghost: () => GL.gymGhost(w, h),
+          water: () => GL.gymWater(w, h),
         };
         this.place((gymParts[p.variant ?? ''] ?? (() => T.gym(w, h, wall, roof)))(), x, y, z, yaw);
         this.colAdd('props', { kind: 'circle', x, z, r: w / 2, y0: y, y1: y + h, tag: `building:${p.ref}` });
@@ -851,6 +856,20 @@ export class GrayboxProps {
         if (collide) this.addBox(x, z, w + 0.6, w + 0.6, yaw, ground, ground + h, 'bell-tower');
         this.lampPositions.push(new THREE.Vector3(x, ground + h * 0.7, z));
         return true;
+      // ——— M3-13 琉璃镇 ———
+      case 'temple-gate': {
+        // 海中石台：y = 海面（石台顶 +0.7 可站立）；门洞被封印光幕挡住（M3-18 潜水开放）
+        const gy = p.y ?? 0;
+        this.place(GL.templeGate(w, h, seed), x, gy, z, yaw);
+        this.addBox(x, z, w + 3.4, 8.4, yaw, gy - 4, gy + 0.7, 'temple-platform', true);
+        for (const sx of [-1, 1]) {
+          const [cx, cz] = at(sx * (w / 2 - 0.4), 0);
+          this.addBox(cx, cz, 1.8, 1.8, yaw, gy, gy + h, 'temple-pillar');
+        }
+        this.addBox(x, z, w - 2.4, 0.4, yaw, gy, gy + h, 'temple-seal');
+        this.lampPositions.push(new THREE.Vector3(x, gy + h + w / 2 - 0.6, z));
+        return true;
+      }
       case 'ghost-lamp': {
         this.place(GL.ghostLamp(h, p.color), x, ground, z, yaw);
         circle(0.2, h, 'ghost-lamp');

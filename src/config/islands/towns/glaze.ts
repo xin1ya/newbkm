@@ -13,6 +13,11 @@
  *   镇南是沼泽古墓园（铁栅围起的墓碑群 + 鬼火），零点到三点墓园里的鬼火会多出一倍（分时摆放物）；
  *   钟楼与灵堂在南街两侧；西边沼泽水塘上有两座高脚屋。幽灵系道馆「幽魄」在主街北侧。
  *
+ * - 琉璃镇（东岸·台地 7 m）：玻璃海岸上的港镇。珊瑚白灰泥墙、海玻璃瓦四坡顶、圆形彩玻舷窗；
+ *   主街 z = 152 东接下坡路到琉璃沙滩，码头栈桥伸进东海；水系道馆「琉璃」在主街北侧（环形水渠 + 玻璃穹顶）。
+ *   镇南是水晶喷泉广场；玻璃工坊在主街南侧。沙滩北头立着灯塔；
+ *   海底神殿之门：沙滩外一条长石堤通向海中石台上的古门楼（门洞封印，M3-18 潜水开放），门外即东岸深水暗区。
+ *
  * 门口坐标与 glaze.ts 的 POI 一一对应（atDoor 反推建筑中心；道馆 = 门口沿朝向后退 w/2 + 1）。
  */
 import type { PropInstance, TownLayout, Vec2, Vec3 } from '../types';
@@ -277,4 +282,99 @@ export const GHOST_TOWN: TownLayout = {
   props: ghostTown,
 };
 
-export const GLAZE_TOWNS: TownLayout[] = [MIRAGE_TOWN, GHOST_TOWN];
+// ———————————————————————— 琉璃镇 ————————————————————————
+// 主街 z = 152（x 372 → 606）；北侧门口 z = 146 朝南、第二排 z = 124 朝南；南侧门口 z = 158 朝北、第二排 z = 184 朝北；
+// 南路 x = 430（通蜃景沙丘）；广场路 x = 486 → 水晶喷泉广场（486, 196）；码头 z = 152、神殿石堤 z = 182。
+const glass = (door: Vec2, yaw: number, size: Vec3, wall: string, roof: string, seed: number, extra: Partial<PropInstance> = {}): PropInstance =>
+  atDoor('house', door, yaw, size, { variant: 'glass', color: wall, roof, seed, accent: '#2a6aa8', ...extra });
+const G1 = '#f6f2ea';
+const G2 = '#f2ece2';
+const G3 = '#eef4f2';
+const T1 = '#5fb8c8';
+const T2 = '#4a9ab8';
+const T3 = '#7fcfc0';
+const crystals = (list: Array<[number, number, number?]>, seed: number): PropInstance[] =>
+  list.map(([x, z, hh], i) => ({ type: 'glass-crystal', position: [x, z], yaw: i * 1.7, size: [1.6, hh ?? 2, 1.6], seed: seed + i, color: ['#8fdcdc', '#9fe0c8', '#8fc8f8'][i % 3]! }));
+
+const glazeTown: PropInstance[] = [
+  atDoor('pokecenter', [426, 146], FACE.south, [15, 7.5, 12], { ref: 'pokecenter-glaze', color: '#fbf7f0', roof: '#e25a4f' }),
+  atDoor('mart', [512, 146], FACE.south, [12, 6.5, 10], { ref: 'mart-glaze', color: '#f4f6f8', roof: '#3f7fd6' }),
+  gymAt('gym-glaze', [486, 118], FACE.south, 28, 16, 'water'),
+  // 北侧（门朝南）
+  glass([406, 146], FACE.south, [9, 7, 8], G1, T1, 4501),
+  glass([446, 146], FACE.south, [9, 7.2, 8], G2, T2, 4502),
+  glass([530, 146], FACE.south, [9, 6.8, 8], G3, T3, 4503),
+  glass([547, 146], FACE.south, [9, 7.2, 8], G1, T2, 4504),
+  glass([410, 124], FACE.south, [9, 6.8, 8], G2, T3, 4505),
+  glass([446, 124], FACE.south, [9, 7, 8], G3, T1, 4506),
+  glass([526, 124], FACE.south, [9, 7.2, 8], G1, T3, 4507),
+  glass([544, 124], FACE.south, [9, 6.8, 8], G2, T1, 4508),
+  // 南侧（门朝北）
+  glass([405, 158], FACE.north, [9, 7, 8], G3, T2, 4511),
+  glass([418, 158], FACE.north, [8, 6.6, 7], G1, T1, 4512),
+  glass([443, 158], FACE.north, [9, 7.2, 8], G2, T3, 4513),
+  glass([460, 158], FACE.north, [9, 7, 8], G3, T2, 4514, { ref: 'glaze-diver-house' }),
+  atDoor('house', [506, 158], FACE.north, [12, 7.5, 10], { variant: 'glassworks', ref: 'glaze-glassworks', color: '#e8dcc8', roof: '#3f7a9a' }),
+  glass([526, 158], FACE.north, [9, 6.8, 8], G1, T3, 4515),
+  glass([543, 158], FACE.north, [9, 7.2, 8], G2, T1, 4516),
+  glass([412, 184], FACE.north, [9, 7, 8], G3, T1, 4517),
+  glass([448, 184], FACE.north, [9, 6.8, 8], G1, T2, 4518),
+  glass([530, 184], FACE.north, [9, 7, 8], G2, T3, 4519),
+  glass([548, 184], FACE.north, [9, 7.2, 8], G3, T2, 4520),
+  // 水晶喷泉广场
+  { type: 'fountain', position: [486, 196], yaw: 0, size: [7, 2, 7], color: '#8fdcf0' },
+  ...crystals([[478, 190, 1.6], [494, 190, 1.8], [478, 203, 1.7], [494, 203, 1.5]], 4530),
+  { type: 'bench', position: [474, 196], yaw: FACE.east, size: [2.2, 0.9, 0.6] },
+  { type: 'bench', position: [498, 196], yaw: FACE.west, size: [2.2, 0.9, 0.6] },
+  { type: 'flowerbed', position: [486, 210], yaw: 0, size: [8, 0.5, 2.4], seed: 4535 },
+  { type: 'flowerbed', position: [470, 172], yaw: 0, size: [6, 0.5, 2], seed: 4536 },
+  { type: 'flowerbed', position: [502, 176], yaw: 0, size: [4, 0.5, 2], seed: 4537 },
+  // 主街小品
+  { type: 'sign', ref: 'gym-glaze-sign', position: [495, 119], yaw: FACE.south, size: [1.6, 1.6, 0.2] },
+  { type: 'noticeboard', ref: 'glaze-noticeboard', position: [466, 146.5], yaw: FACE.south, size: [2, 2.2, 0.3] },
+  ...lamps([[396, 148], [416, 156], [436, 148], [456, 156], [476, 148], [496, 156], [520, 148], [538, 156], [556, 148], [574, 156], [592, 148], [482, 186], [490, 206]]),
+  ...trees([[396, 128, 6, 'round'], [458, 118, 5.5, 'round'], [556, 120, 6, 'round'], [398, 196, 6, 'round'], [470, 214, 5, 'shrub'], [512, 214, 5, 'shrub'], [560, 196, 6, 'round'], [520, 104, 5.5, 'round']], 4540),
+  { type: 'well', position: [468, 128], yaw: 0, size: [2, 3, 2] },
+  { type: 'barrel', position: [516, 170], yaw: 0, size: [0.8, 1, 0.8] },
+  { type: 'crate', position: [497, 170], yaw: 0.3, size: [1.1, 1.1, 1.1] },
+  // 沙滩：灯塔、海玻璃晶簇
+  { type: 'lighthouse', position: [603, 86], yaw: FACE.east, size: [5, 22, 5], color: '#fbfbf6', roof: '#2a6aa8', ref: 'glaze-lighthouse', variant: 'keeper' },
+  ...crystals([[596, 112, 1.4], [608, 128, 1.2], [594, 176, 1.6], [606, 204, 1.3], [598, 220, 1.5], [612, 104, 1.1]], 4550),
+  // 码头（主街正东）
+  deck([634, 152], 52, 5, 1.6, 'ns'),
+  { type: 'rowboat', position: [646, 146.5], yaw: PI / 2 + 0.15, size: [1.6, 0.6, 4], y: 0.2 },
+  { type: 'rowboat', position: [652, 157.5], yaw: PI / 2 - 0.2, size: [1.6, 0.6, 4], y: 0.2 },
+  { type: 'boat', position: [664, 145], yaw: PI / 2, size: [4, 3.5, 11], y: 0, color: '#f5f5f0', roof: '#2a6aa8', collide: true },
+  { type: 'bollard', position: [640, 149.8], yaw: 0, size: [0.4, 0.7, 0.4], y: 1.6 },
+  { type: 'bollard', position: [656, 154.2], yaw: 0, size: [0.4, 0.7, 0.4], y: 1.6 },
+  { type: 'net-rack', position: [598, 142], yaw: 0, size: [3, 2, 0.3] },
+  { type: 'crate', position: [600, 160], yaw: 0.5, size: [1.2, 1.2, 1.2] },
+  { type: 'sign', ref: 'glaze-dock-sign', position: [604, 148], yaw: FACE.west, size: [1.6, 1.6, 0.2] },
+  // 海底神殿之门：长石堤 + 海中门楼（朝东，门外即深水暗区）
+  deck([642, 182], 88, 3.6, 1.4, 'ns'),
+  { type: 'temple-gate', ref: 'glaze-temple-gate', position: [690, 182], yaw: FACE.east, size: [8, 9, 8], y: 0.7, seed: 4560 },
+  { type: 'stele', ref: 'glaze-temple-stele', position: [596, 186], yaw: FACE.east, size: [1.6, 2.4, 0.8] },
+  { type: 'lantern', position: [596, 178], yaw: 0, size: [0.4, 2.2, 0.4], color: '#8fe8ff' },
+];
+
+export const GLAZE_TOWN: TownLayout = {
+  id: 'glaze-town',
+  zone: 'glaze-town',
+  paths: [
+    { id: 'town-glaze-gym-walk', surface: 'stone', width: 6, points: [[486, 150], [486, 120]] },
+    { id: 'town-glaze-plaza-walk', surface: 'stone', width: 5, points: [[486, 154], [486, 188]] },
+    { id: 'town-glaze-plaza', surface: 'stone', width: 22, points: [[486, 190], [486, 204]] },
+    { id: 'town-glaze-north-lane', surface: 'dirt', width: 4, points: [[400, 130], [460, 130]] },
+    { id: 'town-glaze-north-lane-e', surface: 'dirt', width: 4, points: [[514, 130], [556, 130]] },
+    { id: 'town-glaze-south-lane', surface: 'dirt', width: 4, points: [[400, 178], [560, 178]] },
+    { id: 'town-glaze-temple-walk', surface: 'dirt', width: 3, points: [[592, 156], [596, 182]] },
+    { id: 'town-glaze-lighthouse-walk', surface: 'dirt', width: 3, points: [[592, 148], [600, 96]] },
+  ],
+  pads: [
+    { position: [480, 152], size: [176, 140], y: 7.0, blend: 16 },
+    { position: [486, 103], size: [38, 38], y: 7.0, blend: 10 },
+  ],
+  props: glazeTown,
+};
+
+export const GLAZE_TOWNS: TownLayout[] = [MIRAGE_TOWN, GHOST_TOWN, GLAZE_TOWN];

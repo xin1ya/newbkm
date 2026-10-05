@@ -249,6 +249,9 @@ export type PropType =
   | 'bell-tower'
   /** 幽灯（冷光铁灯） */
   | 'ghost-lamp'
+  // ——— M3-13 琉璃镇 ———
+  /** 海底神殿之门（海中石台门楼，M3-18 潜水入口） */
+  | 'temple-gate'
   | 'glb';
 
 export interface PropInstance {
