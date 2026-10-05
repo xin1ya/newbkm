@@ -22,6 +22,12 @@ export const THUNDER_FURNITURE: InteractionDef[] = [
   { id: 'glider-trophies', kind: 'examine', pages: ['柜子里摆满了滑翔比赛的奖杯。', '最大的一座刻着：「翠澜杯 · 最远滑翔 · 2.4 km」。'] },
   { id: 'glider-wind-chart', kind: 'examine', pages: ['云雀镇风向图。', '「北崖午后起强劲上升气流，最适合滑翔。」', '「雷暴天禁止起飞！」'] },
   { id: 'glider-gear', kind: 'examine', pages: ['架子上挂着滑翔翼骨架、护目镜和风速计。', '标签：「会员专用」。'] },
+  // ——— M3-15 · 道馆须知 / 配电柜 ———
+  { id: 'gym-thunder-rules', kind: 'examine', pages: ['「雷鸣道馆 · 挑战须知」', '一、入口拉杆：东道 / 西道二选一通电。', '二、中道侧门：东、西两道拉杆同时接通方可开启。', '三、终点电栅：与西道拉杆联动。', '——馆主 雷霆'] },
+  { id: 'gym-thunder-panel', kind: 'examine', pages: ['配电柜的仪表盘上，三根指针随着拉杆跳动。', '旁边贴着线路图：A → 东 / 西；B + C → 中；C → 终点。'] },
+  { id: 'gym-dawn-rules', kind: 'examine', pages: ['「晨光道馆 · 挑战须知」', '日光墙：白昼凝聚，黑夜消散。', '影墙：黑夜凝聚，白昼消散。', '馆内日晷可拨动昼夜。进门时，昼夜与外界一致。', '——馆主 晨辉'] },
+  { id: 'gym-snow-rules', kind: 'examine', pages: ['「雪原道馆 · 挑战须知」', '冰面上无法停步：会一直滑到撞上冰块为止。', '滑错了请回到入口重来。', '——馆主 霜凝'] },
+  { id: 'gym-lark-rules', kind: 'examine', pages: ['「云雀道馆 · 挑战须知」', '入口大风扇：吹向西台或东台。', '中台风扇驱动西桥，东台风扇驱动东桥。', '终点长桥：西风停、东风起时方可通行。', '——馆主 云翎'] },
 ];
 
 export const THUNDER_LANDMARKS: InteractionDef[] = [

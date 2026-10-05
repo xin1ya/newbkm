@@ -99,4 +99,112 @@ export const GYMS: GymDef[] = [
       2: [{ speciesId: 636, levelOffset: 0, moves: ['flame-charge', 'bug-bite', 'take-down', 'string-shot'], ability: 'flame-body' }],
     },
   },
+  // ———————————— 雷鸣群岛（M3-15）：4 座道馆，挑战顺序自由；按「本岛已获徽章数」取 4 档 ————————————
+  // 第 1 档 31–34 / 第 2 档 35–38 / 第 3 档 39–42 / 第 4 档 43–46（野外 26–38）。
+  // 物种暂用现有 120 种图鉴里的属性代表 / 会该属性招式的宝可梦；M3-28 物种清单定稿、M3-31 模型到位后替换为设计稿队伍
+  // （例：霜凝 小山猪 / 冰鬼护 / 猛犸猪），本文件的等级档与仪式台词保持不变。
+  {
+    id: 'gym-thunder',
+    island: 'thunder',
+    leader: '雷霆',
+    type: 'electric',
+    badgeFlag: 'badge-thunder',
+    badgeName: '翠澜徽章',
+    tierLevels: [33, 37, 41, 45],
+    ivs: 24,
+    prizeMoney: 3600,
+    items: [{ id: 'hyper-potion', qty: 2 }],
+    ceremony: {
+      win: ['……哈！电流全被你导走了。', '高原上的雷暴一年到头不停，我的伙伴们就是在雷声里长大的——今天倒是被你劈了一回。', '收下吧，雷鸣镇的翠澜徽章！'],
+      effect: ['有了这枚徽章，等级更高的宝可梦也会听你的话。', '招式学习器「电击波」也一起拿去——它从不落空。', '雷鸣群岛还有三座道馆，晨光、雪原、云雀，顺序随你。'],
+    },
+    team: [
+      { speciesId: 121, levelOffset: -1, moves: ['thunderbolt', 'psybeam', 'rapid-spin', 'recover'], ability: 'natural-cure' },
+      { speciesId: 25, levelOffset: -1, moves: ['discharge', 'iron-tail', 'agility', 'thunder-wave'], ability: 'static' },
+      { speciesId: 26, levelOffset: 2, moves: ['thunderbolt', 'brick-break', 'nasty-plot', 'quick-attack'], ability: 'lightning-rod', heldItem: 'sitrus-berry' },
+    ],
+    extraMembers: {
+      1: [{ speciesId: 94, levelOffset: 0, moves: ['thunderbolt', 'shadow-ball', 'hypnosis', 'sludge-bomb'], ability: 'cursed-body' }],
+      2: [{ speciesId: 464, levelOffset: 0, moves: ['thunder-fang', 'rock-slide', 'drill-run', 'stomp'], ability: 'lightning-rod' }],
+      3: [{ speciesId: 130, levelOffset: 1, moves: ['thunderbolt', 'waterfall', 'dragon-dance', 'ice-fang'], ability: 'intimidate' }],
+    },
+  },
+  {
+    id: 'gym-dawn',
+    island: 'thunder',
+    leader: '晨辉',
+    type: 'normal',
+    badgeFlag: 'badge-dawn',
+    badgeName: '翠澜徽章',
+    tierLevels: [33, 37, 41, 45],
+    ivs: 24,
+    prizeMoney: 3600,
+    items: [{ id: 'hyper-potion', qty: 2 }],
+    ceremony: {
+      win: ['日升、日落……你在昼与夜之间都没有迷路。', '「普通」从来不是平庸，是能在任何时刻站稳脚跟的力量。', '这枚翠澜徽章，是晨光镇的认可。'],
+      effect: ['有了它，伙伴们在野外会更信任你。', '招式学习器「硬撑」也给你——越是陷入异常状态，越要咬牙反击。', '去看看风车镇的黄昏吧，那是群岛最美的时刻。'],
+    },
+    team: [
+      { speciesId: 162, levelOffset: -1, moves: ['hyper-voice', 'sucker-punch', 'follow-me', 'u-turn'], ability: 'frisk' },
+      { speciesId: 164, levelOffset: -1, moves: ['hyper-voice', 'extrasensory', 'air-slash', 'reflect'], ability: 'tinted-lens' },
+      { speciesId: 862, levelOffset: 2, moves: ['obstruct', 'facade', 'throat-chop', 'counter'], ability: 'guts', heldItem: 'sitrus-berry' },
+    ],
+    extraMembers: {
+      1: [{ speciesId: 20, levelOffset: 0, moves: ['hyper-fang', 'crunch', 'sucker-punch', 'quick-attack'], ability: 'guts' }],
+      2: [{ speciesId: 264, levelOffset: 0, moves: ['body-slam', 'shadow-claw', 'hone-claws', 'seed-bomb'], ability: 'quick-feet' }],
+      3: [{ speciesId: 398, levelOffset: 1, moves: ['double-edge', 'close-combat', 'aerial-ace', 'quick-attack'], ability: 'intimidate' }],
+    },
+  },
+  {
+    id: 'gym-snow',
+    island: 'thunder',
+    leader: '霜凝',
+    type: 'ice',
+    badgeFlag: 'badge-snow',
+    badgeName: '翠澜徽章',
+    tierLevels: [33, 37, 41, 45],
+    ivs: 25,
+    prizeMoney: 3800,
+    items: [{ id: 'hyper-potion', qty: 3 }],
+    ceremony: {
+      win: ['冰面上滑倒的人，我见过很多。站起来接着滑的，没几个。', '你的伙伴像冰川一样，一寸一寸，从不后退。', '这枚翠澜徽章——冰晶的光，送给你。'],
+      effect: ['有了这枚徽章，就可以骑着伙伴「攀爬」藤蔓和裂缝崖壁了。', '招式学习器「冰冻之风」也拿去吧。', '冰川北面那道崖，现在挡不住你了。'],
+    },
+    team: [
+      { speciesId: 195, levelOffset: -1, moves: ['avalanche', 'muddy-water', 'yawn', 'amnesia'], ability: 'unaware' },
+      { speciesId: 73, levelOffset: -1, moves: ['ice-beam', 'sludge-bomb', 'hex', 'acid-armor'], ability: 'clear-body' },
+      { speciesId: 91, levelOffset: 2, moves: ['icicle-crash', 'ice-shard', 'shell-smash', 'razor-shell'], ability: 'skill-link', heldItem: 'sitrus-berry' },
+    ],
+    extraMembers: {
+      1: [{ speciesId: 342, levelOffset: 0, moves: ['avalanche', 'night-slash', 'razor-shell', 'swords-dance'], ability: 'hyper-cutter' }],
+      2: [{ speciesId: 186, levelOffset: 0, moves: ['ice-beam', 'hydro-pump', 'brick-break', 'rain-dance'], ability: 'water-absorb' }],
+      3: [{ speciesId: 260, levelOffset: 1, moves: ['avalanche', 'earthquake', 'waterfall', 'protect'], ability: 'torrent' }],
+    },
+  },
+  {
+    id: 'gym-lark',
+    island: 'thunder',
+    leader: '云翎',
+    type: 'flying',
+    badgeFlag: 'badge-lark',
+    badgeName: '翠澜徽章',
+    tierLevels: [33, 37, 41, 45],
+    ivs: 25,
+    prizeMoney: 3800,
+    items: [{ id: 'hyper-potion', qty: 3 }],
+    ceremony: {
+      win: ['……风停了。是你让它停下来的。', '在云崖上长大的孩子，第一课是学会看风；而你，学会了驾驭它。', '白羽般的翠澜徽章，归你了。'],
+      effect: ['有了这枚徽章，驾着伙伴在天空中会飞得更稳。', '招式学习器「燕返」——一记必中的翻身斩，带上它。', '雷鸣群岛的四枚徽章都齐了的话，去码头找钓竿爷聊聊北边的海吧。'],
+    },
+    team: [
+      { speciesId: 279, levelOffset: -1, moves: ['air-slash', 'water-pulse', 'tailwind', 'protect'], ability: 'keen-eye' },
+      { speciesId: 284, levelOffset: -1, moves: ['air-slash', 'bug-buzz', 'stun-spore', 'giga-drain'], ability: 'intimidate' },
+      { speciesId: 169, levelOffset: 2, moves: ['cross-poison', 'air-cutter', 'bite', 'tailwind'], ability: 'inner-focus', heldItem: 'sitrus-berry' },
+    ],
+    extraMembers: {
+      1: [{ speciesId: 18, levelOffset: 0, moves: ['aerial-ace', 'twister', 'feather-dance', 'quick-attack'], ability: 'keen-eye' }],
+      2: [{ speciesId: 398, levelOffset: 0, moves: ['aerial-ace', 'close-combat', 'take-down', 'agility'], ability: 'intimidate' }],
+      3: [{ speciesId: 130, levelOffset: 1, moves: ['hurricane', 'waterfall', 'dragon-dance', 'crunch'], ability: 'moxie' }],
+    },
+  },
 ];

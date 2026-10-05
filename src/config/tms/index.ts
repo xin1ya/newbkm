@@ -47,6 +47,11 @@ export const TM_DEFS: readonly TmDef[] = [
   { no: 22, move: 'magical-leaf', source: { kind: 'gym', gym: 'gym-azure' } },
   { no: 23, move: 'rock-tomb', source: { kind: 'gym', gym: 'gym-ore' } },
   { no: 24, move: 'incinerate', source: { kind: 'gym', gym: 'gym-flame' } },
+  // M3-15 · 雷鸣群岛道馆奖励（07-22 §3.6 #15/#16/#18/#19；十万伏特已是 No.19 巢穴奖励，雷鸣道馆改发「电击波」）
+  { no: 25, move: 'shock-wave', source: { kind: 'gym', gym: 'gym-thunder' } },
+  { no: 26, move: 'facade', source: { kind: 'gym', gym: 'gym-dawn' } },
+  { no: 27, move: 'icy-wind', source: { kind: 'gym', gym: 'gym-snow' } },
+  { no: 28, move: 'aerial-ace', source: { kind: 'gym', gym: 'gym-lark' } },
 ];
 
 export const tmItemId = (move: string): string => `tm-${move}`;

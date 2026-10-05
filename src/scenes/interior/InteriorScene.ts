@@ -42,6 +42,8 @@ import { TrainerBattles } from '@/scenes/common/TrainerBattles';
 import { BattleScene, type BattleHost, type BattleResult, type BattleStartData } from '@/scenes/battle/BattleScene';
 import { WaterPuzzleView } from '@/world/interiors/WaterPuzzleView';
 import { toggleLevel, valveAt } from '@/systems/puzzles/waterLevel';
+import { GymMechanismView } from '@/world/interiors/GymMechanismView';
+import { cardinal, onIce, SLIDE_SPEED, switchVar } from '@/systems/puzzles/gymMechanism';
 import { GYMS } from '@/config/encounters';
 import { TRAINER_BY_ID } from '@/config/trainers';
 import { say } from '@/ui/core';
@@ -124,6 +126,10 @@ export class InteriorScene implements Scene, BattleHost {
   private unsub: (() => void)[] = [];
   /** M1-11 水位机关（道馆房间才有） */
   puzzle: WaterPuzzleView | null = null;
+  /** M3-15 道馆 5–8 馆内机关 */
+  mech: GymMechanismView | null = null;
+  /** 滑冰中的方向（null = 没在滑） */
+  private slideDir: readonly [number, number] | null = null;
   /** M1-11 室内训练家对战（道馆） */
   trainers: TrainerBattles;
   /** 战斗镜头（只在战斗中由 BattleScene 驱动；平时使用固定俯视镜头） */
@@ -190,6 +196,7 @@ export class InteriorScene implements Scene, BattleHost {
     });
     this.interactions.addSource(this.follower.source());
     this.interactions.addSource((player, out) => this.valveSource(player, out));
+    this.interactions.addSource((player, out) => this.mechSource(player, out));
     this.field = new InteriorField({
       game: d.game,
       ui: d.ui,
@@ -278,6 +285,9 @@ export class InteriorScene implements Scene, BattleHost {
     this.built?.dispose();
     this.puzzle?.dispose();
     this.puzzle = null;
+    this.mech?.dispose();
+    this.mech = null;
+    this.slideDir = null;
     this.room = getRoom(this.config, roomId);
     this.built = this.builder.build(this.room);
     this.world.add(this.built.group, this.built.lights);
@@ -310,6 +320,11 @@ export class InteriorScene implements Scene, BattleHost {
       this.puzzle = new WaterPuzzleView(this.room.waterPuzzle, this.collision);
       this.world.add(this.puzzle.group);
     }
+    if (this.room.mechanism) {
+      // 机关不存档：每次进门复位；晨辉道馆的昼夜取真实时间
+      this.mech = new GymMechanismView(this.room.mechanism, this.collision, this.d.timeOfDay() === 'night');
+      this.world.add(this.mech.group);
+    }
     this.field.load(this.room, this.built.lights);
     const preset = LIGHT_PRESETS[this.room.lighting];
     this.world.background = new THREE.Color(preset.fog);
@@ -337,7 +352,7 @@ export class InteriorScene implements Scene, BattleHost {
 
   fixedUpdate(dt: number): void {
     // 第三 / 第一人称都按镜头朝向移动
-    this.player.fixedUpdate(dt, this.gameplayInput, this.rig.forwardYaw);
+    if (!this.slideStep(dt)) this.player.fixedUpdate(dt, this.gameplayInput, this.rig.forwardYaw);
     this.footsteps.fixedUpdate(this.player);
     this.checkExits();
   }
@@ -368,6 +383,7 @@ export class InteriorScene implements Scene, BattleHost {
     const day = THREE.MathUtils.clamp(Math.min((hour - 5.5) / 2, (19.5 - hour) / 2), 0, 1);
     this.built?.update(this.time, day);
     this.puzzle?.update(dt);
+    this.mech?.update(dt);
     this.starterTable?.update(dt);
     this.trainers.update(dt);
     this.field.update(dt, this.player);
@@ -547,6 +563,96 @@ export class InteriorScene implements Scene, BattleHost {
     return this.puzzle?.level ?? null;
   }
 
+  // ———————————————————— M3-15 道馆机关 ————————————————————
+
+  /**
+   * 滑冰：站在冰面上一旦有了速度，就锁定主方向以固定速度滑行，直到撞上冰块 / 墙（位移明显变小）或滑出冰面。
+   * 返回 true 表示这一步由滑冰接管（不读输入）。
+   */
+  private slideStep(dt: number): boolean {
+    const mech = this.mech;
+    if (!mech?.cfg.ice?.length || this.inBattle || this.trainers.busy) {
+      this.slideDir = null;
+      return false;
+    }
+    const p = this.player.position;
+    if (!this.slideDir) {
+      if (!onIce(mech.cfg, p.x, p.z)) return false;
+      const dir = cardinal(this.player.velocity.x, this.player.velocity.z);
+      if (!dir) return false;
+      this.slideDir = dir;
+      // 吸附到所在 1 m 网格中线，保证沿直线滑（与 BFS 一致）
+      const snap = (v: number): number => Math.floor(v) + 0.5;
+      this.player.teleport(dir[0] === 0 ? snap(p.x) : p.x, dir[1] === 0 ? snap(p.z) : p.z, Math.atan2(dir[0], dir[1]));
+    }
+    const [dx, dz] = this.slideDir;
+    const sx = p.x;
+    const sz = p.z;
+    this.player.moveWithVelocity(dt, dx * SLIDE_SPEED, dz * SLIDE_SPEED, false);
+    const moved = Math.hypot(p.x - sx, p.z - sz);
+    if (moved < SLIDE_SPEED * dt * 0.35 || !onIce(mech.cfg, p.x, p.z)) {
+      this.slideDir = null;
+      this.player.velocity.set(0, 0, 0);
+    }
+    return true;
+  }
+
+  /** 是否正在滑冰（e2e） */
+  get sliding(): boolean {
+    return this.slideDir !== null;
+  }
+
+  private mechSource(_player: PlayerController, out: Parameters<Parameters<SceneInteractions['addSource']>[0]>[1]): void {
+    const mech = this.mech;
+    if (!mech) return;
+    for (const s of mech.cfg.switches) {
+      const verb = s.style === 'lever' ? '拉动拉杆' : s.style === 'sundial' ? '拨动日晷' : '切换风扇';
+      const v = mech.state[switchVar(s)] ?? 0;
+      out.push({
+        id: `mech:${s.id}`,
+        kind: 'use',
+        x: s.position[0],
+        z: s.position[1],
+        y: 1.9,
+        label: `${verb}（${s.stateNames?.[v] ?? `第 ${v + 1} 档`}）`,
+        action: 'interact',
+        range: (s.range ?? 1.5) + 0.3,
+        priority: 2,
+        run: async () => {
+          await this.useSwitch(s.id);
+        },
+      });
+    }
+  }
+
+  /** 拨动机关开关（也供 e2e 直接调用；需站在开关旁） */
+  async useSwitch(id: string): Promise<boolean> {
+    const mech = this.mech;
+    const s = mech?.cfg.switches.find((q) => q.id === id);
+    if (!mech || !s) return false;
+    const p = this.player.position;
+    if (Math.hypot(p.x - s.position[0], p.z - s.position[1]) > (s.range ?? 1.5) + 0.6) return false;
+    const res = mech.toggle(id, p.x, p.z);
+    if (!res) {
+      this.d.toast?.('有人站在闸门的位置上，先离开再试。');
+      return false;
+    }
+    this.player.velocity.set(0, 0, 0);
+    this.player.teleport(p.x, p.z, Math.atan2(s.position[0] - p.x, s.position[1] - p.z));
+    sfx('valve');
+    const kind = mech.cfg.kind;
+    const msg =
+      kind === 'sundial'
+        ? res.name === '黑夜'
+          ? '日晷转向了月纹——馆内暗了下来，日光墙消散了，影墙浮现。'
+          : '日晷转向了日纹——馆内亮了起来，影墙消散了，日光墙重新凝聚。'
+        : kind === 'wind'
+          ? `风扇：${res.name}。${res.opened.length ? '气流托起了风桥！' : ''}${res.closed.length ? '有风桥散开了……' : ''}`
+          : `拉杆：${res.name}。${res.opened.length ? '有电栅栏熄灭了！' : ''}${res.closed.length ? '有电栅栏通电了……' : ''}`;
+    this.d.toast?.(msg);
+    return true;
+  }
+
   // ———————————————————— M1-11 室内对战（BattleHost） ————————————————————
 
   get ui(): UiRoot {
@@ -589,6 +695,7 @@ export class InteriorScene implements Scene, BattleHost {
   animateWorld(dt: number): void {
     this.time += dt;
     this.puzzle?.update(dt);
+    this.mech?.update(dt);
     const hour = this.d.game.clock.hour;
     const day = THREE.MathUtils.clamp(Math.min((hour - 5.5) / 2, (19.5 - hour) / 2), 0, 1);
     this.built?.update(this.time, day);
@@ -747,6 +854,8 @@ export class InteriorScene implements Scene, BattleHost {
     if (TrainerBattles.current === this.trainers) TrainerBattles.current = this.prevTrainers;
     this.puzzle?.dispose();
     this.puzzle = null;
+    this.mech?.dispose();
+    this.mech = null;
     this.field.dispose();
     this.follower.dispose();
     this.npcs.dispose();

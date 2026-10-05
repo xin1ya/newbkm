@@ -1,4 +1,5 @@
 import type { WaterPuzzleConfig } from '@/systems/puzzles/waterLevel';
+import type { GymMechanismConfig } from '@/systems/puzzles/gymMechanism';
 /**
  * M1-05 · 室内场景配置格式。
  *
@@ -120,6 +121,8 @@ export interface RoomConfig {
   floorHole?: readonly [number, number, number, number];
   /** M1-11 水位机关（道馆 1） */
   waterPuzzle?: WaterPuzzleConfig;
+  /** M3-15 道馆 5–8 馆内机关（导电开关 / 昼夜日晷 / 滑冰 / 风力桥） */
+  mechanism?: GymMechanismConfig;
   /** 战斗舞台（对战时玩家站位与朝向；缺省在玩家前方就地开战） */
   /** radius：战斗场半径（默认 ARENA_RADIUS 7 m；室内按房间缩小） */
   battleStage?: { position: Vec2; yaw: number; radius?: number };
