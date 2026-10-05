@@ -611,16 +611,23 @@ export class SceneAutoBattle implements BattleAutoPilot {
           cfg.carrierUid,
         )
       : null;
-    const lead = (carrier !== null ? party[carrier] : undefined) ?? party.find((p) => p.hp > 0)!;
+    // 指定了打手：一律按它的状态判断（濒死 / 低血 / 没 PP 都要回复），不退回到别的同伴——
+    // 否则打手倒下后会改看首发（满血），永远不触发回复 / 回中心
+    const designated = cfg.train && cfg.carrierUid ? party.find((p, i) => i > 0 && p.uid === cfg.carrierUid) : undefined;
+    // 自动打手：本来有更高等级的同伴、现在全都倒下 / 没 PP 了 → 也算打手倒下
+    const autoCarrierLost = cfg.train && !designated && carrier === null && party.some((p, i) => i > 0 && p.level > (party[0]?.level ?? 0));
+    const carrierDown = designated ? designated.hp <= 0 : autoCarrierLost;
+    const lead = designated ?? (carrier !== null ? party[carrier] : undefined) ?? party.find((p) => p.hp > 0)!;
     // 首发低血且没有回复道具 / 招式 PP 用完 / 首发倒下 → 回宝可梦中心（或停止）
     const hpRatio = lead.hp / Math.max(1, maxHp(this.d.dex, lead));
     const noHeal = hpRatio < cfg.hpPct && !cfg.healItems.some((id) => id !== 'full-heal' && (this.d.state.bag[id] ?? 0) > 0);
     const noPp = !lead.moves.some((m) => m.pp > 0 && this.isAttack(m.id) && moveAllowed(cfg, lead.uid, m.id)) && !cfg.ppItems.some((id) => (this.d.state.bag[id] ?? 0) > 0);
     const leadDown = (party[0]?.hp ?? 1) <= 0;
-    if (cfg.centerHeal && (noHeal || noPp || leadDown)) {
-      void this.goHeal(noHeal ? 'HP 低且回复道具用完' : noPp ? '攻击招式 PP 用完' : '首发倒下');
+    if (cfg.centerHeal && (noHeal || noPp || leadDown || carrierDown)) {
+      void this.goHeal(carrierDown ? '打手倒下' : noHeal ? 'HP 低且回复道具用完' : noPp ? '攻击招式 PP 用完' : '首发倒下');
       return;
     }
+    if (carrierDown) return this.stop('打手倒下了');
     if (noHeal) return this.stop('HP 低于设定值，回复道具用完了');
     const capturing = Object.entries(cfg.targets).filter(([, g]) => g === 'capture');
     const defeating = Object.values(cfg.targets).some((g) => g === 'defeat');
