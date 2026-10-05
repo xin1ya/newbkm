@@ -11,7 +11,9 @@ export type TmSource =
   | { kind: 'shop'; shop: string; price: number; badges?: number }
   | { kind: 'gym'; gym: string }
   | { kind: 'den'; den: string }
-  | { kind: 'field'; pickup: string; position: [number, number]; hint: string };
+  | { kind: 'field'; pickup: string; position: [number, number]; hint: string }
+  /** M3-27 支线任务奖励 */
+  | { kind: 'quest'; quest: string };
 
 export interface TmDef {
   no: number;
@@ -56,6 +58,9 @@ export const TM_DEFS: readonly TmDef[] = [
   { no: 29, move: 'calm-mind', source: { kind: 'gym', gym: 'gym-mirage' } },
   { no: 30, move: 'shadow-claw', source: { kind: 'gym', gym: 'gym-ghost' } },
   { no: 31, move: 'scald', source: { kind: 'gym', gym: 'gym-glaze' } },
+  // M3-27 · 琉璃支线奖励（07-22 §3.7：幽冥降灵会「怨恨」、幻影预言解读「精神强念」）
+  { no: 32, move: 'spite', source: { kind: 'quest', quest: 'side-spirit-seance' } },
+  { no: 33, move: 'psychic', source: { kind: 'quest', quest: 'side-mirage-prophecy' } },
 ];
 
 export const tmItemId = (move: string): string => `tm-${move}`;

@@ -19,6 +19,7 @@ import type { Game } from '@/core/Game';
 import type { UiRoot, Transition } from '@/ui/core';
 import type { Hud } from '@/ui/hud';
 import type { GameState } from '@/systems/state/GameState';
+import { furnitureShown } from '@/systems/interaction';
 import { getExit, getInterior, getRoom, spawnAtExit, type ExitConfig, type InteriorConfig, type RoomConfig } from '@/config/interiors';
 import { PlayerController } from '@/actors/player';
 import { CollisionWorld, type Terrain } from '@/world';
@@ -323,7 +324,8 @@ export class InteriorScene implements Scene, BattleHost {
     this.underFx?.dispose();
     this.underFx = null;
     this.room = getRoom(this.config, roomId);
-    this.built = this.builder.build(this.room);
+    const flags = this.d.state.flags;
+    this.built = this.builder.build({ ...this.room, furniture: this.room.furniture.filter((f) => furnitureShown(f, flags)) });
     this.world.add(this.built.group, this.built.lights);
     this.healMachine?.dispose();
     this.healMachine = null;
@@ -1115,6 +1117,19 @@ export class InteriorScene implements Scene, BattleHost {
   storyHost(): StoryHost {
     return {
       kind: 'interior',
+      // M3-27 秘密基地布置：黑场重建当前房间（家具按 flag 显隐），玩家留在原地
+      fx: async (name, ms) => {
+        if (name !== 'room-refresh' || !this.room) return;
+        const t = this.d.transition;
+        const p = this.player.position;
+        const keep = { x: p.x, z: p.z, yaw: this.player.facing };
+        await t.fadeOut(Math.min(ms, 500));
+        const exit = this.room.exits[0]!;
+        this.loadRoom(this.room.id, exit.id);
+        this.player.teleport(keep.x, keep.z, keep.yaw);
+        this.follower.warp();
+        await t.fadeIn(Math.min(ms, 500));
+      },
       battle: (o) => {
         const wild = createPokemon(this.d.dex, o.species, o.level, this.d.rng, o.moves ? { moves: o.moves } : {});
         const done = new Promise<StoryBattleResult>((resolve) => {

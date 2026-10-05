@@ -70,6 +70,12 @@ export const DUNGEON_NPCS: NpcDef[] = [
     name: '守洞人 墨婆',
     title: '幽冥镇',
     appearance: { look: 'elder', palette: { jacket: '#4a3a5a', hair: '#d8d8e0' } },
+    dialogByQuest: [
+      { questId: 'side-shadow-cave', when: 'completed', dialog: ['魔灵珊瑚……几十年了，你是头一个见到它还走回来的人。', '这副眼镜是我年轻时戴的，在黑地方看得更清楚。'] },
+      { questId: 'side-shadow-cave', when: 'active', requires: ['shadow-rare-met'], setFlags: ['shadow-cave-done'], dialog: ['你见到它了？……真的见到了？', '好，好。洞里的老规矩：见过深渊的人，配得上这副「黑色眼镜」。拿着吧。'] },
+      { questId: 'side-shadow-cave', when: 'active', dialog: ['暗河在深渊大厅的西边。小心，它会装成石头。'] },
+      { questId: 'side-shadow-cave', when: 'available', setFlags: ['shadow-explore-start'], dialog: ['你想往深处去？……也好。', '深渊大厅的暗河边，住着一只谁也没抓到过的宝可梦。看起来像一块珊瑚，碰一下，魂都会被吸走。', '要是你能和它交手一回，回来讲给老婆子听听。'] },
+    ],
     dialog: [
       '这里是暗影洞窟。幽冥镇的人，世世代代守着洞口。',
       '里面的宝可梦又强又凶，没走完冠军之路那样的本事，最好别往深处去。',
@@ -87,4 +93,22 @@ export const DUNGEON_NPCS: NpcDef[] = [
   trainer('sc-trainer-channeler', 'sc-channeler', '幽兰', '灵媒', 'kimono-f', '#3a2a4a', ['影子会跟着人走。']),
   trainer('sc-trainer-veteran', 'sc-veteran', '岩鸦', '老练训练家', 'hiker', '#3a3440', ['十年还不够啊。']),
   trainer('sc-trainer-hex', 'sc-hex', '夜铃', '灵媒', 'kimono-f', '#5a2a6a', ['祭坛在低吟。']),
+  {
+    id: 'base-builder',
+    name: '秘密基地迷 阿穴',
+    title: '秘密基地爱好者',
+    appearance: { look: 'camper', palette: { jacket: '#5a8a4a', cap: '#3a5a2a' } },
+    dialogByQuest: [
+      { questId: 'side-secret-base', when: 'completed', dialog: ['基地住得惯吗？', '工作台可以随时换布置——我最喜欢水晶洞那套！'] },
+      { questId: 'side-secret-base', when: 'active', requires: ['base-mat-glass', 'base-mat-stone', 'base-mat-sand'], dialog: [], story: 'secret-base-build' },
+      { questId: 'side-secret-base', when: 'active', dialog: ['琉璃砖在琉璃沙滩，石板在海蚀石林，细沙在南边的蜃景沙洲。', '三样齐了就来找我！'] },
+      {
+        questId: 'side-secret-base',
+        when: 'available',
+        setFlags: ['secret-base-start'],
+        dialog: ['嘘——你听，东边这面岩壁，敲起来是空的！', '我想在里面造一个秘密基地，可材料不够。', '帮我找三样东西：琉璃沙滩的琉璃砖、海蚀石林的石板、蜃景沙洲的细沙。', '造好了，基地就归你！'],
+      },
+    ],
+    dialog: ['秘密基地，是每个训练家的梦想！'],
+  },
 ];

@@ -124,4 +124,8 @@ export const DUNGEON_FURNITURE: InteractionDef[] = [
     effects: [{ kind: 'give-item', item: 'black-glasses', qty: 1, flag: 'sc-crate-abyss-taken', itemName: '黑色眼镜' }],
     byFlag: [{ when: 'sc-crate-abyss-taken', pages: ['供品箱已经空了。'] }],
   },
+  // ——— M3-27 秘密基地 ———
+  { id: 'pc-base', kind: 'use', label: '使用电脑', pages: ['秘密基地的电脑连上了宝可梦寄放系统。'], effects: [{ kind: 'pc-storage', title: '秘密基地 · 寄放系统' }] },
+  { id: 'base-bed', kind: 'rest', pages: ['自己的小床。要休息一下吗？'], effects: [{ kind: 'heal-party', fade: true }], after: ['一觉醒来，精神饱满！宝可梦们也恢复了。'] },
+  { id: 'base-decor', kind: 'use', label: '布置基地', pages: ['阿穴留下的工作台。摆在这里的家具，可以随时换一套。'], effects: [{ kind: 'story', script: 'secret-base-decor' }] },
 ];

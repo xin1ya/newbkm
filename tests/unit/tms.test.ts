@@ -59,6 +59,7 @@ describe('招式学习器表（计划文档 §6）', () => {
         expect(shop.stock.find((x) => x.item === id)?.once, id).toBe(true);
         expect(ITEM_PRICES[id]).toBe(s.price);
       } else if (s.kind === 'gym') expect(rewards).toContain(id);
+      else if (s.kind === 'quest') expect(QUEST_REGISTRY.get(s.quest)?.reward?.items?.some((i) => i.id === id), id).toBe(true);
       else if (s.kind === 'den') {
         expect(dens.has(s.den), s.den).toBe(true);
         expect(TM_BY_DEN.get(s.den)?.move).toBe(t.move);

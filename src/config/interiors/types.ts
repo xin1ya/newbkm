@@ -90,6 +90,9 @@ export interface FurnitureConfig {
   noCollide?: boolean;
   /** 可调查的对象 id（M1-07 互动提示使用） */
   interact?: string;
+  /** M3-27 按 flag 显隐（秘密基地布置）：showIf 全部为真才出现，hideIf 任一为真就隐藏；进房间 / room-refresh 时生效 */
+  showIf?: string[];
+  hideIf?: string[];
 }
 
 export type ExitTarget =

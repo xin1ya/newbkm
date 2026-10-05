@@ -125,7 +125,137 @@ const leagueHallOfFame: StoryStep[] = [
   { kind: 'flag', set: 'league-hof-run' },
 ];
 
+// ———————————————————————— M3-27 · 琉璃支线 ————————————————————————
+/** 降灵会：三处徘徊的亡魂（墓园 / 沼泽古墓 / 钟楼下） */
+export const SPIRIT_SPOTS: ReadonlyArray<[number, number]> = [
+  [-470, -108],
+  [-515, -422],
+  [-458, -142],
+];
+/** 幻影预言：白昼之宫 / 月下之塔 / 海底之门 */
+export const PROPHECY_SPOTS: ReadonlyArray<[number, number]> = [
+  [-246, 465],
+  [-467, 514],
+  [590, 192],
+];
+/** 秘密基地材料：琉璃砖（琉璃沙滩）/ 石板（海蚀石林）/ 细沙（蜃景沙洲） */
+export const BASE_MATERIAL_SPOTS: ReadonlyArray<{ id: string; name: string; at: [number, number]; line: string }> = [
+  { id: 'glass', name: '琉璃砖', at: [628, 286], line: '沙滩上半埋着几块被海浪磨圆的琉璃砖，透着淡淡的海蓝色。' },
+  { id: 'stone', name: '石板', at: [-549, 165], line: '石林脚下散落着平整的石板，正好用来铺地。' },
+  { id: 'sand', name: '细沙', at: [-60, 650], line: '沙洲上的沙细得像面粉，在阳光下微微发亮。' },
+];
+export const VEIN_SPRING_SPOT: [number, number] = [292, -222];
+
+const SPIRITS: Array<{ species: number; level: number; moves: string[]; intro: string; outro: string }> = [
+  { species: 92, level: 46, moves: ['lick', 'night-shade', 'confuse-ray', 'hypnosis'], intro: '一块没写名字的墓碑前，飘着一团小小的鬼火。它在找自己的名字。', outro: '鬼斯安静下来，绕着墓碑转了一圈。墓碑上浮现出一个模糊的名字——它满足地散开了。' },
+  { species: 769, level: 48, moves: ['sand-tomb', 'hypnosis', 'shadow-ball', 'mega-drain'], intro: '沼泽古墓的泥沙自己堆了起来，堆成一座小小的沙堡……沙堡里传来哭声。', outro: '沙堡塌了下去，哭声变成了一声长长的叹息。古墓周围的雾淡了一些。' },
+  { species: 93, level: 48, moves: ['shadow-ball', 'confuse-ray', 'sucker-punch', 'hypnosis'], intro: '钟楼下，一只鬼斯通一下一下地撞着钟绳，像是想敲响什么。', outro: '「当——」钟声响起。鬼斯通听完最后一声余音，朝墓园的方向飘走了。' },
+];
+
+const spiritScript = (i: number): StoryStep[] => {
+  const sp = SPIRITS[i]!;
+  return [
+    { kind: 'say', lines: [sp.intro] },
+    {
+      kind: 'battle',
+      species: sp.species,
+      level: sp.level,
+      moves: sp.moves,
+      noCapture: true,
+      onWin: [{ kind: 'say', lines: [sp.outro, `第 ${i + 1} 个亡魂平息了。`] }, { kind: 'flag', set: `spirit-${i + 1}-calmed` }],
+      onLose: [{ kind: 'say', lines: ['寒意钻进骨头里……亡魂还在原地徘徊。'] }],
+    },
+  ];
+};
+
+const PROPHECIES = [
+  ['蜃楼宫的幻影在正午最清楚。', '海市蜃楼里，宫殿的门开着，门后是一片冰原——雷鸣群岛的冰川？', '第一段预言：「白昼之宫，映出已去之地。」'],
+  ['月影塔的残柱投下长长的影子。', '影子的尽头，指向北方的冠军山——山顶上方，天空有一道细细的裂缝。', '第二段预言：「月下之塔，指向将至之门。」'],
+  ['神殿石碑旁，海浪拍岸的节奏忽然停了一拍。', '水面上映出七道光，排成一个圆——圆心是一座从来没见过的岛。', '第三段预言：「海底之门，通往群岛之外。」'],
+];
+
+const prophecyScript = (i: number): StoryStep[] => [
+  { kind: 'say', lines: PROPHECIES[i]! },
+  { kind: 'fx', name: 'flash', ms: 300 },
+  { kind: 'say', lines: ['把预言记在了笔记上。'] },
+  { kind: 'flag', set: `prophecy-${i + 1}` },
+];
+
+const baseMaterial = (m: (typeof BASE_MATERIAL_SPOTS)[number]): StoryStep[] => [
+  { kind: 'say', lines: [m.line, `收集到了「${m.name}」！`] },
+  { kind: 'flag', set: `base-mat-${m.id}` },
+];
+
+const baseBuild: StoryStep[] = [
+  { kind: 'say', speaker: '秘密基地迷 阿穴', lines: ['琉璃砖、石板、细沙——全齐了！', '东边那面岩壁后面是空的，我早就听出来了。看好了！'] },
+  { kind: 'fx', name: 'fade-out', ms: 500 },
+  { kind: 'narrate', lines: ['咚、咚、咚……', '敲开岩壁，铺上石板，砌好琉璃砖窗，用细沙抹平地面——'] },
+  { kind: 'fx', name: 'fade-in', ms: 500 },
+  { kind: 'say', speaker: '秘密基地迷 阿穴', lines: ['完工！从今天起，这里就是你的秘密基地。', '里面有电脑和床，最里面的工作台可以换布置。想怎么摆都行！'] },
+  { kind: 'flag', set: 'secret-base-built' },
+];
+
+const BASE_THEMES = ['base-theme-cozy', 'base-theme-crystal', 'base-theme-training'];
+const theme = (flag: string, line: string): StoryStep[] => [
+  { kind: 'unflag', clear: BASE_THEMES.filter((t) => t !== flag) },
+  { kind: 'flag', set: flag },
+  { kind: 'fx', name: 'room-refresh', ms: 500 },
+  { kind: 'say', lines: [line] },
+];
+const baseDecor: StoryStep[] = [
+  {
+    kind: 'choice',
+    prompt: '换成哪种布置？',
+    options: [
+      { label: '温馨小屋', steps: theme('base-theme-cozy', '铺上地毯，摆好沙发和书架——秘密基地一下子暖和起来了。') },
+      { label: '水晶洞', steps: theme('base-theme-crystal', '四周立起发光的晶簇，整个基地泛着蓝紫色的光。') },
+      { label: '训练场', steps: theme('base-theme-training', '挂上旗子、点起火把，搬来几个沙袋箱——随时可以开练！') },
+      { label: '清空', steps: [{ kind: 'unflag', clear: BASE_THEMES }, { kind: 'fx', name: 'room-refresh', ms: 500 }, { kind: 'say', lines: ['把布置都收了起来。空荡荡的，也挺好。'] }] },
+    ],
+  },
+];
+
+const shadowRare: StoryStep[] = [
+  { kind: 'say', lines: ['暗河边的珊瑚状石头……动了。', '传说中只在暗影洞窟最深处出没的宝可梦！'] },
+  {
+    kind: 'battle',
+    species: 864,
+    level: 56,
+    moves: ['hex', 'power-gem', 'giga-drain', 'curse'],
+    noRun: true,
+    onWin: [{ kind: 'say', lines: ['太阳珊瑚的亡魂……不，是魔灵珊瑚。', '回洞口告诉墨婆吧——你见到了它。'] }, { kind: 'flag', set: 'shadow-rare-met' }],
+    onLose: [{ kind: 'say', lines: ['眼前的珊瑚碎成一片幽光，消失在暗河里……', '它还会回来的。'] }],
+  },
+];
+
+const veinSpring: StoryStep[] = [
+  { kind: 'say', lines: ['泉眼里的水不是往外冒，而是在往下漏——漩涡中心闪着紫光。', '水底有什么东西堵住了水脉！'] },
+  { kind: 'fx', name: 'shake', ms: 600 },
+  {
+    kind: 'battle',
+    species: 130,
+    level: 52,
+    moves: ['waterfall', 'crunch', 'dragon-dance', 'ice-fang'],
+    noCapture: true,
+    boss: true,
+    onWin: [
+      { kind: 'say', lines: ['暴鲤龙身上的紫光散去，它甩甩尾巴，顺着水道游回了深海。', '漩涡停了。清水重新从泉眼里涌了出来——'] },
+      { kind: 'fx', name: 'flash', ms: 300 },
+      { kind: 'say', lines: ['水脉通了！回琉璃镇告诉吹玻璃匠岩师傅吧。'] },
+      { kind: 'flag', set: 'vein-spring-fixed' },
+    ],
+    onLose: [{ kind: 'say', lines: ['被水流卷了出来……泉眼还在往下漏。'] }],
+  },
+];
+
 export const GLAZE_STORY: StoryScript[] = [
+  ...SPIRITS.map((_, i): StoryScript => ({ id: `spirit-${i + 1}`, steps: spiritScript(i) })),
+  ...PROPHECIES.map((_, i): StoryScript => ({ id: `prophecy-${i + 1}`, steps: prophecyScript(i) })),
+  ...BASE_MATERIAL_SPOTS.map((m): StoryScript => ({ id: `base-mat-${m.id}`, steps: baseMaterial(m) })),
+  { id: 'secret-base-build', steps: baseBuild },
+  { id: 'secret-base-decor', steps: baseDecor },
+  { id: 'shadow-rare', steps: shadowRare },
+  { id: 'vein-spring', steps: veinSpring },
   { id: 'shadow-enter', steps: shadowEnter },
   { id: 'shadow-altar', steps: shadowAltar },
   { id: 'league-hall-of-fame', steps: leagueHallOfFame },
@@ -144,6 +274,10 @@ export const GLAZE_STORY: StoryScript[] = [
 export const DIVER_COMPASS_POS: [number, number] = [705, 375];
 
 export const GLAZE_PICKUPS: StoryPickup[] = [
+  ...SPIRIT_SPOTS.map(([x, z], i): StoryPickup => ({ id: `spirit-${i + 1}`, island: 'glaze', position: [x, z], model: 'sparkle', label: '靠近鬼火', script: `spirit-${i + 1}`, showIf: ['seance-start'], hideIf: [`spirit-${i + 1}-calmed`] })),
+  ...PROPHECY_SPOTS.map(([x, z], i): StoryPickup => ({ id: `prophecy-${i + 1}`, island: 'glaze', position: [x, z], model: 'sparkle', label: '感应预言', script: `prophecy-${i + 1}`, showIf: ['prophecy-start'], hideIf: [`prophecy-${i + 1}`] })),
+  ...BASE_MATERIAL_SPOTS.map((m): StoryPickup => ({ id: `base-mat-${m.id}`, island: 'glaze', position: m.at, model: 'sparkle', label: `收集${m.name}`, script: `base-mat-${m.id}`, showIf: ['secret-base-start'], hideIf: [`base-mat-${m.id}`] })),
+  { id: 'vein-spring', island: 'glaze', position: VEIN_SPRING_SPOT, model: 'sparkle', label: '调查泉眼', script: 'vein-spring', showIf: ['watervein-start'], hideIf: ['vein-spring-fixed'] },
   {
     id: 'diver-compass',
     island: 'glaze',

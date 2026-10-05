@@ -4,7 +4,7 @@
  */
 import type { Quest } from '@/systems/quests';
 import { THUNDER_BADGES } from '@/config/story/thunder';
-import { DIVER_COMPASS_POS } from '@/config/story/glaze';
+import { BASE_MATERIAL_SPOTS, DIVER_COMPASS_POS, PROPHECY_SPOTS, SPIRIT_SPOTS, VEIN_SPRING_SPOT } from '@/config/story/glaze';
 import { VICTORY_ROAD_BADGES, VICTORY_ROAD_CLEARED } from '@/config/interiors/victoryRoad';
 
 const ISLAND = '琉璃群岛';
@@ -127,5 +127,100 @@ export const GLAZE_QUESTS: Quest[] = [
       { id: 'altar', text: '触碰圣所祭坛上的晶石', completeFlag: 'sea-temple-cleared', marker: { island: 'glaze', position: [800, 0, 200] } },
     ],
     reward: { money: 5000 },
+  },
+  // —————————— M3-27 · 琉璃支线（07-22 §3.7；海底神殿 = side-sea-temple，M3-18） ——————————
+  {
+    id: 'side-shadow-cave',
+    title: '暗影洞窟探险',
+    category: 'side',
+    island: ISLAND,
+    summary: '守洞人墨婆说，暗影洞窟深渊大厅的暗河边住着一只谁也没抓到过的宝可梦。',
+    prerequisites: ['main-cross-sea-3'],
+    startNpc: 'sc-guide',
+    startFlag: 'shadow-explore-start',
+    completeFlag: 'shadow-cave-done',
+    objectives: [
+      { id: 'meet', text: '穿过暗影迷廊，在深渊大厅的暗河边找到传说中的宝可梦', completeFlag: 'shadow-rare-met', marker: { island: 'glaze', position: [-268, 0, -318] } },
+      { id: 'return', text: '回洞口告诉守洞人墨婆', completeFlag: 'shadow-cave-done', marker: { island: 'glaze', position: [-268, 0, -318] } },
+    ],
+    reward: { money: 5000, items: [{ id: 'black-glasses', qty: 1 }] },
+  },
+  {
+    id: 'side-spirit-seance',
+    title: '幽冥降灵会',
+    category: 'side',
+    island: ISLAND,
+    summary: '守墓人老墨说，被异变惊醒的亡魂忘了自己是谁。陪它们打一场，帮 3 个亡魂安息。',
+    prerequisites: ['main-cross-sea-3'],
+    startNpc: 'ghost-gravekeeper',
+    startFlag: 'seance-start',
+    completeFlag: 'seance-done',
+    objectives: [
+      ...SPIRIT_SPOTS.map(([x, z], i) => ({
+        id: `spirit-${i + 1}`,
+        text: ['平息墓园里的亡魂', '平息沼泽古墓的亡魂', '平息钟楼下的亡魂'][i]!,
+        completeFlag: `spirit-${i + 1}-calmed`,
+        marker: { island: 'glaze' as const, position: [x, 0, z] as [number, number, number], radius: 10 },
+      })),
+      { id: 'return', text: '回守墓人小屋告诉老墨', completeFlag: 'seance-done', marker: { island: 'glaze', position: [-486, 0, -159] } },
+    ],
+    reward: { items: [{ id: 'tm-spite', qty: 1 }] },
+  },
+  {
+    id: 'side-secret-base',
+    title: '秘密基地定制',
+    category: 'side',
+    island: ISLAND,
+    summary: '暗影洞窟洞口的东壁是空心的。帮秘密基地迷阿穴收集三样材料，造一座属于自己的秘密基地。',
+    prerequisites: ['main-cross-sea-3'],
+    startNpc: 'base-builder',
+    startFlag: 'secret-base-start',
+    completeFlag: 'secret-base-built',
+    objectives: [
+      ...BASE_MATERIAL_SPOTS.map((m) => ({
+        id: m.id,
+        text: `收集${m.name}`,
+        completeFlag: `base-mat-${m.id}`,
+        marker: { island: 'glaze' as const, position: [m.at[0], 0, m.at[1]] as [number, number, number], radius: 10 },
+      })),
+      { id: 'build', text: '把材料交给暗影洞窟洞口的阿穴', completeFlag: 'secret-base-built', marker: { island: 'glaze', position: [-268, 0, -318] } },
+    ],
+  },
+  {
+    id: 'side-mirage-prophecy',
+    title: '幻影预言解读',
+    category: 'side',
+    island: ISLAND,
+    summary: '幻影镇的先知娜芙从水晶球里看到三段预言，它们只对亲临其地的人开口。',
+    prerequisites: ['main-cross-sea-3'],
+    startNpc: 'mirage-seer',
+    startFlag: 'prophecy-start',
+    completeFlag: 'prophecy-done',
+    objectives: [
+      ...PROPHECY_SPOTS.map(([x, z], i) => ({
+        id: `p${i + 1}`,
+        text: ['在蜃楼宫观景处感应「白昼之宫」', '在月影塔遗址感应「月下之塔」', '在神殿石碑旁感应「海底之门」'][i]!,
+        completeFlag: `prophecy-${i + 1}`,
+        marker: { island: 'glaze' as const, position: [x, 0, z] as [number, number, number], radius: 10 },
+      })),
+      { id: 'return', text: '回先知之家，把三段预言告诉娜芙', completeFlag: 'prophecy-done', marker: { island: 'glaze', position: [-436, 0, 490] } },
+    ],
+    reward: { items: [{ id: 'twisted-spoon', qty: 1 }, { id: 'tm-psychic', qty: 1 }] },
+  },
+  {
+    id: 'side-lily-watervein',
+    title: '琉璃水脉修复',
+    category: 'side',
+    island: ISLAND,
+    summary: '琉璃镇玻璃工坊的冷却泉水断了。去冠军山南麓的琉璃水脉泉眼看看出了什么事。',
+    prerequisites: ['main-cross-sea-3'],
+    startNpc: 'glaze-glassblower',
+    startFlag: 'watervein-start',
+    completeFlag: 'watervein-done',
+    objectives: [
+      { id: 'spring', text: '调查琉璃水脉泉眼', completeFlag: 'vein-spring-fixed', marker: { island: 'glaze', position: [VEIN_SPRING_SPOT[0], 0, VEIN_SPRING_SPOT[1]], radius: 10 } },
+      { id: 'return', text: '回玻璃工坊告诉岩师傅', completeFlag: 'watervein-done', marker: { island: 'glaze', position: [506, 0, 158] } },
+    ],
+    reward: { items: [{ id: 'water-stone', qty: 2 }, { id: 'mystic-water', qty: 1 }] },
   },
 ];

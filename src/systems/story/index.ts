@@ -13,7 +13,7 @@
 import type { Flags } from '../quests/types';
 import type { IslandId } from '../state/GameState';
 
-export type StoryFx = 'dream-in' | 'dream-out' | 'flash' | 'poof' | 'fade-out' | 'fade-in' | 'shake' | 'lighthouse' | 'fog-clear';
+export type StoryFx = 'dream-in' | 'dream-out' | 'flash' | 'poof' | 'fade-out' | 'fade-in' | 'shake' | 'lighthouse' | 'fog-clear' | 'room-refresh';
 
 export type StoryStep =
   | { kind: 'say'; lines: string[]; speaker?: string }

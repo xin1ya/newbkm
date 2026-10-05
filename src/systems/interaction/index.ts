@@ -243,3 +243,8 @@ export const KIND_LABEL: Record<InteractKind, string> = {
   surf: '水上骑乘',
   blocked: '',
 };
+
+/** M3-27 · 家具按 flag 显隐（秘密基地布置）：showIf 全部为真、hideIf 全部为假才出现 */
+export function furnitureShown(f: { showIf?: readonly string[] | undefined; hideIf?: readonly string[] | undefined }, flags: Readonly<Record<string, boolean | undefined>>): boolean {
+  return (f.showIf ?? []).every((k) => flags[k] === true) && !(f.hideIf ?? []).some((k) => flags[k] === true);
+}
