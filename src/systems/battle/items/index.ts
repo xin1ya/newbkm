@@ -8,7 +8,7 @@ import type { BattleMon } from '../types';
 export interface ItemHooks {
   modifyAttack?(mon: BattleMon, stat: 'atk' | 'spa'): number;
   modifySpeed?(mon: BattleMon): number;
-  modifyBasePower?(move: MoveData, type: TypeId): number;
+  modifyBasePower?(move: MoveData, type: TypeId, user?: BattleMon): number;
   modifyDamageDealt?(b: BattleApi, user: BattleMon, hit: HitInfo): number;
   /** 攻击方造成伤害后（生命宝珠反伤） */
   afterDealDamage?(b: BattleApi, user: BattleMon, hit: HitInfo): void;
@@ -126,6 +126,15 @@ export const ITEMS: Record<string, ItemHooks> = {
   'chople-berry': resistBerry('fighting'),
   charcoal: typeBoost('fire'),
   'mystic-water': typeBoost('water'),
+  // M3 自定义携带物
+  'spirit-veil': typeBoost('ghost'),
+  'seer-eye': typeBoost('psychic'),
+  'ancient-amulet': typeBoost('water'),
+  // 心之水滴：拉帝亚斯 / 拉帝欧斯携带时超能力 / 龙属性招式威力 1.2 倍
+  'soul-dew': {
+    modifyBasePower: (_m, t, user) =>
+      user && (user.pokemon.speciesId === 380 || user.pokemon.speciesId === 381) && (t === 'psychic' || t === 'dragon') ? 1.2 : 1,
+  },
   'miracle-seed': typeBoost('grass'),
   magnet: typeBoost('electric'),
   'sharp-beak': typeBoost('flying'),

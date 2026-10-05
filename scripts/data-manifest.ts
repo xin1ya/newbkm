@@ -19,6 +19,8 @@ export const SEED_SPECIES: readonly number[] = [
   // M2 碧潮群岛（2026-10-04）：古森 喇叭芽/蘑蘑菇/芭瓢虫/赫拉克罗斯/含羞苞；峡谷 大岩蛇/超音蝠/卡拉卡拉/穿山鼠；
   // 冲撞骑乘 独角犀牛；火山 卡蒂狗/小火马/熔岩虫/呆火驼/煤炭龟/戴鲁比；温泉 呆呆兽；遗迹 天秤偶/雷吉洛克；火山口的蛋 燃烧虫
   69, 285, 165, 214, 406, 95, 41, 104, 27, 111, 58, 77, 218, 322, 324, 228, 79, 343, 377, 636,
+  // M3 · 雷鸣群岛支线『冻土之种』奖励：妙蛙种子（妙蛙草 / 妙蛙花）
+  1,
 ];
 
 /** 核心道具：携带物（SYS-010）+ 精灵球（SYS-005）+ 回复药 */
@@ -36,6 +38,8 @@ export const CORE_ITEMS: readonly string[] = [
   'hp-up', 'protein', 'iron', 'calcium', 'zinc', 'carbos',
   // 进化石（进化判定用）
   'fire-stone', 'water-stone', 'thunder-stone', 'leaf-stone', 'sun-stone', 'kings-rock', 'linking-cord', 'protector',
+  // M3 支线奖励：光之石 / 冰之石 / 暗之石、经验糖果L、心之水滴（拉帝亚斯 / 拉帝欧斯专属）
+  'shiny-stone', 'ice-stone', 'dusk-stone', 'exp-candy-l', 'soul-dew',
 ];
 
 /** 明确的接触类招式补充（特殊攻击中也有少数接触招式） */

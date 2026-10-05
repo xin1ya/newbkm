@@ -629,6 +629,16 @@ const ICONS: Record<string, () => Svg> = {
 };
 for (const [id, [c, g]] of Object.entries(VITAMIN_ICON)) ICONS[id] = () => vitamin(c, g);
 ICONS['golden-watering-can'] = goldenCan;
+// M3 支线奖励
+ICONS['shiny-stone'] = () => stone('#eef2f8', '#9aa6c0', `<path d="M24 15l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#fff8c8" stroke="#c9a012" stroke-width="1.2"/>`);
+ICONS['ice-stone'] = () => stone('#bfe8f7', '#5ab0d0', `<path d="M24 15v20M15 20l18 10M33 20l-18 10" stroke="#ffffff" stroke-width="2"/>`);
+ICONS['dusk-stone'] = () => stone('#3a2f4a', '#1a1424', `<circle cx="24" cy="25" r="6" fill="#9a5ae0" stroke="#e6d0ff" stroke-width="1.2"/>`);
+ICONS['flying-stone'] = () => stone('#e8f4ff', '#8ab8e0', `<path d="M14 28c4-6 8-6 10-2 2-5 7-5 10 2" fill="none" stroke="#5a8ad0" stroke-width="2"/>`);
+ICONS['exp-candy-l'] = () => orb('#f2b632', '#fff2a8');
+ICONS['soul-dew'] = () => orb('#d84a6a', '#a8d8ff');
+ICONS['seer-eye'] = () => orb('#e86aa8', '#ffe0f0');
+ICONS['ancient-amulet'] = () => shard('#2f8fb5', '#c8f0ff');
+ICONS['spirit-veil'] = () => scarf('#6a4c9a', '#c8b0f0');
 ICONS['anomaly-shard-red'] = () => shard('#e8484a', '#ffd0c8');
 ICONS['anomaly-shard-orange'] = () => shard('#f08a3c', '#ffe2b8');
 ICONS['anomaly-shard-purple'] = () => shard('#9a5ae0', '#e6d0ff');

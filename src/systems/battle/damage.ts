@@ -77,7 +77,7 @@ export function calcDamage(b: BattleApi, input: DamageInput): DamageResult {
   // 威力
   let power = input.basePower;
   power *= userAbility.modifyBasePower?.(b, user, target, move, type) ?? 1;
-  power *= getItem(user).modifyBasePower?.(move, type) ?? 1;
+  power *= getItem(user).modifyBasePower?.(move, type, user) ?? 1;
   power = Math.max(1, Math.floor(power));
 
   const level = user.pokemon.level;

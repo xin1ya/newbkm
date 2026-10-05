@@ -2,6 +2,90 @@
   "version": 1,
   "models": [
     {
+      "id": 1,
+      "name": "bulbasaur",
+      "heightM": 0.7,
+      "plan": "quadruped",
+      "tris": 4628,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/1.glb",
+      "file": "001_bulbasaur.glb",
+      "bytes": 174288,
+      "rawBytes": 396436
+    },
+    {
+      "id": 2,
+      "name": "ivysaur",
+      "heightM": 1,
+      "plan": "quadruped",
+      "tris": 6476,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/2.glb",
+      "file": "002_ivysaur.glb",
+      "bytes": 187292,
+      "rawBytes": 443548
+    },
+    {
+      "id": 3,
+      "name": "venusaur",
+      "heightM": 2,
+      "plan": "quadruped",
+      "tris": 6386,
+      "fit": "oss",
+      "bones": 14,
+      "clips": [
+        "idle",
+        "idle_alt",
+        "walk",
+        "run",
+        "attack_physical",
+        "attack_special",
+        "hit",
+        "faint",
+        "sleep"
+      ],
+      "hitTime": {
+        "attack_physical": 0.5,
+        "attack_special": 0.7333333333333333
+      },
+      "source": "oss:pokemon-3d/3.glb",
+      "file": "003_venusaur.glb",
+      "bytes": 199324,
+      "rawBytes": 460384
+    },
+    {
       "id": 10,
       "name": "caterpie",
       "heightM": 0.3,

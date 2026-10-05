@@ -588,5 +588,55 @@
   "category": "evolution",
   "flingPower": 80,
   "shortEffect": "某种护具。 非常坚硬而且沉重。 某种宝可梦很喜欢它。"
+ },
+ {
+  "id": "shiny-stone",
+  "name": {
+   "en": "Shiny Stone",
+   "zh": "光之石"
+  },
+  "category": "evolution",
+  "flingPower": 80,
+  "shortEffect": "能让某些特定宝可梦 进化的神奇石头。 像光芒一样耀眼。"
+ },
+ {
+  "id": "ice-stone",
+  "name": {
+   "en": "Ice Stone",
+   "zh": "冰之石"
+  },
+  "category": "evolution",
+  "flingPower": 30,
+  "shortEffect": "能让某些特定宝可梦 进化的神奇石头。 有着雪花般的花纹。"
+ },
+ {
+  "id": "dusk-stone",
+  "name": {
+   "en": "Dusk Stone",
+   "zh": "暗之石"
+  },
+  "category": "evolution",
+  "flingPower": 80,
+  "shortEffect": "能让某些特定宝可梦 进化的神奇石头。 像黑夜一般漆黑。"
+ },
+ {
+  "id": "exp-candy-l",
+  "name": {
+   "en": "Exp. Candy L",
+   "zh": "经验糖果Ｌ"
+  },
+  "category": "vitamins",
+  "flingPower": 30,
+  "shortEffect": "充满能量的糖果。 交给１只宝可梦后， 可以为它增加许多经验值。"
+ },
+ {
+  "id": "soul-dew",
+  "name": {
+   "en": "Soul Dew",
+   "zh": "心之水滴"
+  },
+  "category": "species-specific",
+  "flingPower": 30,
+  "shortEffect": "让拉帝欧斯或拉帝亚斯携带后， 超能力和龙属性的招式威力 就会提高的神奇珠子。"
  }
 ]

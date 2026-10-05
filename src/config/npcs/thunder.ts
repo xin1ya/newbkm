@@ -232,7 +232,7 @@ export const THUNDER_NPCS: NpcDef[] = [
         when: 'active',
         requires: ['mail-magnolia', 'mail-inn-owner', 'mail-dawn-miller'],
         setFlags: ['cloud-mail-done'],
-        dialog: ['三封都送到了？一天跑三座岛，比信鸽还快！', '这是跑腿费，还有这个「锐利鸟嘴」——飞行宝可梦带着最合适。'],
+        dialog: ['三封都送到了？一天跑三座岛，比信鸽还快！', '这是跑腿费，还有一颗「经验糖果L」和这块「飞之石」——云海那边捎来的，轻得像云。'],
       },
       { questId: 'side-cloud-mail', when: 'active', dialog: ['萌芽的木兰博士、温泉乡的汤老板、晨光镇的磨坊主。', '按 B 键就能飞，别迷路哦！'] },
       {

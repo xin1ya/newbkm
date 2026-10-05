@@ -31,7 +31,7 @@ export const DUNGEON_NPCS: NpcDef[] = [
     appearance: { look: 'miner', palette: { jacket: '#3a6aa8' } },
     dialogByQuest: [
       { questId: 'side-lighthouse-ghost', when: 'completed', dialog: ['灯亮了以后，夜航的渔船又回来了。', '楼上偶尔还是有脚步声……不过现在我觉得，那是在守灯。'] },
-      { questId: 'side-lighthouse-ghost', when: 'active', requires: ['lh-lamp-lit'], setFlags: ['lighthouse-ghost-done'], dialog: ['亮了！真的亮了！三年了啊……', '你说灯室里住着一只鬼斯通？哈哈，那就让它当守灯人吧。', '这是修复队凑的谢礼，还有两块「日之石」——跟这盏灯一样亮。'] },
+      { questId: 'side-lighthouse-ghost', when: 'active', requires: ['lh-lamp-lit'], setFlags: ['lighthouse-ghost-done'], dialog: ['亮了！真的亮了！三年了啊……', '你说灯室里住着一只鬼斯通？哈哈，那就让它当守灯人吧。', '这是修复队凑的谢礼，还有两块「光之石」——跟这盏灯一样亮。'] },
       { questId: 'side-lighthouse-ghost', when: 'active', dialog: ['新灯芯给你了。灯室在最顶上。', '二楼黑，要「闪光」；三楼楼梯有落石，要「碎岩」。'] },
       {
         questId: 'side-lighthouse-ghost',
@@ -72,7 +72,7 @@ export const DUNGEON_NPCS: NpcDef[] = [
     appearance: { look: 'elder', palette: { jacket: '#4a3a5a', hair: '#d8d8e0' } },
     dialogByQuest: [
       { questId: 'side-shadow-cave', when: 'completed', dialog: ['魔灵珊瑚……几十年了，你是头一个见到它还走回来的人。', '这副眼镜是我年轻时戴的，在黑地方看得更清楚。'] },
-      { questId: 'side-shadow-cave', when: 'active', requires: ['shadow-rare-met'], setFlags: ['shadow-cave-done'], dialog: ['你见到它了？……真的见到了？', '好，好。洞里的老规矩：见过深渊的人，配得上这副「黑色眼镜」。拿着吧。'] },
+      { questId: 'side-shadow-cave', when: 'active', requires: ['shadow-rare-met'], setFlags: ['shadow-cave-done'], dialog: ['你见到它了？……真的见到了？', '好，好。洞里的老规矩：见过深渊的人，配得上这副「黑色眼镜」，还有这块深渊里捡来的「暗之石」。拿着吧。'] },
       { questId: 'side-shadow-cave', when: 'active', dialog: ['暗河在深渊大厅的西边。小心，它会装成石头。'] },
       { questId: 'side-shadow-cave', when: 'available', setFlags: ['shadow-explore-start'], dialog: ['你想往深处去？……也好。', '深渊大厅的暗河边，住着一只谁也没抓到过的宝可梦。看起来像一块珊瑚，碰一下，魂都会被吸走。', '要是你能和它交手一回，回来讲给老婆子听听。'] },
     ],

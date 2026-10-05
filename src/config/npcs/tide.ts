@@ -346,12 +346,12 @@ export const TIDE_NPCS: NpcDef[] = [
     appearance: { look: 'kimono-f', palette: { hair: '#d8d4cc', jacket: '#e07a8a' }, style: { stoop: 0.12 } },
     service: { kind: 'breeder' },
     dialogByQuest: [
-      { questId: 'side-frozen-seed', when: 'completed', dialog: ['含羞苞还好吗？那可是冰川底下睡了几千年的孩子。', '温泉的水，比什么都能叫醒种子。'] },
+      { questId: 'side-frozen-seed', when: 'completed', dialog: ['妙蛙种子还好吗？那可是冰川底下睡了几千年的孩子。', '温泉的水，比什么都能叫醒种子。'] },
       {
         questId: 'side-frozen-seed',
         when: 'active',
         setFlags: ['frozen-seed-sprouted'],
-        dialog: ['这颗种子……外面裹着冰，里面却是热的。', '埋进温泉边的土里，浇一瓢温泉水——', '哎呀，冒芽了！……不对，这是宝可梦！是含羞苞！', '它在冰里等了好久好久。带它去看看外面的世界吧。'],
+        dialog: ['这颗种子……外面裹着冰，里面却是热的。', '埋进温泉边的土里，浇一瓢温泉水——', '哎呀，冒芽了！……不对，这是宝可梦！是妙蛙种子！', '它在冰里等了好久好久。带它去看看外面的世界吧。'],
       },
       { questId: 'side-volcano-egg', when: 'completed', dialog: ['燃烧虫长得好吗？', '它是在温泉的热气里出生的，最喜欢暖和的地方。'] },
       {

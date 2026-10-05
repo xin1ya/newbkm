@@ -2,10 +2,10 @@
  "source": "https://pokeapi.co",
  "note": "由 scripts/fetch-data.ts 生成，请勿手改；如需调整改 scripts/data-manifest.ts 后重新运行",
  "counts": {
-  "species": 120,
-  "moves": 334,
+  "species": 123,
+  "moves": 335,
   "abilities": 86,
-  "items": 59,
+  "items": 64,
   "natures": 25
  }
 }

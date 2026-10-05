@@ -94,7 +94,7 @@ export const GLAZE_NPCS: NpcDef[] = [
     appearance: { look: 'kimono-f', palette: { jacket: '#7a4a9a', hair: '#e8e2ff' } },
     dialogByQuest: [
       { questId: 'side-mirage-prophecy', when: 'completed', dialog: ['已去之地、将至之门、群岛之外……', '你走的路，正是预言里写的路。'] },
-      { questId: 'side-mirage-prophecy', when: 'active', requires: ['prophecy-1', 'prophecy-2', 'prophecy-3'], setFlags: ['prophecy-done'], dialog: ['……白昼之宫映出已去之地，月下之塔指向将至之门，海底之门通往群岛之外。', '七块碎片会在群岛之外重聚。孩子，那就是你要去的地方。', '这支「弯曲的汤匙」和「精神强念」的学习器，是先知一脉的信物。带上它们吧。'] },
+      { questId: 'side-mirage-prophecy', when: 'active', requires: ['prophecy-1', 'prophecy-2', 'prophecy-3'], setFlags: ['prophecy-done'], dialog: ['……白昼之宫映出已去之地，月下之塔指向将至之门，海底之门通往群岛之外。', '七块碎片会在群岛之外重聚。孩子，那就是你要去的地方。', '这枚「先知之眼」和「精神强念」的学习器，是先知一脉的信物。带上它们吧。'] },
       { questId: 'side-mirage-prophecy', when: 'active', dialog: ['蜃楼宫、月影塔、神殿石碑。预言只对亲临的人开口。'] },
       { questId: 'side-mirage-prophecy', when: 'available', setFlags: ['prophecy-start'], dialog: ['水晶球里映出三段预言。可惜，它们只肯对亲眼看见的人开口。', '白昼之宫——蜃楼宫观景处。月下之塔——月影塔遗址。海底之门——琉璃镇东边的神殿石碑。', '去那三个地方，听听它们说什么，再回来告诉我。'] },
     ],
@@ -159,7 +159,7 @@ export const GLAZE_NPCS: NpcDef[] = [
     appearance: { look: 'elder', palette: { jacket: '#2e2a3a', hair: '#d8d4dc' } },
     dialogByQuest: [
       { questId: 'side-spirit-seance', when: 'completed', dialog: ['没名字的墓碑上，名字都回来了。', '谢谢你替我送它们一程。'] },
-      { questId: 'side-spirit-seance', when: 'active', requires: ['spirit-1-calmed', 'spirit-2-calmed', 'spirit-3-calmed'], setFlags: ['seance-done'], dialog: ['三个都安息了？……我听见钟声了。', '这张招式学习器是灵堂留下的「怨恨」——专门对付那些不讲理的对手。收下吧。'] },
+      { questId: 'side-spirit-seance', when: 'active', requires: ['spirit-1-calmed', 'spirit-2-calmed', 'spirit-3-calmed'], setFlags: ['seance-done'], dialog: ['三个都安息了？……我听见钟声了。', '这条「灵界之纱」是巫女当年织的，还有灵堂留下的「怨恨」学习器——专门对付那些不讲理的对手。收下吧。'] },
       { questId: 'side-spirit-seance', when: 'active', dialog: ['墓园、沼泽古墓、钟楼下。鬼火亮着的地方，就是它们在等。'] },
       { questId: 'side-spirit-seance', when: 'available', setFlags: ['seance-start'], dialog: ['你看得见它们？……那就好办了。', '这几个月，墓园里多了没写名字的墓碑。那是被异变惊醒、忘了自己是谁的亡魂。', '墓园、沼泽古墓、钟楼下——各有一个在徘徊。用你的宝可梦陪它们打一场，它们就会想起来。', '去吧。它们只是迷路了。'] },
     ],
@@ -258,7 +258,7 @@ export const GLAZE_NPCS: NpcDef[] = [
     appearance: { look: 'hiker', palette: { jacket: '#8a5a3a' } },
     dialogByQuest: [
       { questId: 'side-lily-watervein', when: 'completed', dialog: ['水来了，炉火也稳了。这批玻璃，颜色比往年都亮。'] },
-      { questId: 'side-lily-watervein', when: 'active', requires: ['vein-spring-fixed'], setFlags: ['watervein-done'], dialog: ['水来了！冷却池又满了！', '是暴鲤龙堵住了水脉？……你可真行。', '两块水之石，还有这瓶「神秘水滴」，是用第一桶泉水封的。收下吧！'] },
+      { questId: 'side-lily-watervein', when: 'active', requires: ['vein-spring-fixed'], setFlags: ['watervein-done'], dialog: ['水来了！冷却池又满了！', '是暴鲤龙堵住了水脉？……你可真行。', '两块水之石，还有这颗「心之水滴」——水脉最深处结出来的，据说和传说中的宝可梦有缘。收下吧！'] },
       { questId: 'side-lily-watervein', when: 'active', dialog: ['泉眼在冠军山南麓，琉璃水脉的源头。'] },
       { questId: 'side-lily-watervein', when: 'available', setFlags: ['watervein-start'], dialog: ['唉，炉子要停了。', '工坊冷却用的是琉璃水脉的泉水，可这个月泉水越来越少——今天干脆一滴都没了。', '泉眼在北边冠军山脚下。你去看看是怎么回事好吗？'] },
     ],

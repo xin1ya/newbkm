@@ -90,7 +90,7 @@ export const THUNDER_QUESTS: Quest[] = [
       { id: 'lamp', text: '登上古灯塔灯室，重新点亮灯火', completeFlag: 'lh-lamp-lit', marker: { island: 'thunder', position: [850, 0, 556] } },
       { id: 'return', text: '回灯塔一楼告诉修塔工阿钟', completeFlag: 'lighthouse-ghost-done', marker: { island: 'thunder', position: [850, 0, 556] } },
     ],
-    reward: { money: 5000, items: [{ id: 'sun-stone', qty: 2 }] },
+    reward: { money: 5000, items: [{ id: 'shiny-stone', qty: 2 }] },
   },
   {
     id: 'side-thunder-observation',
@@ -127,7 +127,7 @@ export const THUNDER_QUESTS: Quest[] = [
       { id: 'ice', text: '去冰湖边撬一块透明冰', completeFlag: 'ice-block-got', marker: { island: 'thunder', position: [CLEAR_ICE_SPOT[0], 0, CLEAR_ICE_SPOT[1]], radius: 12 } },
       { id: 'carve', text: '把透明冰交给雪原镇的冰雕师傅，参加比赛', completeFlag: 'ice-sculpture-done', marker: { island: 'thunder', position: [146, 0, -196] } },
     ],
-    reward: { items: [{ id: 'never-melt-ice', qty: 1 }, { id: 'water-stone', qty: 1 }] },
+    reward: { items: [{ id: 'never-melt-ice', qty: 1 }, { id: 'ice-stone', qty: 1 }] },
   },
   {
     id: 'side-frozen-seed',
@@ -139,7 +139,7 @@ export const THUNDER_QUESTS: Quest[] = [
     startFlag: 'frozen-seed-found',
     completeFlag: 'frozen-seed-sprouted',
     objectives: [{ id: 'plant', text: '把远古种子带到碧潮群岛温泉乡的培育屋', completeFlag: 'frozen-seed-sprouted', marker: { island: 'tide', position: [340, 0, 548] } }],
-    reward: { pokemon: 406, pokemonLevel: 20 },
+    reward: { pokemon: 1, pokemonLevel: 20 },
   },
   {
     id: 'side-cloud-mail',
@@ -157,6 +157,6 @@ export const THUNDER_QUESTS: Quest[] = [
       { id: 'dawn', text: '把信送给晨光镇磨坊的磨坊主', completeFlag: 'mail-dawn-miller', marker: { island: 'thunder', zoneId: 'dawn-town' } },
       { id: 'return', text: '回云雀镇信鸽站复命', completeFlag: 'cloud-mail-done', marker: { island: 'thunder', position: [282, 0, -640] } },
     ],
-    reward: { money: 3000, items: [{ id: 'sharp-beak', qty: 1 }] },
+    reward: { money: 3000, items: [{ id: 'exp-candy-l', qty: 1 }, { id: 'flying-stone', qty: 1 }] },
   },
 ];

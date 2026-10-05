@@ -96,6 +96,11 @@ export const KEY_ITEMS: KeyItemDef[] = [
   { id: 'ancient-tablet', name: '古代石板', desc: '矿洞里挖出的石板，刻着群岛古代文明的文字。木兰博士一定很想看看。', pocket: 'key' },
   { id: 'volcano-egg', name: '火山口的蛋', desc: '在火山洞深处找到的温热的蛋。带去温泉乡的培育屋，让温泉的热气孵化它。', pocket: 'key' },
   { id: 'mine-pickaxe', name: '矿工的镐', desc: '被困矿工掉落的镐头，柄上刻着「石根」。', pocket: 'key' },
+  // M3 · 雷鸣 / 琉璃群岛支线奖励（PokeAPI 没有的自定义道具）
+  { id: 'flying-stone', name: '飞之石', desc: '云海邮差送来的奇妙石头，轻得像一团云，握在手里仿佛要飘起来。目前还没有发现会对它起反应的宝可梦。', pocket: 'evolution' },
+  { id: 'spirit-veil', name: '灵界之纱', desc: '永夜之城的巫女织成的薄纱，能隐约看见另一边的世界。携带后幽灵属性的招式威力提高。', pocket: 'held' },
+  { id: 'seer-eye', name: '先知之眼', desc: '幻影镇先知传下的水晶眼，凝视它能看见片刻之后的未来。携带后超能力属性的招式威力提高。', pocket: 'held' },
+  { id: 'ancient-amulet', name: '古代护符', desc: '海底神殿里沉睡的护符，刻着古代文明的浪纹。携带后水属性的招式威力提高。', pocket: 'held' },
   { id: 'golden-watering-can', name: '金色喷壶', desc: '培育家 9 级时得到的金色喷壶。浇一次水，当前阶段和下一个阶段都算浇过。', pocket: 'key' },
 ];
 

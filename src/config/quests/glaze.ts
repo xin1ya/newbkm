@@ -126,7 +126,7 @@ export const GLAZE_QUESTS: Quest[] = [
       { id: 'hall', text: '吹响潮汐螺，穿过前厅的水幕', completeFlag: 'sea-temple-hall-open', marker: { island: 'glaze', position: [800, 0, 200] } },
       { id: 'altar', text: '触碰圣所祭坛上的晶石', completeFlag: 'sea-temple-cleared', marker: { island: 'glaze', position: [800, 0, 200] } },
     ],
-    reward: { money: 5000 },
+    reward: { money: 5000, items: [{ id: 'ancient-amulet', qty: 1 }] },
   },
   // —————————— M3-27 · 琉璃支线（07-22 §3.7；海底神殿 = side-sea-temple，M3-18） ——————————
   {
@@ -143,7 +143,7 @@ export const GLAZE_QUESTS: Quest[] = [
       { id: 'meet', text: '穿过暗影迷廊，在深渊大厅的暗河边找到传说中的宝可梦', completeFlag: 'shadow-rare-met', marker: { island: 'glaze', position: [-268, 0, -318] } },
       { id: 'return', text: '回洞口告诉守洞人墨婆', completeFlag: 'shadow-cave-done', marker: { island: 'glaze', position: [-268, 0, -318] } },
     ],
-    reward: { money: 5000, items: [{ id: 'black-glasses', qty: 1 }] },
+    reward: { items: [{ id: 'black-glasses', qty: 1 }, { id: 'dusk-stone', qty: 1 }] },
   },
   {
     id: 'side-spirit-seance',
@@ -164,7 +164,7 @@ export const GLAZE_QUESTS: Quest[] = [
       })),
       { id: 'return', text: '回守墓人小屋告诉老墨', completeFlag: 'seance-done', marker: { island: 'glaze', position: [-486, 0, -159] } },
     ],
-    reward: { items: [{ id: 'tm-spite', qty: 1 }] },
+    reward: { items: [{ id: 'spirit-veil', qty: 1 }, { id: 'tm-spite', qty: 1 }] },
   },
   {
     id: 'side-secret-base',
@@ -205,7 +205,7 @@ export const GLAZE_QUESTS: Quest[] = [
       })),
       { id: 'return', text: '回先知之家，把三段预言告诉娜芙', completeFlag: 'prophecy-done', marker: { island: 'glaze', position: [-436, 0, 490] } },
     ],
-    reward: { items: [{ id: 'twisted-spoon', qty: 1 }, { id: 'tm-psychic', qty: 1 }] },
+    reward: { items: [{ id: 'seer-eye', qty: 1 }, { id: 'tm-psychic', qty: 1 }] },
   },
   {
     id: 'side-lily-watervein',
@@ -221,6 +221,6 @@ export const GLAZE_QUESTS: Quest[] = [
       { id: 'spring', text: '调查琉璃水脉泉眼', completeFlag: 'vein-spring-fixed', marker: { island: 'glaze', position: [VEIN_SPRING_SPOT[0], 0, VEIN_SPRING_SPOT[1]], radius: 10 } },
       { id: 'return', text: '回玻璃工坊告诉岩师傅', completeFlag: 'watervein-done', marker: { island: 'glaze', position: [506, 0, 158] } },
     ],
-    reward: { items: [{ id: 'water-stone', qty: 2 }, { id: 'mystic-water', qty: 1 }] },
+    reward: { items: [{ id: 'water-stone', qty: 2 }, { id: 'soul-dew', qty: 1 }] },
   },
 ];

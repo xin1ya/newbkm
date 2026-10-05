@@ -6,7 +6,7 @@ import type { Dex } from '../data/Dex';
 import type { MajorStatus, PokemonInstance } from '../pokemon';
 import { EV_MAX_PER_STAT, EV_MAX_TOTAL, IV_ITEMS, IV_MAX, VITAMINS, VITAMIN_EV, addEvs, applyIvItem, evTotal, ivItemUsable, maxHp } from '../pokemon';
 import type { BaseStatId } from '../data/types';
-import { checkEvolution, teachMove } from '../progression';
+import { checkEvolution, gainExp, teachMove } from '../progression';
 import { addItem, removeItem, type GameState } from '../state';
 import { computeTmCompat } from '../tms';
 import TM_COMPAT from '@/config/tms/compat.json';
@@ -31,7 +31,7 @@ export interface KeyItemDef {
   id: string;
   name: string;
   desc: string;
-  pocket: 'key' | 'tms' | 'medicine' | 'treasure' | 'berries';
+  pocket: 'key' | 'tms' | 'medicine' | 'treasure' | 'berries' | 'held' | 'evolution';
   /** 招式学习器教的招式 */
   move?: string;
 }
@@ -76,11 +76,12 @@ export function pocketOf(dex: Dex, id: string, keyItems: ReadonlyMap<string, Key
   const k = keyItems.get(id);
   if (k) return k.pocket;
   if (id.endsWith('-berry')) return 'berries';
+  if (id.startsWith('exp-candy')) return 'medicine';
   const cat = dex.item(id)?.category ?? '';
   if (cat.endsWith('balls')) return 'balls';
   if (['healing', 'revival', 'status-cures', 'medicine', 'vitamins'].includes(cat)) return 'medicine';
   if (cat === 'evolution' || id === 'kings-rock') return 'evolution';
-  if (['held-items', 'choice', 'type-enhancement'].includes(cat)) return 'held';
+  if (['held-items', 'choice', 'type-enhancement', 'species-specific'].includes(cat)) return 'held';
   return 'key';
 }
 
@@ -106,6 +107,9 @@ export function pocketItems(dex: Dex, bag: Readonly<Record<string, number>>, poc
     .map(([id, qty]) => ({ id, qty }))
     .sort((a, b) => a.id.localeCompare(b.id));
 }
+
+/** 经验糖果的经验量 */
+const EXP_CANDY: Record<string, number> = { 'exp-candy-xs': 100, 'exp-candy-s': 800, 'exp-candy-m': 3000, 'exp-candy-l': 10000, 'exp-candy-xl': 30000 };
 
 export type UseResult =
   | { ok: true; messages: string[]; consumed: boolean; evolveTo?: number; learnMove?: string }
@@ -231,6 +235,26 @@ export function applyToPokemon(dex: Dex, id: string, p: PokemonInstance, keyItem
     p.hp = Math.floor(max / 2);
     p.status = null;
     return { ok: true, messages: [`${name}恢复了精神！`], consumed: true };
+  }
+  if (id.startsWith('exp-candy')) {
+    // 经验糖果L：获得 10000 点经验（濒死也能吃；满级无效）
+    if (p.level >= 100) return noEffect();
+    const recs = gainExp(dex, p, EXP_CANDY[id] ?? 10000);
+    const msgs = [`${name}获得了 ${EXP_CANDY[id] ?? 10000} 点经验值！`];
+    const pending: string[] = [];
+    for (const r of recs) {
+      msgs.push(`${name}升到了 ${r.level} 级！`);
+      for (const m of r.learned) msgs.push(`${name}学会了「${dex.hasMove(m) ? dex.move(m).name.zh : m}」！`);
+      pending.push(...r.pending);
+    }
+    const evo = checkEvolution(dex, p, { timeOfDay: ctx.timeOfDay });
+    return {
+      ok: true,
+      messages: msgs,
+      consumed: true,
+      ...(evo !== null ? { evolveTo: evo } : {}),
+      ...(pending[0] !== undefined ? { learnMove: pending[0] } : {}),
+    };
   }
   if (p.hp <= 0) return noEffect();
   const heal = HEAL_AMOUNT[id] ?? BERRY_HEAL[id]?.(max);

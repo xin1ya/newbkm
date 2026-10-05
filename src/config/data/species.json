@@ -1,5 +1,521 @@
 [
  {
+  "id": 1,
+  "key": "bulbasaur",
+  "name": {
+   "en": "Bulbasaur",
+   "zh": "妙蛙种子"
+  },
+  "genus": {
+   "en": "Seed Pokémon",
+   "zh": "种子宝可梦"
+  },
+  "types": [
+   "grass",
+   "poison"
+  ],
+  "baseStats": {
+   "hp": 45,
+   "atk": 49,
+   "def": 49,
+   "spa": 65,
+   "spd": 65,
+   "spe": 45
+  },
+  "abilities": [
+   {
+    "id": "overgrow",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "chlorophyll",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 64,
+  "growthRate": "medium-slow",
+  "genderRate": 1,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 1,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.7,
+  "weightKg": 6.9,
+  "color": "green",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 2,
+    "trigger": "level-up",
+    "minLevel": 16
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 3,
+    "move": "vine-whip"
+   },
+   {
+    "level": 6,
+    "move": "growth"
+   },
+   {
+    "level": 9,
+    "move": "leech-seed"
+   },
+   {
+    "level": 12,
+    "move": "razor-leaf"
+   },
+   {
+    "level": 15,
+    "move": "poison-powder"
+   },
+   {
+    "level": 15,
+    "move": "sleep-powder"
+   },
+   {
+    "level": 18,
+    "move": "seed-bomb"
+   },
+   {
+    "level": 21,
+    "move": "take-down"
+   },
+   {
+    "level": 24,
+    "move": "sweet-scent"
+   },
+   {
+    "level": 27,
+    "move": "synthesis"
+   },
+   {
+    "level": 30,
+    "move": "worry-seed"
+   },
+   {
+    "level": 33,
+    "move": "power-whip"
+   },
+   {
+    "level": 36,
+    "move": "solar-beam"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "背上的种子里储存着营养， 所以即使好几天不吃东西 也可以活得好好的！",
+  "machineMoves": [
+   "acid-spray",
+   "body-slam",
+   "bullet-seed",
+   "charm",
+   "curse",
+   "double-edge",
+   "endure",
+   "energy-ball",
+   "facade",
+   "false-swipe",
+   "giga-drain",
+   "grass-knot",
+   "grass-pledge",
+   "grassy-glide",
+   "grassy-terrain",
+   "helping-hand",
+   "knock-off",
+   "leaf-storm",
+   "magical-leaf",
+   "protect",
+   "rest",
+   "seed-bomb",
+   "sleep-talk",
+   "sludge-bomb",
+   "solar-beam",
+   "substitute",
+   "sunny-day",
+   "swords-dance",
+   "take-down",
+   "tera-blast",
+   "toxic",
+   "trailblaze",
+   "venoshock",
+   "weather-ball"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "curse",
+   "ingrain",
+   "petal-dance",
+   "toxic"
+  ]
+ },
+ {
+  "id": 2,
+  "key": "ivysaur",
+  "name": {
+   "en": "Ivysaur",
+   "zh": "妙蛙草"
+  },
+  "genus": {
+   "en": "Seed Pokémon",
+   "zh": "种子宝可梦"
+  },
+  "types": [
+   "grass",
+   "poison"
+  ],
+  "baseStats": {
+   "hp": 60,
+   "atk": 62,
+   "def": 63,
+   "spa": 80,
+   "spd": 80,
+   "spe": 60
+  },
+  "abilities": [
+   {
+    "id": "overgrow",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "chlorophyll",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 142,
+  "growthRate": "medium-slow",
+  "genderRate": 1,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 1,
+   "spd": 1,
+   "spe": 0
+  },
+  "heightM": 1,
+  "weightKg": 13,
+  "color": "green",
+  "evolvesFrom": 1,
+  "evolutions": [
+   {
+    "to": 3,
+    "trigger": "level-up",
+    "minLevel": 32
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "growth"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "vine-whip"
+   },
+   {
+    "level": 9,
+    "move": "leech-seed"
+   },
+   {
+    "level": 12,
+    "move": "razor-leaf"
+   },
+   {
+    "level": 15,
+    "move": "poison-powder"
+   },
+   {
+    "level": 15,
+    "move": "sleep-powder"
+   },
+   {
+    "level": 20,
+    "move": "seed-bomb"
+   },
+   {
+    "level": 25,
+    "move": "take-down"
+   },
+   {
+    "level": 30,
+    "move": "sweet-scent"
+   },
+   {
+    "level": 35,
+    "move": "synthesis"
+   },
+   {
+    "level": 40,
+    "move": "worry-seed"
+   },
+   {
+    "level": 45,
+    "move": "power-whip"
+   },
+   {
+    "level": 50,
+    "move": "solar-beam"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "它的花苞会在吸收养分后 长大。当花苞发出香味时， 就预示着它快要开花了。",
+  "machineMoves": [
+   "acid-spray",
+   "body-slam",
+   "bullet-seed",
+   "charm",
+   "curse",
+   "double-edge",
+   "endure",
+   "energy-ball",
+   "facade",
+   "false-swipe",
+   "giga-drain",
+   "grass-knot",
+   "grass-pledge",
+   "grassy-glide",
+   "grassy-terrain",
+   "helping-hand",
+   "knock-off",
+   "leaf-storm",
+   "magical-leaf",
+   "protect",
+   "rest",
+   "roar",
+   "seed-bomb",
+   "sleep-talk",
+   "sludge-bomb",
+   "solar-beam",
+   "substitute",
+   "sunny-day",
+   "swords-dance",
+   "take-down",
+   "tera-blast",
+   "toxic",
+   "trailblaze",
+   "venoshock",
+   "weather-ball"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "curse",
+   "ingrain",
+   "petal-dance",
+   "toxic"
+  ]
+ },
+ {
+  "id": 3,
+  "key": "venusaur",
+  "name": {
+   "en": "Venusaur",
+   "zh": "妙蛙花"
+  },
+  "genus": {
+   "en": "Seed Pokémon",
+   "zh": "种子宝可梦"
+  },
+  "types": [
+   "grass",
+   "poison"
+  ],
+  "baseStats": {
+   "hp": 80,
+   "atk": 82,
+   "def": 83,
+   "spa": 100,
+   "spd": 100,
+   "spe": 80
+  },
+  "abilities": [
+   {
+    "id": "overgrow",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "chlorophyll",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 236,
+  "growthRate": "medium-slow",
+  "genderRate": 1,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 2,
+   "spd": 1,
+   "spe": 0
+  },
+  "heightM": 2,
+  "weightKg": 100,
+  "color": "green",
+  "evolvesFrom": 2,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "petal-blizzard"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "growth"
+   },
+   {
+    "level": 1,
+    "move": "petal-dance"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "vine-whip"
+   },
+   {
+    "level": 9,
+    "move": "leech-seed"
+   },
+   {
+    "level": 12,
+    "move": "razor-leaf"
+   },
+   {
+    "level": 15,
+    "move": "poison-powder"
+   },
+   {
+    "level": 15,
+    "move": "sleep-powder"
+   },
+   {
+    "level": 20,
+    "move": "seed-bomb"
+   },
+   {
+    "level": 25,
+    "move": "take-down"
+   },
+   {
+    "level": 30,
+    "move": "sweet-scent"
+   },
+   {
+    "level": 37,
+    "move": "synthesis"
+   },
+   {
+    "level": 44,
+    "move": "worry-seed"
+   },
+   {
+    "level": 51,
+    "move": "power-whip"
+   },
+   {
+    "level": 58,
+    "move": "solar-beam"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "它背上开出的大花 能够吸收太阳光 并将其转换为能量。",
+  "machineMoves": [
+   "acid-spray",
+   "amnesia",
+   "body-slam",
+   "bulldoze",
+   "bullet-seed",
+   "charm",
+   "curse",
+   "double-edge",
+   "earth-power",
+   "earthquake",
+   "endure",
+   "energy-ball",
+   "facade",
+   "false-swipe",
+   "frenzy-plant",
+   "giga-drain",
+   "giga-impact",
+   "grass-knot",
+   "grass-pledge",
+   "grassy-glide",
+   "grassy-terrain",
+   "helping-hand",
+   "hyper-beam",
+   "knock-off",
+   "leaf-storm",
+   "magical-leaf",
+   "petal-blizzard",
+   "poison-jab",
+   "protect",
+   "rest",
+   "roar",
+   "scary-face",
+   "seed-bomb",
+   "sleep-talk",
+   "sludge-bomb",
+   "solar-beam",
+   "stomping-tantrum",
+   "substitute",
+   "sunny-day",
+   "swords-dance",
+   "take-down",
+   "tera-blast",
+   "toxic",
+   "trailblaze",
+   "venoshock",
+   "weather-ball"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "curse",
+   "ingrain",
+   "petal-dance",
+   "toxic"
+  ]
+ },
+ {
   "id": 10,
   "key": "caterpie",
   "name": {
