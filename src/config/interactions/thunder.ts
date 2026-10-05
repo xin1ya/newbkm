@@ -31,6 +31,15 @@ export const THUNDER_FURNITURE: InteractionDef[] = [
 ];
 
 export const THUNDER_LANDMARKS: InteractionDef[] = [
+  {
+    id: 'glacier-ledge-cache',
+    kind: 'examine',
+    range: 2.6,
+    pages: ['冰岩台顶上，几根冰晶里封着淡淡的蓝光。', '冰晶中间压着一只古代石匣，匣盖上刻着和冰川遗迹石碑一样的纹样。', '……匣子里有一块怎么也不会融化的冰。'],
+    effects: [{ kind: 'give-item', item: 'never-melt-ice', qty: 1, flag: 'glacier-ledge-cache-taken', itemName: '不融冰' }],
+    after: ['冰晶里的蓝光一闪一闪，像是在回应遗迹深处的什么东西。'],
+    byFlag: [{ when: 'glacier-ledge-cache-taken', pages: ['石匣已经空了。', '冰晶里的蓝光还在一闪一闪……冰川遗迹深处，似乎藏着更多秘密。'] }],
+  },
   { id: 'thunder-dock', kind: 'examine', range: 3.5, pages: ['雷鸣镇码头。', '「碧潮—雷鸣海域：渡轮停运中。」', '往西冲浪可以回到碧潮群岛的温泉乡。'] },
   { id: 'lark-dock', kind: 'examine', range: 3.5, pages: ['云雀镇码头。', '「北方航线：雷鸣—琉璃海域。终年海雾，礁石迷宫——请认准缺口两侧的红绿浮标。」', '一直往北就是琉璃群岛的幻影镇。'], byFlag: [{ when: '!glaze-route-open', pages: ['云雀镇码头。', '「北方航线：雷鸣—琉璃海域（海雾 + 礁石，暂未开放）」'] }] },
   {

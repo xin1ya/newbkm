@@ -76,7 +76,7 @@ export function surfable(depth: number): boolean {
   return depth >= SURF_MIN_DEPTH;
 }
 
-export type RideMode = 'walk' | 'surf' | 'bike' | 'fly';
+export type RideMode = 'walk' | 'surf' | 'bike' | 'fly' | 'climb';
 
 /** 飞行骑乘：离下方地面 / 水面的最小间隙（m） */
 export const FLY_CLEARANCE = 0.9;

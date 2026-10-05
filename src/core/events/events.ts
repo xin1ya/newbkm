@@ -69,7 +69,7 @@ export interface GameEvents {
   'menu:close': Record<string, never>;
   'settings:change': Record<string, never>;
   /** M1-12 骑乘状态变化 */
-  'ride:change': { mode: 'walk' | 'surf' | 'bike' | 'fly'; ride: string; speciesId: number };
+  'ride:change': { mode: 'walk' | 'surf' | 'bike' | 'fly' | 'climb'; ride: string; speciesId: number };
   /** M1-20 战斗开始（BGM 切换） */
   'battle:start': { kind: 'wild' | 'trainer' | 'gym' | 'boss'; trainerId?: string };
   /** M1-20 战斗胜利 / 捕获（凯旋曲） */

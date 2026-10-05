@@ -3328,8 +3328,8 @@
    "type": "cave-mouth",
    "ref": "glacier-ruins",
    "position": [
-    -77.18254099388989,
-    -370.543486072085
+    -75.81859485365136,
+    -371.1677063269057
    ],
    "yaw": 2,
    "size": [
@@ -3360,6 +3360,20 @@
     -150
    ],
    "yaw": 0.5779019369622457,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
+   "type": "sign",
+   "ref": "glacier-ledge-cache",
+   "position": [
+    -87.3,
+    -362.6
+   ],
+   "yaw": 1.873352031258121,
    "size": [
     1.6,
     1.6,
@@ -3811,6 +3825,78 @@
     3,
     0.8
    ]
+  },
+  {
+   "type": "crate",
+   "ref": "glacier-ledge-cache",
+   "position": [
+    -87.3,
+    -362.6
+   ],
+   "yaw": 0.5,
+   "size": [
+    1.1,
+    0.8,
+    0.8
+   ],
+   "color": "#6a7a9a"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    -90.5,
+    -365
+   ],
+   "yaw": 0.3,
+   "size": [
+    1.6,
+    3.4,
+    1.6
+   ],
+   "color": "#6ab8ff"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    -91.7,
+    -361.40000000000003
+   ],
+   "yaw": 1.4,
+   "size": [
+    1,
+    2.2,
+    1
+   ],
+   "color": "#9ad8ff"
+  },
+  {
+   "type": "glass-crystal",
+   "position": [
+    -84.7,
+    -366.20000000000005
+   ],
+   "yaw": 2.2,
+   "size": [
+    1.2,
+    2.6,
+    1.2
+   ],
+   "color": "#6ab8ff"
+  },
+  {
+   "type": "ruin-pillar",
+   "position": [
+    -83.1,
+    -360.40000000000003
+   ],
+   "yaw": 0.9,
+   "size": [
+    1.3,
+    3.2,
+    1.3
+   ],
+   "seed": 5390,
+   "variant": "ice"
   },
   {
    "type": "rocks",

@@ -87,6 +87,11 @@ export class IslandMap {
     for (const b of cfg.blockers) {
       markers.push({ id: b.id, kind: 'blocker', name: '无法通行', sub: BLOCKER_NEEDS[b.type], x: b.position[0], z: b.position[2], cleared: blockerOpen(b, (f) => !!s.flags[f]) });
     }
+    // M3-17 攀爬点：标在崖脚；没有「攀岩」时副标题提示需要的能力
+    const canClimb = !!s.flags['hm08-rock-climb'];
+    for (const w of cfg.climbWalls ?? []) {
+      markers.push({ id: `climb:${w.id}`, kind: 'climb', name: `攀爬点 · ${w.name}`, sub: canClimb ? '走到崖脚的岩壁纹路前按互动键攀上' : '需要攀岩骑乘（雪原道馆）', x: w.base[0], z: w.base[1] });
+    }
     // 头目巢穴（计划文档 §3.2）：未发现显示「？」；冷却中灰显
     const day = this.o.game.clock.day;
     for (const den of cfg.alphaDens ?? []) {

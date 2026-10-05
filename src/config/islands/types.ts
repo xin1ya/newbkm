@@ -56,6 +56,28 @@ export interface BlockerConfig {
   fx?: 'barrier' | 'heat';
 }
 
+/**
+ * M3-17 攀爬点：崖脚 base → 崖顶 top 的一条可攀爬岩壁（藤蔓 / 裂缝 / 冰裂纹）。
+ * 骑乘「攀岩」（flag hm08-rock-climb）后在两端互动即可上 / 下；没有能力时靠近会提示。
+ */
+export interface ClimbWallConfig {
+  id: string;
+  name: string;
+  style: 'vines' | 'crack' | 'ice';
+  /** 崖脚站立点（x, z） */
+  base: Vec2;
+  /** 崖顶站立点（x, z） */
+  top: Vec2;
+  /** 岩壁纹路宽度（米，视觉） */
+  width?: number;
+}
+
+/** M3-17 陡崖（地形生成器沿折线刻出 > 60° 的崖壁；左侧 = 行进方向左手 = 高处） */
+export interface ScarpConfig {
+  id: string;
+  points: Vec2[];
+}
+
 /** 湖泊等高于海平面的水体 */
 export interface WaterBody {
   id: string;
@@ -126,6 +148,10 @@ export interface IslandConfig {
   currents?: Array<{ id: string; points: Vec2[]; width: number; speed: number }>;
   /** M3-03 漩涡：冲浪靠近会被卷入并甩回航线 */
   whirlpools?: Array<{ id: string; center: Vec2; radius: number }>;
+  /** M3-17 攀爬点 */
+  climbWalls?: ClimbWallConfig[];
+  /** M3-17 陡崖（生成器用；运行时只做文档 / 自检） */
+  scarps?: ScarpConfig[];
   /** 本岛主色板（设计 §8.4） */
   palette: { primary: string; secondary: string; accent: string };
   /** 分块尺寸（米），默认 128 */

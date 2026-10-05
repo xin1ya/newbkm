@@ -294,9 +294,20 @@ export const THUNDER: IslandConfig = {
     { id: 'old-lighthouse', kind: 'landmark', name: '古灯塔', position: [850, 0, 556], showOnMap: true },
     { id: 'frozen-lake', kind: 'landmark', name: '冰湖', position: [-150, 0, -440], showOnMap: true },
     { id: 'storm-observatory', kind: 'landmark', name: '雷云观测站', position: [-330, 0, -150], showOnMap: true },
+    { id: 'glacier-ledge-cache', kind: 'landmark', name: '冰岩台上的古代石匣', position: [-87.3, 0, -362.6] },
+  ],
+  // M3-17 云顶高崖南侧陡崖（16 m）：生成器沿此折线刻出崖壁；东端并入盘山雪道所在的山脊
+  scarps: [{ id: 'cloud-scarp', points: [[-490, -552], [-420, -574], [-300, -582], [-150, -584], [0, -585], [150, -585], [300, -583], [400, -580], [460, -592], [530, -608]] }],
+  // M3-17 攀爬点：高崖南壁三处藤蔓 / 裂缝（近路直上云雀镇与码头），冰川遗迹侧面一处冰裂纹（冰岩台）
+  climbWalls: [
+    { id: 'cloud-scarp-west', name: '高崖西壁 · 藤蔓', style: 'vines', base: [-150, -576], top: [-150, -593], width: 3.2 },
+    { id: 'cloud-scarp-mid', name: '高崖中壁 · 裂缝', style: 'crack', base: [100, -577], top: [100, -594], width: 2.6 },
+    { id: 'cloud-scarp-east', name: '高崖东壁 · 藤蔓', style: 'vines', base: [300, -575], top: [300, -592], width: 3.2 },
+    { id: 'glacier-ledge-wall', name: '冰岩台 · 冰裂纹', style: 'ice', base: [-92.8, -384.3], top: [-88.6, -375.2], width: 2.4 },
   ],
   blockers: [
-    // 攀爬点（云顶高崖南侧崖壁）在 M3-17 攀爬骑乘时加入
+    // M3-17 冰川遗迹背后的冰岩台：没有「攀岩」时步行 / 飞行都进不去（飞行限岛规则同步：封锁点同样挡飞行）
+    { id: 'glacier-ledge', type: 'climb', requiresFlag: 'hm08-rock-climb', position: [-85.8, 0, -366.5], radius: 9, hint: '冰岩台四面都是陡立的冰壁，飞行宝可梦也找不到落脚的地方……侧面的冰裂纹似乎可以攀上去。' },
     // 云雀镇码头：雷鸣—琉璃海域在 M3-05 开放
     { id: 'glaze-route', type: 'story', requiresFlag: 'glaze-route-open', position: [-150, 0, -740], radius: 8, hint: '钓竿爷：北边雾大礁多，没本事的人进去就出不来。先把雷鸣四座道馆打下来再说吧！' },
   ],

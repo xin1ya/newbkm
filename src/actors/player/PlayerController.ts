@@ -246,6 +246,15 @@ export class PlayerController {
     });
   }
 
+  /** M3-17 攀爬：把玩家放到崖面路径上的一点（保留上一步位置用于插值） */
+  climbTo(x: number, y: number, z: number, yaw: number): void {
+    this.position.set(x, y, z);
+    this.velocity.set(0, 0, 0);
+    this.vy = 0;
+    this.jumping = false;
+    this.facing = yaw;
+  }
+
   get hopping(): boolean {
     return !!this.hopState;
   }
@@ -272,6 +281,11 @@ export class PlayerController {
     this.time += dt;
     if (this.hopState) {
       this.stepHop(dt);
+      return;
+    }
+    // M3-17 攀爬：位置由 SceneClimb 沿崖面路径驱动（climbTo），这里不读输入、不受重力
+    if (this.mode === 'climb') {
+      this.movedThisStep = 0;
       return;
     }
     const axis = input ? input.moveAxis() : { x: 0, y: 0 };
@@ -633,7 +647,7 @@ export class PlayerController {
   /** 渲染帧：同步模型 */
   update(dt: number): void {
     // 骑乘时坐在坐骑背上（ride 坐姿，不播放走路动画）
-    this.model.pose = this.hopState ? null : this.mode === 'surf' || this.mode === 'fly' ? 'ride' : this.mode === 'bike' ? 'sit' : null;
+    this.model.pose = this.hopState ? null : this.mode === 'surf' || this.mode === 'fly' || this.mode === 'climb' ? 'ride' : this.mode === 'bike' ? 'sit' : null;
     this.model.airborne = this.mode === 'walk' && !this.swimming && (this.jumping || (!this.grounded && this.vy < -2));
     this.model.swimming = this.swimming;
     this.model.animate(

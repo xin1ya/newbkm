@@ -59,6 +59,8 @@ import { say } from '@/ui/core';
 import { SceneRide } from '@/scenes/common/SceneRide';
 import { SceneBike } from '@/scenes/common/SceneBike';
 import { SceneFly } from '@/scenes/common/SceneFly';
+import { SceneClimb } from '@/scenes/common/SceneClimb';
+import { ClimbWalls } from '@/world/props/ClimbWalls';
 import { SceneAutoBattle } from '@/scenes/common/SceneAutoBattle';
 import { SceneAutoPath } from '@/scenes/common/SceneAutoPath';
 import { QuestDirector } from '@/scenes/common/QuestDirector';
@@ -166,6 +168,9 @@ export class OverworldScene implements Scene, BattleHost {
   /** 自行车（萌芽镇友好商店购买） */
   bike!: SceneBike;
   fly!: SceneFly;
+  /** M3-17 攀爬骑乘 */
+  climb!: SceneClimb;
+  private climbWalls: ClimbWalls | null = null;
   auto!: SceneAutoBattle;
   autoPath!: SceneAutoPath;
   /** M1-15 钓鱼 */
@@ -339,7 +344,7 @@ export class OverworldScene implements Scene, BattleHost {
       npcs: this.npcs,
       player: this.player,
       heightAt: (x, z) => this.terrain.heightAt(x, z),
-      canSpot: () => !this.fly?.flying && !this.inBattle && !this.paused && !this.enteringDoor && !this.d.ui.busy && !this.interactions.busy && !this.pendingEncounter && !isTalking(),
+      canSpot: () => !this.fly?.flying && !this.climb?.climbing && !this.inBattle && !this.paused && !this.enteringDoor && !this.d.ui.busy && !this.interactions.busy && !this.pendingEncounter && !isTalking(),
       startBattle: (data) => this.startTrainerBattle(data),
     });
     for (const src of overworldSources(this.interactions, {
@@ -384,6 +389,31 @@ export class OverworldScene implements Scene, BattleHost {
       beforeTakeoff: () => this.bike.dismount(true),
       surfing: () => this.ride.surfing,
     });
+    this.climb = new SceneClimb({
+      game,
+      state: this.d.state,
+      dex: this.d.dex,
+      player: this.player,
+      walls: island.climbWalls ?? [],
+      heightAt: (x, z) => this.terrain.heightAt(x, z),
+      toast: (t) => this.d.toaster.show(t),
+      say: (pages) => say(this.d.ui, pages),
+      canAct: () => !busyNow() && !this.fishing.active && !this.enteringDoor,
+      beforeClimb: () => {
+        if (this.fly.flying) return '飞行中不能攀爬，先降落吧。';
+        if (this.ride.surfing) return '在水上不能攀爬。';
+        if (this.fishing.active) return '先收起钓竿吧。';
+        this.auto.stop('开始攀爬');
+        this.autoPath.stop();
+        this.bike.dismount(true);
+        return null;
+      },
+    });
+    this.interactions.addSource(this.climb.source());
+    if (island.climbWalls?.length) {
+      this.climbWalls = new ClimbWalls(island.climbWalls, (x, z) => this.terrain.heightAt(x, z));
+      w.add(this.climbWalls.group);
+    }
     this.auto = new SceneAutoBattle({
       game,
       ui: this.d.ui,
@@ -402,7 +432,7 @@ export class OverworldScene implements Scene, BattleHost {
       },
       toast: (t) => this.d.toaster.show(t),
       idle: () => !busyNow() && !this.fishing.active && !this.enteringDoor && !this.inBattle,
-      blocked: () => (this.fly.flying ? '飞行中不能自动战斗' : this.ride.surfing ? '冲浪中不能自动战斗' : this.fishing.active ? '钓鱼中' : null),
+      blocked: () => (this.climb.climbing ? '攀爬中不能自动战斗' : this.fly.flying ? '飞行中不能自动战斗' : this.ride.surfing ? '冲浪中不能自动战斗' : this.fishing.active ? '钓鱼中' : null),
       mountBike: () => this.bike.owned && this.bike.mount(),
       healTrip: () => this.autoHealTrip(),
       canFly: () => !!this.fly.flyRide(),
@@ -423,7 +453,7 @@ export class OverworldScene implements Scene, BattleHost {
       },
       toast: (t) => this.d.toaster.show(t),
       idle: () => !busyNow() && !this.fishing.active && !this.enteringDoor && !this.inBattle,
-      blocked: () => (this.fly.flying ? '飞行中不能自动寻路' : this.ride.surfing ? '冲浪中不能自动寻路' : this.fishing.active ? '钓鱼中' : this.auto.active ? '自动战斗中' : null),
+      blocked: () => (this.climb.climbing ? '攀爬中不能自动寻路' : this.fly.flying ? '飞行中不能自动寻路' : this.ride.surfing ? '冲浪中不能自动寻路' : this.fishing.active ? '钓鱼中' : this.auto.active ? '自动战斗中' : null),
       mountBike: () => this.bike.owned && this.bike.mount(),
       islandName: (id) => ISLAND_NAMES[id as keyof typeof ISLAND_NAMES] ?? id,
     });
@@ -637,7 +667,7 @@ export class OverworldScene implements Scene, BattleHost {
     const ridePressed = !!input && input.pressed('ride');
     const rideKey = ridePressed && this.ride.surfing;
     // 陆地上的 C：面朝水面（水上骑乘互动）时交给互动系统，否则上 / 下自行车
-    if (ridePressed && !this.fly.flying && !this.ride.surfing && !this.ride.busy && !this.fishing.active && !this.interactions.busy && !this.enteringDoor) {
+    if (ridePressed && !this.fly.flying && !this.climb.climbing && !this.ride.surfing && !this.ride.busy && !this.fishing.active && !this.interactions.busy && !this.enteringDoor) {
       const f = this.interactions.focus;
       const waterRide = f?.action === 'ride' || f?.secondary?.action === 'ride';
       if (!waterRide || this.bike.riding) this.bike.toggle();
@@ -646,6 +676,7 @@ export class OverworldScene implements Scene, BattleHost {
     this.ride.fixedUpdate(dt, rideKey, Math.hypot(axis.x, axis.y) > 0.2);
     this.seaStep();
     this.fly.fixedUpdate(dt, !!input && input.pressed('fly'));
+    this.climb.fixedUpdate(dt, input ?? null);
     this.footsteps.fixedUpdate(this.player);
     const p = this.player.position;
     const inGrass = !this.ride.surfing && !this.fly.flying && this.terrain.hf.surfaceWeight(p.x, p.z, 'tallgrass') > GRASS_THRESHOLD;
@@ -706,6 +737,8 @@ export class OverworldScene implements Scene, BattleHost {
     this.player.update(dt);
     this.ride.update(dt);
     this.fly.update(dt);
+    this.climb.update(dt);
+    this.climbWalls?.update(dt);
     this.fishing.update(dt);
     if (!this.inBattle || this.trainers.busy) this.npcs.update(dt, this.time, this.player, this.camera);
     this.follower.update(dt, this.inBattle || this.d.ui.busy || this.trainers.busy || !!this.pendingEncounter);
@@ -968,7 +1001,9 @@ export class OverworldScene implements Scene, BattleHost {
   private syncState(): void {
     const s = this.d.state;
     const p = this.player.position;
-    s.position.xyz = [p.x, p.y, p.z];
+    // 攀爬中存档：记到最近的崖脚 / 崖顶（读档不会卡在崖面上）
+    const safe = this.climb?.safeEnd();
+    s.position.xyz = safe ? [safe[0], this.terrain.heightAt(safe[0], safe[1]), safe[1]] : [p.x, p.y, p.z];
     s.position.yaw = this.player.facing;
     s.clockMinutes = Math.floor(this.d.game.clock.totalMinutes % 1440);
     s.day = this.d.game.clock.day;
@@ -1244,6 +1279,7 @@ export class OverworldScene implements Scene, BattleHost {
   async storyTeleport(x: number, z: number, yaw: number): Promise<void> {
     if (this.ride.surfing) await this.ride.stop(null, true);
     if (this.fly.flying) await this.fly.land(true);
+    this.climb.snapToEnd();
     this.bike.dismount(true);
     this.player.teleport(x, z, yaw);
     this.spawns.clear();
@@ -1344,6 +1380,7 @@ export class OverworldScene implements Scene, BattleHost {
     const yaw = rp ? rp.yaw : (this.d.island.spawnYaw ?? 0);
     if (this.ride.surfing) await this.ride.stop(null, true);
     if (this.fly.flying) await this.fly.land(true);
+    this.climb.snapToEnd();
     this.bike.dismount(true);
     this.player.teleport(sx, sz, yaw);
     this.spawns.clear();
@@ -1399,6 +1436,7 @@ export class OverworldScene implements Scene, BattleHost {
     this.player.velocity.set(0, 0, 0);
     if (this.ride.surfing) await this.ride.stop(null, true);
     if (this.fly.flying) await this.fly.land(true);
+    this.climb.snapToEnd();
     this.auto.stop('进入了室内');
     this.autoPath.stop();
     this.bike.dismount(true);
@@ -1582,6 +1620,8 @@ export class OverworldScene implements Scene, BattleHost {
     this.ride.dispose();
     this.bike.dispose();
     this.fly.dispose();
+    this.climb.dispose();
+    this.climbWalls?.dispose();
     this.auto.dispose();
     this.fishing.dispose();
     this.npcs.dispose();

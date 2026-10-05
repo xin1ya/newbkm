@@ -88,7 +88,7 @@ export function fogNear(fog: FogMask, worldSize: [number, number], x: number, z:
   return false;
 }
 
-export type MapMarkerKind = 'pokecenter' | 'mart' | 'gym' | 'door' | 'dock' | 'ferry' | 'fishing' | 'landmark' | 'cave' | 'quest' | 'blocker' | 'alpha';
+export type MapMarkerKind = 'pokecenter' | 'mart' | 'gym' | 'door' | 'dock' | 'ferry' | 'fishing' | 'landmark' | 'cave' | 'quest' | 'blocker' | 'alpha' | 'climb';
 
 /**
  * 标记可见性（设计 §7.3：已探索区域显示城镇、宝可梦中心、封锁点）：

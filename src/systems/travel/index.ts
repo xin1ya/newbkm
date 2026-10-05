@@ -123,7 +123,7 @@ export function linkAt(island: IslandId, x: number, z: number): IslandLink | nul
 export type TravelVerdict = { ok: true } | { ok: false; reason: 'fly-unvisited' | 'locked' | 'on-foot'; hint: string };
 
 /** 当前移动方式能否经过该连接 */
-export function canUseLink(state: GameState, link: IslandLink, mode: 'walk' | 'surf' | 'bike' | 'fly'): TravelVerdict {
+export function canUseLink(state: GameState, link: IslandLink, mode: 'walk' | 'surf' | 'bike' | 'fly' | 'climb'): TravelVerdict {
   if (link.requiresFlag && !state.flags[link.requiresFlag]) return { ok: false, reason: 'locked', hint: link.lockedHint ?? '前方的航线还没有开通……' };
   if (link.requiresAll?.some((f) => !state.flags[f])) return { ok: false, reason: 'locked', hint: link.lockedHint ?? '前方的航线还没有开通……' };
   if (mode === 'fly' && !hasVisited(state, link.to)) return { ok: false, reason: 'fly-unvisited', hint: '飞行只能前往已经到访过的岛屿。先冲浪渡海过去吧！' };

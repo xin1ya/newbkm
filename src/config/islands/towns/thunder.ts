@@ -296,7 +296,7 @@ export const LARK_TOWN: TownLayout = {
     { id: 'town-lark-glide-walk', surface: 'dirt', width: 3, points: [[250, lz(250) - 2], [250, -700], [250, -760]] },
   ],
   pads: [
-    { position: [320, -650], size: [220, 120], blend: 24 },
+    { position: [320, -657], size: [220, 100], blend: 14 },
     { position: [370, -704], size: [36, 36], blend: 10 },
   ],
   props: larkTown,

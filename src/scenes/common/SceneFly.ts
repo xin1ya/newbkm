@@ -60,6 +60,7 @@ export class SceneFly {
   takeoffBlock(): string | null {
     const p = this.d.player;
     if (!this.flyRide()) return '需要拿到「翠澜徽章」，才能骑着宝可梦飞行。';
+    if (p.mode === 'climb') return '攀爬中不能起飞。';
     if (this.d.surfing() || p.mode === 'surf') return '在水上不能起飞，先上岸吧。';
     if (p.hopping || p.swimming || p.waterDepth > 0.3) return '这里没办法起飞。';
     if (p.mode === 'walk' && (!p.grounded || p.airborne)) return '要站在地面上才能起飞。';

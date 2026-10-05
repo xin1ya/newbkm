@@ -109,8 +109,9 @@ export const MAP_ICON: Record<MapMarkerKind, { glyph: string; color: string; lab
   quest: { glyph: '!', color: '#f0a020', label: '任务地点' },
   blocker: { glyph: '🔒', color: '#c0504d', label: '封锁点' },
   alpha: { glyph: '♛', color: '#c0202a', label: '头目巢穴' },
+  climb: { glyph: '⛰', color: '#6a7a3a', label: '攀爬点' },
 };
-const LEGEND_ORDER: MapMarkerKind[] = ['pokecenter', 'mart', 'gym', 'door', 'dock', 'ferry', 'fishing', 'landmark', 'cave', 'alpha', 'blocker'];
+const LEGEND_ORDER: MapMarkerKind[] = ['pokecenter', 'mart', 'gym', 'door', 'dock', 'ferry', 'fishing', 'landmark', 'cave', 'alpha', 'climb', 'blocker'];
 export const CAT_COLOR = { main: '#ffb627', side: '#4fb3ff', hidden: '#b48cff' } as const;
 const PAN_SPEED = 520; // 屏幕像素 / 秒
 
@@ -133,6 +134,7 @@ const CSS = `
   background: #fffdf7; border: 2px solid #27304a; box-shadow: 0 2px 0 #27304a; font: 800 13px/1 system-ui; color: var(--c); cursor: pointer; transition: transform .12s; }
 .cl-map .mk:hover, .cl-map .mk.hl { transform: scale(1.25); z-index: 5; }
 .cl-map .mk.blocker { background: #fff0ee; font-size: 11px; }
+.cl-map .mk.climb { background: #f2f4e4; font-size: 11px; }
 .cl-map .zn { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; font: 800 13px/1.2 system-ui; color: #3a2f22; letter-spacing: .08em;
   text-shadow: 0 0 3px #f4ecd6, 0 0 3px #f4ecd6, 0 0 6px #f4ecd6; text-align: center; }
 .cl-map .zn.town { font-size: 16px; color: #27304a; }

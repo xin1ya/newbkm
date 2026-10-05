@@ -416,6 +416,19 @@ for (const p of THUNDER.pois.filter((q) => q.kind === 'cave')) {
   const fx = Math.sin(yaw);
   const fz = Math.cos(yaw);
   const y0 = bilinear(cx, cz);
+  if (p.id === 'glacier-ruins') {
+    // M3-17 冰川遗迹：洞口背后是一座四面陡立的冰岩台（13 m，边缘 3 m 内立起），台顶只能攀爬上去
+    eachCell(cx - 40, cx + 40, cz - 40, cz + 40, (k, x, z) => {
+      const dx = x - cx;
+      const dz = z - cz;
+      const back = -(dx * fx + dz * fz);
+      const side = Math.abs(dx * fz - dz * fx);
+      const m = smoothstep(1, 4, back) * smoothstep(26, 23, back) * smoothstep(17, 14, side);
+      if (m <= 0) return;
+      H[k] = Math.max(H[k]!, y0 + m * (13 + 0.8 * fbm(x / 9, z / 9)));
+    });
+    continue;
+  }
   eachCell(cx - 34, cx + 34, cz - 34, cz + 34, (k, x, z) => {
     const dx = x - cx;
     const dz = z - cz;
@@ -427,10 +440,63 @@ for (const p of THUNDER.pois.filter((q) => q.kind === 'cave')) {
   });
 }
 
+// 4a. M3-17 陡崖：沿 THUNDER.scarps 折线把缓坡改成 > 60° 的崖壁（左手侧 = 高处）。
+// 高处取折线外 +26 m 的原高度（台地），低处取 −46 m 的原高度（冰原），崖脚留 1–2 m 碎石坡；终点 25 m 内渐弱并入山脊。
+{
+  const H0 = H.slice();
+  const bil0 = (x: number, z: number): number => {
+    const fx = clamp((x + HALF) / CELL, 0, N - 1.0001);
+    const fz = clamp((z + HALF) / CELL, 0, N - 1.0001);
+    const i = Math.floor(fx);
+    const j = Math.floor(fz);
+    const tx = fx - i;
+    const tz = fz - j;
+    return lerp(lerp(H0[j * N + i]!, H0[j * N + i + 1]!, tx), lerp(H0[(j + 1) * N + i]!, H0[(j + 1) * N + i + 1]!, tx), tz);
+  };
+  for (const sc of THUNDER.scarps ?? []) {
+    const pts = sc.points;
+    const cum = [0];
+    for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1]! + Math.hypot(pts[i]![0] - pts[i - 1]![0], pts[i]![1] - pts[i - 1]![1]));
+    const total = cum[cum.length - 1]!;
+    const xs = pts.map((q) => q[0]);
+    const zs = pts.map((q) => q[1]);
+    eachCell(Math.min(...xs) - 60, Math.max(...xs) + 60, Math.min(...zs) - 60, Math.max(...zs) + 60, (k, x, z) => {
+      if (SEA[k]) return;
+      // 最近线段 + 沿线位置
+      let best = { d: Infinity, along: 0, nx: 0, nz: 0, cx: 0, cz: 0 };
+      for (let i = 0; i + 1 < pts.length; i++) {
+        const [ax, az] = pts[i]!;
+        const [bx, bz] = pts[i + 1]!;
+        const ex = bx - ax;
+        const ez = bz - az;
+        const len = Math.hypot(ex, ez);
+        const t = clamp(((x - ax) * ex + (z - az) * ez) / (len * len), 0, 1);
+        const qx = ax + ex * t;
+        const qz = az + ez * t;
+        const d = Math.hypot(x - qx, z - qz);
+        // 左手法线（行进方向 (ex, ez) → 左 = (ez, −ex)）
+        if (d < best.d) best = { d, along: cum[i]! + t * len, nx: ez / len, nz: -ex / len, cx: qx, cz: qz };
+      }
+      if (best.d > 50) return;
+      const sd = (x - best.cx) * best.nx + (z - best.cz) * best.nz + 1.6 * fbm(x / 22 + 7, z / 22 - 3);
+      const fade = smoothstep(total, total - 25, best.along);
+      if (fade <= 0) return;
+      const top = bil0(best.cx + best.nx * 26, best.cz + best.nz * 26);
+      const low = bil0(best.cx - best.nx * 46, best.cz - best.nz * 46);
+      if (top - low < 6) return;
+      let target: number;
+      if (sd >= 2) target = lerp(H0[k]!, Math.max(H0[k]!, top), smoothstep(30, 2, sd));
+      else if (sd > -2) target = lerp(low + 1.6, top, smoothstep(-2, 2, sd)) + 0.6 * fbm(x / 3, z / 3);
+      else target = lerp(H0[k]!, low + 1.6 * smoothstep(-46, -2, sd), smoothstep(-46, -24, sd));
+      H[k] = lerp(H0[k]!, target, fade);
+    });
+  }
+}
+
 // 4b. POI 周边保证可走
 const FLAT_SPOTS: Array<[number, number, number]> = [
   [THUNDER.spawnPoint[0], THUNDER.spawnPoint[2], 16],
-  ...THUNDER.pois.filter((p) => p.kind !== 'quest' && p.kind !== 'cave' && p.kind !== 'gym').map((p) => [p.position[0], p.position[2], 10] as [number, number, number]),
+  ...THUNDER.pois.filter((p) => p.kind !== 'quest' && p.kind !== 'cave' && p.kind !== 'gym' && p.id !== 'glacier-ledge-cache').map((p) => [p.position[0], p.position[2], 10] as [number, number, number]),
 ];
 const H2 = blur(H, 2);
 for (const [cx, cz, r] of FLAT_SPOTS) {
@@ -856,6 +922,16 @@ for (const [x, z, s] of [[-360, 160, 1], [-560, 100, 2], [-280, -60, 3], [-470, 
   }
   props.push({ type: 'ruin-arch', position: [gx + fx * 10, gz + fz * 10], yaw, size: [8, 7, 1.6], variant: 'ice' });
   props.push({ type: 'stele', ref: 'glacier-stele', position: [gx + fx * 14 + fz * 6, gz + fz * 14 - fx * 6], yaw, size: [1.6, 3, 0.8] });
+}
+// M3-17 冰岩台台顶：封着蓝光的冰晶 + 古代石匣（只能攀爬上来）
+{
+  const c = THUNDER.pois.find((p) => p.id === 'glacier-ledge-cache')!;
+  const [cx, , cz] = c.position;
+  props.push({ type: 'crate', ref: 'glacier-ledge-cache', position: [cx, cz], yaw: 0.5, size: [1.1, 0.8, 0.8], color: '#6a7a9a' });
+  props.push({ type: 'glass-crystal', position: [cx - 3.2, cz - 2.4], yaw: 0.3, size: [1.6, 3.4, 1.6], color: '#6ab8ff' });
+  props.push({ type: 'glass-crystal', position: [cx - 4.4, cz + 1.2], yaw: 1.4, size: [1.0, 2.2, 1.0], color: '#9ad8ff' });
+  props.push({ type: 'glass-crystal', position: [cx + 2.6, cz - 3.6], yaw: 2.2, size: [1.2, 2.6, 1.2], color: '#6ab8ff' });
+  props.push({ type: 'ruin-pillar', position: [cx + 4.2, cz + 2.2], yaw: 0.9, size: [1.3, 3.2, 1.3], seed: 5390, variant: 'ice' });
 }
 // 冰湖边的冰岩
 for (const [x, z, s] of [[-230, -440, 1], [-80, -470, 2], [-140, -390, 3], [-200, -490, 4]] as Array<[number, number, number]>)
