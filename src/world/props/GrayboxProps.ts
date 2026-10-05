@@ -11,6 +11,7 @@ import type { CollisionWorld } from '../collision/CollisionWorld';
 import * as B from './builders';
 import * as T from './townBuilders';
 import * as TB from './tideBuilders';
+import * as TH from './thunderBuilders';
 
 export class GrayboxProps {
   readonly group = new THREE.Group();
@@ -140,7 +141,13 @@ export class GrayboxProps {
                 ? TB.obsidianHouse(w, h, d, roof, seed)
                 : p.variant === 'onsen'
                   ? TB.onsenHouse(w, h, d, wall, roof, seed, p.accent)
-                  : T.house(w, h, d, wall, roof, p.variant, seed, p.accent)
+                  : p.variant === 'slate'
+                    ? TH.slateHouse(w, h, d, wall, roof, seed, p.accent)
+                    : p.variant === 'chalet'
+                      ? TH.chaletHouse(w, h, d, roof, seed, p.accent)
+                      : p.variant === 'lark'
+                        ? TH.larkHouse(w, h, d, wall, roof, seed, p.accent)
+                        : T.house(w, h, d, wall, roof, p.variant, seed, p.accent)
             : p.type === 'lab'
               ? T.lab(w, h, d, wall, roof)
               : p.type === 'pokecenter'
@@ -184,7 +191,16 @@ export class GrayboxProps {
       }
       case 'gym': {
         const y = p.y ?? this.hf.heightAt(x, z);
-        this.place(p.variant === 'grass' ? TB.gymGrass(w, h) : p.variant === 'rock' ? TB.gymRock(w, h) : p.variant === 'fire' ? TB.gymFire(w, h) : T.gym(w, h, wall, roof), x, y, z, yaw);
+        const gymParts: Record<string, () => B.PropParts> = {
+          grass: () => TB.gymGrass(w, h),
+          rock: () => TB.gymRock(w, h),
+          fire: () => TB.gymFire(w, h),
+          electric: () => TH.gymElectric(w, h),
+          dawn: () => TH.gymDawn(w, h),
+          ice: () => TH.gymIce(w, h),
+          flying: () => TH.gymFlying(w, h),
+        };
+        this.place((gymParts[p.variant ?? ''] ?? (() => T.gym(w, h, wall, roof)))(), x, y, z, yaw);
         this.collision.add('props', { kind: 'circle', x, z, r: w / 2, y0: y, y1: y + h, tag: `building:${p.ref}` });
         // 平台可站立
         this.collision.add('props', { kind: 'box', x, z, hx: w / 2 + 1.5, hz: w / 2 + 1.5, yaw: 0, y0: y - 3, y1: y + 0.6, walkableTop: true, tag: 'gym-platform' });
@@ -638,6 +654,43 @@ export class GrayboxProps {
       case 'shipwreck':
         this.place(TB.shipwreck(w, d), x, p.y ?? this.hf.heightAt(x, z), z, yaw);
         if (collide) this.addBox(x, z, w, d, yaw, -3, 2.2, 'shipwreck', true);
+        return true;
+      // ——— M3 雷鸣群岛 ———
+      case 'lightning-tower':
+        this.place(TH.lightningTower(w, h), x, ground, z, yaw);
+        if (collide) this.addBox(x, z, w + 1.2, w + 1.2, yaw, ground, ground + h, 'lightning-tower');
+        this.lampPositions.push(new THREE.Vector3(x, ground + h, z));
+        return true;
+      case 'sundial':
+        this.place(TH.sundial(w), x, ground, z, yaw);
+        circle(w / 2 + 0.2, 0.6, 'sundial');
+        return true;
+      case 'igloo':
+        this.place(TH.igloo(w, seed), x, ground - 0.1, z, yaw);
+        circle(w / 2, w / 2, 'igloo');
+        if (p.ref) {
+          const [dx, dz] = at(0, w / 2 + 1.6);
+          this.doors.set(p.ref, { position: new THREE.Vector3(dx, this.hf.heightAt(dx, dz), dz), yaw });
+        }
+        return true;
+      case 'sled':
+        this.place(TH.sled(d, p.color), x, ground, z, yaw);
+        if (collide) this.addBox(x, z, 1.1, d, yaw, ground, ground + 0.6, 'sled');
+        return true;
+      case 'snowman':
+        this.place(TH.snowman(h, p.color), x, ground, z, yaw);
+        circle(h * 0.22, h, 'snowman');
+        return true;
+      case 'glide-deck': {
+        const top = p.y ?? ground;
+        this.place(TH.glideDeck(w, d, p.color), x, top, z, yaw);
+        this.addBox(x, z, w, d, yaw, top - 4, top + 0.3, 'glide-deck', true);
+        return true;
+      }
+      case 'wind-turbine':
+        this.place(TH.windTurbine(h, p.color), x, ground, z, yaw);
+        circle(1.3, h, 'wind-turbine');
+        this.lampPositions.push(new THREE.Vector3(x, ground + h, z));
         return true;
       default:
         return false;

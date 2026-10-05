@@ -214,6 +214,16 @@ export type PropType =
   | 'shipwreck'
   /** 怪力巨石（ref = 阻挡 id，推开后移除） */
   | 'boulder'
+  // ——— M3 雷鸣群岛 ———
+  /** 避雷塔（格构塔 + 发光针尖） */
+  | 'lightning-tower'
+  | 'sundial'
+  | 'igloo'
+  | 'sled'
+  | 'snowman'
+  /** 滑翔台（悬挑平台，可站立） */
+  | 'glide-deck'
+  | 'wind-turbine'
   | 'glb';
 
 export interface PropInstance {

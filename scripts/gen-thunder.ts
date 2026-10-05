@@ -451,7 +451,7 @@ function slopeDeg(x: number, z: number): number {
 }
 
 // 5. 城镇地块压平：每栋建筑压出平台（核心外扩 2.5 m，3.5 m 过渡）；布局 pads 按给定 / 中位高度压平
-const PAD_TYPES = new Set<string>(['house', 'pokecenter', 'mart', 'warehouse', 'statue', 'well']);
+const PAD_TYPES = new Set<string>(['house', 'pokecenter', 'mart', 'warehouse', 'statue', 'well', 'igloo', 'sundial', 'windmill']);
 interface Pad { x: number; z: number; hw: number; hd: number; yaw: number; y: number | null; blend: number }
 const pads: Pad[] = [];
 for (const t of THUNDER_TOWNS) {

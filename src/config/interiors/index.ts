@@ -1,10 +1,11 @@
 import type { ExitConfig, InteriorConfig, RoomConfig } from './types';
 import { SPROUT_INTERIORS } from './sprout';
 import { TIDE_INTERIORS } from './tide';
+import { THUNDER_INTERIORS } from './thunder';
 
 export type * from './types';
 
-export const INTERIORS: Readonly<Record<string, InteriorConfig>> = Object.fromEntries([...SPROUT_INTERIORS, ...TIDE_INTERIORS].map((i) => [i.id, i]));
+export const INTERIORS: Readonly<Record<string, InteriorConfig>> = Object.fromEntries([...SPROUT_INTERIORS, ...TIDE_INTERIORS, ...THUNDER_INTERIORS].map((i) => [i.id, i]));
 
 export function getInterior(id: string): InteriorConfig {
   const i = INTERIORS[id];
