@@ -40,6 +40,8 @@ export interface SpawnContext {
   playerInGrass: boolean;
   /** 战斗 / 对话 / 菜单时为 false */
   active: boolean;
+  /** 玩家在空中：照常刷新与游荡，但不触发接触 / 主动开战 */
+  playerFlying?: boolean | undefined;
   /** 玩家处在能量方块诱饵范围内时的口味（计划文档 §9.5）：偏好物种权重 ×3、区域目标数 +2 */
   lure?: Flavor | null | undefined;
 }
@@ -339,7 +341,7 @@ export class SpawnManager {
       w.animate(dt, speed, this.time);
       // 接触判定
       const contact = dPlayer < CONTACT_DIST + w.radius * 0.5 && Math.abs(p.y - ctx.playerY) < 2.5;
-      if (intent.engage || contact) {
+      if (!ctx.playerFlying && (intent.engage || contact)) {
         const initiative = contactInitiative(w.brain, ctx.playerX, ctx.playerZ, p.x, p.z);
         w.frozen = true;
         this.events.post('encounter:start', {

@@ -658,7 +658,9 @@ export class OverworldScene implements Scene, BattleHost {
     ctx.playerRunning = this.player.running;
     ctx.playerInGrass = inGrass;
     ctx.lure = this.blocks.lureAt(p.x, p.z);
-    ctx.active = !this.inBattle && !this.d.ui.busy && this.encounterCooldown <= 0 && !this.fly.flying;
+    // 飞行中照常刷新（骑乘寻怪靠空中发现目标），只是不会被撞上开战
+    ctx.active = !this.inBattle && !this.d.ui.busy && this.encounterCooldown <= 0;
+    ctx.playerFlying = this.fly.flying;
     this.spawns.fixedUpdate(dt, ctx);
     if (this.encounterCooldown > 0) this.encounterCooldown -= dt;
     else if (ctx.active && inGrass && this.player.movedThisStep > 0) this.grassCheck(this.player.movedThisStep);
