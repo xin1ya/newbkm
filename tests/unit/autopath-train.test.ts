@@ -40,6 +40,16 @@ describe('自动战斗 · 代练', () => {
     expect(b.sides[0].party[0]!.faced.size).toBeGreaterThan(0);
   });
 
+  it('指定打手：首发濒死、开场的是别的同伴时也换成指定打手；打手在场后不再换', () => {
+    const b = battle([mon(722, 4), mon(155, 30), mon(258, 28)], [mon(16, 5)]);
+    const uid = b.sides[0].party[2]!.pokemon.uid;
+    expect(decideAutoAction(b, req(b), 'defeat', cfg({ train: true, carrierUid: uid }), {})).toMatchObject({ action: { type: 'switch', partyIndex: 2 }, note: 'train' });
+    b.sides[0].active = 1;
+    expect(decideAutoAction(b, req(b), 'defeat', cfg({ train: true, carrierUid: uid }), {})).toMatchObject({ action: { type: 'switch', partyIndex: 2 } });
+    b.sides[0].active = 2;
+    expect(decideAutoAction(b, req(b), 'defeat', cfg({ train: true, carrierUid: uid }), {})).toMatchObject({ action: { type: 'move' } });
+  });
+
   it('代练时打手倒下，换人优先另一只高等级同伴而不是首发', () => {
     const b = battle([mon(722, 4), mon(155, 30), mon(258, 28)], [mon(16, 5)]);
     b.sides[0].party[1]!.pokemon.hp = 0;

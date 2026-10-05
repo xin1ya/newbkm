@@ -278,10 +278,11 @@ export function decideAutoAction(b: Battle, req: ActionRequest, goal: AutoGoal |
     return { kind: 'act', action: { type: 'move', moveIndex: m } };
   }
   const meIdx = b.sides[0].active;
-  // 代练：首发在场 → 换打手上场（首发已和对手照面，打倒后分到经验）
-  if (cfg.train && goal === 'defeat' && meIdx === 0 && req.canSwitch) {
+  // 代练：在场的不是打手 → 换打手上场（首发已和对手照面，打倒后分到经验）。
+  // 不限于首发在第 1 位：首发濒死时开场的是别的同伴，同样要换成指定打手。
+  if (cfg.train && goal === 'defeat' && req.canSwitch) {
     const c = carrierIndex(b, cfg);
-    if (c !== null) return { kind: 'act', action: { type: 'switch', partyIndex: c }, note: 'train' };
+    if (c !== null && c !== meIdx) return { kind: 'act', action: { type: 'switch', partyIndex: c }, note: 'train' };
   }
   const me = b.active(0);
   const foe = b.active(1);

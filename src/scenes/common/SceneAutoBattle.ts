@@ -59,6 +59,8 @@ const WEATHER_ZH: Record<string, string> = { clear: '晴天', rain: '雨天', fo
 /** 寻敌半径（m） */
 const SEEK_RADIUS = 70;
 const STUCK_TIME = 2;
+/** 骑乘寻怪：贴近目标却无法降落时，放弃该目标前的等待（秒） */
+const LAND_GIVE_UP_S = 3;
 const BLACKLIST_S = 20;
 
 export interface SceneAutoBattleDeps {
@@ -112,6 +114,7 @@ export class SceneAutoBattle implements BattleAutoPilot {
   /** 骑乘寻怪：正在起飞 / 降落 */
   private rideBusy = false;
   private rideCooldown = 0;
+  private landWait = 0;
   /** 本次自动的战绩 */
   readonly tally = { battles: 0, defeated: 0, captured: 0, fled: 0 };
   /** 本次自动中错过（未学）的招式 */
@@ -368,7 +371,9 @@ export class SceneAutoBattle implements BattleAutoPilot {
       this.refreshCard();
     }
     if (!this.running) return false;
-    if (this.tripping || this.rideBusy) return true;
+    if (this.tripping) return true;
+    // 降落跳跃（hop）由 player.fixedUpdate 推进：降落期间不接管，否则 land() 永远不结束（卡在半空）
+    if (this.rideBusy) return false;
     this.rideCooldown -= dt;
     if (moving) {
       this.stop('手动移动');
@@ -443,7 +448,18 @@ export class SceneAutoBattle implements BattleAutoPilot {
     const pl = this.d.player;
     const p = pl.position;
     const step = flySearchStep(dist, pl.flyAltitude, FLY_LAND_ALTITUDE);
+    // 已到降落位置却落不下去（树冠 / 屋顶 / 陡坡正上方）：超过几秒就放弃这个目标，避免一直悬停
+    if (step.kind === 'land' && (pl.flyOverWater || !this.d.canLand())) {
+      this.landWait += dt;
+      if (this.landWait > LAND_GIVE_UP_S && entity !== undefined) {
+        this.blacklist.set(entity, this.time + BLACKLIST_S);
+        this.landWait = 0;
+        this.targetId = null;
+        return;
+      }
+    } else if (step.kind !== 'land') this.landWait = 0;
     if (step.kind === 'land' && !pl.flyOverWater && this.d.canLand() && this.rideCooldown <= 0) {
+      this.landWait = 0;
       this.rideBusy = true;
       this.status = '降落';
       pl.velocity.set(0, 0, 0);
