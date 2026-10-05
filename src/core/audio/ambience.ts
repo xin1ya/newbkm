@@ -6,6 +6,7 @@
  */
 import { AMBIENCE_LAYERS, type AmbienceLayer } from '@/systems/audio/select';
 import type { Synth } from './synth';
+import { weatherSignal } from '../weatherSignal';
 
 type Colour = 'white' | 'pink' | 'brown';
 
@@ -15,6 +16,11 @@ export class Ambience {
   private target: Record<AmbienceLayer, number>;
   private nextEvent = new Map<AmbienceLayer, number>();
   private buffers = new Map<Colour, AudioBuffer>();
+  /** M3-30：每次打雷回调（close = 近雷），天气特效可同步闪电 */
+  onThunder: ((close: boolean) => void) | null = null;
+  private seenStrikes = weatherSignal.strikes;
+  private lastStrikeAt = -1e9;
+  private pendingClose: boolean | null = null;
 
   constructor(
     private readonly synth: Synth,
@@ -128,6 +134,12 @@ export class Ambience {
     this.loop('pink', L('stream'), [{ type: 'bandpass', freq: 650, q: 0.9 }], { rate: 0.7, depth: 260, target: 'freq' });
     // 昆虫：远处蝉鸣 / 嗡声的高频底噪（事件层再叠加蜜蜂飞过）
     this.loop('white', L('insects'), [{ type: 'bandpass', freq: 5200, q: 6 }], { rate: 0.23, depth: 0.7, target: 'gain' });
+    // M3-30 雷暴：持续的低频隆隆底（事件层再叠远雷 / 炸雷）
+    this.loop('brown', L('thunder'), [{ type: 'lowpass', freq: 120 }], { rate: 0.04, depth: 0.6, target: 'gain' });
+    // M3-30 暴雪：高频呼啸（窄带通扫频）+ 冰粒沙沙（高通白噪声，快速起伏）
+    this.loop('pink', L('blizzard'), [{ type: 'bandpass', freq: 900, q: 4 }], { rate: 0.17, depth: 420, target: 'freq' });
+    this.loop('pink', L('blizzard'), [{ type: 'bandpass', freq: 1700, q: 6 }], { rate: 0.23, depth: 600, target: 'freq' });
+    this.loop('white', L('blizzard'), [{ type: 'highpass', freq: 4500 }], { rate: 1.3, depth: 0.6, target: 'gain' });
     const ctx = this.synth.ctx;
     const hum = ctx.createOscillator();
     hum.frequency.value = 58;
@@ -136,7 +148,7 @@ export class Ambience {
     hum.connect(hg).connect(L('room'));
     hum.start();
     // 各层整体响度校正
-    const trim: Partial<Record<AmbienceLayer, number>> = { wind: 0.5, waves: 0.55, lap: 0.45, rain: 0.35, room: 0.45, cave: 0.7, forest: 0.3, stream: 0.4, insects: 0.12 };
+    const trim: Partial<Record<AmbienceLayer, number>> = { wind: 0.5, waves: 0.55, lap: 0.45, rain: 0.35, room: 0.45, cave: 0.7, forest: 0.3, stream: 0.4, insects: 0.12, thunder: 0.6, blizzard: 0.4 };
     for (const [l, v] of Object.entries(trim)) {
       const inner = this.layers.get(l as AmbienceLayer)!;
       // 插入一个修正增益：layer gain（混合）→ trim → out
@@ -160,7 +172,17 @@ export class Ambience {
   tick(): void {
     const ctx = this.synth.ctx;
     const now = ctx.currentTime;
-    for (const l of ['birds', 'crickets', 'gulls', 'rain', 'forest', 'cave', 'frogs', 'insects'] as const) {
+    // 有可见闪电时，雷声跟着闪电走（按距离延迟）；没有可见闪电（室内 / 战斗）才随机打雷
+    if (weatherSignal.strikes !== this.seenStrikes) {
+      this.seenStrikes = weatherSignal.strikes;
+      if (this.target.thunder >= 0.02) {
+        const d = weatherSignal.distance;
+        this.pendingClose = d < 110;
+        this.nextEvent.set('thunder', now + Math.min(3, 0.3 + d / 343));
+        this.lastStrikeAt = now;
+      }
+    }
+    for (const l of ['birds', 'crickets', 'gulls', 'rain', 'forest', 'cave', 'frogs', 'insects', 'thunder', 'blizzard'] as const) {
       const v = this.target[l];
       if (v < 0.02) {
         this.nextEvent.delete(l);
@@ -256,6 +278,41 @@ export class Ambience {
         if (Math.random() < 0.5) chirp(210 + Math.random() * 40, 180 + Math.random() * 60, 1.2 + Math.random() * 0.8, 0.025, t, 'sawtooth');
         else chirp(5600, 5200, 0.6, 0.02, t, 'square'); // 一声短蝉
         return 2.5 + Math.random() * 5;
+      }
+      case 'thunder': {
+        // 雷：噪声爆发经低通，起音快、衰减长；近雷先有一声高频「咔嚓」
+        const close = this.pendingClose ?? Math.random() < 0.3;
+        this.pendingClose = null;
+        const burst = (dur: number, freq: number, gain: number, at: number) => {
+          const src = ctx.createBufferSource();
+          src.buffer = this.buffer(close && freq > 1000 ? 'white' : 'brown');
+          const f = ctx.createBiquadFilter();
+          f.type = freq > 1000 ? 'highpass' : 'lowpass';
+          f.frequency.setValueAtTime(freq, at);
+          if (freq < 1000) f.frequency.exponentialRampToValueAtTime(Math.max(40, freq * 0.35), at + dur);
+          const g = ctx.createGain();
+          g.gain.setValueAtTime(0, at);
+          g.gain.linearRampToValueAtTime(gain, at + Math.min(0.08, dur * 0.1));
+          g.gain.exponentialRampToValueAtTime(0.0005, at + dur);
+          src.connect(f).connect(g).connect(pan);
+          src.start(at, Math.random() * 2, dur + 0.1);
+        };
+        if (close) {
+          burst(0.35, 2500, 0.5, t);
+          burst(3.5, 400, 1.2, t + 0.05);
+        } else {
+          const delay = 0.2 + Math.random() * 0.6;
+          burst(4 + Math.random() * 2, 180 + Math.random() * 120, 0.8, t + delay);
+          burst(2.5, 120, 0.5, t + delay + 1.2 + Math.random());
+        }
+        this.onThunder?.(close);
+        // 刚有可见闪电：把随机雷推远，等下一道闪电
+        return ctx.currentTime - this.lastStrikeAt < 20 ? 30 : 7 + Math.random() * 12;
+      }
+      case 'blizzard': {
+        // 一阵冰粒：多颗极短的高频「嗒」
+        for (let i = 0; i < 10; i++) chirp(5000 + Math.random() * 4000, 3000, 0.015, 0.03, t + Math.random() * 0.4, 'square');
+        return 0.3 + Math.random() * 0.5;
       }
       case 'cave': {
         // 滴水：高频「叮」+ 回声

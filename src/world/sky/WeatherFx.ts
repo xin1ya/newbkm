@@ -4,6 +4,7 @@
  */
 import * as THREE from 'three';
 import { seeded } from '../util/hash';
+import { signalLightning } from '@/core/weatherSignal';
 
 const BOX = 36;
 
@@ -126,7 +127,10 @@ export class WeatherFx {
       if (this.lightningTimer <= 0) {
         const double = this.lightningTimer > -1 && this.boltLife > 0;
         this.flash = 1;
-        if (!double) this.strike(cam, rnd);
+        if (!double) {
+          this.strike(cam, rnd);
+          signalLightning(Math.hypot(this.lastStrike.x - cam.x, this.lastStrike.z - cam.z));
+        }
         else this.boltLife = 0.22;
         this.lightningTimer = rnd() < 0.3 ? 0.18 : 4 + rnd() * 10;
       }

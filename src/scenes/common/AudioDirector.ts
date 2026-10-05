@@ -11,7 +11,7 @@
 import type { Game } from '@/core/Game';
 import type { GameState } from '@/systems/state/GameState';
 import type { FieldWeather, TimeOfDay } from '@/systems/encounters';
-import { ambienceMix, pickBgm, waterProximity, type BattleKind } from '@/systems/audio/select';
+import { ambienceMix, battleTrackFor, pickBgm, waterProximity, type BattleKind } from '@/systems/audio/select';
 import { resolveBgm } from '@/config/audio/music';
 import { audio, jingle } from '@/core/audio';
 
@@ -41,6 +41,8 @@ const DIRS = 8;
 export class AudioDirector {
   battle: BattleKind | null = null;
   victory: BattleKind | null = null;
+  /** M3-30：本场专属战曲 */
+  battleTrack: string | null = null;
   /** 调试：最近一次选择的 BGM / 环境音混音 */
   wanted: string | null = null;
   mix: Record<string, number> = {};
@@ -60,6 +62,7 @@ export class AudioDirector {
     this.unsub.push(
       ev.on('battle:start', (e) => {
         this.battle = e.kind;
+        this.battleTrack = battleTrackFor(e.kind, e.trainerId);
         this.victory = null;
       }),
       ev.on('battle:victory', (e) => {
@@ -79,6 +82,7 @@ export class AudioDirector {
     if (!ctx.inBattle && (this.battle || this.victory)) {
       this.battle = null;
       this.victory = null;
+      this.battleTrack = null;
     }
     // 音量
     const v = this.d.state.settings.volume;
@@ -89,7 +93,7 @@ export class AudioDirector {
     }
     // BGM
     const id = resolveBgm(
-      pickBgm({ battle: ctx.inBattle ? this.battle : null, victory: ctx.inBattle ? this.victory : null, surfing: ctx.surfing, interiorBgm: ctx.interiorBgm, zoneBgm: ctx.zoneBgm }),
+      pickBgm({ battle: ctx.inBattle ? this.battle : null, victory: ctx.inBattle ? this.victory : null, surfing: ctx.surfing, interiorBgm: ctx.interiorBgm, zoneBgm: ctx.zoneBgm, battleTrack: this.battleTrack }),
     );
     if (id !== this.wanted) {
       this.wanted = id;

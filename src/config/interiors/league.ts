@@ -224,7 +224,7 @@ const hallOfFame: RoomConfig = {
   floor: { color: '#f2e6c8', pattern: 'tile', accent: '#e0cc9a' },
   wall: { color: '#f8f0dc', trim: '#c8a040', wainscot: '#a8884a' },
   lighting: 'gym',
-  bgm: 'league',
+  bgm: 'hall-of-fame',
   cameraDistance: 13,
   furniture: [
     { type: 'rug', position: [0, 0], size: [3.0, 0.02, 15], color: '#c8a040', accent: '#8a2a2a' },

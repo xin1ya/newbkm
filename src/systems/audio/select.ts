@@ -13,22 +13,35 @@ export interface MusicSituation {
   surfing: boolean;
   interiorBgm: string | null;
   zoneBgm: string | null;
+  /** M3-30：本场战斗的专属战曲（如岛 3 / 岛 4 道馆战曲），缺省按 battle 种类 */
+  battleTrack?: string | null;
 }
 
 export const BATTLE_BGM: Record<BattleKind, string> = { wild: 'battle-wild', trainer: 'battle-trainer', gym: 'battle-gym', boss: 'battle-boss', elite: 'battle-elite', champion: 'battle-champion' };
 export const VICTORY_BGM: Record<BattleKind, string> = { wild: 'victory-wild', trainer: 'victory-trainer', gym: 'victory-trainer', boss: 'victory-trainer', elite: 'victory-trainer', champion: 'victory-trainer' };
 export const SURF_BGM = 'surf';
 
+/** M3-30：道馆馆主战按群岛换曲（雷鸣 4 馆 / 琉璃 3 馆）；其余返回 null 用通用战曲 */
+const GYM_TRACKS: readonly [RegExp, string][] = [
+  [/^gym-(thunder|dawn|snow|lark)-leader$/, 'battle-gym-thunder'],
+  [/^gym-(mirage|ghost|glaze)-leader$/, 'battle-gym-glaze'],
+];
+export function battleTrackFor(kind: BattleKind, trainerId?: string): string | null {
+  if (kind !== 'gym' || !trainerId) return null;
+  for (const [re, id] of GYM_TRACKS) if (re.test(trainerId)) return id;
+  return null;
+}
+
 export function pickBgm(s: MusicSituation): string | null {
   if (s.victory) return VICTORY_BGM[s.victory];
-  if (s.battle) return BATTLE_BGM[s.battle];
+  if (s.battle) return s.battleTrack ?? BATTLE_BGM[s.battle];
   if (s.interiorBgm) return s.interiorBgm;
   if (s.surfing) return SURF_BGM;
   return s.zoneBgm;
 }
 
-export type AmbienceLayer = 'wind' | 'birds' | 'crickets' | 'waves' | 'lap' | 'rain' | 'forest' | 'gulls' | 'room' | 'cave' | 'frogs' | 'stream' | 'insects';
-export const AMBIENCE_LAYERS: readonly AmbienceLayer[] = ['wind', 'birds', 'crickets', 'waves', 'lap', 'rain', 'forest', 'gulls', 'room', 'cave', 'frogs', 'stream', 'insects'];
+export type AmbienceLayer = 'wind' | 'birds' | 'crickets' | 'waves' | 'lap' | 'rain' | 'forest' | 'gulls' | 'room' | 'cave' | 'frogs' | 'stream' | 'insects' | 'thunder' | 'blizzard';
+export const AMBIENCE_LAYERS: readonly AmbienceLayer[] = ['wind', 'birds', 'crickets', 'waves', 'lap', 'rain', 'forest', 'gulls', 'room', 'cave', 'frogs', 'stream', 'insects', 'thunder', 'blizzard'];
 
 export interface AmbienceSituation {
   /** undersea：M3-18 海底（低沉水声 + 远处气泡；AudioDirector 另外整体低通） */
@@ -59,6 +72,8 @@ export function ambienceMix(a: AmbienceSituation): Record<AmbienceLayer, number>
   if (a.indoor === 'room') {
     out.room = 0.5 * duck;
     if (a.weather === 'rain' || a.weather === 'storm') out.rain = 0.18 * duck; // 屋檐外的雨声
+    if (a.weather === 'storm') out.thunder = 0.3 * duck; // 隔着墙的闷雷
+    if (a.weather === 'blizzard') out.blizzard = 0.2 * duck; // 门窗外的风雪呼啸
     return out;
   }
   if (a.indoor === 'cave') {
@@ -100,6 +115,10 @@ export function ambienceMix(a: AmbienceSituation): Record<AmbienceLayer, number>
   const river = a.river ?? 0;
   out.stream = river > 0.02 ? clamp01(0.25 + river * 1.2) * duck : 0;
   // 昆虫：晴朗白天的野外（蜜蜂嗡嗡 / 蝉鸣），城镇少、森林里和鸟鸣叠加
+  // M3-30 雷暴：远雷滚动 + 偶尔近处炸雷（事件层）
+  out.thunder = a.weather === 'storm' ? 0.75 * duck : 0;
+  // M3-30 暴雪：高频呼啸 + 冰粒打在身上的沙沙声；小雪只有很轻的雪粒声
+  out.blizzard = (a.weather === 'blizzard' ? 0.85 : a.weather === 'snow' ? 0.12 : 0) * duck;
   out.insects = !night && !wet && !murky && a.weather !== 'snow' && a.zoneKind !== 'sea' ? clamp01((a.zoneKind === 'town' ? 0.12 : 0.35) + (forest ? 0.1 : 0)) * land * duck : 0;
   return out;
 }
