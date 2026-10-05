@@ -14,6 +14,22 @@
  */
 import { THUNDER_TOWNS } from './towns/thunder';
 import type { IslandConfig } from './types';
+import { makeWaterfall } from './waterfalls';
+
+/** M3-19 冰舌瀑布：冰川冰舌前的岩台，融水从台顶冰池落进融雪溪源头（落差约 18 m） */
+export const THUNDER_FALLS = [
+  makeWaterfall({
+    id: 'glacier-falls',
+    name: '冰舌瀑布',
+    center: [262, -322],
+    radius: 12,
+    height: 52,
+    dirAngle: Math.PI / 2,
+    baseLevel: 33.5,
+    width: 5,
+    hint: '冰舌前的岩台挂满冰凌，四面滑不留手，风雪也让飞行宝可梦靠不过去……从瀑潭逆流而上或许可以。',
+  }),
+];
 
 export const THUNDER: IslandConfig = {
   id: 'thunder',
@@ -220,7 +236,9 @@ export const THUNDER: IslandConfig = {
       ],
     },
   ],
+  waterfalls: THUNDER_FALLS.map((f) => f.fall),
   waterBodies: [
+    ...THUNDER_FALLS.flatMap((f) => f.bodies),
     // 晨光镇的风车水塘
     { id: 'dawn-pond', level: 8.6, center: [430, 300], radius: [22, 14] },
   ],
@@ -268,6 +286,7 @@ export const THUNDER: IslandConfig = {
     ...THUNDER_TOWNS.flatMap((t) => t.paths),
   ],
   pois: [
+    { id: 'glacier-falls-cache', kind: 'landmark', name: '瀑顶石匣', position: [257, 0, -327] },
     { id: 'thunder-dock', kind: 'dock', name: '雷鸣镇码头', position: [-606, 0, 420], showOnMap: true },
     { id: 'pokecenter-thunder', kind: 'pokecenter', name: '宝可梦中心（雷鸣镇）', position: [-470, 0, 412], interior: 'pokecenter', showOnMap: true },
     { id: 'mart-thunder', kind: 'mart', name: '友好商店（雷鸣镇）', position: [-420, 0, 412], interior: 'mart', showOnMap: true },
@@ -306,6 +325,7 @@ export const THUNDER: IslandConfig = {
     { id: 'glacier-ledge-wall', name: '冰岩台 · 冰裂纹', style: 'ice', base: [-92.8, -384.3], top: [-88.6, -375.2], width: 2.4 },
   ],
   blockers: [
+    ...THUNDER_FALLS.map((f) => f.blocker),
     // M3-17 冰川遗迹背后的冰岩台：没有「攀岩」时步行 / 飞行都进不去（飞行限岛规则同步：封锁点同样挡飞行）
     { id: 'glacier-ledge', type: 'climb', requiresFlag: 'hm08-rock-climb', position: [-85.8, 0, -366.5], radius: 9, hint: '冰岩台四面都是陡立的冰壁，飞行宝可梦也找不到落脚的地方……侧面的冰裂纹似乎可以攀上去。' },
     // 云雀镇码头：雷鸣—琉璃海域在 M3-05 开放

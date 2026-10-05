@@ -88,7 +88,7 @@ export function fogNear(fog: FogMask, worldSize: [number, number], x: number, z:
   return false;
 }
 
-export type MapMarkerKind = 'pokecenter' | 'mart' | 'gym' | 'door' | 'dock' | 'ferry' | 'fishing' | 'landmark' | 'cave' | 'quest' | 'blocker' | 'alpha' | 'climb' | 'dive';
+export type MapMarkerKind = 'pokecenter' | 'mart' | 'gym' | 'door' | 'dock' | 'ferry' | 'fishing' | 'landmark' | 'cave' | 'quest' | 'blocker' | 'alpha' | 'climb' | 'dive' | 'waterfall';
 
 /**
  * 标记可见性（设计 §7.3：已探索区域显示城镇、宝可梦中心、封锁点）：
@@ -99,7 +99,7 @@ export type MapMarkerKind = 'pokecenter' | 'mart' | 'gym' | 'door' | 'dock' | 'f
 export function markerVisible(kind: MapMarkerKind, fog: FogMask, worldSize: [number, number], x: number, z: number, opts: { cleared?: boolean | undefined } = {}): boolean {
   if (kind === 'blocker') return !opts.cleared && fogNear(fog, worldSize, x, z, 16);
   // 头目巢穴：附近 48 m 探索过就显示（未发现时显示「？」）
-  if (kind === 'pokecenter' || kind === 'gym' || kind === 'ferry' || kind === 'alpha' || kind === 'dive') return fogNear(fog, worldSize, x, z, 48);
+  if (kind === 'pokecenter' || kind === 'gym' || kind === 'ferry' || kind === 'alpha' || kind === 'dive' || kind === 'waterfall') return fogNear(fog, worldSize, x, z, 48);
   return fogNear(fog, worldSize, x, z, 16);
 }
 

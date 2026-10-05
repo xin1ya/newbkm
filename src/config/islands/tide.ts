@@ -11,6 +11,22 @@
  */
 import { TIDE_TOWNS } from './towns/tide';
 import type { IslandConfig } from './types';
+import { makeWaterfall } from './waterfalls';
+
+/** M3-19 泉眼瀑布：温泉溪源头北侧的熔岩石台，温泉从台顶泉池落进泉眼（落差约 13 m） */
+export const TIDE_FALLS = [
+  makeWaterfall({
+    id: 'spring-falls',
+    name: '泉眼瀑布',
+    center: [600, 277],
+    radius: 12,
+    height: 38,
+    dirAngle: Math.PI / 2,
+    baseLevel: 24.5,
+    width: 4.5,
+    hint: '冒着热气的熔岩石台四面陡立，蒸汽缭绕，飞不上去……从泉眼逆流而上或许可以。',
+  }),
+];
 
 export const TIDE: IslandConfig = {
   id: 'tide',
@@ -236,7 +252,9 @@ export const TIDE: IslandConfig = {
       levelRange: [16, 22],
     },
   ],
+  waterfalls: TIDE_FALLS.map((f) => f.fall),
   waterBodies: [
+    ...TIDE_FALLS.flatMap((f) => f.bodies),
     // 温泉池（高于海平面的小水体；温泉乡与溪谷上游的天然泉眼）
     { id: 'spring-pool-main', level: 7.6, center: [452, 566], radius: [15, 11] },
     { id: 'spring-pool-upper', level: 8.4, center: [494, 598], radius: [8, 6] },
@@ -297,6 +315,7 @@ export const TIDE: IslandConfig = {
     ...TIDE_TOWNS.flatMap((t) => t.paths),
   ],
   pois: [
+    { id: 'spring-falls-cache', kind: 'landmark', name: '瀑顶石匣', position: [595, 0, 272] },
     { id: 'tide-dock', kind: 'dock', name: '碧潮镇码头', position: [-602, 0, 30], showOnMap: true },
     { id: 'pokecenter-tide', kind: 'pokecenter', name: '宝可梦中心（碧潮镇）', position: [-500, 0, 22], interior: 'pokecenter', showOnMap: true },
     { id: 'mart-tide', kind: 'mart', name: '友好商店（碧潮镇）', position: [-440, 0, 22], interior: 'mart', showOnMap: true },
@@ -322,6 +341,7 @@ export const TIDE: IslandConfig = {
     { id: 'coral-wreck', kind: 'landmark', name: '珊瑚沉船', position: [-820, 0, 60], showOnMap: true },
   ],
   blockers: [
+    ...TIDE_FALLS.map((f) => f.blocker),
     // 异变遗迹入口平台：3 枚本岛徽章前被紫色异变结界封住
     { id: 'ruins-seal', type: 'story', requiresFlag: 'ruins-seal-open', position: [44, 0, -420], radius: 12, fx: 'barrier', hint: '一层紫色的异变结界挡住了遗迹入口……\n听说集齐碧潮群岛的三枚徽章，结界就会回应。' },
     // 碧潮古森：藤蔓封住的小径（割草开路）

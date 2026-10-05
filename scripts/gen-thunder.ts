@@ -25,6 +25,7 @@ import { fileURLToPath } from 'node:url';
 import { THUNDER } from '../src/config/islands/thunder';
 import { THUNDER_TOWNS } from '../src/config/islands/towns/thunder';
 import { SURFACE_CHANNELS, type PropInstance, type PropsFile, type Vec2 } from '../src/config/islands/types';
+import { applyWaterfalls } from './lib/falls';
 import { clamp, distPolyline, lerp, makeNoise, nearestOnPolyline, sdPolygon, smoothstep } from './lib/noise';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -371,7 +372,10 @@ log('道路压平完成');
 function waterShape(w: (typeof WATER)[number], x: number, z: number): number {
   return ((x - w.center[0]) / w.radius[0]) ** 2 + ((z - w.center[1]) / w.radius[1]) ** 2;
 }
+// M3-19 瀑布的泉池 / 瀑潭由 applyWaterfalls 雕刻
+const FALL_BODIES = new Set((THUNDER.waterfalls ?? []).flatMap((f) => [`${f.id}-pool`, `${f.id}-plunge`]));
 for (const wb of WATER) {
+  if (FALL_BODIES.has(wb.id)) continue;
   const rx = wb.radius[0] * 1.6 + 6;
   const rz = wb.radius[1] * 1.6 + 6;
   eachCell(wb.center[0] - rx, wb.center[0] + rx, wb.center[1] - rz, wb.center[1] + rz, (k, x, z) => {
@@ -573,6 +577,12 @@ for (let k = 0; k < N * N; k++) {
 log(`城镇地块压平 ${pads.length} 块（${padCells} 格）`);
 // 地块压平后再做一次道路纵坡（城镇出入口与地块边缘衔接）
 gradeRoads();
+
+// M3-19 瀑布石台 + 台顶泉池 + 崖脚瀑潭（最后一步，覆盖压平 / 河谷雕刻）
+{
+  const n = applyWaterfalls(H, N, CELL, HALF, THUNDER.waterfalls ?? [], (x, z) => fbm(x, z));
+  if (n) console.info(`[thunder] 瀑布石台 ${(THUNDER.waterfalls ?? []).length} 座（${n} 格）`);
+}
 
 // ———————————— 6. 编码高度图 ————————————
 mkdirSync(outDir, { recursive: true });

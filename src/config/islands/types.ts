@@ -79,6 +79,33 @@ export interface ClimbWallConfig {
 }
 
 /**
+ * M3-19 瀑布（登瀑）：瀑顶是一座四面绝壁的石台（地形生成器按 mesa 抬起，台顶有泉池），
+ * 泉水从石台边缘的缺口落进崖脚的瀑潭。冲浪到瀑潭 base 附近、按互动键「攀瀑」（flag hm07-waterfall）
+ * 逆流冲上台顶泉池 top；在 top 附近按互动键「顺瀑布而下」。没有能力时上不去（步行 / 飞行也被同 id 的 blocker 挡住）。
+ * 由 config/islands/waterfalls.ts 的 makeWaterfall 生成（同时给出泉池 / 瀑潭水体与 blocker）。
+ */
+export interface WaterfallConfig {
+  id: string;
+  name: string;
+  /** 瀑顶石台：中心、半径（米）、台面高度（绝对高度） */
+  mesa: { center: Vec2; radius: number; height: number };
+  /** 瀑潭冲浪站位（崖脚） */
+  base: Vec2;
+  baseLevel: number;
+  /** 台顶泉池冲浪站位 */
+  top: Vec2;
+  topLevel: number;
+  /** 瀑口（石台边缘缺口中心） */
+  lip: Vec2;
+  /** 泉池中心与半径 */
+  pool: { center: Vec2; radius: number };
+  /** 瀑潭半径 */
+  plungeRadius: number;
+  /** 水幕宽度（米） */
+  width: number;
+}
+
+/**
  * M3-18 潜水点：海面上颜色发暗、冒气泡的深水区。冲浪进入半径后按互动键下潜（骑乘「潜水」，flag hm08-dive），
  * 进入室内场景 interior 的 room（第一个出口 = 上浮光柱）；从任意 surfaceAt = 本 id 的出口上浮回到这里。
  */
@@ -170,6 +197,8 @@ export interface IslandConfig {
   whirlpools?: Array<{ id: string; center: Vec2; radius: number }>;
   /** M3-17 攀爬点 */
   climbWalls?: ClimbWallConfig[];
+  /** M3-19 瀑布（登瀑） */
+  waterfalls?: WaterfallConfig[];
   /** M3-18 潜水点 */
   diveSpots?: DiveSpotConfig[];
   /** M3-17 陡崖（生成器用；运行时只做文档 / 自检） */

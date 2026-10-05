@@ -54,4 +54,14 @@ export const THUNDER_LANDMARKS: InteractionDef[] = [
   { id: 'old-lighthouse', kind: 'examine', range: 5, pages: ['古灯塔。', '石砌的塔身被海风侵蚀得坑坑洼洼，灯室早就不亮了。', '门上挂着锁：「灯塔修复中」。'] },
   { id: 'frozen-lake', kind: 'examine', range: 6, pages: ['冰湖。', '湖面结着厚厚的冰，底下隐约有影子游过。', '冰面中央插着一根木桩，上面写着：「冰层下方有裂缝，勿近」。'] },
   { id: 'storm-observatory', kind: 'examine', range: 5, pages: ['雷云观测站。', '屋顶的风速计疯狂旋转着。', '门口贴着告示：「观测员外出采样中」。'] },
+  // M3-19 瀑顶石匣（攀瀑后才能到达）
+  {
+    id: 'glacier-falls-cache',
+    kind: 'examine',
+    range: 2.6,
+    pages: ['冰舌瀑布的瀑口旁，压着一只覆满冰霜的古代石匣。', '匣盖上的纹样和冰川遗迹的石碑一模一样——一圈水波环绕着一顶王冠。', '……匣子里是一块沉甸甸的王者之证。'],
+    effects: [{ kind: 'give-item', item: 'kings-rock', qty: 1, flag: 'glacier-falls-cache-taken', itemName: '王者之证' }],
+    after: ['让宝可梦携带，攻击时有时会让对手畏缩。'],
+    byFlag: [{ when: 'glacier-falls-cache-taken', pages: ['石匣已经空了。', '从这里望下去，冰舌瀑布一路落进融雪溪，远处是冰川遗迹的方向。'] }],
+  },
 ];

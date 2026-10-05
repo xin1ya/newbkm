@@ -44,7 +44,11 @@ export const SWIM_SPEED = 2.3;
 export const SWIM_SPRINT = 3.4;
 
 export class PlayerController {
-  readonly root = new THREE.Group();
+  readonly root = (() => {
+    const g = new THREE.Group();
+    g.rotation.order = 'YXZ';
+    return g;
+  })();
   /** 男主角模型（glb 就绪前显示程序化占位） */
   readonly model = new HumanModel('hero_m');
   readonly position = new THREE.Vector3();
@@ -164,6 +168,16 @@ export class PlayerController {
     return !inside;
   }
 
+  /** M3-19 冲浪方向上 1 m 外的水面与脚下水面高差是否超过 0.8 m（瀑布） */
+  fallAhead(x: number, z: number, dx: number, dz: number): boolean {
+    const dl = Math.hypot(dx, dz);
+    if (dl < 1e-5) return false;
+    const hf = this.terrain.hf;
+    const cur = hf.waterAt(x, z);
+    const ahead = hf.waterAt(x + (dx / dl) * 1.0, z + (dz / dl) * 1.0);
+    return !!cur && !!ahead && Math.abs(ahead.level - cur.level) > 0.8;
+  }
+
   private blockedByBlocker(x: number, z: number): BlockerConfig | null {
     for (const b of this.blockers) {
       if (blockerOpen(b, this.flags)) continue;
@@ -251,6 +265,13 @@ export class PlayerController {
   }
 
   /** M3-17 攀爬：把玩家放到崖面路径上的一点（保留上一步位置用于插值） */
+  /**
+   * M3-19 脚本驱动（攀瀑演出等）：为真时 fixedUpdate 不读输入、不受重力，位置由外部 climbTo 驱动。
+   */
+  scripted = false;
+  /** M3-19 整体俯仰（弧度，正 = 抬头）：攀瀑时人和坐骑一起仰起 */
+  pitch = 0;
+
   climbTo(x: number, y: number, z: number, yaw: number): void {
     this.position.set(x, y, z);
     this.velocity.set(0, 0, 0);
@@ -287,8 +308,8 @@ export class PlayerController {
       this.stepHop(dt);
       return;
     }
-    // M3-17 攀爬：位置由 SceneClimb 沿崖面路径驱动（climbTo），这里不读输入、不受重力
-    if (this.mode === 'climb') {
+    // M3-17 攀爬 / M3-19 攀瀑：位置由 SceneClimb / SceneWaterfall 驱动（climbTo），这里不读输入、不受重力
+    if (this.mode === 'climb' || this.scripted) {
       this.movedThisStep = 0;
       return;
     }
@@ -576,6 +597,17 @@ export class PlayerController {
       nx = blk.position[0] + (dx / d) * r;
       nz = blk.position[2] + (dz / d) * r;
     }
+    // M3-19 瀑布：沿移动方向 1 m 外的水面高差 > 0.8 m = 逆流 / 顺流冲瀑布，普通冲浪过不去（攀瀑互动见 SceneWaterfall）
+    if (this.mode === 'surf' && this.fallAhead(p.x, p.z, nx - sx, nz - sz)) {
+      nx = sx;
+      nz = sz;
+      this.velocity.x = 0;
+      this.velocity.z = 0;
+      if ((this.lastBlockerHint.get('falls') ?? -99) + 4 < this.time) {
+        this.lastBlockerHint.set('falls', this.time);
+        this.events.emit('blocker:hit', { id: 'falls', hint: '水流太急了，冲浪过不去……会「攀瀑」的宝可梦能逆流而上。' });
+      }
+    }
     // 地形可走性，失败时分轴滑移
     let st = this.canStand(p.y, nx, nz);
     if (this.mode === 'surf') {
@@ -687,6 +719,7 @@ export class PlayerController {
     let d = this.facing - this.prevFacing;
     d = Math.atan2(Math.sin(d), Math.cos(d));
     this.root.rotation.y = this.prevFacing + d * a;
+    this.root.rotation.x = -this.pitch;
   }
 
   private syncVisual(): void {
@@ -696,6 +729,7 @@ export class PlayerController {
     else if (this.mode === 'dive') this.root.position.y += Math.sin(this.time * 1.4) * 0.12; // 水中悬浮
     else if (this.swimming) this.root.position.y += Math.sin(this.time * 2.6) * 0.035; // 随波起伏
     this.root.rotation.y = this.facing;
+    this.root.rotation.x = -this.pitch;
   }
 
   /** 头部高度（第一人称镜头 / 第三人称注视点） */

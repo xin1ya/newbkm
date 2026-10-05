@@ -3311,6 +3311,20 @@
    ]
   },
   {
+   "type": "sign",
+   "ref": "glacier-falls-cache",
+   "position": [
+    257,
+    -327
+   ],
+   "yaw": 0.21406068356382163,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
    "type": "cave-mouth",
    "ref": "crystal-cave",
    "position": [

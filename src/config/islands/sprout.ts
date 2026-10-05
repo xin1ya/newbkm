@@ -5,6 +5,22 @@
  */
 import { SPROUT_TOWNS } from './towns';
 import type { IslandConfig } from './types';
+import { makeWaterfall } from './waterfalls';
+
+/** M3-19 澜源大瀑布：澜源溪峡谷尽头的玄武岩石台，泉水从 56 m 的台顶落进峡谷源头的瀑潭（落差约 37 m） */
+export const SPROUT_FALLS = [
+  makeWaterfall({
+    id: 'lanyuan-falls',
+    name: '澜源大瀑布',
+    center: [90, -392],
+    radius: 13,
+    height: 56,
+    dirAngle: Math.PI / 2,
+    baseLevel: 19.2,
+    width: 5.5,
+    hint: '澜源石台四面都是笔直的玄武岩壁，飞行宝可梦也被瀑布的水雾逼了回来……从瀑潭逆流而上或许可以。',
+  }),
+];
 
 export const SPROUT: IslandConfig = {
   id: 'sprout',
@@ -190,10 +206,11 @@ export const SPROUT: IslandConfig = {
       legacyMapId: 'water-route-1',
     },
   ],
-  waterBodies: [{ id: 'cuilan-lake', level: 5, center: [135, -55], radius: [120, 105] }],
+  waterBodies: [{ id: 'cuilan-lake', level: 5, center: [135, -55], radius: [120, 105] }, ...SPROUT_FALLS.flatMap((f) => f.bodies)],
+  waterfalls: SPROUT_FALLS.map((f) => f.fall),
   rivers: [
     // 北部山地的泉水汇成澜源溪，自北向南注入翠澜湖
-    { id: 'lanyuan-creek', name: '澜源溪', width: 7, points: [[92, -350], [112, -285], [104, -225], [121, -150]], levels: [19, 13.5, 8.5, 5] },
+    { id: 'lanyuan-creek', name: '澜源溪', width: 7, points: [[90, -372], [92, -350], [112, -285], [104, -225], [121, -150]], levels: [19.2, 19, 13.5, 8.5, 5] },
     // 湖水从东南岸流出，经翠澜河谷入海
     // 2026-10 河口三角洲的分汊水道（主河道之外向东西各分一支入海）
     { id: 'delta-west', name: '翠澜河西汊', width: 5, points: [[183, 405], [170, 418], [164, 431], [150, 440], [142, 455], [126, 466]], levels: [1.0, 0.8, 0.6, 0.42, 0.25, 0.12] },
@@ -226,6 +243,7 @@ export const SPROUT: IslandConfig = {
     ...SPROUT_TOWNS.flatMap((t) => t.paths),
   ],
   pois: [
+    { id: 'lanyuan-falls-cache', kind: 'landmark', name: '瀑顶石匣', position: [85, 0, -397] },
     { id: 'player-house', kind: 'door', name: '自己家', position: [-120, 0, 360], interior: 'sprout-player-house', showOnMap: true },
     { id: 'magnolia-lab', kind: 'door', name: '木兰博士研究所', position: [-20, 0, 345], interior: 'sprout-lab', showOnMap: true },
     { id: 'sprout-dock', kind: 'dock', name: '萌芽镇码头', position: [-70, 0, 452], showOnMap: true },
@@ -243,6 +261,7 @@ export const SPROUT: IslandConfig = {
     { id: 'meadow-hidden-cave', kind: 'cave', name: '海崖下的洞穴', position: [-247.6, 0, 110], interior: 'sprout-hidden-cave', doorYaw: -Math.PI / 2 },
   ],
   blockers: [
+    ...SPROUT_FALLS.map((f) => f.blocker),
     { id: 'gym-bridge-gate', type: 'story', requiresFlag: 'starter-chosen', position: [31.5, 0, -55], radius: 2.5, hint: '道馆正在准备中，先去找木兰博士吧。' },
     { id: 'harbor-open-sea', type: 'surf', requiresFlag: 'hm03-surf', position: [458, 0, 60], radius: 6, hint: '海面很宽阔……似乎需要某种能力才能通过。' },
     { id: 'hidden-cave-rock', type: 'rock-smash', requiresFlag: 'hm05-rock-smash', position: [-249.6, 0, 110], radius: 2.5, hint: '裂开的岩石挡住了洞口……似乎需要某种能力才能通过。' },

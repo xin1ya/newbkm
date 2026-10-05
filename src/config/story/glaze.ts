@@ -60,6 +60,7 @@ const vrHm07: StoryStep[] = [
   { kind: 'fx', name: 'flash' },
   { kind: 'flag', set: 'hm07-waterfall' },
   { kind: 'say', lines: ['学会了「攀瀑」！站在瀑布前按互动键，就能逆瀑而上。'] },
+  { kind: 'say', speaker: '攀瀑老人瀑翁', lines: ['对了——萌芽的澜源大瀑布、碧潮的泉眼瀑布、雷鸣的冰舌瀑布，', '那几座石台顶上都有古人留下的石匣。冲浪到瀑潭里，就能攀上去看看。（地图上标着「≋」）'] },
 ];
 
 const vrCleared: StoryStep[] = [

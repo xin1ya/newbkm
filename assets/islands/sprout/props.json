@@ -4,6 +4,20 @@
  "generatedBy": "gen-sprout seed=20260721",
  "props": [
   {
+   "type": "sign",
+   "ref": "lanyuan-falls-cache",
+   "position": [
+    85,
+    -397
+   ],
+   "yaw": 1.4146315127221143,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
    "type": "gym",
    "ref": "gym-cuilan",
    "position": [
@@ -32,6 +46,20 @@
     1.6,
     1.6,
     0.2
+   ]
+  },
+  {
+   "type": "cave-mouth",
+   "ref": "meadow-hidden-cave",
+   "position": [
+    -243.6,
+    110
+   ],
+   "yaw": -1.5707963267948966,
+   "size": [
+    4.2,
+    4.6,
+    4
    ]
   },
   {
@@ -6001,20 +6029,6 @@
     5,
     2.4,
     5
-   ]
-  },
-  {
-   "type": "cave-mouth",
-   "ref": "meadow-hidden-cave",
-   "position": [
-    -243.5,
-    110.0
-   ],
-   "yaw": -1.5707963267948966,
-   "size": [
-    4.2,
-    4.6,
-    4
    ]
   }
  ]

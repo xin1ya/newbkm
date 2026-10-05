@@ -2904,6 +2904,20 @@
    ]
   },
   {
+   "type": "sign",
+   "ref": "spring-falls-cache",
+   "position": [
+    595,
+    272
+   ],
+   "yaw": -1.989020656374126,
+   "size": [
+    1.6,
+    1.6,
+    0.2
+   ]
+  },
+  {
    "type": "cave-mouth",
    "ref": "tide-mine",
    "position": [

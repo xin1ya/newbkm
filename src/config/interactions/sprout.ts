@@ -127,4 +127,14 @@ export const SPROUT_LANDMARKS: InteractionDef[] = [
       { when: '!cross-sea-1-done', pages: ['渡船码头。', '「前往碧潮群岛的渡船：首航排期中。」', '售票员说：会冲浪的话，从码头往东横渡水路 1 就能先过去看看。'] },
     ],
   },
+  // M3-19 瀑顶石匣（攀瀑后才能到达）
+  {
+    id: 'lanyuan-falls-cache',
+    kind: 'examine',
+    range: 2.6,
+    pages: ['澜源大瀑布的瀑口旁，放着一只古老的石匣。', '匣盖上刻着一行小字：「逆流而上者，得此水之滴」。', '……匣子里是一滴凝固不散的神秘水滴。'],
+    effects: [{ kind: 'give-item', item: 'mystic-water', qty: 1, flag: 'lanyuan-falls-cache-taken', itemName: '神秘水滴' }],
+    after: ['让宝可梦携带，水属性招式的威力会提高。'],
+    byFlag: [{ when: 'lanyuan-falls-cache-taken', pages: ['石匣已经空了。', '从这里可以望见整条澜源溪一直流进翠澜湖。'] }],
+  },
 ];

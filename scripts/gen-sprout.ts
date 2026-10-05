@@ -22,6 +22,7 @@ import { fileURLToPath } from 'node:url';
 import { SPROUT } from '../src/config/islands/sprout';
 import { SPROUT_TOWNS } from '../src/config/islands/towns';
 import { SURFACE_CHANNELS, type PropInstance, type PropsFile, type Vec2 } from '../src/config/islands/types';
+import { applyWaterfalls } from './lib/falls';
 import { clamp, distPolyline, lerp, makeNoise, nearestOnPolyline, sdPolygon, smoothstep } from './lib/noise';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -584,6 +585,12 @@ for (let k = 0; k < N * N; k++) {
   padCells++;
 }
 console.info(`[sprout] 城镇地块压平 ${pads.length} 块（${padCells} 格）`);
+
+// M3-19 瀑布石台 + 台顶泉池 + 崖脚瀑潭（最后一步，覆盖压平 / 河谷雕刻）
+{
+  const n = applyWaterfalls(H, N, CELL, HALF, SPROUT.waterfalls ?? [], (x, z) => fbm(x, z));
+  if (n) console.info(`[sprout] 瀑布石台 ${(SPROUT.waterfalls ?? []).length} 座（${n} 格）`);
+}
 
 // ———————————— 5. 编码高度图 ————————————
 mkdirSync(outDir, { recursive: true });

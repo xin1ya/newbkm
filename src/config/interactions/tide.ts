@@ -116,4 +116,14 @@ export const TIDE_LANDMARKS: InteractionDef[] = [
     byFlag: [{ when: 'forest-shrine-stone-taken', pages: ['古树神龛。', '永不枯萎的叶子在风里轻轻摇晃。'] }],
   },
   { id: 'coral-wreck', kind: 'examine', range: 6, pages: ['半沉在珊瑚礁里的旧船。', '船身上爬满了太阳珊瑚……船尾隐约能看到「翠澜号」三个字。'] },
+  // M3-19 瀑顶石匣（攀瀑后才能到达）
+  {
+    id: 'spring-falls-cache',
+    kind: 'examine',
+    range: 2.6,
+    pages: ['泉眼瀑布顶上，温热的泉水从石缝里汩汩涌出。', '泉池边放着一只长满青苔的石匣，匣盖上刻着水滴的纹样。', '……匣子里有一块透着蓝光的石头。'],
+    effects: [{ kind: 'give-item', item: 'water-stone', qty: 1, flag: 'spring-falls-cache-taken', itemName: '水之石' }],
+    after: ['对某些宝可梦使用，它们会进化。'],
+    byFlag: [{ when: 'spring-falls-cache-taken', pages: ['石匣已经空了。', '泉水还在不停地涌出，顺着瀑口落进下面的泉眼池。'] }],
+  },
 ];
