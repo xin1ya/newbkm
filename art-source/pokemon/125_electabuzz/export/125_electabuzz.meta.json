@@ -1,0 +1,25 @@
+{
+  "id": 125,
+  "name": "electabuzz",
+  "heightM": 1.1,
+  "plan": "biped",
+  "tris": 5056,
+  "fit": "oss",
+  "bones": 17,
+  "clips": [
+    "idle",
+    "idle_alt",
+    "walk",
+    "run",
+    "attack_physical",
+    "attack_special",
+    "hit",
+    "faint",
+    "sleep"
+  ],
+  "hitTime": {
+    "attack_physical": 0.5,
+    "attack_special": 0.7333333333333333
+  },
+  "source": "oss:pokemon-3d/125.glb"
+}

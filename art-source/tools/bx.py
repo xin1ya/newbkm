@@ -3,6 +3,7 @@
 Usage:
   python art-source/tools/bx.py run <step.py> [<step.py> ...] [--shot out.png]
   python art-source/tools/bx.py model <key> [<key> ...]
+  python art-source/tools/bx.py oss <key> [<key> ...]     (open-source base model conversion, ADR 0010)
   python art-source/tools/bx.py code "<python>"
   python art-source/tools/bx.py telemetry-off
 Every step is prefixed with art-source/tools/common.py (shared helpers), because each execute_code call is a fresh namespace.
@@ -57,6 +58,16 @@ def main():
             try:
                 out = c.execute(code)
                 print(f'[ok] {key}'); print((out or '').strip())
+            except BlenderError as e:
+                print(f'[FAIL] {key}: {parse_error_message(e)}'); return 1
+        return 0
+    if cmd == 'oss':   # bx.py oss <key> [...]: ADR 0010 open-source conversion (common + kit + ossconv, config art-source/pokemon/<key>/oss.json)
+        with open(os.path.join(ROOT, 'art-source', 'tools', 'ossconv.py'), encoding='utf-8') as f:
+            oc = f.read()
+        for key in sys.argv[2:]:
+            try:
+                out = c.execute(common() + '\n' + oc + f'\noss_build({key!r})')
+                print(f'[ok] {key}'); print((out or '').strip()[-1500:])
             except BlenderError as e:
                 print(f'[FAIL] {key}: {parse_error_message(e)}'); return 1
         return 0
