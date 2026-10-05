@@ -4,6 +4,8 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { SPROUT } from '@/config/islands/sprout';
+import { THUNDER } from '@/config/islands/thunder';
+import { GLAZE } from '@/config/islands/glaze';
 import { ALPHA_SCALE, alphaScale, denAlpha, makeRoaming } from '@/systems/alpha';
 import { evolve } from '@/systems/progression';
 import { createNewGame, receivePokemon } from '@/systems/state';
@@ -12,6 +14,8 @@ import { ArenaOccluders } from '@/scenes/battle/occluders';
 import { dex, mon, rng } from './helpers';
 
 const dens = SPROUT.alphaDens ?? [];
+/** 有专属素材的巢穴：萌芽 + 雷鸣 + 琉璃（M3-28） */
+const matDens = [SPROUT, THUNDER, GLAZE].flatMap((i) => i.alphaDens ?? []);
 
 describe('头目捕捉后体型保留', () => {
   it('入队 → 存档 → 读档 → 进化，头目标记与体型倍率都在', () => {
@@ -90,8 +94,8 @@ describe('头目专属素材 · 领悟头目招式', () => {
     const { ALPHA_MATERIALS } = await import('@/config/alpha/materials');
     const { machineCompatible } = await import('@/systems/items');
     const { KEY_ITEM_BY_ID } = await import('@/config/items');
-    expect(ALPHA_MATERIALS.length).toBe(dens.length);
-    for (const d of dens) {
+    expect(ALPHA_MATERIALS.length).toBe(matDens.length);
+    for (const d of matDens) {
       const m = ALPHA_MATERIALS.find((x) => x.den === d.id)!;
       expect(m, d.id).toBeTruthy();
       expect(dex.hasMove(m.move), m.move).toBe(true);

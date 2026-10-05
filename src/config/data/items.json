@@ -638,5 +638,55 @@
   "category": "species-specific",
   "flingPower": 30,
   "shortEffect": "让拉帝欧斯或拉帝亚斯携带后， 超能力和龙属性的招式威力 就会提高的神奇珠子。"
+ },
+ {
+  "id": "electirizer",
+  "name": {
+   "en": "Electirizer",
+   "zh": "电力增幅器"
+  },
+  "category": "evolution",
+  "flingPower": 80,
+  "shortEffect": "积蓄着庞大电气能量的箱子。 某种宝可梦很喜欢它。"
+ },
+ {
+  "id": "reaper-cloth",
+  "name": {
+   "en": "Reaper Cloth",
+   "zh": "灵界之布"
+  },
+  "category": "evolution",
+  "flingPower": 10,
+  "shortEffect": "蕴含着惊人强大灵力的布。 某种宝可梦很喜欢它。"
+ },
+ {
+  "id": "dragon-scale",
+  "name": {
+   "en": "Dragon Scale",
+   "zh": "龙之鳞片"
+  },
+  "category": "evolution",
+  "flingPower": 30,
+  "shortEffect": "又硬又坚固的鳞片。 龙属性宝可梦有时会携带它。"
+ },
+ {
+  "id": "razor-claw",
+  "name": {
+   "en": "Razor Claw",
+   "zh": "锐利之爪"
+  },
+  "category": "held-items",
+  "flingPower": 80,
+  "shortEffect": "尖锐的爪子。 携带后，招式会 变得容易击中要害。"
+ },
+ {
+  "id": "dawn-stone",
+  "name": {
+   "en": "Dawn Stone",
+   "zh": "觉醒之石"
+  },
+  "category": "evolution",
+  "flingPower": 80,
+  "shortEffect": "能让某些特定宝可梦 进化的神奇石头。 像眼眸一般光彩动人。"
  }
 ]

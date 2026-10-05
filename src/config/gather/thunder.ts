@@ -1,0 +1,85 @@
+/**
+ * M3-28 · 雷鸣群岛野外采集点（坐标由远端探针按高度图 / 水域 / 碰撞体 / 道路 / POI 避让挑选，见 tests 探针脚本思路同萌芽）。
+ * 树果按生态：雷鸣多半减电 / 冰与冰冻解除类，琉璃多超能 / 幽灵对策与高级回复；矿点在高处陡坡，贝壳在岸边。
+ * id 固定（存档只记录上次采集的游戏日），新增点请追加，不要改已有 id。
+ */
+import type { GatherPointDef } from '@/systems/gathering';
+
+export const THUNDER_GATHER: GatherPointDef[] = [
+  // lighthouse-cape
+  { id: 'cape-tree-1', kind: 'berryTree', position: [630, 499], zone: 'lighthouse-cape', berry: 'passho-berry' },
+  { id: 'cape-tree-2', kind: 'berryTree', position: [847, 520], zone: 'lighthouse-cape', berry: 'wacan-berry' },
+  { id: 'cape-tree-3', kind: 'berryTree', position: [609, 394], zone: 'lighthouse-cape', berry: 'sitrus-berry' },
+  { id: 'cape-tree-4', kind: 'berryTree', position: [581, 499], zone: 'lighthouse-cape', berry: 'oran-berry' },
+  { id: 'cape-tree-5', kind: 'berryTree', position: [567, 478], zone: 'lighthouse-cape', berry: 'leppa-berry' },
+  { id: 'cape-shell-1', kind: 'shell', position: [875, 485], zone: 'lighthouse-cape' },
+  { id: 'cape-shell-2', kind: 'shell', position: [749, 296], zone: 'lighthouse-cape' },
+  { id: 'cape-shell-3', kind: 'shell', position: [819, 261], zone: 'lighthouse-cape' },
+  { id: 'cape-herb-1', kind: 'herb', position: [784, 583], zone: 'lighthouse-cape' },
+  { id: 'cape-herb-2', kind: 'herb', position: [588, 527], zone: 'lighthouse-cape' },
+  // storm-highland
+  { id: 'storm-tree-1', kind: 'berryTree', position: [-425, -5], zone: 'storm-highland', berry: 'wacan-berry' },
+  { id: 'storm-tree-2', kind: 'berryTree', position: [-439, 51], zone: 'storm-highland', berry: 'cheri-berry' },
+  { id: 'storm-tree-3', kind: 'berryTree', position: [-446, -180], zone: 'storm-highland', berry: 'kelpsy-berry' },
+  { id: 'storm-tree-4', kind: 'berryTree', position: [-446, -264], zone: 'storm-highland', berry: 'sitrus-berry' },
+  { id: 'storm-tree-5', kind: 'berryTree', position: [-320, -47], zone: 'storm-highland', berry: 'razz-berry' },
+  { id: 'storm-ore-1', kind: 'ore', position: [-481, -54], zone: 'storm-highland' },
+  { id: 'storm-ore-2', kind: 'ore', position: [-474, 44], zone: 'storm-highland' },
+  { id: 'storm-ore-3', kind: 'ore', position: [-579, -110], zone: 'storm-highland' },
+  { id: 'storm-herb-1', kind: 'herb', position: [-327, -201], zone: 'storm-highland' },
+  { id: 'storm-herb-2', kind: 'herb', position: [-383, 156], zone: 'storm-highland' },
+  // thunder-plain
+  { id: 'plain-tree-1', kind: 'berryTree', position: [180, 431], zone: 'thunder-plain', berry: 'oran-berry' },
+  { id: 'plain-tree-2', kind: 'berryTree', position: [5, 368], zone: 'thunder-plain', berry: 'cheri-berry' },
+  { id: 'plain-tree-3', kind: 'berryTree', position: [26, 564], zone: 'thunder-plain', berry: 'wacan-berry' },
+  { id: 'plain-tree-4', kind: 'berryTree', position: [299, 529], zone: 'thunder-plain', berry: 'pomeg-berry' },
+  { id: 'plain-tree-5', kind: 'berryTree', position: [208, 382], zone: 'thunder-plain', berry: 'sitrus-berry' },
+  { id: 'plain-tree-6', kind: 'berryTree', position: [19, 599], zone: 'thunder-plain', berry: 'figy-berry' },
+  { id: 'plain-herb-1', kind: 'herb', position: [-373, 627], zone: 'thunder-plain' },
+  { id: 'plain-herb-2', kind: 'herb', position: [-324, 284], zone: 'thunder-plain' },
+  { id: 'plain-herb-3', kind: 'herb', position: [-282, 613], zone: 'thunder-plain' },
+  { id: 'plain-honey-1', kind: 'honey', position: [-219, 620], zone: 'thunder-plain' },
+  { id: 'plain-honey-2', kind: 'honey', position: [-352, 459], zone: 'thunder-plain' },
+  // dawn-hills
+  { id: 'dawnhill-tree-1', kind: 'berryTree', position: [11, 26], zone: 'dawn-hills', berry: 'pecha-berry' },
+  { id: 'dawnhill-tree-2', kind: 'berryTree', position: [445, 271], zone: 'dawn-hills', berry: 'rindo-berry' },
+  { id: 'dawnhill-tree-3', kind: 'berryTree', position: [466, 138], zone: 'dawn-hills', berry: 'tamato-berry' },
+  { id: 'dawnhill-tree-4', kind: 'berryTree', position: [543, 341], zone: 'dawn-hills', berry: 'lum-berry' },
+  { id: 'dawnhill-tree-5', kind: 'berryTree', position: [557, 306], zone: 'dawn-hills', berry: 'wiki-berry' },
+  { id: 'dawnhill-tree-6', kind: 'berryTree', position: [536, 61], zone: 'dawn-hills', berry: 'sitrus-berry' },
+  { id: 'dawnhill-herb-1', kind: 'herb', position: [88, 229], zone: 'dawn-hills' },
+  { id: 'dawnhill-herb-2', kind: 'herb', position: [340, 208], zone: 'dawn-hills' },
+  { id: 'dawnhill-herb-3', kind: 'herb', position: [67, 236], zone: 'dawn-hills' },
+  { id: 'dawnhill-honey-1', kind: 'honey', position: [60, 33], zone: 'dawn-hills' },
+  { id: 'dawnhill-honey-2', kind: 'honey', position: [564, 376], zone: 'dawn-hills' },
+  // glacier
+  { id: 'glacier-tree-1', kind: 'berryTree', position: [324, -259], zone: 'glacier', berry: 'aspear-berry' },
+  { id: 'glacier-tree-2', kind: 'berryTree', position: [-313, -385], zone: 'glacier', berry: 'yache-berry' },
+  { id: 'glacier-tree-3', kind: 'berryTree', position: [-236, -413], zone: 'glacier', berry: 'aspear-berry' },
+  { id: 'glacier-tree-4', kind: 'berryTree', position: [-236, -539], zone: 'glacier', berry: 'qualot-berry' },
+  { id: 'glacier-ore-1', kind: 'ore', position: [-19, -336], zone: 'glacier' },
+  { id: 'glacier-ore-2', kind: 'ore', position: [-446, -469], zone: 'glacier' },
+  { id: 'glacier-ore-3', kind: 'ore', position: [-152, -497], zone: 'glacier' },
+  { id: 'glacier-ore-4', kind: 'ore', position: [177, -378], zone: 'glacier' },
+  // frost-road
+  { id: 'frost-tree-1', kind: 'berryTree', position: [868, -42], zone: 'frost-road', berry: 'aspear-berry' },
+  { id: 'frost-tree-2', kind: 'berryTree', position: [714, -133], zone: 'frost-road', berry: 'yache-berry' },
+  { id: 'frost-tree-3', kind: 'berryTree', position: [763, -357], zone: 'frost-road', berry: 'occa-berry' },
+  { id: 'frost-tree-4', kind: 'berryTree', position: [763, -168], zone: 'frost-road', berry: 'grepa-berry' },
+  { id: 'frost-tree-5', kind: 'berryTree', position: [763, -525], zone: 'frost-road', berry: 'leppa-berry' },
+  { id: 'frost-ore-1', kind: 'ore', position: [777, 112], zone: 'frost-road' },
+  { id: 'frost-ore-2', kind: 'ore', position: [840, -224], zone: 'frost-road' },
+  { id: 'frost-ore-3', kind: 'ore', position: [826, -266], zone: 'frost-road' },
+  { id: 'frost-herb-1', kind: 'herb', position: [644, -364], zone: 'frost-road' },
+  { id: 'frost-herb-2', kind: 'herb', position: [665, 196], zone: 'frost-road' },
+  // cloud-cliffs
+  { id: 'cloud-tree-1', kind: 'berryTree', position: [522, -666], zone: 'cloud-cliffs', berry: 'chople-berry' },
+  { id: 'cloud-tree-2', kind: 'berryTree', position: [-311, -638], zone: 'cloud-cliffs', berry: 'lum-berry' },
+  { id: 'cloud-tree-3', kind: 'berryTree', position: [88, -736], zone: 'cloud-cliffs', berry: 'hondew-berry' },
+  { id: 'cloud-tree-4', kind: 'berryTree', position: [-325, -575], zone: 'cloud-cliffs', berry: 'sitrus-berry' },
+  { id: 'cloud-tree-5', kind: 'berryTree', position: [-248, -631], zone: 'cloud-cliffs', berry: 'razz-berry' },
+  { id: 'cloud-ore-1', kind: 'ore', position: [-199, -680], zone: 'cloud-cliffs' },
+  { id: 'cloud-ore-2', kind: 'ore', position: [417, -561], zone: 'cloud-cliffs' },
+  { id: 'cloud-ore-3', kind: 'ore', position: [-423, -596], zone: 'cloud-cliffs' },
+  { id: 'cloud-honey-1', kind: 'honey', position: [-409, -652], zone: 'cloud-cliffs' },
+];

@@ -141,7 +141,63 @@ export const BEHAVIOR: Record<number, SpeciesBehavior> = {
   637: { temperament: 'calm', sight: 16, speed: 3, habitat: 'air' }, // 火神蛾
   862: { temperament: 'aggressive', sight: 14, speed: 3.6 }, // 堵拦熊
   864: { temperament: 'calm', sight: 10, speed: 0.6, habitat: 'shore' }, // 魔灵珊瑚：珊瑚礁岸边
-  980: { temperament: 'sleepy', sight: 6, speed: 0.8, habitat: 'shore' }, // 土王
+  980: { temperament: 'sleepy', sight: 6, speed: 0.8, habitat: 'shore' }, // 土王  // M3-28 雷鸣 / 琉璃 / 冠军之路
+  81: { temperament: 'curious', sight: 10, speed: 1.6, habitat: 'air' }, // 小磁怪：被电流吸引，飘过来
+  82: { temperament: 'aggressive', sight: 12, speed: 1.8, habitat: 'air' }, // 三合一磁怪
+  100: { temperament: 'aggressive', sight: 8, speed: 3.6 }, // 霹雳电球：滚过来撞
+  101: { temperament: 'aggressive', sight: 10, speed: 4.2 }, // 顽皮雷弹
+  239: { temperament: 'curious', sight: 10, speed: 2.6 }, // 电击怪
+  125: { temperament: 'aggressive', sight: 14, speed: 3 }, // 电击兽
+  179: { temperament: 'timid', sleepsAtNight: true, sight: 10, speed: 1.6 }, // 咩利羊：成群吃草
+  180: { temperament: 'calm', sleepsAtNight: true, sight: 10, speed: 1.8 }, // 茸茸羊
+  181: { temperament: 'calm', sight: 16, speed: 2 }, // 电龙
+  403: { temperament: 'curious', sight: 10, speed: 3.2 }, // 小猫怪
+  404: { temperament: 'aggressive', sight: 14, speed: 3.8 }, // 勒克猫
+  299: { temperament: 'sleepy', sight: 6, speed: 0.5 }, // 朝北鼻：一动不动朝北
+  476: { temperament: 'calm', sight: 8, speed: 0.6 }, // 大朝北鼻
+  220: { temperament: 'curious', sight: 8, speed: 2.4 }, // 小山猪：拱雪找吃的
+  221: { temperament: 'calm', sight: 8, speed: 1.4 }, // 长毛猪
+  215: { temperament: 'aggressive', sight: 16, speed: 4.4 }, // 狃拉：夜里偷袭
+  361: { temperament: 'timid', sight: 10, speed: 2 }, // 雪童子
+  362: { temperament: 'aggressive', sight: 12, speed: 1.6 }, // 冰鬼护
+  478: { temperament: 'curious', sight: 14, speed: 2.6, habitat: 'air' }, // 雪妖女
+  225: { temperament: 'curious', sight: 12, speed: 3.4 }, // 信使鸟
+  459: { temperament: 'calm', sight: 8, speed: 1.4 }, // 雪笠怪
+  460: { temperament: 'aggressive', sight: 14, speed: 1.6 }, // 暴雪王
+  86: { temperament: 'calm', sight: 8, speed: 1.2, habitat: 'shore' }, // 小海狮
+  87: { temperament: 'calm', sight: 10, speed: 1.6, habitat: 'water' }, // 白海狮
+  363: { temperament: 'sleepy', sight: 6, speed: 1, habitat: 'shore' }, // 海豹球：滚来滚去
+  364: { temperament: 'calm', sight: 10, speed: 1.4, habitat: 'shore' }, // 海魔狮
+  365: { temperament: 'aggressive', sight: 14, speed: 1.4, habitat: 'shore' }, // 帝牙海狮
+  63: { temperament: 'timid', sight: 14, speed: 0.5 }, // 凯西：睡着，一靠近就瞬移
+  64: { temperament: 'calm', sight: 12, speed: 1.6 }, // 勇基拉
+  280: { temperament: 'timid', sight: 14, speed: 1.6 }, // 拉鲁拉丝：感知情绪，远远躲开
+  281: { temperament: 'timid', sight: 14, speed: 2 }, // 奇鲁莉安
+  282: { temperament: 'calm', sight: 16, speed: 2 }, // 沙奈朵
+  475: { temperament: 'aggressive', sight: 16, speed: 3 }, // 艾路雷朵
+  177: { temperament: 'calm', sight: 12, speed: 1.2 }, // 天然雀：一动不动盯着太阳
+  178: { temperament: 'calm', sight: 16, speed: 1.4, habitat: 'air' }, // 天然鸟
+  200: { temperament: 'aggressive', sight: 12, speed: 2.4, habitat: 'air' }, // 梦妖：吓人
+  355: { temperament: 'curious', sight: 12, speed: 1.6, habitat: 'air' }, // 夜巡灵
+  356: { temperament: 'aggressive', sight: 14, speed: 1.6 }, // 彷徨夜灵
+  425: { temperament: 'curious', sight: 12, speed: 1.2, habitat: 'air' }, // 飘飘球：飘向孩子
+  426: { temperament: 'calm', sight: 14, speed: 1.6, habitat: 'air' }, // 随风球
+  592: { temperament: 'calm', sight: 8, speed: 0.8, habitat: 'water' }, // 轻飘飘
+  593: { temperament: 'aggressive', sight: 12, speed: 1, habitat: 'water' }, // 胖嘟嘟
+  170: { temperament: 'curious', sight: 10, speed: 1.6, habitat: 'water' }, // 灯笼鱼
+  171: { temperament: 'calm', sight: 12, speed: 1.8, habitat: 'water' }, // 电灯怪
+  116: { temperament: 'timid', sight: 10, speed: 2, habitat: 'water' }, // 墨海马
+  117: { temperament: 'aggressive', sight: 12, speed: 2.4, habitat: 'water' }, // 海刺龙
+  246: { temperament: 'aggressive', sight: 8, speed: 1.4 }, // 幼基拉斯：啃岩石
+  247: { temperament: 'calm', sight: 10, speed: 1.6 }, // 沙基拉斯
+  443: { temperament: 'aggressive', sight: 10, speed: 3 }, // 圆陆鲨
+  444: { temperament: 'aggressive', sight: 14, speed: 4 }, // 尖牙陆鲨
+  147: { temperament: 'timid', sight: 12, speed: 1.6, habitat: 'water' }, // 迷你龙
+  148: { temperament: 'calm', sight: 14, speed: 2, habitat: 'water' }, // 哈克龙
+  149: { temperament: 'curious', sight: 18, speed: 4, habitat: 'air' }, // 快龙
+  477: { temperament: 'aggressive', sight: 16, speed: 1.8, habitat: 'air' }, // 黑夜魔灵
+  429: { temperament: 'curious', sight: 14, speed: 2.2, habitat: 'air' }, // 梦妖魔
+  230: { temperament: 'aggressive', sight: 14, speed: 2.4, habitat: 'water' }, // 刺龙王
 };
 
 export function behaviorOf(speciesId: number): Required<SpeciesBehavior> {

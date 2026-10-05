@@ -1,7 +1,7 @@
 /**
- * 雷鸣群岛遇敌表（M3-03 临时版）。
+ * 雷鸣群岛遇敌表（M3-28 定稿）。
  * 等级与 src/config/islands/thunder.ts 各区域 levelRange 对应。
- * 目前只用已有模型的物种；M3-28（雷鸣生态定稿 + 新模型）会把电 / 冰 / 岩系新物种替换进来。
+ * M3-28 定稿：新增雷鸣 电 / 冰 / 岩钢、琉璃 超能 / 幽灵 / 水、冠军之路 龙系物种（模型见 M3-31）。
  */
 import type { EncounterTable } from '@/systems/encounters';
 import { DEFAULT_SHINY_CHANCE } from '@/systems/encounters';
@@ -16,6 +16,11 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     ...base,
     density: [6, 9],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 86, weight: 14, levels: [26, 30], methods: ['surf', 'visible'] }, // 小海狮
+      { speciesId: 170, weight: 16, levels: [26, 30], methods: ['fish', 'surf'] }, // 灯笼鱼
+      { speciesId: 116, weight: 12, levels: [26, 30], methods: ['fish', 'surf'] }, // 墨海马
+      { speciesId: 363, weight: 8, levels: [27, 31], methods: ['surf', 'visible'] }, // 海豹球
       { speciesId: 72, weight: 30, levels: [26, 30], methods: ['surf', 'visible'] }, // 玛瑙水母
       { speciesId: 73, weight: 8, levels: [30, 32], methods: ['surf'], formation: 'rare' }, // 毒刺水母
       { speciesId: 278, weight: 20, levels: [26, 30], formation: 'group', groupSize: [2, 4] }, // 长翅鸥
@@ -33,6 +38,11 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     ...base,
     density: [6, 9],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 87, weight: 6, levels: [35, 38], methods: ['surf'], formation: 'rare' }, // 白海狮
+      { speciesId: 171, weight: 12, levels: [33, 37], methods: ['fish', 'surf'] }, // 电灯怪
+      { speciesId: 364, weight: 10, levels: [33, 37], methods: ['surf', 'visible'] }, // 海魔狮
+      { speciesId: 117, weight: 8, levels: [34, 38], methods: ['fish'] }, // 海刺龙
       { speciesId: 73, weight: 20, levels: [32, 36], methods: ['surf', 'visible'] },
       { speciesId: 279, weight: 18, levels: [32, 36] },
       { speciesId: 121, weight: 8, levels: [34, 38], methods: ['surf'], formation: 'rare' }, // 宝石海星
@@ -48,6 +58,12 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     ...base,
     density: [9, 13],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 179, weight: 22, levels: [31, 34], formation: 'group', groupSize: [2, 4] }, // 咩利羊
+      { speciesId: 180, weight: 8, levels: [33, 35] }, // 茸茸羊
+      { speciesId: 403, weight: 18, levels: [31, 33], formation: 'group', groupSize: [2, 3] }, // 小猫怪
+      { speciesId: 404, weight: 6, levels: [33, 35] }, // 勒克猫
+      { speciesId: 100, weight: 10, levels: [31, 34] }, // 霹雳电球
       { speciesId: 25, weight: 22, levels: [31, 34], formation: 'group', groupSize: [2, 3] }, // 皮卡丘
       { speciesId: 172, weight: 10, levels: [31, 33], time: 'day' }, // 皮丘
       { speciesId: 26, weight: 3, levels: [34, 35], formation: 'rare' }, // 雷丘
@@ -62,6 +78,12 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     ...base,
     density: [8, 12],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 239, weight: 10, levels: [32, 34] }, // 电击怪
+      { speciesId: 125, weight: 8, levels: [34, 36], weather: ['storm'] }, // 电击兽（雷暴天气）
+      { speciesId: 81, weight: 16, levels: [32, 35] }, // 小磁怪
+      { speciesId: 82, weight: 6, levels: [34, 36], formation: 'rare' }, // 三合一磁怪
+      { speciesId: 101, weight: 6, levels: [34, 36], weather: ['storm'] }, // 顽皮雷弹
       { speciesId: 25, weight: 18, levels: [32, 35] },
       { speciesId: 26, weight: 5, levels: [35, 36], formation: 'rare' },
       { speciesId: 75, weight: 20, levels: [32, 36] }, // 隆隆石
@@ -76,6 +98,11 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     ...base,
     density: [8, 12],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 81, weight: 14, levels: [35, 38] }, // 小磁怪（灯塔的电流引来）
+      { speciesId: 82, weight: 8, levels: [36, 39] }, // 三合一磁怪
+      { speciesId: 86, weight: 12, levels: [35, 38] }, // 小海狮
+      { speciesId: 225, weight: 8, levels: [35, 39] }, // 信使鸟
       { speciesId: 279, weight: 22, levels: [35, 39] },
       { speciesId: 26, weight: 10, levels: [36, 39] },
       { speciesId: 17, weight: 18, levels: [35, 38] }, // 比比鸟
@@ -89,6 +116,11 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     ...base,
     density: [9, 13],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 180, weight: 14, levels: [34, 38] }, // 茸茸羊
+      { speciesId: 404, weight: 12, levels: [34, 38] }, // 勒克猫
+      { speciesId: 299, weight: 8, levels: [34, 37] }, // 朝北鼻
+      { speciesId: 181, weight: 2, levels: [37, 38], formation: 'rare' }, // 电龙
       { speciesId: 162, weight: 18, levels: [34, 38] },
       { speciesId: 166, weight: 12, levels: [34, 38], time: 'day' }, // 安瓢虫
       { speciesId: 284, weight: 10, levels: [34, 38], weather: ['rain'] }, // 雨翅蛾
@@ -104,6 +136,13 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     ...base,
     density: [7, 10],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 220, weight: 18, levels: [38, 41], formation: 'group', groupSize: [2, 3] }, // 小山猪
+      { speciesId: 221, weight: 8, levels: [40, 42] }, // 长毛猪
+      { speciesId: 361, weight: 16, levels: [38, 41] }, // 雪童子
+      { speciesId: 215, weight: 8, levels: [39, 42], time: 'night' }, // 狃拉
+      { speciesId: 363, weight: 10, levels: [38, 41] }, // 海豹球（冰缝）
+      { speciesId: 225, weight: 10, levels: [38, 42] }, // 信使鸟
       { speciesId: 91, weight: 14, levels: [38, 42] }, // 刺甲贝（冰缝水洼）
       { speciesId: 28, weight: 20, levels: [38, 42] }, // 穿山王
       { speciesId: 76, weight: 8, levels: [40, 42], formation: 'rare' }, // 隆隆岩
@@ -117,6 +156,13 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     ...base,
     density: [7, 10],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 459, weight: 18, levels: [40, 43] }, // 雪笠怪
+      { speciesId: 460, weight: 4, levels: [43, 44], formation: 'rare' }, // 暴雪王
+      { speciesId: 221, weight: 12, levels: [40, 44] }, // 长毛猪
+      { speciesId: 362, weight: 6, levels: [42, 44], formation: 'rare' }, // 冰鬼护
+      { speciesId: 215, weight: 10, levels: [40, 44], time: 'night' }, // 狃拉
+      { speciesId: 364, weight: 8, levels: [40, 44] }, // 海魔狮
       { speciesId: 28, weight: 18, levels: [40, 44] },
       { speciesId: 76, weight: 12, levels: [41, 44] },
       { speciesId: 68, weight: 8, levels: [42, 44], formation: 'rare' }, // 怪力
@@ -130,6 +176,12 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     ...base,
     density: [7, 10],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 459, weight: 12, levels: [42, 45] }, // 雪笠怪
+      { speciesId: 478, weight: 4, levels: [44, 46], formation: 'rare', time: 'night' }, // 雪妖女
+      { speciesId: 215, weight: 10, levels: [42, 46], time: 'night' }, // 狃拉
+      { speciesId: 299, weight: 10, levels: [42, 45] }, // 朝北鼻
+      { speciesId: 225, weight: 10, levels: [42, 46] }, // 信使鸟
       { speciesId: 398, weight: 18, levels: [42, 46] },
       { speciesId: 18, weight: 12, levels: [42, 46] },
       { speciesId: 26, weight: 12, levels: [42, 46] },
@@ -145,6 +197,9 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     grassRatePerMeter: 0.045,
     density: [6, 9],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 299, weight: 12, levels: [38, 41] }, // 朝北鼻
+      { speciesId: 81, weight: 10, levels: [38, 41] }, // 小磁怪
       { speciesId: 74, weight: 16, levels: [38, 40] }, // 小拳石
       { speciesId: 75, weight: 18, levels: [38, 41] }, // 隆隆石
       { speciesId: 95, weight: 10, levels: [39, 42] }, // 大岩蛇
@@ -161,6 +216,10 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     grassRatePerMeter: 0.04,
     density: [5, 8],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 82, weight: 10, levels: [41, 44] }, // 三合一磁怪
+      { speciesId: 299, weight: 10, levels: [41, 44] }, // 朝北鼻
+      { speciesId: 100, weight: 10, levels: [41, 43] }, // 霹雳电球
       { speciesId: 75, weight: 16, levels: [41, 43] },
       { speciesId: 76, weight: 4, levels: [43, 44], formation: 'rare' }, // 隆隆岩
       { speciesId: 344, weight: 12, levels: [41, 44] }, // 念力土偶
@@ -176,6 +235,9 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     grassRatePerMeter: 0.04,
     density: [5, 8],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 81, weight: 12, levels: [36, 39] }, // 小磁怪
+      { speciesId: 100, weight: 10, levels: [36, 39] }, // 霹雳电球
       { speciesId: 92, weight: 22, levels: [36, 38] }, // 鬼斯
       { speciesId: 93, weight: 8, levels: [38, 40], formation: 'rare' }, // 鬼斯通
       { speciesId: 41, weight: 16, levels: [36, 38], formation: 'group', groupSize: [2, 3] },
@@ -192,6 +254,10 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     grassRatePerMeter: 0.04,
     density: [5, 8],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 361, weight: 12, levels: [42, 45] }, // 雪童子
+      { speciesId: 362, weight: 6, levels: [44, 46], formation: 'rare' }, // 冰鬼护
+      { speciesId: 221, weight: 10, levels: [42, 45] }, // 长毛猪
       { speciesId: 91, weight: 16, levels: [42, 45] }, // 刺甲贝
       { speciesId: 343, weight: 16, levels: [42, 44] }, // 天秤偶
       { speciesId: 344, weight: 8, levels: [44, 46] }, // 念力土偶
@@ -207,6 +273,10 @@ export const THUNDER_ENCOUNTERS: Record<string, EncounterTable> = {
     grassRatePerMeter: 0.03,
     density: [4, 7],
     entries: [
+      // M3-28 生态定稿新增
+      { speciesId: 362, weight: 10, levels: [44, 46] }, // 冰鬼护
+      { speciesId: 87, weight: 8, levels: [44, 46] }, // 白海狮
+      { speciesId: 365, weight: 3, levels: [46, 47], formation: 'rare' }, // 帝牙海狮
       { speciesId: 344, weight: 18, levels: [44, 46] },
       { speciesId: 91, weight: 16, levels: [44, 46] },
       { speciesId: 76, weight: 6, levels: [45, 46], formation: 'rare' },

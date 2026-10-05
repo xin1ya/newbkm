@@ -85,6 +85,9 @@ export function pocketOf(dex: Dex, id: string, keyItems: ReadonlyMap<string, Key
   return 'key';
 }
 
+/** 需要携带才能触发进化的道具（连接进化 / 携带升级） */
+const EVO_HELD = new Set(['kings-rock', 'linking-cord', 'protector', 'electirizer', 'reaper-cloth', 'dragon-scale', 'razor-claw']);
+
 export function itemInfo(dex: Dex, id: string, keyItems: ReadonlyMap<string, KeyItemDef>): ItemInfo {
   const k = keyItems.get(id);
   const d = dex.item(id);
@@ -95,7 +98,7 @@ export function itemInfo(dex: Dex, id: string, keyItems: ReadonlyMap<string, Key
     desc: k?.desc ?? d?.shortEffect.replace(/\s+/g, '') ?? '',
     pocket,
     usable: pocket === 'medicine' || pocket === 'berries' || pocket === 'evolution' || pocket === 'tms',
-    holdable: pocket === 'held' || pocket === 'berries' || id === 'kings-rock' || id === 'linking-cord',
+    holdable: pocket === 'held' || pocket === 'berries' || EVO_HELD.has(id),
     tossable: pocket !== 'key' && pocket !== 'tms',
   };
 }

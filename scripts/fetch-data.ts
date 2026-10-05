@@ -126,6 +126,7 @@ function walkChain(node: any, out: number[], evo: Map<number, EvolutionData[]>):
         timeOfDay: d.time_of_day || undefined,
         minHappiness: d.min_happiness ?? undefined,
         knownMoveType: d.known_move_type?.name ?? undefined,
+        knownMove: d.known_move?.name ?? undefined,
         gender: d.gender ?? undefined,
       });
       evo.set(from, list);

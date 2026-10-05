@@ -227,7 +227,16 @@ export const GLAZE: IslandConfig = {
     { id: 'glaze-vein', name: '琉璃水脉', width: 7, points: [[300, -220], [350, -150], [410, -80], [470, -20], [540, 20], [610, 30], [690, 30]], levels: [34, 27, 19, 12, 6.5, 2.4, 0.2] },
   ],
   // 头目巢穴在 M3-28 生态定稿时加入
-  alphaDens: [],
+  // M3-28 头目巢穴（位置由探针挑选：平坦、半径 9 m 内无摆放物、远离道路）
+  alphaDens: [
+    { id: 'den-stone-forest', theme: 'rock', name: '石林磁极柱', speciesId: 476, level: 49, position: [-352, 89], radius: 7, zone: 'stone-forest', moves: ['discharge', 'earth-power', 'flash-cannon', 'power-gem'] },
+    { id: 'den-ghost-marsh', theme: 'shadow', name: '沼泽古冢', speciesId: 477, level: 51, position: [-334, -279], radius: 7, zone: 'ghost-marsh', moves: ['shadow-punch', 'ice-punch', 'will-o-wisp', 'poltergeist'], when: { time: 'night' }, whenText: '只在夜晚出现' },
+    { id: 'den-shadow-wood', theme: 'shadow', name: '暗影林魔女树', speciesId: 429, level: 50, position: [-188, -222], radius: 7, zone: 'shadow-wood', moves: ['hex', 'psybeam', 'mystical-fire', 'shadow-ball'], when: { weather: ['fog'] }, whenText: '只在雾天现身' },
+    { id: 'den-mirage-dunes', theme: 'rock', name: '蜃景沙丘念力石阵', speciesId: 65, level: 50, position: [-6, 279], radius: 7, zone: 'mirage-dunes', moves: ['psybeam', 'recover', 'calm-mind', 'psyshock'] },
+    { id: 'den-glass-coast', theme: 'seacliff', name: '玻璃海岸潮洞', speciesId: 230, level: 52, position: [577, -225], radius: 7, zone: 'glass-coast', moves: ['smokescreen', 'surf', 'hydro-pump', 'dragon-pulse'], when: { weather: ['rain'] }, whenText: '只在雨天现身' },
+    { id: 'den-victory-mountain', theme: 'rock', name: '冠军山麓岩冢', speciesId: 248, level: 55, position: [-15, -464], radius: 8, zone: 'victory-mountain', moves: ['crunch', 'dragon-dance', 'earthquake', 'stone-edge'] },
+    { id: 'den-league-plateau', theme: 'rock', name: '联盟高原沙穴', speciesId: 445, level: 56, position: [-279, -776], radius: 8, zone: 'league-plateau', moves: ['dragon-claw', 'dig', 'sandstorm', 'outrage'] },
+  ],
   roads: [
     // 幻影镇：码头 → 镇中心
     { id: 'road-mirage-dock', surface: 'stone', width: 6, points: [[-380, 470], [-380, 540], [-380, 562]] },

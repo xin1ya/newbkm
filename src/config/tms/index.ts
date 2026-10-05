@@ -61,6 +61,21 @@ export const TM_DEFS: readonly TmDef[] = [
   // M3-27 · 琉璃支线奖励（07-22 §3.7：幽冥降灵会「怨恨」、幻影预言解读「精神强念」）
   { no: 32, move: 'spite', source: { kind: 'quest', quest: 'side-spirit-seance' } },
   { no: 33, move: 'psychic', source: { kind: 'quest', quest: 'side-mirage-prophecy' } },
+  // M3-28 · 雷鸣 / 琉璃头目巢穴首次击败奖励
+  { no: 34, move: 'thunder', source: { kind: 'den', den: 'den-storm-highland' } },
+  { no: 35, move: 'wild-charge', source: { kind: 'den', den: 'den-thunder-plain' } },
+  { no: 36, move: 'flash-cannon', source: { kind: 'den', den: 'den-dawn-hills' } },
+  { no: 37, move: 'ice-beam', source: { kind: 'den', den: 'den-lighthouse-cape' } },
+  { no: 38, move: 'earthquake', source: { kind: 'den', den: 'den-glacier' } },
+  { no: 39, move: 'blizzard', source: { kind: 'den', den: 'den-frost-road' } },
+  { no: 40, move: 'avalanche', source: { kind: 'den', den: 'den-cloud-cliffs' } },
+  { no: 41, move: 'power-gem', source: { kind: 'den', den: 'den-stone-forest' } },
+  { no: 42, move: 'will-o-wisp', source: { kind: 'den', den: 'den-ghost-marsh' } },
+  { no: 43, move: 'dark-pulse', source: { kind: 'den', den: 'den-shadow-wood' } },
+  { no: 44, move: 'psyshock', source: { kind: 'den', den: 'den-mirage-dunes' } },
+  { no: 45, move: 'dragon-pulse', source: { kind: 'den', den: 'den-glass-coast' } },
+  { no: 46, move: 'stone-edge', source: { kind: 'den', den: 'den-victory-mountain' } },
+  { no: 47, move: 'dragon-claw', source: { kind: 'den', den: 'den-league-plateau' } },
 ];
 
 export const tmItemId = (move: string): string => `tm-${move}`;

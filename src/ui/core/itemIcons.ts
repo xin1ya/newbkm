@@ -630,6 +630,11 @@ const ICONS: Record<string, () => Svg> = {
 for (const [id, [c, g]] of Object.entries(VITAMIN_ICON)) ICONS[id] = () => vitamin(c, g);
 ICONS['golden-watering-can'] = goldenCan;
 // M3 支线奖励
+ICONS['electirizer'] = () => stone('#f6d84a', '#c9a012', `<path d="M27 13l-8 13h6l-4 11 10-15h-6l4-9z" fill="#3a3b44"/>`);
+ICONS['reaper-cloth'] = () => scarf('#4a3a6a', '#9a8ac0');
+ICONS['dragon-scale'] = () => shard('#4a7ae0', '#e6f0ff');
+ICONS['razor-claw'] = () => stone('#e8e8f0', '#7a7f99', `<path d="M17 34c4-8 6-14 6-20M23 34c3-7 5-12 6-18M29 34c2-5 4-9 6-13" stroke="#3a3b44" stroke-width="2" fill="none"/>`);
+ICONS['dawn-stone'] = () => stone('#7fd6c8', '#2f8f8a', `<circle cx="24" cy="25" r="5" fill="#f6f0a8"/><path d="M14 30h20" stroke="#f6f0a8" stroke-width="1.6"/>`);
 ICONS['shiny-stone'] = () => stone('#eef2f8', '#9aa6c0', `<path d="M24 15l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#fff8c8" stroke="#c9a012" stroke-width="1.2"/>`);
 ICONS['ice-stone'] = () => stone('#bfe8f7', '#5ab0d0', `<path d="M24 15v20M15 20l18 10M33 20l-18 10" stroke="#ffffff" stroke-width="2"/>`);
 ICONS['dusk-stone'] = () => stone('#3a2f4a', '#1a1424', `<circle cx="24" cy="25" r="6" fill="#9a5ae0" stroke="#e6d0ff" stroke-width="1.2"/>`);

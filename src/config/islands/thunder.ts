@@ -257,7 +257,16 @@ export const THUNDER: IslandConfig = {
     { id: 'whirl-south', center: [-800, 610], radius: 24 },
   ],
   // 头目巢穴在 M3-28 生态定稿时加入
-  alphaDens: [],
+  // M3-28 头目巢穴（位置由探针挑选：平坦、半径 9 m 内无摆放物、远离道路）
+  alphaDens: [
+    { id: 'den-thunder-plain', theme: 'nest', name: '平原雷草窝', speciesId: 405, level: 37, position: [-282, 221], radius: 7, zone: 'thunder-plain', moves: ['spark', 'crunch', 'roar', 'wild-charge'] },
+    { id: 'den-storm-highland', theme: 'rock', name: '风暴高地避雷岩', speciesId: 181, level: 38, position: [-362, -236], radius: 7, zone: 'storm-highland', moves: ['thunder-punch', 'power-gem', 'cotton-guard', 'thunder'], when: { weather: ['storm'] }, whenText: '只在雷暴天气现身' },
+    { id: 'den-dawn-hills', theme: 'rock', name: '晨光丘磁石坡', speciesId: 462, level: 40, position: [550, 12], radius: 7, zone: 'dawn-hills', moves: ['thunder-wave', 'tri-attack', 'flash-cannon', 'thunderbolt'] },
+    { id: 'den-lighthouse-cape', theme: 'seacliff', name: '灯塔岬冰礁', speciesId: 365, level: 41, position: [679, 261], radius: 7, zone: 'lighthouse-cape', moves: ['aurora-beam', 'body-slam', 'brine', 'ice-beam'] },
+    { id: 'den-glacier', theme: 'rock', name: '冰川猛犸冢', speciesId: 473, level: 44, position: [72, -490], radius: 8, zone: 'glacier', moves: ['ice-shard', 'ancient-power', 'earthquake', 'icicle-spear'], when: { weather: ['snow'] }, whenText: '只在下雪时出现' },
+    { id: 'den-frost-road', theme: 'nest', name: '霜冻之路雪松林', speciesId: 460, level: 45, position: [693, 119], radius: 7, zone: 'frost-road', moves: ['razor-leaf', 'ice-punch', 'ingrain', 'blizzard'] },
+    { id: 'den-cloud-cliffs', theme: 'shadow', name: '云崖冰爪痕', speciesId: 461, level: 46, position: [39, -617], radius: 7, zone: 'cloud-cliffs', moves: ['ice-shard', 'night-slash', 'fake-out', 'triple-axel'], when: { time: 'night' }, whenText: '只在夜晚出现' },
+  ],
   roads: [
     // 雷鸣镇码头 → 镇西口（坡道上台地）
     { id: 'road-thunder-dock', surface: 'stone', width: 6, points: [[-600, 420], [-586, 420], [-566, 418]] },

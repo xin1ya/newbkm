@@ -361,7 +361,73 @@ export const ABILITIES: Record<string, AbilityHooks> = {
   gluttony: {}, // 树果提前在 1/2 HP 食用：携带树果逻辑统一在道具系统中判定，暂 no-op
   'cursed-body': {}, // 定身法尚未实现
   defiant: {}, // 需要“被对手降低能力”钩子，暂 no-op
+  // —— M3-28 雷鸣 / 琉璃 / 冠军之路新物种 ——
+  synchronize: {}, // 野外效果（同步性格）由遇敌系统处理；对战中反弹异常需要“被施加异常”钩子，暂 no-op
+  'magic-guard': { weatherImmune: () => true }, // 只受招式直接伤害：目前覆盖天气伤害
+  'magnet-pull': {}, // 困住钢属性：单打野外无交换，no-op
+  soundproof: {
+    onTryHit(b, target, _u, move) {
+      if (!SOUND_MOVES.has(move.id)) return true;
+      b.showAbility(target);
+      b.emit({ type: 'immune', side: target.side, name: b.name(target), reason: 'ability' });
+      return false;
+    },
+  },
+  aftermath: {
+    onDamagingHit(b, target, user, hit) {
+      if (target.pokemon.hp > 0 || !makesContact(b, user, hit.move) || user.pokemon.hp <= 0) return;
+      b.showAbility(target);
+      b.damage(user, Math.max(1, Math.floor(b.maxHp(user) / 4)), 'ability');
+    },
+  },
+  sniper: { modifyDamageDealt: (_b, _u, _t, hit) => (hit.crit ? 1.5 : 1) },
+  'magic-bounce': {
+    // 反射对手的变化招式：简化为使其无效
+    onTryHit(b, target, _u, move) {
+      if (move.category !== 'status' || move.target === 'user') return true;
+      b.showAbility(target);
+      b.emit({ type: 'immune', side: target.side, name: b.name(target), reason: 'ability' });
+      return false;
+    },
+  },
+  plus: {}, // 双打特性，单打无效
+  pickpocket: {}, // 偷取接触者道具：道具转移机制暂未实现
+  trace: {}, // 复制对手特性需要特性可变机制，暂 no-op
+  telepathy: {}, // 双打特性，单打无效
+  'sand-force': {
+    weatherImmune: (w) => w === 'sand',
+    modifyBasePower: (b, _u, _t, _m, type) => (b.weather === 'sand' && (type === 'rock' || type === 'ground' || type === 'steel') ? 1.3 : 1),
+  },
+  pressure: {}, // 增加对手 PP 消耗：PP 扣减统一在招式执行中，暂 no-op
+  moody: {
+    onResidual(b, mon) {
+      if (mon.turnsActive <= 0) return;
+      const stats: StatId[] = ['atk', 'def', 'spa', 'spd', 'spe'];
+      const up = stats[Math.floor(b.rng.next() * stats.length)]!;
+      const rest = stats.filter((x) => x !== up);
+      const down = rest[Math.floor(b.rng.next() * rest.length)]!;
+      b.showAbility(mon);
+      b.boost(mon, up, 2, false);
+      b.boost(mon, down, -1, false);
+    },
+  },
+  rivalry: {
+    modifyBasePower: (_b, user, target) => {
+      const g1 = user.pokemon.gender, g2 = target.pokemon.gender;
+      if (g1 === 'none' || g2 === 'none') return 1;
+      return g1 === g2 ? 1.25 : 0.75;
+    },
+  },
+  unburden: { modifySpeed: (_b, mon) => (mon.itemUsed ? 2 : 1) },
+  'flare-boost': { modifyAttack: (_b, mon, _mv, s) => (s === 'spa' && mon.pokemon.status?.kind === 'brn' ? 1.5 : 1) },
+  sharpness: { modifyBasePower: (_b, _u, _t, move) => (SLICING_MOVES.has(move.id) ? 1.5 : 1) },
+  'poison-touch': {}, // 攻击方接触追加中毒：需要攻击方命中钩子，暂 no-op
 };
+
+/** 声音类招式（隔音） */
+const SOUND_MOVES = new Set(['growl', 'roar', 'sing', 'supersonic', 'screech', 'snore', 'uproar', 'hyper-voice', 'perish-song', 'bug-buzz', 'chatter', 'round', 'echoed-voice', 'boomburst', 'disarming-voice', 'parting-shot', 'noble-roar', 'snarl', 'sparkling-aria', 'clanging-scales', 'overdrive', 'torch-song', 'alluring-voice', 'psychic-noise', 'metal-sound', 'grass-whistle', 'heal-bell']);
+/** 切割类招式（锋锐） */
+const SLICING_MOVES = new Set(['cut', 'slash', 'fury-cutter', 'leaf-blade', 'night-slash', 'psycho-cut', 'x-scissor', 'air-slash', 'air-cutter', 'sacred-sword', 'razor-leaf', 'solar-blade', 'cross-poison', 'aqua-cutter', 'razor-shell', 'secret-sword', 'stone-axe', 'ceaseless-edge', 'kowtow-cleave', 'bitter-blade', 'population-bomb', 'behemoth-blade', 'mighty-cleave', 'tachyon-cutter', 'psyblade']);
 
 export const IMPLEMENTED_ABILITIES = new Set(Object.keys(ABILITIES));
 

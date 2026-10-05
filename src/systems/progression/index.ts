@@ -129,7 +129,8 @@ export function checkEvolution(dex: Dex, p: PokemonInstance, ctx: EvolutionConte
     if (e.gender !== undefined && ((e.gender === 1 && p.gender !== 'female') || (e.gender === 2 && p.gender !== 'male'))) continue;
     if (e.heldItem && p.heldItem !== e.heldItem) continue;
     if (e.knownMoveType && !p.moves.some((m) => dex.move(m.id).type === e.knownMoveType)) continue;
-    if (e.minLevel === undefined && e.minHappiness === undefined && !e.timeOfDay && !e.heldItem && !e.knownMoveType) continue;
+    if (e.knownMove && !p.moves.some((m) => m.id === e.knownMove)) continue;
+    if (e.minLevel === undefined && e.minHappiness === undefined && !e.timeOfDay && !e.heldItem && !e.knownMoveType && !e.knownMove) continue;
     return e.to;
   }
   return null;

@@ -4917,6 +4917,500 @@
   ]
  },
  {
+  "id": 63,
+  "key": "abra",
+  "name": {
+   "en": "Abra",
+   "zh": "凯西"
+  },
+  "genus": {
+   "en": "Psi Pokémon",
+   "zh": "念力宝可梦"
+  },
+  "types": [
+   "psychic"
+  ],
+  "baseStats": {
+   "hp": 25,
+   "atk": 20,
+   "def": 15,
+   "spa": 105,
+   "spd": 55,
+   "spe": 90
+  },
+  "abilities": [
+   {
+    "id": "synchronize",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "inner-focus",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "magic-guard",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 200,
+  "baseExp": 62,
+  "growthRate": "medium-slow",
+  "genderRate": 2,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 1,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.9,
+  "weightKg": 19.5,
+  "color": "brown",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 64,
+    "trigger": "level-up",
+    "minLevel": 16
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "teleport"
+   }
+  ],
+  "learnsetVersion": "sword-shield",
+  "flavor": "１天中有１８个小时在睡觉。 即使睡着，也能用瞬间移动 在树上移动，采树果吃。",
+  "machineMoves": [
+   "ally-switch",
+   "attract",
+   "body-slam",
+   "calm-mind",
+   "dazzling-gleam",
+   "drain-punch",
+   "encore",
+   "endure",
+   "energy-ball",
+   "facade",
+   "fire-punch",
+   "fling",
+   "foul-play",
+   "grass-knot",
+   "guard-swap",
+   "ice-punch",
+   "iron-tail",
+   "light-screen",
+   "magic-room",
+   "mega-kick",
+   "mega-punch",
+   "metronome",
+   "power-swap",
+   "protect",
+   "psychic",
+   "psychic-terrain",
+   "psyshock",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "round",
+   "safeguard",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "snore",
+   "speed-swap",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "taunt",
+   "thief",
+   "thunder-punch",
+   "thunder-wave",
+   "tri-attack",
+   "trick",
+   "trick-room",
+   "wonder-room",
+   "zen-headbutt"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "confusion",
+   "guard-split",
+   "magic-coat"
+  ]
+ },
+ {
+  "id": 64,
+  "key": "kadabra",
+  "name": {
+   "en": "Kadabra",
+   "zh": "勇基拉"
+  },
+  "genus": {
+   "en": "Psi Pokémon",
+   "zh": "念力宝可梦"
+  },
+  "types": [
+   "psychic"
+  ],
+  "baseStats": {
+   "hp": 40,
+   "atk": 35,
+   "def": 30,
+   "spa": 120,
+   "spd": 70,
+   "spe": 105
+  },
+  "abilities": [
+   {
+    "id": "synchronize",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "inner-focus",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "magic-guard",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 100,
+  "baseExp": 140,
+  "growthRate": "medium-slow",
+  "genderRate": 2,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 2,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.3,
+  "weightKg": 56.5,
+  "color": "brown",
+  "evolvesFrom": 63,
+  "evolutions": [
+   {
+    "to": 65,
+    "trigger": "trade"
+   }
+  ],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "confusion"
+   },
+   {
+    "level": 1,
+    "move": "confusion"
+   },
+   {
+    "level": 1,
+    "move": "disable"
+   },
+   {
+    "level": 1,
+    "move": "kinesis"
+   },
+   {
+    "level": 1,
+    "move": "teleport"
+   },
+   {
+    "level": 5,
+    "move": "psybeam"
+   },
+   {
+    "level": 10,
+    "move": "reflect"
+   },
+   {
+    "level": 15,
+    "move": "ally-switch"
+   },
+   {
+    "level": 20,
+    "move": "psycho-cut"
+   },
+   {
+    "level": 25,
+    "move": "recover"
+   },
+   {
+    "level": 30,
+    "move": "psyshock"
+   },
+   {
+    "level": 35,
+    "move": "psychic"
+   },
+   {
+    "level": 40,
+    "move": "role-play"
+   },
+   {
+    "level": 45,
+    "move": "future-sight"
+   },
+   {
+    "level": 50,
+    "move": "calm-mind"
+   }
+  ],
+  "learnsetVersion": "sword-shield",
+  "flavor": "也有说是超能力少年 无法抑制自己体内的 精神力量，变身而成。",
+  "machineMoves": [
+   "ally-switch",
+   "attract",
+   "body-slam",
+   "calm-mind",
+   "dazzling-gleam",
+   "drain-punch",
+   "encore",
+   "endure",
+   "energy-ball",
+   "facade",
+   "fire-punch",
+   "fling",
+   "foul-play",
+   "future-sight",
+   "grass-knot",
+   "guard-swap",
+   "ice-punch",
+   "iron-tail",
+   "light-screen",
+   "magic-room",
+   "mega-kick",
+   "mega-punch",
+   "metronome",
+   "power-swap",
+   "protect",
+   "psychic",
+   "psychic-terrain",
+   "psycho-cut",
+   "psyshock",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "round",
+   "safeguard",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "snore",
+   "speed-swap",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "taunt",
+   "thief",
+   "thunder-punch",
+   "thunder-wave",
+   "tri-attack",
+   "trick",
+   "trick-room",
+   "wonder-room",
+   "zen-headbutt"
+  ],
+  "tutorMoves": [
+   "expanding-force"
+  ],
+  "eggMoves": []
+ },
+ {
+  "id": 65,
+  "key": "alakazam",
+  "name": {
+   "en": "Alakazam",
+   "zh": "胡地"
+  },
+  "genus": {
+   "en": "Psi Pokémon",
+   "zh": "念力宝可梦"
+  },
+  "types": [
+   "psychic"
+  ],
+  "baseStats": {
+   "hp": 55,
+   "atk": 50,
+   "def": 45,
+   "spa": 135,
+   "spd": 95,
+   "spe": 120
+  },
+  "abilities": [
+   {
+    "id": "synchronize",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "inner-focus",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "magic-guard",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 50,
+  "baseExp": 225,
+  "growthRate": "medium-slow",
+  "genderRate": 2,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 3,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.5,
+  "weightKg": 48,
+  "color": "brown",
+  "evolvesFrom": 64,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "confusion"
+   },
+   {
+    "level": 1,
+    "move": "disable"
+   },
+   {
+    "level": 1,
+    "move": "kinesis"
+   },
+   {
+    "level": 1,
+    "move": "teleport"
+   },
+   {
+    "level": 5,
+    "move": "psybeam"
+   },
+   {
+    "level": 10,
+    "move": "reflect"
+   },
+   {
+    "level": 15,
+    "move": "ally-switch"
+   },
+   {
+    "level": 20,
+    "move": "psycho-cut"
+   },
+   {
+    "level": 25,
+    "move": "recover"
+   },
+   {
+    "level": 30,
+    "move": "psyshock"
+   },
+   {
+    "level": 35,
+    "move": "psychic"
+   },
+   {
+    "level": 40,
+    "move": "role-play"
+   },
+   {
+    "level": 45,
+    "move": "future-sight"
+   },
+   {
+    "level": 50,
+    "move": "calm-mind"
+   }
+  ],
+  "learnsetVersion": "sword-shield",
+  "flavor": "智商大约有５０００。 强大的念力满溢出来， 光是呆在旁边就会头痛不已。",
+  "machineMoves": [
+   "ally-switch",
+   "attract",
+   "body-slam",
+   "calm-mind",
+   "dazzling-gleam",
+   "drain-punch",
+   "encore",
+   "endure",
+   "energy-ball",
+   "facade",
+   "fire-punch",
+   "fling",
+   "focus-blast",
+   "foul-play",
+   "future-sight",
+   "giga-impact",
+   "grass-knot",
+   "guard-swap",
+   "hyper-beam",
+   "ice-punch",
+   "imprison",
+   "iron-tail",
+   "light-screen",
+   "magic-room",
+   "mega-kick",
+   "mega-punch",
+   "metronome",
+   "nasty-plot",
+   "power-swap",
+   "protect",
+   "psychic",
+   "psychic-terrain",
+   "psycho-cut",
+   "psyshock",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "round",
+   "safeguard",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "snore",
+   "speed-swap",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "taunt",
+   "thief",
+   "thunder-punch",
+   "thunder-wave",
+   "tri-attack",
+   "trick",
+   "trick-room",
+   "wonder-room",
+   "zen-headbutt"
+  ],
+  "tutorMoves": [
+   "expanding-force"
+  ],
+  "eggMoves": []
+ },
+ {
   "id": 66,
   "key": "machop",
   "name": {
@@ -7614,6 +8108,758 @@
   ]
  },
  {
+  "id": 81,
+  "key": "magnemite",
+  "name": {
+   "en": "Magnemite",
+   "zh": "小磁怪"
+  },
+  "genus": {
+   "en": "Magnet Pokémon",
+   "zh": "磁铁宝可梦"
+  },
+  "types": [
+   "electric",
+   "steel"
+  ],
+  "baseStats": {
+   "hp": 25,
+   "atk": 35,
+   "def": 70,
+   "spa": 95,
+   "spd": 55,
+   "spe": 45
+  },
+  "abilities": [
+   {
+    "id": "magnet-pull",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "sturdy",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "analytic",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 190,
+  "baseExp": 65,
+  "growthRate": "medium",
+  "genderRate": -1,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 1,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.3,
+  "weightKg": 6,
+  "color": "gray",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 82,
+    "trigger": "level-up",
+    "minLevel": 30
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 4,
+    "move": "supersonic"
+   },
+   {
+    "level": 8,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 12,
+    "move": "electro-ball"
+   },
+   {
+    "level": 16,
+    "move": "gyro-ball"
+   },
+   {
+    "level": 20,
+    "move": "spark"
+   },
+   {
+    "level": 24,
+    "move": "screech"
+   },
+   {
+    "level": 28,
+    "move": "magnet-rise"
+   },
+   {
+    "level": 32,
+    "move": "flash-cannon"
+   },
+   {
+    "level": 36,
+    "move": "discharge"
+   },
+   {
+    "level": 40,
+    "move": "metal-sound"
+   },
+   {
+    "level": 44,
+    "move": "light-screen"
+   },
+   {
+    "level": 48,
+    "move": "lock-on"
+   },
+   {
+    "level": 52,
+    "move": "zap-cannon"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "聚集在有电的地方。 也会密密麻麻地贴在 输送电力的铁塔等地方。",
+  "machineMoves": [
+   "charge",
+   "charge-beam",
+   "confuse-ray",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "flash-cannon",
+   "gravity",
+   "gyro-ball",
+   "heavy-slam",
+   "helping-hand",
+   "iron-defense",
+   "iron-head",
+   "light-screen",
+   "metal-sound",
+   "protect",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "sandstorm",
+   "sleep-talk",
+   "steel-beam",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "electroweb",
+   "explosion"
+  ]
+ },
+ {
+  "id": 82,
+  "key": "magneton",
+  "name": {
+   "en": "Magneton",
+   "zh": "三合一磁怪"
+  },
+  "genus": {
+   "en": "Magnet Pokémon",
+   "zh": "磁铁宝可梦"
+  },
+  "types": [
+   "electric",
+   "steel"
+  ],
+  "baseStats": {
+   "hp": 50,
+   "atk": 60,
+   "def": 95,
+   "spa": 120,
+   "spd": 70,
+   "spe": 70
+  },
+  "abilities": [
+   {
+    "id": "magnet-pull",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "sturdy",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "analytic",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 60,
+  "baseExp": 163,
+  "growthRate": "medium",
+  "genderRate": -1,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 2,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1,
+  "weightKg": 60,
+  "color": "gray",
+  "evolvesFrom": 81,
+  "evolutions": [
+   {
+    "to": 462,
+    "trigger": "level-up"
+   },
+   {
+    "to": 462,
+    "trigger": "level-up"
+   },
+   {
+    "to": 462,
+    "trigger": "level-up"
+   },
+   {
+    "to": 462,
+    "trigger": "level-up"
+   },
+   {
+    "to": 462,
+    "trigger": "level-up"
+   },
+   {
+    "to": 462,
+    "trigger": "use-item",
+    "item": "thunder-stone"
+   },
+   {
+    "to": 462,
+    "trigger": "level-up"
+   }
+  ],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "tri-attack"
+   },
+   {
+    "level": 1,
+    "move": "electric-terrain"
+   },
+   {
+    "level": 1,
+    "move": "supersonic"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 1,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 12,
+    "move": "electro-ball"
+   },
+   {
+    "level": 16,
+    "move": "gyro-ball"
+   },
+   {
+    "level": 20,
+    "move": "spark"
+   },
+   {
+    "level": 24,
+    "move": "screech"
+   },
+   {
+    "level": 28,
+    "move": "magnet-rise"
+   },
+   {
+    "level": 34,
+    "move": "flash-cannon"
+   },
+   {
+    "level": 40,
+    "move": "discharge"
+   },
+   {
+    "level": 46,
+    "move": "metal-sound"
+   },
+   {
+    "level": 52,
+    "move": "light-screen"
+   },
+   {
+    "level": 58,
+    "move": "lock-on"
+   },
+   {
+    "level": 64,
+    "move": "zap-cannon"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "连接的时候，３只小磁怪的 脑袋也会连成一体。 但并不会变得３倍聪明。",
+  "machineMoves": [
+   "charge",
+   "charge-beam",
+   "confuse-ray",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "flash-cannon",
+   "gravity",
+   "gyro-ball",
+   "heavy-slam",
+   "helping-hand",
+   "hyper-beam",
+   "iron-defense",
+   "iron-head",
+   "light-screen",
+   "metal-sound",
+   "protect",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "sandstorm",
+   "sleep-talk",
+   "steel-beam",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 86,
+  "key": "seel",
+  "name": {
+   "en": "Seel",
+   "zh": "小海狮"
+  },
+  "genus": {
+   "en": "Sea Lion Pokémon",
+   "zh": "海狮宝可梦"
+  },
+  "types": [
+   "water"
+  ],
+  "baseStats": {
+   "hp": 65,
+   "atk": 45,
+   "def": 55,
+   "spa": 45,
+   "spd": 70,
+   "spe": 45
+  },
+  "abilities": [
+   {
+    "id": "thick-fat",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "hydration",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "ice-body",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 190,
+  "baseExp": 65,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 1,
+   "spe": 0
+  },
+  "heightM": 1.1,
+  "weightKg": 90,
+  "color": "white",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 87,
+    "trigger": "level-up",
+    "minLevel": 34
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "headbutt"
+   },
+   {
+    "level": 3,
+    "move": "growl"
+   },
+   {
+    "level": 7,
+    "move": "charm"
+   },
+   {
+    "level": 11,
+    "move": "icy-wind"
+   },
+   {
+    "level": 13,
+    "move": "encore"
+   },
+   {
+    "level": 17,
+    "move": "ice-shard"
+   },
+   {
+    "level": 21,
+    "move": "rest"
+   },
+   {
+    "level": 23,
+    "move": "aqua-ring"
+   },
+   {
+    "level": 27,
+    "move": "aurora-beam"
+   },
+   {
+    "level": 31,
+    "move": "aqua-jet"
+   },
+   {
+    "level": 33,
+    "move": "brine"
+   },
+   {
+    "level": 37,
+    "move": "take-down"
+   },
+   {
+    "level": 41,
+    "move": "dive"
+   },
+   {
+    "level": 43,
+    "move": "aqua-tail"
+   },
+   {
+    "level": 47,
+    "move": "ice-beam"
+   },
+   {
+    "level": 51,
+    "move": "safeguard"
+   },
+   {
+    "level": 53,
+    "move": "snowscape"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "人们一直以为它只生活在寒冷的海域。 它出现在阿罗拉的原因是个谜。",
+  "machineMoves": [
+   "avalanche",
+   "blizzard",
+   "body-slam",
+   "charm",
+   "chilling-water",
+   "curse",
+   "double-edge",
+   "drill-run",
+   "encore",
+   "endure",
+   "facade",
+   "fling",
+   "flip-turn",
+   "haze",
+   "helping-hand",
+   "hydro-pump",
+   "ice-beam",
+   "ice-spinner",
+   "icicle-spear",
+   "icy-wind",
+   "muddy-water",
+   "protect",
+   "rain-dance",
+   "rest",
+   "sleep-talk",
+   "smart-strike",
+   "snowscape",
+   "substitute",
+   "surf",
+   "take-down",
+   "tera-blast",
+   "thief",
+   "triple-axel",
+   "uproar",
+   "water-pulse",
+   "waterfall",
+   "weather-ball",
+   "whirlpool"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "belch",
+   "disable",
+   "entrainment",
+   "fake-out",
+   "horn-drill",
+   "lick",
+   "perish-song",
+   "spit-up",
+   "stockpile",
+   "swallow"
+  ]
+ },
+ {
+  "id": 87,
+  "key": "dewgong",
+  "name": {
+   "en": "Dewgong",
+   "zh": "白海狮"
+  },
+  "genus": {
+   "en": "Sea Lion Pokémon",
+   "zh": "海狮宝可梦"
+  },
+  "types": [
+   "water",
+   "ice"
+  ],
+  "baseStats": {
+   "hp": 90,
+   "atk": 70,
+   "def": 80,
+   "spa": 70,
+   "spd": 95,
+   "spe": 70
+  },
+  "abilities": [
+   {
+    "id": "thick-fat",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "hydration",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "ice-body",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 75,
+  "baseExp": 166,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 2,
+   "spe": 0
+  },
+  "heightM": 1.7,
+  "weightKg": 120,
+  "color": "white",
+  "evolvesFrom": 86,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "sheer-cold"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "headbutt"
+   },
+   {
+    "level": 1,
+    "move": "icy-wind"
+   },
+   {
+    "level": 13,
+    "move": "encore"
+   },
+   {
+    "level": 17,
+    "move": "ice-shard"
+   },
+   {
+    "level": 21,
+    "move": "rest"
+   },
+   {
+    "level": 23,
+    "move": "aqua-ring"
+   },
+   {
+    "level": 27,
+    "move": "aurora-beam"
+   },
+   {
+    "level": 31,
+    "move": "aqua-jet"
+   },
+   {
+    "level": 33,
+    "move": "brine"
+   },
+   {
+    "level": 39,
+    "move": "take-down"
+   },
+   {
+    "level": 45,
+    "move": "dive"
+   },
+   {
+    "level": 49,
+    "move": "aqua-tail"
+   },
+   {
+    "level": 55,
+    "move": "ice-beam"
+   },
+   {
+    "level": 61,
+    "move": "safeguard"
+   },
+   {
+    "level": 65,
+    "move": "snowscape"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "能以８节的速度在海里游动， 并搜寻能当做猎物的宝可梦。 特别喜欢吃弱丁鱼。",
+  "machineMoves": [
+   "alluring-voice",
+   "avalanche",
+   "blizzard",
+   "body-slam",
+   "charm",
+   "chilling-water",
+   "curse",
+   "double-edge",
+   "drill-run",
+   "encore",
+   "endeavor",
+   "endure",
+   "facade",
+   "fling",
+   "flip-turn",
+   "giga-impact",
+   "haze",
+   "helping-hand",
+   "hydro-pump",
+   "hyper-beam",
+   "ice-beam",
+   "ice-spinner",
+   "icicle-spear",
+   "icy-wind",
+   "knock-off",
+   "liquidation",
+   "muddy-water",
+   "play-rough",
+   "protect",
+   "rain-dance",
+   "rest",
+   "sleep-talk",
+   "smart-strike",
+   "snowscape",
+   "substitute",
+   "surf",
+   "take-down",
+   "tera-blast",
+   "thief",
+   "triple-axel",
+   "uproar",
+   "water-pulse",
+   "waterfall",
+   "weather-ball",
+   "whirlpool"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "belch",
+   "disable",
+   "entrainment",
+   "fake-out",
+   "horn-drill",
+   "lick",
+   "perish-song",
+   "spit-up",
+   "stockpile",
+   "swallow"
+  ]
+ },
+ {
   "id": 90,
   "key": "shellder",
   "name": {
@@ -9037,6 +10283,357 @@
   "eggMoves": []
  },
  {
+  "id": 100,
+  "key": "voltorb",
+  "name": {
+   "en": "Voltorb",
+   "zh": "霹雳电球"
+  },
+  "genus": {
+   "en": "Ball Pokémon",
+   "zh": "球宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 40,
+   "atk": 30,
+   "def": 50,
+   "spa": 55,
+   "spd": 55,
+   "spe": 100
+  },
+  "abilities": [
+   {
+    "id": "soundproof",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "static",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "aftermath",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 190,
+  "baseExp": 66,
+  "growthRate": "medium",
+  "genderRate": -1,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 1
+  },
+  "heightM": 0.5,
+  "weightKg": 10.4,
+  "color": "red",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 101,
+    "trigger": "level-up",
+    "minLevel": 30
+   },
+   {
+    "to": 101,
+    "trigger": "use-item",
+    "item": "leaf-stone"
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "charge"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 4,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 6,
+    "move": "eerie-impulse"
+   },
+   {
+    "level": 9,
+    "move": "spark"
+   },
+   {
+    "level": 11,
+    "move": "rollout"
+   },
+   {
+    "level": 13,
+    "move": "screech"
+   },
+   {
+    "level": 16,
+    "move": "charge-beam"
+   },
+   {
+    "level": 20,
+    "move": "swift"
+   },
+   {
+    "level": 22,
+    "move": "electro-ball"
+   },
+   {
+    "level": 26,
+    "move": "self-destruct"
+   },
+   {
+    "level": 29,
+    "move": "light-screen"
+   },
+   {
+    "level": 34,
+    "move": "magnet-rise"
+   },
+   {
+    "level": 37,
+    "move": "discharge"
+   },
+   {
+    "level": 41,
+    "move": "explosion"
+   },
+   {
+    "level": 46,
+    "move": "gyro-ball"
+   },
+   {
+    "level": 50,
+    "move": "mirror-coat"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "据说它与精灵球相似的外形 其实是它的保护色，但它 很容易自爆这一点也出人意料。",
+  "machineMoves": [
+   "agility",
+   "charge",
+   "charge-beam",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "foul-play",
+   "gyro-ball",
+   "helping-hand",
+   "light-screen",
+   "metal-sound",
+   "protect",
+   "rain-dance",
+   "rest",
+   "sleep-talk",
+   "substitute",
+   "swift",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "metal-sound",
+   "recycle"
+  ]
+ },
+ {
+  "id": 101,
+  "key": "electrode",
+  "name": {
+   "en": "Electrode",
+   "zh": "顽皮雷弹"
+  },
+  "genus": {
+   "en": "Ball Pokémon",
+   "zh": "球宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 60,
+   "atk": 50,
+   "def": 70,
+   "spa": 80,
+   "spd": 80,
+   "spe": 150
+  },
+  "abilities": [
+   {
+    "id": "soundproof",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "static",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "aftermath",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 60,
+  "baseExp": 172,
+  "growthRate": "medium",
+  "genderRate": -1,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 2
+  },
+  "heightM": 1.2,
+  "weightKg": 66.6,
+  "color": "red",
+  "evolvesFrom": 100,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "charge"
+   },
+   {
+    "level": 1,
+    "move": "eerie-impulse"
+   },
+   {
+    "level": 1,
+    "move": "magnetic-flux"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 9,
+    "move": "spark"
+   },
+   {
+    "level": 11,
+    "move": "rollout"
+   },
+   {
+    "level": 13,
+    "move": "screech"
+   },
+   {
+    "level": 16,
+    "move": "charge-beam"
+   },
+   {
+    "level": 20,
+    "move": "swift"
+   },
+   {
+    "level": 22,
+    "move": "electro-ball"
+   },
+   {
+    "level": 26,
+    "move": "self-destruct"
+   },
+   {
+    "level": 29,
+    "move": "light-screen"
+   },
+   {
+    "level": 36,
+    "move": "magnet-rise"
+   },
+   {
+    "level": 41,
+    "move": "discharge"
+   },
+   {
+    "level": 47,
+    "move": "explosion"
+   },
+   {
+    "level": 54,
+    "move": "gyro-ball"
+   },
+   {
+    "level": 58,
+    "move": "mirror-coat"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "只要受到一点撞击， 就会由于体内的 电能溢出导致爆炸。",
+  "machineMoves": [
+   "agility",
+   "charge",
+   "charge-beam",
+   "curse",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "foul-play",
+   "giga-impact",
+   "gyro-ball",
+   "helping-hand",
+   "hyper-beam",
+   "light-screen",
+   "metal-sound",
+   "protect",
+   "rain-dance",
+   "rest",
+   "scary-face",
+   "sleep-talk",
+   "substitute",
+   "supercell-slam",
+   "swift",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
   "id": 104,
   "key": "cubone",
   "name": {
@@ -9803,6 +11400,326 @@
   ]
  },
  {
+  "id": 116,
+  "key": "horsea",
+  "name": {
+   "en": "Horsea",
+   "zh": "墨海马"
+  },
+  "genus": {
+   "en": "Dragon Pokémon",
+   "zh": "龙宝可梦"
+  },
+  "types": [
+   "water"
+  ],
+  "baseStats": {
+   "hp": 30,
+   "atk": 40,
+   "def": 70,
+   "spa": 70,
+   "spd": 25,
+   "spe": 60
+  },
+  "abilities": [
+   {
+    "id": "swift-swim",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "sniper",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "damp",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 225,
+  "baseExp": 59,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 1,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.4,
+  "weightKg": 8,
+  "color": "blue",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 117,
+    "trigger": "level-up",
+    "minLevel": 32
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "water-gun"
+   },
+   {
+    "level": 5,
+    "move": "smokescreen"
+   },
+   {
+    "level": 10,
+    "move": "twister"
+   },
+   {
+    "level": 15,
+    "move": "focus-energy"
+   },
+   {
+    "level": 20,
+    "move": "dragon-breath"
+   },
+   {
+    "level": 25,
+    "move": "bubble-beam"
+   },
+   {
+    "level": 30,
+    "move": "agility"
+   },
+   {
+    "level": 35,
+    "move": "water-pulse"
+   },
+   {
+    "level": 40,
+    "move": "dragon-pulse"
+   },
+   {
+    "level": 45,
+    "move": "hydro-pump"
+   },
+   {
+    "level": 50,
+    "move": "dragon-dance"
+   },
+   {
+    "level": 55,
+    "move": "rain-dance"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "在感到危险时会从 嘴里用力地喷出水 或者特殊的墨汁。",
+  "machineMoves": [
+   "agility",
+   "blizzard",
+   "chilling-water",
+   "dragon-dance",
+   "dragon-pulse",
+   "endure",
+   "facade",
+   "flash-cannon",
+   "flip-turn",
+   "hydro-pump",
+   "ice-beam",
+   "icy-wind",
+   "liquidation",
+   "muddy-water",
+   "outrage",
+   "protect",
+   "rain-dance",
+   "rest",
+   "scale-shot",
+   "sleep-talk",
+   "substitute",
+   "surf",
+   "swift",
+   "tera-blast",
+   "water-pulse",
+   "waterfall",
+   "weather-ball",
+   "whirlpool"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "aurora-beam",
+   "clear-smog",
+   "disable",
+   "flail",
+   "splash"
+  ]
+ },
+ {
+  "id": 117,
+  "key": "seadra",
+  "name": {
+   "en": "Seadra",
+   "zh": "海刺龙"
+  },
+  "genus": {
+   "en": "Dragon Pokémon",
+   "zh": "龙宝可梦"
+  },
+  "types": [
+   "water"
+  ],
+  "baseStats": {
+   "hp": 55,
+   "atk": 65,
+   "def": 95,
+   "spa": 95,
+   "spd": 45,
+   "spe": 85
+  },
+  "abilities": [
+   {
+    "id": "poison-point",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "sniper",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "damp",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 75,
+  "baseExp": 154,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 1,
+   "spa": 1,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.2,
+  "weightKg": 25,
+  "color": "blue",
+  "evolvesFrom": 116,
+  "evolutions": [
+   {
+    "to": 230,
+    "trigger": "trade",
+    "heldItem": "dragon-scale"
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "smokescreen"
+   },
+   {
+    "level": 1,
+    "move": "twister"
+   },
+   {
+    "level": 1,
+    "move": "water-gun"
+   },
+   {
+    "level": 15,
+    "move": "focus-energy"
+   },
+   {
+    "level": 20,
+    "move": "dragon-breath"
+   },
+   {
+    "level": 25,
+    "move": "bubble-beam"
+   },
+   {
+    "level": 30,
+    "move": "agility"
+   },
+   {
+    "level": 37,
+    "move": "water-pulse"
+   },
+   {
+    "level": 44,
+    "move": "dragon-pulse"
+   },
+   {
+    "level": 51,
+    "move": "hydro-pump"
+   },
+   {
+    "level": 58,
+    "move": "dragon-dance"
+   },
+   {
+    "level": 65,
+    "move": "rain-dance"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "摸它的背鳍会导致麻痹。 为了避免在睡觉时被水冲走， 它会用尾巴缠住珊瑚。",
+  "machineMoves": [
+   "agility",
+   "blizzard",
+   "chilling-water",
+   "dragon-dance",
+   "dragon-pulse",
+   "endure",
+   "facade",
+   "flash-cannon",
+   "flip-turn",
+   "giga-impact",
+   "hydro-pump",
+   "hyper-beam",
+   "ice-beam",
+   "icy-wind",
+   "liquidation",
+   "muddy-water",
+   "outrage",
+   "protect",
+   "rain-dance",
+   "rest",
+   "scale-shot",
+   "scary-face",
+   "sleep-talk",
+   "snowscape",
+   "substitute",
+   "surf",
+   "swift",
+   "tera-blast",
+   "water-pulse",
+   "waterfall",
+   "weather-ball",
+   "whirlpool"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "aurora-beam",
+   "clear-smog",
+   "disable",
+   "flail",
+   "splash"
+  ]
+ },
+ {
   "id": 118,
   "key": "goldeen",
   "name": {
@@ -10466,6 +12383,186 @@
   "eggMoves": []
  },
  {
+  "id": 125,
+  "key": "electabuzz",
+  "name": {
+   "en": "Electabuzz",
+   "zh": "电击兽"
+  },
+  "genus": {
+   "en": "Electric Pokémon",
+   "zh": "电击宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 65,
+   "atk": 83,
+   "def": 57,
+   "spa": 95,
+   "spd": 85,
+   "spe": 105
+  },
+  "abilities": [
+   {
+    "id": "static",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "vital-spirit",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 172,
+  "growthRate": "medium",
+  "genderRate": 2,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 2
+  },
+  "heightM": 1.1,
+  "weightKg": 30,
+  "color": "yellow",
+  "evolvesFrom": 239,
+  "evolutions": [
+   {
+    "to": 466,
+    "trigger": "trade",
+    "heldItem": "electirizer"
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "charge"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "quick-attack"
+   },
+   {
+    "level": 1,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 12,
+    "move": "swift"
+   },
+   {
+    "level": 16,
+    "move": "shock-wave"
+   },
+   {
+    "level": 20,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 24,
+    "move": "screech"
+   },
+   {
+    "level": 28,
+    "move": "thunder-punch"
+   },
+   {
+    "level": 34,
+    "move": "discharge"
+   },
+   {
+    "level": 40,
+    "move": "low-kick"
+   },
+   {
+    "level": 46,
+    "move": "thunderbolt"
+   },
+   {
+    "level": 52,
+    "move": "light-screen"
+   },
+   {
+    "level": 58,
+    "move": "thunder"
+   },
+   {
+    "level": 64,
+    "move": "giga-impact"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "突发的停电，有一半 是因为电击兽聚集在发电厂 胡乱吞食电力造成的。",
+  "machineMoves": [
+   "body-slam",
+   "brick-break",
+   "bulk-up",
+   "charge",
+   "charge-beam",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "fire-punch",
+   "fling",
+   "focus-blast",
+   "focus-punch",
+   "giga-impact",
+   "helping-hand",
+   "hyper-beam",
+   "ice-punch",
+   "knock-off",
+   "light-screen",
+   "low-kick",
+   "low-sweep",
+   "metal-sound",
+   "metronome",
+   "protect",
+   "psychic",
+   "rain-dance",
+   "rest",
+   "sleep-talk",
+   "substitute",
+   "supercell-slam",
+   "swift",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "trailblaze",
+   "uproar",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "cross-chop",
+   "dynamic-punch",
+   "feint",
+   "focus-punch",
+   "follow-me",
+   "hammer-arm"
+  ]
+ },
+ {
   "id": 129,
   "key": "magikarp",
   "name": {
@@ -10731,6 +12828,556 @@
    "water-pulse",
    "waterfall",
    "whirlpool"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 147,
+  "key": "dratini",
+  "name": {
+   "en": "Dratini",
+   "zh": "迷你龙"
+  },
+  "genus": {
+   "en": "Dragon Pokémon",
+   "zh": "龙宝可梦"
+  },
+  "types": [
+   "dragon"
+  ],
+  "baseStats": {
+   "hp": 41,
+   "atk": 64,
+   "def": 45,
+   "spa": 50,
+   "spd": 50,
+   "spe": 50
+  },
+  "abilities": [
+   {
+    "id": "shed-skin",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "marvel-scale",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 60,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 1,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.8,
+  "weightKg": 3.3,
+  "color": "blue",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 148,
+    "trigger": "level-up",
+    "minLevel": 30
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "wrap"
+   },
+   {
+    "level": 5,
+    "move": "twister"
+   },
+   {
+    "level": 10,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 15,
+    "move": "dragon-tail"
+   },
+   {
+    "level": 20,
+    "move": "agility"
+   },
+   {
+    "level": 25,
+    "move": "slam"
+   },
+   {
+    "level": 31,
+    "move": "aqua-tail"
+   },
+   {
+    "level": 35,
+    "move": "dragon-rush"
+   },
+   {
+    "level": 40,
+    "move": "safeguard"
+   },
+   {
+    "level": 45,
+    "move": "rain-dance"
+   },
+   {
+    "level": 50,
+    "move": "dragon-dance"
+   },
+   {
+    "level": 55,
+    "move": "outrage"
+   },
+   {
+    "level": 60,
+    "move": "hyper-beam"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "通过反复蜕皮一点点长大。 将蜕下的皮鞣制后做成的 靴子是超高级商品。",
+  "machineMoves": [
+   "agility",
+   "blizzard",
+   "body-slam",
+   "breaking-swipe",
+   "chilling-water",
+   "draco-meteor",
+   "dragon-cheer",
+   "dragon-dance",
+   "dragon-pulse",
+   "dragon-tail",
+   "endure",
+   "facade",
+   "fire-blast",
+   "fire-spin",
+   "flamethrower",
+   "giga-impact",
+   "haze",
+   "helping-hand",
+   "hydro-pump",
+   "hyper-beam",
+   "ice-beam",
+   "icy-wind",
+   "iron-head",
+   "light-screen",
+   "outrage",
+   "protect",
+   "rain-dance",
+   "rest",
+   "scale-shot",
+   "sleep-talk",
+   "substitute",
+   "sunny-day",
+   "surf",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "water-pulse",
+   "waterfall"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "aqua-jet",
+   "dragon-breath",
+   "extreme-speed",
+   "mist",
+   "supersonic",
+   "water-pulse"
+  ]
+ },
+ {
+  "id": 148,
+  "key": "dragonair",
+  "name": {
+   "en": "Dragonair",
+   "zh": "哈克龙"
+  },
+  "genus": {
+   "en": "Dragon Pokémon",
+   "zh": "龙宝可梦"
+  },
+  "types": [
+   "dragon"
+  ],
+  "baseStats": {
+   "hp": 61,
+   "atk": 84,
+   "def": 65,
+   "spa": 70,
+   "spd": 70,
+   "spe": 70
+  },
+  "abilities": [
+   {
+    "id": "shed-skin",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "marvel-scale",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 147,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 2,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 4,
+  "weightKg": 16.5,
+  "color": "blue",
+  "evolvesFrom": 147,
+  "evolutions": [
+   {
+    "to": 149,
+    "trigger": "level-up",
+    "minLevel": 55
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 1,
+    "move": "twister"
+   },
+   {
+    "level": 1,
+    "move": "wrap"
+   },
+   {
+    "level": 15,
+    "move": "dragon-tail"
+   },
+   {
+    "level": 20,
+    "move": "agility"
+   },
+   {
+    "level": 25,
+    "move": "slam"
+   },
+   {
+    "level": 33,
+    "move": "aqua-tail"
+   },
+   {
+    "level": 39,
+    "move": "dragon-rush"
+   },
+   {
+    "level": 46,
+    "move": "safeguard"
+   },
+   {
+    "level": 53,
+    "move": "rain-dance"
+   },
+   {
+    "level": 60,
+    "move": "dragon-dance"
+   },
+   {
+    "level": 67,
+    "move": "outrage"
+   },
+   {
+    "level": 74,
+    "move": "hyper-beam"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "据说，在水晶般的珠子里 蕴含着操纵天气的力量。",
+  "machineMoves": [
+   "agility",
+   "blizzard",
+   "body-slam",
+   "breaking-swipe",
+   "chilling-water",
+   "draco-meteor",
+   "dragon-cheer",
+   "dragon-dance",
+   "dragon-pulse",
+   "dragon-tail",
+   "endure",
+   "facade",
+   "fire-blast",
+   "fire-spin",
+   "flamethrower",
+   "giga-impact",
+   "haze",
+   "helping-hand",
+   "hydro-pump",
+   "hyper-beam",
+   "ice-beam",
+   "icy-wind",
+   "iron-head",
+   "light-screen",
+   "outrage",
+   "protect",
+   "rain-dance",
+   "rest",
+   "scale-shot",
+   "sleep-talk",
+   "substitute",
+   "sunny-day",
+   "surf",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "water-pulse",
+   "waterfall",
+   "weather-ball"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 149,
+  "key": "dragonite",
+  "name": {
+   "en": "Dragonite",
+   "zh": "快龙"
+  },
+  "genus": {
+   "en": "Dragon Pokémon",
+   "zh": "龙宝可梦"
+  },
+  "types": [
+   "dragon",
+   "flying"
+  ],
+  "baseStats": {
+   "hp": 91,
+   "atk": 134,
+   "def": 95,
+   "spa": 100,
+   "spd": 100,
+   "spe": 80
+  },
+  "abilities": [
+   {
+    "id": "inner-focus",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "multiscale",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 270,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 3,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 2.2,
+  "weightKg": 210,
+  "color": "brown",
+  "evolvesFrom": 148,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "hurricane"
+   },
+   {
+    "level": 1,
+    "move": "extreme-speed"
+   },
+   {
+    "level": 1,
+    "move": "fire-punch"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "roost"
+   },
+   {
+    "level": 1,
+    "move": "thunder-punch"
+   },
+   {
+    "level": 1,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 1,
+    "move": "twister"
+   },
+   {
+    "level": 1,
+    "move": "wing-attack"
+   },
+   {
+    "level": 1,
+    "move": "wrap"
+   },
+   {
+    "level": 15,
+    "move": "dragon-tail"
+   },
+   {
+    "level": 20,
+    "move": "agility"
+   },
+   {
+    "level": 25,
+    "move": "slam"
+   },
+   {
+    "level": 33,
+    "move": "aqua-tail"
+   },
+   {
+    "level": 39,
+    "move": "dragon-rush"
+   },
+   {
+    "level": 41,
+    "move": "outrage"
+   },
+   {
+    "level": 46,
+    "move": "safeguard"
+   },
+   {
+    "level": 53,
+    "move": "rain-dance"
+   },
+   {
+    "level": 62,
+    "move": "dragon-dance"
+   },
+   {
+    "level": 80,
+    "move": "hyper-beam"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "遇难得救的男人 被带去的那个孤岛， 是曾属于快龙的乐园。",
+  "machineMoves": [
+   "aerial-ace",
+   "agility",
+   "air-cutter",
+   "air-slash",
+   "blizzard",
+   "body-press",
+   "body-slam",
+   "breaking-swipe",
+   "brick-break",
+   "bulldoze",
+   "chilling-water",
+   "draco-meteor",
+   "dragon-cheer",
+   "dragon-claw",
+   "dragon-dance",
+   "dragon-pulse",
+   "dragon-tail",
+   "earthquake",
+   "encore",
+   "endure",
+   "facade",
+   "fire-blast",
+   "fire-punch",
+   "fire-spin",
+   "flamethrower",
+   "fling",
+   "fly",
+   "focus-blast",
+   "focus-punch",
+   "giga-impact",
+   "haze",
+   "heat-wave",
+   "helping-hand",
+   "hurricane",
+   "hydro-pump",
+   "hyper-beam",
+   "ice-beam",
+   "ice-punch",
+   "ice-spinner",
+   "icy-wind",
+   "iron-head",
+   "light-screen",
+   "low-kick",
+   "metronome",
+   "outrage",
+   "protect",
+   "rain-dance",
+   "rest",
+   "roar",
+   "rock-slide",
+   "rock-tomb",
+   "sandstorm",
+   "scale-shot",
+   "scary-face",
+   "sleep-talk",
+   "snowscape",
+   "stomping-tantrum",
+   "stone-edge",
+   "substitute",
+   "sunny-day",
+   "surf",
+   "swift",
+   "tailwind",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "water-pulse",
+   "waterfall",
+   "weather-ball"
   ],
   "tutorMoves": [],
   "eggMoves": []
@@ -12554,6 +15201,360 @@
   "eggMoves": []
  },
  {
+  "id": 170,
+  "key": "chinchou",
+  "name": {
+   "en": "Chinchou",
+   "zh": "灯笼鱼"
+  },
+  "genus": {
+   "en": "Angler Pokémon",
+   "zh": "琵琶鱼宝可梦"
+  },
+  "types": [
+   "water",
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 75,
+   "atk": 38,
+   "def": 38,
+   "spa": 56,
+   "spd": 56,
+   "spe": 67
+  },
+  "abilities": [
+   {
+    "id": "volt-absorb",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "illuminate",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "water-absorb",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 190,
+  "baseExp": 66,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 1,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.5,
+  "weightKg": 12,
+  "color": "blue",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 171,
+    "trigger": "level-up",
+    "minLevel": 27
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "supersonic"
+   },
+   {
+    "level": 1,
+    "move": "water-gun"
+   },
+   {
+    "level": 4,
+    "move": "electro-ball"
+   },
+   {
+    "level": 8,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 12,
+    "move": "bubble-beam"
+   },
+   {
+    "level": 16,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 20,
+    "move": "spark"
+   },
+   {
+    "level": 24,
+    "move": "charge"
+   },
+   {
+    "level": 28,
+    "move": "discharge"
+   },
+   {
+    "level": 32,
+    "move": "aqua-ring"
+   },
+   {
+    "level": 36,
+    "move": "flail"
+   },
+   {
+    "level": 40,
+    "move": "take-down"
+   },
+   {
+    "level": 44,
+    "move": "hydro-pump"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "２根触手原本是鳍。 释放电力让猎物麻痹后进行袭击。",
+  "machineMoves": [
+   "agility",
+   "amnesia",
+   "blizzard",
+   "charge",
+   "charge-beam",
+   "chilling-water",
+   "confuse-ray",
+   "curse",
+   "dazzling-gleam",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "flip-turn",
+   "hydro-pump",
+   "ice-beam",
+   "icy-wind",
+   "liquidation",
+   "muddy-water",
+   "protect",
+   "psybeam",
+   "rain-dance",
+   "rest",
+   "scald",
+   "sleep-talk",
+   "substitute",
+   "surf",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "volt-switch",
+   "water-pulse",
+   "waterfall",
+   "whirlpool",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "mist",
+   "psybeam",
+   "soak",
+   "sucker-punch",
+   "water-pulse"
+  ]
+ },
+ {
+  "id": 171,
+  "key": "lanturn",
+  "name": {
+   "en": "Lanturn",
+   "zh": "电灯怪"
+  },
+  "genus": {
+   "en": "Light Pokémon",
+   "zh": "灯宝可梦"
+  },
+  "types": [
+   "water",
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 125,
+   "atk": 58,
+   "def": 58,
+   "spa": 76,
+   "spd": 76,
+   "spe": 67
+  },
+  "abilities": [
+   {
+    "id": "volt-absorb",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "illuminate",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "water-absorb",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 75,
+  "baseExp": 161,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 2,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.2,
+  "weightKg": 22.5,
+  "color": "blue",
+  "evolvesFrom": 170,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "spit-up"
+   },
+   {
+    "level": 0,
+    "move": "stockpile"
+   },
+   {
+    "level": 0,
+    "move": "swallow"
+   },
+   {
+    "level": 1,
+    "move": "eerie-impulse"
+   },
+   {
+    "level": 1,
+    "move": "electro-ball"
+   },
+   {
+    "level": 1,
+    "move": "supersonic"
+   },
+   {
+    "level": 1,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 1,
+    "move": "water-gun"
+   },
+   {
+    "level": 12,
+    "move": "bubble-beam"
+   },
+   {
+    "level": 16,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 20,
+    "move": "spark"
+   },
+   {
+    "level": 24,
+    "move": "charge"
+   },
+   {
+    "level": 30,
+    "move": "discharge"
+   },
+   {
+    "level": 36,
+    "move": "aqua-ring"
+   },
+   {
+    "level": 42,
+    "move": "flail"
+   },
+   {
+    "level": 48,
+    "move": "take-down"
+   },
+   {
+    "level": 54,
+    "move": "hydro-pump"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "探头望向夜晚的海面， 如果看到犹如闪烁的星星 一样的光，那是电灯怪哦。",
+  "machineMoves": [
+   "agility",
+   "amnesia",
+   "blizzard",
+   "charge",
+   "charge-beam",
+   "chilling-water",
+   "confuse-ray",
+   "curse",
+   "dazzling-gleam",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "flip-turn",
+   "giga-impact",
+   "hydro-pump",
+   "hyper-beam",
+   "ice-beam",
+   "icy-wind",
+   "liquidation",
+   "muddy-water",
+   "protect",
+   "psybeam",
+   "rain-dance",
+   "rest",
+   "scald",
+   "sleep-talk",
+   "substitute",
+   "surf",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "volt-switch",
+   "water-pulse",
+   "waterfall",
+   "whirlpool",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "mist",
+   "psybeam",
+   "soak",
+   "sucker-punch",
+   "water-pulse"
+  ]
+ },
+ {
   "id": 172,
   "key": "pichu",
   "name": {
@@ -12689,6 +15690,884 @@
    "tickle",
    "wish"
   ]
+ },
+ {
+  "id": 177,
+  "key": "natu",
+  "name": {
+   "en": "Natu",
+   "zh": "天然雀"
+  },
+  "genus": {
+   "en": "Tiny Bird Pokémon",
+   "zh": "小鸟宝可梦"
+  },
+  "types": [
+   "psychic",
+   "flying"
+  ],
+  "baseStats": {
+   "hp": 40,
+   "atk": 50,
+   "def": 45,
+   "spa": 70,
+   "spd": 45,
+   "spe": 70
+  },
+  "abilities": [
+   {
+    "id": "synchronize",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "early-bird",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "magic-bounce",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 190,
+  "baseExp": 64,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 1,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.2,
+  "weightKg": 2,
+  "color": "green",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 178,
+    "trigger": "level-up",
+    "minLevel": 25
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "peck"
+   },
+   {
+    "level": 5,
+    "move": "stored-power"
+   },
+   {
+    "level": 10,
+    "move": "teleport"
+   },
+   {
+    "level": 15,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 20,
+    "move": "night-shade"
+   },
+   {
+    "level": 26,
+    "move": "psycho-shift"
+   },
+   {
+    "level": 30,
+    "move": "power-swap"
+   },
+   {
+    "level": 35,
+    "move": "guard-swap"
+   },
+   {
+    "level": 35,
+    "move": "psychic"
+   },
+   {
+    "level": 40,
+    "move": "wish"
+   },
+   {
+    "level": 45,
+    "move": "future-sight"
+   }
+  ],
+  "learnsetVersion": "sword-shield",
+  "flavor": "虽然还无法飞行，但跳跃力超群。 能跳上很高的树枝啄食树芽。",
+  "machineMoves": [
+   "air-slash",
+   "ally-switch",
+   "attract",
+   "baton-pass",
+   "calm-mind",
+   "cosmic-power",
+   "dazzling-gleam",
+   "endure",
+   "facade",
+   "future-sight",
+   "giga-drain",
+   "grass-knot",
+   "guard-swap",
+   "heat-wave",
+   "imprison",
+   "light-screen",
+   "magic-room",
+   "power-swap",
+   "protect",
+   "psychic",
+   "psyshock",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "round",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "snore",
+   "solar-beam",
+   "steel-wing",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "thief",
+   "thunder-wave",
+   "trick",
+   "trick-room",
+   "u-turn",
+   "zen-headbutt"
+  ],
+  "tutorMoves": [
+   "dual-wingbeat",
+   "expanding-force"
+  ],
+  "eggMoves": [
+   "drill-peck",
+   "feather-dance",
+   "quick-attack",
+   "roost",
+   "simple-beam",
+   "sucker-punch"
+  ]
+ },
+ {
+  "id": 178,
+  "key": "xatu",
+  "name": {
+   "en": "Xatu",
+   "zh": "天然鸟"
+  },
+  "genus": {
+   "en": "Mystic Pokémon",
+   "zh": "神秘宝可梦"
+  },
+  "types": [
+   "psychic",
+   "flying"
+  ],
+  "baseStats": {
+   "hp": 65,
+   "atk": 75,
+   "def": 70,
+   "spa": 95,
+   "spd": 70,
+   "spe": 95
+  },
+  "abilities": [
+   {
+    "id": "synchronize",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "early-bird",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "magic-bounce",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 75,
+  "baseExp": 165,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 1,
+   "spd": 0,
+   "spe": 1
+  },
+  "heightM": 1.5,
+  "weightKg": 15,
+  "color": "green",
+  "evolvesFrom": 177,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "air-slash"
+   },
+   {
+    "level": 1,
+    "move": "air-slash"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "peck"
+   },
+   {
+    "level": 1,
+    "move": "stored-power"
+   },
+   {
+    "level": 1,
+    "move": "tailwind"
+   },
+   {
+    "level": 1,
+    "move": "teleport"
+   },
+   {
+    "level": 15,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 20,
+    "move": "night-shade"
+   },
+   {
+    "level": 28,
+    "move": "psycho-shift"
+   },
+   {
+    "level": 34,
+    "move": "guard-swap"
+   },
+   {
+    "level": 34,
+    "move": "power-swap"
+   },
+   {
+    "level": 41,
+    "move": "psychic"
+   },
+   {
+    "level": 48,
+    "move": "wish"
+   },
+   {
+    "level": 55,
+    "move": "future-sight"
+   }
+  ],
+  "learnsetVersion": "sword-shield",
+  "flavor": "据说该宝可梦虽然有着 能预知未来的力量， 但却没有能改变未来的力量。",
+  "machineMoves": [
+   "air-slash",
+   "ally-switch",
+   "attract",
+   "baton-pass",
+   "calm-mind",
+   "cosmic-power",
+   "dazzling-gleam",
+   "endure",
+   "facade",
+   "fly",
+   "foul-play",
+   "future-sight",
+   "giga-drain",
+   "giga-impact",
+   "grass-knot",
+   "guard-swap",
+   "heat-wave",
+   "hyper-beam",
+   "imprison",
+   "light-screen",
+   "magic-room",
+   "power-swap",
+   "protect",
+   "psychic",
+   "psyshock",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "round",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "snore",
+   "solar-beam",
+   "steel-wing",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "thief",
+   "thunder-wave",
+   "trick",
+   "trick-room",
+   "u-turn",
+   "zen-headbutt"
+  ],
+  "tutorMoves": [
+   "dual-wingbeat",
+   "expanding-force"
+  ],
+  "eggMoves": []
+ },
+ {
+  "id": 179,
+  "key": "mareep",
+  "name": {
+   "en": "Mareep",
+   "zh": "咩利羊"
+  },
+  "genus": {
+   "en": "Wool Pokémon",
+   "zh": "绵毛宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 55,
+   "atk": 40,
+   "def": 40,
+   "spa": 65,
+   "spd": 45,
+   "spe": 35
+  },
+  "abilities": [
+   {
+    "id": "static",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "plus",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 235,
+  "baseExp": 56,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 1,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.6,
+  "weightKg": 7.8,
+  "color": "white",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 180,
+    "trigger": "level-up",
+    "minLevel": 15
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 4,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 8,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 11,
+    "move": "cotton-spore"
+   },
+   {
+    "level": 15,
+    "move": "charge"
+   },
+   {
+    "level": 18,
+    "move": "take-down"
+   },
+   {
+    "level": 22,
+    "move": "electro-ball"
+   },
+   {
+    "level": 25,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 29,
+    "move": "power-gem"
+   },
+   {
+    "level": 32,
+    "move": "discharge"
+   },
+   {
+    "level": 36,
+    "move": "cotton-guard"
+   },
+   {
+    "level": 39,
+    "move": "dazzling-gleam"
+   },
+   {
+    "level": 43,
+    "move": "light-screen"
+   },
+   {
+    "level": 46,
+    "move": "thunder"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "用咩利羊的毛制成的 衣服容易起静电， 所以会做特殊加工。",
+  "machineMoves": [
+   "agility",
+   "body-slam",
+   "charge",
+   "charge-beam",
+   "confuse-ray",
+   "dazzling-gleam",
+   "dig",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endeavor",
+   "endure",
+   "facade",
+   "helping-hand",
+   "light-screen",
+   "power-gem",
+   "protect",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "sleep-talk",
+   "substitute",
+   "sunny-day",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "trailblaze",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "after-you",
+   "agility",
+   "eerie-impulse",
+   "electric-terrain",
+   "electroweb",
+   "flatter"
+  ]
+ },
+ {
+  "id": 180,
+  "key": "flaaffy",
+  "name": {
+   "en": "Flaaffy",
+   "zh": "茸茸羊"
+  },
+  "genus": {
+   "en": "Wool Pokémon",
+   "zh": "绵毛宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 70,
+   "atk": 55,
+   "def": 55,
+   "spa": 80,
+   "spd": 60,
+   "spe": 45
+  },
+  "abilities": [
+   {
+    "id": "static",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "plus",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 120,
+  "baseExp": 128,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 2,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.8,
+  "weightKg": 13.3,
+  "color": "pink",
+  "evolvesFrom": 179,
+  "evolutions": [
+   {
+    "to": 181,
+    "trigger": "level-up",
+    "minLevel": 30
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 6,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 9,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 11,
+    "move": "cotton-spore"
+   },
+   {
+    "level": 16,
+    "move": "charge"
+   },
+   {
+    "level": 20,
+    "move": "take-down"
+   },
+   {
+    "level": 25,
+    "move": "electro-ball"
+   },
+   {
+    "level": 29,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 34,
+    "move": "power-gem"
+   },
+   {
+    "level": 38,
+    "move": "discharge"
+   },
+   {
+    "level": 43,
+    "move": "cotton-guard"
+   },
+   {
+    "level": 47,
+    "move": "dazzling-gleam"
+   },
+   {
+    "level": 52,
+    "move": "light-screen"
+   },
+   {
+    "level": 56,
+    "move": "thunder"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "毛发不生有如橡胶一样的 皮肤不会导电， 即便触电了也很安全。",
+  "machineMoves": [
+   "agility",
+   "body-slam",
+   "brick-break",
+   "charge",
+   "charge-beam",
+   "confuse-ray",
+   "dazzling-gleam",
+   "dig",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endeavor",
+   "endure",
+   "facade",
+   "fire-punch",
+   "fling",
+   "focus-punch",
+   "helping-hand",
+   "ice-punch",
+   "light-screen",
+   "low-kick",
+   "power-gem",
+   "protect",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "roar",
+   "sleep-talk",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "trailblaze",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 181,
+  "key": "ampharos",
+  "name": {
+   "en": "Ampharos",
+   "zh": "电龙"
+  },
+  "genus": {
+   "en": "Light Pokémon",
+   "zh": "灯宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 90,
+   "atk": 75,
+   "def": 85,
+   "spa": 115,
+   "spd": 90,
+   "spe": 55
+  },
+  "abilities": [
+   {
+    "id": "static",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "plus",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 230,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 3,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.4,
+  "weightKg": 61.5,
+  "color": "yellow",
+  "evolvesFrom": 180,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "thunder-punch"
+   },
+   {
+    "level": 1,
+    "move": "dragon-pulse"
+   },
+   {
+    "level": 1,
+    "move": "fire-punch"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "magnetic-flux"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 1,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 1,
+    "move": "zap-cannon"
+   },
+   {
+    "level": 11,
+    "move": "cotton-spore"
+   },
+   {
+    "level": 16,
+    "move": "charge"
+   },
+   {
+    "level": 20,
+    "move": "take-down"
+   },
+   {
+    "level": 25,
+    "move": "electro-ball"
+   },
+   {
+    "level": 29,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 35,
+    "move": "power-gem"
+   },
+   {
+    "level": 40,
+    "move": "discharge"
+   },
+   {
+    "level": 46,
+    "move": "cotton-guard"
+   },
+   {
+    "level": 51,
+    "move": "dazzling-gleam"
+   },
+   {
+    "level": 57,
+    "move": "light-screen"
+   },
+   {
+    "level": 62,
+    "move": "thunder"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "尾巴上的光能传至宇宙， 所以身在何处一目了然。 因此它平时不会让尾巴发光。",
+  "machineMoves": [
+   "agility",
+   "body-slam",
+   "breaking-swipe",
+   "brick-break",
+   "bulldoze",
+   "charge",
+   "charge-beam",
+   "confuse-ray",
+   "dazzling-gleam",
+   "dig",
+   "double-edge",
+   "dragon-cheer",
+   "dragon-pulse",
+   "dragon-tail",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endeavor",
+   "endure",
+   "facade",
+   "fire-punch",
+   "fling",
+   "focus-blast",
+   "focus-punch",
+   "giga-impact",
+   "helping-hand",
+   "hyper-beam",
+   "ice-punch",
+   "light-screen",
+   "low-kick",
+   "meteor-beam",
+   "outrage",
+   "power-gem",
+   "protect",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "roar",
+   "sleep-talk",
+   "stomping-tantrum",
+   "substitute",
+   "sunny-day",
+   "supercell-slam",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "trailblaze",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
  },
  {
   "id": 182,
@@ -13603,6 +17482,183 @@
   ]
  },
  {
+  "id": 200,
+  "key": "misdreavus",
+  "name": {
+   "en": "Misdreavus",
+   "zh": "梦妖"
+  },
+  "genus": {
+   "en": "Screech Pokémon",
+   "zh": "夜啼宝可梦"
+  },
+  "types": [
+   "ghost"
+  ],
+  "baseStats": {
+   "hp": 60,
+   "atk": 60,
+   "def": 60,
+   "spa": 85,
+   "spd": 85,
+   "spe": 85
+  },
+  "abilities": [
+   {
+    "id": "levitate",
+    "hidden": false,
+    "slot": 1
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 87,
+  "growthRate": "fast",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 1,
+   "spe": 0
+  },
+  "heightM": 0.7,
+  "weightKg": 1,
+  "color": "gray",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 429,
+    "trigger": "use-item",
+    "item": "dusk-stone"
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "confusion"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 10,
+    "move": "astonish"
+   },
+   {
+    "level": 14,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 19,
+    "move": "mean-look"
+   },
+   {
+    "level": 23,
+    "move": "hex"
+   },
+   {
+    "level": 28,
+    "move": "psybeam"
+   },
+   {
+    "level": 32,
+    "move": "pain-split"
+   },
+   {
+    "level": 37,
+    "move": "payback"
+   },
+   {
+    "level": 41,
+    "move": "shadow-ball"
+   },
+   {
+    "level": 46,
+    "move": "perish-song"
+   },
+   {
+    "level": 50,
+    "move": "power-gem"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "千方百计地吓唬人类， 吸取生命的能量。 吓人的练习一天也不落。",
+  "machineMoves": [
+   "burning-jealousy",
+   "calm-mind",
+   "charge-beam",
+   "charm",
+   "confuse-ray",
+   "curse",
+   "dark-pulse",
+   "dazzling-gleam",
+   "draining-kiss",
+   "endure",
+   "energy-ball",
+   "facade",
+   "fake-tears",
+   "foul-play",
+   "future-sight",
+   "giga-impact",
+   "grass-knot",
+   "helping-hand",
+   "hex",
+   "hyper-beam",
+   "hyper-voice",
+   "icy-wind",
+   "imprison",
+   "magical-leaf",
+   "nasty-plot",
+   "night-shade",
+   "pain-split",
+   "phantom-force",
+   "poltergeist",
+   "power-gem",
+   "protect",
+   "psybeam",
+   "psych-up",
+   "psychic",
+   "psychic-noise",
+   "psyshock",
+   "rain-dance",
+   "rest",
+   "scary-face",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "snowscape",
+   "spite",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "trick",
+   "trick-room",
+   "will-o-wisp"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "curse",
+   "destiny-bond",
+   "imprison",
+   "memento",
+   "screech",
+   "shadow-sneak",
+   "spite",
+   "sucker-punch",
+   "wonder-room"
+  ]
+ },
+ {
   "id": 208,
   "key": "steelix",
   "name": {
@@ -14009,6 +18065,197 @@
   ]
  },
  {
+  "id": 215,
+  "key": "sneasel",
+  "name": {
+   "en": "Sneasel",
+   "zh": "狃拉"
+  },
+  "genus": {
+   "en": "Sharp Claw Pokémon",
+   "zh": "钩爪宝可梦"
+  },
+  "types": [
+   "dark",
+   "ice"
+  ],
+  "baseStats": {
+   "hp": 55,
+   "atk": 95,
+   "def": 55,
+   "spa": 35,
+   "spd": 75,
+   "spe": 115
+  },
+  "abilities": [
+   {
+    "id": "inner-focus",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "keen-eye",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "pickpocket",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 60,
+  "baseExp": 86,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 1
+  },
+  "heightM": 0.9,
+  "weightKg": 28,
+  "color": "black",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 461,
+    "trigger": "level-up",
+    "heldItem": "razor-claw",
+    "timeOfDay": "night"
+   },
+   {
+    "to": 903,
+    "trigger": "level-up",
+    "heldItem": "razor-claw",
+    "timeOfDay": "day"
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "scratch"
+   },
+   {
+    "level": 6,
+    "move": "taunt"
+   },
+   {
+    "level": 12,
+    "move": "quick-attack"
+   },
+   {
+    "level": 18,
+    "move": "metal-claw"
+   },
+   {
+    "level": 24,
+    "move": "icy-wind"
+   },
+   {
+    "level": 30,
+    "move": "fury-swipes"
+   },
+   {
+    "level": 36,
+    "move": "hone-claws"
+   },
+   {
+    "level": 42,
+    "move": "beat-up"
+   },
+   {
+    "level": 48,
+    "move": "agility"
+   },
+   {
+    "level": 54,
+    "move": "screech"
+   },
+   {
+    "level": 60,
+    "move": "slash"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "狡黠凶恶的性格。 趁着双亲不在就侵入巢穴， 将蛋盗出。",
+  "machineMoves": [
+   "aerial-ace",
+   "agility",
+   "avalanche",
+   "blizzard",
+   "brick-break",
+   "calm-mind",
+   "dark-pulse",
+   "dig",
+   "endure",
+   "facade",
+   "fake-tears",
+   "false-swipe",
+   "fling",
+   "focus-punch",
+   "foul-play",
+   "giga-impact",
+   "helping-hand",
+   "ice-beam",
+   "ice-punch",
+   "icicle-spear",
+   "icy-wind",
+   "knock-off",
+   "lash-out",
+   "low-kick",
+   "low-sweep",
+   "metal-claw",
+   "nasty-plot",
+   "poison-jab",
+   "protect",
+   "rain-dance",
+   "rest",
+   "reversal",
+   "scary-face",
+   "shadow-ball",
+   "shadow-claw",
+   "sleep-talk",
+   "snarl",
+   "snowscape",
+   "spite",
+   "substitute",
+   "sunny-day",
+   "surf",
+   "swift",
+   "swords-dance",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "throat-chop",
+   "trailblaze",
+   "triple-axel",
+   "upper-hand",
+   "water-pulse",
+   "x-scissor"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "bite",
+   "counter",
+   "double-hit",
+   "fake-out",
+   "feint",
+   "ice-shard",
+   "icicle-crash",
+   "spite"
+  ]
+ },
+ {
   "id": 218,
   "key": "slugma",
   "name": {
@@ -14376,6 +18623,363 @@
   ]
  },
  {
+  "id": 220,
+  "key": "swinub",
+  "name": {
+   "en": "Swinub",
+   "zh": "小山猪"
+  },
+  "genus": {
+   "en": "Pig Pokémon",
+   "zh": "小猪宝可梦"
+  },
+  "types": [
+   "ice",
+   "ground"
+  ],
+  "baseStats": {
+   "hp": 50,
+   "atk": 50,
+   "def": 40,
+   "spa": 30,
+   "spd": 30,
+   "spe": 50
+  },
+  "abilities": [
+   {
+    "id": "oblivious",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "snow-cloak",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "thick-fat",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 225,
+  "baseExp": 50,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 1,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.4,
+  "weightKg": 6.5,
+  "color": "brown",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 221,
+    "trigger": "level-up",
+    "minLevel": 33
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "mud-slap"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 5,
+    "move": "powder-snow"
+   },
+   {
+    "level": 10,
+    "move": "flail"
+   },
+   {
+    "level": 15,
+    "move": "ice-shard"
+   },
+   {
+    "level": 20,
+    "move": "mist"
+   },
+   {
+    "level": 25,
+    "move": "endure"
+   },
+   {
+    "level": 30,
+    "move": "icy-wind"
+   },
+   {
+    "level": 35,
+    "move": "amnesia"
+   },
+   {
+    "level": 40,
+    "move": "take-down"
+   },
+   {
+    "level": 45,
+    "move": "earthquake"
+   },
+   {
+    "level": 50,
+    "move": "blizzard"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "为了寻找食物， 会用鼻子摩擦地面并进行挖掘。 偶尔会挖到温泉。",
+  "machineMoves": [
+   "amnesia",
+   "avalanche",
+   "blizzard",
+   "body-slam",
+   "bulldoze",
+   "charm",
+   "curse",
+   "dig",
+   "double-edge",
+   "earth-power",
+   "earthquake",
+   "endeavor",
+   "endure",
+   "facade",
+   "haze",
+   "high-horsepower",
+   "ice-beam",
+   "ice-fang",
+   "icicle-spear",
+   "icy-wind",
+   "mud-shot",
+   "mud-slap",
+   "protect",
+   "rain-dance",
+   "rest",
+   "reversal",
+   "roar",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "scary-face",
+   "sleep-talk",
+   "smack-down",
+   "snowscape",
+   "stealth-rock",
+   "stomping-tantrum",
+   "stone-edge",
+   "substitute",
+   "take-down",
+   "tera-blast",
+   "trailblaze"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "ancient-power",
+   "bite",
+   "curse",
+   "double-edge",
+   "fissure",
+   "freeze-dry",
+   "icicle-crash"
+  ]
+ },
+ {
+  "id": 221,
+  "key": "piloswine",
+  "name": {
+   "en": "Piloswine",
+   "zh": "长毛猪"
+  },
+  "genus": {
+   "en": "Swine Pokémon",
+   "zh": "野猪宝可梦"
+  },
+  "types": [
+   "ice",
+   "ground"
+  ],
+  "baseStats": {
+   "hp": 100,
+   "atk": 100,
+   "def": 80,
+   "spa": 60,
+   "spd": 60,
+   "spe": 50
+  },
+  "abilities": [
+   {
+    "id": "oblivious",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "snow-cloak",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "thick-fat",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 75,
+  "baseExp": 158,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 1,
+   "atk": 1,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.1,
+  "weightKg": 55.8,
+  "color": "brown",
+  "evolvesFrom": 220,
+  "evolutions": [
+   {
+    "to": 473,
+    "trigger": "level-up",
+    "knownMove": "ancient-power"
+   }
+  ],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "ice-fang"
+   },
+   {
+    "level": 1,
+    "move": "ancient-power"
+   },
+   {
+    "level": 1,
+    "move": "flail"
+   },
+   {
+    "level": 1,
+    "move": "mud-slap"
+   },
+   {
+    "level": 1,
+    "move": "powder-snow"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 15,
+    "move": "ice-shard"
+   },
+   {
+    "level": 20,
+    "move": "mist"
+   },
+   {
+    "level": 25,
+    "move": "endure"
+   },
+   {
+    "level": 30,
+    "move": "icy-wind"
+   },
+   {
+    "level": 37,
+    "move": "amnesia"
+   },
+   {
+    "level": 44,
+    "move": "take-down"
+   },
+   {
+    "level": 51,
+    "move": "earthquake"
+   },
+   {
+    "level": 58,
+    "move": "blizzard"
+   },
+   {
+    "level": 65,
+    "move": "thrash"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "朝着对手冲过去时， 背上的体毛会倒竖起来。 对声音极度敏感。",
+  "machineMoves": [
+   "amnesia",
+   "avalanche",
+   "blizzard",
+   "body-slam",
+   "bulldoze",
+   "charm",
+   "curse",
+   "dig",
+   "double-edge",
+   "earth-power",
+   "earthquake",
+   "endeavor",
+   "endure",
+   "facade",
+   "giga-impact",
+   "haze",
+   "high-horsepower",
+   "hyper-beam",
+   "ice-beam",
+   "ice-fang",
+   "icicle-spear",
+   "icy-wind",
+   "mud-shot",
+   "mud-slap",
+   "protect",
+   "rain-dance",
+   "rest",
+   "reversal",
+   "roar",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "scary-face",
+   "sleep-talk",
+   "smack-down",
+   "snowscape",
+   "stealth-rock",
+   "stomping-tantrum",
+   "stone-edge",
+   "substitute",
+   "take-down",
+   "tera-blast",
+   "throat-chop",
+   "trailblaze"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "ancient-power",
+   "bite",
+   "curse",
+   "double-edge",
+   "fissure",
+   "freeze-dry",
+   "icicle-crash"
+  ]
+ },
+ {
   "id": 222,
   "key": "corsola",
   "name": {
@@ -14553,6 +19157,143 @@
    "mist",
    "nature-power",
    "water-pulse"
+  ]
+ },
+ {
+  "id": 225,
+  "key": "delibird",
+  "name": {
+   "en": "Delibird",
+   "zh": "信使鸟"
+  },
+  "genus": {
+   "en": "Delivery Pokémon",
+   "zh": "搬运宝可梦"
+  },
+  "types": [
+   "ice",
+   "flying"
+  ],
+  "baseStats": {
+   "hp": 45,
+   "atk": 55,
+   "def": 45,
+   "spa": 65,
+   "spd": 45,
+   "spe": 75
+  },
+  "abilities": [
+   {
+    "id": "vital-spirit",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "hustle",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "insomnia",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 116,
+  "growthRate": "fast",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 1
+  },
+  "heightM": 0.9,
+  "weightKg": 16,
+  "color": "red",
+  "evolvesFrom": null,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "present"
+   },
+   {
+    "level": 25,
+    "move": "drill-peck"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "原本很喜欢寒冷的地方， 但是阿罗拉的信使鸟好像 即便是有点儿炎热也能忍耐。",
+  "machineMoves": [
+   "acrobatics",
+   "aerial-ace",
+   "agility",
+   "air-cutter",
+   "air-slash",
+   "avalanche",
+   "baton-pass",
+   "blizzard",
+   "body-slam",
+   "brave-bird",
+   "brick-break",
+   "chilling-water",
+   "drill-run",
+   "dual-wingbeat",
+   "endeavor",
+   "endure",
+   "facade",
+   "feather-dance",
+   "fling",
+   "fly",
+   "focus-punch",
+   "foul-play",
+   "giga-impact",
+   "gunk-shot",
+   "haze",
+   "helping-hand",
+   "hyper-beam",
+   "ice-beam",
+   "ice-punch",
+   "ice-spinner",
+   "icicle-spear",
+   "icy-wind",
+   "protect",
+   "rain-dance",
+   "rest",
+   "reversal",
+   "seed-bomb",
+   "sleep-talk",
+   "snowscape",
+   "spikes",
+   "substitute",
+   "swift",
+   "tailwind",
+   "take-down",
+   "tera-blast",
+   "thief",
+   "trailblaze",
+   "triple-axel",
+   "water-pulse",
+   "weather-ball"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "aurora-beam",
+   "aurora-veil",
+   "counter",
+   "destiny-bond",
+   "fake-out",
+   "freeze-dry",
+   "ice-shard",
+   "memento",
+   "quick-attack",
+   "rapid-spin",
+   "splash"
   ]
  },
  {
@@ -14932,6 +19673,943 @@
    "toxic",
    "trailblaze",
    "will-o-wisp"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 230,
+  "key": "kingdra",
+  "name": {
+   "en": "Kingdra",
+   "zh": "刺龙王"
+  },
+  "genus": {
+   "en": "Dragon Pokémon",
+   "zh": "龙宝可梦"
+  },
+  "types": [
+   "water",
+   "dragon"
+  ],
+  "baseStats": {
+   "hp": 75,
+   "atk": 95,
+   "def": 95,
+   "spa": 95,
+   "spd": 95,
+   "spe": 85
+  },
+  "abilities": [
+   {
+    "id": "swift-swim",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "sniper",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "damp",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 243,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 1,
+   "def": 0,
+   "spa": 1,
+   "spd": 1,
+   "spe": 0
+  },
+  "heightM": 1.8,
+  "weightKg": 152,
+  "color": "blue",
+  "evolvesFrom": 117,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "smokescreen"
+   },
+   {
+    "level": 1,
+    "move": "twister"
+   },
+   {
+    "level": 1,
+    "move": "water-gun"
+   },
+   {
+    "level": 1,
+    "move": "whirlpool"
+   },
+   {
+    "level": 1,
+    "move": "yawn"
+   },
+   {
+    "level": 15,
+    "move": "focus-energy"
+   },
+   {
+    "level": 20,
+    "move": "dragon-breath"
+   },
+   {
+    "level": 25,
+    "move": "bubble-beam"
+   },
+   {
+    "level": 30,
+    "move": "agility"
+   },
+   {
+    "level": 37,
+    "move": "water-pulse"
+   },
+   {
+    "level": 44,
+    "move": "dragon-pulse"
+   },
+   {
+    "level": 51,
+    "move": "hydro-pump"
+   },
+   {
+    "level": 58,
+    "move": "dragon-dance"
+   },
+   {
+    "level": 65,
+    "move": "rain-dance"
+   },
+   {
+    "level": 72,
+    "move": "wave-crash"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "会在暴风雨袭来时出现在 海面上。如果遇到快龙， 便会开始激烈的争斗。",
+  "machineMoves": [
+   "agility",
+   "blizzard",
+   "body-slam",
+   "breaking-swipe",
+   "chilling-water",
+   "double-edge",
+   "draco-meteor",
+   "dragon-dance",
+   "dragon-pulse",
+   "endure",
+   "facade",
+   "flash-cannon",
+   "flip-turn",
+   "giga-impact",
+   "hurricane",
+   "hydro-pump",
+   "hyper-beam",
+   "ice-beam",
+   "icy-wind",
+   "iron-head",
+   "liquidation",
+   "muddy-water",
+   "outrage",
+   "protect",
+   "rain-dance",
+   "rest",
+   "scald",
+   "scale-shot",
+   "scary-face",
+   "sleep-talk",
+   "snowscape",
+   "substitute",
+   "surf",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "water-pulse",
+   "waterfall",
+   "weather-ball",
+   "whirlpool"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "aurora-beam",
+   "clear-smog",
+   "disable",
+   "flail",
+   "splash"
+  ]
+ },
+ {
+  "id": 239,
+  "key": "elekid",
+  "name": {
+   "en": "Elekid",
+   "zh": "电击怪"
+  },
+  "genus": {
+   "en": "Electric Pokémon",
+   "zh": "电气宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 45,
+   "atk": 63,
+   "def": 37,
+   "spa": 65,
+   "spd": 55,
+   "spe": 95
+  },
+  "abilities": [
+   {
+    "id": "static",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "vital-spirit",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 72,
+  "growthRate": "medium",
+  "genderRate": 2,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 1
+  },
+  "heightM": 0.6,
+  "weightKg": 23.5,
+  "color": "yellow",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 125,
+    "trigger": "level-up",
+    "minLevel": 30
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "quick-attack"
+   },
+   {
+    "level": 4,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 8,
+    "move": "charge"
+   },
+   {
+    "level": 12,
+    "move": "swift"
+   },
+   {
+    "level": 16,
+    "move": "shock-wave"
+   },
+   {
+    "level": 20,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 24,
+    "move": "screech"
+   },
+   {
+    "level": 28,
+    "move": "thunder-punch"
+   },
+   {
+    "level": 32,
+    "move": "discharge"
+   },
+   {
+    "level": 36,
+    "move": "low-kick"
+   },
+   {
+    "level": 40,
+    "move": "thunderbolt"
+   },
+   {
+    "level": 44,
+    "move": "light-screen"
+   },
+   {
+    "level": 48,
+    "move": "thunder"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "在家的时候，插座就相当于奶瓶。 可以从中滋滋地吸取电力哦。",
+  "machineMoves": [
+   "body-slam",
+   "brick-break",
+   "charge",
+   "charge-beam",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "fire-punch",
+   "fling",
+   "focus-blast",
+   "focus-punch",
+   "helping-hand",
+   "ice-punch",
+   "knock-off",
+   "light-screen",
+   "low-kick",
+   "metal-sound",
+   "protect",
+   "psychic",
+   "rain-dance",
+   "rest",
+   "sleep-talk",
+   "substitute",
+   "supercell-slam",
+   "swift",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "trailblaze",
+   "uproar",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "cross-chop",
+   "dynamic-punch",
+   "feint",
+   "focus-punch",
+   "follow-me",
+   "hammer-arm"
+  ]
+ },
+ {
+  "id": 246,
+  "key": "larvitar",
+  "name": {
+   "en": "Larvitar",
+   "zh": "幼基拉斯"
+  },
+  "genus": {
+   "en": "Rock Skin Pokémon",
+   "zh": "岩石肤宝可梦"
+  },
+  "types": [
+   "rock",
+   "ground"
+  ],
+  "baseStats": {
+   "hp": 50,
+   "atk": 64,
+   "def": 50,
+   "spa": 45,
+   "spd": 50,
+   "spe": 41
+  },
+  "abilities": [
+   {
+    "id": "guts",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "sand-veil",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 60,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 1,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.6,
+  "weightKg": 72,
+  "color": "green",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 247,
+    "trigger": "level-up",
+    "minLevel": 30
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 3,
+    "move": "rock-throw"
+   },
+   {
+    "level": 6,
+    "move": "payback"
+   },
+   {
+    "level": 9,
+    "move": "bite"
+   },
+   {
+    "level": 12,
+    "move": "scary-face"
+   },
+   {
+    "level": 15,
+    "move": "rock-slide"
+   },
+   {
+    "level": 18,
+    "move": "stomping-tantrum"
+   },
+   {
+    "level": 21,
+    "move": "screech"
+   },
+   {
+    "level": 24,
+    "move": "smack-down"
+   },
+   {
+    "level": 27,
+    "move": "crunch"
+   },
+   {
+    "level": 31,
+    "move": "earthquake"
+   },
+   {
+    "level": 33,
+    "move": "stone-edge"
+   },
+   {
+    "level": 36,
+    "move": "thrash"
+   },
+   {
+    "level": 39,
+    "move": "sandstorm"
+   },
+   {
+    "level": 42,
+    "move": "hyper-beam"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "诞生于地下，会一边吃着泥土， 一边朝至亲所在的地面前进。 因为光线刺眼，所以它不太能适应哦。",
+  "machineMoves": [
+   "body-slam",
+   "brick-break",
+   "bulldoze",
+   "crunch",
+   "curse",
+   "dark-pulse",
+   "dig",
+   "double-edge",
+   "dragon-dance",
+   "earth-power",
+   "earthquake",
+   "endure",
+   "facade",
+   "giga-impact",
+   "helping-hand",
+   "hyper-beam",
+   "iron-defense",
+   "iron-head",
+   "mud-shot",
+   "mud-slap",
+   "outrage",
+   "protect",
+   "rain-dance",
+   "rest",
+   "rock-blast",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "scary-face",
+   "sleep-talk",
+   "smack-down",
+   "snarl",
+   "spite",
+   "stealth-rock",
+   "stomping-tantrum",
+   "stone-edge",
+   "substitute",
+   "sunny-day",
+   "take-down",
+   "taunt",
+   "tera-blast"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "ancient-power",
+   "assurance",
+   "curse",
+   "dragon-dance",
+   "focus-energy",
+   "iron-defense",
+   "iron-head",
+   "outrage",
+   "stomp"
+  ]
+ },
+ {
+  "id": 247,
+  "key": "pupitar",
+  "name": {
+   "en": "Pupitar",
+   "zh": "沙基拉斯"
+  },
+  "genus": {
+   "en": "Hard Shell Pokémon",
+   "zh": "子弹宝可梦"
+  },
+  "types": [
+   "rock",
+   "ground"
+  ],
+  "baseStats": {
+   "hp": 70,
+   "atk": 84,
+   "def": 70,
+   "spa": 65,
+   "spd": 70,
+   "spe": 51
+  },
+  "abilities": [
+   {
+    "id": "shed-skin",
+    "hidden": false,
+    "slot": 1
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 144,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 2,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.2,
+  "weightKg": 152,
+  "color": "gray",
+  "evolvesFrom": 246,
+  "evolutions": [
+   {
+    "to": 248,
+    "trigger": "level-up",
+    "minLevel": 55
+   }
+  ],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "iron-defense"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "payback"
+   },
+   {
+    "level": 1,
+    "move": "rock-throw"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 9,
+    "move": "bite"
+   },
+   {
+    "level": 12,
+    "move": "scary-face"
+   },
+   {
+    "level": 15,
+    "move": "rock-slide"
+   },
+   {
+    "level": 18,
+    "move": "stomping-tantrum"
+   },
+   {
+    "level": 21,
+    "move": "screech"
+   },
+   {
+    "level": 24,
+    "move": "smack-down"
+   },
+   {
+    "level": 27,
+    "move": "crunch"
+   },
+   {
+    "level": 33,
+    "move": "earthquake"
+   },
+   {
+    "level": 37,
+    "move": "stone-edge"
+   },
+   {
+    "level": 42,
+    "move": "thrash"
+   },
+   {
+    "level": 47,
+    "move": "sandstorm"
+   },
+   {
+    "level": 52,
+    "move": "hyper-beam"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "它是令人头痛的宝可梦。 不等进化完成就会利用压缩气体 四处乱飞大闹来纾解压力。",
+  "machineMoves": [
+   "aerial-ace",
+   "body-slam",
+   "brick-break",
+   "bulldoze",
+   "crunch",
+   "curse",
+   "dark-pulse",
+   "dig",
+   "double-edge",
+   "dragon-dance",
+   "earth-power",
+   "earthquake",
+   "endure",
+   "facade",
+   "giga-impact",
+   "helping-hand",
+   "high-horsepower",
+   "hyper-beam",
+   "iron-defense",
+   "iron-head",
+   "lash-out",
+   "mud-shot",
+   "mud-slap",
+   "outrage",
+   "protect",
+   "rain-dance",
+   "rest",
+   "rock-blast",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "scary-face",
+   "sleep-talk",
+   "smack-down",
+   "snarl",
+   "spite",
+   "stealth-rock",
+   "stomping-tantrum",
+   "stone-edge",
+   "substitute",
+   "sunny-day",
+   "take-down",
+   "taunt",
+   "tera-blast"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 248,
+  "key": "tyranitar",
+  "name": {
+   "en": "Tyranitar",
+   "zh": "班基拉斯"
+  },
+  "genus": {
+   "en": "Armor Pokémon",
+   "zh": "铠甲宝可梦"
+  },
+  "types": [
+   "rock",
+   "dark"
+  ],
+  "baseStats": {
+   "hp": 100,
+   "atk": 134,
+   "def": 110,
+   "spa": 95,
+   "spd": 100,
+   "spe": 61
+  },
+  "abilities": [
+   {
+    "id": "sand-stream",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "unnerve",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 270,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 3,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 2,
+  "weightKg": 202,
+  "color": "green",
+  "evolvesFrom": 247,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "dark-pulse"
+   },
+   {
+    "level": 1,
+    "move": "fire-fang"
+   },
+   {
+    "level": 1,
+    "move": "ice-fang"
+   },
+   {
+    "level": 1,
+    "move": "iron-defense"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "payback"
+   },
+   {
+    "level": 1,
+    "move": "rock-throw"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "thunder-fang"
+   },
+   {
+    "level": 9,
+    "move": "bite"
+   },
+   {
+    "level": 12,
+    "move": "scary-face"
+   },
+   {
+    "level": 15,
+    "move": "rock-slide"
+   },
+   {
+    "level": 18,
+    "move": "stomping-tantrum"
+   },
+   {
+    "level": 21,
+    "move": "screech"
+   },
+   {
+    "level": 24,
+    "move": "smack-down"
+   },
+   {
+    "level": 27,
+    "move": "crunch"
+   },
+   {
+    "level": 33,
+    "move": "earthquake"
+   },
+   {
+    "level": 37,
+    "move": "stone-edge"
+   },
+   {
+    "level": 42,
+    "move": "thrash"
+   },
+   {
+    "level": 47,
+    "move": "sandstorm"
+   },
+   {
+    "level": 52,
+    "move": "hyper-beam"
+   },
+   {
+    "level": 59,
+    "move": "giga-impact"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "会在山中徘徊以寻求战斗对手。 但如果遇到的是比自己弱小的对手， 它就会视若无睹地离开。",
+  "machineMoves": [
+   "aerial-ace",
+   "avalanche",
+   "blizzard",
+   "body-press",
+   "body-slam",
+   "breaking-swipe",
+   "brick-break",
+   "bulldoze",
+   "crunch",
+   "curse",
+   "dark-pulse",
+   "dig",
+   "double-edge",
+   "dragon-claw",
+   "dragon-dance",
+   "dragon-pulse",
+   "dragon-tail",
+   "earth-power",
+   "earthquake",
+   "endure",
+   "facade",
+   "fire-blast",
+   "fire-fang",
+   "fire-punch",
+   "flamethrower",
+   "fling",
+   "focus-blast",
+   "focus-punch",
+   "foul-play",
+   "giga-impact",
+   "hard-press",
+   "heavy-slam",
+   "helping-hand",
+   "high-horsepower",
+   "hydro-pump",
+   "hyper-beam",
+   "ice-beam",
+   "ice-fang",
+   "ice-punch",
+   "icy-wind",
+   "iron-defense",
+   "iron-head",
+   "knock-off",
+   "lash-out",
+   "low-kick",
+   "mud-shot",
+   "mud-slap",
+   "muddy-water",
+   "outrage",
+   "power-gem",
+   "protect",
+   "rain-dance",
+   "rest",
+   "roar",
+   "rock-blast",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "scary-face",
+   "shadow-claw",
+   "sleep-talk",
+   "smack-down",
+   "snarl",
+   "spite",
+   "stealth-rock",
+   "stomping-tantrum",
+   "stone-edge",
+   "substitute",
+   "sunny-day",
+   "surf",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thunder",
+   "thunder-fang",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt"
   ],
   "tutorMoves": [],
   "eggMoves": []
@@ -16221,6 +21899,613 @@
   ]
  },
  {
+  "id": 280,
+  "key": "ralts",
+  "name": {
+   "en": "Ralts",
+   "zh": "拉鲁拉丝"
+  },
+  "genus": {
+   "en": "Feeling Pokémon",
+   "zh": "心情宝可梦"
+  },
+  "types": [
+   "psychic",
+   "fairy"
+  ],
+  "baseStats": {
+   "hp": 28,
+   "atk": 25,
+   "def": 25,
+   "spa": 45,
+   "spd": 35,
+   "spe": 40
+  },
+  "abilities": [
+   {
+    "id": "synchronize",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "trace",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "telepathy",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 235,
+  "baseExp": 40,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 1,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.4,
+  "weightKg": 6.6,
+  "color": "white",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 281,
+    "trigger": "level-up",
+    "minLevel": 20
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "disarming-voice"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 3,
+    "move": "double-team"
+   },
+   {
+    "level": 6,
+    "move": "confusion"
+   },
+   {
+    "level": 9,
+    "move": "hypnosis"
+   },
+   {
+    "level": 12,
+    "move": "draining-kiss"
+   },
+   {
+    "level": 15,
+    "move": "teleport"
+   },
+   {
+    "level": 18,
+    "move": "psybeam"
+   },
+   {
+    "level": 21,
+    "move": "life-dew"
+   },
+   {
+    "level": 24,
+    "move": "charm"
+   },
+   {
+    "level": 27,
+    "move": "calm-mind"
+   },
+   {
+    "level": 30,
+    "move": "psychic"
+   },
+   {
+    "level": 33,
+    "move": "heal-pulse"
+   },
+   {
+    "level": 36,
+    "move": "dream-eater"
+   },
+   {
+    "level": 39,
+    "move": "future-sight"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "能敏锐地捕捉人和宝可梦的感情。 感受到敌意后就会躲进暗处。",
+  "machineMoves": [
+   "alluring-voice",
+   "body-slam",
+   "calm-mind",
+   "charge-beam",
+   "charm",
+   "confuse-ray",
+   "dazzling-gleam",
+   "disarming-voice",
+   "draining-kiss",
+   "encore",
+   "endure",
+   "expanding-force",
+   "facade",
+   "fire-punch",
+   "fling",
+   "future-sight",
+   "grass-knot",
+   "helping-hand",
+   "hyper-voice",
+   "ice-punch",
+   "icy-wind",
+   "imprison",
+   "knock-off",
+   "light-screen",
+   "magical-leaf",
+   "metronome",
+   "misty-terrain",
+   "pain-split",
+   "protect",
+   "psybeam",
+   "psych-up",
+   "psychic",
+   "psychic-terrain",
+   "psyshock",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "trick",
+   "trick-room",
+   "will-o-wisp",
+   "zen-headbutt"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "confuse-ray",
+   "destiny-bond",
+   "disable",
+   "knock-off",
+   "mean-look",
+   "memento",
+   "mystical-fire",
+   "shadow-sneak"
+  ]
+ },
+ {
+  "id": 281,
+  "key": "kirlia",
+  "name": {
+   "en": "Kirlia",
+   "zh": "奇鲁莉安"
+  },
+  "genus": {
+   "en": "Emotion Pokémon",
+   "zh": "感情宝可梦"
+  },
+  "types": [
+   "psychic",
+   "fairy"
+  ],
+  "baseStats": {
+   "hp": 38,
+   "atk": 35,
+   "def": 35,
+   "spa": 65,
+   "spd": 55,
+   "spe": 50
+  },
+  "abilities": [
+   {
+    "id": "synchronize",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "trace",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "telepathy",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 120,
+  "baseExp": 97,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 2,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.8,
+  "weightKg": 20.2,
+  "color": "white",
+  "evolvesFrom": 280,
+  "evolutions": [
+   {
+    "to": 282,
+    "trigger": "level-up",
+    "minLevel": 30
+   },
+   {
+    "to": 475,
+    "trigger": "use-item",
+    "item": "dawn-stone",
+    "gender": 2
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "confusion"
+   },
+   {
+    "level": 1,
+    "move": "disarming-voice"
+   },
+   {
+    "level": 1,
+    "move": "double-team"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 9,
+    "move": "hypnosis"
+   },
+   {
+    "level": 12,
+    "move": "draining-kiss"
+   },
+   {
+    "level": 15,
+    "move": "teleport"
+   },
+   {
+    "level": 18,
+    "move": "psybeam"
+   },
+   {
+    "level": 23,
+    "move": "life-dew"
+   },
+   {
+    "level": 28,
+    "move": "charm"
+   },
+   {
+    "level": 33,
+    "move": "calm-mind"
+   },
+   {
+    "level": 38,
+    "move": "psychic"
+   },
+   {
+    "level": 43,
+    "move": "heal-pulse"
+   },
+   {
+    "level": 48,
+    "move": "dream-eater"
+   },
+   {
+    "level": 53,
+    "move": "future-sight"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "当训练家高兴的时候， 奇鲁莉安会充满能量， 开心地转着圈跳舞。",
+  "machineMoves": [
+   "alluring-voice",
+   "body-slam",
+   "calm-mind",
+   "charge-beam",
+   "charm",
+   "confuse-ray",
+   "dazzling-gleam",
+   "disarming-voice",
+   "draining-kiss",
+   "encore",
+   "endure",
+   "expanding-force",
+   "facade",
+   "fire-punch",
+   "fling",
+   "future-sight",
+   "grass-knot",
+   "helping-hand",
+   "hyper-beam",
+   "hyper-voice",
+   "ice-punch",
+   "icy-wind",
+   "imprison",
+   "knock-off",
+   "light-screen",
+   "magical-leaf",
+   "metronome",
+   "misty-terrain",
+   "pain-split",
+   "protect",
+   "psybeam",
+   "psych-up",
+   "psychic",
+   "psychic-terrain",
+   "psyshock",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "trick",
+   "trick-room",
+   "triple-axel",
+   "will-o-wisp",
+   "zen-headbutt"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 282,
+  "key": "gardevoir",
+  "name": {
+   "en": "Gardevoir",
+   "zh": "沙奈朵"
+  },
+  "genus": {
+   "en": "Embrace Pokémon",
+   "zh": "包容宝可梦"
+  },
+  "types": [
+   "psychic",
+   "fairy"
+  ],
+  "baseStats": {
+   "hp": 68,
+   "atk": 65,
+   "def": 65,
+   "spa": 125,
+   "spd": 115,
+   "spe": 80
+  },
+  "abilities": [
+   {
+    "id": "synchronize",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "trace",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "telepathy",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 233,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 3,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.6,
+  "weightKg": 48.4,
+  "color": "white",
+  "evolvesFrom": 281,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "dazzling-gleam"
+   },
+   {
+    "level": 1,
+    "move": "charm"
+   },
+   {
+    "level": 1,
+    "move": "confusion"
+   },
+   {
+    "level": 1,
+    "move": "disarming-voice"
+   },
+   {
+    "level": 1,
+    "move": "double-team"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "heal-pulse"
+   },
+   {
+    "level": 1,
+    "move": "healing-wish"
+   },
+   {
+    "level": 1,
+    "move": "misty-terrain"
+   },
+   {
+    "level": 1,
+    "move": "mystical-fire"
+   },
+   {
+    "level": 9,
+    "move": "hypnosis"
+   },
+   {
+    "level": 12,
+    "move": "draining-kiss"
+   },
+   {
+    "level": 15,
+    "move": "teleport"
+   },
+   {
+    "level": 18,
+    "move": "psybeam"
+   },
+   {
+    "level": 23,
+    "move": "life-dew"
+   },
+   {
+    "level": 28,
+    "move": "wish"
+   },
+   {
+    "level": 35,
+    "move": "calm-mind"
+   },
+   {
+    "level": 42,
+    "move": "psychic"
+   },
+   {
+    "level": 49,
+    "move": "moonblast"
+   },
+   {
+    "level": 56,
+    "move": "dream-eater"
+   },
+   {
+    "level": 63,
+    "move": "future-sight"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "有着预知未来的能力。 在保护训练家的时候， 会发挥出最强的力量。",
+  "machineMoves": [
+   "alluring-voice",
+   "aura-sphere",
+   "body-slam",
+   "calm-mind",
+   "charge-beam",
+   "charm",
+   "confuse-ray",
+   "dazzling-gleam",
+   "disarming-voice",
+   "draining-kiss",
+   "encore",
+   "endure",
+   "energy-ball",
+   "expanding-force",
+   "facade",
+   "fire-punch",
+   "fling",
+   "focus-blast",
+   "future-sight",
+   "giga-impact",
+   "grass-knot",
+   "gravity",
+   "helping-hand",
+   "hyper-beam",
+   "hyper-voice",
+   "ice-punch",
+   "icy-wind",
+   "imprison",
+   "knock-off",
+   "light-screen",
+   "magical-leaf",
+   "metronome",
+   "misty-explosion",
+   "misty-terrain",
+   "night-shade",
+   "pain-split",
+   "protect",
+   "psybeam",
+   "psych-up",
+   "psychic",
+   "psychic-noise",
+   "psychic-terrain",
+   "psyshock",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "trick",
+   "trick-room",
+   "triple-axel",
+   "vacuum-wave",
+   "will-o-wisp",
+   "zen-headbutt"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
   "id": 283,
   "key": "surskit",
   "name": {
@@ -16891,6 +23176,215 @@
   ],
   "tutorMoves": [],
   "eggMoves": []
+ },
+ {
+  "id": 299,
+  "key": "nosepass",
+  "name": {
+   "en": "Nosepass",
+   "zh": "朝北鼻"
+  },
+  "genus": {
+   "en": "Compass Pokémon",
+   "zh": "罗盘宝可梦"
+  },
+  "types": [
+   "rock"
+  ],
+  "baseStats": {
+   "hp": 30,
+   "atk": 45,
+   "def": 135,
+   "spa": 45,
+   "spd": 90,
+   "spe": 30
+  },
+  "abilities": [
+   {
+    "id": "sturdy",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "magnet-pull",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "sand-force",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 255,
+  "baseExp": 75,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 1,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1,
+  "weightKg": 97,
+  "color": "gray",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 476,
+    "trigger": "level-up"
+   },
+   {
+    "to": 476,
+    "trigger": "level-up"
+   },
+   {
+    "to": 476,
+    "trigger": "level-up"
+   },
+   {
+    "to": 476,
+    "trigger": "level-up"
+   },
+   {
+    "to": 476,
+    "trigger": "level-up"
+   },
+   {
+    "to": 476,
+    "trigger": "use-item",
+    "item": "thunder-stone"
+   },
+   {
+    "to": 476,
+    "trigger": "level-up"
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 4,
+    "move": "harden"
+   },
+   {
+    "level": 7,
+    "move": "block"
+   },
+   {
+    "level": 10,
+    "move": "rock-throw"
+   },
+   {
+    "level": 13,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 16,
+    "move": "rest"
+   },
+   {
+    "level": 19,
+    "move": "spark"
+   },
+   {
+    "level": 22,
+    "move": "rock-slide"
+   },
+   {
+    "level": 25,
+    "move": "power-gem"
+   },
+   {
+    "level": 28,
+    "move": "rock-blast"
+   },
+   {
+    "level": 31,
+    "move": "discharge"
+   },
+   {
+    "level": 34,
+    "move": "sandstorm"
+   },
+   {
+    "level": 37,
+    "move": "earth-power"
+   },
+   {
+    "level": 40,
+    "move": "stone-edge"
+   },
+   {
+    "level": 43,
+    "move": "lock-on"
+   },
+   {
+    "level": 43,
+    "move": "zap-cannon"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "朝北鼻鼻子上的磁铁绝对不会失灵， 所以是训练家旅行时的良伴。",
+  "machineMoves": [
+   "body-press",
+   "body-slam",
+   "bulldoze",
+   "curse",
+   "dazzling-gleam",
+   "double-edge",
+   "earth-power",
+   "earthquake",
+   "endure",
+   "facade",
+   "fire-punch",
+   "flash-cannon",
+   "gravity",
+   "heavy-slam",
+   "helping-hand",
+   "high-horsepower",
+   "ice-punch",
+   "iron-defense",
+   "meteor-beam",
+   "pain-split",
+   "power-gem",
+   "protect",
+   "rest",
+   "rock-blast",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "sleep-talk",
+   "smack-down",
+   "stealth-rock",
+   "steel-beam",
+   "stomping-tantrum",
+   "stone-edge",
+   "substitute",
+   "sunny-day",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thunder",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "volt-switch"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "double-edge",
+   "head-smash",
+   "rollout",
+   "wide-guard"
+  ]
  },
  {
   "id": 315,
@@ -18391,6 +24885,1234 @@
   "eggMoves": []
  },
  {
+  "id": 355,
+  "key": "duskull",
+  "name": {
+   "en": "Duskull",
+   "zh": "夜巡灵"
+  },
+  "genus": {
+   "en": "Requiem Pokémon",
+   "zh": "渡魂宝可梦"
+  },
+  "types": [
+   "ghost"
+  ],
+  "baseStats": {
+   "hp": 20,
+   "atk": 40,
+   "def": 90,
+   "spa": 30,
+   "spd": 90,
+   "spe": 25
+  },
+  "abilities": [
+   {
+    "id": "levitate",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "frisk",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 190,
+  "baseExp": 59,
+  "growthRate": "fast",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 1,
+   "spe": 0
+  },
+  "heightM": 0.8,
+  "weightKg": 15,
+  "color": "black",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 356,
+    "trigger": "level-up",
+    "minLevel": 37
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "astonish"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 4,
+    "move": "disable"
+   },
+   {
+    "level": 8,
+    "move": "shadow-sneak"
+   },
+   {
+    "level": 12,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 16,
+    "move": "night-shade"
+   },
+   {
+    "level": 20,
+    "move": "payback"
+   },
+   {
+    "level": 24,
+    "move": "will-o-wisp"
+   },
+   {
+    "level": 28,
+    "move": "mean-look"
+   },
+   {
+    "level": 32,
+    "move": "hex"
+   },
+   {
+    "level": 36,
+    "move": "curse"
+   },
+   {
+    "level": 40,
+    "move": "shadow-ball"
+   },
+   {
+    "level": 44,
+    "move": "future-sight"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "据说，一旦发现不听话的孩子， 就会在深夜将其带去某个地方。",
+  "machineMoves": [
+   "blizzard",
+   "calm-mind",
+   "charge-beam",
+   "confuse-ray",
+   "curse",
+   "dark-pulse",
+   "endure",
+   "facade",
+   "fling",
+   "future-sight",
+   "gravity",
+   "haze",
+   "helping-hand",
+   "hex",
+   "ice-beam",
+   "icy-wind",
+   "imprison",
+   "leech-life",
+   "night-shade",
+   "pain-split",
+   "phantom-force",
+   "poltergeist",
+   "protect",
+   "psych-up",
+   "psychic",
+   "rain-dance",
+   "rest",
+   "shadow-ball",
+   "skill-swap",
+   "skitter-smack",
+   "sleep-talk",
+   "spite",
+   "substitute",
+   "sunny-day",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "trick",
+   "trick-room",
+   "will-o-wisp"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "haze",
+   "memento",
+   "pain-split"
+  ]
+ },
+ {
+  "id": 356,
+  "key": "dusclops",
+  "name": {
+   "en": "Dusclops",
+   "zh": "彷徨夜灵"
+  },
+  "genus": {
+   "en": "Beckon Pokémon",
+   "zh": "招手宝可梦"
+  },
+  "types": [
+   "ghost"
+  ],
+  "baseStats": {
+   "hp": 40,
+   "atk": 70,
+   "def": 130,
+   "spa": 60,
+   "spd": 130,
+   "spe": 25
+  },
+  "abilities": [
+   {
+    "id": "pressure",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "frisk",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 90,
+  "baseExp": 159,
+  "growthRate": "fast",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 1,
+   "spa": 0,
+   "spd": 1,
+   "spe": 0
+  },
+  "heightM": 1.6,
+  "weightKg": 30.6,
+  "color": "black",
+  "evolvesFrom": 355,
+  "evolutions": [
+   {
+    "to": 477,
+    "trigger": "trade",
+    "heldItem": "reaper-cloth"
+   }
+  ],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "shadow-punch"
+   },
+   {
+    "level": 1,
+    "move": "astonish"
+   },
+   {
+    "level": 1,
+    "move": "bind"
+   },
+   {
+    "level": 1,
+    "move": "disable"
+   },
+   {
+    "level": 1,
+    "move": "fire-punch"
+   },
+   {
+    "level": 1,
+    "move": "gravity"
+   },
+   {
+    "level": 1,
+    "move": "ice-punch"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "shadow-sneak"
+   },
+   {
+    "level": 1,
+    "move": "thunder-punch"
+   },
+   {
+    "level": 12,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 16,
+    "move": "night-shade"
+   },
+   {
+    "level": 20,
+    "move": "payback"
+   },
+   {
+    "level": 24,
+    "move": "will-o-wisp"
+   },
+   {
+    "level": 28,
+    "move": "mean-look"
+   },
+   {
+    "level": 32,
+    "move": "hex"
+   },
+   {
+    "level": 36,
+    "move": "curse"
+   },
+   {
+    "level": 42,
+    "move": "shadow-ball"
+   },
+   {
+    "level": 48,
+    "move": "future-sight"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "身体内部是空的。 只要一张开嘴就会像 黑洞一样吸入所有东西",
+  "machineMoves": [
+   "blizzard",
+   "body-slam",
+   "brick-break",
+   "calm-mind",
+   "charge-beam",
+   "confuse-ray",
+   "curse",
+   "dark-pulse",
+   "endure",
+   "facade",
+   "fire-punch",
+   "fling",
+   "focus-punch",
+   "future-sight",
+   "giga-impact",
+   "gravity",
+   "haze",
+   "helping-hand",
+   "hex",
+   "hyper-beam",
+   "ice-beam",
+   "ice-punch",
+   "icy-wind",
+   "imprison",
+   "leech-life",
+   "metronome",
+   "night-shade",
+   "pain-split",
+   "phantom-force",
+   "poltergeist",
+   "protect",
+   "psych-up",
+   "psychic",
+   "rain-dance",
+   "rest",
+   "shadow-ball",
+   "skill-swap",
+   "skitter-smack",
+   "sleep-talk",
+   "spite",
+   "substitute",
+   "sunny-day",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder-punch",
+   "trick",
+   "trick-room",
+   "will-o-wisp"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "haze",
+   "memento",
+   "pain-split"
+  ]
+ },
+ {
+  "id": 361,
+  "key": "snorunt",
+  "name": {
+   "en": "Snorunt",
+   "zh": "雪童子"
+  },
+  "genus": {
+   "en": "Snow Hat Pokémon",
+   "zh": "雪笠宝可梦"
+  },
+  "types": [
+   "ice"
+  ],
+  "baseStats": {
+   "hp": 50,
+   "atk": 50,
+   "def": 50,
+   "spa": 50,
+   "spd": 50,
+   "spe": 50
+  },
+  "abilities": [
+   {
+    "id": "inner-focus",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "ice-body",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "moody",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 190,
+  "baseExp": 60,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 1,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.7,
+  "weightKg": 16.8,
+  "color": "gray",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 362,
+    "trigger": "level-up",
+    "minLevel": 42
+   },
+   {
+    "to": 478,
+    "trigger": "use-item",
+    "item": "dawn-stone",
+    "gender": 1
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "astonish"
+   },
+   {
+    "level": 1,
+    "move": "headbutt"
+   },
+   {
+    "level": 1,
+    "move": "powder-snow"
+   },
+   {
+    "level": 5,
+    "move": "leer"
+   },
+   {
+    "level": 10,
+    "move": "double-team"
+   },
+   {
+    "level": 15,
+    "move": "ice-shard"
+   },
+   {
+    "level": 20,
+    "move": "protect"
+   },
+   {
+    "level": 25,
+    "move": "icy-wind"
+   },
+   {
+    "level": 30,
+    "move": "frost-breath"
+   },
+   {
+    "level": 35,
+    "move": "bite"
+   },
+   {
+    "level": 40,
+    "move": "ice-fang"
+   },
+   {
+    "level": 45,
+    "move": "snowscape"
+   },
+   {
+    "level": 50,
+    "move": "weather-ball"
+   },
+   {
+    "level": 55,
+    "move": "crunch"
+   },
+   {
+    "level": 60,
+    "move": "blizzard"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "等发觉时，已在阿罗拉增多起来。 据说，雪童子栖息过的家庭 会子孙满堂家族繁荣。",
+  "machineMoves": [
+   "avalanche",
+   "blizzard",
+   "body-slam",
+   "chilling-water",
+   "crunch",
+   "endure",
+   "facade",
+   "fake-tears",
+   "helping-hand",
+   "hex",
+   "ice-beam",
+   "ice-fang",
+   "ice-spinner",
+   "icicle-spear",
+   "icy-wind",
+   "light-screen",
+   "protect",
+   "rain-dance",
+   "rest",
+   "shadow-ball",
+   "sleep-talk",
+   "snowscape",
+   "spikes",
+   "spite",
+   "substitute",
+   "take-down",
+   "tera-blast",
+   "trailblaze",
+   "water-pulse",
+   "weather-ball"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "block",
+   "disable",
+   "icicle-crash",
+   "rollout",
+   "switcheroo"
+  ]
+ },
+ {
+  "id": 362,
+  "key": "glalie",
+  "name": {
+   "en": "Glalie",
+   "zh": "冰鬼护"
+  },
+  "genus": {
+   "en": "Face Pokémon",
+   "zh": "脸面宝可梦"
+  },
+  "types": [
+   "ice"
+  ],
+  "baseStats": {
+   "hp": 80,
+   "atk": 80,
+   "def": 80,
+   "spa": 80,
+   "spd": 80,
+   "spe": 80
+  },
+  "abilities": [
+   {
+    "id": "inner-focus",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "ice-body",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "moody",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 75,
+  "baseExp": 168,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 2,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.5,
+  "weightKg": 256.5,
+  "color": "gray",
+  "evolvesFrom": 361,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "freeze-dry"
+   },
+   {
+    "level": 1,
+    "move": "astonish"
+   },
+   {
+    "level": 1,
+    "move": "double-team"
+   },
+   {
+    "level": 1,
+    "move": "headbutt"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "powder-snow"
+   },
+   {
+    "level": 1,
+    "move": "sheer-cold"
+   },
+   {
+    "level": 15,
+    "move": "ice-shard"
+   },
+   {
+    "level": 20,
+    "move": "protect"
+   },
+   {
+    "level": 25,
+    "move": "icy-wind"
+   },
+   {
+    "level": 30,
+    "move": "frost-breath"
+   },
+   {
+    "level": 35,
+    "move": "bite"
+   },
+   {
+    "level": 40,
+    "move": "ice-fang"
+   },
+   {
+    "level": 47,
+    "move": "snowscape"
+   },
+   {
+    "level": 54,
+    "move": "weather-ball"
+   },
+   {
+    "level": 61,
+    "move": "crunch"
+   },
+   {
+    "level": 68,
+    "move": "blizzard"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "据说是即将登顶雪山， 却罹难的登山家的遗憾， 附在岩石上诞生而成。",
+  "machineMoves": [
+   "avalanche",
+   "blizzard",
+   "body-slam",
+   "bulldoze",
+   "chilling-water",
+   "crunch",
+   "dark-pulse",
+   "earthquake",
+   "endure",
+   "facade",
+   "fake-tears",
+   "foul-play",
+   "giga-impact",
+   "gyro-ball",
+   "helping-hand",
+   "hex",
+   "hyper-beam",
+   "ice-beam",
+   "ice-fang",
+   "ice-spinner",
+   "icicle-spear",
+   "icy-wind",
+   "iron-head",
+   "light-screen",
+   "protect",
+   "rain-dance",
+   "rest",
+   "scary-face",
+   "shadow-ball",
+   "sleep-talk",
+   "snowscape",
+   "spikes",
+   "spite",
+   "substitute",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "trailblaze",
+   "water-pulse",
+   "weather-ball"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 363,
+  "key": "spheal",
+  "name": {
+   "en": "Spheal",
+   "zh": "海豹球"
+  },
+  "genus": {
+   "en": "Clap Pokémon",
+   "zh": "拍手宝可梦"
+  },
+  "types": [
+   "ice",
+   "water"
+  ],
+  "baseStats": {
+   "hp": 70,
+   "atk": 40,
+   "def": 50,
+   "spa": 55,
+   "spd": 50,
+   "spe": 25
+  },
+  "abilities": [
+   {
+    "id": "thick-fat",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "ice-body",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "oblivious",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 255,
+  "baseExp": 58,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 1,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.8,
+  "weightKg": 39.5,
+  "color": "blue",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 364,
+    "trigger": "level-up",
+    "minLevel": 32
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "defense-curl"
+   },
+   {
+    "level": 1,
+    "move": "rollout"
+   },
+   {
+    "level": 4,
+    "move": "growl"
+   },
+   {
+    "level": 8,
+    "move": "water-gun"
+   },
+   {
+    "level": 12,
+    "move": "powder-snow"
+   },
+   {
+    "level": 16,
+    "move": "rest"
+   },
+   {
+    "level": 20,
+    "move": "snore"
+   },
+   {
+    "level": 24,
+    "move": "brine"
+   },
+   {
+    "level": 28,
+    "move": "aurora-beam"
+   },
+   {
+    "level": 33,
+    "move": "encore"
+   },
+   {
+    "level": 36,
+    "move": "body-slam"
+   },
+   {
+    "level": 40,
+    "move": "surf"
+   },
+   {
+    "level": 44,
+    "move": "blizzard"
+   },
+   {
+    "level": 48,
+    "move": "hail"
+   },
+   {
+    "level": 52,
+    "move": "sheer-cold"
+   }
+  ],
+  "learnsetVersion": "sword-shield",
+  "flavor": "圆溜溜的身体 被厚厚的脂肪包裹着， 滚起来比走路要快。",
+  "machineMoves": [
+   "attract",
+   "blizzard",
+   "body-slam",
+   "brine",
+   "bulldoze",
+   "dive",
+   "earthquake",
+   "encore",
+   "endure",
+   "facade",
+   "hail",
+   "ice-beam",
+   "icy-wind",
+   "iron-tail",
+   "protect",
+   "rain-dance",
+   "rest",
+   "rock-slide",
+   "rock-tomb",
+   "round",
+   "sleep-talk",
+   "snore",
+   "substitute",
+   "surf",
+   "waterfall",
+   "whirlpool"
+  ],
+  "tutorMoves": [
+   "steel-roller"
+  ],
+  "eggMoves": [
+   "aqua-ring",
+   "belly-drum",
+   "curse",
+   "fissure",
+   "spit-up",
+   "stockpile",
+   "swallow",
+   "water-pulse",
+   "yawn"
+  ]
+ },
+ {
+  "id": 364,
+  "key": "sealeo",
+  "name": {
+   "en": "Sealeo",
+   "zh": "海魔狮"
+  },
+  "genus": {
+   "en": "Ball Roll Pokémon",
+   "zh": "滚球宝可梦"
+  },
+  "types": [
+   "ice",
+   "water"
+  ],
+  "baseStats": {
+   "hp": 90,
+   "atk": 60,
+   "def": 70,
+   "spa": 75,
+   "spd": 70,
+   "spe": 45
+  },
+  "abilities": [
+   {
+    "id": "thick-fat",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "ice-body",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "oblivious",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 120,
+  "baseExp": 144,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 2,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.1,
+  "weightKg": 87.6,
+  "color": "blue",
+  "evolvesFrom": 363,
+  "evolutions": [
+   {
+    "to": 365,
+    "trigger": "level-up",
+    "minLevel": 44
+   }
+  ],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "swagger"
+   },
+   {
+    "level": 1,
+    "move": "defense-curl"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "rollout"
+   },
+   {
+    "level": 1,
+    "move": "swagger"
+   },
+   {
+    "level": 1,
+    "move": "water-gun"
+   },
+   {
+    "level": 12,
+    "move": "powder-snow"
+   },
+   {
+    "level": 16,
+    "move": "rest"
+   },
+   {
+    "level": 20,
+    "move": "snore"
+   },
+   {
+    "level": 24,
+    "move": "brine"
+   },
+   {
+    "level": 28,
+    "move": "aurora-beam"
+   },
+   {
+    "level": 35,
+    "move": "encore"
+   },
+   {
+    "level": 40,
+    "move": "body-slam"
+   },
+   {
+    "level": 46,
+    "move": "surf"
+   },
+   {
+    "level": 52,
+    "move": "blizzard"
+   },
+   {
+    "level": 58,
+    "move": "hail"
+   },
+   {
+    "level": 64,
+    "move": "sheer-cold"
+   }
+  ],
+  "learnsetVersion": "sword-shield",
+  "flavor": "在浮冰上生活。能一边游泳 一边分辨猎物的味道，找到 对方的位置并将其捕获。",
+  "machineMoves": [
+   "attract",
+   "blizzard",
+   "body-slam",
+   "brine",
+   "bulldoze",
+   "dive",
+   "earthquake",
+   "encore",
+   "endure",
+   "facade",
+   "hail",
+   "ice-beam",
+   "icicle-spear",
+   "icy-wind",
+   "iron-tail",
+   "protect",
+   "rain-dance",
+   "rest",
+   "rock-slide",
+   "rock-tomb",
+   "round",
+   "sleep-talk",
+   "snore",
+   "substitute",
+   "surf",
+   "waterfall",
+   "whirlpool"
+  ],
+  "tutorMoves": [
+   "steel-roller"
+  ],
+  "eggMoves": []
+ },
+ {
+  "id": 365,
+  "key": "walrein",
+  "name": {
+   "en": "Walrein",
+   "zh": "帝牙海狮"
+  },
+  "genus": {
+   "en": "Ice Break Pokémon",
+   "zh": "破冰宝可梦"
+  },
+  "types": [
+   "ice",
+   "water"
+  ],
+  "baseStats": {
+   "hp": 110,
+   "atk": 80,
+   "def": 90,
+   "spa": 95,
+   "spd": 90,
+   "spe": 65
+  },
+  "abilities": [
+   {
+    "id": "thick-fat",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "ice-body",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "oblivious",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 239,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 3,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.4,
+  "weightKg": 150.6,
+  "color": "blue",
+  "evolvesFrom": 364,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "crunch"
+   },
+   {
+    "level": 1,
+    "move": "defense-curl"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "ice-fang"
+   },
+   {
+    "level": 1,
+    "move": "rollout"
+   },
+   {
+    "level": 1,
+    "move": "swagger"
+   },
+   {
+    "level": 1,
+    "move": "water-gun"
+   },
+   {
+    "level": 12,
+    "move": "powder-snow"
+   },
+   {
+    "level": 16,
+    "move": "rest"
+   },
+   {
+    "level": 20,
+    "move": "snore"
+   },
+   {
+    "level": 24,
+    "move": "brine"
+   },
+   {
+    "level": 28,
+    "move": "aurora-beam"
+   },
+   {
+    "level": 35,
+    "move": "encore"
+   },
+   {
+    "level": 40,
+    "move": "body-slam"
+   },
+   {
+    "level": 48,
+    "move": "surf"
+   },
+   {
+    "level": 56,
+    "move": "blizzard"
+   },
+   {
+    "level": 64,
+    "move": "hail"
+   },
+   {
+    "level": 72,
+    "move": "sheer-cold"
+   }
+  ],
+  "learnsetVersion": "sword-shield",
+  "flavor": "２、３０只一起群居。 受到敌人袭击时， 首领会拼命保护族群。",
+  "machineMoves": [
+   "attract",
+   "avalanche",
+   "blizzard",
+   "body-press",
+   "body-slam",
+   "brine",
+   "bulldoze",
+   "crunch",
+   "dive",
+   "earthquake",
+   "encore",
+   "endure",
+   "facade",
+   "giga-impact",
+   "hail",
+   "heavy-slam",
+   "hydro-pump",
+   "hyper-beam",
+   "ice-beam",
+   "ice-fang",
+   "icicle-spear",
+   "icy-wind",
+   "iron-head",
+   "iron-tail",
+   "liquidation",
+   "protect",
+   "rain-dance",
+   "rest",
+   "rock-slide",
+   "rock-tomb",
+   "round",
+   "sleep-talk",
+   "snore",
+   "stomping-tantrum",
+   "substitute",
+   "surf",
+   "swords-dance",
+   "waterfall",
+   "whirlpool"
+  ],
+  "tutorMoves": [
+   "steel-roller"
+  ],
+  "eggMoves": []
+ },
+ {
   "id": 377,
   "key": "regirock",
   "name": {
@@ -19004,6 +26726,516 @@
   "eggMoves": []
  },
  {
+  "id": 403,
+  "key": "shinx",
+  "name": {
+   "en": "Shinx",
+   "zh": "小猫怪"
+  },
+  "genus": {
+   "en": "Flash Pokémon",
+   "zh": "闪光宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 45,
+   "atk": 65,
+   "def": 34,
+   "spa": 40,
+   "spd": 34,
+   "spe": 45
+  },
+  "abilities": [
+   {
+    "id": "rivalry",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "intimidate",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "guts",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 235,
+  "baseExp": 53,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 1,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.5,
+  "weightKg": 9.5,
+  "color": "blue",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 404,
+    "trigger": "level-up",
+    "minLevel": 15
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 4,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 8,
+    "move": "charge"
+   },
+   {
+    "level": 12,
+    "move": "bite"
+   },
+   {
+    "level": 16,
+    "move": "spark"
+   },
+   {
+    "level": 20,
+    "move": "roar"
+   },
+   {
+    "level": 24,
+    "move": "volt-switch"
+   },
+   {
+    "level": 28,
+    "move": "scary-face"
+   },
+   {
+    "level": 32,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 36,
+    "move": "crunch"
+   },
+   {
+    "level": 40,
+    "move": "discharge"
+   },
+   {
+    "level": 44,
+    "move": "swagger"
+   },
+   {
+    "level": 48,
+    "move": "wild-charge"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "靠伸缩肌肉来制造电能。 如果看到它兴奋地浑身颤抖， 就说明它正在猛烈发电。",
+  "machineMoves": [
+   "charge",
+   "charge-beam",
+   "confuse-ray",
+   "crunch",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "fake-tears",
+   "fire-fang",
+   "helping-hand",
+   "ice-fang",
+   "light-screen",
+   "play-rough",
+   "protect",
+   "psychic-fangs",
+   "rain-dance",
+   "rest",
+   "roar",
+   "scary-face",
+   "sleep-talk",
+   "snarl",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-fang",
+   "thunder-wave",
+   "thunderbolt",
+   "trailblaze",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "baby-doll-eyes",
+   "double-kick",
+   "howl",
+   "night-slash",
+   "quick-attack",
+   "shock-wave",
+   "take-down"
+  ]
+ },
+ {
+  "id": 404,
+  "key": "luxio",
+  "name": {
+   "en": "Luxio",
+   "zh": "勒克猫"
+  },
+  "genus": {
+   "en": "Spark Pokémon",
+   "zh": "电光宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 60,
+   "atk": 85,
+   "def": 49,
+   "spa": 60,
+   "spd": 49,
+   "spe": 60
+  },
+  "abilities": [
+   {
+    "id": "rivalry",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "intimidate",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "guts",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 120,
+  "baseExp": 127,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 100,
+  "evYield": {
+   "hp": 0,
+   "atk": 2,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.9,
+  "weightKg": 30.5,
+  "color": "blue",
+  "evolvesFrom": 403,
+  "evolutions": [
+   {
+    "to": 405,
+    "trigger": "level-up",
+    "minLevel": 30
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "charge"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 12,
+    "move": "bite"
+   },
+   {
+    "level": 18,
+    "move": "spark"
+   },
+   {
+    "level": 24,
+    "move": "roar"
+   },
+   {
+    "level": 31,
+    "move": "volt-switch"
+   },
+   {
+    "level": 36,
+    "move": "scary-face"
+   },
+   {
+    "level": 42,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 48,
+    "move": "crunch"
+   },
+   {
+    "level": 54,
+    "move": "discharge"
+   },
+   {
+    "level": 60,
+    "move": "swagger"
+   },
+   {
+    "level": 68,
+    "move": "wild-charge"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "当把尾巴和伙伴连接在一起时， 可以分享到对方的电能， 从而释放出更加强力的电击。",
+  "machineMoves": [
+   "charge",
+   "charge-beam",
+   "confuse-ray",
+   "crunch",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "fake-tears",
+   "fire-fang",
+   "helping-hand",
+   "ice-fang",
+   "light-screen",
+   "play-rough",
+   "protect",
+   "psychic-fangs",
+   "rain-dance",
+   "rest",
+   "roar",
+   "scary-face",
+   "sleep-talk",
+   "snarl",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-fang",
+   "thunder-wave",
+   "thunderbolt",
+   "trailblaze",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 405,
+  "key": "luxray",
+  "name": {
+   "en": "Luxray",
+   "zh": "伦琴猫"
+  },
+  "genus": {
+   "en": "Gleam Eyes Pokémon",
+   "zh": "目光宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 80,
+   "atk": 120,
+   "def": 79,
+   "spa": 95,
+   "spd": 79,
+   "spe": 70
+  },
+  "abilities": [
+   {
+    "id": "rivalry",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "intimidate",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "guts",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 235,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 3,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.4,
+  "weightKg": 42,
+  "color": "blue",
+  "evolvesFrom": 404,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "charge"
+   },
+   {
+    "level": 1,
+    "move": "electric-terrain"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 12,
+    "move": "bite"
+   },
+   {
+    "level": 18,
+    "move": "spark"
+   },
+   {
+    "level": 24,
+    "move": "roar"
+   },
+   {
+    "level": 33,
+    "move": "volt-switch"
+   },
+   {
+    "level": 40,
+    "move": "scary-face"
+   },
+   {
+    "level": 48,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 56,
+    "move": "crunch"
+   },
+   {
+    "level": 64,
+    "move": "discharge"
+   },
+   {
+    "level": 72,
+    "move": "swagger"
+   },
+   {
+    "level": 80,
+    "move": "wild-charge"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "拥有透视能力的宝可梦。 能够立刻发现身处于 厚厚墙壁另一侧的猎物。",
+  "machineMoves": [
+   "agility",
+   "body-slam",
+   "charge",
+   "charge-beam",
+   "confuse-ray",
+   "crunch",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "fake-tears",
+   "fire-fang",
+   "giga-impact",
+   "helping-hand",
+   "hyper-beam",
+   "ice-fang",
+   "light-screen",
+   "play-rough",
+   "protect",
+   "psychic-fangs",
+   "rain-dance",
+   "rest",
+   "roar",
+   "scary-face",
+   "sleep-talk",
+   "snarl",
+   "substitute",
+   "sunny-day",
+   "supercell-slam",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "thief",
+   "throat-chop",
+   "thunder",
+   "thunder-fang",
+   "thunder-wave",
+   "thunderbolt",
+   "trailblaze",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
   "id": 406,
   "key": "budew",
   "name": {
@@ -19313,6 +27545,1720 @@
   "eggMoves": []
  },
  {
+  "id": 425,
+  "key": "drifloon",
+  "name": {
+   "en": "Drifloon",
+   "zh": "飘飘球"
+  },
+  "genus": {
+   "en": "Balloon Pokémon",
+   "zh": "气球宝可梦"
+  },
+  "types": [
+   "ghost",
+   "flying"
+  ],
+  "baseStats": {
+   "hp": 90,
+   "atk": 50,
+   "def": 34,
+   "spa": 60,
+   "spd": 44,
+   "spe": 70
+  },
+  "abilities": [
+   {
+    "id": "aftermath",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "unburden",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "flare-boost",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 125,
+  "baseExp": 70,
+  "growthRate": "fast-then-very-slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 1,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.4,
+  "weightKg": 1.2,
+  "color": "purple",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 426,
+    "trigger": "level-up",
+    "minLevel": 28
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "astonish"
+   },
+   {
+    "level": 1,
+    "move": "minimize"
+   },
+   {
+    "level": 4,
+    "move": "gust"
+   },
+   {
+    "level": 8,
+    "move": "focus-energy"
+   },
+   {
+    "level": 12,
+    "move": "payback"
+   },
+   {
+    "level": 16,
+    "move": "hex"
+   },
+   {
+    "level": 20,
+    "move": "shadow-ball"
+   },
+   {
+    "level": 24,
+    "move": "spit-up"
+   },
+   {
+    "level": 24,
+    "move": "stockpile"
+   },
+   {
+    "level": 24,
+    "move": "swallow"
+   },
+   {
+    "level": 29,
+    "move": "self-destruct"
+   },
+   {
+    "level": 32,
+    "move": "destiny-bond"
+   },
+   {
+    "level": 36,
+    "move": "baton-pass"
+   },
+   {
+    "level": 40,
+    "move": "tailwind"
+   },
+   {
+    "level": 44,
+    "move": "explosion"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "据说会牵着年幼孩子的手， 将其带去另一个世界。 不喜欢身体重的孩子。",
+  "machineMoves": [
+   "acrobatics",
+   "aerial-ace",
+   "air-cutter",
+   "amnesia",
+   "baton-pass",
+   "calm-mind",
+   "curse",
+   "endure",
+   "facade",
+   "fly",
+   "gyro-ball",
+   "haze",
+   "helping-hand",
+   "hex",
+   "icy-wind",
+   "imprison",
+   "knock-off",
+   "night-shade",
+   "pain-split",
+   "phantom-force",
+   "protect",
+   "psybeam",
+   "psychic",
+   "rain-dance",
+   "rest",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "spite",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "tailwind",
+   "temper-flare",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "trick",
+   "trick-room",
+   "weather-ball",
+   "will-o-wisp"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "clear-smog",
+   "defog",
+   "disable",
+   "haze",
+   "hypnosis",
+   "memento"
+  ]
+ },
+ {
+  "id": 426,
+  "key": "drifblim",
+  "name": {
+   "en": "Drifblim",
+   "zh": "随风球"
+  },
+  "genus": {
+   "en": "Blimp Pokémon",
+   "zh": "热气球宝可梦"
+  },
+  "types": [
+   "ghost",
+   "flying"
+  ],
+  "baseStats": {
+   "hp": 150,
+   "atk": 80,
+   "def": 44,
+   "spa": 90,
+   "spd": 54,
+   "spe": 80
+  },
+  "abilities": [
+   {
+    "id": "aftermath",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "unburden",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "flare-boost",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 60,
+  "baseExp": 174,
+  "growthRate": "fast-then-very-slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 2,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.2,
+  "weightKg": 15,
+  "color": "purple",
+  "evolvesFrom": 425,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "phantom-force"
+   },
+   {
+    "level": 1,
+    "move": "astonish"
+   },
+   {
+    "level": 1,
+    "move": "focus-energy"
+   },
+   {
+    "level": 1,
+    "move": "gust"
+   },
+   {
+    "level": 1,
+    "move": "minimize"
+   },
+   {
+    "level": 1,
+    "move": "strength-sap"
+   },
+   {
+    "level": 12,
+    "move": "payback"
+   },
+   {
+    "level": 16,
+    "move": "hex"
+   },
+   {
+    "level": 20,
+    "move": "shadow-ball"
+   },
+   {
+    "level": 24,
+    "move": "spit-up"
+   },
+   {
+    "level": 24,
+    "move": "stockpile"
+   },
+   {
+    "level": 24,
+    "move": "swallow"
+   },
+   {
+    "level": 31,
+    "move": "self-destruct"
+   },
+   {
+    "level": 36,
+    "move": "destiny-bond"
+   },
+   {
+    "level": 42,
+    "move": "baton-pass"
+   },
+   {
+    "level": 48,
+    "move": "tailwind"
+   },
+   {
+    "level": 54,
+    "move": "explosion"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "曾经发生过乘着随风球 外出旅行的男人就这么 行踪不明的事件。",
+  "machineMoves": [
+   "acrobatics",
+   "aerial-ace",
+   "air-cutter",
+   "air-slash",
+   "amnesia",
+   "baton-pass",
+   "body-slam",
+   "calm-mind",
+   "curse",
+   "endure",
+   "facade",
+   "fling",
+   "fly",
+   "giga-impact",
+   "gyro-ball",
+   "haze",
+   "helping-hand",
+   "hex",
+   "hyper-beam",
+   "icy-wind",
+   "imprison",
+   "knock-off",
+   "night-shade",
+   "pain-split",
+   "phantom-force",
+   "protect",
+   "psybeam",
+   "psychic",
+   "rain-dance",
+   "rest",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "spite",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "tailwind",
+   "temper-flare",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "trick",
+   "trick-room",
+   "weather-ball",
+   "will-o-wisp"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 429,
+  "key": "mismagius",
+  "name": {
+   "en": "Mismagius",
+   "zh": "梦妖魔"
+  },
+  "genus": {
+   "en": "Magical Pokémon",
+   "zh": "魔法宝可梦"
+  },
+  "types": [
+   "ghost"
+  ],
+  "baseStats": {
+   "hp": 60,
+   "atk": 60,
+   "def": 60,
+   "spa": 105,
+   "spd": 105,
+   "spe": 105
+  },
+  "abilities": [
+   {
+    "id": "levitate",
+    "hidden": false,
+    "slot": 1
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 173,
+  "growthRate": "fast",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 1,
+   "spd": 1,
+   "spe": 0
+  },
+  "heightM": 0.9,
+  "weightKg": 4.4,
+  "color": "purple",
+  "evolvesFrom": 200,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "astonish"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "magical-leaf"
+   },
+   {
+    "level": 1,
+    "move": "mystical-fire"
+   },
+   {
+    "level": 1,
+    "move": "phantom-force"
+   },
+   {
+    "level": 1,
+    "move": "power-gem"
+   },
+   {
+    "level": 1,
+    "move": "spite"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "不知从何处出现， 碎碎念着咒文，施加诅咒， 制造恐怖的幻象。",
+  "machineMoves": [
+   "burning-jealousy",
+   "calm-mind",
+   "charge-beam",
+   "charm",
+   "confuse-ray",
+   "curse",
+   "dark-pulse",
+   "dazzling-gleam",
+   "draining-kiss",
+   "endure",
+   "energy-ball",
+   "facade",
+   "fake-tears",
+   "foul-play",
+   "future-sight",
+   "giga-impact",
+   "grass-knot",
+   "helping-hand",
+   "hex",
+   "hyper-beam",
+   "hyper-voice",
+   "icy-wind",
+   "imprison",
+   "lash-out",
+   "magical-leaf",
+   "nasty-plot",
+   "night-shade",
+   "pain-split",
+   "phantom-force",
+   "poltergeist",
+   "power-gem",
+   "protect",
+   "psybeam",
+   "psych-up",
+   "psychic",
+   "psychic-noise",
+   "psyshock",
+   "rain-dance",
+   "rest",
+   "scary-face",
+   "shadow-ball",
+   "skill-swap",
+   "sleep-talk",
+   "snowscape",
+   "spite",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "trick",
+   "trick-room",
+   "will-o-wisp"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 443,
+  "key": "gible",
+  "name": {
+   "en": "Gible",
+   "zh": "圆陆鲨"
+  },
+  "genus": {
+   "en": "Land Shark Pokémon",
+   "zh": "陆鲨宝可梦"
+  },
+  "types": [
+   "dragon",
+   "ground"
+  ],
+  "baseStats": {
+   "hp": 58,
+   "atk": 70,
+   "def": 45,
+   "spa": 40,
+   "spd": 45,
+   "spe": 42
+  },
+  "abilities": [
+   {
+    "id": "sand-veil",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "rough-skin",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 60,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 1,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 0.7,
+  "weightKg": 20.5,
+  "color": "blue",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 444,
+    "trigger": "level-up",
+    "minLevel": 24
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "sand-tomb"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 6,
+    "move": "sand-attack"
+   },
+   {
+    "level": 12,
+    "move": "dragon-breath"
+   },
+   {
+    "level": 18,
+    "move": "bulldoze"
+   },
+   {
+    "level": 25,
+    "move": "bite"
+   },
+   {
+    "level": 30,
+    "move": "slash"
+   },
+   {
+    "level": 36,
+    "move": "dragon-claw"
+   },
+   {
+    "level": 42,
+    "move": "dig"
+   },
+   {
+    "level": 48,
+    "move": "sandstorm"
+   },
+   {
+    "level": 54,
+    "move": "take-down"
+   },
+   {
+    "level": 60,
+    "move": "dragon-rush"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "生活在因地热而温暖的洞窟里。 即便如此，一旦变冷就会和 伙伴们紧紧挨在一起。",
+  "machineMoves": [
+   "body-slam",
+   "bulldoze",
+   "dig",
+   "double-edge",
+   "draco-meteor",
+   "dragon-cheer",
+   "dragon-claw",
+   "dragon-pulse",
+   "dragon-tail",
+   "earth-power",
+   "earthquake",
+   "endure",
+   "facade",
+   "false-swipe",
+   "fire-blast",
+   "fire-fang",
+   "flamethrower",
+   "helping-hand",
+   "iron-head",
+   "metal-claw",
+   "mud-shot",
+   "outrage",
+   "protect",
+   "rain-dance",
+   "rest",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "scale-shot",
+   "scary-face",
+   "scorching-sands",
+   "shadow-claw",
+   "sleep-talk",
+   "stealth-rock",
+   "stone-edge",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "swords-dance",
+   "take-down",
+   "tera-blast",
+   "thunder-fang"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "double-edge",
+   "metal-claw",
+   "thrash",
+   "twister"
+  ]
+ },
+ {
+  "id": 444,
+  "key": "gabite",
+  "name": {
+   "en": "Gabite",
+   "zh": "尖牙陆鲨"
+  },
+  "genus": {
+   "en": "Cave Pokémon",
+   "zh": "洞穴宝可梦"
+  },
+  "types": [
+   "dragon",
+   "ground"
+  ],
+  "baseStats": {
+   "hp": 68,
+   "atk": 90,
+   "def": 65,
+   "spa": 50,
+   "spd": 55,
+   "spe": 82
+  },
+  "abilities": [
+   {
+    "id": "sand-veil",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "rough-skin",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 144,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 2,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.4,
+  "weightKg": 56,
+  "color": "blue",
+  "evolvesFrom": 443,
+  "evolutions": [
+   {
+    "to": 445,
+    "trigger": "level-up",
+    "minLevel": 48
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "dragon-breath"
+   },
+   {
+    "level": 1,
+    "move": "sand-attack"
+   },
+   {
+    "level": 1,
+    "move": "sand-tomb"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 18,
+    "move": "bulldoze"
+   },
+   {
+    "level": 27,
+    "move": "bite"
+   },
+   {
+    "level": 34,
+    "move": "slash"
+   },
+   {
+    "level": 42,
+    "move": "dragon-claw"
+   },
+   {
+    "level": 50,
+    "move": "dig"
+   },
+   {
+    "level": 58,
+    "move": "sandstorm"
+   },
+   {
+    "level": 66,
+    "move": "take-down"
+   },
+   {
+    "level": 74,
+    "move": "dragon-rush"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "偶尔蜕皮，鳞片会脱落。 其成分中所含的药物成分 可以让疲劳的身体活力四射。",
+  "machineMoves": [
+   "aerial-ace",
+   "body-slam",
+   "breaking-swipe",
+   "bulldoze",
+   "crunch",
+   "dig",
+   "double-edge",
+   "draco-meteor",
+   "dragon-cheer",
+   "dragon-claw",
+   "dragon-pulse",
+   "dragon-tail",
+   "earth-power",
+   "earthquake",
+   "endure",
+   "facade",
+   "false-swipe",
+   "fire-blast",
+   "fire-fang",
+   "flamethrower",
+   "helping-hand",
+   "iron-head",
+   "metal-claw",
+   "mud-shot",
+   "outrage",
+   "power-gem",
+   "protect",
+   "rain-dance",
+   "rest",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "scale-shot",
+   "scary-face",
+   "scorching-sands",
+   "shadow-claw",
+   "sleep-talk",
+   "stealth-rock",
+   "stone-edge",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "swords-dance",
+   "take-down",
+   "tera-blast",
+   "thunder-fang"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 445,
+  "key": "garchomp",
+  "name": {
+   "en": "Garchomp",
+   "zh": "烈咬陆鲨"
+  },
+  "genus": {
+   "en": "Mach Pokémon",
+   "zh": "音速宝可梦"
+  },
+  "types": [
+   "dragon",
+   "ground"
+  ],
+  "baseStats": {
+   "hp": 108,
+   "atk": 130,
+   "def": 95,
+   "spa": 80,
+   "spd": 85,
+   "spe": 102
+  },
+  "abilities": [
+   {
+    "id": "sand-veil",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "rough-skin",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 270,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 3,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.9,
+  "weightKg": 95,
+  "color": "blue",
+  "evolvesFrom": 444,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "crunch"
+   },
+   {
+    "level": 1,
+    "move": "dragon-breath"
+   },
+   {
+    "level": 1,
+    "move": "sand-attack"
+   },
+   {
+    "level": 1,
+    "move": "sand-tomb"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 18,
+    "move": "bulldoze"
+   },
+   {
+    "level": 27,
+    "move": "bite"
+   },
+   {
+    "level": 34,
+    "move": "slash"
+   },
+   {
+    "level": 42,
+    "move": "dragon-claw"
+   },
+   {
+    "level": 52,
+    "move": "dig"
+   },
+   {
+    "level": 62,
+    "move": "sandstorm"
+   },
+   {
+    "level": 72,
+    "move": "take-down"
+   },
+   {
+    "level": 82,
+    "move": "dragon-rush"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "以媲美喷气式飞机的高速来飞行。 如果冲入鸟宝可梦的群体中， 会就这么把整个群体都吞掉。",
+  "machineMoves": [
+   "aerial-ace",
+   "body-slam",
+   "breaking-swipe",
+   "brick-break",
+   "bulldoze",
+   "crunch",
+   "dig",
+   "double-edge",
+   "draco-meteor",
+   "dragon-cheer",
+   "dragon-claw",
+   "dragon-pulse",
+   "dragon-tail",
+   "earth-power",
+   "earthquake",
+   "endure",
+   "facade",
+   "false-swipe",
+   "fire-blast",
+   "fire-fang",
+   "flamethrower",
+   "fling",
+   "giga-impact",
+   "helping-hand",
+   "hyper-beam",
+   "iron-head",
+   "liquidation",
+   "metal-claw",
+   "mud-shot",
+   "outrage",
+   "poison-jab",
+   "power-gem",
+   "protect",
+   "rain-dance",
+   "rest",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "scale-shot",
+   "scary-face",
+   "scorching-sands",
+   "shadow-claw",
+   "sleep-talk",
+   "spikes",
+   "stealth-rock",
+   "stomping-tantrum",
+   "stone-edge",
+   "substitute",
+   "sunny-day",
+   "surf",
+   "swift",
+   "swords-dance",
+   "take-down",
+   "tera-blast",
+   "thunder-fang"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 459,
+  "key": "snover",
+  "name": {
+   "en": "Snover",
+   "zh": "雪笠怪"
+  },
+  "genus": {
+   "en": "Frost Tree Pokémon",
+   "zh": "树冰宝可梦"
+  },
+  "types": [
+   "grass",
+   "ice"
+  ],
+  "baseStats": {
+   "hp": 60,
+   "atk": 62,
+   "def": 50,
+   "spa": 62,
+   "spd": 60,
+   "spe": 40
+  },
+  "abilities": [
+   {
+    "id": "snow-warning",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "soundproof",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 120,
+  "baseExp": 67,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 1,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1,
+  "weightKg": 50.5,
+  "color": "white",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 460,
+    "trigger": "level-up",
+    "minLevel": 40
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "powder-snow"
+   },
+   {
+    "level": 5,
+    "move": "leafage"
+   },
+   {
+    "level": 10,
+    "move": "mist"
+   },
+   {
+    "level": 15,
+    "move": "ice-shard"
+   },
+   {
+    "level": 20,
+    "move": "razor-leaf"
+   },
+   {
+    "level": 25,
+    "move": "icy-wind"
+   },
+   {
+    "level": 30,
+    "move": "swagger"
+   },
+   {
+    "level": 35,
+    "move": "ingrain"
+   },
+   {
+    "level": 41,
+    "move": "wood-hammer"
+   },
+   {
+    "level": 45,
+    "move": "blizzard"
+   },
+   {
+    "level": 50,
+    "move": "sheer-cold"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "生活在积雪深厚的山上。 会通过把脚踩进积雪中 来吸收水分和冷气。",
+  "machineMoves": [
+   "avalanche",
+   "blizzard",
+   "body-slam",
+   "bullet-seed",
+   "chilling-water",
+   "curse",
+   "double-edge",
+   "endure",
+   "energy-ball",
+   "facade",
+   "giga-drain",
+   "grass-knot",
+   "grassy-glide",
+   "helping-hand",
+   "ice-beam",
+   "ice-punch",
+   "ice-spinner",
+   "icicle-spear",
+   "icy-wind",
+   "leaf-storm",
+   "magical-leaf",
+   "mud-slap",
+   "protect",
+   "rain-dance",
+   "rest",
+   "seed-bomb",
+   "sleep-talk",
+   "snowscape",
+   "solar-beam",
+   "substitute",
+   "swords-dance",
+   "take-down",
+   "tera-blast",
+   "trailblaze",
+   "water-pulse",
+   "weather-ball"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "double-edge",
+   "growth",
+   "leech-seed",
+   "stomp",
+   "weather-ball"
+  ]
+ },
+ {
+  "id": 460,
+  "key": "abomasnow",
+  "name": {
+   "en": "Abomasnow",
+   "zh": "暴雪王"
+  },
+  "genus": {
+   "en": "Frost Tree Pokémon",
+   "zh": "树冰宝可梦"
+  },
+  "types": [
+   "grass",
+   "ice"
+  ],
+  "baseStats": {
+   "hp": 90,
+   "atk": 92,
+   "def": 75,
+   "spa": 92,
+   "spd": 85,
+   "spe": 60
+  },
+  "abilities": [
+   {
+    "id": "snow-warning",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "soundproof",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 60,
+  "baseExp": 173,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 1,
+   "def": 0,
+   "spa": 1,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 2.2,
+  "weightKg": 135.5,
+  "color": "white",
+  "evolvesFrom": 459,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "ice-punch"
+   },
+   {
+    "level": 1,
+    "move": "aurora-veil"
+   },
+   {
+    "level": 1,
+    "move": "leafage"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "mist"
+   },
+   {
+    "level": 1,
+    "move": "powder-snow"
+   },
+   {
+    "level": 15,
+    "move": "ice-shard"
+   },
+   {
+    "level": 20,
+    "move": "razor-leaf"
+   },
+   {
+    "level": 25,
+    "move": "icy-wind"
+   },
+   {
+    "level": 30,
+    "move": "swagger"
+   },
+   {
+    "level": 35,
+    "move": "ingrain"
+   },
+   {
+    "level": 43,
+    "move": "wood-hammer"
+   },
+   {
+    "level": 49,
+    "move": "blizzard"
+   },
+   {
+    "level": 56,
+    "move": "sheer-cold"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "会像挥动锤子一样挥下自己 大大的手臂，赶走要袭击 雪笠怪的火红不倒翁群体。",
+  "machineMoves": [
+   "avalanche",
+   "blizzard",
+   "body-press",
+   "body-slam",
+   "brick-break",
+   "bulldoze",
+   "bullet-seed",
+   "chilling-water",
+   "curse",
+   "double-edge",
+   "earth-power",
+   "earthquake",
+   "endure",
+   "energy-ball",
+   "facade",
+   "fling",
+   "focus-blast",
+   "focus-punch",
+   "giga-drain",
+   "giga-impact",
+   "grass-knot",
+   "grassy-glide",
+   "hard-press",
+   "helping-hand",
+   "hyper-beam",
+   "ice-beam",
+   "ice-punch",
+   "ice-spinner",
+   "icicle-spear",
+   "icy-wind",
+   "leaf-storm",
+   "low-kick",
+   "magical-leaf",
+   "mud-slap",
+   "outrage",
+   "protect",
+   "rain-dance",
+   "rest",
+   "rock-slide",
+   "rock-tomb",
+   "scary-face",
+   "seed-bomb",
+   "sleep-talk",
+   "snowscape",
+   "solar-beam",
+   "stomping-tantrum",
+   "substitute",
+   "swords-dance",
+   "take-down",
+   "tera-blast",
+   "trailblaze",
+   "water-pulse",
+   "weather-ball"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 461,
+  "key": "weavile",
+  "name": {
+   "en": "Weavile",
+   "zh": "玛狃拉"
+  },
+  "genus": {
+   "en": "Sharp Claw Pokémon",
+   "zh": "钩爪宝可梦"
+  },
+  "types": [
+   "dark",
+   "ice"
+  ],
+  "baseStats": {
+   "hp": 70,
+   "atk": 120,
+   "def": 65,
+   "spa": 45,
+   "spd": 85,
+   "spe": 125
+  },
+  "abilities": [
+   {
+    "id": "pressure",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "pickpocket",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 179,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 1,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 1
+  },
+  "heightM": 1.1,
+  "weightKg": 34,
+  "color": "black",
+  "evolvesFrom": 215,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "agility"
+   },
+   {
+    "level": 1,
+    "move": "assurance"
+   },
+   {
+    "level": 1,
+    "move": "beat-up"
+   },
+   {
+    "level": 1,
+    "move": "ice-shard"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "quick-attack"
+   },
+   {
+    "level": 1,
+    "move": "scratch"
+   },
+   {
+    "level": 1,
+    "move": "slash"
+   },
+   {
+    "level": 1,
+    "move": "taunt"
+   },
+   {
+    "level": 18,
+    "move": "metal-claw"
+   },
+   {
+    "level": 24,
+    "move": "icy-wind"
+   },
+   {
+    "level": 30,
+    "move": "fury-swipes"
+   },
+   {
+    "level": 36,
+    "move": "hone-claws"
+   },
+   {
+    "level": 42,
+    "move": "fling"
+   },
+   {
+    "level": 48,
+    "move": "nasty-plot"
+   },
+   {
+    "level": 54,
+    "move": "screech"
+   },
+   {
+    "level": 60,
+    "move": "night-slash"
+   },
+   {
+    "level": 66,
+    "move": "dark-pulse"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "４～５只一组进行行动。 在岩石和树木上留下记号， 以团队合作捕杀猎物。",
+  "machineMoves": [
+   "aerial-ace",
+   "agility",
+   "avalanche",
+   "baton-pass",
+   "blizzard",
+   "brick-break",
+   "calm-mind",
+   "chilling-water",
+   "dark-pulse",
+   "dig",
+   "endure",
+   "facade",
+   "fake-tears",
+   "false-swipe",
+   "fling",
+   "focus-blast",
+   "focus-punch",
+   "foul-play",
+   "giga-impact",
+   "helping-hand",
+   "hyper-beam",
+   "ice-beam",
+   "ice-punch",
+   "ice-spinner",
+   "icicle-spear",
+   "icy-wind",
+   "knock-off",
+   "lash-out",
+   "low-kick",
+   "low-sweep",
+   "metal-claw",
+   "metronome",
+   "nasty-plot",
+   "poison-jab",
+   "protect",
+   "rain-dance",
+   "rest",
+   "scary-face",
+   "shadow-ball",
+   "shadow-claw",
+   "sleep-talk",
+   "snarl",
+   "snowscape",
+   "spite",
+   "substitute",
+   "sunny-day",
+   "surf",
+   "swift",
+   "swords-dance",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "throat-chop",
+   "trailblaze",
+   "triple-axel",
+   "upper-hand",
+   "water-pulse",
+   "x-scissor"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 462,
+  "key": "magnezone",
+  "name": {
+   "en": "Magnezone",
+   "zh": "自爆磁怪"
+  },
+  "genus": {
+   "en": "Magnet Area Pokémon",
+   "zh": "磁场宝可梦"
+  },
+  "types": [
+   "electric",
+   "steel"
+  ],
+  "baseStats": {
+   "hp": 70,
+   "atk": 70,
+   "def": 115,
+   "spa": 130,
+   "spd": 90,
+   "spe": 60
+  },
+  "abilities": [
+   {
+    "id": "magnet-pull",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "sturdy",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "analytic",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 30,
+  "baseExp": 241,
+  "growthRate": "medium",
+  "genderRate": -1,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 3,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.2,
+  "weightKg": 180,
+  "color": "gray",
+  "evolvesFrom": 82,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "electric-terrain"
+   },
+   {
+    "level": 1,
+    "move": "magnetic-flux"
+   },
+   {
+    "level": 1,
+    "move": "mirror-coat"
+   },
+   {
+    "level": 1,
+    "move": "supersonic"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 1,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 1,
+    "move": "tri-attack"
+   },
+   {
+    "level": 12,
+    "move": "electro-ball"
+   },
+   {
+    "level": 16,
+    "move": "gyro-ball"
+   },
+   {
+    "level": 20,
+    "move": "spark"
+   },
+   {
+    "level": 24,
+    "move": "screech"
+   },
+   {
+    "level": 28,
+    "move": "magnet-rise"
+   },
+   {
+    "level": 34,
+    "move": "flash-cannon"
+   },
+   {
+    "level": 40,
+    "move": "discharge"
+   },
+   {
+    "level": 46,
+    "move": "metal-sound"
+   },
+   {
+    "level": 52,
+    "move": "light-screen"
+   },
+   {
+    "level": 58,
+    "move": "lock-on"
+   },
+   {
+    "level": 64,
+    "move": "zap-cannon"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "从３个组件中放出磁力。 经常有把飞向夜空的自爆磁怪 错看成ＵＦＯ的报告。",
+  "machineMoves": [
+   "body-press",
+   "body-slam",
+   "charge",
+   "charge-beam",
+   "confuse-ray",
+   "double-edge",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "flash-cannon",
+   "giga-impact",
+   "gravity",
+   "gyro-ball",
+   "hard-press",
+   "heavy-slam",
+   "helping-hand",
+   "hyper-beam",
+   "iron-defense",
+   "iron-head",
+   "light-screen",
+   "metal-sound",
+   "protect",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "sandstorm",
+   "sleep-talk",
+   "steel-beam",
+   "substitute",
+   "sunny-day",
+   "supercell-slam",
+   "swift",
+   "take-down",
+   "tera-blast",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "volt-switch",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
   "id": 464,
   "key": "rhyperior",
   "name": {
@@ -19527,6 +29473,1268 @@
    "metal-burst",
    "rock-polish"
   ]
+ },
+ {
+  "id": 466,
+  "key": "electivire",
+  "name": {
+   "en": "Electivire",
+   "zh": "电击魔兽"
+  },
+  "genus": {
+   "en": "Thunderbolt Pokémon",
+   "zh": "雷电宝可梦"
+  },
+  "types": [
+   "electric"
+  ],
+  "baseStats": {
+   "hp": 75,
+   "atk": 123,
+   "def": 67,
+   "spa": 95,
+   "spd": 85,
+   "spe": 95
+  },
+  "abilities": [
+   {
+    "id": "motor-drive",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "vital-spirit",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 30,
+  "baseExp": 243,
+  "growthRate": "medium",
+  "genderRate": 2,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 3,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.8,
+  "weightKg": 138.6,
+  "color": "yellow",
+  "evolvesFrom": 125,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "charge"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "quick-attack"
+   },
+   {
+    "level": 1,
+    "move": "thunder-shock"
+   },
+   {
+    "level": 12,
+    "move": "swift"
+   },
+   {
+    "level": 16,
+    "move": "shock-wave"
+   },
+   {
+    "level": 20,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 24,
+    "move": "screech"
+   },
+   {
+    "level": 28,
+    "move": "thunder-punch"
+   },
+   {
+    "level": 34,
+    "move": "discharge"
+   },
+   {
+    "level": 40,
+    "move": "low-kick"
+   },
+   {
+    "level": 46,
+    "move": "thunderbolt"
+   },
+   {
+    "level": 52,
+    "move": "light-screen"
+   },
+   {
+    "level": 58,
+    "move": "thunder"
+   },
+   {
+    "level": 64,
+    "move": "giga-impact"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "用尾巴尖尖按住敌人， 输入高压电流。 敌人瞬间就成黑炭了。",
+  "machineMoves": [
+   "body-slam",
+   "brick-break",
+   "bulk-up",
+   "bulldoze",
+   "charge",
+   "charge-beam",
+   "dig",
+   "double-edge",
+   "earthquake",
+   "eerie-impulse",
+   "electric-terrain",
+   "electro-ball",
+   "electroweb",
+   "endure",
+   "facade",
+   "fire-punch",
+   "flamethrower",
+   "fling",
+   "focus-blast",
+   "focus-punch",
+   "giga-impact",
+   "helping-hand",
+   "hyper-beam",
+   "ice-punch",
+   "knock-off",
+   "light-screen",
+   "low-kick",
+   "low-sweep",
+   "metal-sound",
+   "metronome",
+   "protect",
+   "psychic",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "rock-slide",
+   "rock-tomb",
+   "sleep-talk",
+   "stomping-tantrum",
+   "substitute",
+   "supercell-slam",
+   "swift",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "trailblaze",
+   "uproar",
+   "volt-switch",
+   "weather-ball",
+   "wild-charge"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "cross-chop",
+   "dynamic-punch",
+   "feint",
+   "focus-punch",
+   "follow-me",
+   "hammer-arm"
+  ]
+ },
+ {
+  "id": 473,
+  "key": "mamoswine",
+  "name": {
+   "en": "Mamoswine",
+   "zh": "象牙猪"
+  },
+  "genus": {
+   "en": "Twin Tusk Pokémon",
+   "zh": "双牙宝可梦"
+  },
+  "types": [
+   "ice",
+   "ground"
+  ],
+  "baseStats": {
+   "hp": 110,
+   "atk": 130,
+   "def": 80,
+   "spa": 70,
+   "spd": 60,
+   "spe": 80
+  },
+  "abilities": [
+   {
+    "id": "oblivious",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "snow-cloak",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "thick-fat",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 50,
+  "baseExp": 239,
+  "growthRate": "slow",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 3,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 2.5,
+  "weightKg": 291,
+  "color": "brown",
+  "evolvesFrom": 221,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "double-hit"
+   },
+   {
+    "level": 1,
+    "move": "ancient-power"
+   },
+   {
+    "level": 1,
+    "move": "flail"
+   },
+   {
+    "level": 1,
+    "move": "ice-fang"
+   },
+   {
+    "level": 1,
+    "move": "mud-slap"
+   },
+   {
+    "level": 1,
+    "move": "powder-snow"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 15,
+    "move": "ice-shard"
+   },
+   {
+    "level": 20,
+    "move": "mist"
+   },
+   {
+    "level": 25,
+    "move": "endure"
+   },
+   {
+    "level": 30,
+    "move": "icy-wind"
+   },
+   {
+    "level": 37,
+    "move": "amnesia"
+   },
+   {
+    "level": 44,
+    "move": "take-down"
+   },
+   {
+    "level": 51,
+    "move": "earthquake"
+   },
+   {
+    "level": 58,
+    "move": "blizzard"
+   },
+   {
+    "level": 65,
+    "move": "thrash"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "在1万年前的壁画上也能见到 它的身影。曾有一段时期， 人们认为它已经灭绝了。",
+  "machineMoves": [
+   "amnesia",
+   "avalanche",
+   "blizzard",
+   "body-press",
+   "body-slam",
+   "bulldoze",
+   "charm",
+   "curse",
+   "dig",
+   "double-edge",
+   "earth-power",
+   "earthquake",
+   "endeavor",
+   "endure",
+   "facade",
+   "giga-impact",
+   "hard-press",
+   "haze",
+   "heavy-slam",
+   "high-horsepower",
+   "hyper-beam",
+   "ice-beam",
+   "ice-fang",
+   "icicle-spear",
+   "icy-wind",
+   "iron-head",
+   "knock-off",
+   "mud-shot",
+   "mud-slap",
+   "protect",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "reversal",
+   "roar",
+   "rock-blast",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "scary-face",
+   "sleep-talk",
+   "smack-down",
+   "snowscape",
+   "stealth-rock",
+   "stomping-tantrum",
+   "stone-edge",
+   "substitute",
+   "take-down",
+   "tera-blast",
+   "throat-chop",
+   "trailblaze"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "ancient-power",
+   "bite",
+   "curse",
+   "double-edge",
+   "fissure",
+   "freeze-dry",
+   "icicle-crash"
+  ]
+ },
+ {
+  "id": 475,
+  "key": "gallade",
+  "name": {
+   "en": "Gallade",
+   "zh": "艾路雷朵"
+  },
+  "genus": {
+   "en": "Blade Pokémon",
+   "zh": "利刃宝可梦"
+  },
+  "types": [
+   "psychic",
+   "fighting"
+  ],
+  "baseStats": {
+   "hp": 68,
+   "atk": 125,
+   "def": 65,
+   "spa": 65,
+   "spd": 115,
+   "spe": 80
+  },
+  "abilities": [
+   {
+    "id": "steadfast",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "sharpness",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "justified",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 233,
+  "growthRate": "slow",
+  "genderRate": 0,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 3,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.6,
+  "weightKg": 52,
+  "color": "white",
+  "evolvesFrom": 281,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "slash"
+   },
+   {
+    "level": 1,
+    "move": "aqua-cutter"
+   },
+   {
+    "level": 1,
+    "move": "calm-mind"
+   },
+   {
+    "level": 1,
+    "move": "charm"
+   },
+   {
+    "level": 1,
+    "move": "confusion"
+   },
+   {
+    "level": 1,
+    "move": "disarming-voice"
+   },
+   {
+    "level": 1,
+    "move": "double-team"
+   },
+   {
+    "level": 1,
+    "move": "draining-kiss"
+   },
+   {
+    "level": 1,
+    "move": "dream-eater"
+   },
+   {
+    "level": 1,
+    "move": "fury-cutter"
+   },
+   {
+    "level": 1,
+    "move": "future-sight"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "hypnosis"
+   },
+   {
+    "level": 1,
+    "move": "imprison"
+   },
+   {
+    "level": 1,
+    "move": "leaf-blade"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "life-dew"
+   },
+   {
+    "level": 1,
+    "move": "night-slash"
+   },
+   {
+    "level": 1,
+    "move": "psybeam"
+   },
+   {
+    "level": 1,
+    "move": "psychic"
+   },
+   {
+    "level": 1,
+    "move": "sacred-sword"
+   },
+   {
+    "level": 9,
+    "move": "helping-hand"
+   },
+   {
+    "level": 12,
+    "move": "feint"
+   },
+   {
+    "level": 15,
+    "move": "teleport"
+   },
+   {
+    "level": 18,
+    "move": "aerial-ace"
+   },
+   {
+    "level": 23,
+    "move": "false-swipe"
+   },
+   {
+    "level": 28,
+    "move": "protect"
+   },
+   {
+    "level": 35,
+    "move": "swords-dance"
+   },
+   {
+    "level": 42,
+    "move": "psycho-cut"
+   },
+   {
+    "level": 49,
+    "move": "heal-pulse"
+   },
+   {
+    "level": 56,
+    "move": "quick-guard"
+   },
+   {
+    "level": 56,
+    "move": "wide-guard"
+   },
+   {
+    "level": 63,
+    "move": "close-combat"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "被称为武神的宝可梦。 只有在为了保护什么的时候 才会去使用自己的肘刀。",
+  "machineMoves": [
+   "aerial-ace",
+   "agility",
+   "air-slash",
+   "alluring-voice",
+   "aura-sphere",
+   "body-slam",
+   "brick-break",
+   "bulk-up",
+   "bulldoze",
+   "calm-mind",
+   "charge-beam",
+   "charm",
+   "close-combat",
+   "coaching",
+   "confuse-ray",
+   "dazzling-gleam",
+   "disarming-voice",
+   "drain-punch",
+   "draining-kiss",
+   "earthquake",
+   "encore",
+   "endure",
+   "energy-ball",
+   "expanding-force",
+   "facade",
+   "false-swipe",
+   "fire-punch",
+   "fling",
+   "focus-blast",
+   "focus-punch",
+   "future-sight",
+   "giga-impact",
+   "grass-knot",
+   "helping-hand",
+   "hex",
+   "hyper-beam",
+   "hyper-voice",
+   "ice-punch",
+   "icy-wind",
+   "imprison",
+   "knock-off",
+   "light-screen",
+   "low-kick",
+   "low-sweep",
+   "magical-leaf",
+   "misty-terrain",
+   "night-shade",
+   "pain-split",
+   "poison-jab",
+   "protect",
+   "psybeam",
+   "psych-up",
+   "psychic",
+   "psychic-terrain",
+   "psyshock",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "reversal",
+   "rock-slide",
+   "rock-tomb",
+   "shadow-ball",
+   "shadow-claw",
+   "skill-swap",
+   "sleep-talk",
+   "solar-blade",
+   "stone-edge",
+   "stored-power",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "swords-dance",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "throat-chop",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "trick",
+   "trick-room",
+   "triple-axel",
+   "upper-hand",
+   "vacuum-wave",
+   "will-o-wisp",
+   "x-scissor",
+   "zen-headbutt"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 476,
+  "key": "probopass",
+  "name": {
+   "en": "Probopass",
+   "zh": "大朝北鼻"
+  },
+  "genus": {
+   "en": "Compass Pokémon",
+   "zh": "罗盘宝可梦"
+  },
+  "types": [
+   "rock",
+   "steel"
+  ],
+  "baseStats": {
+   "hp": 60,
+   "atk": 55,
+   "def": 145,
+   "spa": 75,
+   "spd": 150,
+   "spe": 40
+  },
+  "abilities": [
+   {
+    "id": "sturdy",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "magnet-pull",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "sand-force",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 60,
+  "baseExp": 184,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 1,
+   "spa": 0,
+   "spd": 2,
+   "spe": 0
+  },
+  "heightM": 1.4,
+  "weightKg": 340,
+  "color": "gray",
+  "evolvesFrom": 299,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "tri-attack"
+   },
+   {
+    "level": 1,
+    "move": "block"
+   },
+   {
+    "level": 1,
+    "move": "gravity"
+   },
+   {
+    "level": 1,
+    "move": "iron-defense"
+   },
+   {
+    "level": 1,
+    "move": "magnet-rise"
+   },
+   {
+    "level": 1,
+    "move": "magnetic-flux"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "wide-guard"
+   },
+   {
+    "level": 13,
+    "move": "thunder-wave"
+   },
+   {
+    "level": 16,
+    "move": "rest"
+   },
+   {
+    "level": 19,
+    "move": "spark"
+   },
+   {
+    "level": 22,
+    "move": "rock-slide"
+   },
+   {
+    "level": 25,
+    "move": "power-gem"
+   },
+   {
+    "level": 28,
+    "move": "rock-blast"
+   },
+   {
+    "level": 31,
+    "move": "discharge"
+   },
+   {
+    "level": 34,
+    "move": "sandstorm"
+   },
+   {
+    "level": 37,
+    "move": "earth-power"
+   },
+   {
+    "level": 40,
+    "move": "stone-edge"
+   },
+   {
+    "level": 43,
+    "move": "lock-on"
+   },
+   {
+    "level": 43,
+    "move": "zap-cannon"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "因为会释放强大的磁力， 所以导致附近的电器都变得无法使用。",
+  "machineMoves": [
+   "body-press",
+   "body-slam",
+   "bulldoze",
+   "curse",
+   "dazzling-gleam",
+   "double-edge",
+   "earth-power",
+   "earthquake",
+   "endure",
+   "facade",
+   "fire-punch",
+   "flash-cannon",
+   "giga-impact",
+   "gravity",
+   "hard-press",
+   "heavy-slam",
+   "helping-hand",
+   "high-horsepower",
+   "hyper-beam",
+   "ice-punch",
+   "iron-defense",
+   "iron-head",
+   "metal-sound",
+   "meteor-beam",
+   "pain-split",
+   "power-gem",
+   "protect",
+   "rest",
+   "rock-blast",
+   "rock-slide",
+   "rock-tomb",
+   "sand-tomb",
+   "sandstorm",
+   "sleep-talk",
+   "smack-down",
+   "stealth-rock",
+   "steel-beam",
+   "stomping-tantrum",
+   "stone-edge",
+   "substitute",
+   "sunny-day",
+   "supercell-slam",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thunder",
+   "thunder-punch",
+   "thunder-wave",
+   "thunderbolt",
+   "volt-switch"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "double-edge",
+   "head-smash",
+   "rollout",
+   "wide-guard"
+  ]
+ },
+ {
+  "id": 477,
+  "key": "dusknoir",
+  "name": {
+   "en": "Dusknoir",
+   "zh": "黑夜魔灵"
+  },
+  "genus": {
+   "en": "Gripper Pokémon",
+   "zh": "抓握宝可梦"
+  },
+  "types": [
+   "ghost"
+  ],
+  "baseStats": {
+   "hp": 45,
+   "atk": 100,
+   "def": 135,
+   "spa": 65,
+   "spd": 135,
+   "spe": 45
+  },
+  "abilities": [
+   {
+    "id": "pressure",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "frisk",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 45,
+  "baseExp": 236,
+  "growthRate": "fast",
+  "genderRate": 4,
+  "baseHappiness": 35,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 1,
+   "spa": 0,
+   "spd": 2,
+   "spe": 0
+  },
+  "heightM": 2.2,
+  "weightKg": 106.6,
+  "color": "black",
+  "evolvesFrom": 356,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "astonish"
+   },
+   {
+    "level": 1,
+    "move": "bind"
+   },
+   {
+    "level": 1,
+    "move": "disable"
+   },
+   {
+    "level": 1,
+    "move": "fire-punch"
+   },
+   {
+    "level": 1,
+    "move": "gravity"
+   },
+   {
+    "level": 1,
+    "move": "ice-punch"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "shadow-punch"
+   },
+   {
+    "level": 1,
+    "move": "shadow-sneak"
+   },
+   {
+    "level": 1,
+    "move": "thunder-punch"
+   },
+   {
+    "level": 12,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 16,
+    "move": "night-shade"
+   },
+   {
+    "level": 20,
+    "move": "payback"
+   },
+   {
+    "level": 24,
+    "move": "will-o-wisp"
+   },
+   {
+    "level": 28,
+    "move": "mean-look"
+   },
+   {
+    "level": 32,
+    "move": "hex"
+   },
+   {
+    "level": 36,
+    "move": "curse"
+   },
+   {
+    "level": 42,
+    "move": "shadow-ball"
+   },
+   {
+    "level": 48,
+    "move": "future-sight"
+   },
+   {
+    "level": 54,
+    "move": "destiny-bond"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "没人知道它是否拥有意识。 会从来自灵界的电波中接受指示， 将人和宝可梦带走。",
+  "machineMoves": [
+   "blizzard",
+   "body-slam",
+   "brick-break",
+   "calm-mind",
+   "charge-beam",
+   "confuse-ray",
+   "curse",
+   "dark-pulse",
+   "earthquake",
+   "endure",
+   "facade",
+   "fire-punch",
+   "fling",
+   "focus-blast",
+   "focus-punch",
+   "future-sight",
+   "giga-impact",
+   "gravity",
+   "hard-press",
+   "haze",
+   "helping-hand",
+   "hex",
+   "hyper-beam",
+   "ice-beam",
+   "ice-punch",
+   "icy-wind",
+   "imprison",
+   "leech-life",
+   "metronome",
+   "night-shade",
+   "pain-split",
+   "phantom-force",
+   "poltergeist",
+   "protect",
+   "psych-up",
+   "psychic",
+   "rain-dance",
+   "rest",
+   "rock-slide",
+   "rock-tomb",
+   "shadow-ball",
+   "skill-swap",
+   "skitter-smack",
+   "sleep-talk",
+   "spite",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "thunder-punch",
+   "trick",
+   "trick-room",
+   "will-o-wisp"
+  ],
+  "tutorMoves": [],
+  "eggMoves": [
+   "haze",
+   "memento",
+   "pain-split"
+  ]
+ },
+ {
+  "id": 478,
+  "key": "froslass",
+  "name": {
+   "en": "Froslass",
+   "zh": "雪妖女"
+  },
+  "genus": {
+   "en": "Snow Land Pokémon",
+   "zh": "雪国宝可梦"
+  },
+  "types": [
+   "ice",
+   "ghost"
+  ],
+  "baseStats": {
+   "hp": 70,
+   "atk": 80,
+   "def": 70,
+   "spa": 80,
+   "spd": 70,
+   "spe": 110
+  },
+  "abilities": [
+   {
+    "id": "snow-cloak",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "cursed-body",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 75,
+  "baseExp": 168,
+  "growthRate": "medium",
+  "genderRate": 8,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 2
+  },
+  "heightM": 1.3,
+  "weightKg": 26.6,
+  "color": "white",
+  "evolvesFrom": 361,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "hex"
+   },
+   {
+    "level": 1,
+    "move": "astonish"
+   },
+   {
+    "level": 1,
+    "move": "bite"
+   },
+   {
+    "level": 1,
+    "move": "crunch"
+   },
+   {
+    "level": 1,
+    "move": "destiny-bond"
+   },
+   {
+    "level": 1,
+    "move": "double-team"
+   },
+   {
+    "level": 1,
+    "move": "headbutt"
+   },
+   {
+    "level": 1,
+    "move": "ice-fang"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "powder-snow"
+   },
+   {
+    "level": 1,
+    "move": "protect"
+   },
+   {
+    "level": 15,
+    "move": "ice-shard"
+   },
+   {
+    "level": 20,
+    "move": "draining-kiss"
+   },
+   {
+    "level": 25,
+    "move": "icy-wind"
+   },
+   {
+    "level": 30,
+    "move": "frost-breath"
+   },
+   {
+    "level": 35,
+    "move": "confuse-ray"
+   },
+   {
+    "level": 40,
+    "move": "snowscape"
+   },
+   {
+    "level": 47,
+    "move": "will-o-wisp"
+   },
+   {
+    "level": 54,
+    "move": "aurora-veil"
+   },
+   {
+    "level": 61,
+    "move": "shadow-ball"
+   },
+   {
+    "level": 68,
+    "move": "blizzard"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "用冷气把中意的人类 或宝可梦都冻起来。 然后带回巢穴当装饰用。",
+  "machineMoves": [
+   "avalanche",
+   "blizzard",
+   "body-slam",
+   "charm",
+   "chilling-water",
+   "confuse-ray",
+   "crunch",
+   "curse",
+   "draining-kiss",
+   "endure",
+   "facade",
+   "fake-tears",
+   "fling",
+   "giga-impact",
+   "haze",
+   "helping-hand",
+   "hex",
+   "hyper-beam",
+   "ice-beam",
+   "ice-fang",
+   "ice-punch",
+   "ice-spinner",
+   "icicle-spear",
+   "icy-wind",
+   "imprison",
+   "light-screen",
+   "night-shade",
+   "pain-split",
+   "poltergeist",
+   "protect",
+   "psych-up",
+   "psychic",
+   "rain-dance",
+   "reflect",
+   "rest",
+   "scary-face",
+   "shadow-ball",
+   "sleep-talk",
+   "snowscape",
+   "spikes",
+   "spite",
+   "substitute",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thunder",
+   "thunder-wave",
+   "thunderbolt",
+   "trick",
+   "triple-axel",
+   "water-pulse",
+   "weather-ball",
+   "will-o-wisp"
+  ],
+  "tutorMoves": [],
+  "eggMoves": []
  },
  {
   "id": 570,
@@ -19874,6 +31082,348 @@
    "u-turn"
   ],
   "tutorMoves": [],
+  "eggMoves": []
+ },
+ {
+  "id": 592,
+  "key": "frillish",
+  "name": {
+   "en": "Frillish",
+   "zh": "轻飘飘"
+  },
+  "genus": {
+   "en": "Floating Pokémon",
+   "zh": "漂浮宝可梦"
+  },
+  "types": [
+   "water",
+   "ghost"
+  ],
+  "baseStats": {
+   "hp": 55,
+   "atk": 40,
+   "def": 50,
+   "spa": 65,
+   "spd": 85,
+   "spe": 40
+  },
+  "abilities": [
+   {
+    "id": "water-absorb",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "cursed-body",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "damp",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 190,
+  "baseExp": 67,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 1,
+   "spe": 0
+  },
+  "heightM": 1.2,
+  "weightKg": 33,
+  "color": "white",
+  "evolvesFrom": null,
+  "evolutions": [
+   {
+    "to": 593,
+    "trigger": "level-up",
+    "minLevel": 40
+   }
+  ],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "absorb"
+   },
+   {
+    "level": 1,
+    "move": "water-gun"
+   },
+   {
+    "level": 4,
+    "move": "poison-sting"
+   },
+   {
+    "level": 8,
+    "move": "night-shade"
+   },
+   {
+    "level": 12,
+    "move": "water-pulse"
+   },
+   {
+    "level": 16,
+    "move": "rain-dance"
+   },
+   {
+    "level": 20,
+    "move": "hex"
+   },
+   {
+    "level": 24,
+    "move": "brine"
+   },
+   {
+    "level": 28,
+    "move": "recover"
+   },
+   {
+    "level": 32,
+    "move": "shadow-ball"
+   },
+   {
+    "level": 36,
+    "move": "whirlpool"
+   },
+   {
+    "level": 41,
+    "move": "hydro-pump"
+   },
+   {
+    "level": 44,
+    "move": "destiny-bond"
+   },
+   {
+    "level": 48,
+    "move": "water-spout"
+   }
+  ],
+  "learnsetVersion": "sword-shield",
+  "flavor": "会用薄纱般的手脚缠住 正在游泳的猎物， 将其拖入深海之中。",
+  "machineMoves": [
+   "attract",
+   "blizzard",
+   "brine",
+   "dark-pulse",
+   "dazzling-gleam",
+   "dive",
+   "endure",
+   "energy-ball",
+   "facade",
+   "giga-drain",
+   "hail",
+   "hex",
+   "hydro-pump",
+   "ice-beam",
+   "icy-wind",
+   "imprison",
+   "protect",
+   "psychic",
+   "rain-dance",
+   "rest",
+   "round",
+   "safeguard",
+   "scald",
+   "shadow-ball",
+   "sleep-talk",
+   "sludge-bomb",
+   "sludge-wave",
+   "snore",
+   "substitute",
+   "surf",
+   "taunt",
+   "trick",
+   "trick-room",
+   "waterfall",
+   "whirlpool",
+   "will-o-wisp"
+  ],
+  "tutorMoves": [
+   "poltergeist"
+  ],
+  "eggMoves": [
+   "acid-armor",
+   "bubble-beam",
+   "confuse-ray",
+   "mist",
+   "pain-split",
+   "strength-sap"
+  ]
+ },
+ {
+  "id": 593,
+  "key": "jellicent",
+  "name": {
+   "en": "Jellicent",
+   "zh": "胖嘟嘟"
+  },
+  "genus": {
+   "en": "Floating Pokémon",
+   "zh": "漂浮宝可梦"
+  },
+  "types": [
+   "water",
+   "ghost"
+  ],
+  "baseStats": {
+   "hp": 100,
+   "atk": 60,
+   "def": 70,
+   "spa": 85,
+   "spd": 105,
+   "spe": 60
+  },
+  "abilities": [
+   {
+    "id": "water-absorb",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "cursed-body",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "damp",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 60,
+  "baseExp": 168,
+  "growthRate": "medium",
+  "genderRate": 4,
+  "baseHappiness": 70,
+  "evYield": {
+   "hp": 0,
+   "atk": 0,
+   "def": 0,
+   "spa": 0,
+   "spd": 2,
+   "spe": 0
+  },
+  "heightM": 2.2,
+  "weightKg": 135,
+  "color": "white",
+  "evolvesFrom": 592,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 1,
+    "move": "absorb"
+   },
+   {
+    "level": 1,
+    "move": "acid-armor"
+   },
+   {
+    "level": 1,
+    "move": "night-shade"
+   },
+   {
+    "level": 1,
+    "move": "poison-sting"
+   },
+   {
+    "level": 1,
+    "move": "water-gun"
+   },
+   {
+    "level": 12,
+    "move": "water-pulse"
+   },
+   {
+    "level": 16,
+    "move": "rain-dance"
+   },
+   {
+    "level": 20,
+    "move": "hex"
+   },
+   {
+    "level": 24,
+    "move": "brine"
+   },
+   {
+    "level": 28,
+    "move": "recover"
+   },
+   {
+    "level": 32,
+    "move": "shadow-ball"
+   },
+   {
+    "level": 36,
+    "move": "whirlpool"
+   },
+   {
+    "level": 43,
+    "move": "hydro-pump"
+   },
+   {
+    "level": 48,
+    "move": "destiny-bond"
+   },
+   {
+    "level": 54,
+    "move": "water-spout"
+   }
+  ],
+  "learnsetVersion": "sword-shield",
+  "flavor": "会缠着豪华客轮或是油轮周围， 目的是将猎物拖进海里。",
+  "machineMoves": [
+   "attract",
+   "blizzard",
+   "brine",
+   "dark-pulse",
+   "dazzling-gleam",
+   "dive",
+   "endure",
+   "energy-ball",
+   "facade",
+   "giga-drain",
+   "giga-impact",
+   "hail",
+   "hex",
+   "hydro-pump",
+   "hyper-beam",
+   "ice-beam",
+   "icy-wind",
+   "imprison",
+   "muddy-water",
+   "protect",
+   "psychic",
+   "rain-dance",
+   "rest",
+   "round",
+   "safeguard",
+   "scald",
+   "shadow-ball",
+   "sleep-talk",
+   "sludge-bomb",
+   "sludge-wave",
+   "snore",
+   "substitute",
+   "surf",
+   "taunt",
+   "trick",
+   "trick-room",
+   "waterfall",
+   "whirlpool",
+   "will-o-wisp"
+  ],
+  "tutorMoves": [
+   "poltergeist"
+  ],
   "eggMoves": []
  },
  {
@@ -21527,6 +33077,190 @@
    "meteor-beam",
    "poltergeist"
   ],
+  "eggMoves": []
+ },
+ {
+  "id": 903,
+  "key": "sneasler",
+  "name": {
+   "en": "Sneasler",
+   "zh": "大狃拉"
+  },
+  "genus": {
+   "en": "Free Climb Pokémon",
+   "zh": "攀崖宝可梦"
+  },
+  "types": [
+   "fighting",
+   "poison"
+  ],
+  "baseStats": {
+   "hp": 80,
+   "atk": 130,
+   "def": 60,
+   "spa": 40,
+   "spd": 80,
+   "spe": 120
+  },
+  "abilities": [
+   {
+    "id": "pressure",
+    "hidden": false,
+    "slot": 1
+   },
+   {
+    "id": "unburden",
+    "hidden": false,
+    "slot": 2
+   },
+   {
+    "id": "poison-touch",
+    "hidden": true,
+    "slot": 3
+   }
+  ],
+  "captureRate": 135,
+  "baseExp": 102,
+  "growthRate": "medium-slow",
+  "genderRate": 4,
+  "baseHappiness": 50,
+  "evYield": {
+   "hp": 0,
+   "atk": 2,
+   "def": 0,
+   "spa": 0,
+   "spd": 0,
+   "spe": 0
+  },
+  "heightM": 1.3,
+  "weightKg": 43,
+  "color": "gray",
+  "evolvesFrom": 215,
+  "evolutions": [],
+  "learnset": [
+   {
+    "level": 0,
+    "move": "dire-claw"
+   },
+   {
+    "level": 1,
+    "move": "fling"
+   },
+   {
+    "level": 1,
+    "move": "leer"
+   },
+   {
+    "level": 1,
+    "move": "rock-smash"
+   },
+   {
+    "level": 1,
+    "move": "scratch"
+   },
+   {
+    "level": 6,
+    "move": "taunt"
+   },
+   {
+    "level": 12,
+    "move": "quick-attack"
+   },
+   {
+    "level": 18,
+    "move": "metal-claw"
+   },
+   {
+    "level": 24,
+    "move": "poison-jab"
+   },
+   {
+    "level": 30,
+    "move": "brick-break"
+   },
+   {
+    "level": 36,
+    "move": "hone-claws"
+   },
+   {
+    "level": 42,
+    "move": "slash"
+   },
+   {
+    "level": 48,
+    "move": "agility"
+   },
+   {
+    "level": 54,
+    "move": "screech"
+   },
+   {
+    "level": 60,
+    "move": "close-combat"
+   }
+  ],
+  "learnsetVersion": "scarlet-violet",
+  "flavor": "Because of Sneasler's virulent poison and daunting physical prowess, no other species could hope to best it on the frozen highlands. Preferring solitude, this species does not form packs.",
+  "machineMoves": [
+   "acid-spray",
+   "acrobatics",
+   "aerial-ace",
+   "agility",
+   "brick-break",
+   "bulk-up",
+   "calm-mind",
+   "close-combat",
+   "coaching",
+   "dig",
+   "endure",
+   "facade",
+   "false-swipe",
+   "fire-punch",
+   "fling",
+   "focus-blast",
+   "focus-punch",
+   "giga-impact",
+   "grass-knot",
+   "gunk-shot",
+   "hyper-beam",
+   "lash-out",
+   "low-kick",
+   "low-sweep",
+   "metal-claw",
+   "nasty-plot",
+   "poison-jab",
+   "poison-tail",
+   "protect",
+   "rain-dance",
+   "rest",
+   "reversal",
+   "rock-slide",
+   "rock-tomb",
+   "shadow-ball",
+   "shadow-claw",
+   "sleep-talk",
+   "sludge-bomb",
+   "sludge-wave",
+   "spite",
+   "substitute",
+   "sunny-day",
+   "swift",
+   "swords-dance",
+   "take-down",
+   "taunt",
+   "tera-blast",
+   "thief",
+   "throat-chop",
+   "toxic",
+   "toxic-spikes",
+   "trailblaze",
+   "u-turn",
+   "upper-hand",
+   "vacuum-wave",
+   "venoshock",
+   "x-scissor"
+  ],
+  "tutorMoves": [],
   "eggMoves": []
  },
  {

@@ -30,6 +30,8 @@ export interface EvolutionData {
   timeOfDay?: string | undefined;
   minHappiness?: number | undefined;
   knownMoveType?: string | undefined;
+  /** 学会指定招式后升级进化（如长毛猪 → 象牙猪：原始之力） */
+  knownMove?: string | undefined;
   gender?: number | undefined;
 }
 

@@ -1,3 +1,5 @@
+import { THUNDER } from '@/config/islands/thunder';
+import { GLAZE } from '@/config/islands/glaze';
 import { describe, expect, it } from 'vitest';
 import compat from '@/config/tms/compat.json';
 import { TM_BY_DEN, TM_DEFS, tmItemId } from '@/config/tms';
@@ -50,7 +52,7 @@ describe('招式学习器表（计划文档 §6）', () => {
 
   it('获取途径都能落地：商店上架 + 定价、道馆奖励、巢穴存在、野外拾取点与脚本', () => {
     const shop = SHOP_BY_ID.get('harbor-tms')!;
-    const dens = new Set((SPROUT.alphaDens ?? []).map((d) => d.id));
+    const dens = new Set([SPROUT, THUNDER, GLAZE].flatMap((i) => i.alphaDens ?? []).map((d) => d.id));
     const rewards = QUEST_REGISTRY.all.flatMap((q) => q.reward?.items?.map((i) => i.id) ?? []);
     for (const t of TM_DEFS) {
       const id = tmItemId(t.move);

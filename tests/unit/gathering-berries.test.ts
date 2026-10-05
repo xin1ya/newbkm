@@ -4,6 +4,8 @@ import { KEY_ITEM_BY_ID } from '@/config/items';
 import { ITEM_PRICES } from '@/config/shops';
 import { GATHER_POINTS } from '@/config/gather';
 import { SPROUT } from '@/config/islands/sprout';
+import { THUNDER } from '@/config/islands/thunder';
+import { GLAZE } from '@/config/islands/glaze';
 import { applyToPokemon, itemInfo } from '@/systems/items';
 import { createNewGame, deserializeSave, serializeSave } from '@/systems/state';
 import { createRng, sequenceRng } from '@/systems/rng';
@@ -108,7 +110,7 @@ describe('计划文档 §9.2 野外采集', () => {
   it('采集点：id 唯一、都在岛上对应区域内，每个野区 4–10 棵树果树', () => {
     const ids = GATHER_POINTS.map((p) => p.def.id);
     expect(new Set(ids).size).toBe(ids.length);
-    const zones = new Map(SPROUT.zones.map((z) => [z.id, z]));
+    const zones = new Map<string, (typeof SPROUT.zones)[number]>([SPROUT, THUNDER, GLAZE].flatMap((isl) => isl.zones.map((z) => [`${isl.id}:${z.id}`, z] as const)));
     const inPoly = (x: number, z: number, P: number[][]) => {
       let c = false;
       for (let i = 0, j = P.length - 1; i < P.length; j = i++) {
@@ -119,8 +121,8 @@ describe('计划文档 §9.2 野外采集', () => {
       return c;
     };
     const trees = new Map<string, number>();
-    for (const { def } of GATHER_POINTS) {
-      const zone = zones.get(def.zone);
+    for (const { island, def } of GATHER_POINTS) {
+      const zone = zones.get(`${island}:${def.zone}`);
       expect(zone, def.id).toBeTruthy();
       expect(inPoly(def.position[0], def.position[1], zone!.polygon as number[][]), def.id).toBe(true);
       if (def.kind === 'berryTree') {
@@ -129,7 +131,7 @@ describe('计划文档 §9.2 野外采集', () => {
       }
     }
     for (const [z, n] of trees) expect(n, z).toBeGreaterThanOrEqual(4);
-    expect(trees.size).toBe(9);
+    expect(trees.size).toBe(9 + 7 + 7); // 萌芽 9 + 雷鸣 7 + 琉璃 7 个野区
     const kinds = new Set(GATHER_POINTS.map((p) => p.def.kind));
     expect([...kinds].sort()).toEqual(['berryTree', 'herb', 'honey', 'mushroom', 'ore', 'shell']);
   });
