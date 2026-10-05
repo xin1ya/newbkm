@@ -119,6 +119,8 @@ export interface GameState {
   navTarget?: NavTarget | null | undefined;
   /** M3-21 名人堂（每次战胜冠军记录一次队伍）。旧存档缺省为空，无需迁移 */
   hallOfFame?: HallOfFameEntry[] | undefined;
+  /** M3-22 跨岛快速旅行：重新加载后在该飞行点（POI id）播放降落演出。读取后清空 */
+  pendingFlyArrival?: string | null | undefined;
   settings: Settings;
   /**
    * 黑屏复活点（M1-09）：最近一次在宝可梦中心 / 家中回复的门口；缺省为岛屿出生点。

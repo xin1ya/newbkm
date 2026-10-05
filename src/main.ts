@@ -274,6 +274,8 @@ async function boot(): Promise<void> {
   await game.scenes.push(overworld);
   await overworld.restoreInterior();
   game.start();
+  // M3-22 跨岛快速旅行：重载后在目的地宝可梦中心上空降落
+  void overworld.arriveByAir();
   // M1-16 任务导演：自动完成、奖励、通知、追踪面板 / 罗盘 / 世界标记
   const quests = new QuestDirector({
     game,

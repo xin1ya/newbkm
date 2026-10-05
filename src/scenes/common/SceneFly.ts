@@ -68,9 +68,10 @@ export class SceneFly {
   }
 
   /** quiet = 自动战斗等系统调用：不弹提示 */
-  takeoff(quiet = false): boolean {
+  takeoff(quiet = false, force = false): boolean {
     if (this.flying || this.busy) return false;
-    const why = this.takeoffBlock();
+    // force：快速旅行的起降演出（已由 SceneFastTravel 检查过条件）
+    const why = force ? (this.flyRide() ? null : '需要拿到「翠澜徽章」，才能骑着宝可梦飞行。') : this.takeoffBlock();
     if (why) {
       if (!quiet) this.d.toast(why);
       return false;

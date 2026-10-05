@@ -140,6 +140,18 @@ export class PlayerController {
     this.syncVisual();
   }
 
+  /** M3-22 脚本演出（快速旅行起降）：直接放到 3D 位置；snap = 不插值 */
+  placeAt(pos: THREE.Vector3, facing = this.facing, snap = false): void {
+    this.position.copy(pos);
+    this.velocity.set(0, 0, 0);
+    this.facing = facing;
+    if (snap) {
+      this.prevPosition.copy(pos);
+      this.prevFacing = facing;
+    }
+    this.syncVisual();
+  }
+
   /** 平移（不改高度 / 速度），用于把玩家推回边界内 */
   nudge(dx: number, dz: number): void {
     this.position.x += dx;

@@ -59,6 +59,10 @@ import { say } from '@/ui/core';
 import { SceneRide } from '@/scenes/common/SceneRide';
 import { SceneBike } from '@/scenes/common/SceneBike';
 import { SceneFly } from '@/scenes/common/SceneFly';
+import { SceneFastTravel, type FastTravelIsland } from '@/scenes/common/SceneFastTravel';
+import { bakeIslandMap } from '@/scenes/common/islandMapBake';
+import { ISLANDS } from '@/config/islands';
+import { Heightfield } from '@/world/terrain/Heightfield';
 import { SceneClimb } from '@/scenes/common/SceneClimb';
 import { SceneWaterfall } from '@/scenes/common/SceneWaterfall';
 import { SceneDive } from '@/scenes/common/SceneDive';
@@ -172,6 +176,7 @@ export class OverworldScene implements Scene, BattleHost {
   /** 自行车（萌芽镇友好商店购买） */
   bike!: SceneBike;
   fly!: SceneFly;
+  fastTravel!: SceneFastTravel;
   /** M3-17 攀爬骑乘 */
   climb!: SceneClimb;
   private climbWalls: ClimbWalls | null = null;
@@ -399,6 +404,37 @@ export class OverworldScene implements Scene, BattleHost {
       canAct: () => !busyNow() && !this.fishing.active && !this.enteringDoor,
       beforeTakeoff: () => this.bike.dismount(true),
       surfing: () => this.ride.surfing,
+    });
+    // M3-22 城镇快速旅行（B 键）
+    const ftIslands: FastTravelIsland[] = Object.values(ISLANDS)
+      .filter((c): c is IslandConfig => !!c && c.id !== 'secret')
+      .map((c) => ({ id: c.id, name: c.name, pois: c.pois, zones: c.zones, size: [c.size[0], c.size[1]] }));
+    this.fastTravel = new SceneFastTravel({
+      game,
+      state: this.d.state,
+      ui: this.d.ui,
+      transition: this.d.transition,
+      player: this.player,
+      fly: this.fly,
+      islands: ftIslands,
+      currentIsland: island.id,
+      toast: (t, ms) => this.d.toaster.show(t, ms),
+      canAct: () => !busyNow() && !this.fishing.active && !this.enteringDoor && !this.traveling,
+      indoors: () => !!this.d.game.scenes.find('interior'),
+      surfing: () => this.ride.surfing,
+      doorOf: (id) => {
+        const poi = this.d.island.pois.find((q) => q.id === id);
+        return poi ? this.doorOf(poi) : null;
+      },
+      heightAt: (x, z) => this.terrain.heightAt(x, z),
+      afterTeleport: (x, z) => this.afterWarp(x, z),
+      beforeStart: () => {
+        this.auto.stop('飞往其他城镇');
+        this.autoPath.stop();
+        this.bike.dismount(true);
+      },
+      travelTo: (to, x, z, yaw) => this.travelTo(to, x, z, yaw),
+      mapFor: (id) => this.flyMapFor(id),
     });
     this.climb = new SceneClimb({
       game,
@@ -726,7 +762,8 @@ export class OverworldScene implements Scene, BattleHost {
     const axis = input ? input.moveAxis() : { x: 0, y: 0 };
     this.ride.fixedUpdate(dt, rideKey, Math.hypot(axis.x, axis.y) > 0.2);
     this.seaStep();
-    this.fly.fixedUpdate(dt, !!input && input.pressed('fly'));
+    this.fly.fixedUpdate(dt, !!input && input.pressed('fly') && !this.fastTravel.busy);
+    this.fastTravel.fixedUpdate(dt, !!input && input.pressed('flyTravel') && !this.inBattle);
     this.climb.fixedUpdate(dt, input ?? null);
     this.waterfall.fixedUpdate(dt);
     this.dive.fixedUpdate(dt);
@@ -1329,6 +1366,42 @@ export class OverworldScene implements Scene, BattleHost {
       scripted: { noCapture: o.noCapture, noRun: o.noRun, boss: o.boss },
     });
     return done;
+  }
+
+  /** M3-22 快速旅行同岛瞬移后的刷新（保留骑乘状态） */
+  private afterWarp(x: number, z: number): void {
+    this.spawns.clear();
+    this.chunks.loadAround(x, z);
+    this.follower.warp();
+    this.rig.target.copy(this.player.position);
+    this.rig.resetBehind(this.player.facing);
+    this.rig.snap();
+    this.updateZone(true);
+    this.npcs.sync(this.player.position);
+  }
+
+  /** M3-22 飞行选单底图：当前岛直接烘焙，其他岛懒加载高度图（烘焙结果有缓存） */
+  private flyMaps = new Map<IslandId, Promise<HTMLCanvasElement | null>>();
+  private flyMapFor(id: IslandId): Promise<HTMLCanvasElement | null> {
+    const hit = this.flyMaps.get(id);
+    if (hit) return hit;
+    const cfg = ISLANDS[id];
+    let job: Promise<HTMLCanvasElement | null>;
+    if (!cfg) job = Promise.resolve(null);
+    else if (id === this.d.island.id) job = Promise.resolve(bakeIslandMap(this.terrain.hf, cfg));
+    else {
+      const loader = new AssetLoader(this.d.game.platform.assets, this.d.game.renderer);
+      job = Promise.all([loader.arrayBuffer(cfg.heightmap), ...cfg.splatmaps.map((p) => loader.arrayBuffer(p))])
+        .then(([h, ...sp]) => bakeIslandMap(Heightfield.fromPng(cfg, h!, sp), cfg))
+        .catch(() => null);
+    }
+    this.flyMaps.set(id, job);
+    return job;
+  }
+
+  /** M3-22 跨岛快速旅行重载后：播放降落演出 */
+  arriveByAir(): Promise<void> {
+    return this.fastTravel.arrive();
   }
 
   /** 剧情传送（带黑场由调用方负责）：水上骑乘中先落地 */

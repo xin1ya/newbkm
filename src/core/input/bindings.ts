@@ -33,7 +33,8 @@ export type Action =
   | 'fly'
   | 'descend'
   | 'autoBattle'
-  | 'autoPath';
+  | 'autoPath'
+  | 'flyTravel';
 
 export interface Binding {
   keys: string[];
@@ -101,6 +102,8 @@ export const DEFAULT_BINDINGS: BindingTable = {
   autoBattle: { keys: ['KeyK'] },
   // 任务自动寻路（追踪任务目标）
   autoPath: { keys: ['KeyT'] },
+  // M3-22 城镇快速旅行（飞往已到访城镇的宝可梦中心）
+  flyTravel: { keys: ['KeyB'] },
 };
 
 /** 合并玩家自定义映射（未知动作忽略，缺失动作用默认值） */
