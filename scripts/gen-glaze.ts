@@ -70,6 +70,38 @@ const COAST: Vec2[] = [
   [-170, -930], [-300, -880], [-400, -800], [-450, -700], [-520, -630], [-610, -580], [-680, -500], [-710, -380], [-700, -260], [-720, -150],
   [-700, -50], [-690, 50], [-710, 150], [-700, 250], [-680, 340], [-650, 420], [-600, 500],
 ];
+/**
+ * M3-05 礁石迷宫（雷鸣—琉璃海域北段，x -640 ~ -120，z 680 ~ 1000）：
+ * 两道南北向的侧墙 + 四道东西向的礁墙，每道礁墙只留一个缺口，缺口左右交错；礁岩是 4–6 m 的陡峭尖礁，上不了岸。
+ * 迷宫南口接雷鸣地图北缘（systems/travel 的 glaze ↔ thunder 连接），北口出去就是幻影镇码头。
+ */
+const REEF_MAZE: Array<{ a: Vec2; b: Vec2; gap?: number }> = [
+  { a: [-640, 680], b: [-640, 1000] },
+  { a: [-120, 680], b: [-120, 1000] },
+  { a: [-640, 940], b: [-120, 940], gap: -520 },
+  { a: [-640, 860], b: [-120, 860], gap: -230 },
+  { a: [-640, 780], b: [-120, 780], gap: -500 },
+  { a: [-640, 700], b: [-120, 700], gap: -200 },
+];
+/** 迷宫缺口宽度（米） */
+const MAZE_GAP = 34;
+function reefWall(w: (typeof REEF_MAZE)[number], wi: number): Array<{ id: string; x: number; z: number; r: number; top: number; stack?: boolean }> {
+  const out: Array<{ id: string; x: number; z: number; r: number; top: number; stack?: boolean }> = [];
+  const len = Math.hypot(w.b[0] - w.a[0], w.b[1] - w.a[1]);
+  const n = Math.ceil(len / 11);
+  for (let k = 0; k <= n; k++) {
+    const t = k / n;
+    const x = w.a[0] + (w.b[0] - w.a[0]) * t;
+    const z = w.a[1] + (w.b[1] - w.a[1]) * t;
+    if (w.gap !== undefined && Math.abs(x - w.gap) < MAZE_GAP / 2 + 7) continue;
+    // 礁墙沿法向弯曲（不是笔直的一排），间距略有疏密
+    const nx = -(w.b[1] - w.a[1]) / len;
+    const nz = (w.b[0] - w.a[0]) / len;
+    const bend = fbm(t * 3.1 + wi * 7.3, wi * 1.7) * 26 + fbm(t * 11 + wi, 4.2) * 5;
+    out.push({ id: `reef-${wi}-${k}`, x: x + nx * bend, z: z + nz * bend, r: 6.5 + ((k * 7 + wi) % 3), top: 4 + ((k * 5 + wi) % 3), stack: true });
+  }
+  return out;
+}
 /** 离岛：海蚀柱（stack = 陡峭石柱）、沙洲（低平） */
 const ISLETS: Array<{ id: string; x: number; z: number; r: number; top: number; stack?: boolean }> = [
   { id: 'stack-1', x: -760, z: 330, r: 11, top: 26, stack: true },
@@ -79,6 +111,7 @@ const ISLETS: Array<{ id: string; x: number; z: number; r: number; top: number; 
   { id: 'stack-5', x: -770, z: -140, r: 10, top: 28, stack: true },
   { id: 'stack-6', x: -740, z: 440, r: 8, top: 20, stack: true },
   { id: 'sandbar', x: -60, z: 662, r: 46, top: 2.4 },
+  ...REEF_MAZE.flatMap((w, wi) => reefWall(w, wi)),
 ];
 /** 琉璃镇外海的深水暗区（海底神殿所在，M3-13 / M3-18） */
 const ABYSS = { x: 800, z: 200, r: 90 };
@@ -176,7 +209,10 @@ function landSdf(x: number, z: number): number {
   let d = Infinity;
   const wobble = fbm(x / 140 + 20, z / 140) * 22 + fbm(x / 60 + 3, z / 60) * 10 + fbm(x / 22, z / 22 + 9) * 3;
   d = Math.min(d, sdPolygon(x, z, COAST) + wobble);
-  for (const it of ISLETS) d = Math.min(d, Math.hypot(x - it.x, z - it.z) - it.r + fbm(x / 14 + it.r, z / 14) * (it.stack ? 2 : 6));
+  for (const it of ISLETS) {
+    if (Math.abs(x - it.x) > it.r + 60 || Math.abs(z - it.z) > it.r + 60) continue;
+    d = Math.min(d, Math.hypot(x - it.x, z - it.z) - it.r + fbm(x / 14 + it.r, z / 14) * (it.stack ? 2 : 6));
+  }
   d = Math.max(d, Math.max(Math.abs(x), Math.abs(z)) - (HALF - 16)); // 世界边缘留海
   return d;
 }
@@ -184,11 +220,13 @@ function landSdf(x: number, z: number): number {
 function isletHeight(x: number, z: number): { k: number; h: number } {
   let best = { k: 0, h: 0 };
   for (const it of ISLETS) {
+    if (Math.abs(x - it.x) > it.r + 40 || Math.abs(z - it.z) > it.r + 40) continue;
     const r = Math.hypot(x - it.x, z - it.z);
     const k = smoothstep(it.r + (it.stack ? 8 : 30), it.r + (it.stack ? 1 : 5), r);
     if (k <= best.k) continue;
     // 海蚀柱：几乎垂直的柱身 + 顶部草帽；沙洲：低平
-    const h = it.stack ? 1 + (it.top - 1) * smoothstep(it.r, it.r * 0.7, r) + fbm(x / 6, z / 6) * 1.5 : 0.6 + (it.top - 0.6) * smoothstep(it.r, 0, r) + fbm(x / 12, z / 12) * 0.4;
+    // 尖礁 / 海蚀柱：柱脚在水面下（-0.8 m），不留可以落脚的平台
+    const h = it.stack ? -0.8 + (it.top + 0.8) * smoothstep(it.r, it.r * 0.72, r) + fbm(x / 6, z / 6) * 1.2 * smoothstep(it.r, it.r * 0.8, r) : 0.6 + (it.top - 0.6) * smoothstep(it.r, 0, r) + fbm(x / 12, z / 12) * 0.4;
     best = { k, h };
   }
   return best;
@@ -881,7 +919,7 @@ for (const b of GLAZE.blockers) {
     placed++;
   }
 }
-for (const it of ISLETS.filter((q) => q.stack))
+for (const it of ISLETS.filter((q) => q.id.startsWith('stack-')))
   for (let k = 0; k < 3; k++) {
     const a = (k / 3) * Math.PI * 2 + it.z;
     const cx = it.x + Math.cos(a) * (it.r + 4);
@@ -973,8 +1011,12 @@ for (const [x, z, s] of [[-200, 400, 1], [80, 400, 2], [250, 330, 3]] as Array<[
 }
 // 蜃景沙洲：搁浅的旧船
 props.push({ type: 'shipwreck', ref: 'sandbar-wreck', position: [-40, 672], y: heightAt(-40, 672) - 0.4, yaw: 0.9, size: [6, 3, 18] });
-// 南方外海：雷鸣—琉璃海域的航标（M3-05 会补礁石迷宫）
-for (let k = 0; k < 6; k++) props.push({ type: 'buoy', position: [-380 + (k % 2 ? 1 : -1) * 26, 620 + k * 60], y: 0, yaw: 0, size: [0.8, 1.6, 0.8], color: k % 2 ? '#3f9f4a' : '#d9453b' });
+// 礁石迷宫：每个缺口两侧一红一绿的航标；迷宫南口一块告示浮标
+for (const w of REEF_MAZE)
+  if (w.gap !== undefined)
+    for (const s of [-1, 1]) props.push({ type: 'buoy', position: [w.gap + s * (MAZE_GAP / 2 - 2), w.a[1] + 6], y: 0, yaw: 0, size: [0.9, 1.8, 0.9], color: s < 0 ? '#d9453b' : '#3f9f4a' });
+for (const it of ISLETS.filter((q) => q.id.startsWith('reef-') && Number(q.id.split('-')[2]) % 3 === 0))
+  props.push({ type: 'rocks', position: [it.x + 3, it.z - 2], y: Math.max(0.3, heightAt(it.x + 3, it.z - 2)), yaw: it.x, size: [3.4, 2, 3.4], seed: 6900 + Math.round(-it.x + it.z), color: '#7d7a80' });
 // 深水暗区边缘的警示浮标
 for (let k = 0; k < 6; k++) {
   const a = (k / 6) * Math.PI * 2;

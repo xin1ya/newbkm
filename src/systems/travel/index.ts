@@ -68,7 +68,34 @@ export const ISLAND_LINKS: readonly IslandLink[] = [
     arrive: (_x, z) => ({ x: 998, z: thunderToTideZ(z), yaw: -Math.PI / 2 }),
     pushBack: [1, 0],
   },
+  // M3-05 云雀镇码头往北 → 雷鸣地图北缘走廊 ↔ 琉璃地图南缘的礁石迷宫入口（按比例换算横向位置）
+  {
+    id: 'thunder-to-glaze',
+    from: 'thunder',
+    rect: [-330, -1024, 30, -1008],
+    to: 'glaze',
+    arrive: (x) => ({ x: thunderToGlazeX(x), z: 1000, yaw: Math.PI }),
+    requiresFlag: 'glaze-route-open',
+    lockedHint: '前面大雾弥漫，礁石若隐若现……还是先回云雀镇码头问问钓竿爷吧。',
+    pushBack: [0, 1],
+  },
+  {
+    id: 'glaze-to-thunder',
+    from: 'glaze',
+    rect: [-640, 1008, -120, 1024],
+    to: 'thunder',
+    arrive: (x) => ({ x: glazeToThunderX(x), z: -1000, yaw: 0 }),
+    pushBack: [0, -1],
+  },
 ];
+
+/** 雷鸣 x ∈ [-320, 20] ↔ 琉璃 x ∈ [-580, -180]（礁石迷宫南口，避开两侧礁墙） */
+export function thunderToGlazeX(x: number): number {
+  return Math.max(-580, Math.min(-180, -580 + ((x + 320) / 340) * 400));
+}
+export function glazeToThunderX(x: number): number {
+  return Math.max(-310, Math.min(10, -320 + ((x + 580) / 400) * 340));
+}
 
 /** 碧潮 z ∈ [520, 780] ↔ 雷鸣 z ∈ [130, 670] */
 export function tideToThunderZ(z: number): number {

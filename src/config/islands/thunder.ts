@@ -33,7 +33,7 @@ export const THUNDER: IslandConfig = {
   spawnYaw: 0,
   // 冲浪 / 飞行：航线走廊 + 主岛近海（北岸码头外的水路 3 在 M3-05 加入）
   travelBounds: [
-    [-1024, 110], [-700, 110], [-660, 0], [-680, -420], [-560, -640], [-300, -840], [400, -860], [800, -800], [1010, -560], [1010, 640], [900, 740], [0, 790], [-560, 760], [-680, 700], [-1024, 690],
+    [-1024, 110], [-700, 110], [-660, 0], [-680, -420], [-560, -640], [-300, -840], [-330, -1024], [30, -1024], [40, -860], [400, -860], [800, -800], [1010, -560], [1010, 640], [900, 740], [0, 790], [-560, 760], [-680, 700], [-1024, 690],
   ],
   zones: [
     // ———————— 城镇 ————————
@@ -192,6 +192,20 @@ export const THUNDER: IslandConfig = {
       legacyMapId: 'water-route-2',
     },
     {
+      id: 'thunder-glaze-route',
+      name: '雷鸣—琉璃海域',
+      kind: 'sea',
+      polygon: [[-330, -1024], [30, -1024], [40, -800], [-320, -800]],
+      bgm: 'sea-route',
+      encounterTable: 'glaze-sea-route',
+      levelRange: [40, 46],
+      weather: [
+        { weather: 'seafog', weight: 5 },
+        { weather: 'clear', weight: 1 },
+      ],
+      legacyMapId: 'water-route-3',
+    },
+    {
       id: 'thunder-nearshore',
       name: '雷鸣近海',
       kind: 'sea',
@@ -284,6 +298,6 @@ export const THUNDER: IslandConfig = {
   blockers: [
     // 攀爬点（云顶高崖南侧崖壁）在 M3-17 攀爬骑乘时加入
     // 云雀镇码头：雷鸣—琉璃海域在 M3-05 开放
-    { id: 'glaze-route', type: 'story', requiresFlag: 'glaze-route-open', position: [-150, 0, -740], radius: 8, hint: '船老大：雷鸣—琉璃海域起了大雾，礁石又多，船暂时开不了。' },
+    { id: 'glaze-route', type: 'story', requiresFlag: 'glaze-route-open', position: [-150, 0, -740], radius: 8, hint: '钓竿爷：北边雾大礁多，没本事的人进去就出不来。先把雷鸣四座道馆打下来再说吧！' },
   ],
 };

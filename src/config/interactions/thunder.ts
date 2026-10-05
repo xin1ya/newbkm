@@ -26,7 +26,7 @@ export const THUNDER_FURNITURE: InteractionDef[] = [
 
 export const THUNDER_LANDMARKS: InteractionDef[] = [
   { id: 'thunder-dock', kind: 'examine', range: 3.5, pages: ['雷鸣镇码头。', '「碧潮—雷鸣海域：渡轮停运中。」', '往西冲浪可以回到碧潮群岛的温泉乡。'] },
-  { id: 'lark-dock', kind: 'examine', range: 3.5, pages: ['云雀镇码头。', '「北方航线：雷鸣—琉璃海域（海雾 + 礁石，暂未开放）」'] },
+  { id: 'lark-dock', kind: 'examine', range: 3.5, pages: ['云雀镇码头。', '「北方航线：雷鸣—琉璃海域。终年海雾，礁石迷宫——请认准缺口两侧的红绿浮标。」', '一直往北就是琉璃群岛的幻影镇。'], byFlag: [{ when: '!glaze-route-open', pages: ['云雀镇码头。', '「北方航线：雷鸣—琉璃海域（海雾 + 礁石，暂未开放）」'] }] },
   {
     id: 'thunder-tower-sign',
     kind: 'examine',
