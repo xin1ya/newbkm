@@ -1260,7 +1260,13 @@ export const MUSIC: readonly TrackDef[] = [
 export const MUSIC_BY_ID: ReadonlyMap<string, TrackDef> = new Map(MUSIC.map((t) => [t.id, t]));
 
 /** 区域 / 室内配置里的 bgm 名 → 曲目 id（名字一致的直接对应） */
-export const BGM_ALIASES: Readonly<Record<string, string>> = {};
+export const BGM_ALIASES: Readonly<Record<string, string>> = {
+  // M4-01 秘境岛地形先借用相近曲目；M4-15 换为专属曲
+  'town-dragon': 'town-ore',
+  'town-moon': 'town-ghost',
+  'field-dragon-canyon': 'field-canyon',
+  'field-moon-wastes': 'field-marsh',
+};
 
 export function resolveBgm(name: string | null | undefined): string | null {
   if (!name) return null;
