@@ -201,4 +201,13 @@ export const GLAZE_LANDMARKS: InteractionDef[] = [
   { id: 'ever-fountain', kind: 'examine', range: 6, pages: ['彩幽喷泉。', '水柱在阳光下化成一道道彩虹——「彩幽」这个名字就是这么来的。'], night: ['彩幽喷泉。', '夜里，池底的灯把水柱照成了淡蓝色。'] },
   { id: 'ever-noticeboard', kind: 'examine', pages: ['彩幽市告示板：', '「北 · 精灵联盟　南 · 冠军之路」', '「挑战者须知：进入联盟后，在击败四天王与冠军之前无法离开。请在旅馆做好准备。」'] },
   { id: 'ever-champion-statues', kind: 'examine', range: 10, pages: ['冠军大道。两侧立着六座金色星像。', '每座底座都刻着一位历代冠军的名字和年份。', '最后一座的底座还是空白的。'] },
+  // M4-02 秘境航线：持「秘境船票」（main-colress-call，M4-10）才能登船
+  {
+    id: 'glaze-dock',
+    kind: 'ferry',
+    range: 4,
+    pages: ['琉璃镇码头。', '「开往秘境岛的渡船：按船票乘船，每日往返。」', '一艘漆成深紫色的渡轮靠在泊位上。'],
+    effects: [{ kind: 'story', script: 'ferry-to-secret' }],
+    byFlag: [{ when: '!secret-ferry-ticket', pages: ['琉璃镇码头。', '「开往秘境岛的渡船：未开放的航线。」', '售票员看了看你：「那条航线要凭『秘境船票』才能坐。听说……要先成为联盟的冠军，才会收到邀请函。」'] }],
+  },
 ];
