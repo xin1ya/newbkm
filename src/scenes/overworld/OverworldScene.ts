@@ -251,6 +251,7 @@ export class OverworldScene implements Scene, BattleHost {
     progress(0.35, '放置建筑与道具……');
     const propsFile = await game.platform.assets.fetchJson<PropsFile>(island.props);
     this.props = new GrayboxProps(this.terrain.hf, this.collision, propsFile);
+    this.props.setFlagProbe((f) => this.d.state.flags[f] === true);
     // 已清除的能力阻挡（读档）
     for (const b of island.blockers) if (CLEARABLE_BLOCKERS.has(b.type) && blockerOpen(b, (f) => this.d.state.flags[f] === true)) this.props.clearBlocker(b.id);
     for (const b of island.blockers) {

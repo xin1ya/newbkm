@@ -22,6 +22,8 @@ interface PropPhase {
   key: string;
   hours: [number, number];
   mirage: boolean;
+  /** M4-04 旗帜门控：flag 为假时整组不显现（哪怕在时间窗内） */
+  flag: string | null;
   meshes: THREE.Mesh[];
   solid: THREE.MeshToonMaterial;
   glow: THREE.MeshBasicMaterial;
@@ -110,7 +112,7 @@ export class GrayboxProps {
       solid.userData.outline = false;
       const glow = this.glowMaterial.clone();
       glow.transparent = true;
-      ph = { key, hours: [p.hours[0], p.hours[1]], mirage: p.mirage === true, meshes: [], solid, glow, colliders: [], opacity: 1, solidOn: false };
+      ph = { key, hours: [p.hours[0], p.hours[1]], mirage: p.mirage === true, flag: p.requiresFlag ?? null, meshes: [], solid, glow, colliders: [], opacity: 1, solidOn: false };
       this.phases.set(key, ph);
     }
     return ph;
@@ -134,17 +136,26 @@ export class GrayboxProps {
     this.collision.add(group, c);
   }
 
+  private flagProbe: ((flag: string) => boolean) | null = null;
+  /** M4-04 · 注入剧情 flag 查询：requiresFlag 的分时组按旗帜门控显隐 */
+  setFlagProbe(fn: (flag: string) => boolean): void {
+    this.flagProbe = fn;
+  }
+
   /**
    * M3-11 · 每帧按游戏时间更新分时摆放物：时间窗内淡入（实体出现时同时加入碰撞），窗外淡出并移除碰撞。
    * 第一次调用直接跳到目标状态（读档 / 进岛时不播放淡入）。
+   * M4-04 · 组带 requiresFlag 时，旗帜为假则始终不显现。
    */
   setHour(hour: number, dt: number): void {
     if (!this.phases.size) return;
+    const flagOn = this.flagProbe;
     this.phaseTime += dt;
     const first = !this.phaseInit;
     this.phaseInit = true;
     for (const ph of this.phases.values()) {
-      const want = phaseOpacity(hour, ph.hours, ph.mirage, this.phaseTime);
+      const gate = !ph.flag || flagOn?.(ph.flag) === true;
+      const want = gate ? phaseOpacity(hour, ph.hours, ph.mirage, this.phaseTime) : 0;
       if (first) ph.opacity = want;
       // 幻象已经显现：直接跟随热浪闪烁
       else if (ph.mirage && want > 0 && ph.opacity > 0.3) ph.opacity = want;
@@ -266,6 +277,8 @@ export class GrayboxProps {
                                     ? GL.everHouse(w, h, d, p.accent ?? roof, seed, p.variant === 'ever-hotel')
                                     : p.variant === 'roost'
                                       ? SE.roostHouse(w, h, d, wall, roof, seed, p.accent)
+                                      : p.variant === 'wraith'
+                                        ? SE.wraithHouse(w, h, d, wall, roof, seed, p.accent)
                         : T.house(w, h, d, wall, roof, p.variant, seed, p.accent)
             : p.type === 'lab'
               ? T.lab(w, h, d, wall, roof)
@@ -322,6 +335,7 @@ export class GrayboxProps {
           ghost: () => GL.gymGhost(w, h),
           water: () => GL.gymWater(w, h),
           dragon: () => SE.gymDragon(w, h),
+          moon: () => SE.gymMoon(w, h),
         };
         this.place((gymParts[p.variant ?? ''] ?? (() => T.gym(w, h, wall, roof)))(), x, y, z, yaw);
         this.colAdd('props', { kind: 'circle', x, z, r: w / 2, y0: y, y1: y + h, tag: `building:${p.ref}` });

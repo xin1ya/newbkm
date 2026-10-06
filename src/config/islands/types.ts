@@ -375,6 +375,8 @@ export interface PropInstance {
   hours?: [number, number];
   /** M3-11 幻象：半透明闪烁、没有碰撞（白天的海市蜃楼） */
   mirage?: boolean;
+  /** M4-04 只在剧情 flag 为真时出现（与 hours 组合 = 「解锁后的夜晚城镇」；未解锁时时间窗内也不显现） */
+  requiresFlag?: string;
 }
 
 /** M1-02/03/04 · 城镇布局（手工摆放，gen-sprout 读取后写入 props.json） */

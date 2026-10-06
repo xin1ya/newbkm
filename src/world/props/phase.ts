@@ -12,9 +12,9 @@ export function inHourWindow(h: number, w: readonly [number, number]): boolean {
 }
 
 /** 分组键：同一时间窗 + 同一类型（实体 / 幻象）的摆放物合并成一组 */
-export function phaseKey(p: Pick<PropInstance, 'hours' | 'mirage'>): string | null {
+export function phaseKey(p: Pick<PropInstance, 'hours' | 'mirage' | 'requiresFlag'>): string | null {
   if (!p.hours) return null;
-  return `phase:${p.hours[0]}-${p.hours[1]}${p.mirage ? ':mirage' : ''}`;
+  return `phase:${p.hours[0]}-${p.hours[1]}${p.mirage ? ':mirage' : ''}${p.requiresFlag ? ':f' + p.requiresFlag : ''}`;
 }
 
 /** 幻象的最大不透明度（实体为 1） */

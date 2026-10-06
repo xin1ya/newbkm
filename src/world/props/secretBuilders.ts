@@ -207,3 +207,131 @@ export function gymDragon(w: number, h: number): PropParts {
   for (const s of [-1, 1]) p.solid.push(paint(new THREE.PlaneGeometry(1.1, 1.3).rotateY(s * Math.PI / 2), '#33405a', new THREE.Matrix4().makeTranslation(s * (half + 0.03), baseH + wallH * 0.5, 0)));
   return p;
 }
+
+// ———————————————————————— M4-04 · 月魇镇 ————————————————————————
+
+const MOON = '#cfd6f2';
+const NIGHT = '#3c3654';
+
+/**
+ * 魇屋：夜里随镇子一起浮现的旧式镇屋——歪斜的深色粉墙、瘦高的月光窗、
+ * 山墙上开一弯月窗，屋檐挂一串小灯，门缝透出淡紫的光。
+ */
+export function wraithHouse(w: number, h: number, d: number, wall: string, roof: string, seed = 1, accent = '#7a5bd6'): PropParts {
+  const p = newParts();
+  const r = rng(seed);
+  const lean = (r() - 0.5) * 0.035; // 每栋屋子的独属歪斜
+  const wallH = h * 0.62;
+  const g = (geo: THREE.BufferGeometry, x: number, y: number, z: number, c: string, rz = lean): void => {
+    const m = new THREE.Matrix4().makeRotationZ(rz).setPosition(x, y + Math.abs(x) * rz * 0.6, z);
+    p.solid.push(paint(geo, c, m));
+  };
+  // 石基 + 粉墙（下宽上收）
+  g(new THREE.BoxGeometry(w + 0.4, 0.4, d + 0.4), 0, 0.2, 0, shade(wall, -0.16));
+  g(new THREE.BoxGeometry(w, wallH, d), 0, 0.4 + wallH / 2, 0, wall);
+  // 墙皮剥落斑
+  for (let k = 0; k < 7; k++) {
+    const side = k % 2 ? 1 : -1;
+    g(new THREE.BoxGeometry(0.06, 0.5 + r() * 0.7, 0.7 + r() * 0.9, ), side * (w / 2 + 0.02), 0.8 + r() * (wallH - 1.4), -d / 2 + 0.8 + r() * (d - 1.6), shade(wall, -0.2 - r() * 0.1));
+  }
+  // 瘦高的月光窗（正面两个 + 山墙一个）
+  for (const s of [-1, 1]) {
+    const wx = s * w * 0.26;
+    g(new THREE.BoxGeometry(0.7, 1.7, 0.1), wx, 0.4 + wallH * 0.52, d / 2 + 0.05, '#1d1a2e');
+    p.glow.push(paint(new THREE.BoxGeometry(0.52, 1.5, 0.05), MOON, new THREE.Matrix4().makeTranslation(wx, 0.4 + wallH * 0.52, d / 2 + 0.07)));
+    g(new THREE.BoxGeometry(0.9, 0.12, 0.16), wx, 0.4 + wallH * 0.52 + 0.92, d / 2 + 0.06, accent === '#7a5bd6' ? '#54497e' : accent);
+  }
+  // 门：窄而高，门缝透光
+  g(new THREE.BoxGeometry(1.25, 2.35, 0.14), 0, 1.17, d / 2 + 0.04, '#241f38');
+  p.glow.push(paint(new THREE.BoxGeometry(0.14, 2.1, 0.05), '#b99aff', new THREE.Matrix4().makeTranslation(0.3, 1.1, d / 2 + 0.13)));
+  g(new THREE.BoxGeometry(1.65, 0.14, 0.2), 0, 2.4, d / 2 + 0.08, shade(wall, -0.2));
+  // 陡屋顶 + 山墙月窗
+  const roofY = 0.4 + wallH;
+  gable(p, w * 1.2, h * 0.42, d * 1.2, roofY, roof, shade(wall, -0.1), 0.2);
+  {
+    const m = new THREE.Matrix4().makeRotationZ(lean).setPosition(0, roofY + h * 0.16, d * 0.615);
+    p.solid.push(paint(new THREE.RingGeometry(0.26, 0.46, 16, 1, 0.55, Math.PI * 1.6).rotateZ(0.9), MOON, m));
+  }
+  // 檐下小灯串（三盏）+ 门前石阶
+  for (let k = -1; k <= 1; k++) {
+    const lx = k * (w * 0.3);
+    const ly = roofY - 0.25 - Math.abs(k) * -0.06;
+    g(new THREE.BoxGeometry(0.05, 0.3, 0.05), lx, ly + 0.25, d / 2 + 0.3, '#2c2740');
+    p.glow.push(paint(new THREE.SphereGeometry(0.12, 8, 6), k === 0 ? '#c9e07a' : '#9ac2ff', new THREE.Matrix4().makeTranslation(lx, ly, d / 2 + 0.3)));
+  }
+  g(new THREE.BoxGeometry(2.0, 0.14, 0.7), 0, 0.07, d / 2 + 0.75, shade(wall, -0.24));
+  // 屋顶歪烟囱 + 山墙小月晷
+  g(new THREE.BoxGeometry(0.5, 1.15, 0.5), -w * 0.28, roofY + h * 0.42, -d * 0.2, '#4a445e', lean * 1.6);
+  return p;
+}
+
+/**
+ * 魇月道馆：夜之镇北端的黑石圆塔。塔身微微倾斜，顶上一弯巨大的月环
+ * （glow，夜里整镇浮现时它就是灯塔）；入口是瘦长的紫缝拱门，
+ * 环绕塔基浮着一圈大小不一的失眠石碑，石阶两侧一排地灯。
+ */
+export function gymMoon(w: number, h: number): PropParts {
+  const p = newParts();
+  const half = w / 2;
+  // 环形石台 + 三层塔身（逐层收分、整体微倾）
+  const tilt = 0.03;
+  p.solid.push(paint(new THREE.CylinderGeometry(half + 2.2, half + 2.8, 0.7, 26), '#37324a', new THREE.Matrix4().makeTranslation(0, 0.35, 0)));
+  const tiers: Array<[number, number, number, string]> = [
+    [half, half * 0.94, h * 0.4, NIGHT],
+    [half * 0.94, half * 0.78, h * 0.3, '#453e60'],
+    [half * 0.78, half * 0.6, h * 0.24, NIGHT],
+  ];
+  let y = 0.7;
+  let xo = 0;
+  for (const [rb, rt, th, c] of tiers) {
+    p.solid.push(paint(new THREE.CylinderGeometry(rt, rb, th, 22).translate(xo + (xo - 0) * 0.0, 0, 0), c, new THREE.Matrix4().makeRotationZ(tilt).setPosition(xo + Math.tan(tilt) * (y + th / 2) * 0.0, y + th / 2, 0)));
+    // 每层的暗色腰线 + 竖窄缝窗（透光）
+    p.solid.push(paint(new THREE.CylinderGeometry(rt + 0.06, rt + 0.06, 0.16, 22), '#2b2740', new THREE.Matrix4().makeTranslation(xo, y + th - 0.1, 0)));
+    for (let k = 0; k < 6; k++) {
+      const a = (k / 6) * Math.PI * 2 + 0.4;
+      const sl = paint(new THREE.BoxGeometry(0.14, th * 0.6, 0.1), '#b99aff', new THREE.Matrix4().makeRotationY(-a).setPosition(Math.cos(a) * (rb - 0.05), y + th * 0.5, Math.sin(a) * (rb - 0.05)));
+      p.glow.push(sl);
+    }
+    y += th;
+    xo += Math.sin(tilt) * th;
+  }
+  // 顶冠：平台 + 巨大月环（发光，整组随镇子夜晚浮现）
+  p.solid.push(paint(new THREE.CylinderGeometry(half * 0.72, half * 0.66, 0.35, 20), '#2b2740', new THREE.Matrix4().makeTranslation(xo, y + 0.15, 0)));
+  {
+    // XY 平面圆环默认朝 +Z：正对南向街道，夜里从街口就能看到那弯月
+    p.glow.push(paint(new THREE.RingGeometry(h * 0.16, h * 0.2, 30, 1, 0.5, Math.PI * 1.9).scale(1, 1.25, 1), MOON, new THREE.Matrix4().makeTranslation(xo, y + h * 0.26, 0)));
+    // 月环内侧再叠一圈暖白芯，夜里远景不糊
+    p.glow.push(paint(new THREE.RingGeometry(h * 0.185, h * 0.198, 30, 1, 0.35, Math.PI * 1.55).scale(1, 1.25, 1), '#ffffff', new THREE.Matrix4().makeTranslation(xo, y + h * 0.26, 0)));
+  }
+  // 塔身攀带：一道绕塔的深紫饰带 + 三面上挑檐
+  for (const a of [0, 2.1, 4.2]) {
+    const eave = paint(new THREE.ConeGeometry(half * 0.5, h * 0.1, 4, 1, true).rotateX(0.15), '#2b2740', new THREE.Matrix4().makeRotationY(a).setPosition(Math.cos(a) * half * 0.8, y - h * 0.06, Math.sin(a) * half * 0.8));
+    p.solid.push(eave);
+  }
+  // 正门（+Z）：瘦长的紫缝拱门 + 门框双碑
+  {
+    const z = half + 0.1;
+    p.solid.push(paint(new THREE.BoxGeometry(2.3, 3.4, 0.5), '#241f38', new THREE.Matrix4().makeTranslation(0, 1.7, z)));
+    p.glow.push(paint(new THREE.BoxGeometry(0.55, 3.2, 0.08), '#b99aff', new THREE.Matrix4().makeTranslation(0, 1.7, z + 0.28)));
+    p.solid.push(paint(new THREE.TorusGeometry(1.15, 0.16, 6, 16, Math.PI).rotateY(Math.PI / 2), '#4a445e', new THREE.Matrix4().makeTranslation(0, 3.45, z)));
+    for (const s of [-1, 1]) p.solid.push(paint(new THREE.BoxGeometry(0.5, 4.4, 0.5), '#453e60', new THREE.Matrix4().makeTranslation(s * 1.9, 2.2, z - 0.15)));
+    // 石阶 + 地灯
+    for (let k = 0; k < 3; k++) p.solid.push(paint(new THREE.BoxGeometry(4.6 - k * 0.5, 0.24, 0.9), '#37324a', new THREE.Matrix4().makeTranslation(0, 0.72 - k * 0.24, z + 0.8 + k * 0.85)));
+    for (const s of [-1, 1])
+      for (let k = 0; k < 3; k++) {
+        p.glow.push(paint(new THREE.SphereGeometry(0.13, 8, 6), '#9ac2ff', new THREE.Matrix4().makeTranslation(s * (2.9 + k * 0.1), 0.9, z + 1.0 + k * 0.85)));
+      }
+  }
+  // 失眠石碑环：大小高矮不一、各自微倾，浮在塔基外圈半米（底座与碑间留缝 = 「悬浮」感）
+  const nS = 9;
+  for (let k = 0; k < nS; k++) {
+    const a = (k / nS) * Math.PI * 2 + 0.35;
+    const rr = half + 3.4;
+    const hh = 1.1 + ((k * 37) % 10) / 6;
+    const m = new THREE.Matrix4().makeRotationY(-a).multiply(new THREE.Matrix4().makeRotationZ(((k % 3) - 1) * 0.09));
+    m.setPosition(Math.cos(a) * rr, 1.35 + hh / 2 + ((k % 2) - 0.5) * 0.18, Math.sin(a) * rr);
+    p.solid.push(paint(new THREE.BoxGeometry(0.6, hh, 0.28), '#453e60', m));
+    p.solid.push(paint(new THREE.BoxGeometry(0.8, 0.3, 0.4), '#37324a', new THREE.Matrix4().makeTranslation(Math.cos(a) * rr, 0.85, Math.sin(a) * rr)));
+  }
+  return p;
+}

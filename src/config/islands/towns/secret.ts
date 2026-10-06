@@ -10,7 +10,13 @@
  *   宝可梦中心与商店在西街北段，守龙老人之家（可入内）在东街北段。
  *
  * 门口坐标与 secret.ts 的 POI 一一对应（atDoor 反推建筑中心；道馆 = 门口沿朝向后退 w/2 + 1）。
- * 月魇镇（M4-04）继续在此文件填充。
+ *
+ * 月魇镇（M4-04，月魇荒原 30 m 台地）：只在夜晚显现的魇镇。
+ *   白天这里是一圈断柱与残拱（M4-01 已按月魇镇遗址 POI 铺好遗址环），鬼火在柱间游荡；
+ *   入夜后（19 时–5 时）、且剧情解开「魇镇之约」（flag moon-town-awake，M4-11）之后，
+ *   整座镇子从遗址里浮现：主街两侧歪斜的魇屋（variant 'wraith'）、广场上的新月像、
+ *   夜市集摊，北端黑石圆塔的魇月道馆顶着一弯发光月环；未解锁时夜里也只有废墟。
+ *   全部夜现构件 = hours [19,5] + requiresFlag，随同一分时组一起淡入淡出（碰撞同步增删）。
  */
 import type { PropInstance, TownLayout, Vec2 } from '../types';
 import { FACE, PI, atDoor, deck, fence, lamps, prop, trees } from './helpers';
@@ -22,10 +28,17 @@ function gymAt(ref: string, door: Vec2, yaw: number, w: number, h: number, varia
 const roost = (door: Vec2, yaw: number, size: [number, number, number], wall: string, roof: string, seed: number, extra: Partial<PropInstance> = {}): PropInstance =>
   atDoor('house', door, yaw, size, { variant: 'roost', color: wall, roof, seed, accent: '#8a5a3a', ...extra });
 
+/** 夜现城镇的时间窗与解锁 flag（NPC 日程 / 互动文本与这里保持一致） */
+export const MOON_NIGHT_HOURS = [19, 5] as [number, number];
+export const MOON_TOWN_FLAG = 'moon-town-awake';
+/** 把一组构件整组设为「解锁后的夜晚限定」 */
+const night = (list: PropInstance[]): PropInstance[] => list.map((q) => ({ ...q, hours: MOON_NIGHT_HOURS, requiresFlag: MOON_TOWN_FLAG }));
+
 const W_A = '#8d8478';
 const W_B = '#968a76';
 const W_C = '#7f7a70';
 const ROOF_A = '#5a4a38';
+const MOON_STONE = '#cfd6f2';
 const ROOF_B = '#6a5844';
 
 // ———————————————————————— 寐龙镇 ————————————————————————
@@ -117,5 +130,52 @@ export const SECRET_TOWNS: TownLayout[] = [
       { position: [24, 246], size: [52, 46], y: 14, blend: 12 },
     ],
     props: dragonTown,
+  },
+  {
+    id: 'moon-town',
+    zone: 'moon-town',
+    paths: [
+      // 道馆前广场（石砌，接主街）
+      { id: 'town-moon-gym-plaza', surface: 'stone', width: 14, points: [[40, -345], [40, -317]] },
+    ],
+    pads: [
+      // 塔基压平（台地本身 30 m 微起伏，道馆不自动压）
+      { position: [40, -357], size: [30, 28], y: 30, blend: 10 },
+    ],
+    props: [
+      // ———— 白天也存在的「常设」构件：镇口指路牌（废墟状态说明） ————
+      prop('sign', [-24, -306], [1.6, 1.6, 0.2], { yaw: FACE.east, ref: 'moon-ruins' }),
+      // ———— 夜晚浮现的镇子（全部同一分时组：19–5 时 且 moon-town-awake） ————
+      ...night([
+        // 北端：魇月道馆（外观 M4-04，POI/室内留 M4-07）
+        (() => {
+          const g = gymAt('gym-moon', [40, -345], FACE.south, 22, 14, 'moon');
+          return { ...g, hours: MOON_NIGHT_HOURS, requiresFlag: MOON_TOWN_FLAG };
+        })(),
+        // 北排魇屋（门朝南通街）
+        atDoor('house', [14, -315], FACE.south, [9, 6.4, 8], { variant: 'wraith', color: '#4a4460', roof: '#312c46', seed: 5401, accent: '#7a5bd6' }),
+        atDoor('house', [40, -315], FACE.south, [9.5, 6.8, 8], { variant: 'wraith', color: '#514a6a', roof: '#2e2a42', seed: 5402, accent: '#7a5bd6' }),
+        atDoor('house', [66, -315], FACE.south, [9, 6.2, 8], { variant: 'wraith', color: '#464058', roof: '#35304c', seed: 5403, accent: '#7a5bd6' }),
+        // 南排魇屋（门朝北）
+        atDoor('house', [20, -300], FACE.north, [8.5, 6, 7.5], { variant: 'wraith', color: '#4e4766', roof: '#312c46', seed: 5411, accent: '#7a5bd6' }),
+        atDoor('house', [48, -300], FACE.north, [9, 6.6, 8], { variant: 'wraith', color: '#433d56', roof: '#2e2a42', seed: 5412, accent: '#7a5bd6' }),
+        // 镇口双碑 + 指路牌 + 告示板
+        prop('prophecy-obelisk', [-8, -308], [2, 9, 2], { seed: 5421 }),
+        prop('prophecy-obelisk', [88, -306], [2, 8.4, 2], { seed: 5422 }),
+        prop('sign', [-6.5, -306], [1.6, 1.6, 0.2], { yaw: FACE.east, ref: 'moon-town-board' }),
+        prop('noticeboard', [45.5, -341], [2, 2.2, 0.3], { yaw: 0, ref: 'moon-gym-board' }),
+        // 广场：新月像 + 长椅 + 夜市的两个布篷摊
+        { type: 'statue', position: [40, -330], yaw: 0, size: [1.6, 4.4, 1.6], variant: 'moon', color: MOON_STONE, ref: 'moon-statue' },
+        { type: 'bench', position: [33, -328], yaw: FACE.east, size: [1.8, 0.9, 0.6] },
+        { type: 'bench', position: [47, -328], yaw: FACE.west, size: [1.8, 0.9, 0.6] },
+        { type: 'market-stall', position: [27, -303], yaw: FACE.south, size: [3.2, 2.6, 2.2], roof: '#544a78', variant: 'lantern', seed: 5431 },
+        { type: 'market-stall', position: [57, -303], yaw: FACE.south, size: [3.2, 2.6, 2.2], roof: '#3f5a78', variant: 'pottery', seed: 5432 },
+        // 街灯：夜里随镇点亮（发光件在分时组内，白昼自然消失）
+        ...lamps([[6, -308], [26, -307], [54, -306], [74, -306], [40, -338]]),
+        // 南巷尽头的一对小碑（镇界的失眠者冢）
+        prop('tombstone', [30, -288], [1, 1.5, 0.35], { yaw: 0.2, variant: 'tilted' }),
+        prop('tombstone', [34, -289], [1, 1.3, 0.35], { yaw: -0.15, variant: 'tilted' }),
+      ]),
+    ],
   },
 ];

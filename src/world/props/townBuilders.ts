@@ -1205,6 +1205,13 @@ export function statue(h: number, variant = 'star', color = '#c9a86a'): PropPart
   p.solid.push(box(1.4, h * 0.35, 1.4, '#d8d2c8', 0, 0.4, 0));
   p.solid.push(box(1.1, 0.3, 0.05, '#8a7a5a', 0, 0.4 + h * 0.15, 0.71)); // 铭牌
   const top = 0.4 + h * 0.35;
+  if (variant === 'moon') {
+    // 新月像：柱顶一弯缺口的环（琉璃群岛的「魇月」标记）
+    p.solid.push(box(0.25, h * 0.5, 0.25, color, 0, top, 0));
+    p.solid.push(paint(new THREE.TorusGeometry(0.55, 0.14, 6, 18, Math.PI * 1.62).rotateY(0.6).rotateX(0.12).translate(0, top + h * 0.52, 0), '#e8ecff'));
+    p.glow.push(paint(new THREE.SphereGeometry(0.09, 8, 6), '#cfd6f2', new THREE.Matrix4().makeTranslation(0.3, top + h * 0.62, 0.18)));
+    return p;
+  }
   if (variant === 'anchor') {
     p.solid.push(box(0.25, h * 0.5, 0.25, color, 0, top, 0));
     p.solid.push(box(1.1, 0.2, 0.2, color, 0, top + h * 0.42, 0));
