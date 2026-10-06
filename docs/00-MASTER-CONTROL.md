@@ -269,8 +269,8 @@ M0 最后 6 项已于 2026-09-29 完成：
 | M3-29 | D | 人物模型 | 7 馆主 + 四天王 + 冠军 + 关键 NPC，程序化占位（各有区分、共用骨骼命名） | — | ✅ 新增 14 个 look（leader-electric/normal/ice/flying/psychic/ghost/glaze、e4-dark/ghost/ice/dragon、champion、oracle、engineer）；TrainerModel 新部件：帽型 beanie/goggles/hood/circlet/veil/feather/sunhat、披风、围巾、手套、肩甲、胸前属性徽记、手持道具（法杖/扇/提灯/水晶球）；样张页 `style-guide.html?looks=a,b&back` 阵列预览，截图 `docs/art/renders/m3-29-*.png` |
 | M3-30 | D | 音频 | 两岛各区域 BGM、道馆战曲、四天王 / 冠军战曲、殿堂曲、雷暴 / 暴雪环境音 | M3-24 | ✅ 两岛区域 / 城镇 BGM 全部有曲（配置引用 0 缺失）；新增 `battle-gym-thunder`（雷鸣 4 馆）、`battle-gym-glaze`（琉璃 3 馆，按 trainerId 自动切换）、`hall-of-fame` 名人堂房间曲；`battle-elite` / `battle-champion` 已有；环境音新增 `thunder`（远雷 / 近雷，跟可见闪电按距离延迟同步，`src/core/weatherSignal.ts`）与 `blizzard`（呼啸 + 冰粒）层；测试 `tests/unit/m3-audio.test.ts` |
 | M3-31 | E | 岛 3–4 宝可梦模型 | 按 M3-28 物种清单用 M3-01 管线批量转换；≤15000 三角；asset-tracker 登记来源 | M3-01, M3-28 | ✅ 64 个 OSS 模型入库（清单 187；除大狃拉 903 源网格损坏用灰模），检查图 `art-source/pokemon/<key>/renders/oss_check.png`；ossconv 新增 rot / cut / fit length / 漏网贴图限尺寸；asset-tracker 登记 |
-| M3-32 | E | 性能 | 两岛全路线三角面 ≤1.5M、draw call ≤800；天气特效走画质档位（真机测量由用户手动） | 全部 | ⬜ |
-| M3-33 | E | M3 全流程 QA | 跨海 → 4+3 道馆任意顺序 → 冠军之路 → 联盟通关；全部任务可完成；`docs/qa/M3-acceptance.md` | 全部 | ⬜ |
+| M3-32 | E | 性能 | 两岛全路线三角面 ≤1.5M、draw call ≤800；天气特效走画质档位（真机测量由用户手动） | 全部 | ⏸ 用户要求暂时跳过 |
+| M3-33 | E | M3 全流程 QA | 跨海 → 4+3 道馆任意顺序 → 冠军之路 → 联盟通关；全部任务可完成；`docs/qa/M3-acceptance.md` | 全部 | ✅ 数据级：58 任务全部可达、7 馆任意顺序（`tests/unit/m3-acceptance.test.ts`）；tsc / eslint / vitest 1007 / build 通过；实机流程待用户走查 |
 
 ### 3.5 M4（史诗级，进入阶段前再拆分）
 
@@ -474,6 +474,7 @@ render ◄── world ◄── actors ◄── scenes ◄── ui
 | 2026-10-06 | **M3-24 第三章主线完成**：二度跨海到达卡、冰封秘密（冰川圣坛 BOSS → 异变碎片·蓝）、天空异象收尾；补记 M3-05 ✅ |
 | 2026-10-06 | **M3-25 第四章主线完成**：三度跨海、亡魂低吟（暗影洞窟耿鬼 → 异变碎片·幽）、道馆任务标题对齐；冠军之路 / 联盟沿用 |
 | 2026-10-06 | **M3-26 雷鸣支线 6 条完成**：晶石寻宝、灯塔幽灵灯、雷云观测、冰雕节、远古种子、云雀信使 |
+| 2026-10-06 | **M3-33 数据级验收完成**：全流程可达性测试 + `docs/qa/M3-acceptance.md`；M3-32 性能按用户要求暂缓 |
 | 2026-10-06 | **M3-30 音频完成**：岛 3 / 岛 4 道馆战曲、名人堂曲、雷暴雷声（与闪电同步）与暴雪呼啸环境音层 |
 | 2026-10-06 | **M3-29 人物占位完成**：雷鸣 / 琉璃 7 馆主、四天王、冠军、先知娜芙、电工阿伏换成专属程序化造型（帽型 / 披风 / 徽记 / 道具区分） |
 | 2026-10-06 | **M3-31 岛 3–4 宝可梦模型完成**：pokemon-3d 底模 64 个经 ossconv 重绑骨 + Toon 色阶入库（清单 187）；ossconv 新增 rot / cut / fit length |
