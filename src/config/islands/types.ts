@@ -335,6 +335,9 @@ export type PropType =
   // ——— M3-14 彩幽市 ———
   /** 精灵联盟大门（白金凯旋门） */
   | 'league-gate'
+  // ——— M4-03 寐龙镇 ———
+  /** 巨大龙骨化石（d = 身长，h = 拱高；肋骨构成可以穿过的拱门） */
+  | 'dragon-skeleton'
   | 'glb';
 
 export interface PropInstance {

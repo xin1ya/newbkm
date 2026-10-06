@@ -13,6 +13,7 @@ import * as T from './townBuilders';
 import * as TB from './tideBuilders';
 import * as TH from './thunderBuilders';
 import * as GL from './glazeBuilders';
+import * as SE from './secretBuilders';
 import { PHASE_FADE, phaseKey, phaseOpacity } from './phase';
 import type { Collider } from '../collision/CollisionWorld';
 
@@ -263,6 +264,8 @@ export class GrayboxProps {
                                   ? GL.glassworks(w, h, d, wall, roof)
                                   : p.variant === 'ever' || p.variant === 'ever-hotel'
                                     ? GL.everHouse(w, h, d, p.accent ?? roof, seed, p.variant === 'ever-hotel')
+                                    : p.variant === 'roost'
+                                      ? SE.roostHouse(w, h, d, wall, roof, seed, p.accent)
                         : T.house(w, h, d, wall, roof, p.variant, seed, p.accent)
             : p.type === 'lab'
               ? T.lab(w, h, d, wall, roof)
@@ -318,6 +321,7 @@ export class GrayboxProps {
           mirage: () => GL.gymMirage(w, h),
           ghost: () => GL.gymGhost(w, h),
           water: () => GL.gymWater(w, h),
+          dragon: () => SE.gymDragon(w, h),
         };
         this.place((gymParts[p.variant ?? ''] ?? (() => T.gym(w, h, wall, roof)))(), x, y, z, yaw);
         this.colAdd('props', { kind: 'circle', x, z, r: w / 2, y0: y, y1: y + h, tag: `building:${p.ref}` });
@@ -883,6 +887,21 @@ export class GrayboxProps {
         if (p.ref) {
           const [dx, dz] = at(0, 1.1);
           this.doors.set(p.ref, { position: new THREE.Vector3(dx, ground + 1.2, dz), yaw });
+        }
+        return true;
+      }
+      // ——— M4-03 寐龙镇 ———
+      case 'dragon-skeleton': {
+        // 巨兽龙骨化石：肋拱下可穿行，碰撞只给头骨与骨盆尾端两处凸出部
+        const sd = p.seed ?? Math.round(x * 11 + z * 5);
+        this.place(SE.dragonSkeleton(d, h, sd), x, ground, z, yaw);
+        {
+          const [sx, sz] = at(0, d / 2 + 1.2);
+          this.addBox(sx, sz, 3, 3, yaw, ground, ground + Math.max(2.4, h * 0.35), 'dragon-skull');
+        }
+        {
+          const [sx, sz] = at(0, -d / 2 + 1.4);
+          this.addBox(sx, sz, 3.2, 2.8, yaw, ground, ground + h * 0.4, 'dragon-tail');
         }
         return true;
       }

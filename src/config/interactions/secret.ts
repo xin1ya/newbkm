@@ -5,6 +5,32 @@
 import type { InteractionDef } from '@/systems/interaction';
 
 export const SECRET_LANDMARKS: InteractionDef[] = [
+  // ——— 寐龙镇 · 巨兽龙骨发掘场（M4-03） ———
+  {
+    id: 'dragon-bones',
+    kind: 'examine',
+    range: 6,
+    pages: [
+      '一具巨大得不成比例的骨架，从谷底一直铺到崖脚。',
+      '肋骨在头顶搭成拱廊，最高的脊椎离地八米半。编号桩从 R-001 一路排到 R-214。',
+      '头骨的口腔张着，风穿过牙缝时，整条街都听得见那声低低的呜咽——镇上的人叫它「梦息」。',
+      '坑沿的铜牌：「发掘四十七年，出土率 61%。颅顶以下一律不得移动。——龙骨发掘队」',
+    ],
+  },
+  {
+    id: 'dragon-canyon-sign',
+    kind: 'examine',
+    range: 3,
+    pages: [
+      '往北：龙之峡谷（Lv61-64）· 再上：永冻冰原（Lv65-68）',
+      '「入夜后谷底起雾，风大。骨拱下可避风，勿于坑内扎营。」——寐龙镇公所',
+    ],
+  },
+  { id: 'keeper-table', kind: 'examine', pages: ['一张占了半间屋的测绘桌，整条脊椎的图纸从头铺到尾。', '压在图纸角上的便条：「第 214 根肋骨测绘完毕。颈锥三号疑有误，明日复检。」'] },
+  { id: 'keeper-skull', kind: 'examine', pages: ['桌角摆着一具小龙头骨模型——雕工精细，与发掘场那具一模一样，只是小了一百倍。', '底座的漆已经磨没了，只认得出两个字：「岩生」。'] },
+  { id: 'keeper-shelves', kind: 'examine', pages: ['木架上一排粗陶罐：骨粉、松脂、几块贴着编号的碎骨。', '最里面是一只上锁的黑木匣。'] },
+  { id: 'keeper-map', kind: 'examine', pages: ['墙上钉着历代测绘图，最早的一张已经脆得像枯叶。', '图纸角落里，有人用炭笔补过一笔——把缺的那根尾锥「画」了回去。补画的手法，和图主明显不是同一人。'] },
+  { id: 'dragon-town-notice', kind: 'examine', pages: ['寐龙镇公告板。', '「秋季发掘成果展：10 月 6 日起，坑沿步道开放夜览。请勿翻越围栏触碰化石。」', '「龙渊道馆挑战须知：馆主暗的排阵依来者队伍而定。胜者得『深渊之鳞』推荐信。」'] },
   {
     id: 'secret-dock',
     kind: 'ferry',
